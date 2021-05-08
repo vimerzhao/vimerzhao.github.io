@@ -1,0 +1,30 @@
+---
+title: "Hugo+Asciidoc配置记录"
+date: 2021-05-08T19:41:53+08:00
+isCJKLanguage: true
+categories:
+    - "折腾工具"
+tags:
+    - "Hugo"
+    - "Asciidoc"
+---
+
+= Hugo+Asciidoc配置记录
+
+【2021-05-08】今天参考几篇文章，完成了Hugo博客的配置，特此记录一下：
+
+.搭建教程
+* https://foo-dogsquared.github.io/blog/posts/blogging-with-asciidoctor-and-hugo/[Blogging with Asciidoctor and Hugo | Gabriel Arazas]
+* https://ratfactor.com/hugo-adoc-html5s[Better Hugo/AsciiDoc HTML - ratfactor]
+* https://github.com/diguage/www.diguage.com[diguage/www.diguage.com: "地瓜哥"博客网]
+* https://www.diguage.com/post/building-blog-with-hugo/[使用 Hugo 搭建博客 - "地瓜哥"博客网]
+* https://github.com/Vimux/Mainroad/blob/master/README.md[Mainroad/README.md at master · Vimux/Mainroad]
+* https://opensource.com/article/17/8/asciidoc-web-development[How to create a blog with AsciiDoc | Opensource.com]
+
+.支持归档
+* https://xbc.me/how-to-create-an-archives-page-with-hugo/[为hugo添加归档页面 - 神秘极客]
+* https://davidltran.com/blog/how-to-create-an-archives-page-with-hugo/[David Tran]
+
+.控制摘要长度
+* https://gohugo.io/content-management/summaries/#hugo-defined-automatic-summary-splitting[Content Summaries | Hugo]
+* https://corpython.github.io/post/hugo%E9%99%90%E5%88%B6%E6%91%98%E8%A6%81%E5%AD%97%E6%95%B0%E6%98%BE%E7%A4%BA/[hugo限制摘要字数显示 | code show的博客]

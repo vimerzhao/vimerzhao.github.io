@@ -1,0 +1,62 @@
+baseurl = "/"
+title = "V大师在一号线"
+languageCode = "zh-cn"
+defaultContentLanguage = "zh-cn"
+enableGitInfo = true
+buildDrafts = false
+buildFuture = false
+paginate = "10" # Number of posts per page
+summaryLength = 100
+theme = "mainroad"
+# disqusShortname = "diguage-blog" # Enable comments by entering your Disqus shortname
+googleAnalytics = "" # Enable Google Analytics by entering your tracking id
+
+[Author]
+  name = "赵裕(vimerzhao)"
+  bio = "程序员。"
+  avatar = "images/avatar.jpg"
+
+[Params]
+  subtitle = "业精于勤，荒于嬉；行成于思，毁于随。" # Subtitle of your site
+  description = "赵裕(vimerzhao)的个人博客" # Description of your site
+  opengraph = true
+  twitter_cards = true
+  readmore = true # Show "Read more" button in list if true
+  authorbox = true
+  pager = true
+  mainSections = ["posts", "post"]
+  post_navigation = true
+  post_meta = ["author","date", "categories"] # Order of post meta information
+  dateformat = "2006-01-02"
+  customCSS = ["css/highlighter-pygments-monokai.css","css/asciidoctor.css"] # 
+
+[Params.sidebar]
+  home = "right"   # Configure layout for home page
+  list = "right"   # Configure layout for list pages
+  single = "right" # Configure layout for single pages
+  # Enable widgets in given order
+  widgets = ["search", "recent", "categories", "taglist", "social"]
+
+[Params.widgets]
+  recent_num = 10 # Set the number of articles in the "Recent articles" widget
+  tags_counter = true # Enable counter for each tag in "Tags" widget (disabled by default)
+
+[Params.widgets.social]
+  github = "vimerzhao"
+  #email = "vimerzhao@gmail.com"
+
+[[menu.main]]
+  name = "首页"
+  weight = 10
+  identifier = "home"
+  url = "/"
+[[menu.main]]
+  name = "分类"
+  weight = 40
+  identifier = "categories"
+  url = "/categories/"
+[[menu.main]]
+  name = "标签"
+  weight = 40
+  identifier = "tags"
+  url = "/tags/"

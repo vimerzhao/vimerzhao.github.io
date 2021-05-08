@@ -1,0 +1,110 @@
+--- 
+title: "警惕Proguard内联优化导致Crash堆栈信息丢失"
+date: 2020-01-13
+type: post
+isCJKLanguage: true
+categories:
+    - "疑难杂症"
+tags:
+    - "Android"
+    - "Proguard"
+---
+
+== 背景
+
+最近在处理异常时遇到一个诡异的问题：自己的Demo里面混淆一个类后，打印Crash堆栈时这个类里面的调用点直接失踪了！ 下面用测试代码说明。
+
+== 测试代码
+
+----
+// MainActivity.java
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        new Test().fun1();
+    }
+}
+
+// Test.java
+public class Test {
+    public void fun1() {
+        fun2();
+    }
+    public void fun2() {
+        Object o = null;
+        o.getClass();
+    }
+}
+----
+
+编译配置如下：
+
+----
+...
+    debug {
+        minifyEnabled true
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+...
+----
+
+这时候报错信息如下：
+
+----
+Caused by: java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.Class java.lang.Object.getClass()' on a null object reference
+        at b.a.a.a.b(Test.java:15)
+        at b.a.a.a.a(Test.java:11)
+        at top.vimerzhao.testinline.MainActivity.onCreate(MainActivity.java:13)
+        at android.app.Activity.performCreate(Activity.java:7458)
+        at android.app.Activity.performCreate(Activity.java:7448)
+----
+
+可见虽然类被混淆了，但是堆栈还是正常的，此时如果关闭 `debug` 开关：
+
+----
+...
+    debug {
+        debuggable false
+        minifyEnabled true
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+...
+----
+
+错误信息如下：
+
+----
+Caused by: java.lang.NullPointerException: throw with null exception
+    at top.vimerzhao.testinline.MainActivity.onCreate(MainActivity.java:3)
+    at android.app.Activity.performCreate(Activity.java:7458)
+    at android.app.Activity.performCreate(Activity.java:7448)
+    at android.app.Instrumentation.callActivityOnCreate(Instrumentation.java:1286)
+----
+
+此时不仅前两次调用的信息丢失了，而且 `onCreate` 的调用位置也不准。而罪魁祸首就是 `proguard-android-optimize.txt` ，这个Proguard配置开启了优化，导致一些小的方法调用被 *内联*，而一开始 `debuggable` 是默认打开，所以优化没有启动，设置成 `false` 之后就会出现堆栈信息不准的状况。如文档所述：
+
+____
+By default, ProGuard optimizes all code.
+It inlines and merges classes and class members, and it optimizes all methods at a bytecode level.
+____
+
+所以，*如非明确需要，不要轻易开启Proguard的优化选项，也不要使用自己不了解的混淆配置* (如``proguard-android-optimize.txt``，AS默认写在 `release` 的配置里，有点坑)，应该设置 `-dontoptimize`。
+
+== 感悟
+
+一开始只是确认了混淆造成的，懵逼了好久，最后还是通过：
+
+----
+proguard stack trace loss top frame
+----
+
+这句话搜到了类似问题，*如何描述遇到的问题也很重要~*。
+
+== 参考
+
+* https://stackoverflow.com/questions/21993984/android-proguard-incomplete-stacktrace[Android proguard incomplete stacktrace - Stack Overflow]
+* https://stackoverflow.com/questions/12112514/android-proguard-does-not-inline[Android Proguard does not inline - Stack Overflow]
+* https://www.guardsquare.com/en/products/proguard/manual/usage[ProGuard manual | Usage | Manual| Usage]
+
