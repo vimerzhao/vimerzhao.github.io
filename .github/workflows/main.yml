@@ -26,6 +26,15 @@ jobs:
           submodules: true  # Fetch Hugo themes
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
+    # Step 2
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7
+    - uses: reitzig/actions-asciidoctor@v2.0.0
+      with:
+        version: 2.0.10
+    - run: asciidoctor --version
+
     # Step 2 - Sets up the latest version of Hugo
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v2
