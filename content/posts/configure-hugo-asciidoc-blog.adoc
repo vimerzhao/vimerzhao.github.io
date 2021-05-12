@@ -1,6 +1,7 @@
 ---
 title: "Hugo+Asciidoc配置记录"
 date: 2021-05-08T19:41:53+08:00
+type: post
 isCJKLanguage: true
 categories:
     - "折腾工具"
