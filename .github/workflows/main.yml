@@ -58,7 +58,7 @@ jobs:
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   /* 注意：这行是新加的 */
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
           publish_dir: ./public
