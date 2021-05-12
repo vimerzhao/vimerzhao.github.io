@@ -29,3 +29,6 @@ tags:
 .控制摘要长度
 * https://gohugo.io/content-management/summaries/#hugo-defined-automatic-summary-splitting[Content Summaries | Hugo]
 * https://corpython.github.io/post/hugo%E9%99%90%E5%88%B6%E6%91%98%E8%A6%81%E5%AD%97%E6%95%B0%E6%98%BE%E7%A4%BA/[hugo限制摘要字数显示 | code show的博客]
+
+.持续集成
+* https://www.jianshu.com/p/2a5c77b4d683[HUGO + Github + Github Action持续集成部署个人博客 - 简书]
