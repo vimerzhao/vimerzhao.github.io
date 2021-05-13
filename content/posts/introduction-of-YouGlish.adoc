@@ -1,0 +1,28 @@
+---
+title: "YouGlish介绍"
+date: 2019-11-23T12:31:31+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= YouGlish介绍
+
+YouGlish是干嘛的呢？它的官网已经说的很清楚了:
+
+____
+Use YouTube to improve your English pronunciation.
+Real people, real situations.
+____
+
+发现这个网站的起因是笔者在准备技术分享的时候涉及到一个专业名词 `VSync` ，这个词是 ``Vertical Sync``的缩写，算是一个技术专有名词，用 YouGlish 一搜就找到了 Google 开发人员使用这个单词的场景，毫无疑问这就是我需要找的发音。
+
+image::https://github.com/vimerzhao/images/raw/master/2019-11/Snipaste_2019-11-23_18-47-58.png[Snipaste 2019 11 23 18 4758]
+
+这个网站其实就做了一件事，就是你给定一个单词，它去YouTube检索所有包含这个单词的视频，这些视频可以认为是这个单词在真实世界里的发音。
+
+以上。

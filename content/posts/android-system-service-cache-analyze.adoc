@@ -1,0 +1,559 @@
+---
+title: "Android系统服务的注册缓存机制分析"
+date: 2020-08-21T12:18:22+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= Android系统服务的注册缓存机制分析
+
+// Date:2020-08-21
+
+// LinkName:
+
+== 本文说明
+
+本文虽名为《Android系统服务的注册缓存机制分析》，但主要记录的是笔者最近解决一个单机型Bug的经历。在解决这个Bug的过程中，我对于Android系统服务的注册缓存机制也有了更深入的了解。所以，本文的核心是``getSystemService``这个系统函数背后的复杂机制。
+
+== 问题背景
+
+最近基于DroidPlugin做了一个Demo，测试的时候发现，在几款小米手机（Mix 2、Mix 2s、小米5）的Android 8版本上都会出现插件加载闪退的情况，抓取到的日志如下：
+
+image::http://images.vimerzhao.top/2020-08-21-02.png[]
+
+基于这个信息，我找到了对应的系统源码：
+
+[source,java]
+----
+    /**
+     * Do a quick check to validate if a package name belongs to a UID.
+     *
+     * @throws SecurityException if the package name doesn't belong to the given
+     *             UID, or if ownership cannot be verified.
+     */
+    public void checkPackage(int uid, String packageName) {
+        try {
+            if (mService.checkPackage(uid, packageName) != MODE_ALLOWED) {
+                throw new SecurityException(
+                        "Package " + packageName + " does not belong to " + uid);
+            }
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        }
+    }
+----
+
+结合错误信息可知，是由于``checkPackage``方法使用了插件的包名给系统做校验，而log中的uid（`10525`）对应的是宿主的包名，所以报了这个错误。
+
+于是我直接写了一个Demo，核心代码如下：
+
+[source,java]
+----
+AppOpsManager mAppOps = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
+Log.i("vimerr", "-->" + Process.myUid() + "/" + getPackageName());
+mAppOps.checkPackage(Process.myUid(), getPackageName());
+----
+
+将其直接在DroidPlugin的源码中加载，可以在**任意机型**得到了类似的错误：
+
+image::http://images.vimerzhao.top/2020-08-21-03.jpg[]
+
+至此，可以得出第一个结论：
+
+____
+这是一个DroidPlugin固有的错误，它不能正确地处理插件对``checkPackage``的调用。
+____
+
+基于此，下文将主要围绕DroidPlugin的代码分析这个问题。
+
+== 缩小范围
+
+通过代码，可以发现DroidPlugin其实做了这个调用的处理：
+
+image::http://images.vimerzhao.top/2020-08-21-04.jpg[]
+
+那么为什么还是不行呢？难道是``installHook``这个逻辑失败了？于是我扩展了上面的测试用例：
+
+[source,java]
+----
+ClipboardManager clipboardManager = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
+AppOpsManager mAppOps = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
+UserManager manager = (UserManager)  getSystemService(Context.USER_SERVICE);
+
+Log.i("vimerr", "clip -->" + clipboardManager.getPrimaryClip());
+Log.i("vimerr", "-->" + Process.myUid() + "/" + getPackageName());
+mAppOps.checkPackage(Process.myUid(), getPackageName());
+----
+
+并在``ServiceManagerCacheBinderHook#invoke``的入口加上日志：
+
+[source,java]
+----
+@Override
+public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    try {
+        Log.d("vimerr", method + "/" + mServiceName);
+        IBinder originService = MyServiceManager.getOriginService(mServiceName);
+        ......
+    }
+}
+----
+
+结果越来奇怪了：
+
+image::http://images.vimerzhao.top/2020-08-21-05.jpg[]
+
+剪切板服务和``appops``这个服务走了相同的``installHook``逻辑，为什么一个hook成功了（能在``invoke``被拦截），另一个却失败了？
+
+通过很多次尝试之后，我把目标聚集到了一个方法上(类名：`PluginProcessManager`)：
+
+[source,java]
+----
+
+    //这里为了解决某些插件调用系统服务时，系统服务必须要求要以host包名的身份去调用的问题。
+    public static void fakeSystemService(Context hostContext, Context targetContext) {
+        if (VERSION.SDK_INT >= VERSION_CODES.ICE_CREAM_SANDWICH_MR1 && !TextUtils.equals(hostContext.getPackageName(), targetContext.getPackageName())) {
+            long b = System.currentTimeMillis();
+            fakeSystemServiceInner(hostContext, targetContext);
+            Log.i(TAG, "Fake SystemService for originContext=%s context=%s,cost %s ms", targetContext.getPackageName(), targetContext.getPackageName(), (System.currentTimeMillis() - b));
+        }
+    }
+----
+
+通过注释来看，该方法是解决我这个问题的（内心窃喜）！！但是为啥还是崩了呢？怀着懵逼的想法，我注释了``fakeSystemServiceInner``这个调用，结果竟然OK了。
+
+此刻的我信仰有点崩塌，说好的解决问题呢？冷静一下，我决定看下``fakeSystemServiceInner``源码（核心部分）：
+
+[source,java]
+----
+
+    private static void fakeSystemServiceInner(Context hostContext, Context targetContext) {
+        try {
+            Context baseContext = getBaseContext(targetContext);
+            if (mFakedContext.containsValue(baseContext)) {
+                return;
+            } else if (mServiceCache != null) {
+                ......
+            }
+            Object SYSTEM_SERVICE_MAP = null;
+            try {
+                SYSTEM_SERVICE_MAP = FieldUtils.readStaticField(baseContext.getClass(), "SYSTEM_SERVICE_MAP");
+            } catch (Exception e) {
+                Log.w(TAG, "readStaticField(SYSTEM_SERVICE_MAP) from %s fail", e, baseContext.getClass());
+            }
+            if (SYSTEM_SERVICE_MAP == null) {
+                try {
+                    SYSTEM_SERVICE_MAP = FieldUtils.readStaticField(Class.forName("android.app.SystemServiceRegistry"), "SYSTEM_SERVICE_FETCHERS");
+                } catch (Exception e) {
+                    Log.e(TAG, "readStaticField(SYSTEM_SERVICE_FETCHERS) from android.app.SystemServiceRegistry fail", e);
+                }
+            }
+
+            if (SYSTEM_SERVICE_MAP != null && (SYSTEM_SERVICE_MAP instanceof Map)) {
+                //如没有，则创建一个新的。
+                Map<?, ?> sSYSTEM_SERVICE_MAP = (Map<?, ?>) SYSTEM_SERVICE_MAP;
+                Context originContext = getBaseContext(hostContext);
+
+                Object mServiceCache = FieldUtils.readField(originContext, "mServiceCache");
+                if (mServiceCache instanceof List) {
+                    ((List) mServiceCache).clear();
+                }
+
+                for (Object key : sSYSTEM_SERVICE_MAP.keySet()) {
+                    if (sSkipService.contains(key)) {
+                        continue;
+                    }
+                    Object serviceFetcher = sSYSTEM_SERVICE_MAP.get(key);
+
+                    try {
+                        Method getService = serviceFetcher.getClass().getMethod("getService", baseContext.getClass());
+                        getService.invoke(serviceFetcher, originContext);
+                    } catch (InvocationTargetException e) {
+                        Throwable cause = e.getCause();
+                        if (cause != null) {
+                            Log.w(TAG, "Fake system service faile", e);
+                        } else {
+                            Log.w(TAG, "Fake system service faile", e);
+                        }
+                    } catch (Exception e) {
+                        Log.w(TAG, "Fake system service faile", e);
+                    }
+                }
+                mServiceCache = FieldUtils.readField(originContext, "mServiceCache");
+                FieldUtils.writeField(baseContext, "mServiceCache", mServiceCache);
+
+                //for context ContentResolver
+                ContentResolver cr = baseContext.getContentResolver();
+                if (cr != null) {
+                    Object crctx = FieldUtils.readField(cr, "mContext");
+                    if (crctx != null) {
+                        FieldUtils.writeField(crctx, "mServiceCache", mServiceCache);
+                    }
+                }
+            }
+            if (!mFakedContext.containsValue(baseContext)) {
+                mFakedContext.put(baseContext.hashCode(), baseContext);
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "fakeSystemServiceOldAPI", e);
+        }
+    }
+----
+
+发现这个逻辑十分绕，``hostContext``和``targetContext``各自什么意思，反射读取的一些字段又是干嘛的？
+
+看来只有弄清楚这段代码的目的，才能进一步解决问题了。
+
+== 分析源码
+
+首先从我们的Demo入手，以Android 9的代码为例，`getSystemService` 这个方法最终的调用逻辑如下：
+
+[source,java]
+----
+@Override
+public Object getSystemService(String name) {
+    return SystemServiceRegistry.getSystemService(this, name);
+}
+----
+
+继续追踪：
+
+[source,java]
+----
+/**
+ * Manages all of the system services that can be returned by {@link Context#getSystemService}.
+ * Used by {@link ContextImpl}.
+ */
+final class SystemServiceRegistry {
+    ......
+    private static final HashMap<String, ServiceFetcher<?>> SYSTEM_SERVICE_FETCHERS =
+            new HashMap<String, ServiceFetcher<?>>();
+    ......
+     * Gets a system service from a given context.
+     */
+    public static Object getSystemService(ContextImpl ctx, String name) {
+        ServiceFetcher<?> fetcher = SYSTEM_SERVICE_FETCHERS.get(name);
+        return fetcher != null ? fetcher.getService(ctx) : null;
+
+    }
+    ......
+}
+----
+
+也就是说，每个服务都会对应一个``ServiceFetcher``的对象，它的创建过程是静态的，如下：
+
+[source,java]
+----
+
+static {
+    ......
+    //剪切板服务
+   registerService(Context.CLIPBOARD_SERVICE, ClipboardManager.class,
+            new CachedServiceFetcher<ClipboardManager>() {
+        @Override
+        public ClipboardManager createService(ContextImpl ctx) throws ServiceNotFoundException {
+            return new ClipboardManager(ctx.getOuterContext(),
+                    ctx.mMainThread.getHandler());
+        }});
+    ......
+    //appops服务
+   registerService(Context.APP_OPS_SERVICE, AppOpsManager.class,
+           new CachedServiceFetcher<AppOpsManager>() {
+       @Override
+       public AppOpsManager createService(ContextImpl ctx) throws ServiceNotFoundException {
+           IBinder b = ServiceManager.getServiceOrThrow(Context.APP_OPS_SERVICE);
+           IAppOpsService service = IAppOpsService.Stub.asInterface(b);
+           return new AppOpsManager(ctx, service);
+       }});
+    ......
+}
+----
+
+那么，这个``CachedServiceFetcher``又具体是什么东西呢？它的定义也在``SystemServiceRegistry``中：
+
+[source,java]
+----
+    /**
+     * Override this class when the system service constructor needs a
+     * ContextImpl and should be cached and retained by that context.
+     */
+    static abstract class CachedServiceFetcher<T> implements ServiceFetcher<T> {
+        private final int mCacheIndex;
+
+        CachedServiceFetcher() {
+            // Note this class must be instantiated only by the static initializer of the
+            // outer class (SystemServiceRegistry), which already does the synchronization,
+            // so bare access to sServiceCacheSize is okay here.
+            mCacheIndex = sServiceCacheSize++;
+        }
+
+        @Override
+        @SuppressWarnings("unchecked")
+        public final T getService(ContextImpl ctx) {
+            final Object[] cache = ctx.mServiceCache;
+            final int[] gates = ctx.mServiceInitializationStateArray;
+
+            for (;;) {
+                boolean doInitialize = false;
+                synchronized (cache) {
+                    // Return it if we already have a cached instance.
+                    T service = (T) cache[mCacheIndex];
+                    if (service != null || gates[mCacheIndex] == ContextImpl.STATE_NOT_FOUND) {
+                        return service;
+                    }
+
+                    // If we get here, there's no cached instance.
+
+                    // Grr... if gate is STATE_READY, then this means we initialized the service
+                    // once but someone cleared it.
+                    // We start over from STATE_UNINITIALIZED.
+                    if (gates[mCacheIndex] == ContextImpl.STATE_READY) {
+                        gates[mCacheIndex] = ContextImpl.STATE_UNINITIALIZED;
+                    }
+
+                    // It's possible for multiple threads to get here at the same time, so
+                    // use the "gate" to make sure only the first thread will call createService().
+
+                    // At this point, the gate must be either UNINITIALIZED or INITIALIZING.
+                    if (gates[mCacheIndex] == ContextImpl.STATE_UNINITIALIZED) {
+                        doInitialize = true;
+                        gates[mCacheIndex] = ContextImpl.STATE_INITIALIZING;
+                    }
+                }
+
+                if (doInitialize) {
+                    // Only the first thread gets here.
+
+                    T service = null;
+                    @ServiceInitializationState int newState = ContextImpl.STATE_NOT_FOUND;
+                    try {
+                        // This thread is the first one to get here. Instantiate the service
+                        // *without* the cache lock held.
+                        service = createService(ctx);
+                        newState = ContextImpl.STATE_READY;
+
+                    } catch (ServiceNotFoundException e) {
+                        onServiceNotFound(e);
+
+                    } finally {
+                        synchronized (cache) {
+                            cache[mCacheIndex] = service;
+                            gates[mCacheIndex] = newState;
+                            cache.notifyAll();
+                        }
+                    }
+                    return service;
+                }
+                // The other threads will wait for the first thread to call notifyAll(),
+                // and go back to the top and retry.
+                synchronized (cache) {
+                    while (gates[mCacheIndex] < ContextImpl.STATE_READY) {
+                        try {
+                            cache.wait();
+                        } catch (InterruptedException e) {
+                            Log.w(TAG, "getService() interrupted");
+                            Thread.currentThread().interrupt();
+                            return null;
+                        }
+                    }
+                }
+            }
+        }
+
+        public abstract T createService(ContextImpl ctx) throws ServiceNotFoundException;
+    }
+----
+
+通过分析``getService``的逻辑可知：
+
+. 如果是首次创建，则会缓存一份
+. 如果非首次创建，直接读取缓存，缓存是``ctx.mServiceCache``
+
+缓存是在``ContextImpl``这个类中的：
+
+[source,java]
+----
+/**
+ * Common implementation of Context API, which provides the base
+ * context object for Activity and other application components.
+ */
+class ContextImpl extends Context {
+    ......
+    // The system service cache for the system services that are cached per-ContextImpl.
+    final Object[] mServiceCache = SystemServiceRegistry.createServiceCache();
+    ......
+}
+----
+
+由此，我们得出了``getSystemService``背后发生的事情：
+
+. 每个``ContextImpl``创建的时候会持有一个``mServiceCache``字段，缓存这些服务的fetcher
+. 每个服务对应一个fetcher，服务的创建是在``createService``里面的，*一开始并没有执行*
+. 每个服务第一次实际调用，也就是fetcher的``getService``触发的时候会执行``createService``的逻辑，并缓存起来
+
+简单来说，这个一个**懒加载+缓存**的经典设计，对于Google工程师来说应该是常规操作了。但是至迟也没看出剪切板服务和``appops``服务有任何的不同！那么：
+
+* 为什么在这两个服务demo中调用之后会产生不同的效果呢？
+* 为什么去掉``fakeSystemService``就能正确执行呢？
+
+是时候重新看下刚才的代码了。
+
+== 回到DroidPlugin
+
+如果掌握了系统服务的注册缓存机制，那么刚才的代码就比较容易读懂了，以下是注释版：
+
+[source,java]
+----
+    /**
+     * @param hostContext 宿主的context
+     * @param targetContext 插件的context
+     */
+    private static void fakeSystemServiceInner(Context hostContext, Context targetContext) {
+        try {
+            // 获取插件的 mBase，即 ContextImpl对象
+            Context baseContext = getBaseContext(targetContext);
+            if (mFakedContext.containsValue(baseContext)) {
+                return;
+            } else if (mServiceCache != null) {
+                ......
+            }
+            Object SYSTEM_SERVICE_MAP = null;
+            // 获取插件的SYSTEM_SERVICE_MAP字段，它的Key包含了所有的系统服务
+            try {
+                // 低版本的位置
+                SYSTEM_SERVICE_MAP = FieldUtils.readStaticField(baseContext.getClass(), "SYSTEM_SERVICE_MAP");
+            } catch (Exception e) {
+                Log.w(TAG, "readStaticField(SYSTEM_SERVICE_MAP) from %s fail", e, baseContext.getClass());
+            }
+            if (SYSTEM_SERVICE_MAP == null) {
+                try {
+                    SYSTEM_SERVICE_MAP = FieldUtils.readStaticField(Class.forName("android.app.SystemServiceRegistry"), "SYSTEM_SERVICE_FETCHERS");
+                } catch (Exception e) {
+                    Log.e(TAG, "readStaticField(SYSTEM_SERVICE_FETCHERS) from android.app.SystemServiceRegistry fail", e);
+                }
+            }
+
+            if (SYSTEM_SERVICE_MAP != null && (SYSTEM_SERVICE_MAP instanceof Map)) {
+                //如没有，则创建一个新的。
+                Map<?, ?> sSYSTEM_SERVICE_MAP = (Map<?, ?>) SYSTEM_SERVICE_MAP;
+                // 获取插件的 mBase，即 ContextImpl对象
+                Context originContext = getBaseContext(hostContext);
+
+                // 获取宿主ContextImpl的mServiceCache，也就是系统服务的fetcher缓存
+                Object mServiceCache = FieldUtils.readField(originContext, "mServiceCache");
+                // 清空缓存
+                if (mServiceCache instanceof List) {
+                    ((List) mServiceCache).clear();
+                }
+
+                for (Object key : sSYSTEM_SERVICE_MAP.keySet()) {
+                    // 不需要替换包名的跳过，显然appops是需要的
+                    if (sSkipService.contains(key)) {
+                        continue;
+                    }
+                    Object serviceFetcher = sSYSTEM_SERVICE_MAP.get(key);
+
+                    try {
+                        // 调用插件的 getService，导致插件的ContextImpl缓存全部赋值,从后面看这一句貌似没有必要
+                        Method getService = serviceFetcher.getClass().getMethod("getService", baseContext.getClass());
+                        getService.invoke(serviceFetcher, originContext);
+                    } catch (InvocationTargetException e) {
+                        Throwable cause = e.getCause();
+                        if (cause != null) {
+                            Log.w(TAG, "Fake system service faile", e);
+                        } else {
+                            Log.w(TAG, "Fake system service faile", e);
+                        }
+                    } catch (Exception e) {
+                        Log.w(TAG, "Fake system service faile", e);
+                    }
+                }
+                // 读取宿主的ContextImpl的缓存
+                mServiceCache = FieldUtils.readField(originContext, "mServiceCache");
+                // 用宿主的覆盖插件的，注意宿主的前面已经clear了
+                FieldUtils.writeField(baseContext, "mServiceCache", mServiceCache);
+
+                //for context ContentResolver
+                ContentResolver cr = baseContext.getContentResolver();
+                if (cr != null) {
+                    Object crctx = FieldUtils.readField(cr, "mContext");
+                    if (crctx != null) {
+                        FieldUtils.writeField(crctx, "mServiceCache", mServiceCache);
+                    }
+                }
+            }
+            if (!mFakedContext.containsValue(baseContext)) {
+                mFakedContext.put(baseContext.hashCode(), baseContext);
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "fakeSystemServiceOldAPI", e);
+        }
+    }
+----
+
+简单来说，这个方法把宿主和插件的ContextImpl对象的``mServiceCache``字段全部清空重置了，为什么要这么做的呢？
+
+____
+我们知道DroidPlugin的核心是通过Hook Binder来拦截系统服务，但是有些服务启动的很早，在我们Hook之前就已经创建并且缓存了，那么我们就需要通过这个逻辑清除缓存，*让下一次调用重新创建，而此时创建的就是我们Hook过的代理对象了*。
+____
+
+== 得出结论
+
+如果仔细阅读了上面的分析，可能你已经发现了问题的原因。可以看到，DroidPlugin认为``mServiceCache``字段是一个``List``，但是9.0的代码却是``Object []``类型，这就是问题所在了：
+
+____
+由于类型判断错误，导致这个缓存根本没有清理掉，甚至还用宿主的缓存覆盖了插件的缓存。
+____
+
+而在Android 5.0上，它确实是一个``List``：
+
+[source,java]
+----
+// The system service cache for the system services that are
+// cached per-ContextImpl.  Package-scoped to avoid accessor
+// methods.
+final ArrayList<Object> mServiceCache = new ArrayList<Object>();
+----
+
+那么为什么我注释了这个方法也能正确运行呢？
+
+____
+那是因为插件的ContextImpl在这个场景确实是没有初始化的，纯粹是因为宿主（已经初始化并缓存）覆盖导致的，如果直接注释，也就不会被覆盖了。
+____
+
+所以解法就是新增一个判断：
+
+[source,java]
+----
+......
+if (mServiceCache instanceof List) {
+    ((List) mServiceCache).clear();
+}
+// For 高版本
+if (mServiceCache instanceof Object[]) {
+    int len = ((Object[])mServiceCache).length;
+    mServiceCache = new Object[len];
+    FieldUtils.writeField(originContext, "mServiceCache", mServiceCache);
+}
+......
+----
+
+== 回到问题
+
+解决这个问题后我重试了小米/Android8.0的机型，发现这个问题在我的工程依然存在，但是DroidPlugin竟然好了！陷入新一轮懵逼，经过一番测试后，发现是我在初始化这个之前先初始化了灯塔SDK，如果将其调整在后面就不会有这个问题！
+
+大胆的猜测，可能是这个SDK导致了AppOps在attach之后、``fakeSystemService``之前创建了，而此时是没有Hook的。只可惜这个SDK和MIUI对于我来说都是黑盒系统，对于``checkPackage``的探究已经让我收获颇丰，至少在其他常规时机调用这个方法已经不会有问题了，这个小米+Android8的问题也可以通过调整初始化顺序解决，再去深究一个没有源码的问题恐怕也收益不大，于是就此收手吧。
+
+== 文末总结
+
+这个问题算是一个典型的DroidPlugin式问题了：
+
+____
+由于Hook了系统，就要不断的去兼容系统，最可怕的是你不能一下子知道下一个版本你需要兼容哪些改动。
+____
+

@@ -1,0 +1,723 @@
+---
+title: "插件化技术的演进之路"
+date: 2020-05-13T12:14:43+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= 插件化技术的演进之路
+
+== 序言
+
+=== 关于本次分享
+
+今天要和大家分享的是Android的插件化技术，这在Android中其实是一个相对来说**比较复杂，历史悠久，内容庞杂**的知识，不是今天一个小时能讲完的，所以我今天也是有选择地分享一些我认为比较重要的内容。
+
+在坐的大多有3年以上的开发经验，对于插件化技术也或多或少有所了解，相反是我入行时间更短一点，所以今天分享不会是单方面的知识灌输，更准确地说是我把最近的一些收获、心得整理出来，抛砖引玉，能让大家有所启发，并产生一些有益的讨论。
+
+下面进入正题，今天大概会讨论5部分的内容，分别是：
+
+. 插件化的前置知识
+. 插件化的发展历史
+. Activity的framework源码与插件化实现
+. 各大插件化方案的借鉴与革新
+. 对于插件化的几点思考
+
+需要事先告知的是，接下来一个小时的内容其实是比较艰深晦涩的，所以希望大家稍微集中注意力，我其实是不太喜欢信息密度过大的分享的，但是限于时间，只能做一些妥协了。
+
+== 插件化的前置知识
+
+这一部分，每一个基础知识都可以单独拎出来讲上一个小时的，所以我只是简单提及一下，不会深入讲解，平时大家也多少有些了解，这就足够应付接下来的内容了
+
+什么是插件化(What)?
+&emsp;不依赖安装，动态加载Native功能。
+
+为什么要插件化(Why)?
+&emsp;动态发版、包大小精简、逻辑解耦、编译提速？
+
+方向提问：带来这些好处的背后，有哪些挑战？ &emsp;客户端稳定性，开发体验。
+
+什么时候出现插件化(When)?
+&emsp;2012年。
+
+插件化在哪些地方盛行(Where)?
+&emsp;国内，手淘、携程、滴滴等大型App
+
+谁在做插件化(Who)?
+&emsp;前期个人开发者，后期大公司。
+
+怎么做插件化(How)?
+&emsp;总的来说，插件化分Hook派和静态代理派，Hook派涉及的基础知识会更多一些。
+
+=== Apk打包流程（Gradle、aapt）
+
+有一些方案会在编译器修改插件的字节码，还有些方案在编译器做资源重排，所以要了解此部分内容。
+
+=== Apk安装流程（PMS、Manifest解析、dexopt）
+
+类似DroidPlugin、VirutalApp等方案，模拟了系统安装apk等流程，所以这部分需要了解。
+
+=== 四大组件的管理（AMS，主要是启动流程、生命周期）
+
+插件化的核心就是四大组件的插件化，所以这部分必须了解。
+
+=== 资源、so库的加载机制
+
+同上。
+
+=== IPC/Binder
+
+Hook派插件化要和``system_process``进程打交道，而比较成熟的方案都会把插件作为一个单独的进程，所以这部分也要了解。
+
+=== 类加载机制
+
+加载插件的重要环节就是加载插件类，这个是任何方案都无法避免的。
+
+=== 反射与动态代理
+
+Hook派插件必须用到的Java技术。
+
+== 插件化的发展历史
+
+下面的表格中，我梳理了插件化技术各开源方案的出现时间，主要参考自**前人的文章**和自己**对相关新闻以及代码提交记录的整理**（这部分有点考究历史资料的感觉），一个方案的出现不适一蹴而就的，公布时间和开始开发时间肯定有个跨度，所有过于计较时间的精确度意义不大，但输出出时间脉络也有助于我们获得一些信息。另外，之前网上也有一些版本，但是都比较老旧了，而且有些遗漏。我有信心说是目前（2020年5月）最完善、最新的就是我整理的这张表了。
+
+[cols="^,^,^,^"]
+|===
+| 时间 | 方案 | 介绍 | 主体
+
+| 2012年7月
+| https://github.com/mmin18/AndroidDynamicLoader[mmin18/AndroidDynamicLoader]
+| A plugin system that runs like a browser, but instead of load web pages, it load apk plugins which runs natively on Android system.
+| 大众点评/屠毅敏
+
+| 2013年
+| 23Code
+| -
+| -
+
+| 2014年初
+| https://github.com/alibaba/atlas[alibaba/atlas]
+| A powerful Android Dynamic Component Framework.
+| 阿里/伯奎
+
+| 2014年7月
+| https://github.com/houkx/android-pluginmgr[houkx/android-pluginmgr]
+| apk plug apkplug apk load
+| houkx
+
+| 2014年底
+| https://github.com/singwhatiwanna/dynamic-load-apk[singwhatiwanna/dynamic-load-apk]
+| DL : dynamic load framework in android
+| 百度/任玉刚
+
+| 2014年11月
+| https://gitee.com/oycocean/Direct-Load-apk/[Direct-Load-apk]
+| a very powerful plugin framework, through the use of it, you can achieve incredible function ----load directly from a basic apk!
+| 罗迪
+
+| 2015年4月
+| https://github.com/HiWong/OpenAtlas[HiWong/OpenAtlas]
+| OpenAtlasCore，Android Component Dynamic Deployment(plugin) Framework
+| BunnyBlue
+
+| 2015年8月
+| https://github.com/DroidPluginTeam/DroidPlugin[DroidPluginTeam/DroidPlugin]
+| A plugin framework on android,Run any third-party apk without installation, modification or repackage
+| 360/张勇
+
+| 2015年底
+| https://github.com/CtripMobile/DynamicAPK[CtripMobile/DynamicAPK]
+| Solution to implement multi apk dynamic loading and hot fixing for Android App.
+| -
+
+| 2015年底
+| https://github.com/wequick/Small[wequick/Small]
+| A small framework to split app into small parts
+| 林广亮
+
+| 2016年7月
+| https://github.com/asLody/VirtualApp[asLody/VirtualApp]
+| Virtual Engine for Android(Support 10.0 in business version)
+| 罗迪
+
+| 2017年6月
+| https://github.com/didi/VirtualAPK[didi/VirtualAPK]
+| A powerful and lightweight plugin framework for Android
+| -
+
+| 2017年7月
+| https://github.com/Qihoo360/RePlugin[Qihoo360/RePlugin]
+| RePlugin - A flexible, stable, easy-to-use Android Plug-in Framework
+| -
+
+| 2018年10月
+| https://github.com/ManbangGroup/Phantom[ManbangGroup/Phantom]
+| Phantom -- 唯一零 Hook 稳定占坑类 Android 热更新插件化方案
+| -
+
+| 2019年6月
+| https://github.com/Tencent/Shadow[Tencent/Shadow]
+| 零反射全动态Android插件框架
+| -
+|===
+
+粗略看这种表格，我个人有以下发现，欢迎补充：
+
+* 早期野蛮生长，以**个人**名义开源为主；后期逐渐成熟，以**公司**名义开源为主。前期注重方案实现，后期注重方案可用性（如RePlugin的口号中提到的"`flexible, stable, easy-to-use`"）。
+* 16年是一个分水岭，其后的方案都是优化（具体优化后面会说），没有突破性的创新。
+* 16年之前，描述侧重框架特色，并没有统一使用``Plugin Framework``这个词，16年之后插件化一词深入人心，侧重描述方案的完备性、稳定性、灵活性等实际诉求。
+
+那下载估计大家有点晕了，我们所知道的插件化原理其实就那么几板斧，面对出现过的这么多方案，我们该怎么消化呢？
+
+这也是我结下来内容安排的原因，我们先来看看插件化最核心的能力：Activity在framework层是怎么处理，再来逐一分析每个方案的**借鉴与创新**，而不是孤立地看待每个方案，相信这样会轻松很多。
+
+== Activity的framework源码与插件化实现
+
+为什么从原理到实现方案都重点分析Activity？因为它是最重要、最常用的、最复杂的组件，也是插件化方案的核心，最简单的app可以只有Activity。
+
+=== 启动流程
+
+Activity的启动流程算是我们面试的必问题了，相信大家也比较清楚。这里我做了一个单步调试的视频，帮助大家回忆一下。总结来说，Activity的启动流程可以用下面这张图来概括：
+
+image::http://images.vimerzhao.top/activity_start_process.png[https://juejin.im/post/5c7f3471f265da2db5425c4b]
+
+____
+图片来自：https://juejin.im/post/5c7f3471f265da2db5425c4b
+____
+
+=== 活动管理
+
+关于Activity，我觉得还有一个点可以单独拿出来讨论，就是其栈管理机制，比较完备的插件化方案是无法避免这个问题的，比如DroidPlugin里面就有这样的代码：
+
+----
+......
+ <activity
+            android:name=".stub.ActivityStub$P00$Standard00"
+            android:allowTaskReparenting="true"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:hardwareAccelerated="true"
+            android:label="@string/stub_name_activity"
+            android:launchMode="standard"
+            android:noHistory="true"
+            android:theme="@style/DroidPluginTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.morgoo.droidplugin.category.PROXY_STUB" />
+            </intent-filter>
+            <meta-data
+                android:name="com.morgoo.droidplugin.ACTIVITY_STUB_INDEX"
+                android:value="0" />
+        </activity>
+        <activity
+            android:name=".stub.ActivityStub$P00$SingleInstance00"
+            android:allowTaskReparenting="true"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:hardwareAccelerated="true"
+            android:label="@string/stub_name_activity"
+            android:launchMode="singleInstance"
+            android:theme="@style/DroidPluginTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.morgoo.droidplugin.category.PROXY_STUB" />
+            </intent-filter>
+            <meta-data
+                android:name="com.morgoo.droidplugin.ACTIVITY_STUB_INDEX"
+                android:value="0" />
+        </activity>
+......
+----
+
+VirtualAPK、RePlugin里面也有类似的。可见各家方案，都有兼容各种launch的野心～
+
+那我们来看下framework层是怎么实现的呢？借用gityuan和大圣丶的两张图可以清楚得表面其设计：
+
+image::http://images.vimerzhao.top/dasheng.png[]
+
+image::http://images.vimerzhao.top/gityuan_activity_record.jpg[]
+
+具体源码在http://androidxref.com/9.0.0_r3/xref/frameworks/base/services/core/java/com/android/server/am/ActivityStarter.java#1220[startActivityUnchecked]，非常繁杂，这里我就不多做分析了，大家知道宏观示意即可。
+
+看过一些源码之后，我发现VirtualApp的实现是最完善的，在此不做具体分析，简单来说就它也像AMS一样记录了Activity栈的变化（相当于把AMS的数据做了一份快照在自己的进程，不知道能不能直接获取AMS的数据，应该没有这样的接口～），并根据launchMode/Flag触发``onNewIntent``之类的回调，可以说是所有方案里面完成度最高的了，其他方案都只能支持比较简单的launchMode。
+
+== 各大插件化方案的借鉴与革新
+
+开始下面的内容之前，有必要区分本质问题与衍生问题：
+
+* 本质问题：如何启动插件Activity，加载资源、so，实现生命周期回调等
+* 衍生问题：插件管理、安装、加载，页面路由等
+
+=== mmin18/AndroidDynamicLoader
+
+* 借助fragment实现插件化
+* 反射``addAssetPath``实现资源插件化出现
+
+----
+	static MyResources getResource(MyClassLoader mcl) {
+        ......
+		try {
+			AssetManager am = (AssetManager) AssetManager.class.newInstance();
+			am.getClass().getMethod("addAssetPath", String.class).invoke(am, path.getAbsolutePath());
+			Resources superRes = MyApplication.instance().getResources();
+			Resources res = new Resources(am, superRes.getDisplayMetrics(), superRes.getConfiguration());
+            ......
+        }
+----
+
+=== 23Code
+
+Pass
+
+=== alibaba/atlas
+
+* 开始出现了对framework的Hook，对后面的方案影响深远。下图是伯奎当时的分享
+* 开源的版本17年才公布，和分享时的设计已经差别较大了
+
+image::http://images.vimerzhao.top/2020-05-10-atlas.png[]
+
+=== houkx/android-pluginmgr
+
+* 这个方案很有趣，但很少被提及，首先Hook掉ClassLoader，通过DexMaker在客户端修改插件类（变成一个已经在Manifest注册过的类）
+* 但是客户端做这个事情效率很低，事实上后来的RePlugin、Shadow又走回了这条路，只是放在了编译期
+
+image:http://images.vimerzhao.top/2020-05-11-android-pluginmgr-01.png[] image:http://images.vimerzhao.top/2020-05-11-android-pluginmgr-02.png[] image:http://images.vimerzhao.top/2020-05-11-android-pluginmgr-03.png[]
+
+____
+From: https://blog.csdn.net/hkxxx/article/details/42194387
+____
+
+=== singwhatiwanna/dynamic-load-apk
+
+* 用静态代理实现，第一个完成度比较高的插件化方案
+* 但是包括that关键字在内的设计，对开发侵入性较大
+
+=== Direct-Load-apk
+
+* lody早期的项目，针对上两种方案的优化（开发体验）
+* 试图通过把StubActivity的数据给插件Activity，让插件Activity能像正常Activit一样，参见下面的核心代码：
+
+[source,java]
+----
+    public void dispatchProxyToPlugin() {
+        try {
+            //开始伪装插件为实体Activity
+            pluginRef.set("mBase", proxy);
+            pluginRef.set("mDecor", proxyRef.get("mDecor"));
+            pluginRef.set("mTitleColor", proxyRef.get("mTitleColor"));
+            ......
+            Instrumentation instrumentation = proxyRef.get("mInstrumentation");
+            pluginRef.set("mInstrumentation", new LPluginInsrument(instrumentation));
+            ......
+            pluginRef.set("mUiThread", proxyRef.get("mUiThread"));
+            pluginRef.set("mHandler", proxyRef.get("mHandler"));
+            pluginRef.set("mInstanceTracker", proxyRef.get("mInstanceTracker"));
+            ......
+        } catch (ReflectException e) {
+            e.printStackTrace();
+        }
+
+    }
+----
+
+=== HiWong/OpenAtlas
+
+* 作者通过逆向手淘代码，实现的"`山寨版`"atlas，由于一些原因删库了，后来变成了ACDD，算是OpenAtlas的优化版
+* 公开了一个hook编译工具aapt来解决资源冲突的实现，对后面的方案影响深远
+* 比较遗憾的是插件必须注册在Manifest中，这和插件化的精神有所背离，所以对外宣称是容器化，即容器内的Bundle可以升级更新
+* 绕过Activity启动检查的方案初具雏形，开始Hook一些我们耳熟能详的方法，参考核心代码：
+
+[source,java]
+----
+    /****
+     *
+     * public ActivityResult execStartActivity( Context who, IBinder
+     * contextThread, IBinder token, Activity target, Intent intent, int
+     * requestCode);
+     * ***/
+    public InstrumentationHook(Instrumentation instrumentation, Context context) {
+        this.context = context;
+        this.mBase = instrumentation;
+        try {
+            mInstrumentationInvoke = Hack.into("android.app.Instrumentation");
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+                mExecStartActivity = mInstrumentationInvoke.method("execStartActivity", Context.class,
+                        IBinder.class, IBinder.class, Activity.class, Intent.class, int.class, Bundle.class);
+            } else {
+                mExecStartActivity = mInstrumentationInvoke.method("execStartActivity", Context.class,
+                        IBinder.class, IBinder.class, Activity.class, Intent.class, int.class);
+            }
+            ......
+        } catch (HackAssertionException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+    }
+----
+
+image::https://alibaba.github.io/atlas/principle-intro/Project_architectured_img/resources.png[]
+
+____
+From: https://alibaba.github.io/atlas/principle-intro/Runtime_principle.html
+____
+
+=== DroidPluginTeam/DroidPlugin
+
+* 第一个Hook流派的完成度非常高的版本，几乎Hook了AMS、PMS等相关服务
+* 可以真正地加载一个完全独立的第三方apk文件
+* 从这里开始，插件化具备了成为沙盒/虚拟机的可能，而不是宿主的能力补充
+
+调用AMS前：
+
+[source,java]
+----
+        protected boolean doReplaceIntentForStartActivityAPIHigh(Object[] args) throws RemoteException {
+            int intentOfArgIndex = findFirstIntentIndexInArgs(args);
+            if (args != null && args.length > 1 && intentOfArgIndex >= 0) {
+                Intent intent = (Intent) args[intentOfArgIndex];
+                //XXX String callingPackage = (String) args[1];
+                if (!PluginPatchManager.getInstance().canStartPluginActivity(intent)) {
+                    PluginPatchManager.getInstance().startPluginActivity(intent);
+                    return false;
+                }
+                ActivityInfo activityInfo = resolveActivity(intent);
+                if (activityInfo != null && isPackagePlugin(activityInfo.packageName)) {
+                    ComponentName component = selectProxyActivity(intent);
+                    if (component != null) {
+                        Intent newIntent = new Intent();
+                        try {
+                            ClassLoader pluginClassLoader = PluginProcessManager.getPluginClassLoader(component.getPackageName());
+                            setIntentClassLoader(newIntent, pluginClassLoader);
+                        } catch (Exception e) {
+                            Log.w(TAG, "Set Class Loader to new Intent fail", e);
+                        }
+                        newIntent.setComponent(component);
+                        newIntent.putExtra(Env.EXTRA_TARGET_INTENT, intent);
+                        newIntent.setFlags(intent.getFlags());
+
+
+                        String callingPackage = (String) args[1];
+                        if (TextUtils.equals(mHostContext.getPackageName(), callingPackage)) {
+                            newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        args[intentOfArgIndex] = newIntent;
+                        args[1] = mHostContext.getPackageName();
+                    } else {
+                        Log.w(TAG, "startActivity,replace selectProxyActivity fail");
+                    }
+                }
+            }
+
+            return true;
+        }
+----
+
+AMS反调回来
+
+[source,java]
+----
+    @Override
+    public boolean handleMessage(Message msg) {
+        long b = System.currentTimeMillis();
+        try {
+            if (!mEnable) {
+                return false;
+            }
+
+            if (PluginProcessManager.isPluginProcess(mHostContext)) {
+                if (!PluginManager.getInstance().isConnected()) {
+                    Log.i(TAG, "handleMessage not isConnected post and wait,msg=%s", msg);
+                    mOldHandle.sendMessageDelayed(Message.obtain(msg), 5);
+                    return true;
+                }
+            }
+
+            if (msg.what == LAUNCH_ACTIVITY) {
+                return handleLaunchActivity(msg);
+            }
+            if (mCallback != null) {
+                return mCallback.handleMessage(msg);
+            } else {
+                return false;
+            }
+        } finally {
+            Log.i(TAG, "handleMessage(%s,%s) cost %s ms", msg.what, codeToString(msg.what), (System.currentTimeMillis() - b));
+
+        }
+    }
+----
+
+=== CtripMobile/DynamicAPK
+
+* 主要借鉴了OpenAtlas
+* aapt部分有所创新
+
+=== wequick/Small
+
+* 提供了一种通过脚本的方式解决资源冲突
+* Activity依然是通过Hook的方式，没有特别大的改动
+
+=== asLody/VirtualApp
+
+* 算是对DroidPlugin的一次大升级，把虚拟framework完整地实现了，在源码命名和结构上就有所体现了
+
+=== didi/VirtualAPK
+
+* 综合考虑了大量Hook导致的不稳定问题和静态代理的开发侵入性，又开始回归到仅Hook `mInstrumentation` 的设计，主要是``execStartActivity`` 和 `newActivity`
+* Service主要用两个真实的Service做转调
+* ContentProvider通过一个代理Provider进行操作的分发
+
+=== Qihoo360/RePlugin
+
+* 更进一步，One Hook，结合编译期的修改，把插件变成类似静态代理的类（像是把``houkx/android-pluginmgr``的策略换了个地方），同时Hook了ClassLoader使之加载插件的类：
+ ** 记录下目标页 ActivityA，替换成已自动注册在 AndroidManifest 中的坑位 ActivityNS。
+ ** 在 ClassLoader 中拦截ActivityNS的创建，创建出ActivityA返回。
+ ** 返回的ActivityA占用着 ActivityNS 这个坑位， 坑位由 Gradle 编译时自动生成在AndroidManifest中。
+* 主打的是稳定性和兼容性，文档资料相对来说比较健全
+
+____
+Q：您们和360之前发的DroidPlugin的主要区别是什么？ A：这个问题问得很好。很多人都有这个疑惑----"`为什么你们360要开发两套不同的插件化框架呢`"？ 其实归根结底，最根本的区别是----目标的不同： DroidPlugin主要解决的是各个独立功能拼装在一起，能够快速发布，其间不需要有任何的交互。目前市面上的一些双开应用，和DroidPlugin的思路有共同之处。当然了，要做到完整的双开，则仍需要大量的修改，如Native Hook等。 RePlugin解决的是各个功能模块能独立升级，又能需要和宿主、插件之间有一定交互和耦合。 此外，从技术层面上，其最核心的区别就一个：Hook点的多少。 DroidPlugin可以做到让APK"`直接运行在主程序`"中，无需任何额外修改。但需要Hook大量的API（包括AMS、PackageManager等），在适配上需要做大量的工作。 RePlugin只Hook了ClassLoader，所以极为稳定，且同样支持绝大多数单品的特性，但需要插件做"`少许修改`"。好在作为插件开发者而言无需过于关心，因为通过"`动态编译方案`"，开发者可做到"`无需开发者修改Java Code，即可运行在主程序中`"的效果。 可以肯定的是，DroidPlugin也是一款业界公认的，优秀的免安装插件方案。我相信，随着时间的推移，RePlugin和DroidPlugin会分别在各自领域（全面插件化 & 应用免安装）打造出属于自己的一番天地。 回答者：@张炅轩
+____
+
+From: https://github.com/Qihoo360/RePlugin/wiki/FAQ
+
+image::http://images.vimerzhao.top/2020-05-12-shadow-to-replugin-pr.png[]
+
+____
+From:https://github.com/Qihoo360/RePlugin/pull/840 在看shadow的时候，发现其作者提出了一个改进，但是并未被接受，这个死循环也没有解释原因，感觉维护者这个态度有问题啊～个人感觉这个改的挺好的
+____
+
+=== ManbangGroup/Phantom
+
+* 比360的RePlugin更进一步，宣称零Hook
+* 相关资料较少，暂未深入研究。除了一篇宣传性质的README，没有什么实质资料
+* 分析其代码后发现还是拓展了RePlugin
+
+image::http://images.vimerzhao.top/2020-05-12-Phantom.png[]
+
+____
+编译期替换，静态代理
+____
+
+=== Tencent/Shadow
+
+* 同样是零Hook，同时宣称支持插件框架本身的动态化（这个其实也不难）
+* 更像是RePlugin的另一个种实现，没有本质的不同
+
+== 对于插件化的几点思考
+
+前面，我们快速看完了每一个插件化的主要特点，隐隐约约已有所感悟，似乎应了《三国演义》的那句"`合久必分、分久必合`"，很多方案看似新颖，但无不是在前人的基础上，根据自己的业务做一些创新，论里程碑的仁者见仁、智者见智，但切不可被花里胡哨的项目``README.md``迷惑双眼。
+
+从脉络上来看，从静态代理、Hook framework各自的蓬勃发展，到最近几年，两个方案互相取长补短，总体似乎是朝着客户端轻Hook+编译期侵入修改的方向走去，下面我来拆分几个维度，具体讨论一下。
+
+=== 开发期or运行期
+
+想把我们的插件Activity像正常Activity一样启动，做一些侵入性的修改是不可避免的，在我看来，一路发展过来，主要分了三个方向：
+
+* 以dynamic-load-apk为代表的，开发期侵入
+* 以DroidPlugin为代表的，运行期侵入
+* 以RePlugin、shadow为代表的，编译期侵入
+
+编译期侵入算是开发期侵入的自动化版本，既避免了不稳定的Hook，也可以保证开发人员的体验；运行期侵入对于追求稳定来说，始终是一个挑战。
+
+=== 独立or合并
+
+对于ClassLoader和Resource都存在这个问题，有些方案会选择公用类加载器或者资源，这样就要解决插件和宿主，插件和插件的潜在冲突，aapt的魔改正是为了处理这种情况。特别是Resource，独立可以避免冲突，共用则能降低插件size。 我觉得还是要区分场景，DroidPlugin这种每个插件都很独立，适合分开加载；如果插件是宿主功能的一个补充，则可以共用。 Shawdow甚至通过白名单来控制是隔离还是共用ClassLoader。
+
+=== 动态化or插件化
+
+插件化和动态化多少有一些共通之处，他们都可以降低宿主大小、动态发版等，目前来看，插件化的优势是涉及到四大组件的时候更合适，而动态化则适合纯View级别的修改。
+
+== 参考文章
+
+Atlas:
+
+* https://mp.weixin.qq.com/s?%5F%5Fbiz=MzAxNDEwNjk5OQ==&mid=2650400348&idx=1&sn=99bc1bce932c5b9000d5b54afa2de70e[Atlas-手淘组件化框架的前世今生和未来的路]
+* https://v.youku.com/v_show/id_XNTMzMjYzMzM2.html[阿里技术沙龙第十六期《android插件化及动态部署--ATLAS 》伯奎-优酷]
+* https://alibaba.github.io/atlas/[Atlas - Introduction · GitBook]
+
+android-pluginmgr:
+
+* https://blog.csdn.net/hkxxx/article/details/42194387[动态加载APK原理分享-CSDN博客]
+* https://segmentfault.com/a/1190000004077469[Android动态加载黑科技 动态创建Activity模式]
+
+dynamic-load-apk：
+
+* https://blog.csdn.net/u012124438/article/details/53241755[Android插件化学习之路（八）之DynamicLoadApk 源码解析（上）-CSDN博客]
+* https://blog.csdn.net/u012124438/article/details/53242838[Android插件化学习之路（九）之DynamicLoadApk 源码解析（下）-CSDN博客]
+
+Direct-Load-apk:
+
+* https://my.oschina.net/913731137/blog/393252#OSC_h3_4[Direct-Load-apk启动插件的原理 - Lody的个人页面 - OSCHINA]
+
+OpenAtlas:
+
+* {blank}
++
+[cols=2*]
+|===
+| [Android插件化(一):OpenAtlas架构以及实现原理概要
+| AllenWang的个人博客](https://blog.imallen.wang/2017/01/24/2017-01-24-androidcha-jian-hua-one-openatlasjia-gou-yi-ji-shi-xian-yuan-li/)
+|===
+
+* {blank}
++
+[cols=2*]
+|===
+| [Android插件化(二):OpenAtlas插件安装过程分析
+| AllenWang的个人博客](https://blog.imallen.wang/2017/02/03/2017-02-03-openatlascha-jian-an-zhuang-guo-cheng-fen-xi/)
+|===
+
+* {blank}
++
+[cols=2*]
+|===
+| [Android插件化(三):OpenAtlas的插件重建以及使用时安装
+| AllenWang的个人博客](https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasde-cha-jian-zhong-jian-yi-ji-shi-yong-shi-an-zhuang/)
+|===
+
+* {blank}
++
+[cols=2*]
+|===
+| [Android插件化(四):OpenAtlasの插件的卸载与更新
+| AllenWang的个人博客](https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasfalsecha-jian-de-xie-zai-yu-geng-xin/)
+|===
+
+* {blank}
++
+[cols=2*]
+|===
+| [Android插件化(五):OpenAtlasの四大组件的Hack
+| AllenWang的个人博客](https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasfalsesi-da-zu-jian-de-hack/)
+|===
+
+* {blank}
++
+[cols=2*]
+|===
+| [Android插件化(六): OpenAtlasの改写aapt以防止资源ID冲突
+| AllenWang的个人博客](https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasfalsegai-xie-aaptyi-fang-zhi-zi-yuan-idchong-tu/)
+|===
+
+Small:
+
+* {blank}
++
+[cols=2*]
+|===
+| [Small源码分析
+| GeekFan's Android Blog](http://geekfan.tech/2017/04/20/small/)
+|===
+
+* {blank}
++
+[cols=2*]
+|===
+| [Android 插件化框架Small解析--开始了解Small
+| 孤舟蓑笠翁，独钓寒江雪](https://www.heqiangfly.com/2017/05/08/open-source-android-plugins-small-sample/)
+|===
+
+* {blank}
++
+[cols=2*]
+|===
+| [Android 插件化框架Small解析--初始化
+| 孤舟蓑笠翁，独钓寒江雪](https://www.heqiangfly.com/2017/05/10/open-source-android-plugins-small-init/)
+|===
+
+* {blank}
++
+[cols=2*]
+|===
+| [Android 插件化框架Small解析 -- 类的动态加载源码分析
+| 孤舟蓑笠翁，独钓寒江雪](https://www.heqiangfly.com/2017/05/20/open-source-android-plugins-small-dynamic-load-class/)
+|===
+
+* {blank}
++
+[cols=2*]
+|===
+| [Android 插件化框架Small解析--动态注册组件原理及启动插件Activity流程
+| 孤舟蓑笠翁，独钓寒江雪](https://www.heqiangfly.com/2017/05/12/open-source-android-plugins-small-principle/)
+|===
+
+DynamicAPK:
+
+* https://mp.weixin.qq.com/s?%5F%5Fbiz=MzAwMTcwNTE0NA==&mid=400217391&idx=1&sn=86181541ce0164156dfab135ed99bb5c&scene=1&srcid=1104yOOxo7c2fr3ooaz9Pcv5#rd[携程Android App插件化和动态加载实践]
+* https://www.infoq.cn/article/ctrip-android-dynamic-loading/[携程Android App插件化和动态加载实践 - InfoQ]
+* https://blog.csdn.net/nupt123456789/article/details/50531709[携程DynamicAPK插件化框架源码分析]
+* https://www.zhihu.com/question/38083715[你怎么看待携程DynamicApk插件化框架的抄袭现象?
+- 知乎]
+
+VirtualAPK:
+
+* https://mp.weixin.qq.com/s?%5F%5Fbiz=MzUxMzcxMzE5Ng==&mid=2247488236&idx=1&sn=55c929d60f423d9970b91ad783bd1cac&source=41#wechat_redirect[滴滴插件化项目VirtualAPK开源！]
+* https://juejin.im/post/5a7ec6545188257a5e573ec8#heading-3[Android开源框架源码鉴赏：VirtualAPK - 掘金]
+
+RePlugin:
+
+* http://www.360.cn/newslist/qtxw/azjrqmcjhsd360xbRePluginjky.html[安卓进入"`全面插件化`"时代 360宣布RePlugin将开源]
+* https://tech.sina.cn/2017-07-01/detail-ifyhrttz1950622.d.html[360手机卫士插件化RePlugin宣布开源-手机新浪网]
+* https://www.zhihu.com/question/61187557[如何评价360的Android插件化框架RePlugin？ - 知乎]
+* https://www.jianshu.com/p/18530be5dcdd[Android全面插件化RePlugin流程与源码解析 - 简书]
+* {blank}
++
+[cols=2*]
+|===
+| [RePlugin解析(-):startActivity流程分析
+| AllenWang的个人博客](https://blog.imallen.wang/2017/12/05/RePlugin%E8%A7%A3%E6%9E%90-startActivity%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/)
+|===
+
+* {blank}
++
+[cols=2*]
+|===
+| [RePlugin解析startService流程分析
+| AllenWang的个人博客](https://blog.imallen.wang/2017/12/15/RePlugin%E8%A7%A3%E6%9E%90startService%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/)
+|===
+
+* {blank}
++
+[cols=2*]
+|===
+| [RePlugin解析之BroadcastReceiver
+| AllenWang的个人博客](https://blog.imallen.wang/2017/12/16/RePlugin%E8%A7%A3%E6%9E%90%E4%B9%8BBroadcastReceiver/)
+|===
+
+* {blank}
++
+[cols=2*]
+|===
+| [RePlugin解析之ContentProvider
+| AllenWang的个人博客](https://blog.imallen.wang/2017/12/19/RePlugin%E8%A7%A3%E6%9E%90%E4%B9%8BContentProvider/)
+|===
+
+* https://github.com/Qihoo360/RePlugin/wiki/%E9%AB%98%E7%BA%A7%E8%AF%9D%E9%A2%98[高级话题 · Qihoo360/RePlugin Wiki]
+
+综述类：
+
+* https://www.zhihu.com/question/32037895/answer/56229332[Android 开发有哪些新技术出现？ - 知乎]
+* https://www.infoq.cn/article/android-plug-ins-from-entry-to-give-up[Android插件化：从入门到放弃 - InfoQ]
+* {blank}
++
+[cols=2*]
+|===
+| [Android 插件化的 过去 现在 未来
+| 开源实验室](https://www.kymjs.com/code/2016/05/04/01/)
+|===
+
+Shadow:
+
+* {blank}
++
+[cols=2*]
+|===
+| [Tencent Shadow
+| MySlide - 专注PPT分享，追随SlideShare和SpeakerDeck的脚步](https://myslide.cn/slides/21645)
+|===

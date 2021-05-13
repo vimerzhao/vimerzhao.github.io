@@ -1,0 +1,99 @@
+---
+title: "Mac OSX配置记录"
+date: 2020-05-04T12:33:35+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= Mac OSX配置记录
+
+== 浏览器
+
+下载Chrome
+
+== 按键映射
+
+下载Karabiner-Elements，按照
+
+image::http://images.vimerzhao.top/karabiner_2020-10-23_15-03-14.png[]
+
+配置，就是自己习惯的键位了。
+
+禁用大写锁定:
+
+"`System Preferences`" \-> "`Keyboard`" \-> "`Modifier Keys...`"(In the lower right corner) \-> "`Caps Lock Key`"(Set "No Action")
+
+参考：https://osxdaily.com/2011/11/10/disable-the-caps-lock-key-on-a-mac/[Disable the Caps Lock Key on a Mac]
+
+== 安装Xcode
+
+这个必须先安装，不然git没法使用。
+
+== 命令行
+
+主要是oh-my-zsh，首先确定zsh/git/curl都已经安装，然后直接安装。
+
+安装之后还要配置Powerline字体，不然无法使用特定主题。
+
+== 工具集合
+
+=== brew
+
+直接官网copy安装命令（耗时稍长）。
+
+=== tmux
+
+安装之后，配置 `gpakosz/.tmux`。
+
+. 修改主题为 `agnoster` (比较习惯)
+. 启动语法高亮插件： `zsh-syntax-highlighting`，参考https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh[oh-my-zsh INSTALL]
+
+== Spectacle
+
+控制窗口的，直接下载安装，然后配置成自定义的。
+
+== HyperSwitch
+
+切换窗口的，直接下载安装，注意这两个软件都需要在``设置-安全``中允许打开，并赋予辅助功能权限。
+
+== spf13-vim
+
+直接按照README安装。
+
+=== 修改一个插件的名字
+
+参见：https://github.com/spf13/spf13-vim/issues/1014[Installation pauses due to missing/deleted plugin git repo · Issue #1014 · spf13/spf13-vim]。作者一直没更新～～
+
+=== 自动提示问题
+
+[source,console]
+----
+$ brew reinstall vim
+==> Downloading https://homebrew.bintray.com/bottles/vim-8.2.1700.catalina.bottle.tar.gz
+Already downloaded: /Users/vimerzhao/Library/Caches/Homebrew/downloads/2dcf21ab4371a05fae2bcefda8cefc6e53c13bd8d7678089e70da1fc3d1f61ff--vim-8.2.1700.catalina.bottle.tar.gz
+==> Reinstalling vim
+==> Pouring vim-8.2.1700.catalina.bottle.tar.gz
+🍺  /usr/local/Cellar/vim/8.2.1700: 1,952 files, 33.2MB
+
+
+$ which vim
+/usr/bin/vim
+----
+
+注意vim默认对应的是系统自带的还是你后面安装的，可能你安装的才是待lua支持的。
+
+参考：https://stackoverflow.com/questions/54878174/how-to-install-a-specific-version-of-vim-clipboard
+
+另外遇到遇到一个问题：`neocomplete does not work with vim 8.2.1066+`。vim官方的一个更新导致这个插件不能用，只能换一个替代插件了，参考自： image:http://images.vimerzhao.top/Snipaste_2020-10-15_19-34-18.png[]
+
+最后是使用者作者的另一个插件，这个看起来用户更多，更新更活跃：https://github.com/Shougo/deoplete.nvim
+
+遇到一个问题，最后是安装了一个python模块解决：https://github.com/Shougo/deoplete.nvim/issues/673
+
+感觉有必要把几个核心插件好好研究一番了。
+

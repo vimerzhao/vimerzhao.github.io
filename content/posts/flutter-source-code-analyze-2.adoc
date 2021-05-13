@@ -1,0 +1,201 @@
+---
+title: "Flutter源码剖析(二):源码的阅读与调试环境配置"
+date: 2020-11-05T12:23:13+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= Flutter源码剖析(二):源码的阅读与调试环境配置
+
+== 综述
+
+Flutter从架构上来说有3部分：
+
+* 用Dart写的Framework层，面向开发者
+* 用Java/Kotlin写的Embdder层（For Android，iOS是OC/Swift），纯Flutter App不需要关心
+* 用C{pp}写的Engine层，提供Dart运行环境和底层绘制能力
+
+针对每个部分，对应的源码阅读环境不同，调试方法也不同。
+
+对于阅读环境，最重要的是能够正确地完成**调用/定义的跳转**。
+
+对于调试环境，最重要的是能够设置**断点，单步执行**。
+
+== Framework环境配置
+
+Framework的环境设置比较简单。
+
+=== 源码阅读
+
+Framework的代码在 https://github.com/flutter/flutter 下面，直接Clone下来。
+
+亲测安装了Flutter插件的Android Studio是最好的阅读工具，直接打开``./packages/flutter`` 目录，然后``flutter pub get``即可。
+
+这一步可能报错，主要是一些的版本冲突，按照信息解决即可。
+
+=== 源码调试
+
+通过``Flutter Acttach``按钮即可开始调试，但是如果要调试启动部分的Dart代码，用``Debug``而不是``Run``来启动程序：
+
+image::http://images.vimerzhao.top/flutter-dart-debug.png[]
+
+== Embedder环境配置
+
+Embedder的环境稍微复杂一点。
+
+=== 源码阅读
+
+Embedder的代码在engine的``./shell/platform``下面：
+
+----
+tree -L 1
+.
+├── BUILD.gn
+├── android
+├── common
+├── config.gni
+├── darwin
+├── embedder
+├── fuchsia
+├── glfw
+├── linux
+└── windows
+----
+
+image::http://images.vimerzhao.top/flutter-setup-sdk.png[]
+
+用AS直接打开``android``目录即可，打开后会发现代码都无法解析对，这样就没法跳转了！！！
+
+首先把根目录设置为``Source``类型：
+
+image::http://images.vimerzhao.top/flutter_embedder.png[]
+
+这时候只剩``androidx``无法解析了:
+
+image::http://images.vimerzhao.top/flutter-androidx.png[]
+
+发现旁边一个目录已经声明了依赖，于是按照提示，建立一个``local.properties``文件，指出本地sdk路径即可，然后执行Gradle命令，拉取更新：
+
+image::http://images.vimerzhao.top/flutter_embedder-fix.png[]
+
+后来查看文档，发现其实另外一个目录已经有这些依赖了，直接在工程设置页面添加一个``classpath``即可：
+
+----
+../third_party/android_embedding_dependencies/
+----
+
+这个目录是在engine外，buildroot下的，应该是之前``gclient sync``的时候就解析``build.gradle``拉下来的。
+
+=== 源码调试
+
+如果在打开Flutter的工程，打开Andorid的Activity是解析错误的：
+
+image::http://images.vimerzhao.top/flutter-view.png[]
+
+需要以android作为根目录单独打开，然后通过``Run/Debug``按钮再次启动即可：
+
+image::http://images.vimerzhao.top/flutter-embedder-debug.png[]
+
+这里单独打开工程无需担心如何集成Flutter，gradle脚本已经搞定了。
+
+== Engine环境配置
+
+Engine的配置是最复杂的。
+
+=== 源码阅读
+
+把gn工具在``src/out`` 目录生成的``compile_commands.json``文件移到``src/flutter``目录下，然后用CLion打开这个文件就可以正确索引Engine的C{pp}代码了。
+
+image::http://images.vimerzhao.top/flutter-engine-clion.png[]
+
+该文件是预编译生成的索引，其他编辑器也可以支持，当然用CLion是最方便的。
+
+=== 源码调试
+
+官方提供了gdb的调试方法，但是没有文档，按照代码注释的文档，也无法运行成功，一直报下面的错误：
+
+----
+Could not find platform independent libraries <prefix>
+Could not find platform dependent libraries <exec_prefix>
+Consider setting $PYTHONHOME to <prefix>[:<exec_prefix>]
+ImportError: No module named site
+----
+
+看到网上有人已经在用lldb调试了，于是也按照这个思路成功了，
+
+首先是把Android SDK的``lldb-server`` push到设备，建立一个信道，通过``run-as``绕过权限问题：
+
+[source,bash]
+----
+# 注意换成自己的包名
+adb push lldb-server /data/local/tmp/lldb-server
+
+adb shell run-as com.example.flutter_demo \
+cp -F /data/local/tmp/lldb-server /data/data/com.example.flutter_demo/lldb-server
+
+adb shell run-as com.example.flutter_demo \
+chmod a+x /data/data/com.example.flutter_demo/lldb-server
+
+adb shell "run-as com.example.flutter_demo sh -c '/data/data/com.example.flutter_demo/lldb-server platform --server --listen unix-abstract:///data/data/com.example.flutter_demo/debug.socket'"
+----
+
+通过以上几步已经建立可以调试的通道了，然后启动lldb，attach到指定进程（通过进程id），然后添加符号表：
+
+[source,bash]
+----
+adb shell pidof com.example.flutter_demo
+lldb
+(下面是lldb环境)
+(lldb) platform select remote-android
+(lldb) platform connect unix-abstract-connect:///data/data/com.example.flutter_demo/debug.socket
+(lldb) process attach -p 25382
+(lldb) add-dsym ~/WorkProject/flutter_source_code/src/out/android_debug_unopt/libflutter.so
+----
+
+之前就注意到构建目录下的这个so非常大，打包的so不过10M，这个接近300M，应该是存在大量调试信息。
+
+image::http://images.vimerzhao.top/flutter_gdb.png[]
+
+这里有两个坑：
+
+. lldb进去之后，进程会挂起，必须用``c/continue``来恢复，不然无法触发逻辑，也就无法触发断点
+. 必须在``System.loadLibrary``之后才能添加符号表，否则失败，如果还是失败，就把以上流程重试一遍～
+
+除此之外，还要注意，必须是源码编译的engine打包的apk才可以进行native调试，否则会报错：
+
+[source,bash]
+----
+(lldb) add-dsym ~/WorkProject/flutter_source_code/src/out/android_debug_unopt/libflutter.so
+error: symbol file '/Users/vimerzhao/WorkProject/flutter_source_code/src/out/android_debug_unopt/libflutter.so' does not match any existing module
+----
+
+如此，便可以开始调试了，下面演示在帧刷新位置设置断点，然后触发：
+
+image::http://images.vimerzhao.top/lldb-flutter-success-demo.png[]
+
+== 总结
+
+以上便是Flutter源码阅读/调试环境的搭建，欲善其事，先利其器，后面就要开始真刀真枪撸源码了。
+
+== 参考
+
+* https://github.com/flutter/engine/blob/master/sky/tools/flutter_gdb#L13[engine/flutter_gdb at master · flutter/engine]
+* https://github.com/flutter/flutter/wiki/Debugging-the-engine[Debugging the engine · flutter/flutter Wiki]
+* https://flutter.dev/docs/testing/debugging[Debugging Flutter apps - Flutter]
+* https://flutter.dev/docs/testing/code-debugging[Debugging Flutter apps programmatically - Flutter]
+* https://flutter.dev/docs/testing/oem-debuggers[Using an OEM debugger - Flutter]
+* http://weishu.me/2017/01/14/how-to-debug-android-native-framework-source/[如何调试Android Native Framework]
+* https://fucknmb.com/2019/12/06/Flutter-Engine-C-%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95%E5%88%9D%E6%8E%A2/[Flutter Engine C{pp} 源码调试初探]
+* {blank}
++
+[cols=3*]
+|===
+| [Android 调试桥 (adb)  
+|   Android 开发者  
+|   Android Developers](https://developer.android.com/studio/command-line/adb)
+|===

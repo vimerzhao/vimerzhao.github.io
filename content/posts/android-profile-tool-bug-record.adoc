@@ -1,0 +1,133 @@
+---
+title: "AndroidStudio-Profile工具导致的一个奇怪问题"
+date: 2020-12-10T12:36:32+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= AndroidStudio-Profile工具导致的一个奇怪问题
+
+在使用AndroidStudio里面的Profile查看内存占用时，发现一个奇怪的现象：
+
+image::http://images.vimerzhao.top/cpu-profile.png[]
+
+应用启动后Native内存猛增，即使一个空的App也是如此，按理说不应该。于是用adb工具导出了一次内存：
+
+[source,c]
+----
+adb shell dumpsys meminfo top.vimerzhao.pureandroid                                                                                                                               [14:30:29]
+Applications Memory Usage (in Kilobytes):
+Uptime: 2823489068 Realtime: 5348646182
+
+** MEMINFO in pid 17960 [top.vimerzhao.pureandroid] **
+                   Pss  Private  Private  SwapPss     Heap     Heap     Heap
+                 Total    Dirty    Clean    Dirty     Size    Alloc     Free
+                ------   ------   ------   ------   ------   ------   ------
+  Native Heap     5347     5320        0      149    22528    18049     4478
+  Dalvik Heap        0        0        0        0     3231     1616     1615
+        Stack       76       76        0        0
+       Ashmem       13        0       12        0
+      Gfx dev      248      248        0        0
+    Other dev        2        0        0        0
+     .so mmap     1328      188      332       14
+    .apk mmap      193        0       56        0
+    .ttf mmap       88        0       20        0
+    .dex mmap     3450       16     2496        0
+    .oat mmap       68        0        4        0
+    .art mmap     7587     6736      480       84
+   Other mmap        8        4        0        0
+   EGL mtrack    16440    16440        0        0
+    GL mtrack     3340     3340        0        0
+      Unknown     5000     4088      852       27
+        TOTAL    43462    36456     4252      274    25759    19665     6093
+
+ App Summary
+                       Pss(KB)
+                        ------
+           Java Heap:     7216
+         Native Heap:     5320
+                Code:     3112
+               Stack:       76
+            Graphics:    20028
+       Private Other:     4956
+              System:     2754
+
+               TOTAL:    43462       TOTAL SWAP PSS:      274
+
+ Objects
+               Views:       16         ViewRootImpl:        1
+         AppContexts:        5           Activities:        1
+              Assets:        5        AssetManagers:        0
+       Local Binders:       12        Proxy Binders:       30
+       Parcel memory:        3         Parcel count:       13
+    Death Recipients:        2      OpenSSL Sockets:        0
+            WebViews:        0
+
+ SQL
+         MEMORY_USED:        0
+  PAGECACHE_OVERFLOW:        0          MALLOC_SIZE:        0
+----
+
+再在启用Profile观察的同时导出一次内存：
+
+[source,c]
+----
+adb shell dumpsys meminfo top.vimerzhao.pureandroid                                                                                                                               [14:31:01]
+Applications Memory Usage (in Kilobytes):
+Uptime: 2823564651 Realtime: 5348721765
+
+** MEMINFO in pid 18399 [top.vimerzhao.pureandroid] **
+                   Pss  Private  Private  SwapPss     Heap     Heap     Heap
+                 Total    Dirty    Clean    Dirty     Size    Alloc     Free
+                ------   ------   ------   ------   ------   ------   ------
+  Native Heap    47866    47844        0      149    63488    54816     8673
+  Dalvik Heap        0        0        0        0     3281     1641     1640
+        Stack       76       76        0        0
+       Ashmem       13        0       12        0
+      Gfx dev      252      252        0        0
+    Other dev        2        0        0        0
+     .so mmap     4202     2380      868       14
+    .apk mmap      221        0       80        0
+    .ttf mmap       88        0       20        0
+    .dex mmap     6691       16     5192        0
+    .oat mmap      131        0       16        0
+    .art mmap     7698     6864      472       85
+   Other mmap        8        4        0        0
+   EGL mtrack    16440    16440        0        0
+    GL mtrack     3336     3336        0        0
+      Unknown     6519     5608      852       27
+        TOTAL    93818    82820     7512      275    66769    56457    10313
+
+ App Summary
+                       Pss(KB)
+                        ------
+           Java Heap:     7336
+         Native Heap:    47844
+                Code:     8572
+               Stack:       76
+            Graphics:    20028
+       Private Other:     6476
+              System:     3486
+
+               TOTAL:    93818       TOTAL SWAP PSS:      275
+
+ Objects
+               Views:       16         ViewRootImpl:        1
+         AppContexts:        5           Activities:        1
+              Assets:        6        AssetManagers:        0
+       Local Binders:       12        Proxy Binders:       30
+       Parcel memory:        3         Parcel count:       12
+    Death Recipients:        2      OpenSSL Sockets:        0
+            WebViews:        0
+
+ SQL
+         MEMORY_USED:        0
+  PAGECACHE_OVERFLOW:        0          MALLOC_SIZE:        0
+----
+
+看起来是因为Profile这个工具导致的，应该是出于监控需要，但是底层原理暂时也不清楚，故只能做如此猜测了，可惜。

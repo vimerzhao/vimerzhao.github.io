@@ -1,0 +1,387 @@
+---
+title: "Flutter源码剖析(一):源码获取与构建"
+date: 2020-10-29T12:23:10+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= Flutter源码剖析(一):源码获取与构建
+
+// Date:2020-10-29
+
+// LinkName:
+
+== 概述
+
+本文介绍了Flutter源码的获取与构建，后面会另有文章介绍Flutter源码的版本管理、开发环境搭建等主题。
+
+== 准备工作
+
+Flutter源码分为两个部分：
+
+* https://github.com/flutter/flutter[flutter/flutter]是框架层，为开发者提供各种接口，主要是dart代码。
+* https://github.com/flutter/engine[flutter/engine]是引擎层，负责Flutter的渲染以及宿主的交互。
+
+相关依赖的安装可参考官方文档：https://github.com/flutter/flutter/wiki/Setting-up-the-Engine-development-environment[Setting up the Engine development environment · flutter/flutter Wiki]。以我的Mac为例，如JDK等一般都已经安装，无需担心。
+
+== 源码下载
+
+``flutter/flutter``可以直接通过git下载，但是``flutter/engine``需要通过``gclient``工具获取，因为``engine``有很多依赖，``gclient``可以很好地处理这些依赖，简化源码管理流程。
+
+首先，新建一个目录，下载``flutter``框架代码：
+
+[source,bash]
+----
+$ mkdir flutter_source_code
+$ cd flutter_source_code
+$ git clone https://github.com/flutter/flutter.git
+Cloning into 'flutter'...
+remote: Enumerating objects: 12, done.
+remote: Counting objects: 100% (12/12), done.
+remote: Compressing objects: 100% (12/12), done.
+remote: Total 272396 (delta 0), reused 6 (delta 0), pack-reused 272384
+Receiving objects: 100% (272396/272396), 116.98 MiB | 2.48 MiB/s, done.
+Resolving deltas: 100% (210440/210440), done.
+----
+
+获取``depot_tools``工具（这个一开始是用来管理``chromium``源码的）：
+
+[source,bash]
+----
+$ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+Cloning into 'depot_tools'...
+remote: Sending approximately 34.14 MiB ...
+remote: Total 40539 (delta 27803), reused 40539 (delta 27803)
+Receiving objects: 100% (40539/40539), 34.14 MiB | 5.04 MiB/s, done.
+Resolving deltas: 100% (27803/27803), done.
+----
+
+设置环境变量（每次构建之前都要设置，也可以写入系统配置）：
+
+[source,bash]
+----
+export PATH=$PATH:`pwd`/depot_tools
+----
+
+开始拉取代码（这一步比较耗时）
+
+[source,bash]
+----
+$ gclient sync                                                                                               [18:04:43]
+
+......
+
+remote: Enumerating objects: 25, done.
+remote: Counting objects: 100% (25/25), done.
+remote: Compressing objects: 100% (22/22), done.
+remote: Total 209672 (delta 10), reused 13 (delta 3), pack-reused 209647
+Receiving objects: 100% (209672/209672), 196.61 MiB | 3.74 MiB/s, done.
+Resolving deltas: 100% (153791/153791), done.
+Syncing projects:  31% (33/104) src/third_party/vulkan
+[0:03:59] Still working on:
+[0:03:59]   src/ios_tools
+[0:03:59]   src/third_party/angle
+[0:03:59]   src/third_party/dart
+[0:03:59]   src/third_party/icu
+
+......
+
+[0:12:48] Still working on:
+[0:12:48]   src/third_party/dart
+
+Syncing projects: 100% (104/104), done.
+Running hooks: 100% ( 9/ 9) dart package config
+________ running 'vpython src/flutter/tools/run_third_party_dart.py' in '/Users/vimerzhao/WorkProject/flutter_source_code'
+Resolving dependencies... (1.7s)
++ charcode 1.1.3
++ collection 1.14.13
++ meta 1.2.3
++ package_config 1.9.3
++ path 1.7.0
++ pub_semver 1.4.4
++ source_span 1.7.0
++ string_scanner 1.0.5
++ term_glyph 1.1.0
++ yaml 2.2.1
+Changed 10 dependencies!
+----
+
+需要注意的是，``Syncing projects: 100% (104/104), done``之后，会继续下载一些大文件，可能命令行没有输出，一定不能强制退出，可以通过资源管理器查看网络的流量，确定``cipd``是否在下载：
+
+image::http://images.vimerzhao.top/gclient-sync-cipd.png[]
+
+（因为git不是很擅长下载大文件，所以产生了cipd这个程序来做这些工作）
+
+此时的目录结构：
+
+[source,bash]
+----
+$ tree -L 1
+.
+├── depot_tools # 源码管理工具
+├── flutter     # flutter framework目录
+└── src         # flutter engine以及相关依赖所在目录
+----
+
+framework的版本和engine的版本是一一对应的，framework的分支规则如下：
+
+* ``stable``是当前的稳定分支，无特殊情况，推荐开发者使用该分支作为flutter sdk
+* ``master``包含最新的特性，但是不稳定
+* 每个版本会打上对应的tag
+
+截止到 2020-10-29 ,最新的较稳定版本是 1.22.0，于是我们也先切到这个版本（不是必选的，但是个人认为：基于一个明确的版本编译和修改源代码似乎更合适）。
+
+[source,bash]
+----
+$ cd flutter
+$ git checkout 1.22.0
+$ cat bin/internal/engine.version
+5babba6c4d25fa237bbf755ab85c9a0c50b3c6ec
+----
+
+``engine.version``这个文件指定了framework对应的engine版本，接下来，我们进入engine目录切换到这次commit。
+
+[source,bash]
+----
+$ cd ../src/flutter
+$ git reset --hard 5babba6c4d25fa237bbf755ab85c9a0c50b3c6ec
+HEAD is now at 5babba6c4 Flutter 1.22.0-12.3.pre engine cherrypicks (#21466)
+----
+
+此时，我们需要执行以下命令：
+
+[source,bash]
+----
+$ gclient sync --with_branch_heads --with_tags
+Syncing projects: 100% (104/104), done.
+......
+Running hooks: 100% ( 8/ 8) dart package config
+......
+Running hooks: 100% (8/8), done.
+----
+
+后面这两个参数的含义比较晦涩，参考Chromium的说明，其含义是：
+
+____
+Checkout all the submodules at their branch DEPS revisions
+____
+
+因为切换分支之后，某些依赖的版本可能有更改，所以需要再次sync一下，直接在``src/flutter``目录执行即可。
+
+以上就完成了源码环境的搭建，下面正式开始编译。
+
+== 源码编译
+
+首先我们退回到src目录，然后通过``gn``生成``ninja``需要的元数据：
+
+[source,bash]
+----
+$ cd ..
+$ pwd
+/Users/vimerzhao/WorkProject/flutter_source_code/src
+$ ./flutter/tools/gn --unoptimized --android --runtime-mode debug --android-cpu arm
+Generating GN files in: out/android_debug_unopt
+Generating Xcode projects took 75ms
+Done. Made 438 targets from 197 files in 1960ms
+----
+
+对于编译参数，https://github.com/flutter/flutter/wiki/Compiling-the-engine[Compiling the engine · flutter/flutter Wiki]有详细介绍，在此不做赘述，这里我构建的是一个未优化、Android平台、debug版本、arm 32位的 engine。
+
+此时，查看out目录，可以看到：
+
+[source,bash]
+----
+$ ls out/
+android_debug_unopt   compile_commands.json
+----
+
+``compile_commands.json``可以作为IDE的索引文件，提供类/函数/变量的跳转等能力，后面会说到。
+
+然后就可以开始正式的编译了：
+
+[source,bash]
+----
+$ ninja -C out/android_debug_unopt
+ninja: Entering directory `out/android_debug_unopt'
+[38/3844] ACTION //flutter/shell/platform/android:flutter_shell_java(//build/toolchain/android:clang_arm)
+警告: ../../third_party/android_tools/sdk/build-tools/30.0.1/core-lambda-stubs.jar(java/lang/invoke/LambdaMetafactory.class): 主版本 53 比 52 新, 此编译器
+支持最新的主版本。
+  建议升级此编译器。
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+1 个警告
+[3844/3844] STAMP obj/default.stamp
+
+$ ls out/android_debug_unopt                                                                 [19:35:15]
+all.xcodeproj                                 flutter_embedding_debug-sources.jar.md5.stamp lib.stripped
+args.gn                                       flutter_embedding_debug.jar                   libflutter.so
+armeabi_v7a_debug.jar                         flutter_embedding_debug.jar.md5.stamp         libflutter.so.TOC
+armeabi_v7a_debug.pom                         flutter_embedding_debug.pom                   obj
+build.ninja                                   flutter_icu                                   toolchain.ninja
+build.ninja.d                                 flutter_patched_sdk                           vm_outline_strong.dill
+clang_x64                                     gen                                           vm_platform_strong.dill
+flutter.jar                                   gyp-mac-tool                                  vm_platform_strong.dill.d
+flutter_embedding_debug-sources.jar           icudtl.dat                                    zip_archives
+----
+
+其中，``flutter_embedding_debug.jar``是Android嵌入层代码，``libflutter.so``是flutter的引擎层代码，通过这两个文件，可以在Android工程混合接入Flutter代码。
+
+== 源码使用
+
+创建一个工程：
+
+[source,bash]
+----
+$ pwd
+/Users/vimerzhao/WorkProject/flutter_source_code
+$ ls
+depot_tools flutter     src
+$ ./flutter/bin/flutter create flutter_demo
+Downloading Dart SDK from Flutter engine 5babba6c4d25fa237bbf755ab85c9a0c50b3c6ec...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  172M  100  172M    0     0  4381k      0  0:00:40  0:00:40 --:--:-- 4723k
+Building flutter tool...
+Downloading Material fonts...                                       0.5s
+Downloading Gradle Wrapper...                                       0.1s
+Downloading package sky_engine...                                   0.3s
+Downloading flutter_patched_sdk tools...                            2.7s
+Downloading flutter_patched_sdk_product tools...                    2.1s
+Downloading darwin-x64 tools...                                     8.2s
+Downloading libimobiledevice...                                     0.0s
+Downloading usbmuxd...                                              0.7s
+Downloading libplist...                                             0.0s
+Downloading openssl...                                              0.2s
+
+......
+Creating project flutter_demo...
+  flutter_demo/ios/Runner.xcworkspace/contents.xcworkspacedata (created)
+  flutter_demo/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist (created)
+
+  ......
+
+  flutter_demo/.idea/runConfigurations/main_dart.xml (created)
+  flutter_demo/.idea/libraries/Dart_SDK.xml (created)
+  flutter_demo/.idea/libraries/KotlinJavaRuntime.xml (created)
+  flutter_demo/.idea/modules.xml (created)
+  flutter_demo/.idea/workspace.xml (created)
+Running "flutter pub get" in flutter_demo...                        2.3s
+Wrote 71 files.
+
+All done!
+
+......
+
+Run "flutter doctor" for information about installing additional components.
+
+In order to run your application, type:
+
+  $ cd flutter_demo
+  $ flutter run
+----
+
+使用flutter并指定本地engine运行（不指定则会拉远程的、已经构建好的engine）。
+
+[source,console]
+----
+$  ../flutter/bin/flutter run --local-engine-src-path ~/WorkProject/flutter_source_code/src --local-engine=android_debug_unopt
+No Flutter engine build found at /Users/vimerzhao/WorkProject/flutter_source_code/src/out/host_debug_unopt.
+
+$ ../flutter/bin/flutter run --local-engine-src-path ~/WorkProject/flutter_source_code/src --local-engine=host_debug_unopt
+Launching lib/main.dart on DUK AL20 in debug mode...
+Oops; flutter has exited unexpectedly: "Invalid argument(s): Cannot find executable for
+/Users/vimerzhao/WorkProject/flutter_source_code/src/out/host_debug_unopt/dart-sdk/bin/dart.".
+A crash report has been written to /Users/vimerzhao/WorkProject/flutter_source_code/flutter_demo/flutter_02.log.
+...
+FAILURE: Build failed with an exception
+* Where:
+Script '/Users/vimerzhao/WorkProject/flutter_source_code/flutter/packages/flutter_tools/gradle/flutter.gradle' line: 904
+* What went wrong:
+Execution failed for task ':app:compileFlutterBuildDebug'.
+> Process 'command '/Users/vimerzhao/WorkProject/flutter_source_code/flutter/bin/flutter'' finished with non-zero exit value 1
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+* Get more help at https://help.gradle.org
+BUILD FAILED in 1s
+Running Gradle task 'assembleDebug'...
+Running Gradle task 'assembleDebug'... Done                         1.8s
+https://git.io/JTDf0
+
+$../flutter/bin/flutter run --local-engine-src-path ~/WorkProject/flutter_source_code/src --local-engine=h
+ost_debug_unopt
+Launching lib/main.dart on DUK AL20 in debug mode...
+Error: Error when reading '../src/out/host_debug_unopt/gen/frontend_server.dart.snapshot': No such file or directory
+the Dart compiler exited unexpectedly.
+the Dart compiler exited unexpectedly.
+Running Gradle task 'assembleDebug'...
+----
+
+总的来说，遇到一些官方文档上没有提到的问题：
+
+. 输入``android_debug_unopt`` 却提示找不到 `host_debug_unopt`，这个莫名其妙，只能先改一下之前构建的文件夹名称了。
+. 找不到``dart-sdk``，flutter会下载到``bin/cache``目录，只能自己手动copy一份到报错的目录。
+. 找不到``frontend_server.dart.snapshot``，在flutter目录用``find . -name "frontend_server.dart.snapshot"``找到，然后手动copy一份。
+
+解决这三个问题之后，终于可以运行了。
+
+[source,console]
+----
+$ ../flutter/bin/flutter run --local-engine-src-path ~/WorkProject/flutter_source_code/src --local-engine=host_debug_unopt
+Launching lib/main.dart on DUK AL20 in debug mode...
+Running Gradle task 'assembleDebug'...
+Running Gradle task 'assembleDebug'... Done                        18.1s
+✓ Built build/app/outputs/flutter-apk/app-debug.apk.
+Installing build/app/outputs/flutter-apk/app.apk...                 3.5s
+Waiting for DUK AL20 to report its views...                          8ms
+Syncing files to device DUK AL20...                                210ms
+Flutter run key commands.
+r Hot reload. 🔥🔥🔥
+R Hot restart.
+h Repeat this help message.
+d Detach (terminate "flutter run" but leave application running).
+c Clear the screen
+q Quit (terminate the application on the device).
+An Observatory debugger and profiler on DUK AL20 is available at: http://127.0.0.1:63146/LE7Uc6cshds=/
+D/AwareBitmapCacher(24977): handleInit switch not opened pid=24977
+
+Application finished.
+----
+
+== 总结
+
+以上完成源码的获取与构建，那么：
+
+* 如何高效率的编辑源码？用Vim/VS Code还是Android Studio？
+* 如何构建自己的版本？同时，如何保持和官方代码保持同步？
+* 如何修改框架层代码并重新编译？
+
+等等。
+
+其实问题还有很多，后面再一一讲解。
+
+== 参考
+
+* http://gityuan.com/2019/08/03/flutter_engine_setup/[搭建Flutter Engine源码编译环境]
+* https://fucknmb.com/2019/02/26/Flutter-Engine-%E7%BC%96%E8%AF%91%E6%8C%87%E5%8C%97/[Flutter Engine 编译指北]
+* http://zhengxiaoyong.com/2019/03/16/Flutter-Engine%E4%B8%8ESDK%E7%9A%84%E5%AE%9A%E5%88%B6%E5%8C%96%E4%B8%8E%E7%BC%96%E8%AF%91/[Flutter Engine与SDK的定制化与编译]
+* https://github.com/flutter/flutter/wiki/Setting-up-the-Engine-development-environment[Setting up the Engine development environment · flutter/flutter Wiki]
+* https://github.com/flutter/flutter/wiki/Compiling-the-engine[Compiling the engine · flutter/flutter Wiki]
+* https://github.com/flutter/flutter/wiki/The-flutter-tool[The flutter tool · flutter/flutter Wiki]
+* https://www.chromium.org/developers/how-tos/depottools[Using depot_tools - The Chromium Projects]
+* https://www.chromium.org/developers/how-tos/get-the-code/working-with-release-branches[Working with Release Branches - The Chromium Projects]
+* https://chromium.googlesource.com/chromium/src/+/master/docs/cipd.md[CIPD for chromium dependencies]
+* https://ninja-build.org/[Ninja, a small build system with a focus on speed]
+* https://gn.googlesource.com/gn/[gn - Git at Google]
+
+____
+更多相关内容可访问我的博客：http://vimerzhao.top/
+
+或
+
+关注我的公众号:``V大师在一号线``
+____

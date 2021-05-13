@@ -1,0 +1,512 @@
+---
+title: "Flutter源码剖析(四):flutter run流程解析"
+date: 2020-11-22T12:23:18+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= Flutter源码剖析(四):flutter run流程解析
+
+// Date:2020-11-22
+
+// LinkName:
+
+== 关于``flutter run``
+
+``flutter run``负责执行构建一个flutter工程，输出产物到对应设备，并负责提供基本的交互控制，使用效果如下：
+
+[source,bash]
+----
+$ flutter run
+Launching lib/main.dart on COL AL10 in debug mode...
+Running Gradle task 'assembleDebug'...
+Running Gradle task 'assembleDebug'... Done                        23.8s
+✓ Built build/app/outputs/flutter-apk/app-debug.apk.
+Installing build/app/outputs/flutter-apk/app.apk...                13.7s
+Waiting for COL AL10 to report its views...                          7ms
+Syncing files to device COL AL10...                                279ms
+
+Flutter run key commands.
+r Hot reload. 🔥🔥🔥
+R Hot restart.
+h Repeat this help message.
+d Detach (terminate "flutter run" but leave application running).
+c Clear the screen
+q Quit (terminate the application on the device).
+An Observatory debugger and profiler on COL AL10 is available at: http://127.0.0.1:65470/jL7vVcN78XI=/
+D/AwareBitmapCacher(10010): handleInit switch not opened pid=10010
+----
+
+下面走读这个命令的执行流程。
+
+== `lib/executable.dart#main`
+
+``lib/executable.dart#main``是所有命令执行的入口：
+
+[source,dart]
+----
+Future<void> main(List<String> args) async {
+  ....
+  await runner.run(args, () => <FlutterCommand>[
+    AssembleCommand(),
+    AttachCommand(verboseHelp: verboseHelp),
+    RunCommand(verboseHelp: verboseHelp),
+    ScreenshotCommand(),
+    ShellCompletionCommand(),
+    ....
+  );
+}
+----
+
+通过层层封装转调之后，``flutter run``这个命令，最终会调用到``lib/src/commands/run.dart#RunCommand``的``runCommand``方法。
+
+== `RunCommand#runCommand`
+
+核心代码如下：
+
+[source,dart]
+----
+  @override
+  Future<FlutterCommandResult> runCommand() async {
+    // Enable hot mode by default if `--no-hot` was not passed and we are in
+    // debug mode.
+    final bool hotMode = shouldUseHotMode();
+
+    writePidFile(stringArg('pid-file'));
+
+    ......
+    ResidentRunner runner;
+    final String applicationBinaryPath = stringArg('use-application-binary');
+    if (hotMode && !webMode) {
+      runner = HotRunner(
+        flutterDevices,
+        target: targetFile,
+        debuggingOptions: _createDebuggingOptions(),
+        benchmarkMode: boolArg('benchmark'),
+        applicationBinary: applicationBinaryPath == null
+            ? null
+            : globals.fs.file(applicationBinaryPath),
+        projectRootPath: stringArg('project-root'),
+        dillOutputPath: stringArg('output-dill'),
+        stayResident: stayResident,
+        ipv6: ipv6,
+      );
+    } else if (webMode) {
+      ......
+    } else {
+      ......
+    }
+
+    DateTime appStartedTime;
+    final Completer<void> appStartedTimeRecorder = Completer<void>.sync();
+    // This callback can't throw.
+    unawaited(appStartedTimeRecorder.future.then<void>(
+      (_) {
+        appStartedTime = globals.systemClock.now();
+        if (stayResident) {
+          TerminalHandler(runner)
+            ..setupTerminal()
+            ..registerSignalHandlers();
+        }
+      }
+    ));
+
+    final int result = await runner.run(
+      appStartedCompleter: appStartedTimeRecorder,
+      route: route,
+    );
+    if (result != 0) {
+      throwToolExit(null, exitCode: result);
+    }
+    ......
+  }
+----
+
+重要的逻辑有两个：
+
+* 创建一个``HotRunner``，支持后面的热更
+* 设定在构建完成后启动命令行程序
+
+先看``HotRunner``的``run``方法。
+
+== `HotRunner#run`
+
+[source,dart]
+----
+
+  Future<int> run({
+    Completer<DebugConnectionInfo> connectionInfoCompleter,
+    Completer<void> appStartedCompleter,
+    String route,
+  }) async {
+    ......
+
+    final List<Future<bool>> startupTasks = <Future<bool>>[];
+    final PackageConfig packageConfig = await loadPackageConfigWithLogging(
+      globals.fs.file(debuggingOptions.buildInfo.packagesPath),
+      logger: globals.logger,
+    );
+    for (final FlutterDevice device in flutterDevices) {
+      await runSourceGenerators();
+      if (device.generator != null) {
+        startupTasks.add(
+          device.generator.recompile(
+            globals.fs.file(mainPath).uri,
+            <Uri>[],
+            suppressErrors: applicationBinary == null,
+            outputPath: dillOutputPath ??
+              getDefaultApplicationKernelPath(trackWidgetCreation: debuggingOptions.buildInfo.trackWidgetCreation),
+            packageConfig: packageConfig,
+          ).then((CompilerOutput output) => output?.errorCount == 0)
+        );
+      }
+      startupTasks.add(device.runHot(
+        hotRunner: this,
+        route: route,
+      ).then((int result) => result == 0));
+    }
+    try {
+      final List<bool> results = await Future.wait(startupTasks);
+      if (!results.every((bool passed) => passed)) {
+        appFailedToStart();
+        return 1;
+      }
+      cacheInitialDillCompilation();
+    } on Exception catch (err) {
+      globals.printError(err.toString());
+      appFailedToStart();
+      return 1;
+    }
+
+    return attach(
+      connectionInfoCompleter: connectionInfoCompleter,
+      appStartedCompleter: appStartedCompleter,
+    );
+  }
+----
+
+主要有两件事：
+
+* 针对每个设备，进行源码构建，并执行热更
+* 全部完成后开始``attach``设备
+
+先看``FlutterDevice#runHot``这个方法
+
+== `FlutterDevice#runHot`
+
+[source,dart]
+----
+
+  Future<int> runHot({
+    HotRunner hotRunner,
+    String route,
+  }) async {
+    .....
+
+    // Start the application.
+    final Future<LaunchResult> futureResult = device.startApp(
+      package,
+      mainPath: hotRunner.mainPath,
+      debuggingOptions: hotRunner.debuggingOptions,
+      platformArgs: platformArgs,
+      route: route,
+      prebuiltApplication: prebuiltMode,
+      ipv6: hotRunner.ipv6,
+      userIdentifier: userIdentifier,
+    );
+
+    final LaunchResult result = await futureResult;
+
+    .....
+    return 0;
+  }
+----
+
+继续追踪``startApp``方法，这个方法不同平台有不同实现，这里看``AndroidDevice``的：
+
+[source,dart]
+----
+  @override
+  Future<LaunchResult> startApp(
+    AndroidApk package, {
+    String mainPath,
+    String route,
+    DebuggingOptions debuggingOptions,
+    Map<String, dynamic> platformArgs,
+    bool prebuiltApplication = false,
+    bool ipv6 = false,
+    String userIdentifier,
+  }) async {
+    ......
+    if (!prebuiltApplication || _androidSdk.licensesAvailable && _androidSdk.latestVersion == null) {
+      _logger.printTrace('Building APK');
+      final FlutterProject project = FlutterProject.current();
+      await androidBuilder.buildApk(
+          project: project,
+          target: mainPath,
+          androidBuildInfo: AndroidBuildInfo(
+            debuggingOptions.buildInfo,
+            targetArchs: <AndroidArch>[androidArch],
+            fastStart: debuggingOptions.fastStart
+          ),
+      );
+      // Package has been built, so we can get the updated application ID and
+      // activity name from the .apk.
+      package = await AndroidApk.fromAndroidProject(project.android);
+    }
+
+    if (!await _installLatestApp(package, userIdentifier)) {
+      return LaunchResult.failed();
+    }
+    .....
+
+    List<String> cmd;
+
+    cmd = <String>[
+      'shell', 'am', 'start',
+      '-a', 'android.intent.action.RUN',
+      '-f', '0x20000000', // FLAG_ACTIVITY_SINGLE_TOP
+      '--ez', 'enable-background-compilation', 'true',
+      '--ez', 'enable-dart-profiling', 'true',
+    ....
+  }
+----
+
+可以看到，主要是buildApk，然后``_installLatestApp``负责安装，最后启动。
+
+首先看buildApk过程，在``AndroidBuilderImpl#buildApk``：
+
+[source,dart]
+----
+
+  @override
+  Future<void> buildApk({
+    @required FlutterProject project,
+    @required AndroidBuildInfo androidBuildInfo,
+    @required String target,
+  }) async {
+    try {
+      await buildGradleApp(
+        project: project,
+        androidBuildInfo: androidBuildInfo,
+        target: target,
+        isBuildingBundle: false,
+        localGradleErrors: gradleErrors,
+      );
+    } finally {
+      globals.androidSdk?.reinitialize();
+    }
+  }
+----
+
+最后是真正的构建逻辑，还是通过gradle来进行调用的：
+
+[source,dart]
+----
+
+Future<void> buildGradleApp({
+  @required FlutterProject project,
+  @required AndroidBuildInfo androidBuildInfo,
+  @required String target,
+  @required bool isBuildingBundle,
+  @required List<GradleHandledError> localGradleErrors,
+  bool shouldBuildPluginAsAar = false,
+  int retries = 1,
+}) async {
+  ......
+
+  final BuildInfo buildInfo = androidBuildInfo.buildInfo;
+  final String assembleTask = isBuildingBundle
+    ? getBundleTaskFor(buildInfo)
+    : getAssembleTaskFor(buildInfo);
+
+  ......
+  final List<String> command = <String>[
+    gradleUtils.getExecutable(project),
+  ];
+  if (globals.logger.isVerbose) {
+    command.add('-Pverbose=true');
+  } else {
+    command.add('-q');
+  }
+  .....
+  if (target != null) {
+    command.add('-Ptarget=$target');
+  }
+  assert(buildInfo.trackWidgetCreation != null);
+  command.add('-Ptrack-widget-creation=${buildInfo.trackWidgetCreation}');
+
+  if (buildInfo.extraFrontEndOptions != null) {
+    command.add('-Pextra-front-end-options=${encodeDartDefines(buildInfo.extraFrontEndOptions)}');
+  }
+  if (buildInfo.extraGenSnapshotOptions != null) {
+    command.add('-Pextra-gen-snapshot-options=${encodeDartDefines(buildInfo.extraGenSnapshotOptions)}');
+  }
+  if (buildInfo.fileSystemRoots != null && buildInfo.fileSystemRoots.isNotEmpty) {
+    command.add('-Pfilesystem-roots=${buildInfo.fileSystemRoots.join('|')}');
+  }
+  if (buildInfo.fileSystemScheme != null) {
+    command.add('-Pfilesystem-scheme=${buildInfo.fileSystemScheme}');
+  }
+  if (androidBuildInfo.splitPerAbi) {
+    command.add('-Psplit-per-abi=true');
+  }
+  .....
+  command.add(assembleTask);
+  .....
+
+  }
+  .....
+  try {
+    exitCode = await processUtils.stream(
+      command,
+      workingDirectory: project.android.hostAppGradleRoot.path,
+      allowReentrantFlutter: true,
+      environment: gradleEnvironment,
+      mapFunction: consumeLog,
+    );
+  } on ProcessException catch(exception) {
+  .....
+  // Gradle produced an APK.
+  final Iterable<String> apkFilesPaths = project.isModule
+    ? findApkFilesModule(project, androidBuildInfo)
+    : listApkPaths(androidBuildInfo);
+  final Directory apkDirectory = getApkDirectory(project);
+  final File apkFile = apkDirectory.childFile(apkFilesPaths.first);
+
+  .....
+  final String appSize = (buildInfo.mode == BuildMode.debug)
+    ? '' // Don't display the size when building a debug variant.
+    : ' (${getSizeAsMB(apkFile.lengthSync())})';
+  globals.printStatus(
+    '$successMark Built ${globals.fs.path.relative(apkFile.path)}$appSize.',
+    color: TerminalColor.green,
+  );
+}
+----
+
+这里会创建gradle所需的全部参数，然后通过``processUtils``启动执行，执行后APK文件就会出现在构建目录了。
+
+此时``androidBuilder.buildApk``就执行完了，后面的``_installLatestApp``负责apk文件的安装工作：
+
+[source,dart]
+----
+
+  Future<bool> _installLatestApp(AndroidApk package, String userIdentifier) async {
+    final bool wasInstalled = await isAppInstalled(package, userIdentifier: userIdentifier);
+    if (wasInstalled) {
+      if (await isLatestBuildInstalled(package)) {
+        _logger.printTrace('Latest build already installed.');
+        return true;
+      }
+    }
+    _logger.printTrace('Installing APK.');
+    if (!await installApp(package, userIdentifier: userIdentifier)) {
+    .....
+----
+
+真正的安装工作：
+
+[source,dart]
+----
+  @override
+  Future<bool> installApp(
+    AndroidApk app, {
+    String userIdentifier,
+  }) async {
+    .....
+
+    final Status status = _logger.startProgress(
+      'Installing ${_fileSystem.path.relative(app.file.path)}...',
+      timeout: _timeoutConfiguration.slowOperation,
+    );
+    final RunResult installResult = await _processUtils.run(
+      adbCommandForDevice(<String>[
+        'install',
+        '-t',
+        '-r',
+        if (userIdentifier != null)
+          ...<String>['--user', userIdentifier],
+        app.file.path
+      ]));
+    status.stop();
+    .....
+    return true;
+  }
+----
+
+可以看出，本质还是通过adb命令进行安装。
+
+== attach
+
+安装启动之后，会初始化交互式命令行，在之前的``setupTerminal``里面：
+
+----
+
+  void setupTerminal() {
+    if (!globals.logger.quiet) {
+      globals.printStatus('');
+      residentRunner.printHelp(details: false);
+    }
+    globals.terminal.singleCharMode = true;
+    subscription = globals.terminal.keystrokes.listen(processTerminalInput);
+  }
+----
+
+``processTerminalInput``负责处理用户输入
+
+[source,dart]
+----
+
+  Future<void> processTerminalInput(String command) async {
+    ......
+    try {
+      lastReceivedCommand = command;
+      await _commonTerminalInputHandler(command);
+    // Catch all exception since this is doing cleanup and rethrowing.
+    } catch (error, st) { // ignore: avoid_catches_without_on_clauses
+    ....
+
+
+
+  Future<bool> _commonTerminalInputHandler(String character) async {
+    globals.printStatus(''); // the key the user tapped might be on this line
+    switch(character) {
+      ....
+      case 'r':
+        if (!residentRunner.canHotReload) {
+          return false;
+        }
+        final OperationResult result = await residentRunner.restart(fullRestart: false);
+        if (result.fatal) {
+          throwToolExit(result.message);
+        }
+        if (!result.isOk) {
+          globals.printStatus('Try again after fixing the above error(s).', emphasis: true);
+        }
+        return true;
+      case 'R':
+        // If hot restart is not supported for all devices, ignore the command.
+        if (!residentRunner.canHotRestart || !residentRunner.hotMode) {
+          return false;
+        }
+        final OperationResult result = await residentRunner.restart(fullRestart: true);
+        if (result.fatal) {
+          throwToolExit(result.message);
+        }
+        if (!result.isOk) {
+          globals.printStatus('Try again after fixing the above error(s).', emphasis: true);
+        }
+        return true;
+      ....
+    }
+    return false;
+  }
+----
+
+这里只是初始化了命令行环境，还需要建立像设备发送命令的通道（等同于``flutter attach``），这里涉及到和DartVM的远程通信，有机会留到``flutter attach``再做分析。

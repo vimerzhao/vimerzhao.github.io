@@ -1,0 +1,90 @@
+---
+title: "代码相似性检测工具"
+date: 2020-04-14T12:33:16+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= 代码相似性检测工具
+
+== 背景
+
+最近由于工作需要，想找一个能够检查代码相似性的工具。这种工具主要有两个应用：
+
+* 代码自身的冗余检查
+* 查重，例如检查学生的编程作业是否有抄袭
+
+== 工具
+
+最后找到了两个工具``sim``和``moss``，具体实现算法还没有研究，但是``moss``需要申请，并且通过网络使用，这样速度、灵活性和安全性都是有缺陷的，所以选择了``sim``。
+
+这个工具编译起来也很麻烦，而且没有mac的版本，幸好已经有人编了一个https://github.com/fanghon/antiplag/blob/master/sim_java.exe[Windows版本可执行文件]，先用着。
+
+== 扩展
+
+由于我是要比较两个项目，并且按照相似性排序，但是``sim``本身的参数似乎不支持，所以写了一个脚本（``moss``后端不在本地，这种定制能力就做不了）
+
+[source,python]
+----
+import os
+
+dir1 = "*******"
+dir2 = "*******"
+
+target_file_list_1 = []
+target_file_list_2 = []
+
+
+def gen_file_list(dir_name, suffix_name):
+    temp = []
+    for root, dirs, files in os.walk(dir_name):
+        for file in files:
+            if file.endswith(suffix_name):
+                temp.append(os.path.join(root, file))
+    return temp
+
+
+target_file_list_1 = gen_file_list(dir1, ".java")
+target_file_list_2 = gen_file_list(dir2, ".java")
+
+result = []
+
+def parse_result(text):
+    for line in text.split("\n"):
+        if " % of " in line:
+            line_arr = line.split(" ")
+            result.append([line_arr[0], line_arr[-2], line_arr[3]])
+            break
+
+
+total = len(target_file_list_1) * len(target_file_list_2)
+
+cnt = 0
+for from_f in target_file_list_1:
+    for to_f in target_file_list_2:
+        cnt += 1
+        ret = os.popen("sim_java.exe -p {} {}".format(from_f, to_f))
+        parse_result(ret.read())
+        print("{} / {}".format(cnt, total))
+
+result.sort(key=lambda d: int(d[2]), reverse=True)
+with open("./out.txt", 'w') as f:
+    for item in result:
+        f.write(str(item) + "\n")
+----
+
+== 参考文章
+
+* https://theory.stanford.edu/~aiken/moss/[Plagiarism Detection]
+* https://dickgrune.com/Programs/similarity_tester/[The software and text similarity tester SIM]
+* https://dickgrune.com/Programs/similarity_tester/sim.pdf[sim.pdf]
+* https://www.zhihu.com/question/21117858[如何计算两份代码的相似度？ - 知乎]
+* https://www.zhihu.com/question/53401092[现在大学程序代码查重的方法？能查到什么程度？ - 知乎]
+* https://blog.mythsman.com/post/5d2b46e325601931a5f8d788/[一个实用的代码查重程序sim工具]
+* https://blog.jingwei.site/2017/01/21/e4-bb-a3-e7-a0-81-e6-9f-a5-e9-87-8d-e5-b7-a5-e5-85-b7sim/[代码查重工具sim | crazyX's Blog]
+* https://tautcony.xyz/2018/01/06/moss-and-sim/[代码查重系统MOSS与SIM小测 - 踢锡部落格 | TC Blog| TC的博客]

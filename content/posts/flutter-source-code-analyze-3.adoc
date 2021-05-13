@@ -1,0 +1,624 @@
+---
+title: "Flutter源码剖析(三):Flutter-Android-Embedder启动流程"
+date: 2020-11-15T12:23:15+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= Flutter源码剖析(三):Flutter-Android-Embedder启动流程
+
+// Date:2020-11-15
+
+// LinkName:
+
+== 概述
+
+Flutter的启动包括Embedder、Engine、Framework三部分，本文仅描述Android平台的Embdder模块的启动流程。Flutter通常通过启动一个FlutterActivity启动，纯Flutter App则通过FlutterApplication启动。本文以后一种情况为例分析。
+
+== FlutterApplication#onCreate
+
+[source,java]
+----
+// io/flutter/app/FlutterApplication.java
+
+  @Override
+  @CallSuper
+  public void onCreate() {
+    super.onCreate();
+    FlutterInjector.instance().flutterLoader().startInitialization(this);
+  }
+----
+
+实际是调用``FlutterLoader#startInitialization``进行初始化。
+
+=== FlutterLoader#startInitialization
+
+[source,java]
+----
+
+  public void startInitialization(@NonNull Context applicationContext) {
+    startInitialization(applicationContext, new Settings());
+  }
+
+  public void startInitialization(@NonNull Context applicationContext, @NonNull Settings settings) {
+    if (this.settings != null) {
+      return;
+    }
+    if (Looper.myLooper() != Looper.getMainLooper()) {
+      throw new IllegalStateException("startInitialization must be called on the main thread");
+    }
+
+    final Context appContext = applicationContext.getApplicationContext();
+
+    this.settings = settings;
+
+    initStartTimestampMillis = SystemClock.uptimeMillis();
+    flutterApplicationInfo = ApplicationInfoLoader.load(appContext);
+    VsyncWaiter.getInstance((WindowManager) appContext.getSystemService(Context.WINDOW_SERVICE))
+        .init();
+
+    // Use a background thread for initialization tasks that require disk access.
+    Callable<InitResult> initTask =
+        new Callable<InitResult>() {
+          @Override
+          public InitResult call() {
+            ResourceExtractor resourceExtractor = initResources(appContext);
+
+            if (FlutterInjector.instance().shouldLoadNative()) {
+              System.loadLibrary("flutter");
+            }
+
+            // Prefetch the default font manager as soon as possible on a background thread.
+            // It helps to reduce time cost of engine setup that blocks the platform thread.
+            Executors.newSingleThreadExecutor()
+                .execute(
+                    new Runnable() {
+                      @Override
+                      public void run() {
+                        FlutterJNI.nativePrefetchDefaultFontManager();
+                      }
+                    });
+
+            if (resourceExtractor != null) {
+              resourceExtractor.waitForCompletion();
+            }
+
+            return new InitResult(
+                PathUtils.getFilesDir(appContext),
+                PathUtils.getCacheDirectory(appContext),
+                PathUtils.getDataDirectory(appContext));
+          }
+        };
+    initResultFuture = Executors.newSingleThreadExecutor().submit(initTask);
+  }
+----
+
+主要做了以下几件事：
+
+. 检查是否在主线程
+. 注册Vsync信号监听
+. 启动一个异步任务，执行以下操作：
+ .. 加载flutter engine
+ .. 异步初始化字体管理器
+ .. 加载asset目录下的资源
+
+以上是Application会执行的操作，接着一般会进入一个FlutterActivity，那么依次查看其回调。
+
+== FlutterActivity#onCreate
+
+[source,java]
+----
+// io/flutter/embedding/android/FlutterActivity.java
+
+  @Override
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+    switchLaunchThemeForNormalTheme();
+
+    super.onCreate(savedInstanceState);
+
+    lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE);
+
+    delegate = new FlutterActivityAndFragmentDelegate(this);
+    delegate.onAttach(this);
+    delegate.onActivityCreated(savedInstanceState);
+
+    configureWindowForTransparency();
+    setContentView(createFlutterView());
+    configureStatusBarForFullscreenFlutterExperience();
+  }
+----
+
+主要做了以下几件事：
+
+. 从Splash切换成真正要显示的View
+. 创建一个delegate，并触发对应回调
+. 配置相关的窗口属性
+. 创建一个新的FlutterView，作为Activity的ContentView
+
+=== FlutterActivityAndFragmentDelegate#onAttach
+
+[source,java]
+----
+  void onAttach(@NonNull Context context) {
+    ensureAlive();
+    if (flutterEngine == null) {
+      setupFlutterEngine();
+    }
+
+    if (host.shouldAttachEngineToActivity()) {
+      Log.v(TAG, "Attaching FlutterEngine to the Activity that owns this delegate.");
+      flutterEngine.getActivityControlSurface().attachToActivity(this, host.getLifecycle());
+    }
+
+    platformPlugin = host.providePlatformPlugin(host.getActivity(), flutterEngine);
+
+    host.configureFlutterEngine(flutterEngine);
+  }
+----
+
+主要做了以下几件事：
+
+. 设置FlutterEngine，一般是新建一个
+. 把Engine和容器Activity关联
+. 新建一个PlatformPlugin
+. engine初始化完毕，触发对应回调
+
+其中，``FlutterActivityAndFragmentDelegate#setupFlutterEngine``行为比较复杂
+
+[source,java]
+----
+  /* package */ void setupFlutterEngine() {
+    Log.v(TAG, "Setting up FlutterEngine.");
+
+    // First, check if the host wants to use a cached FlutterEngine.
+    String cachedEngineId = host.getCachedEngineId();
+    if (cachedEngineId != null) {
+      flutterEngine = FlutterEngineCache.getInstance().get(cachedEngineId);
+      isFlutterEngineFromHost = true;
+      if (flutterEngine == null) {
+        throw new IllegalStateException(
+            "The requested cached FlutterEngine did not exist in the FlutterEngineCache: '"
+                + cachedEngineId
+                + "'");
+      }
+      return;
+    }
+
+    // Second, defer to subclasses for a custom FlutterEngine.
+    flutterEngine = host.provideFlutterEngine(host.getContext());
+    if (flutterEngine != null) {
+      isFlutterEngineFromHost = true;
+      return;
+    }
+
+    Log.v(
+        TAG,
+        "No preferred FlutterEngine was provided. Creating a new FlutterEngine for"
+            + " this FlutterFragment.");
+    flutterEngine =
+        new FlutterEngine(
+            host.getContext(),
+            host.getFlutterShellArgs().toArray(),
+            /*automaticallyRegisterPlugins=*/ false,
+            /*willProvideRestorationData=*/ host.shouldRestoreAndSaveState());
+    isFlutterEngineFromHost = false;
+  }
+----
+
+这里一般是第三种情况，直接新建一个Engine：
+
+[source,java]
+----
+  public FlutterEngine(
+      @NonNull Context context,
+      @Nullable FlutterLoader flutterLoader,
+      @NonNull FlutterJNI flutterJNI,
+      @NonNull PlatformViewsController platformViewsController,
+      @Nullable String[] dartVmArgs,
+      boolean automaticallyRegisterPlugins,
+      boolean waitForRestorationData) {
+    AssetManager assetManager;
+    try {
+      assetManager = context.createPackageContext(context.getPackageName(), 0).getAssets();
+    } catch (NameNotFoundException e) {
+      assetManager = context.getAssets();
+    }
+    this.dartExecutor = new DartExecutor(flutterJNI, assetManager);
+    this.dartExecutor.onAttachedToJNI();
+
+    accessibilityChannel = new AccessibilityChannel(dartExecutor, flutterJNI);
+    keyEventChannel = new KeyEventChannel(dartExecutor);
+    lifecycleChannel = new LifecycleChannel(dartExecutor);
+    localizationChannel = new LocalizationChannel(dartExecutor);
+    mouseCursorChannel = new MouseCursorChannel(dartExecutor);
+    navigationChannel = new NavigationChannel(dartExecutor);
+    platformChannel = new PlatformChannel(dartExecutor);
+    restorationChannel = new RestorationChannel(dartExecutor, waitForRestorationData);
+    settingsChannel = new SettingsChannel(dartExecutor);
+    systemChannel = new SystemChannel(dartExecutor);
+    textInputChannel = new TextInputChannel(dartExecutor);
+
+    this.localizationPlugin = new LocalizationPlugin(context, localizationChannel);
+
+    this.flutterJNI = flutterJNI;
+    if (flutterLoader == null) {
+      flutterLoader = FlutterInjector.instance().flutterLoader();
+    }
+    flutterLoader.startInitialization(context.getApplicationContext());
+    flutterLoader.ensureInitializationComplete(context, dartVmArgs);
+
+    flutterJNI.addEngineLifecycleListener(engineLifecycleListener);
+    flutterJNI.setPlatformViewsController(platformViewsController);
+    flutterJNI.setLocalizationPlugin(localizationPlugin);
+    attachToJni();
+
+    // TODO(mattcarroll): FlutterRenderer is temporally coupled to attach(). Remove that coupling if
+    // possible.
+    this.renderer = new FlutterRenderer(flutterJNI);
+
+    this.platformViewsController = platformViewsController;
+    this.platformViewsController.onAttachedToJNI();
+
+    this.pluginRegistry =
+        new FlutterEngineConnectionRegistry(context.getApplicationContext(), this, flutterLoader);
+
+    if (automaticallyRegisterPlugins) {
+      registerPlugins();
+    }
+  }
+----
+
+主要做了以下几件事：
+
+. 新建Dart运行环境DartExecutor
+. 创建各种用于Flutter和Android通信的channel对象
+. 确认engine初始化完成（调用Native侧的初始化方法，执行Flutter engine的启动逻辑）
+. 插件注册
+
+``flutterLoader.startInitialization``由于之前调用过，这里会直接返回。 ``FlutterLoader#ensureInitializationComplete``则负责engine最后的准备工作：
+
+[source,java]
+----
+
+  public void ensureInitializationComplete(
+      @NonNull Context applicationContext, @Nullable String[] args) {
+    if (initialized) {
+      return;
+    }
+    if (Looper.myLooper() != Looper.getMainLooper()) {
+      throw new IllegalStateException(
+          "ensureInitializationComplete must be called on the main thread");
+    }
+    if (settings == null) {
+      throw new IllegalStateException(
+          "ensureInitializationComplete must be called after startInitialization");
+    }
+    try {
+      InitResult result = initResultFuture.get();
+
+      List<String> shellArgs = new ArrayList<>();
+      shellArgs.add("--icu-symbol-prefix=_binary_icudtl_dat");
+
+      shellArgs.add(
+          "--icu-native-lib-path="
+              + flutterApplicationInfo.nativeLibraryDir
+              + File.separator
+              + DEFAULT_LIBRARY);
+      if (args != null) {
+        Collections.addAll(shellArgs, args);
+      }
+
+      String kernelPath = null;
+      if (BuildConfig.DEBUG || BuildConfig.JIT_RELEASE) {
+        String snapshotAssetPath =
+            result.dataDirPath + File.separator + flutterApplicationInfo.flutterAssetsDir;
+        kernelPath = snapshotAssetPath + File.separator + DEFAULT_KERNEL_BLOB;
+        shellArgs.add("--" + SNAPSHOT_ASSET_PATH_KEY + "=" + snapshotAssetPath);
+        shellArgs.add("--" + VM_SNAPSHOT_DATA_KEY + "=" + flutterApplicationInfo.vmSnapshotData);
+        shellArgs.add(
+            "--" + ISOLATE_SNAPSHOT_DATA_KEY + "=" + flutterApplicationInfo.isolateSnapshotData);
+      } else {
+        shellArgs.add(
+            "--" + AOT_SHARED_LIBRARY_NAME + "=" + flutterApplicationInfo.aotSharedLibraryName);
+
+        // Most devices can load the AOT shared library based on the library name
+        // with no directory path.  Provide a fully qualified path to the library
+        // as a workaround for devices where that fails.
+        shellArgs.add(
+            "--"
+                + AOT_SHARED_LIBRARY_NAME
+                + "="
+                + flutterApplicationInfo.nativeLibraryDir
+                + File.separator
+                + flutterApplicationInfo.aotSharedLibraryName);
+      }
+
+      shellArgs.add("--cache-dir-path=" + result.engineCachesPath);
+      if (!flutterApplicationInfo.clearTextPermitted) {
+        shellArgs.add("--disallow-insecure-connections");
+      }
+      if (flutterApplicationInfo.domainNetworkPolicy != null) {
+        shellArgs.add("--domain-network-policy=" + flutterApplicationInfo.domainNetworkPolicy);
+      }
+      if (settings.getLogTag() != null) {
+        shellArgs.add("--log-tag=" + settings.getLogTag());
+      }
+
+      long initTimeMillis = SystemClock.uptimeMillis() - initStartTimestampMillis;
+
+      if (FlutterInjector.instance().shouldLoadNative()) {
+        FlutterJNI.nativeInit(
+            applicationContext,
+            shellArgs.toArray(new String[0]),
+            kernelPath,
+            result.appStoragePath,
+            result.engineCachesPath,
+            initTimeMillis);
+      }
+
+      initialized = true;
+    } catch (Exception e) {
+      Log.e(TAG, "Flutter initialization failed.", e);
+      throw new RuntimeException(e);
+    }
+  }
+----
+
+主要是拼接各种参数，最终调用了一个native方法，让engine执行自己的初始化逻辑。
+
+至此，``FlutterActivityAndFragmentDelegate#onAttach``的逻辑终于走完了。
+
+=== FlutterActivityAndFragmentDelegate#onActivityCreated
+
+[source,java]
+----
+  void onActivityCreated(@Nullable Bundle bundle) {
+    Log.v(TAG, "onActivityCreated. Giving framework and plugins an opportunity to restore state.");
+    ensureAlive();
+
+    Bundle pluginState = null;
+    byte[] frameworkState = null;
+    if (bundle != null) {
+      pluginState = bundle.getBundle(PLUGINS_RESTORATION_BUNDLE_KEY);
+      frameworkState = bundle.getByteArray(FRAMEWORK_RESTORATION_BUNDLE_KEY);
+    }
+
+    if (host.shouldRestoreAndSaveState()) {
+      flutterEngine.getRestorationChannel().setRestorationData(frameworkState);
+    }
+
+    if (host.shouldAttachEngineToActivity()) {
+      flutterEngine.getActivityControlSurface().onRestoreInstanceState(pluginState);
+    }
+  }
+----
+
+状态恢复相关，一般无需关注。
+
+=== FlutterActivity#createFlutterView
+
+[source,java]
+----
+  @NonNull
+  private View createFlutterView() {
+    return delegate.onCreateView(
+        null /* inflater */, null /* container */, null /* savedInstanceState */);
+  }
+----
+
+继续：
+
+[source,java]
+----
+  View onCreateView(
+      LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    Log.v(TAG, "Creating FlutterView.");
+    ensureAlive();
+
+    if (host.getRenderMode() == RenderMode.surface) {
+      FlutterSurfaceView flutterSurfaceView =
+          new FlutterSurfaceView(
+              host.getActivity(), host.getTransparencyMode() == TransparencyMode.transparent);
+
+      host.onFlutterSurfaceViewCreated(flutterSurfaceView);
+
+      flutterView = new FlutterView(host.getActivity(), flutterSurfaceView);
+    } else {
+      FlutterTextureView flutterTextureView = new FlutterTextureView(host.getActivity());
+
+      host.onFlutterTextureViewCreated(flutterTextureView);
+
+      flutterView = new FlutterView(host.getActivity(), flutterTextureView);
+    }
+
+    flutterView.addOnFirstFrameRenderedListener(flutterUiDisplayListener);
+
+    flutterSplashView = new FlutterSplashView(host.getContext());
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+      flutterSplashView.setId(View.generateViewId());
+    } else {
+      flutterSplashView.setId(486947586);
+    }
+    flutterSplashView.displayFlutterViewWithSplash(flutterView, host.provideSplashScreen());
+
+    Log.v(TAG, "Attaching FlutterEngine to FlutterView.");
+    flutterView.attachToFlutterEngine(flutterEngine);
+
+    return flutterSplashView;
+  }
+----
+
+这里会根据不同mode，创建不同类型的FlutterView，这个View承载了Flutter的UI在Android端的显示。
+
+此外，会创建一个``FlutterSplashView``作为启动阶段的闪屏。
+
+最后，``FlutterView#attachToFlutterEngine``会把FlutterView和FlutterEngine关联起来：
+
+[source,java]
+----
+  public void attachToFlutterEngine(@NonNull FlutterEngine flutterEngine) {
+    Log.v(TAG, "Attaching to a FlutterEngine: " + flutterEngine);
+    if (isAttachedToFlutterEngine()) {
+      if (flutterEngine == this.flutterEngine) {
+        Log.v(TAG, "Already attached to this engine. Doing nothing.");
+        return;
+      }
+      Log.v(
+          TAG,
+          "Currently attached to a different engine. Detaching and then attaching"
+              + " to new engine.");
+      detachFromFlutterEngine();
+    }
+
+    this.flutterEngine = flutterEngine;
+
+    FlutterRenderer flutterRenderer = this.flutterEngine.getRenderer();
+    isFlutterUiDisplayed = flutterRenderer.isDisplayingFlutterUi();
+    renderSurface.attachToRenderer(flutterRenderer);
+    flutterRenderer.addIsDisplayingFlutterUiListener(flutterUiDisplayListener);
+
+    // in a way that Flutter understands.
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+      mouseCursorPlugin = new MouseCursorPlugin(this, this.flutterEngine.getMouseCursorChannel());
+    }
+    textInputPlugin =
+        new TextInputPlugin(
+            this,
+            this.flutterEngine.getTextInputChannel(),
+            this.flutterEngine.getPlatformViewsController());
+    localizationPlugin = this.flutterEngine.getLocalizationPlugin();
+    androidKeyProcessor =
+        new AndroidKeyProcessor(this, this.flutterEngine.getKeyEventChannel(), textInputPlugin);
+    androidTouchProcessor =
+        new AndroidTouchProcessor(this.flutterEngine.getRenderer(), /*trackMotionEvents=*/ false);
+    accessibilityBridge =
+        new AccessibilityBridge(
+            this,
+            flutterEngine.getAccessibilityChannel(),
+            (AccessibilityManager) getContext().getSystemService(Context.ACCESSIBILITY_SERVICE),
+            getContext().getContentResolver(),
+            this.flutterEngine.getPlatformViewsController());
+    accessibilityBridge.setOnAccessibilityChangeListener(onAccessibilityChangeListener);
+    resetWillNotDraw(
+        accessibilityBridge.isAccessibilityEnabled(),
+        accessibilityBridge.isTouchExplorationEnabled());
+
+    this.flutterEngine.getPlatformViewsController().attachAccessibilityBridge(accessibilityBridge);
+    this.flutterEngine
+        .getPlatformViewsController()
+        .attachToFlutterRenderer(this.flutterEngine.getRenderer());
+
+    textInputPlugin.getInputMethodManager().restartInput(this);
+
+    // Push View and Context related information from Android to Flutter.
+    sendUserSettingsToFlutter();
+    localizationPlugin.sendLocalesToFlutter(getResources().getConfiguration());
+    sendViewportMetricsToFlutter();
+
+    flutterEngine.getPlatformViewsController().attachToView(this);
+
+    // Notify engine attachment listeners of the attachment.
+    for (FlutterEngineAttachmentListener listener : flutterEngineAttachmentListeners) {
+      listener.onFlutterEngineAttachedToFlutterView(flutterEngine);
+    }
+
+    if (isFlutterUiDisplayed) {
+      flutterUiDisplayListener.onFlutterUiDisplayed();
+    }
+  }
+----
+
+这里主要是关联两个对象的字段，同时对一些必要的Plugin进行初始化。
+
+== FlutterActivity#onStart
+
+[source,java]
+----
+  @Override
+  protected void onStart() {
+    super.onStart();
+    lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_START);
+    delegate.onStart();
+  }
+----
+
+核心逻辑在delegate里面：
+
+[source,java]
+----
+  void onStart() {
+    Log.v(TAG, "onStart()");
+    ensureAlive();
+    doInitialFlutterViewRun();
+  }
+
+
+  private void doInitialFlutterViewRun() {
+    if (host.getCachedEngineId() != null) {
+      return;
+    }
+
+    if (flutterEngine.getDartExecutor().isExecutingDart()) {
+      return;
+    }
+    String initialRoute = host.getInitialRoute();
+    if (initialRoute == null) {
+      initialRoute = getInitialRouteFromIntent(host.getActivity().getIntent());
+    }
+    Log.v(
+        TAG,
+        "Executing Dart entrypoint: "
+            + host.getDartEntrypointFunctionName()
+            + ", and sending initial route: "
+            + initialRoute);
+
+    if (initialRoute != null) {
+      flutterEngine.getNavigationChannel().setInitialRoute(initialRoute);
+    }
+
+    String appBundlePathOverride = host.getAppBundlePath();
+    if (appBundlePathOverride == null || appBundlePathOverride.isEmpty()) {
+      appBundlePathOverride = FlutterInjector.instance().flutterLoader().findAppBundlePath();
+    }
+
+    DartExecutor.DartEntrypoint entrypoint =
+        new DartExecutor.DartEntrypoint(
+            appBundlePathOverride, host.getDartEntrypointFunctionName());
+    flutterEngine.getDartExecutor().executeDartEntrypoint(entrypoint);
+  }
+----
+
+可见其核心行为是启动dart虚拟机。
+
+== FlutterActivity#onResume
+
+[source,java]
+----
+  @Override
+  protected void onResume() {
+    super.onResume();
+    lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_RESUME);
+    delegate.onResume();
+  }
+----
+
+同样看delegate的代码：
+
+[source,java]
+----
+// io/flutter/embedding/android/FlutterActivityAndFragmentDelegate.java
+  void onResume() {
+    Log.v(TAG, "onResume()");
+    ensureAlive();
+    flutterEngine.getLifecycleChannel().appIsResumed();
+  }
+----
+
+这里向Flutter发送了一个通知，宿主Activity处于onResume状态了。
+
+以上，就是Android Embedder层的启动流程。

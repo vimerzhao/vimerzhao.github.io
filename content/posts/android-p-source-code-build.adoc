@@ -1,0 +1,101 @@
+---
+title: "Android P源码构建记录"
+date: 2020-04-29T12:11:29+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= Android P源码构建记录
+
+== 缘由
+
+最近在追查一个``dex2oat``的问题时，看源码觉得有些地方不单步调试或者加些日志，实在是不方便，另外由于最近的工作和Framework层打交道比较多，也有必要搞个源码环境，趁机深入学习一下。
+
+== 虚拟机
+
+一开始遇到了一个问题，就是分配了90G，结果还是不够用，于是踩了第一个坑：*VirtualBox的vdi文件扩容*。
+
+image::https://github.com/vimerzhao/images/raw/master/2020-04/Snipaste-resize-vdi.png[]
+
+image::https://github.com/vimerzhao/images/raw/master/2020-04/Snipaste_Gparted.png[]
+
+搞定之后，发现虚拟机真的很卡，虽然能编译，但是后面要经常操作，这种PPT级别的流畅度肯定是无法忍受的。
+
+== 安装系统
+
+于是打算在实体机上编译，公司的MacBook肯定不行，250G用的差不多了。自己的老爷机只有120G的固态，于是买了一个480G的新固态，对了下两块硬盘的价格，不得不感叹当初可真贵～
+
+image::https://github.com/vimerzhao/images/raw/master/2020-04/Snipaste-u-pan-price.png[]
+
+轻车熟路换了固态硬盘，安装系统发现U盘用``UltraISO``写入一直失败，原来是要擦除数据：
+
+image::https://github.com/vimerzhao/images/raw/master/2020-04/Snipaste_clear-u-pan.png[]
+
+擦除之后终于刻好系统了。于是安装，但是安装之后一直找不到启动盘，原来是一开始分区分错了，UEFI启动必须用gpt分区，自己完全没经验。
+
+找不到硬盘 image:https://github.com/vimerzhao/images/raw/master/2020-04/0429-can-not-find-drive.jpeg[]
+
+使用Ubuntu自带的磁盘工具重新分区就可以了，不需要单独安装GParted。 image:https://github.com/vimerzhao/images/raw/master/2020-04/0429-gpt.jpeg[]
+
+解决这个问题，终于算是能正常启动了。
+
+== 各种故障
+
+按理说应该直接编译了，但是电脑一直奇怪死机，一开始以为是主板电池的问题，因为一直``3黄1白``交替闪着，按照官网解释是主板电池问题，于是买了电池来换，这款Dell 5457的主板电池位置很深，几乎算是把电脑拆了。
+
+image::https://github.com/vimerzhao/images/raw/master/2020-04/0429-not-setup.jpeg[]
+
+说明BIOS主板信息丢失了。
+
+指示灯：
+
+image::https://github.com/vimerzhao/images/raw/master/2020-04/0430-dell-error.gif[]
+
+一开始为了防止时间错误，就手动设置了一个错误的时间，结构构建出现一个奇怪错误，一直生成ninja文件，并且会把内存耗尽
+
+image::https://github.com/vimerzhao/images/raw/master/2020-04/0429-memory-use-out.jpeg[]
+
+换了之后还是不行，一编译就GG，反复尝试后发现是CPU过热问题，于是在电脑下面放了个风扇，才把温度控制在60摄氏度，这样就能编译了。
+
+image::https://github.com/vimerzhao/images/raw/master/2020-04/0429-poor-fan.jpeg[]
+
+== 编译问题
+
+由于是公司网络，下载很顺利，编译按照官网也没啥问题，但是``apt-get``这个工具着实不好用，还是推荐用``aptitude``，智能处理依赖问题，不过还要在官网所说的依赖上补充一些，至少我的Ubuntu默认时没有的：
+
+----
+sudo aptitude install build-essential  tofrodos  python-markdown dpkg-dev libsdl1.2-dev libesd0-dev m4 libssl-dev
+----
+
+== 终于成功
+
+第一次``lunch``用了默认的，结果才发现arm虚拟机在x86架构上巨慢（用AS创建模拟器时甚至会提示不要用arm架构的，但是真机大部分时arm架构的，如果遇到so问题，还是要用arm架构的调试，这时候用一个虚拟机软件加载不知道行不行）
+
+image::https://github.com/vimerzhao/images/raw/master/2020-04/Screenshot-arm.png[]
+
+于是有重新编译了一个x86的模拟器，才正常启动了，很流畅。
+
+image::https://github.com/vimerzhao/images/raw/master/2020-04/0429-success.jpeg[]
+
+踩了很多坑，其实还是学到了很多知识，可惜都比较零散，所以记录下来，方便以后查阅。
+
+== 源码调试
+
+可以参看这两篇文章：
+
+* https://juejin.im/entry/5934cfd8fe88c20061ccc63e[Android FrameWork 学习（二）Android 系统源码调试 - 阅读 - 掘金]
+* {blank}
++
+[cols=2*]
+|===
+| [Android Studio 导入 AOSP 源码
+| 吴小龙同學](http://wuxiaolong.me/2018/08/15/AOSP3/)
+|===
+
+我觉得比较重要的是配置好 `exclude` 的文件和AS的参数，不然体验很不好，然后确保自己要调试的代码标记成了源码。
+

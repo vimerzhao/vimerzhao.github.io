@@ -1,0 +1,43 @@
+---
+title: "设置Android全局可调试"
+date: 2020-05-07T12:13:23+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= 设置Android全局可调试
+
+== 背景
+
+最近要看一些系统打印的日志，发现需要开启``debuggable``标志，于是调研了一下。
+
+== 实现
+
+参考https://www.renyiwei.com/archives/1704.html[Android修改ro.debuggable 华为真机adb调试所有进程 -- 全栈笔记]使用``mprop``这个工具成功实现了，但日志还是没有，因为判断是否打日志的标记，是在``system_process``初始化的时候赋值的，所以即使修改了也没用。
+
+但是看了下，``XDebuggable``这个工具应该可以做到，因为Xposed是在所有进程初始化之前Hook的。
+
+不过看日志的问题由于找到了其他方法，已经不需要了，最大的收获是``mprop``这个工具。
+
+== 扩展
+
+``mprop``或者``XDebuggable``除了释放一些日志的打印，还有更大的价值，比如逆向调试一些应用等，一般做安全方向的人都会熟悉这个修改。
+
+image::http://images.vimerzhao.top/2020-05-07-enable-debug.png[]
+
+粗略看了下``mprop``的实现原理，其实就是利用ptrace来修改了init进程的内存变量，只能感叹学海无涯呀，又发现了知识的新大陆！！
+
+== 参考
+
+* https://www.renyiwei.com/archives/1704.html[Android修改ro.debuggable 华为真机adb调试所有进程 -- 全栈笔记]
+* https://bbs.pediy.com/thread-246081.htm[[原创\]android ro.debuggable属性调试修改(mprop逆向)-『Android安全』-看雪安全论坛]
+* https://bbs.pediy.com/thread-215311-1.htm#1558392[[原创\]修改ro属性的小工具新版本-170119-『Android安全』-看雪安全论坛]
+* https://blog.csdn.net/tangsilian/article/details/87949689[XDebuggable&mprop代码分析_移动开发_tangsilian的博客-CSDN博客]
+* https://security.tencent.com/index.php/opensource/detail/17[BDOpener----开启APK调试与备份选项的Xposed模块 - 实验室 - 腾讯安全应急响应中心]
+* https://sspai.com/post/53043[每个 Android 玩家都不可错过的神器（一）：Magisk 初识与安装 - 少数派]
+
