@@ -1,0 +1,271 @@
+---
+title: "修改遗留代码的艺术"
+date: 2019-12-02T19:35:55+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= 修改遗留代码的艺术
+
+== 导语
+
+之前内部的一次技术分享，为了防止PPT弄丢，特意整理成了文章，由于我的PPT风格比较简洁，所以额外加了一些批注。 + 注意这里图片缩小了，可以 *新标签页打开图片* 查看高清图。
+
+== 正文
+
+*1.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-01.jpg[modify legacy code 01]
+
+*2.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-02.jpg[modify legacy code 02]
+
+*3.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-03.jpg[modify legacy code 03]
+
+*4.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-04.jpg[modify legacy code 04]
+
+*5.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-05.jpg[modify legacy code 05]
+
+*6.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-06.jpg[modify legacy code 06]
+
+*7 这页其实还内嵌了一个网页，是"`奥卡姆剃刀`"的维基百科页.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-07.jpg[modify legacy code 07]
+
+*8.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-08.jpg[modify legacy code 08]
+
+*9.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-09.jpg[modify legacy code 09]
+
+*10.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-10.jpg[modify legacy code 10]
+
+*11 实际项目的一个例子，图片可放大查看。某个变量恒为0，导致某个条件恒为false，因此可以删除。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-11.jpg[modify legacy code 11]
+
+*12 实际项目中的例子，根据上报量确定某个历史逻辑的用户数及成功率，用以辅助决策代码是否可以删除。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-12.jpg[modify legacy code 12]
+
+*13 这个例子代码没有显示完整，实际PPT中是可以滚动的，这段代码有个逻辑是截取字符串的前三段，这个逻辑让人迷惑，可以询问熟悉历史逻辑的人，如果过时了可以删除。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-13.jpg[modify legacy code 13]
+
+*14 这里有一个动图，展示了一个线上存量Bug，动图已丢失。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-14.jpg[modify legacy code 14]
+
+*15.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-15.jpg[modify legacy code 15]
+
+*16 这句话摘自《重构》一书.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-16.jpg[modify legacy code 16]
+
+*17.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-17.jpg[modify legacy code 17]
+
+*18.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-18.jpg[modify legacy code 18]
+
+*19 对应如何确保"`不改变软件可观察行为`".*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-19.jpg[modify legacy code 19]
+
+*20 这是一个关于修改的反面例子，开发者修改时删除了一个转小写的操作，导致历史代码中一些大小写混合的上报逻辑失效了。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-20.jpg[modify legacy code 20]
+
+*21.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-21.jpg[modify legacy code 21]
+
+*22.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-22.jpg[modify legacy code 22]
+
+*23 这页是干嘛的？.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-23.jpg[modify legacy code 23]
+
+*24 这两张图展示了横滑嵌套卡由于组件自身的缓存机制，需要对上报做到特殊处理。可以看到，十分繁琐。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-24.jpg[modify legacy code 24]
+
+*25.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-25.jpg[modify legacy code 25]
+
+*26 这是一段对话，同样由于滚动没有显示完全，大意是有时间需要优化下这里的逻辑。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-26.jpg[modify legacy code 26]
+
+*27 这两张图展示了第一次优化后的写法，代码要减少了一下，单依然存在lua的样板代码.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-27.jpg[modify legacy code 27]
+
+*28.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-28.jpg[modify legacy code 28]
+
+*29 这张图是我最后优化后的写法，只需要一行代码就可以处理90%的Case。其他特殊情况依然用上面的上报即可。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-29.jpg[modify legacy code 29]
+
+*30 这事当时的提交记录，由于滚动显示，所以截图时只有一部分。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-30.jpg[modify legacy code 30]
+
+*31.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-31.jpg[modify legacy code 31]
+
+*32 两张动图，是两个闪屏（启动页）的存量Bug，意在说明原来的代卖缺乏维护，导致质量问题。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-32.jpg[modify legacy code 32]
+
+*33 下面三张图集中展示了一些逻辑和代码风格上的问题。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-33.jpg[modify legacy code 33]
+
+*34.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-34.jpg[modify legacy code 34]
+
+*35.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-35.jpg[modify legacy code 35]
+
+*36 修改后的逻辑。由于PPT里面是滚动显示的，所以生产截图时代码都是显示不全的。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-36.jpg[modify legacy code 36]
+
+*37.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-37.jpg[modify legacy code 37]
+
+*38 本来打算谈论一下测试和修改代码的关系的，时间仓促，没有准备。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-38.jpg[modify legacy code 38]
+
+*39 引入了一个新的概念。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-39.jpg[modify legacy code 39]
+
+*40 给出定义。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-40.jpg[modify legacy code 40]
+
+*41 这一部分讨论了工具对于提高修改代码效率的帮助，大家的讨论比较多。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-41.jpg[modify legacy code 41]
+
+*42 Larry Wall是Perl语言的发明人，这里引用了一句他的经典名言作为引子。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-42.jpg[modify legacy code 42]
+
+*43.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-43.jpg[modify legacy code 43]
+
+*44 这里是一个案例：如何提醒开发者及时删除过期分支。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-44.jpg[modify legacy code 44]
+
+*45 最早期，是负责人检查每一个分支的最后提交时间，并逐个提醒，效率比较低。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-45.jpg[modify legacy code 45]
+
+*46 后来我在本地实现了一个命令，可以自动计算最后提交时间，不需要人工Check。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-46.jpg[modify legacy code 46]
+
+*47 最后，我又把这个能力接入了CI，可以每天定时执行这个命令并发送结果到项目群，实现了全自动化，这是一个降低反馈时滞的例子。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-47.jpg[modify legacy code 47]
+
+*48.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-48.jpg[modify legacy code 48]
+
+*49 这里展示了最原始了使用光子开发的流程，十分繁琐耗时。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-49.jpg[modify legacy code 49]
+
+*50 这里基于Vim定制了快捷命令，如保存时自动Push等，自动化了一些功能。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-50.jpg[modify legacy code 50]
+
+*51 同样由于截图原因，代码显示不完整。这里是一个脚本，展示了自动打包光子代码的生产zip包的能力，自动化了发布流程。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-51.jpg[modify legacy code 51]
+
+*52 定制了一些代码片段（Code Snippet），提高开发效率。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-52.jpg[modify legacy code 52]
+
+*53 这是一个动图，通过ADB实现了微下载（进程一开始不存在）类似场景的自动化操作能力，避免开发者手动操作，提高效率。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-53.jpg[modify legacy code 53]
+
+*54.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-54.jpg[modify legacy code 54]
+
+*55 这里介绍了一些我自己的工具，并探讨了无鼠标操作，因为这就是我的风格，大家并不太能适应，但是比较感兴趣。这个主题比大，因此没有展开来讲，知识简单介绍了一下。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-55.jpg[modify legacy code 55]
+
+*56 注意这个键盘的Control键的位置，这里探讨了工具使用的一些本源思想。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-56.jpg[modify legacy code 56]
+
+*57 举了几个例子，展示了极客写文档、PPT的方式（自吹自擂）。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-57.jpg[modify legacy code 57]
+
+*58 修改代码的另外一个注意事项：持续监控修改带来的反馈，及时发现问题。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-58.jpg[modify legacy code 58]
+
+*59.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-59.jpg[modify legacy code 59]
+
+*60 这个例子中，灰度期间分析了数据，发现了一个预期外的结果，分析了原因，及时同步给了产品，避免了被动局面，是个正向的例子。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-60.jpg[modify legacy code 60]
+
+*61 总结。.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-61.jpg[modify legacy code 61]
+
+*62.*
+
+image::https://github.com/vimerzhao/images/raw/master/2019-12/modify-legacy-code-62.jpg[modify legacy code 62]
+
+== 总结
+
+本次技术分享是我基于最近半年工作的一个沉淀和复盘反思，从形而上的角度讨论了现阶段对于修改代码（我们每天的工作）的一些浅薄的理解，欢迎批评指正（Github Issues区）。

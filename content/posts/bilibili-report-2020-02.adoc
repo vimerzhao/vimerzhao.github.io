@@ -1,0 +1,61 @@
+---
+title: "B站2月份创作者分析"
+date: 2020-03-01T19:57:34+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= B站2月份创作者分析
+
+____
+Welcome Star and Issues: https://github.com/vimerzhao/BilibiliReport[vimerzhao/BilibiliReport]
+____
+
+== 各区投稿比例
+
+image::https://github.com/vimerzhao/images/raw/master/2020-03/2020-03-01-1.png[]
+
+前三：
+
+. 游戏
+. 生活
+. 影视
+
+== 头部区域细分比例
+
+image:https://github.com/vimerzhao/images/raw/master/2020-03/2020-03-01-2.png[] image:https://github.com/vimerzhao/images/raw/master/2020-03/2020-03-01-3.png[] image:https://github.com/vimerzhao/images/raw/master/2020-03/2020-03-01-4.png[]
+
+== Top1000视频分布
+
+image:https://github.com/vimerzhao/images/raw/master/2020-03/2020-03-01-5.png[] image:https://github.com/vimerzhao/images/raw/master/2020-03/2020-03-01-6.png[] image:https://github.com/vimerzhao/images/raw/master/2020-03/2020-03-01-7.png[] image:https://github.com/vimerzhao/images/raw/master/2020-03/2020-03-01-8.png[]
+
+== 稿件时长分布
+
+image::https://github.com/vimerzhao/images/raw/master/2020-03/2020-03-01-9.png[]
+
+== 每日投稿趋势
+
+image::https://github.com/vimerzhao/images/raw/master/2020-03/2020-03-01-10.png[]
+
+== 24小时投稿分布
+
+image::https://github.com/vimerzhao/images/raw/master/2020-03/2020-03-01-11.png[]
+
+== 结论
+
+* 超过60%的创作发生在游戏区和生活区
+* 播放最多的是代表视听的音乐区和娱乐区
+* 但是收藏、评论、弹幕等代表交流的行为，主要发生在生活区和游戏区
+* 60秒到3分钟的稿件最多
+* 晚上6点稿件发布数最多，早上6点发布数最少，但是还没有考虑审核时长的影响
+
+== ToDo
+
+* +++<input type="checkbox" class="task-list-item-checkbox" disabled="disabled">++++++</input>+++优化图表
+* +++<input type="checkbox" class="task-list-item-checkbox" disabled="disabled">++++++</input>+++挖掘更多信息
+* +++<input type="checkbox" class="task-list-item-checkbox" disabled="disabled">++++++</input>+++自动化生成
