@@ -1,0 +1,60 @@
+---
+title: "Android混淆问题一则"
+date: 2020-03-24T09:56:45+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= Android混淆问题一则
+
+== 问题
+
+dex包里面的``build.gradle``通过api引用了一个包，同事主工程调用dex包里面的方法抛出``ClassNotFoundException``。
+
+== 分析
+
+使用AS的``Analyze APK``发现该类其实是存在的，**但是**查阅文档可以发现该工具会用斜体的形式把引用的类也显示出来，所以通过api的方式进行依赖，然后在``bin/intermediates/bundles``目录下的``classes.jar``是不包含该类的。用``dex2jar`` + ``jd-gui``来查看该dex确实也没有该类。
+
+那么这个问题其实很显然了。
+
+但当时情况还是比较复杂的，因为主工程引用的loader模块也通过api模式引用了这个包，所以这个类是存在的，当用以下代码测试时：
+
+----
+try {
+    c = Class.forName("com.tencent.pipe.IPipeInterface$Stub");
+    Log.e("vimer 2" + p, c.getName());
+    c = Class.forName("com.tencent.sandbox.PluginHelper");
+    Log.e("vimer 2" + p, c.getName());
+} catch (ClassNotFoundException e) {
+    Log.e("vimer 2" + p, "ClassNotFoundException: " + e.getMessage());
+}
+----
+
+发现load目标dex之前，第二个类抛异常了，load之后两个类都OK了，但是第一个类明明使用的时候抛了异常呀！！！
+
+----
+ E/vimer 2--1: processFlag: market, [main:2] b.a(1237): com.tencent.pipe.b
+ E/vimer 2--1: ClassNotFoundException: com.tencent.sandbox.PluginHelper
+ ....
+ E/vimer 2--2: processFlag: market, [main:2] b.a(1242): com.tencent.pipe.b
+ E/vimer 2--2: processFlag: market, [main:2] b.a(1245): com.tencent.sandbox.PluginHelper
+----
+
+原来是Proguard做了优化，这个实在是太坑了！！！如果用``StringBuilder``做拼接的话，第一个类就会抛出异常了，真是防不胜防！！！
+
+此外，还踩了一个坑，就是当时用``vimer\s``死活过滤不出来日志，可能是第一个Word才算Tag吧，以后还是**不要在Tag里面包含空格了**。
+
+image::https://github.com/vimerzhao/images/raw/master/2020-03/Kapture%202020-03-24%20at%2017.37.49.gif[]
+
+== 参考
+
+* https://developer.android.com/studio/build/apk-analyzer[使用 APK 分析器分析您的构建  |   Android 开发者]
+
+== TODO
+
+研究Android的编译构建流程和中间产物的含义。

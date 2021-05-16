@@ -1,0 +1,27 @@
+---
+title: "记一个博客刷新的Bug"
+date: 2020-04-30T10:20:44+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= 记一个博客刷新的Bug
+
+之前通过教程草草建立了一个博客，后来申请到了备案号，于是更新了代码，但是``Gunicorn``操作不是很熟悉，导致重启服务后出现了如下问题：
+
+image::https://github.com/vimerzhao/images/raw/master/2020-04/Kapture-multi-app.gif[]
+
+备案号时有时无，今天又要添加公安备案号，于是打算查查这个问题，发现上次更新的时候原来的服务并没有停掉！！
+
+image::https://github.com/vimerzhao/images/raw/master/2020-04/Snipaste-reason.png[]
+
+所以有一定概率请求的时候进入原来的代码，导致备案好时有时无，于是这次彻底重启了服务，问题解决：
+
+image::https://github.com/vimerzhao/images/raw/master/2020-04/Kapture-close-and-run.gif[]
+
+要抓紧成为一个全栈工程师啦，不能这么模棱两可、浅尝辄止～

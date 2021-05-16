@@ -1,0 +1,93 @@
+---
+title: "UnsatisfiedLinkError...is32-bit instead of 64-bit问题解决"
+date: 2020-02-28T09:52:52+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= UnsatisfiedLinkError...is32-bit instead of 64-bit问题解决
+
+== 背景
+
+在做沙箱动态化时遇到一个问题：
+
+image::https://github.com/vimerzhao/images/raw/master/2020-02/Snipaste_2020-02-27_21-27-04.png[]
+
+请假其他同事之后发现是因为Android高版本上，默认是64-bit的方式运行，而某些游戏是32-bit的，所以出现了冲突，解决办法就是强制使用32-bit的，而不是默认的。
+
+== 解决
+
+按照网上的说法，放了一个32-bit的so在安装包里面，然后进行了配置：
+
+----
+// build.gradle
+
+android {
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['lib']
+        }
+    }
+
+    defaultConfig {
+        ......
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86"
+        }
+    }
+}
+
+// gradle.properties
+Android.useDeprecatedNdk=true
+----
+
+但是，依然出现了这个错误，卸载重装也不行。
+
+此时，有了**第一个醒悟**，找到一个方法，判断当前的是32还是64，这样就可以确定是不是配置生效了(不然怎么验证配置是否生效，有了这个方法问题就收拢了)：
+
+----
+Process.is64Bit()
+----
+
+测试发现，自己的demo工程确实还是64-bit的，一筹莫展。
+
+此时，有了**第二个醒悟**，通过APK包确认so是否真的存在。
+
+image::https://github.com/vimerzhao/images/raw/master/2020-02/Snipaste_2020-02-28_14-04-29.png[]
+
+发现竟然不在，恍然大悟，自己的``lib``目录位置不对！！！放在了``src/main``下面了。
+
+其实``lib``/`libs`/`jniLibs` 这几个位置非常容易混乱。总结来说：
+
+* `lib`: jar包/so只是参与编译，让工程顺利运行，但打包不会jar加到生成apk里面(因为没配置对，所以的我的so没有打进去)
+* `libs`: jar包/so会被打包到apk
+* `jinLibs`: so默认位置，放在其他目录需要手动配置指定
+
+== 总结
+
+耗时：半个晚上+半个上午(3~4小时)。
+
+暴露了自己对这些基础配置的不熟悉，但是解决问题的时候，如何**用更合适的角度来逼近真相的方法论**(而不是一根筋去猜测、胡乱尝试)还是值得沉淀的。
+
+== 参考
+
+* https://stackoverflow.com/questions/46209078/java-lang-unsatisfiedlinkerror-dlopen-failed-64-bit-instead-of-32-bit-while-so[c{pp} - java.lang.UnsatisfiedLinkError: dlopen failed 64-bit instead of 32-bit while .so should be built in x86 - Stack Overflow]
+* https://stackoverflow.com/questions/30782848/how-to-use-32-bit-native-libraries-on-64-bit-android-device[How to use 32-bit native libraries on 64-bit Android device - Stack Overflow]
+* https://github.com/DroidPluginTeam/DroidPlugin/issues?utf8=%E2%9C%93&q=UnsatisfiedLinkError[Issues · DroidPluginTeam/DroidPlugin]
+* https://juejin.im/post/5d2dbf375188254949174f97[Android判断应用是32位还是64位以及虚拟机类型 - 掘金]
+* {blank}
++
+[cols=3*]
+|===
+| [支持 64 位架构  
+|   Android 开发者  
+|   Android Developers](https://developer.android.com/games/optimize/64-bit?hl=zh-cn)
+|===
+
+* https://blog.csdn.net/zjx2014430/article/details/52619312?depth_1-utm_source=distribute.pc_relevant_right.none-task&utm_source=distribute.pc_relevant_right.none-task[android studio 把libs包打包到apk中，设置应用以32bit去读取.so文件_移动开发_zjx2014430的专栏-CSDN博客]
+* https://zhuanlan.zhihu.com/p/21302804[使用SO库时需要注意的一些问题 - 知乎]

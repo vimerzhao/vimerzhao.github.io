@@ -1,0 +1,83 @@
+---
+title: "gitbook安装中的一些问题"
+date: 2020-11-13T15:50:24+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= gitbook安装中的一些问题
+
+在新的iMac上安装gitbook后，一直无法使用，提示错误如下：
+
+[source,bash]
+----
+Installing GitBook 3.2.3
+      if (cb) cb.apply(this, arguments)
+      TypeError: cb.apply is not a function
+   at /usr/local/lib/node_modules/gitbook-cli/node_modules/npmi/node_modules/npm/node_modules/graceful-fs/polyfills.js:267:18
+   at FSReqCallback.oncomplete (fs.js:169:5)
+----
+
+查找诸多问题后，最终确定是新版本的问题，可以通过``nvm``这个工具控制``node``的版本，``npm``不需要关心，是和node联动的。
+
+这个工具有一个坑，``brew``安装之后无法立即生效，得新启动一个命令行。
+
+[source,bash]
+----
+nvm install v12.12.0
+----
+
+然后按照之前电脑的版本设置了版本，还是报错。
+
+[source,bash]
+----
+Errorloadingversionlatest:Error:Cannotfindmodule'extend'
+Requirestack:
+    -/Users/vimerzhao/.gitbook/versions/3.2.3/lib/index.js
+    -/usr/local/lib/node_modules/gitbook-cli/lib/local.js
+    -/usr/local/lib/node_modules/gitbook-cli/lib/index.js
+    -/usr/local/lib/node_modules/gitbook-cli/bin/gitbook.js
+    atFunction.Module._resolveFilename(internal/modules/cjs/loader.js:794:15)
+    atFunction.Module._load(internal/modules/cjs/loader.js:687:27)
+    atModule.require(internal/modules/cjs/loader.js:849:19)
+    atrequire(internal/modules/cjs/helpers.js:74:18)
+    atObject.<anonymous>(/Users/vimerzhao/.gitbook/versions/3.2.3/lib/index.js:1:14)
+    atModule._compile(internal/modules/cjs/loader.js:956:30)
+    atObject.Module._extensions..js(internal/modules/cjs/loader.js:973:10)
+    atModule.load(internal/modules/cjs/loader.js:812:32)
+    atFunction.Module._load(internal/modules/cjs/loader.js:724:14)
+    atModule.require(internal/modules/cjs/loader.js:849:19)
+TypeError: Cannot read property 'commands' of null
+----
+
+仔细分析下，只能呢是gitbook版本的原因了，于是安装了特定版本的``gitbok-cli``，注意不是``gitbook``，它是通过``gitbook-cli``安装的。
+
+[source,bash]
+----
+$ gitbook init
+You need to install 'gitbook-cli' to have access to the gitbook command anywhere on your system.
+If you've installed this package globally, you need to uninstall it.
+>> Run 'npm uninstall -g gitbook' then 'npm install -g gitbook-cli'
+
+$ npm install gitbook-cli@2.3.2 -g
+----
+
+这里记录一下版本，防止以后踩坑：
+
+[source,bash]
+----
+$ node -v
+v12.12.0
+$ npm -v
+6.11.3
+$ gitbook -V
+CLI version: 2.3.2
+GitBook version: 3.2.3
+----
+
+定位原因花了好多时间，垃圾玩意。

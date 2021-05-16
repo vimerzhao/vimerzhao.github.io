@@ -1,0 +1,96 @@
+---
+title: "Proguard导致的NoSuchMethodException问题排查"
+date: 2020-03-16T09:54:14+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= Proguard导致的NoSuchMethodException问题排查
+
+== 背景
+
+之前项目的混淆配置一直没开启Proguard的优化选项
+
+----
+-dontoptimize
+----
+
+最近为了做安装包优化，把这行注释掉了
+
+----
+#-dontoptimize
+----
+
+== 问题
+
+于是项目里的各种优化配置开始生效了，但是测试反馈了一个Bug：悬浮窗的搜索框点击之后没有反应了。
+
+排查一番后发现了问题代码的位置：
+
+----
+    ......
+    try {
+
+        .....
+        if (params == null) {
+            floatWindowView = (View) floatWindowClass.getConstructor(Context.class).newInstance(AstApp.self());
+        } else {
+            floatWindowView = (View) floatWindowClass.getConstructor(Context.class, Bundle.class).newInstance(AstApp.self(), params);
+        }
+        ......
+    } catch (Exception e) {
+        if (Global.ASSISTANT_DEBUG)e.printStackTrace();
+        Log.e(FloatWindowBigView.tag, "exc " + e.getMessage());
+    } catch (Throwable tr) {
+        Log.e(FloatWindowBigView.tag, "exc " + tr.getMessage());
+    }
+----
+
+对应的错误日志如下：
+
+----
+java.lang.NoSuchMethodException: <init> [class android.content.Context]
+    at java.lang.Class.getConstructor0(Class.java:2320)
+    at java.lang.Class.getConstructor(Class.java:1725)
+    at com.tencent.nucleus.manager.floatingwindow.manager.FloatingWindowManager.a(ProGuard:385)
+    at com.tencent.nucleus.manager.floatingwindow.view.FloatWindowBigView.onClick(ProGuard:10146)
+    at android.view.View.performClick(View.java:6266)
+    at android.view.View$PerformClick.run(View.java:24730)
+    at android.os.Handler.handleCallback(Handler.java:793)
+    at android.os.Handler.dispatchMessage(Handler.java:98)
+    at android.os.Looper.loop(Looper.java:176)
+    at android.app.ActivityThread.main(ActivityThread.java:6701)
+    at java.lang.reflect.Method.invoke(Native Method)
+    at com.android.internal.os.Zygote$MethodAndArgsCaller.run(Zygote.java:249)
+    at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:783)
+exc <init> [class android.content.Context]
+----
+
+即 `<init>` 这个方法找不到了，于是看了Proguard的配置，发现其实是有配置相关的：
+
+----
+#<!-- 悬浮窗的view不混淆 -->
+-keepclasseswithmembers class com.tencent.nucleus.manager.floatingwindow.view.* {public <init>(android.content.Context);}
+-keepclasseswithmembers class com.tencent.nucleus.manager.floatingwindow.view.* {public <init>(android.content.Context,android.os.Bundle);}
+-keepclasseswithmembers class com.tencent.assistant.manager.specialpermission.GuideFloatView {public <init>(android.content.Context);}
+-keepclasseswithmembers class com.tencent.assistant.manager.specialpermission.GuideFloatView {public <init>(android.content.Context,android.os.Bundle);}
+----
+
+== 解决
+
+那么为什么还是出了问题呢？原因就在于之前的开发同学把搜索框相关的类``FloatWindowSearchView`` 和 `FloatWindowSearchResultView` 放在了 `floatingwindow.manager` 包下面，而不是 `floatingwindow.view` ，所以这个类的``<init>`` 方法被优化掉了。那为什么之前没问题呢？
+
+因为之前设置了 `-dontoptimize` 这个选项，所以不会针对 `<init>` 这个级别的方法做优化，只会针对工程代码混淆。
+
+解决办法就是把搜索框相关的两个类也放在``floatingwindow.view`` 包下面。
+
+*感觉这真是一个经典的前人挖坑后人踩的案例，也说明了按照项目规范组织文件的重要性*～
+
+image::https://github.com/vimerzhao/images/raw/master/2020-03/Snipaste_2020-03-16_20-28-32.png[]
+
+(注意manager下面有两个自定义View)

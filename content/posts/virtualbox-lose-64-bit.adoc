@@ -1,0 +1,17 @@
+---
+title: "Windows10下VirtualBox不支持64位"
+date: 2020-04-20T10:20:21+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= Windows10下VirtualBox不支持64位
+
+参考https://www.4spaces.org/windows-10-virtualbox-no-64bit/[解决Windows10中Virtualbox安装虚拟机没有64位选项(N种情形盘点)-四个空格]，除了关闭HyperV，还需要卸载雷电模拟器等，这些软件都有可能占用虚拟驱动。
+
+Mark一下

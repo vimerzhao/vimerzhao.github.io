@@ -1,0 +1,25 @@
+---
+title: "记一次AbstractMethodError"
+date: 2020-03-24T09:55:46+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= 记一次AbstractMethodError
+
+最近在灰度的时候发现了一个Error：
+
+image::https://github.com/vimerzhao/images/raw/master/2020-03/Snipaste_2020-03-24_10-14-17.png[pic]
+
+详细信息如下：
+
+image::https://github.com/vimerzhao/images/raw/master/2020-03/Snipaste_2020-03-24_10-54-24.png[pic]
+
+结合机型分布，可以判断是部分ROM自己的修改导致的问题(因为已经走到系统Api里面了)。
+
+最后直接catch住了，因为触发的机型其实很少，灰度15w，有30台机器出现了问题，都是野鸡机型，且集中在7.0(API 24)。这是因为``ServiceWorkerController`` 是API 24新增的，所以很多ROM可能升级到了7.0，但是没有支持这个功能，导致了问题。

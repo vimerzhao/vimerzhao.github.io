@@ -1,0 +1,36 @@
+---
+title: "解决MacBook2018过热问题"
+date: 2020-05-19T10:21:13+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= 解决MacBook2018过热问题
+
+最近搬工位后给MacBook接了一个外接显示器，放在正中间，但是发现发热很严重。在查阅资料和尝试之后，发现把充电口和显示器接口放在右边比较好。左边好像有个Bug，能不用还是不要用了。
+
+参考：
+
+* https://zhuanlan.zhihu.com/p/136761922[Mac过热降频的罪魁祸首，竟是插到了左边的Type-C口 - 知乎]
+* https://www.zhihu.com/question/290208585[18款mac pro 外接显示器发热严重怎么办？ - 知乎]
+* https://apple.stackexchange.com/questions/363337/how-to-find-cause-of-high-kernel-task-cpu-usage/363933#363933[macos - How to find cause of high kernel_task cpu usage?
+- Ask Different]
+
+____
+2020-05-26
+____
+
+今天一早过来发现**外接的显示屏闪烁不停**，查了半天也没解决。重启了几次后电脑**异常发热**，查看任务管理器发现：mds和一串mdswork进程占用CPU很高，查了大概是生成搜索的索引的进程，于是把它关了：
+
+----
+sudo mdutil -a -i off
+----
+
+温度就恢复正常了。
+
+显示器中午也好了，不知道为啥，应该是电压不稳定？

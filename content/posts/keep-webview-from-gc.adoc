@@ -1,0 +1,21 @@
+---
+title: "防止WebView因为GC被回收"
+date: 2020-02-11T09:47:55+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= 防止WebView因为GC被回收
+
+今天遇到一个问题，前端反映说我们共同约定的一个隐藏WebView无法调试，现象如下：
+
+image::https://github.com/vimerzhao/images/raw/master/2020-02/Kapture2020-02-11at13.47.05.gif[]
+
+可以看到，``小测试``这个Tab一出现就消失了，但是同样的代码放在测试Demo里面就没问题，分析之后发现是实际工程里面产生了GC（Demo由于没有其他代码所以不会），而这个隐藏的WebView只是一个局部变量，于是被回收了。解决办法是赋值给一个静态变量，用以锁定这个WebView，效果：
+
+image::https://github.com/vimerzhao/images/raw/master/2020-02/Kapture2020-02-11at13.15.38.gif[]

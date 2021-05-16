@@ -1,0 +1,27 @@
+---
+title: "最好的Android投屏工具"
+date: 2020-11-12T15:48:51+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= 最好的Android投屏工具
+
+背景
+
+* 之前一直用Chrome的Vysor插件做投屏，最近这个插件无法使用了
+* 手机连着USB，放在桌子里面，拿起来操作很不方便，胳膊肘疼
+
+于是调研了下可选的投屏方案
+
+* AirDroid过于庞大，还要收费，而且公司WiFi也连接不上，其实我是能接受USB的
+* 其他的幕享等也有同样问题
+* 安装了Vysor桌面版本，安装包很大，体验一般，偶尔还会弹出广告
+* 最后发现了Scrcpy，清晰度吊打，而且支持USB
+
+image::http://images.vimerzhao.top/scrcpy.png[]

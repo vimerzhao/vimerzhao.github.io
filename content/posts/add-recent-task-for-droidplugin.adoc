@@ -1,0 +1,117 @@
+---
+title: "给DroidPlugin添加概览屏幕"
+date: 2020-04-02T09:59:32+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "category1"
+tags:
+    - "tag1"
+    - "tag2"
+---
+
+= 给DroidPlugin添加概览屏幕
+
+== 背景
+
+DroidPlugin默认不支持多任务：
+
+image::https://github.com/vimerzhao/images/raw/master/2020-04/dp-demo.gif[]
+
+VirtualApp是支持的：
+
+image::https://github.com/vimerzhao/images/raw/master/2020-04/vp-demo.gif[]
+
+== 方案
+
+其实参考的就是VirtualApp的实现，它的核心代码是：
+
+----
+// com.lody.virtual.client.hook.proxies.am.HCallbackStub
+
+IBinder token = ActivityThread.ActivityClientRecord.token.get(r);
+......
+int taskId = IActivityManager.getTaskForActivity.call(
+        ActivityManagerNative.getDefault.call(),
+        token,
+        false);
+----
+
+其实就是反射调用``ActivityManagerNative#gDefault``的``getTaskForActivity``方法，其中``token``是一个关键参数。
+
+== 踩坑
+
+看上去似乎很简单，但还是踩了两个坑，其他细节上的实现按下不表。
+
+=== TaskId恒为0
+
+自己对着实现了一段代码，结果``taskId``一直是0，花了一晚上加一上午都没想明白，后来同事说他因为其他原因，为了防止崩溃，把这个方法Hook了，会一直返回0。于是把Hook的地方兼容起来就行了，感慨两点：
+
+. 当时是为了防止``isTaskRoot``返回false，但是没必要直接返回0，太粗暴了，处理小于0的情况就行了
+. 自己画了很长时间思考，方向一直错了，有时候应该头脑风暴一下，不应该惯性思维，同时多和别人沟通
+
+----
+// 源码：android.app.Activity.java
+/**
+ * Return whether this activity is the root of a task.  The root is the
+ * first activity in a task.
+ *
+ * @return True if this is the root activity, else false.
+ */
+@Override
+public boolean isTaskRoot() {
+    try {
+        return ActivityTaskManager.getService().getTaskForActivity(mToken, true) >= 0;
+    } catch (RemoteException e) {
+        return false;
+    }
+}
+----
+
+=== Android P支持
+
+Android P的源码变了，所以需要适配，VirtualApp是直接没有兼容的，所以跑不起来了。于是只有自己硬撸代码了，最终发现了位置，其实**源码**也没那么可怕。
+
+----
+// android.app.servertransaction.TransactionExecutor
+/** Cycle through all states requested by callbacks and execute them at proper times. */
+@VisibleForTesting
+public void executeCallbacks(ClientTransaction transaction) {
+    final List<ClientTransactionItem> callbacks = transaction.getCallbacks();
+    if (callbacks == null) {
+        // No callbacks to execute, return early.
+        return;
+    }
+    log("Resolving callbacks");
+
+    final IBinder token = transaction.getActivityToken();
+    ActivityClientRecord r = mTransactionHandler.getActivityClient(token);
+    .....
+}
+
+//
+public class ClientTransaction implements Parcelable, ObjectPoolItem {
+    ......
+    /** Target client activity. Might be null if the entire transaction is targeting an app. */
+    private IBinder mActivityToken;
+
+    ......
+
+    /** Get the target activity. */
+    @Nullable
+    public IBinder getActivityToken() {
+        return mActivityToken;
+    }
+    ......
+----
+
+这就找到了。
+
+== 效果
+
+image::https://github.com/vimerzhao/images/raw/master/2020-04/final-work.gif[]
+
+== 更多
+
+* Android的最近任务和Task管理规则其实宏大而复杂，坑也多，需要一个全局的认识
+* 要借着实践的机会加深对Framework层的理解
