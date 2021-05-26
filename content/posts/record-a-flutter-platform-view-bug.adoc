@@ -1,0 +1,33 @@
+---
+title: "Flutter PlatformView大小异常导致闪退锁屏"
+date: 2021-05-26T09:54:17+08:00
+type: post
+isCJKLanguage: true
+categories:
+    - "Flutter实践"
+tags:
+    - "疑难杂症"
+---
+
+= Flutter PlatformView大小异常导致闪退锁屏
+
+最近在Flutter中嵌入WebView的时候，遇到一个奇怪的Bug，不仅闪退，还会导致应用锁屏，现状如下（在当前页面卡顿很久，然后黑屏、锁屏......）：
+
+image::http://images.vimerzhao.top/platformview-error-demo.gif[]
+
+
+抓到的错误日志如下：
+
+image::http://images.vimerzhao.top/2021-05-25-flutter-resize-platformview-error[]
+
++
+
+image::http://images.vimerzhao.top/flutter-platform-view-error-2.png[]
+
+
+分析之后发现是使用Virtual Display方式嵌入PlatformView时，由于没有控制好AndroidView的大小，导致resize成了一个远大于屏幕大小的View，而这个View在VirtualDisplay中渲染时就会出现问题。
+
+当然了，这只是直接原因。
+
+这个现象还是很唬人的，直接自动锁屏了，一开始自己都没有意识到是大小发生了改变导致的。
+
