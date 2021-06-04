@@ -643,4 +643,4 @@ image::http://images.vimerzhao.top/ezgif-viewpager2-nest-flutter-demo.gif[]
 * 突破惯性思维，跳出经验圈套，具体问题具体分析。
 * 熟悉源码、总揽全局，谋定而后动，方能举重若轻。
 * 一个好的切入点可以节省大量代码，同时避免一些本就不该出现的Bug，事半功倍。
-
+* 对于ListView这种存在内外联动的嵌套，必须从底层滑动机制着手；对于PageView、ViewPager这种每次滑动只需要有一个响应者的嵌套，直接分发到对应的组件即可。
