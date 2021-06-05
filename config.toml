@@ -24,7 +24,7 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
   readmore = true # Show "Read more" button in list if true
   authorbox = true
   pager = true
-  mainSections = ["posts", "post"]
+  mainSections = "post"
   post_navigation = true
   post_meta = ["author","date", "categories"] # Order of post meta information
   dateformat = "2006-01-02"
@@ -38,7 +38,7 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
   widgets = ["search", "recent", "categories", "taglist", "social"]
 
 [Params.widgets]
-  recent_num = 10 # Set the number of articles in the "Recent articles" widget
+  recent_num = 3 # Set the number of articles in the "Recent articles" widget
   tags_counter = true # Enable counter for each tag in "Tags" widget (disabled by default)
   categories_counter = true# Enable counter for each category in "Categories" widget
 
