@@ -4,10 +4,7 @@ date: 2020-02-28T09:52:52+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "Bug解决记录"
 ---
 
 = UnsatisfiedLinkError...is32-bit instead of 64-bit问题解决

@@ -3,6 +3,8 @@ title: "新手程序员的恶习：不了解自己调用的API"
 date: 2018-08-20
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 新手程序员的恶习：不了解自己调用的API

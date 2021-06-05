@@ -3,6 +3,8 @@ title: "操作系统上机总结"
 date: 2017-05-22
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 操作系统上机总结

@@ -3,6 +3,8 @@ title: "VirtualBox下虚拟电脑没有光驱"
 date: 2017-05-28
 type: post
 isCJKLanguage: true
+categories:
+    - "折腾工具"
 ---
 
 # VirtualBox下虚拟电脑没有光驱

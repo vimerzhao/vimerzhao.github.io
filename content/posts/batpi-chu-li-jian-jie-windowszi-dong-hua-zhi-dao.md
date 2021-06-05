@@ -3,6 +3,8 @@ title: "bat批处理简介：Windows自动化之道"
 date: 2018-09-09
 type: post
 isCJKLanguage: true
+categories:
+    - "折腾工具"
 ---
 
 # bat批处理简介：Windows自动化之道

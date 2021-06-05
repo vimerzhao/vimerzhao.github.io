@@ -4,10 +4,7 @@ date: 2019-11-26T12:31:51+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "折腾工具"
 ---
 
 = Git内部原理剖析

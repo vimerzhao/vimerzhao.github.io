@@ -3,6 +3,8 @@ title: "学习HotSpot（一）：Launcher"
 date: 2017-05-29
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 学习HotSpot（一）：Launcher

@@ -3,6 +3,8 @@ title: "计算机程序中 Bug 的类型大全与历史"
 date: 2018-03-08
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 计算机程序中 Bug 的类型大全与历史

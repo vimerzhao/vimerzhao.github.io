@@ -5,8 +5,6 @@ type: post
 isCJKLanguage: true
 categories:
     - "Android实践"
-tags:
-    - "安装包精简"
 ---
 
 = Android安装包极限优化

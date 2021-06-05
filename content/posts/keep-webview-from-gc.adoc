@@ -4,10 +4,7 @@ date: 2020-02-11T09:47:55+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "Bug解决记录"
 ---
 
 = 防止WebView因为GC被回收

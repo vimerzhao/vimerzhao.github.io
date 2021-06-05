@@ -3,6 +3,8 @@ title: "每日一题：100 doors"
 date: 2018-02-07
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 每日一题：100 doors

@@ -3,6 +3,8 @@ title: "【小程序+云开发】实战：一天搭建小型论坛"
 date: 2018-11-25
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 【小程序+云开发】实战：一天搭建小型论坛

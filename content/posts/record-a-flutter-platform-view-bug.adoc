@@ -5,8 +5,6 @@ type: post
 isCJKLanguage: true
 categories:
     - "Flutter实践"
-tags:
-    - "疑难杂症"
 ---
 
 = Flutter PlatformView大小异常导致闪退锁屏

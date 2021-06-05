@@ -3,6 +3,8 @@ title: "Hexo配置指南"
 date: 2019-04-21
 type: post
 isCJKLanguage: true
+categories:
+    - "折腾工具"
 ---
 
 # Hexo配置指南

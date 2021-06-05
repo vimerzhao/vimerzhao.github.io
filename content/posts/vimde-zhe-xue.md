@@ -3,6 +3,8 @@ title: "Vim的哲学"
 date: 2017-04-13
 type: post
 isCJKLanguage: true
+categories:
+    - "折腾工具"
 ---
 
 # Vim的哲学

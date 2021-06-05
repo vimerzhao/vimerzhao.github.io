@@ -4,10 +4,7 @@ date: 2020-12-10T19:47:27+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "随笔杂记"
 ---
 
 = 做工具要有"码德"

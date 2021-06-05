@@ -3,6 +3,8 @@ title: "【Android开发】TextView中getText()方法踩坑指南"
 date: 2018-08-03
 type: post
 isCJKLanguage: true
+categories:
+    - "Android实践"
 ---
 
 # 【Android开发】TextView中getText()方法踩坑指南

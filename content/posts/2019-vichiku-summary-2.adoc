@@ -4,10 +4,7 @@ date: 2020-01-11T19:53:53+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "业余研究"
 ---
 
 = 研究|2019鬼畜区热点事件分析

@@ -4,10 +4,7 @@ date: 2020-04-02T09:59:32+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "Android实践"
 ---
 
 = 给DroidPlugin添加概览屏幕

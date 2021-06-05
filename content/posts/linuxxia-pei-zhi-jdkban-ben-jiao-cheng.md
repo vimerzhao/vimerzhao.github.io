@@ -3,6 +3,8 @@ title: "Linux下配置JDK版本教程"
 date: 2017-06-12
 type: post
 isCJKLanguage: true
+categories:
+    - "折腾工具"
 ---
 
 # Linux下配置JDK版本教程

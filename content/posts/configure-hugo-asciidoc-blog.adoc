@@ -5,9 +5,6 @@ type: post
 isCJKLanguage: true
 categories:
     - "折腾工具"
-tags:
-    - "Hugo"
-    - "Asciidoc"
 ---
 
 = Hugo+Asciidoc配置记录

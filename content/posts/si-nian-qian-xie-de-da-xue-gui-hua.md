@@ -3,6 +3,8 @@ title: "四年前写的《大学规划》"
 date: 2018-05-09
 type: post
 isCJKLanguage: true
+categories:
+    - "随笔杂记"
 ---
 
 # 四年前写的《大学规划》

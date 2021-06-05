@@ -3,6 +3,8 @@ title: "笔试总结：LINE2018实习生（软件工程师）"
 date: 2017-04-18
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 笔试总结：LINE2018实习生（软件工程师）

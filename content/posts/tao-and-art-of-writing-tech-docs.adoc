@@ -4,10 +4,7 @@ date: 2019-12-19T19:38:07+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "软件沉思录"
 ---
 
 = 文档编写的术与道

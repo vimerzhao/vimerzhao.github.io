@@ -3,6 +3,8 @@ title: "关于应届生项目经验的思考"
 date: 2017-06-03
 type: post
 isCJKLanguage: true
+categories:
+    - "总结反思"
 ---
 
 # 关于应届生项目经验的思考

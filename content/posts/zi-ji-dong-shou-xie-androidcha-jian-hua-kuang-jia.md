@@ -3,6 +3,8 @@ title: "自己动手写Android插件化框架"
 date: 2018-10-04
 type: post
 isCJKLanguage: true
+categories:
+    - "Android实践"
 ---
 
 # 自己动手写Android插件化框架

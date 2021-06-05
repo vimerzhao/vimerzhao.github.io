@@ -3,6 +3,8 @@ title: "外排序"
 date: 2017-03-20
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 外排序

@@ -3,6 +3,8 @@ title: "【译】自己动手写区块链"
 date: 2018-04-01
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 【译】自己动手写区块链

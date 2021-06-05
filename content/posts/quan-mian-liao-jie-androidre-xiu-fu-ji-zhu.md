@@ -3,6 +3,8 @@ title: "全面了解Android热修复技术"
 date: 2017-09-10
 type: post
 isCJKLanguage: true
+categories:
+    - "Android实践"
 ---
 
 # 全面了解Android热修复技术

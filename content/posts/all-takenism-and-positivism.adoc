@@ -4,10 +4,7 @@ date: 2020-12-20T19:49:29+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "随笔杂记"
 ---
 
 = 拿来主义与实证精神

@@ -3,6 +3,8 @@ title: "自己动手写事件总线(EventBus)"
 date: 2018-12-23
 type: post
 isCJKLanguage: true
+categories:
+    - "Android实践"
 ---
 
 # 自己动手写事件总线(EventBus)

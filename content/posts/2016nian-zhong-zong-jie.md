@@ -3,6 +3,8 @@ title: "2016年终总结"
 date: 2016-12-31
 type: post
 isCJKLanguage: true
+categories:
+    - "总结反思"
 ---
 
 # 2016年终总结

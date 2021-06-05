@@ -3,6 +3,8 @@ title: "Vim键盘布局的起源"
 date: 2017-06-25
 type: post
 isCJKLanguage: true
+categories:
+    - "折腾工具"
 ---
 
 # Vim键盘布局的起源

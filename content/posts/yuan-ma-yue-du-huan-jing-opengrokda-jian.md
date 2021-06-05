@@ -3,6 +3,8 @@ title: "源码阅读环境OpenGrok搭建"
 date: 2018-09-23
 type: post
 isCJKLanguage: true
+categories:
+    - "源码剖析"
 ---
 
 # 源码阅读环境OpenGrok搭建

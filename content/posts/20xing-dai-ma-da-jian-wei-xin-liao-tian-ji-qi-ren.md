@@ -3,6 +3,8 @@ title: "20行代码搭建微信聊天机器人"
 date: 2017-08-03
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 20行代码搭建微信聊天机器人

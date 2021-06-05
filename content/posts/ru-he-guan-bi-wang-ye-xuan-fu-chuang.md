@@ -3,6 +3,8 @@ title: "如何关闭网页悬浮窗"
 date: 2017-07-31
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 如何关闭网页悬浮窗

@@ -3,6 +3,8 @@ title: "关于C/C++中指针自增运算符的思考"
 date: 2017-04-06
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 关于C/C++中指针自增运算符的思考

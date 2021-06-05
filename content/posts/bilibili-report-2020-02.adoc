@@ -4,10 +4,7 @@ date: 2020-03-01T19:57:34+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "业余研究"
 ---
 
 = B站2月份创作者分析

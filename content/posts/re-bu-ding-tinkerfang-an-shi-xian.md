@@ -3,6 +3,8 @@ title: "热补丁：Tinker方案实现"
 date: 2017-08-03
 type: post
 isCJKLanguage: true
+categories:
+    - "Android实践"
 ---
 
 # 热补丁：Tinker方案实现

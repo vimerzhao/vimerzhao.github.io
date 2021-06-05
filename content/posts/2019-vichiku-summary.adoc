@@ -4,10 +4,7 @@ date: 2020-01-05T19:51:58+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "业余研究"
 ---
 
 = 通过7万条视频数据看2019年B站鬼畜区发生了什么

@@ -3,6 +3,8 @@ title: "每日一题：A Regular Expression Matcher"
 date: 2018-02-09
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 每日一题：A Regular Expression Matcher

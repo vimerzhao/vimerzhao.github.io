@@ -4,10 +4,7 @@ date: 2020-04-25T20:13:50+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "随笔杂记"
 ---
 
 = 表达的世界观基础与方法论建设

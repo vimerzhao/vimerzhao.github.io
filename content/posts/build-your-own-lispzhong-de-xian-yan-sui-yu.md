@@ -3,6 +3,8 @@ title: "Build Your Own Lisp中的闲言碎语"
 date: 2017-04-08
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # Build Your Own Lisp中的闲言碎语

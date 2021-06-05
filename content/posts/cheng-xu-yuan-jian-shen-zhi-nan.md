@@ -3,6 +3,8 @@ title: "程序员健身指南"
 date: 2019-02-24
 type: post
 isCJKLanguage: true
+categories:
+    - "业余研究"
 ---
 
 # 程序员健身指南

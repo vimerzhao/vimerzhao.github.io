@@ -3,6 +3,8 @@ title: "你真的需要单元测试吗?"
 date: 2018-04-07
 type: post
 isCJKLanguage: true
+categories:
+    - "软件沉思录"
 ---
 
 # 你真的需要单元测试吗?

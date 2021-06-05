@@ -3,6 +3,8 @@ title: "C语言实现IPv6抓包程序"
 date: 2017-04-19
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # C语言实现IPv6抓包程序

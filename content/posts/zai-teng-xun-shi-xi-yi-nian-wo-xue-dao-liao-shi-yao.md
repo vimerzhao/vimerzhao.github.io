@@ -3,6 +3,8 @@ title: "在腾讯实习一年，我学到了什么"
 date: 2018-06-12
 type: post
 isCJKLanguage: true
+categories:
+    - "随笔杂记"
 ---
 
 # 在腾讯实习一年，我学到了什么

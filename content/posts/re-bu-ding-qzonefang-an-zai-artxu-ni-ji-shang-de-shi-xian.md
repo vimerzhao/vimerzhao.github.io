@@ -3,6 +3,8 @@ title: "热补丁：Qzone方案在Art虚拟机上的实现"
 date: 2017-07-30
 type: post
 isCJKLanguage: true
+categories:
+    - "Android实践"
 ---
 
 # 热补丁：Qzone方案在Art虚拟机上的实现

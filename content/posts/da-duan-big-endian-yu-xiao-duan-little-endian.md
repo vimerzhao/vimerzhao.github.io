@@ -3,6 +3,8 @@ title: "大端（Big Endian）与小端（Little Endian）"
 date: 2017-04-27
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 大端（Big Endian）与小端（Little Endian）

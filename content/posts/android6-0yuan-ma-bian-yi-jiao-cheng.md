@@ -3,6 +3,8 @@ title: "Android6.0源码编译教程"
 date: 2018-01-17
 type: post
 isCJKLanguage: true
+categories:
+    - "源码剖析"
 ---
 
 # Android6.0源码编译教程

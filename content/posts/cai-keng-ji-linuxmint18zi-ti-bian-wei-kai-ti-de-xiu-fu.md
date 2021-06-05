@@ -3,6 +3,8 @@ title: "踩坑记：LinuxMint18字体变为楷体的修复"
 date: 2017-03-25
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 踩坑记：LinuxMint18字体变为楷体的修复

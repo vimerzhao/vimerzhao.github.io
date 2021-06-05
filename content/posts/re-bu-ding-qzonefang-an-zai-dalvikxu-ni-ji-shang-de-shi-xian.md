@@ -3,6 +3,8 @@ title: "热补丁：Qzone方案在Dalvik虚拟机上的实现"
 date: 2017-08-21
 type: post
 isCJKLanguage: true
+categories:
+    - "Android实践"
 ---
 
 # 热补丁：Qzone方案在Dalvik虚拟机上的实现

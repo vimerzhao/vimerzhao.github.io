@@ -3,6 +3,8 @@ title: "Android划词翻译"
 date: 2017-10-10
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # Android划词翻译

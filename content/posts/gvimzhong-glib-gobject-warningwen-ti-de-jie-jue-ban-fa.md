@@ -3,6 +3,8 @@ title: "GVim中GLib-GObject-WARNING问题的解决办法"
 date: 2017-04-29
 type: post
 isCJKLanguage: true
+categories:
+    - "折腾工具"
 ---
 
 # GVim中GLib-GObject-WARNING问题的解决办法

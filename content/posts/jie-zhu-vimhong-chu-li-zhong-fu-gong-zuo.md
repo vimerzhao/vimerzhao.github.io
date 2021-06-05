@@ -3,6 +3,8 @@ title: "借助Vim宏处理重复工作"
 date: 2017-05-29
 type: post
 isCJKLanguage: true
+categories:
+    - "折腾工具"
 ---
 
 # 借助Vim宏处理重复工作

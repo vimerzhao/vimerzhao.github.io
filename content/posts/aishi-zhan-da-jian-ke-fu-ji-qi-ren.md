@@ -3,6 +3,8 @@ title: "'AI实战:搭建客服机器人'"
 date: 2017-07-29
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 'AI实战:搭建客服机器人'

@@ -3,6 +3,8 @@ title: "TCP连接的建立与释放"
 date: 2017-04-21
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # TCP连接的建立与释放

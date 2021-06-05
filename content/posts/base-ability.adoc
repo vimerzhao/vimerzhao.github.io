@@ -4,10 +4,7 @@ date: 2020-02-06T20:11:55+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "随笔杂记"
 ---
 
 = 成为一个完整的社会人

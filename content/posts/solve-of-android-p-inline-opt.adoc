@@ -4,10 +4,7 @@ date: 2020-04-24T23:51:25+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "Bug解决记录"
 ---
 
 = Android P内联优化导致的一个诡异Bug

@@ -3,6 +3,8 @@ title: "Android RSS阅读器开发记录"
 date: 2017-11-18
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # Android RSS阅读器开发记录

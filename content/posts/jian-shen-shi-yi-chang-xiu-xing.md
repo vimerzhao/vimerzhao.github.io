@@ -3,6 +3,8 @@ title: "健身是一场修行"
 date: 2019-04-07
 type: post
 isCJKLanguage: true
+categories:
+    - "业余研究"
 ---
 
 # 健身是一场修行

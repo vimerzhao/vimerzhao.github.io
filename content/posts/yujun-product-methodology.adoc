@@ -4,10 +4,7 @@ date: 2020-03-22T09:30:19+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "读书笔记"
 ---
 
 = 读书:《俞军产品方法论》

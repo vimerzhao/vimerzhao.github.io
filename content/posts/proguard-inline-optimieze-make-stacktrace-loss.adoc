@@ -4,10 +4,7 @@ date: 2020-01-13
 type: post
 isCJKLanguage: true
 categories:
-    - "疑难杂症"
-tags:
-    - "Android"
-    - "Proguard"
+    - "Bug解决记录"
 ---
 
 == 背景

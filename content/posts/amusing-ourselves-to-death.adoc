@@ -4,10 +4,7 @@ date: 2020-02-01T09:24:31+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "读书笔记"
 ---
 
 = 读书:《娱乐至死》

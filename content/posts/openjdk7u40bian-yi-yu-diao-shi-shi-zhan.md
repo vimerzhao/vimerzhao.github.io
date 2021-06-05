@@ -3,6 +3,8 @@ title: "OpenJDK7u40编译与调试实战"
 date: 2017-05-28
 type: post
 isCJKLanguage: true
+categories:
+    - "源码剖析"
 ---
 
 # OpenJDK7u40编译与调试实战

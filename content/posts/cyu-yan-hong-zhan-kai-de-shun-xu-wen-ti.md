@@ -3,6 +3,8 @@ title: "C语言宏展开的顺序问题"
 date: 2017-03-14
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # C语言宏展开的顺序问题

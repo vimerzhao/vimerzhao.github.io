@@ -3,6 +3,8 @@ title: "纪念一个：博客全自动管理"
 date: 2017-04-29
 type: post
 isCJKLanguage: true
+categories:
+    - "折腾工具"
 ---
 
 # 纪念一个：博客全自动管理

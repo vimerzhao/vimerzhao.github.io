@@ -3,6 +3,8 @@ title: "Dalvik之类加载源码分析"
 date: 2017-08-26
 type: post
 isCJKLanguage: true
+categories:
+    - "源码剖析"
 ---
 
 # Dalvik之类加载源码分析

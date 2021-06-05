@@ -3,6 +3,8 @@ title: "与VirtualBox下Linux虚拟机共享文件"
 date: 2017-05-29
 type: post
 isCJKLanguage: true
+categories:
+    - "折腾工具"
 ---
 
 # 与VirtualBox下Linux虚拟机共享文件

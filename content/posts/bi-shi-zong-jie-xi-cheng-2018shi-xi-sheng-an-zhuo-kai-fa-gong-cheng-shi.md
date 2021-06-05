@@ -3,6 +3,8 @@ title: "笔试总结：携程2018实习生（安卓开发工程师）"
 date: 2017-04-11
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 笔试总结：携程2018实习生（安卓开发工程师）

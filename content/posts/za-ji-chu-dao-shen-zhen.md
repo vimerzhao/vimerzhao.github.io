@@ -3,6 +3,8 @@ title: "杂记：初到深圳"
 date: 2018-03-08
 type: post
 isCJKLanguage: true
+categories:
+    - "随笔杂记"
 ---
 
 # 杂记：初到深圳

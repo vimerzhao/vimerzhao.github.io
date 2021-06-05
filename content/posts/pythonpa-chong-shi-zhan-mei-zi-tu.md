@@ -3,6 +3,8 @@ title: "'Python爬虫实战:妹子图'"
 date: 2017-07-02
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 'Python爬虫实战:妹子图'

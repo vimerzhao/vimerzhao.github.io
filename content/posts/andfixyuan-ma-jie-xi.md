@@ -3,6 +3,8 @@ title: "Andfix源码解析"
 date: 2017-08-20
 type: post
 isCJKLanguage: true
+categories:
+    - "源码剖析"
 ---
 
 # Andfix源码解析

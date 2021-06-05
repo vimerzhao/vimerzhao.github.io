@@ -3,6 +3,8 @@ title: "VirtualBox下Debian增强功能的安装"
 date: 2017-06-14
 type: post
 isCJKLanguage: true
+categories:
+    - "折腾工具"
 ---
 
 # VirtualBox下Debian增强功能的安装

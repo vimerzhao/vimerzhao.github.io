@@ -3,6 +3,8 @@ title: "2017阿里实习生面试总结"
 date: 2017-06-02
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 2017阿里实习生面试总结

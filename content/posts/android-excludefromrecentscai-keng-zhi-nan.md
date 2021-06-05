@@ -3,6 +3,8 @@ title: "'android:excludeFromRecents踩坑指南'"
 date: 2018-12-30
 type: post
 isCJKLanguage: true
+categories:
+    - "Bug解决记录"
 ---
 
 # 'android:excludeFromRecents踩坑指南'

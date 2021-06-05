@@ -4,10 +4,7 @@ date: 2020-04-20T10:20:21+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "折腾工具"
 ---
 
 = Windows10下VirtualBox不支持64位

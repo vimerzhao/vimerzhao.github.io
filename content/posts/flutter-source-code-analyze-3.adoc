@@ -4,10 +4,7 @@ date: 2020-11-15T12:23:15+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "源码剖析"
 ---
 
 = Flutter源码剖析(三):Flutter-Android-Embedder启动流程

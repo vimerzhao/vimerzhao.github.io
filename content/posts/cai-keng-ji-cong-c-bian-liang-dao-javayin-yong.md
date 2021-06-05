@@ -3,6 +3,8 @@ title: "踩坑记：从C++变量到Java引用"
 date: 2017-03-24
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 踩坑记：从C++变量到Java引用

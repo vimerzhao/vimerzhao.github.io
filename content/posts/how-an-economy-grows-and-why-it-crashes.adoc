@@ -4,10 +4,7 @@ date: 2020-02-16T09:27:34+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "读书笔记"
 ---
 
 = 读书:《小岛经济学》

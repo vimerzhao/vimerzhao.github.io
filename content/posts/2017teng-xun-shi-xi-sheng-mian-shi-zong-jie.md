@@ -3,6 +3,8 @@ title: "2017腾讯实习生面试总结"
 date: 2017-05-19
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 2017腾讯实习生面试总结

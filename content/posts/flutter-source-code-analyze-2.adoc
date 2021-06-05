@@ -4,10 +4,7 @@ date: 2020-11-05T12:23:13+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "源码剖析"
 ---
 
 = Flutter源码剖析(二):源码的阅读与调试环境配置

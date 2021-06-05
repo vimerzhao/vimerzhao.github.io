@@ -3,6 +3,8 @@ title: "对于成长瓶颈的思考"
 date: 2018-01-24
 type: post
 isCJKLanguage: true
+categories:
+    - "总结反思"
 ---
 
 # 对于成长瓶颈的思考

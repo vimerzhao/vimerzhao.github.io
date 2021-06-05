@@ -4,10 +4,7 @@ date: 2020-03-24T09:56:45+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "Bug解决记录"
 ---
 
 = Android混淆问题一则

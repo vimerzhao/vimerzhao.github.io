@@ -3,6 +3,8 @@ title: "匿名内部类导致热补丁Crash"
 date: 2017-08-20
 type: post
 isCJKLanguage: true
+categories:
+    - "Bug解决记录"
 ---
 
 # 匿名内部类导致热补丁Crash

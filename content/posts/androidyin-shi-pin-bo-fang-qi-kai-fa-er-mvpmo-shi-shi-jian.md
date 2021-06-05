@@ -3,6 +3,8 @@ title: "Android音视频播放器开发（二）：MVP模式实践"
 date: 2017-10-16
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # Android音视频播放器开发（二）：MVP模式实践

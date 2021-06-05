@@ -4,10 +4,7 @@ date: 2019-11-06T12:21:29+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "Flutter实践"
 ---
 
 = Flutter:移动端跨平台技术演进之路

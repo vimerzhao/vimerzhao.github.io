@@ -3,6 +3,8 @@ title: "Presentation的一个误区"
 date: 2017-08-28
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # Presentation的一个误区

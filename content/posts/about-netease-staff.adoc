@@ -4,10 +4,7 @@ date: 2019-11-24T19:59:50+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "随笔杂记"
 ---
 
 = 网易裁员碎碎念

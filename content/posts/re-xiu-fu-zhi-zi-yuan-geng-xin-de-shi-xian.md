@@ -3,6 +3,8 @@ title: "热修复之资源更新的实现"
 date: 2017-08-17
 type: post
 isCJKLanguage: true
+categories:
+    - "Android实践"
 ---
 
 # 热修复之资源更新的实现

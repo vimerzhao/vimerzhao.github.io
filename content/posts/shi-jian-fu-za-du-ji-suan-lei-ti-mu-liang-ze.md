@@ -3,6 +3,8 @@ title: "时间复杂度计算类题目两则"
 date: 2017-03-25
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 时间复杂度计算类题目两则

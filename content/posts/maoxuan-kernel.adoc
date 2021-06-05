@@ -4,10 +4,7 @@ date: 2020-10-17T23:44:11+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "读书笔记"
 ---
 
 = 毛选精读（一）内核：《实践论》与《矛盾论》

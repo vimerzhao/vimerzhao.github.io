@@ -3,6 +3,8 @@ title: "LinuxMint修改程序图标分类"
 date: 2017-11-10
 type: post
 isCJKLanguage: true
+categories:
+    - "折腾工具"
 ---
 
 # LinuxMint修改程序图标分类

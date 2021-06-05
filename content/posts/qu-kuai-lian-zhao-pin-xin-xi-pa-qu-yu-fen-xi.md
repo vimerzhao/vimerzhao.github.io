@@ -3,6 +3,8 @@ title: "区块链招聘信息爬取与分析"
 date: 2018-04-18
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 区块链招聘信息爬取与分析

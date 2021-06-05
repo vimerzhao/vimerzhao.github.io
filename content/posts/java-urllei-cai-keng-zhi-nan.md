@@ -3,6 +3,8 @@ title: "Java URL类踩坑指南"
 date: 2017-11-26
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # Java URL类踩坑指南

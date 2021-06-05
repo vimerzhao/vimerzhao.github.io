@@ -4,10 +4,7 @@ date: 2020-02-10T20:12:59+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "随笔杂记"
 ---
 
 = 红利永远都在的

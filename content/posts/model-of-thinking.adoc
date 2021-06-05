@@ -4,10 +4,7 @@ date: 2019-11-25T20:01:28+08:00
 type: post
 isCJKLanguage: true
 categories:
-    - "category1"
-tags:
-    - "tag1"
-    - "tag2"
+    - "随笔杂记"
 ---
 
 = 信息、思考、知识

@@ -3,6 +3,8 @@ title: "Activity直接退出应用现象"
 date: 2017-07-14
 type: post
 isCJKLanguage: true
+categories:
+    - "Bug解决记录"
 ---
 
 # Activity直接退出应用现象

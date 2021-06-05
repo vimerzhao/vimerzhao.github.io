@@ -3,6 +3,8 @@ title: "阿里、360校招面试总结"
 date: 2017-09-16
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 阿里、360校招面试总结

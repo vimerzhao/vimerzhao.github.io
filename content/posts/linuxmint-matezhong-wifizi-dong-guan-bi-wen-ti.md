@@ -3,6 +3,8 @@ title: "LinuxMint Mate中WiFi自动关闭问题"
 date: 2017-09-22
 type: post
 isCJKLanguage: true
+categories:
+    - "折腾工具"
 ---
 
 # LinuxMint Mate中WiFi自动关闭问题

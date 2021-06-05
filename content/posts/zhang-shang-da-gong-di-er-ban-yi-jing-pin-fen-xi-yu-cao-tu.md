@@ -3,6 +3,8 @@ title: "掌上大工第二版（一）：竞品分析与草图"
 date: 2017-07-25
 type: post
 isCJKLanguage: true
+categories:
+    - "历史归档"
 ---
 
 # 掌上大工第二版（一）：竞品分析与草图
