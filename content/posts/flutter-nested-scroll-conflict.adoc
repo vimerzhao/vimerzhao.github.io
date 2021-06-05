@@ -2,7 +2,6 @@
 title: "大道至简：Flutter嵌套滑动冲突解决之路"
 date: 2021-05-27T19:22:48+08:00
 type: post
-draft: true
 isCJKLanguage: true
 categories:
     - "Flutter实践"
