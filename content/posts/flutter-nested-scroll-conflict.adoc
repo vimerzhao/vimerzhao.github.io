@@ -5,6 +5,8 @@ type: post
 isCJKLanguage: true
 categories:
     - "Flutter实践"
+tags:
+    - "技术精选"
 ---
 
 = 大道至简：Flutter嵌套滑动冲突解决之路

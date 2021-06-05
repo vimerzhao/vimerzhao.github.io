@@ -5,6 +5,8 @@ type: post
 isCJKLanguage: true
 categories:
     - "折腾工具"
+tags:
+    - "技术精选"
 ---
 
 = Git内部原理剖析

@@ -5,6 +5,8 @@ type: post
 isCJKLanguage: true
 categories:
     - "Android实践"
+tags:
+    - "技术精选"
 ---
 
 # 全面了解Android热修复技术

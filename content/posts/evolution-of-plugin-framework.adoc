@@ -5,6 +5,8 @@ type: post
 isCJKLanguage: true
 categories:
     - "Android实践"
+tags:
+    - "技术精选"
 ---
 
 = 插件化技术的演进之路

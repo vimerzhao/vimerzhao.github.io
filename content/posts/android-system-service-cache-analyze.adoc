@@ -5,6 +5,8 @@ type: post
 isCJKLanguage: true
 categories:
     - "源码剖析"
+tags:
+    - "技术精选"
 ---
 
 = Android系统服务的注册缓存机制分析

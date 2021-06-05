@@ -5,6 +5,8 @@ type: post
 isCJKLanguage: true
 categories:
     - "Bug解决记录"
+tags:
+    - "技术精选"
 ---
 
 = Android P内联优化导致的一个诡异Bug
