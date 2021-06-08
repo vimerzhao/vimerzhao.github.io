@@ -313,3 +313,8 @@ enum class InstructionSet {
 * https://developer.android.com/guide/topics/manifest/application-element.html#vmSafeMode[application  |   Android 开发者  |   Android Developers]
 * https://canyie.github.io/2020/02/15/fast-load-dex-on-art-runtime/[一种在ART上快速加载dex的方法 - 残页的小博客]
 * https://mp.weixin.qq.com/s?__biz=MzI0MjgxMjU0Mg==&mid=2247488357&idx=1&sn=d393bd028dfbf87998b80e06ca24bc94&scene=21#wechat_redirect[通告 | Android P新增检测项 应用热修复受重大影响]
+
+update: 2021-06-08
+
+* 尝试在修改JavaVM的字段之前做类型校验
+* 直接修改 `bootclasspath` 的 jar 包加载顺序是否也可以解决这个问题（兼容性更好）
