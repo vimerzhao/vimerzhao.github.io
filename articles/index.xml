@@ -6,8 +6,15 @@
     <description>Recent content in Articles on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 05 Jan 2025 15:38:56 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 13 Feb 2025 11:19:20 +0800</lastBuildDate>
     <atom:link href="/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>配置一个Linux开发环境</title>
+      <link>/articles/configure-a-linux-development-environment/</link>
+      <pubDate>Wed, 12 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/configure-a-linux-development-environment/</guid>
+      <description>由于iMac到期，加上工作内容的改变，申请更换成了高级开发机，主要配置如下：9950X + 32Gx2内存 + 4T硬盘，比之前的iMac(2020年申请的)配置提高了不少。 设备到手后，进行了一番配置，花费了</description>
+    </item>
     <item>
       <title>WebKit调试环境配置</title>
       <link>/articles/setup-webkit-debug-environment/</link>
