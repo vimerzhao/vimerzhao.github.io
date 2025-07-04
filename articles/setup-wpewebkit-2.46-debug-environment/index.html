@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>WPEWebKit2.46调试环境 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="WPEWebKit2.46调试环境" />
+<meta property="og:description" content="以下讨论均基于`https://github.com/WebPlatformForEmbedded/WPEWebKit的 commit 38067c965fd39dbc4294c1be8f9394fb4c39d90c (HEAD -&gt; wpe-2.46, origin/wpe-2.46, origin/HEAD) Author: Philippe Normand &lt;philn@igalia.com&gt; Date: Tue Nov 1 15:51:24 2022 &#43;0000 pointer-lock WIP 编译 之前已经编过几次，最近一次：WebK" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/setup-wpewebkit-2.46-debug-environment/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2025-07-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2025-07-02T15:08:09+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="WPEWebKit2.46调试环境"/>
+<meta name="twitter:description" content="以下讨论均基于`https://github.com/WebPlatformForEmbedded/WPEWebKit的 commit 38067c965fd39dbc4294c1be8f9394fb4c39d90c (HEAD -&gt; wpe-2.46, origin/wpe-2.46, origin/HEAD) Author: Philippe Normand &lt;philn@igalia.com&gt; Date: Tue Nov 1 15:51:24 2022 &#43;0000 pointer-lock WIP 编译 之前已经编过几次，最近一次：WebK"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">WPEWebKit2.46调试环境</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-07-01T00:00:00Z">2025-07-01</time>
+	<time class="meta__text" datetime="2025-07-02T15:08:09&#43;08:00">(最后修改: 2025-07-02)</time></div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 2500 字，阅读需 5 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<p>以下讨论均基于`<a href="https://github.com/WebPlatformForEmbedded/WPEWebKit">https://github.com/WebPlatformForEmbedded/WPEWebKit</a>的</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>commit 38067c965fd39dbc4294c1be8f9394fb4c39d90c <span style="color:#f92672">(</span>HEAD -&gt; wpe-2.46, origin/wpe-2.46, origin/HEAD<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Author: Philippe Normand &lt;philn@igalia.com&gt;
+</span></span><span style="display:flex;"><span>Date:   Tue Nov <span style="color:#ae81ff">1</span> 15:51:24 <span style="color:#ae81ff">2022</span> +0000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    pointer-lock WIP
+</span></span></code></pre></div><h2 id="编译">编译</h2>
+<p>之前已经编过几次，最近一次：<a href="https://vimerzhao.top/articles/setup-webkit-debug-environment/">WebKit调试环境配置 - 赵裕的博客</a>。</p>
+<p>这一次的不同：</p>
+<ul>
+<li>上次是安装依赖后自己定义的cmake&hellip;&hellip;本次从官方编译脚本切入</li>
+<li>上次是Devcloud(CentOS 8)+Docker，这次是Ubuntu24+Docker，完全是本地的环境，预期是Docker编出来本机能直接跑</li>
+</ul>
+<p>安装镜像，启动容器：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo docker pull ubuntu:24.04
+</span></span><span style="display:flex;"><span>sudo docker run  -v /home/vimerzhao/research:/home/vimerzhao/research <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -d --privileged -it --cpus <span style="color:#ae81ff">16</span> --name research_webkit ubuntu:24.04 /bin/bash
+</span></span></code></pre></div><p>参考这个文章：<a href="https://docs.webkit.org/Build%20%26%20Debug/BuildOptions.html#with-safari-and-other-macos-applications">Building Options - WebKit Documentation</a>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>Building the WPE Port¶
+</span></span><span style="display:flex;"><span>For production builds:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cmake -DPORT=WPE -DCMAKE_BUILD_TYPE=RelWithDebInfo -GNinja
+</span></span><span style="display:flex;"><span>ninja
+</span></span><span style="display:flex;"><span>sudo ninja install
+</span></span><span style="display:flex;"><span>For development builds:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Tools/wpe/install-dependencies
+</span></span><span style="display:flex;"><span>Tools/Scripts/update-webkitwpe-libs
+</span></span><span style="display:flex;"><span>Tools/Scripts/build-webkit --wpe --debug
+</span></span></code></pre></div><p>进入Docker，安装依赖：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ apt update <span style="color:#75715e"># 必需</span>
+</span></span><span style="display:flex;"><span>$ Tools/wpe/install-dependencies
+</span></span></code></pre></div><p>安装依赖遇到一个错误但好像没什么影响：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span> Created symlink /etc/systemd/system/sysinit.target.wants/systemd-pstore.service → /usr/lib/systemd/system/systemd-pstore.service.
+</span></span><span style="display:flex;"><span>Initializing machine ID from random generator.                                                                
+</span></span><span style="display:flex;"><span>/usr/lib/tmpfiles.d/systemd-network.conf:10: Failed to resolve user <span style="color:#e6db74">&#39;systemd-network&#39;</span>: No such process        
+</span></span><span style="display:flex;"><span>/usr/lib/tmpfiles.d/systemd-network.conf:11: Failed to resolve user <span style="color:#e6db74">&#39;systemd-network&#39;</span>: No such process        
+</span></span><span style="display:flex;"><span>/usr/lib/tmpfiles.d/systemd-network.conf:12: Failed to resolve user <span style="color:#e6db74">&#39;systemd-network&#39;</span>: No such process        
+</span></span><span style="display:flex;"><span>/usr/lib/tmpfiles.d/systemd-network.conf:13: Failed to resolve user <span style="color:#e6db74">&#39;systemd-network&#39;</span>: No such process        
+</span></span><span style="display:flex;"><span>/usr/lib/tmpfiles.d/systemd.conf:22: Failed to resolve group <span style="color:#e6db74">&#39;systemd-journal&#39;</span>: No such process               
+</span></span><span style="display:flex;"><span>/usr/lib/tmpfiles.d/systemd.conf:23: Failed to resolve group <span style="color:#e6db74">&#39;systemd-journal&#39;</span>: No such process               
+</span></span><span style="display:flex;"><span>/usr/lib/tmpfiles.d/systemd.conf:28: Failed to resolve group <span style="color:#e6db74">&#39;systemd-journal&#39;</span>: No such process               
+</span></span><span style="display:flex;"><span>/usr/lib/tmpfiles.d/systemd.conf:29: Failed to resolve group <span style="color:#e6db74">&#39;systemd-journal&#39;</span>: No such process               
+</span></span><span style="display:flex;"><span>/usr/lib/tmpfiles.d/systemd.conf:30: Failed to resolve group <span style="color:#e6db74">&#39;systemd-journal&#39;</span>: No such process               
+</span></span><span style="display:flex;"><span>Creating group <span style="color:#e6db74">&#39;systemd-journal&#39;</span> with GID 999.                                                                
+</span></span><span style="display:flex;"><span>Creating group <span style="color:#e6db74">&#39;systemd-network&#39;</span> with GID 998.
+</span></span></code></pre></div><p>准备环境，这一步下载比较多，并默认使用了<code>WebKitBuild</code>目录:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ Tools/Scripts/update-webkitwpe-libs      
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Downloading six-1.16.0...
+</span></span><span style="display:flex;"><span>Installed six-1.16.0!    
+</span></span><span style="display:flex;"><span>............
+</span></span><span style="display:flex;"><span>                                                       
+</span></span><span style="display:flex;"><span>Nothing to <span style="color:#66d9ef">do</span>.           
+</span></span><span style="display:flex;"><span>Installing from webkit-sdk org.webkit.Platform x86_64 23.08
+</span></span><span style="display:flex;"><span>Looking <span style="color:#66d9ef">for</span> matches…
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ID                                              Branch                  Op            Remote                Download                                                                                                 
+</span></span><span style="display:flex;"><span> 1. <span style="color:#f92672">[</span>✓<span style="color:#f92672">]</span> org.freedesktop.Platform.GL.default             23.08                   i             webkit-sdk            163.5 MB / 486.2 MB               
+</span></span><span style="display:flex;"><span> 2. <span style="color:#f92672">[</span>✓<span style="color:#f92672">]</span> org.freedesktop.Platform.GL.default             23.08-extra             i             webkit-sdk             17.8 MB / 486.2 MB    
+</span></span><span style="display:flex;"><span> 3. <span style="color:#f92672">[</span>✓<span style="color:#f92672">]</span> org.webkit.Platform.Locale                      23.08                   i             webkit-sdk            166.0 MB / 1.5 GB
+</span></span><span style="display:flex;"><span> 4. <span style="color:#f92672">[</span>✓<span style="color:#f92672">]</span> org.webkit.Platform                             23.08                   i             webkit-sdk            510.1 MB / 1.5 GB
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Installation complete.
+</span></span><span style="display:flex;"><span>Installing from webkit-sdk org.webkit.Sdk x86_64 23.08  
+</span></span><span style="display:flex;"><span>Looking <span style="color:#66d9ef">for</span> matches…                                                                             
+</span></span><span style="display:flex;"><span>        ID                             Branch          Op          Remote              Download
+</span></span><span style="display:flex;"><span> 1. <span style="color:#f92672">[</span>✓<span style="color:#f92672">]</span> org.webkit.Sdk.Locale          23.08           i           webkit-sdk          43.8 MB / 1.5 GB       
+</span></span><span style="display:flex;"><span> 2. <span style="color:#f92672">[</span>—<span style="color:#f92672">]</span> org.webkit.Sdk                 23.08           i           webkit-sdk           4.3 MB / 2.7 GB       
+</span></span><span style="display:flex;"><span>                                                       
+</span></span><span style="display:flex;"><span>Installing 2/2… █▌                     8%  432.4 kB/s  01:55    
+</span></span><span style="display:flex;"><span>Installation complete.
+</span></span><span style="display:flex;"><span>SDK version: 296715@main
+</span></span><span style="display:flex;"><span>Updating icecc/sccache standalone toolchain archives
+</span></span><span style="display:flex;"><span>Error connecting: Cannot autolaunch D-Bus without X11 $DISPLAY
+</span></span><span style="display:flex;"><span>Failed to get a11y address Command <span style="color:#e6db74">&#39;(&#39;</span>gdbus<span style="color:#e6db74">&#39;, &#39;</span>call<span style="color:#e6db74">&#39;, &#39;</span>-e<span style="color:#e6db74">&#39;, &#39;</span>-d<span style="color:#e6db74">&#39;, &#39;</span>org.a11y.Bus<span style="color:#e6db74">&#39;, &#39;</span>-o<span style="color:#e6db74">&#39;, &#39;</span>/org/a11y/bus<span style="color:#e6db74">&#39;, &#39;</span>-m<span style="color:#e6db74">&#39;, &#39;</span>org.a11y.Bus.GetAddress<span style="color:#e6db74">&#39;)&#39;</span> returned non-zero exit status 1.
+</span></span><span style="display:flex;"><span>error: Could not connect: No such file or directory
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The following command returned a non-zero exit status: flatpak run --user --die-with-parent --filesystem<span style="color:#f92672">=</span>host --allow<span style="color:#f92672">=</span>devel --share<span style="color:#f92672">=</span>network --talk-name<span style="color:#f92672">=</span>org.gtk.vfs --talk-name<span style="color:#f92672">=</span>org.gtk.vfs.* --device<span style="color:#f92672">=</span>all --device<span style="color:#f92672">=</span>dri --share<span style="color:#f92672">=</span>ipc --socket<span style="color:#f92672">=</span>pulseaudio --socket<span style="color:#f92672">=</span>session-bus --socket<span style="color:#f92672">=</span>system-bus --socket<span style="color:#f92672">=</span>wayland --socket<span style="color:#f92672">=</span>x11 --system-talk-name<span style="color:#f92672">=</span>org.a11y.Bus --system-talk-name<span style="color:#f92672">=</span>org.freedesktop.GeoClue2 --talk-name<span style="color:#f92672">=</span>org.freedesktop.Flatpak --talk-name<span style="color:#f92672">=</span>org.freedesktop.secrets --env<span style="color:#f92672">=</span>TEST_RUNNER_INJECTED_BUNDLE_FILENAME<span style="color:#f92672">=</span>/app/webkit/WebKitBuild/Release/lib/libTestRunnerInjectedBundle.so --env<span style="color:#f92672">=</span>PATH<span style="color:#f92672">=</span>/usr/lib/sdk/llvm18/bin:/usr/bin:/usr/lib/sdk/rust-stable/bin/ --env<span style="color:#f92672">=</span>TZ<span style="color:#f92672">=</span>America/Los_Angeles --unset-env<span style="color:#f92672">=</span>LC_CTYPE --command<span style="color:#f92672">=</span>/usr/bin/which org.webkit.Sdk gcc
+</span></span><span style="display:flex;"><span>Output: b<span style="color:#e6db74">&#39;&#39;</span>
+</span></span></code></pre></div><p>以上错误是Docker中没有D-Bus和X11，Deepseek整理解决如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>apt install -y dbus 
+</span></span><span style="display:flex;"><span>apt install dbus-x11
+</span></span><span style="display:flex;"><span>apt install at-spi2-core
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动 D-Bus 服务</span>
+</span></span><span style="display:flex;"><span>dbus-daemon --system --fork        <span style="color:#75715e"># 系统级服务</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动 DBus 用户会话（容器内需执行）</span>
+</span></span><span style="display:flex;"><span>dbus-launch --sh-syntax            <span style="color:#75715e"># 用户级会话 </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># copy result to bash</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 验证服务状态</span>
+</span></span><span style="display:flex;"><span>dbus-send --print-reply --dest<span style="color:#f92672">=</span>org.freedesktop.DBus / org.freedesktop.DBus.ListNames
+</span></span><span style="display:flex;"><span>gdbus call -e -d org.a11y.Bus -o /org/a11y/bus -m org.a11y.Bus.GetAddress
+</span></span></code></pre></div><p>再次执行可能遇到这个错误:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>bwrap: Creating new namespace failed: Operation not permitted
+</span></span></code></pre></div><p>这也是Docker的原因，所以启动时加了<code>--privileged</code>，正常执行完Tools/Scripts/update-webkitwpe-libs:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@05f21ec27f2e:/home/vimerzhao/research/WPEWebKit# ./Tools/Scripts/update-webkitwpe-libs 
+</span></span><span style="display:flex;"><span>Ensuring the local Flatpak repository is not corrupted
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>20/22<span style="color:#f92672">]</span> Verifying webkit-sdk:runtime/org.webkit.Platform/x86_64/23.08…
+</span></span><span style="display:flex;"><span>Checking remotes...
+</span></span><span style="display:flex;"><span>Pruning objects
+</span></span><span style="display:flex;"><span>Updating Flatpak environment
+</span></span><span style="display:flex;"><span>Looking <span style="color:#66d9ef">for</span> updates…
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Nothing to <span style="color:#66d9ef">do</span>.
+</span></span><span style="display:flex;"><span>SDK version: 296715@main
+</span></span><span style="display:flex;"><span>root@05f21ec27f2e:/home/vimerzhao/research/WPEWebKit# 
+</span></span></code></pre></div><p>再就是编译<code>Tools/Scripts/build-webkit --wpe --debug</code>，可能遇到：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>-- Disabling ENABLE_WPE_PLATFORM_DRM since USE_GBM is disabled.                                                                                                                                                              
+</span></span><span style="display:flex;"><span>CMake Error at Source/cmake/WebKitFeatures.cmake:324 <span style="color:#f92672">(</span>message<span style="color:#f92672">)</span>:                                               
+</span></span><span style="display:flex;"><span>  ENABLE_WPE_PLATFORM conflicts with ENABLE_WPE_1_1_API.  You must disable                                    
+</span></span><span style="display:flex;"><span>  one or the other.                                                                                           
+</span></span><span style="display:flex;"><span>Call Stack <span style="color:#f92672">(</span>most recent call first<span style="color:#f92672">)</span>:                                                                          
+</span></span><span style="display:flex;"><span>  Source/cmake/WebKitFeatures.cmake:332 <span style="color:#f92672">(</span>_WEBKIT_OPTION_ENFORCE_CONFLICTS<span style="color:#f92672">)</span>                                                                                                                                                   
+</span></span><span style="display:flex;"><span>  Source/cmake/WebKitFeatures.cmake:357 <span style="color:#f92672">(</span>_WEBKIT_OPTION_ENFORCE_ALL_CONFLICTS<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  Source/cmake/OptionsWPE.cmake:150 <span style="color:#f92672">(</span>WEBKIT_OPTION_END<span style="color:#f92672">)</span> 
+</span></span><span style="display:flex;"><span>  Source/cmake/WebKitCommon.cmake:237 <span style="color:#f92672">(</span>include<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  CMakeLists.txt:16 <span style="color:#f92672">(</span>include<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>关掉<code>ENABLE_WPE_1_1_API</code>即可，等待编译&hellip;.</p>
+<p>跑的东西太多，一卡一卡的：</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2024/20250701144237.png" alt="20250701144237"></p>
+<h2 id="运行">运行</h2>
+<p>根本运行不起来&hellip;集中在以下几错误</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ Tools/Scripts/run-minibrowser --debug --jsc-only
+</span></span><span style="display:flex;"><span>Unsupported platform. at Tools/Scripts/old-run-minibrowser line 46.
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 原因是python脚本写的有问题，默认走了Ma平台</span>
+</span></span></code></pre></div><p>这个DBus一直失败，猜测是Docker编译，Host运行锅</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ ./run-minibrowser --debug --port<span style="color:#f92672">=</span>jsc-only --platform<span style="color:#f92672">=</span>wpe
+</span></span><span style="display:flex;"><span>ERROR: Failed to make thread real time: GDBus.Error:org.gtk.GDBus.UnmappedGError.Quark._g_2dio_2derror_2dquark.Code1: Could not map tid: Process ids could not be found: <span style="color:#ae81ff">77</span>
+</span></span><span style="display:flex;"><span>/app/webkit/Source/WTF/wtf/linux/RealTimeThreads.cpp<span style="color:#f92672">(</span>224<span style="color:#f92672">)</span> : void WTF::RealTimeThreads::realTimeKitMakeThreadRealTime<span style="color:#f92672">(</span>uint64_t, uint64_t, uint32_t<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$sudo ./run-minibrowser --debug --port<span style="color:#f92672">=</span>jsc-only --platform<span style="color:#f92672">=</span>wpe
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ERROR: Failed to connect to RealtimeKit: Error spawning command line “dbus-launch --autolaunch<span style="color:#f92672">=</span>9b32a4a3b5394933a484f7caa10e0223 --binary-syntax --close-stderr”: Child process exited with code <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>/app/webkit/Source/WTF/wtf/linux/RealTimeThreads.cpp<span style="color:#f92672">(</span>192<span style="color:#f92672">)</span> : void WTF::RealTimeThreads::realTimeKitMakeThreadRealTime<span style="color:#f92672">(</span>uint64_t, uint64_t, uint32_t<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>先不折腾了，直接Host编译。这个套编译脚本，后面再慢慢研究五今天是搞不定&hellip;&hellip;..</p>
+<h2 id="本机编译">本机编译</h2>
+<p>还是重复上面步骤</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>安装完成。
+</span></span><span style="display:flex;"><span>Installing from flathub org.freedesktop.Platform.GL.Debug.default x86_64 23.08-extra
+</span></span><span style="display:flex;"><span>寻找匹配项…
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ID                                                    分支                    操作             远程                下载
+</span></span><span style="display:flex;"><span> 1. <span style="color:#f92672">[</span>✓<span style="color:#f92672">]</span> org.freedesktop.Platform.GL.Debug.default             23.08-extra             i                flathub             691.5 MB / 699.9 MB
+</span></span></code></pre></div><p>安装完成。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>SDK version: 
+</span></span><span style="display:flex;"><span>Updating icecc/sccache standalone toolchain archives
+</span></span><span style="display:flex;"><span>Created /home/vimerzhao/research/WPEWebKit/WebKitBuild/UserFlatpak/Toolchains/webkit-sdk-gcc-7b9bee4f2b5d32b5fbfb556c0889131d.tar.gz self-contained toolchain archive
+</span></span><span style="display:flex;"><span>Created /home/vimerzhao/research/WPEWebKit/WebKitBuild/UserFlatpak/Toolchains/webkit-sdk-clang-78eb8e141520124fff551fbef1a57caf.tar.gz self-contained toolchain archive
+</span></span><span style="display:flex;"><span>No authentication token provided. Re-run this with the -t option <span style="color:#66d9ef">if</span> an sccache token was provided to you. Skipping sccache configuration <span style="color:#66d9ef">for</span> now.
+</span></span></code></pre></div><p>运行时还是报错</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>~/research/WPEWebKit <span style="color:#f92672">(</span>wpe-2.46 ✗<span style="color:#f92672">)</span> Tools/Scripts/run-minibrowser --debug --wpe                                 
+</span></span><span style="display:flex;"><span>Using Cog as MiniBrowser      
+</span></span><span style="display:flex;"><span>miniBrowser: /app/webkit/WebKitBuild/WPE/Debug/Tools/cog-prefix/src/cog-build/launcher/cog 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>cog:17<span style="color:#f92672">)</span>: Cog-Core-WARNING **: 18:31:06.748: cog_modules_get_preferred: cannot find module <span style="color:#e6db74">&#39;wpe&#39;</span>              
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>cog:17<span style="color:#f92672">)</span>: Cog-Core-WARNING **: 18:31:06.749: cog_modules_get_preferred: preferred module <span style="color:#e6db74">&#39;wpe&#39;</span> not supported  
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>cog:17<span style="color:#f92672">)</span>: Cog-Core-ERROR **: 18:31:06.749: Requested platform <span style="color:#e6db74">&#39;wpe&#39;</span> not usable.                               
+</span></span><span style="display:flex;"><span>ScriptError raised: Failed to run <span style="color:#e6db74">&#34;[&#39;/app/webkit/WebKitBuild/WPE/Debug/Tools/cog-prefix/src/cog-build/launcher/cog&#39;, &#39;--platform=wpe&#39;]&#34;</span> exit_code: -5 cwd: /app/webkit
+</span></span><span style="display:flex;"><span>Traceback <span style="color:#f92672">(</span>most recent call last<span style="color:#f92672">)</span>:                                                                            
+</span></span><span style="display:flex;"><span>  File <span style="color:#e6db74">&#34;/app/webkit/Tools/Scripts/webkitpy/minibrowser/run_webkit_app.py&#34;</span>, line 68, in main                                                                                                                                  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> port.run_minibrowser<span style="color:#f92672">(</span>browser_args<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</span></span></code></pre></div><p>研究了下脚本和Cog，最后发现是文档说的启动方式不对，cog要指定平台（可用平台参见源码的docs文档）:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ Tools/Scripts/run-minibrowser --debug --wpe -- --platform<span style="color:#f92672">=</span>wl vimerzhao.top
+</span></span></code></pre></div><p>需要注意的是这个错误日志依然存在，但不影响运行了：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ERROR: Failed to make thread real time: GDBus.Error:org.gtk.GDBus.UnmappedGError.Quark._g_2dio_2derror_2dquark.Code1: Could not map tid: Process ids could not be found: <span style="color:#ae81ff">20</span>                                                  
+</span></span><span style="display:flex;"><span>/app/webkit/Source/WTF/wtf/linux/RealTimeThreads.cpp<span style="color:#f92672">(</span>224<span style="color:#f92672">)</span> : void WTF::RealTimeThreads::realTimeKitMakeThreadRealTime<span style="color:#f92672">(</span>uint64_t, uint64_t, uint32_t<span style="color:#f92672">)</span> 
+</span></span></code></pre></div><p>可以了：</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2024/20250702112735.png" alt="20250702112735"></p>
+<p>想着下GTK的Port试试能不能运行，结果编译问题比较多，猜测是WPEWebKit这个工程根本就不兼容GTK，毕竟不是官方Webkit库，浪费了不少时间，一起编译不过&hellip;&hellip;</p>
+<p>那如果想跑JSC呢？按文档肯定是不行的：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ Tools/Scripts/run-minibrowser --debug --jsc-only
+</span></span><span style="display:flex;"><span>Unsupported platform. at Tools/Scripts/old-run-minibrowser line 46.
+</span></span></code></pre></div><p>这是为什么呢，首先Tools/Scripts/webkitpy/port/factory.py的<code>platform_options()</code>没有处理<code>--jsc-only</code>，导致以下逻辑：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#75715e">#没有平台，默认Mac</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tools/Scripts/webkitpy/minibrowser/run_webkit_app.py</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> options<span style="color:#f92672">.</span>platform:
+</span></span><span style="display:flex;"><span>        options<span style="color:#f92672">.</span>platform <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Mac&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># MacPort没有实现，用的Port::run_minibrowser，实JscOnlyPort也没有实现</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tools/Scripts/webkitpy/port/base.py</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run_minibrowser</span>(self, args):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># FIXME: Migrate to webkitpy based run-minibrowser. https://bugs.webkit.org/show_bug.cgi?id=213464</span>
+</span></span><span style="display:flex;"><span>        miniBrowser <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>path_to_script(<span style="color:#e6db74">&#34;old-run-minibrowser&#34;</span>)
+</span></span><span style="display:flex;"><span>        args<span style="color:#f92672">.</span>append(self<span style="color:#f92672">.</span>_config<span style="color:#f92672">.</span>flag_for_configuration(self<span style="color:#f92672">.</span>get_option(<span style="color:#e6db74">&#39;configuration&#39;</span>)))
+</span></span><span style="display:flex;"><span>        args<span style="color:#f92672">.</span>append(<span style="color:#e6db74">&#34;--</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>get_option(<span style="color:#e6db74">&#39;platform&#39;</span>)
+</span></span></code></pre></div><p>故此走到时了<code>old-run-minibrowser</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (isAppleCocoaWebKit()) {
+</span></span><span style="display:flex;"><span>    printHelpAndExitForRunAndDebugWebKitAppIfNeeded();
+</span></span><span style="display:flex;"><span>    exit exitStatus(runMiniBrowser());
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    die <span style="color:#e6db74">&#34;Unsupported platform.&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>为什么调用WPE时还要传个<code>-- --platform=wl</code>，由两处脚本都可窥见</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#75715e"># Tools/Scripts/webkitpy/minibrowser/run_webkit_app.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(argv):
+</span></span><span style="display:flex;"><span>    option_parser <span style="color:#f92672">=</span> argparse<span style="color:#f92672">.</span>ArgumentParser(formatter_class<span style="color:#f92672">=</span>argparse<span style="color:#f92672">.</span>RawDescriptionHelpFormatter,
+</span></span><span style="display:flex;"><span>                                            usage<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%(prog)s</span><span style="color:#e6db74"> [options] [url] [-- [minibrowser_options]]&#34;</span>,
+</span></span><span style="display:flex;"><span>                                            epilog<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;MiniBrowser options:    Pass them after two dashes.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">  Example:&#34;</span>
+</span></span><span style="display:flex;"><span>                                                   <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{spaces}</span><span style="color:#e6db74">run-minibrowser --wpe -- --platform=drm http://url.com&#34;</span><span style="color:#f92672">.</span>format(spaces<span style="color:#f92672">=</span><span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">14</span>))
+</span></span><span style="display:flex;"><span>    groups <span style="color:#f92672">=</span> [(<span style="color:#e6db74">&#34;Platform options&#34;</span>, platform_options()), (<span style="color:#e6db74">&#34;Configuration options&#34;</span>, configuration_options())]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tools/Scripts/webkitpy/port/wpe.py</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run_minibrowser</span>(self, args):
+</span></span><span style="display:flex;"><span>        miniBrowser <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>browser_name() <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;cog&#34;</span>:
+</span></span><span style="display:flex;"><span>            miniBrowser <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>cog_path_to(<span style="color:#e6db74">&#39;launcher&#39;</span>, <span style="color:#e6db74">&#39;cog&#39;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> self<span style="color:#f92672">.</span>_filesystem<span style="color:#f92672">.</span>isfile(miniBrowser):
+</span></span><span style="display:flex;"><span>                _log<span style="color:#f92672">.</span>warning(<span style="color:#e6db74">&#34;Cog not found 😢. If you wish to enable it, rebuild with `-DENABLE_COG=ON`. Falling back to good old MiniBrowser&#34;</span>)
+</span></span><span style="display:flex;"><span>                miniBrowser <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                print(<span style="color:#e6db74">&#34;Using Cog as MiniBrowser&#34;</span>)
+</span></span><span style="display:flex;"><span>                has_platform_arg <span style="color:#f92672">=</span> any((a <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;-P&#34;</span> <span style="color:#f92672">or</span> a<span style="color:#f92672">.</span>startswith(<span style="color:#e6db74">&#34;--platform=&#34;</span>) <span style="color:#66d9ef">for</span> a <span style="color:#f92672">in</span> args)) <span style="color:#f92672">or</span> <span style="color:#e6db74">&#34;COG_PLATFORM_NAME&#34;</span> <span style="color:#f92672">in</span> os<span style="color:#f92672">.</span>environ
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> has_platform_arg:
+</span></span><span style="display:flex;"><span>                    args<span style="color:#f92672">.</span>insert(<span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#34;--platform=gtk4&#34;</span>) <span style="color:#75715e"># 注意里</span>
+</span></span></code></pre></div><p>即使修正了也无法解决，看来要运行jsc按文档不不通的:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ldd WebKitBuild/WPE/Debug/bin/jsc| grep not
+</span></span><span style="display:flex;"><span>        libicudata.so.73 <span style="color:#f92672">=</span>&gt; not found
+</span></span><span style="display:flex;"><span>        libicui18n.so.73 <span style="color:#f92672">=</span>&gt; not found
+</span></span><span style="display:flex;"><span>        libicuuc.so.73 <span style="color:#f92672">=</span>&gt; not found
+</span></span><span style="display:flex;"><span>$ find . -iname <span style="color:#e6db74">&#34;libicudata*&#34;</span>    
+</span></span><span style="display:flex;"><span>./WebKitBuild/UserFlatpak/runtime/org.webkit.Platform/x86_64/23.08/e60e56a804768009bfde900c006a10c5c1cd00d8625cb5f64bd828671110c596/files/lib/x86_64-linux-gnu/libicudata.so.73
+</span></span><span style="display:flex;"><span>./WebKitBuild/UserFlatpak/runtime/org.webkit.Platform/x86_64/23.08/e60e56a804768009bfde900c006a10c5c1cd00d8625cb5f64bd828671110c596/files/lib/x86_64-linux-gnu/libicudata.so.73.2
+</span></span><span style="display:flex;"><span>./WebKitBuild/UserFlatpak/runtime/org.webkit.Sdk/x86_64/23.08/231a3d32baa6acd540820ba80965cc524a32911d0bce73f067d5d76ccb0f26dd/files/lib/x86_64-linux-gnu/libicudata.so.73
+</span></span><span style="display:flex;"><span>./WebKitBuild/UserFlatpak/runtime/org.webkit.Sdk/x86_64/23.08/231a3d32baa6acd540820ba80965cc524a32911d0bce73f067d5d76ccb0f26dd/files/lib/x86_64-linux-gnu/libicudata.so.73.2
+</span></span><span style="display:flex;"><span>./WebKitBuild/UserFlatpak/runtime/org.webkit.Sdk/x86_64/23.08/231a3d32baa6acd540820ba80965cc524a32911d0bce73f067d5d76ccb0f26dd/files/lib/x86_64-linux-gnu/libicudata.so
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 但设置LD_LIBRARY_PATH后，运行直接在load so时就Crash了....</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 感觉正确的做法应该是实现JscPort，在flatpak中启动...</span>
+</span></span></code></pre></div><p>实现如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JscOnlyPort</span>(GLibPort):
+</span></span><span style="display:flex;"><span>    port_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jsc-only&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, <span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs):
+</span></span><span style="display:flex;"><span>        super(JscOnlyPort, self)<span style="color:#f92672">.</span>__init__(<span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run_minibrowser</span>(self, args):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># get error path: app/webkit/WebKitBuild/JSCOnly/Debug/bin/jsc</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># jsc = self._build_path(&#39;bin&#39;, &#39;jsc&#39;)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># so,wirte (right) static path:</span>
+</span></span><span style="display:flex;"><span>        jsc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/app/webkit/WebKitBuild/WPE/Debug/bin/jsc&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> self<span style="color:#f92672">.</span>_filesystem<span style="color:#f92672">.</span>isfile(jsc):
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#34;error&#34;</span>)
+</span></span><span style="display:flex;"><span>        command <span style="color:#f92672">=</span> [jsc]
+</span></span><span style="display:flex;"><span>        env, pass_fds <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>setup_sysprof_for_minibrowser()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>_should_use_jhbuild():
+</span></span><span style="display:flex;"><span>            command <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>_jhbuild_wrapper <span style="color:#f92672">+</span> command
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_executive<span style="color:#f92672">.</span>run_command(command <span style="color:#f92672">+</span> args, cwd<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>webkit_base(), stdout<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>, return_stderr<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>, decode_output<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>, env<span style="color:#f92672">=</span>env, pass_fds<span style="color:#f92672">=</span>pass_fds)
+</span></span></code></pre></div><p>成功了(没有了直接运行的Crash&hellip;&hellip;):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ Tools/Scripts/run-minibrowser --debug --jsc-only
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; 
+</span></span></code></pre></div><h1 id="总结">总结</h1>
+<p>之前祼编，运行时一直卡在wayland,用cog启动确实没有这些问题了。但比较坑的是文档和脚本完全对不上，如果不具体了解细节，即使编译成功了也很难启动</p>
+
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/configure-a-linux-development-environment/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">配置一个Linux开发环境</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/setup-wpewebkit-2.46-debug-environment/">WPEWebKit2.46调试环境</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/configure-a-linux-development-environment/">配置一个Linux开发环境</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/setup-webkit-debug-environment/">WebKit调试环境配置</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/review-webkit-build-process/">小记WebKit的构建</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/skia-debug-inline-pitfall/">Skia下SK_DEBUG内联的坑</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">2</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMAKE">CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言">编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

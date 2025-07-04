@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>配置一个Linux开发环境 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="配置一个Linux开发环境" />
+<meta property="og:description" content="原始记录 由于iMac到期，加上工作内容的改变，申请更换成了高级开发机，主要配置如下：9950X &#43; 32Gx2内存 &#43; 4T硬盘，比之前的iMac(2020年申请的)配置提高了不少。 设备到手后，进行了一番配置" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/configure-a-linux-development-environment/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2025-02-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2025-07-02T15:08:09+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="配置一个Linux开发环境"/>
+<meta name="twitter:description" content="原始记录 由于iMac到期，加上工作内容的改变，申请更换成了高级开发机，主要配置如下：9950X &#43; 32Gx2内存 &#43; 4T硬盘，比之前的iMac(2020年申请的)配置提高了不少。 设备到手后，进行了一番配置"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">配置一个Linux开发环境</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-02-12T00:00:00Z">2025-02-12</time>
+	<time class="meta__text" datetime="2025-07-02T15:08:09&#43;08:00">(最后修改: 2025-07-02)</time></div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 2300 字，阅读需 5 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<h2 id="原始记录">原始记录</h2>
+<p>由于iMac到期，加上工作内容的改变，申请更换成了高级开发机，主要配置如下：9950X + 32Gx2内存 + 4T硬盘，比之前的iMac(2020年申请的)配置提高了不少。</p>
+<p>设备到手后，进行了一番配置，花费了小2天的时间，故此记录一下。</p>
+<p>1.重装成Linux系统。</p>
+<p>默认是Win11系统，但我的日常开发非常依赖Linux系统，故此第一件事就是重装系统（其实还有第0件事，把巨大的台式机在我的小工位上找到合适的位置，并把iMac移出来，准备退库）。</p>
+<p>这里还有一个坑，在iMac上制作的Ubuntu启动U盘在文件夹里只能看到EFI部份，一度以为自己制作失败了，其实在Linux上就能看到全部目录。</p>
+<p>另外就是MSI的主板是通过Del键启动BIOS的，这个查一下就知道了。</p>
+<p>最后就是安装时要选择“图形硬件驱动”，不然系统会识别不出显卡，转而使用llvmpipe作为渲染后端。</p>
+<p>2.Ubuntu装之后就是基础环境配置，主要是输入法和键盘映射。默认的是ibus,感觉没必要折腾第3方的如极点、qq、搜狗五笔，ibus默认是支持五笔的，但98五笔需要自己导入db。参考：<a href="https://www.cnblogs.com/lianrenjujishou/p/5462316.html">向ibus-table-wubi里添加属于自己的输入法（98五笔） - deepbreath - 博客园</a>。</p>
+<p>要注意的是ibus/fcitx是输入法框架，每个框架下有多种输入法，应该先确定系统默认的框架是什么（系统－区域与语言－语言支持－键盘输入法系统），再看输入法是什么（设置－键盘－输入源）</p>
+<p>至于键盘映射，一开始使用gsettings，但稍复杂一点就不生效了&hellip;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>gsettings set org.gnome.desktop.input-sources xkb-options <span style="color:#e6db74">&#34;[&#39;caps:ctrl_modifier&#39;]&#34;</span>
+</span></span></code></pre></div><p>后面发现有很多开源项目可以实现这个诉求，如：</p>
+<ul>
+<li><a href="https://github.com/sezanzeb/input-remapper">https://github.com/sezanzeb/input-remapper</a> (最终用的是这个)</li>
+<li><a href="https://github.com/kmonad/kmonad">https://github.com/kmonad/kmonad</a></li>
+</ul>
+<p>系统自带的tweaks是基于gsettings的，还是不够灵活。</p>
+<p>3.其他就是一些软件安装:</p>
+<ul>
+<li>下载deb: VSCode、Linux微信、Chrome</li>
+<li>AppImage: Snipaste、Joplin（&ndash;no-sandbox问题）</li>
+<li>apt: syncthing</li>
+</ul>
+<p>4.最后＆最坑的就是企业微信，由于没有Linux版本，但又高频需要使用，如何解决呢？</p>
+<ul>
+<li>双系统？太不方便</li>
+<li>企微在笔记本(windows/macbook)上使用:也不方便，特别是发代码截图</li>
+<li>wine: 试了半天，感觉Ubuntu上安装Wine还是有点麻烦的，容易把apt环境搞坏，试了好几次，感觉坑比较多，也担心企微的兼容性(音视频通话、文档、邮件都要能正常使用)和稳定性是个无底洞</li>
+<li>最后还是决定使用virtualbox+windows虚拟机来解决，唯一的缺点就是资源占用多点(编译时可以暂停虚拟机)，但比较省事，工作环境还是稳定第一，不能太多折腾。这样QQ音乐这些Linux没有的软件也能方便使用起来。</li>
+</ul>
+<p>VirtualBox安装过程中也遇到一些问题。</p>
+<p>一开始从官网下载deb包，安装virtualbox，再安装Windows11系统，但无法启动：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>Kernel driver not installed (rc=-1908)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The VirtualBox Linux kernel driver is either not loaded or not set up correctly. Please try setting it up again by executing
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&#39;/sbin/vboxconfig&#39;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>as root.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>If your system has EFI Secure Boot enabled you may also need to sign the kernel modules (vboxdrv, vboxnetflt, vboxnetadp, vboxpci) before you can load them. Please see your Linux system&#39;s documentation for more information.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>where: suplibOsInit what: 3 VERR_VM_DRIVER_NOT_INSTALLED (-1908) - The support driver is not installed. On linux, open returned ENOENT.
+</span></span></code></pre></div><p>执行<code>sudo /sbin/vboxconfig</code>也是失败，应该是内核配置问题，参考<a href="https://blog.csdn.net/2301_82206160/article/details/139223991">解决ubuntu24.04 终端安装VirtualBox7.0 启动报错等问题！_virtualbox-dkms-CSDN博客</a>重新安装，期间遇到一些问题，逐一解决之。</p>
+<p>核心步骤：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install build-essential module-assistant
+</span></span><span style="display:flex;"><span>sudo m-a prepare
+</span></span><span style="display:flex;"><span>sudo adduser <span style="color:#e6db74">${</span>cur_user<span style="color:#e6db74">}</span> vboxusers
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo apt-get install linux-headers-<span style="color:#66d9ef">$(</span>uname -r<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>sudo apt-get install build-essential linux-headers-<span style="color:#e6db74">`</span>uname -r<span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>sudo apt-get --reinstall install virtualbox-dkms
+</span></span><span style="display:flex;"><span>sudo dpkg-reconfigure virtualbox-dkms
+</span></span><span style="display:flex;"><span>sudo modprobe vboxdrv
+</span></span></code></pre></div><p>一是安装时总失败（可能是之前安装wine搞坏的），如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt install build-essential 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>正在读取软件包列表... 完成
+</span></span><span style="display:flex;"><span>正在分析软件包的依赖关系树... 完成
+</span></span><span style="display:flex;"><span>正在读取状态信息... 完成                 
+</span></span><span style="display:flex;"><span>有一些软件包无法被安装。如果您用的是 unstable 发行版，这也许是
+</span></span><span style="display:flex;"><span>因为系统无法达到您要求的状态造成的。该版本中可能会有一些您需要的软件
+</span></span><span style="display:flex;"><span>包尚未被创建或是它们已被从新到<span style="color:#f92672">(</span>Incoming<span style="color:#f92672">)</span>目录移出。
+</span></span><span style="display:flex;"><span>下列信息可能会对解决问题有所帮助：
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>下列软件包有未满足的依赖关系：
+</span></span><span style="display:flex;"><span> libbz2-1.0 : 破坏: libbz2-1.0:i386 <span style="color:#f92672">(</span>!<span style="color:#f92672">=</span> 1.0.8-5.1build0.1<span style="color:#f92672">)</span> 但是 1.0.8-5.1 正要被安装
+</span></span><span style="display:flex;"><span> libbz2-1.0:i386 : 破坏: libbz2-1.0 <span style="color:#f92672">(</span>!<span style="color:#f92672">=</span> 1.0.8-5.1<span style="color:#f92672">)</span> 但是 1.0.8-5.1build0.1 正要被安装
+</span></span><span style="display:flex;"><span>E: 错误，pkgProblemResolver::Resolve 发生故障，这可能是有软件包被要求保持现状的缘故。
+</span></span></code></pre></div><p>这个其实是libbz的amd64和i386版本不一致，共轭住了，重新安装其中一个即可。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt-get install libbz2-1.0<span style="color:#f92672">=</span>1.0.8-5.1
+</span></span></code></pre></div><p>另外执行到<code>sudo apt-get --reinstall install virtualbox-dkms</code>时有如下错误：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>正在设置 libqt5qml5:amd64 <span style="color:#f92672">(</span>5.15.13+dfsg-1<span style="color:#f92672">)</span> ...
+</span></span><span style="display:flex;"><span>正在设置 virtualbox <span style="color:#f92672">(</span>7.0.16-dfsg-2<span style="color:#f92672">)</span> ...
+</span></span><span style="display:flex;"><span>Job <span style="color:#66d9ef">for</span> virtualbox.service failed because the control process exited with error code.
+</span></span><span style="display:flex;"><span>See <span style="color:#e6db74">&#34;systemctl status virtualbox.service&#34;</span> and <span style="color:#e6db74">&#34;journalctl -xeu virtualbox.service&#34;</span> <span style="color:#66d9ef">for</span> details.
+</span></span><span style="display:flex;"><span>invoke-rc.d: initscript virtualbox, action <span style="color:#e6db74">&#34;restart&#34;</span> failed.
+</span></span><span style="display:flex;"><span>× virtualbox.service - LSB: VirtualBox Linux kernel module
+</span></span><span style="display:flex;"><span>     Loaded: loaded <span style="color:#f92672">(</span>/etc/init.d/virtualbox; generated<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>     Active: failed <span style="color:#f92672">(</span>Result: exit-code<span style="color:#f92672">)</span> since Wed 2025-02-12 15:17:41 CST; 2ms ago
+</span></span><span style="display:flex;"><span>       Docs: man:systemd-sysv-generator<span style="color:#f92672">(</span>8<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    Process: <span style="color:#ae81ff">44266</span> ExecStart<span style="color:#f92672">=</span>/etc/init.d/virtualbox start <span style="color:#f92672">(</span>code<span style="color:#f92672">=</span>exited, status<span style="color:#f92672">=</span>1/FAILURE<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        CPU: 15ms
+</span></span></code></pre></div><p>这个需要去BIOS关闭Secure Boot，再开机时会有个<code>Enroll MDK</code>入口，一路YES即可。</p>
+<p>如此之后，Windows便正常启动了，细节还是有一些的，而且平时很少接触到。</p>
+<p>启动之后，还要安装增强功能，这样Linux和Windows才能互通，如果点<code>设备－安装增强功能...</code>没有效果，就要根据virtualbox版本下载对应的iso: <a href="https://download.virtualbox.org/virtualbox/7.0.6/">https://download.virtualbox.org/virtualbox/7.0.6/</a> 。注意是下载到Host，再在Virtualbox的<code>设备－分配光驱</code>中加载这个iso，这样在Windows虚拟机中的驱动器中就有了增强程序的安装文件，安装重启即可。</p>
+<blockquote>
+<p>Note: 这个版本一定要对应，比如我的VirtualBox是7.0.16，一开始看错下成了7.0.6的，每次运行虚拟机不到1小时是就会出现卡死，就是这个原因。</p>
+</blockquote>
+<p>5.adb问题,参考<a href="https://www.cnblogs.com/feiquan/p/12806081.html">Ubuntu adb 报错：no permissions (user in plugdev group; are your udev rules wrong?); - feiquan - 博客园</a></p>
+<h2 id="补充">补充</h2>
+<p>引入一些插件，提升工作效率</p>
+<ul>
+<li><a href="https://extensions.gnome.org/extension/973/switcher/">https://extensions.gnome.org/extension/973/switcher/</a> : 窗口切换</li>
+</ul>
+
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/setup-webkit-debug-environment/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">WebKit调试环境配置</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/articles/setup-wpewebkit-2.46-debug-environment/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">WPEWebKit2.46调试环境</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/setup-wpewebkit-2.46-debug-environment/">WPEWebKit2.46调试环境</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/configure-a-linux-development-environment/">配置一个Linux开发环境</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/setup-webkit-debug-environment/">WebKit调试环境配置</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/review-webkit-build-process/">小记WebKit的构建</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/skia-debug-inline-pitfall/">Skia下SK_DEBUG内联的坑</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">2</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMAKE">CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言">编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
