@@ -6,8 +6,15 @@
     <description>Recent content in Articles on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 02 Jul 2025 15:08:09 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 20 Oct 2025 19:53:37 +0800</lastBuildDate>
     <atom:link href="/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows虚拟机内的企微聊天记录迁移</title>
+      <link>/articles/migrate-wxwork-chat-history-in-windows-vm/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/migrate-wxwork-chat-history-in-windows-vm/</guid>
+      <description>背景是： 由于工作场景原因，主机安装的是Linux,于是安装了VirtualBox,通过Windows虚拟机使用企微 后面申请了MacBook,加上VirtualBox带个Windows比较拖累性能，就打</description>
+    </item>
     <item>
       <title>WPEWebKit2.46调试环境</title>
       <link>/articles/setup-wpewebkit-2.46-debug-environment/</link>

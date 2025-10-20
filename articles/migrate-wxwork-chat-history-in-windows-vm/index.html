@@ -4,18 +4,18 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>关于 - 赵裕的博客</title>
+	<title>Windows虚拟机内的企微聊天记录迁移 - 赵裕的博客</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-		<meta property="og:title" content="关于" />
-<meta property="og:description" content="个人简介 TODO 重要时刻 2023年：年初升级T10成功，WOT优秀讲师 2022年：绩效双五星（没啥用，但必需得有这份经历&hellip;），腾讯学院优秀讲师。 2021年：写完《Flutter内核源码剖析》并出版，年中晋升到T9。 2018年：大学毕业，入职腾讯（T4）。 2017年：在腾讯实习3个月，并转正（第一次来深圳）。 2015年：开始接触编程，并于年中转入“计算机科学与技术”专业。 2014年：考入大连理工大学“过程装备与控制工程”专业。 技术经历 平台框架: Android、iOS、Web、Flutter 编程语言: C、C&#43;&#43;、Java、Dart 读过的书(部分) 2022年：《&hellip;》 走过的路(部分) 2023年：重庆、北京、香港、江西（南昌、庐山、景德镇） 2021年：广西（桂林、阳朔）、贵州（黔东南） 2020年：川藏线（四川-拉萨）、湖南（长沙） 2018年：山东（烟台、蓬莱、济南、泰山、曲阜） 最后编辑于 2023-10-14" />
+		<meta property="og:title" content="Windows虚拟机内的企微聊天记录迁移" />
+<meta property="og:description" content="背景是： 由于工作场景原因，主机安装的是Linux,于是安装了VirtualBox,通过Windows虚拟机使用企微 后面申请了MacBook,加上VirtualBox带个Windows比较拖累性能，就打" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/about/" /><meta property="article:section" content="" />
+<meta property="og:url" content="/articles/migrate-wxwork-chat-history-in-windows-vm/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2025-10-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2025-10-20T19:53:37+08:00" />
 
-<meta property="article:modified_time" content="2023-10-14T20:15:57+08:00" />
-
-		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="关于"/>
-<meta name="twitter:description" content="个人简介 TODO 重要时刻 2023年：年初升级T10成功，WOT优秀讲师 2022年：绩效双五星（没啥用，但必需得有这份经历&hellip;），腾讯学院优秀讲师。 2021年：写完《Flutter内核源码剖析》并出版，年中晋升到T9。 2018年：大学毕业，入职腾讯（T4）。 2017年：在腾讯实习3个月，并转正（第一次来深圳）。 2015年：开始接触编程，并于年中转入“计算机科学与技术”专业。 2014年：考入大连理工大学“过程装备与控制工程”专业。 技术经历 平台框架: Android、iOS、Web、Flutter 编程语言: C、C&#43;&#43;、Java、Dart 读过的书(部分) 2022年：《&hellip;》 走过的路(部分) 2023年：重庆、北京、香港、江西（南昌、庐山、景德镇） 2021年：广西（桂林、阳朔）、贵州（黔东南） 2020年：川藏线（四川-拉萨）、湖南（长沙） 2018年：山东（烟台、蓬莱、济南、泰山、曲阜） 最后编辑于 2023-10-14"/>
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Windows虚拟机内的企微聊天记录迁移"/>
+<meta name="twitter:description" content="背景是： 由于工作场景原因，主机安装的是Linux,于是安装了VirtualBox,通过Windows虚拟机使用企微 后面申请了MacBook,加上VirtualBox带个Windows比较拖累性能，就打"/>
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -89,7 +89,7 @@
 				
 			</a>
 		</li>
-		<li class="menu__item menu__item--active">
+		<li class="menu__item">
 			<a class="menu__link" href="/about/">
 				
 				<span class="menu__text">关于</span>
@@ -105,47 +105,74 @@
 			<div class="primary">
 			
 <main class="main" role="main">
-  <article class="post">
-    <div class="content post__content clearfix">
-      <!--
-<img src="https://vimerzhao.top/assets/about_vimerzhao.jpg" style="border: 1px solid #CCC"/>
--->
-<h4 id="个人简介">个人简介</h4>
-<ul>
-<li><input disabled="" type="checkbox"> TODO</li>
-</ul>
-<h4 id="重要时刻">重要时刻</h4>
-<ul>
-<li>2023年：年初升级T10成功，WOT优秀讲师</li>
-<li>2022年：绩效双五星（没啥用，但必需得有这份经历&hellip;），腾讯学院优秀讲师。</li>
-<li>2021年：写完《Flutter内核源码剖析》并出版，年中晋升到T9。</li>
-<li>2018年：大学毕业，入职腾讯（T4）。</li>
-<li>2017年：在腾讯实习3个月，并转正（第一次来深圳）。</li>
-<li>2015年：开始接触编程，并于年中转入“计算机科学与技术”专业。</li>
-<li>2014年：考入大连理工大学“过程装备与控制工程”专业。</li>
-</ul>
-<h4 id="技术经历">技术经历</h4>
-<ul>
-<li>平台框架: Android、iOS、Web、Flutter</li>
-<li>编程语言: C、C++、Java、Dart</li>
-</ul>
-<h4 id="读过的书部分">读过的书(部分)</h4>
-<ul>
-<li>2022年：《&hellip;》</li>
-</ul>
-<h4 id="走过的路部分">走过的路(部分)</h4>
-<ul>
-<li>2023年：重庆、北京、香港、江西（南昌、庐山、景德镇）</li>
-<li>2021年：广西（桂林、阳朔）、贵州（黔东南）</li>
-<li>2020年：川藏线（四川-拉萨）、湖南（长沙）</li>
-<li>2018年：山东（烟台、蓬莱、济南、泰山、曲阜）</li>
-</ul>
-<hr>
-<p>最后编辑于 2023-10-14</p>
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Windows虚拟机内的企微聊天记录迁移</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-10-20T00:00:00Z">2025-10-20</time>
+	<time class="meta__text" datetime="2025-10-20T19:53:37&#43;08:00">(最后修改: 2025-10-20)</time></div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 700 字，阅读需 2 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<p>背景是：</p>
+<ol>
+<li>由于工作场景原因，主机安装的是Linux,于是安装了VirtualBox,通过Windows虚拟机使用企微</li>
+<li>后面申请了MacBook,加上VirtualBox带个Windows比较拖累性能，就打算迁移到Mac</li>
+</ol>
+<p>可能是出于安全原因，企微已经不支持导出/导入聊天记录了，只能选择迁移到手机/电脑，要求2者连接同一局域网。</p>
+<p>之前遇到过一次情况：手机和电脑同步连接家里Wifi,但迁移时一直报错：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>无法连接
+</span></span><span style="display:flex;"><span>请将两台电脑设备连接至同一网络并保持唤醒状态。
+</span></span></code></pre></div><p>换了个思路：手机开热点，电脑连接手机热点。才最终迁移成功。</p>
+<p>这次更复杂点：</p>
+<ol>
+<li>聊天记录来源是：Linux宿主机里面的Windows虚拟机（通过VirtualBox安装）</li>
+<li>迁移目标是：一个新的MacBook</li>
+</ol>
+<p>由于Linux iOA的限制，Linux宿主机是有线网络连接的，但企微其实不太依赖iOA,所以第一个尝试：</p>
+<ol>
+<li>Linux宿主机和MacBook都连接手机热点</li>
+</ol>
+<p>但一直“无法连接”。</p>
+<p>客服提供的方案，通过一个特殊的后门导出聊天记录，然后Copy到时MacBook，再导入，整个过程比较复杂，而且文件无法处理。</p>
+<p>我的直觉告诉我，这个迁移的关键点就是两个设备的企微要在同一个局域网，这个是本质。</p>
+<p>继续思考，容易发现VirtualBox有多种网络模式，一般默认是NAT,这种方式其实就隔离了Windows虚拟机，导致其无法在局域网上被找到。</p>
+<p>于是关闭了这个网络，只启用一个&quot;桥接网格&quot;，这个虚拟机就是一个真实的网络节点。另外注意在Windows虚拟机内要连接这个网络，如下图：</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2024/20251020191221.png" alt="20251020191220"></p>
+<p>如此，就能正常迁移了，另外注意热点要支持5GHz,不然迁移速度会非常慢</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2024/20251020191359.png" alt="20251020191359"></p>
 
-    </div>
-  </article>
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
 </main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/setup-wpewebkit-2.46-debug-environment/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">WPEWebKit2.46调试环境</p>
+		</a>
+	</div>
+</nav>
 
 <script src="https://utteranc.es/client.js"
   repo="vimerzhao/vimerzhao.github.io"
