@@ -6,8 +6,15 @@
     <description>Recent content in Articles on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 20 Oct 2025 19:53:37 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 27 Oct 2025 20:53:29 +0800</lastBuildDate>
     <atom:link href="/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CMake使用Protobuf的正确姿势</title>
+      <link>/articles/use-protobuf-in-cmake/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/use-protobuf-in-cmake/</guid>
+      <description>工程上有一个非常基础的原则，就是: 关联度越高的逻辑应该越靠近 。 但实践中，往往容易忽视，导致的结果就是：出了问题，我们要从一个非常遥远的错误，慢慢回溯，找到最根本的原因。 近来研究如何在cmake中使用P</description>
+    </item>
     <item>
       <title>Windows虚拟机内的企微聊天记录迁移</title>
       <link>/articles/migrate-wxwork-chat-history-in-windows-vm/</link>
