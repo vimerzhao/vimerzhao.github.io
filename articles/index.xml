@@ -6,8 +6,15 @@
     <description>Recent content in Articles on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 08 Nov 2025 23:18:26 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 14 Nov 2025 17:23:28 +0800</lastBuildDate>
     <atom:link href="/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一笔糊涂帐的清算</title>
+      <link>/articles/clearing-up-a-messy-debt/</link>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/clearing-up-a-messy-debt/</guid>
+      <description>去年开始接触一个项目，这个项目编出来后运行时出现权限问题(Permission Denied)，于是就用sudo运行. 因此，基于VSCode调试时就要先用sudo code --no-sandbox --user-data-dir vscode-root启动VSCo</description>
+    </item>
     <item>
       <title>编译wpe-webkit-android的问题记录</title>
       <link>/articles/process-of-build-wpe-webkit-android/</link>
