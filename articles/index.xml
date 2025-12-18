@@ -6,8 +6,15 @@
     <description>Recent content in Articles on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 14 Nov 2025 17:23:28 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 18 Dec 2025 10:25:36 +0800</lastBuildDate>
     <atom:link href="/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Webkit在嵌入式设备渲染卡死现象的分析</title>
+      <link>/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/</guid>
+      <description>零、引言 所有乍见诡异、无法理解的现象背后，都有一系列我们尚未了解的细节，以及一个合理自洽的解释。 一、问题背景 我们的项目之前使用的上屏方式是基于LVGL改进的一套DRM封装，支持3缓冲，性能尚可，但通过</description>
+    </item>
     <item>
       <title>一笔糊涂帐的清算</title>
       <link>/articles/clearing-up-a-messy-debt/</link>

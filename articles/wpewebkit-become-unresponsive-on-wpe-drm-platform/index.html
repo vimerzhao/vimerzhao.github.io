@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Webkit在嵌入式设备渲染卡死现象的分析 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Webkit在嵌入式设备渲染卡死现象的分析" />
+<meta property="og:description" content="零、引言 所有乍见诡异、无法理解的现象背后，都有一系列我们尚未了解的细节，以及一个合理自洽的解释。 一、问题背景 我们的项目之前使用的上屏方式是基于LVGL改进的一套DRM封装，支持3缓冲，性能尚可，但通过" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2025-12-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2025-12-18T10:25:36+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Webkit在嵌入式设备渲染卡死现象的分析"/>
+<meta name="twitter:description" content="零、引言 所有乍见诡异、无法理解的现象背后，都有一系列我们尚未了解的细节，以及一个合理自洽的解释。 一、问题背景 我们的项目之前使用的上屏方式是基于LVGL改进的一套DRM封装，支持3缓冲，性能尚可，但通过"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Webkit在嵌入式设备渲染卡死现象的分析</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-12-16T00:00:00Z">2025-12-16</time>
+	<time class="meta__text" datetime="2025-12-18T10:25:36&#43;08:00">(最后修改: 2025-12-18)</time></div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 5700 字，阅读需 12 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<h2 id="零引言">零、引言</h2>
+<blockquote>
+<p>所有乍见诡异、无法理解的现象背后，都有一系列我们尚未了解的细节，以及一个合理自洽的解释。</p>
+</blockquote>
+<h2 id="一问题背景">一、问题背景</h2>
+<p>我们的项目之前使用的上屏方式是基于<a href="https://lvgl.io/">LVGL</a>改进的一套DRM封装，支持3缓冲，性能尚可，但通过对WPEWebkit的调研，发现其有两套API:</p>
+<ul>
+<li>WPE 1.1（通过<code>ENABLE_WPE_1_1_API</code>控制构建）：支持Headless / Wayland</li>
+<li>WPE 2.0 (通过<code>ENABLE_WPE_PLATFORM</code>控制构建)：支持Headless / Wayland / DRM</li>
+</ul>
+<p>于是，借着升级Webkit（2.46.2 -&gt; 2.50.0）的机会，我们也决定使用WPE2.0,而不是自研的DRM上屏，以获取更多先进的功能，摒弃一些历史包袱。</p>
+<p>升级之后，一个明显的好处就是：同一份代码，可以运行在不同的桌面环境（如下图）：</p>
+<ul>
+<li>启动weston,再启动项目，此时是基于Wayland协议上屏</li>
+<li>关闭weston,设置环境变量<code>export WPE_DISPLAY=&quot;wpe-display-drm&quot;</code>，再启动项目，此时是直接基于DRM接口上屏</li>
+</ul>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2025/ezgif_2025-12-17_17-38-40.gif" alt=""></p>
+<p>测试URL: <a href="https://support.ekioh.com/benchmarks/balls.html">https://support.ekioh.com/benchmarks/balls.html</a></p>
+<p>但实测发现：<span style="color:red;font-weight: bold">使用DRM上屏时，渲染900多帧后必现卡死，而基于Wayland上屏不会出现这个问题。</span></p>
+<p>另外，我们编译官方的WPEWebkit也能复现这个问题（<strong>这就排除了我们项目自身的影响</strong>）：</p>
+<ul>
+<li>2.50.0 Sat Sep 20 2025(这是我们项目的基线版本，能复现问题)</li>
+<li>2.51.3 Tue Dec 09 2025(这是当前最新的wpewebkit版本，也能复现问题)</li>
+</ul>
+<p>版本信息:<a href="https://wpewebkit.org/release/">wpewebkit-Releases</a>。（网页内容随时间变化，当前快照如下）</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2025/Snipaste_2025-12-16_20-28-40.png" alt=""></p>
+<p>基于以上过程，可以认为<span style="color:red;font-weight: bold">这个Bug是官方引入且暂时没有解决的。</span></p>
+<h2 id="二排查过程">二、排查过程</h2>
+<h3 id="1-从displaylink开始">1. 从DisplayLink开始</h3>
+<p>Webkit是多进程的，对于一个网页：</p>
+<ul>
+<li>UI进程负责上屏相关工作</li>
+<li>Web进程负责渲染相关工作</li>
+</ul>
+<p>渲染与上屏是一个Loop，循环往复,无论从哪个环节切入排查，都将遍历所有的流程，所以我们从比较熟悉的<code>ThreadedCompositor::renderLayerTree</code>开始排查，其是渲染的核心，而DisplayLink则是对Web进程渲染全流程的概括，其本质是VSync,之所以如此命名，个人猜测可能是Mac平台先用DisplayLink来表示这个概念，但其本质和Vsync / VBlank是相似的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// Source/WTF/wtf/PlatformHave.h
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#if PLATFORM(MAC) || PLATFORM(GTK) || PLATFORM(WPE)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define HAVE_DISPLAY_LINK 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span></code></pre></div><p>DisplayLink的逻辑核心就是接收UI进程的VSync信号，并有自己的一套阈值逻辑，来保证60fps，其关键代码如下图
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2025/Snipaste_2025-12-16_20-38-40.png" alt=""></p>
+<p>具体的细节不展开讨论，由于其每个环节有不少检查，是有可能导致卡死的。如:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// Source/WebKit/WebProcess/WebPage/CoordinatedGraphics/ThreadedCompositor.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> ThreadedCompositor<span style="color:#f92672">::</span>frameComplete()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    WTFEmitSignpost(<span style="color:#66d9ef">this</span>, FrameComplete);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ASSERT(m_compositingRunLoop<span style="color:#f92672">-&gt;</span>isCurrent());
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#if !HAVE(DISPLAY_LINK)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    displayUpdateFired();
+</span></span><span style="display:flex;"><span>    sceneUpdateFinished();
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#else
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Locker stateLocker { m_compositingRunLoop<span style="color:#f92672">-&gt;</span>stateLock() };
+</span></span><span style="display:flex;"><span>    m_compositingRunLoop<span style="color:#f92672">-&gt;</span>updateCompleted(stateLocker);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//Source/WebKit/WebProcess/WebPage/CoordinatedGraphics/CompositingRunLoop.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> CompositingRunLoop<span style="color:#f92672">::</span>updateCompleted(Locker<span style="color:#f92672">&lt;</span>Lock<span style="color:#f92672">&gt;&amp;</span> stateLocker)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// strip some code....
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">switch</span> (m_state.update) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> UpdateState<span style="color:#f92672">::</span>Idle:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> UpdateState<span style="color:#f92672">::</span>Scheduled:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> UpdateState<span style="color:#f92672">::</span>InProgress:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (m_state.pendingUpdate) {
+</span></span><span style="display:flex;"><span>            m_state.pendingUpdate <span style="color:#f92672">=</span> false;
+</span></span><span style="display:flex;"><span>            m_state.update <span style="color:#f92672">=</span> UpdateState<span style="color:#f92672">::</span>Scheduled;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>m_state.isSuspended)
+</span></span><span style="display:flex;"><span>                m_updateTimer.startOneShot(<span style="color:#ae81ff">0</span>_s);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        m_state.update <span style="color:#f92672">=</span> UpdateState<span style="color:#f92672">::</span>Idle;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>以上代码便是DisplayLink中的一环，渲染结束、上屏完成后，必需调用frameComplete通知，状态更新后才开始处理新的任务，这样可以<strong>避免帧的积压</strong>。</p>
+<p>实际上，DRM模式卡死时，这个frameComplete确实没有调用，进而导致整个DisplayLink的循环中断了。</p>
+<p>那么，看起来只要解决frameComplete没有调用的问题，这个问题就解决了？</p>
+<h3 id="2-误解framedone的来源浪费时间">2. 误解frameDone的来源，浪费时间</h3>
+<p>frameComplete是由<code>AcceleratedSurface::frameDone</code>触发的，其调用点其实有两个：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// 调用点1：向libwpe.so注册，监听回调，这个过程是在Web进程的
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Source/WebKit/WebProcess/WebPage/CoordinatedGraphics/AcceleratedSurface.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">wpe_renderer_backend_egl_target_client</span> s_client <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// frame_complete
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        [](<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> data) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> surface <span style="color:#f92672">=</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">reinterpret_cast</span><span style="color:#f92672">&lt;</span>AcceleratedSurface<span style="color:#f92672">*&gt;</span>(data);
+</span></span><span style="display:flex;"><span>            surface.frameDone();
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// padding
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">nullptr</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">nullptr</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">nullptr</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">nullptr</span>
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    wpe_renderer_backend_egl_target_set_client(m_backend, <span style="color:#f92672">&amp;</span>s_client, <span style="color:#66d9ef">const_cast</span><span style="color:#f92672">&lt;</span>AcceleratedSurface<span style="color:#f92672">*&gt;</span>(<span style="color:#f92672">&amp;</span>surface));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 调用点2：通过IPC由UI进程调用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// build-aarch64-WPE-Debug/DerivedSources/WebKit/AcceleratedSurfaceMessageReceiver.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> AcceleratedSurface<span style="color:#f92672">::</span>didReceiveMessage(IPC<span style="color:#f92672">::</span>Connection<span style="color:#f92672">&amp;</span> connection, IPC<span style="color:#f92672">::</span>Decoder<span style="color:#f92672">&amp;</span> decoder)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Ref protectedThis { <span style="color:#f92672">*</span><span style="color:#66d9ef">this</span> };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (decoder.messageName() <span style="color:#f92672">==</span> Messages<span style="color:#f92672">::</span>AcceleratedSurface<span style="color:#f92672">::</span>ReleaseBuffer<span style="color:#f92672">::</span>name())
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> IPC<span style="color:#f92672">::</span>handleMessage<span style="color:#f92672">&lt;</span>Messages<span style="color:#f92672">::</span>AcceleratedSurface<span style="color:#f92672">::</span>ReleaseBuffer<span style="color:#f92672">&gt;</span>(connection, decoder, <span style="color:#66d9ef">this</span>, <span style="color:#f92672">&amp;</span>AcceleratedSurface<span style="color:#f92672">::</span>releaseBuffer);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (decoder.messageName() <span style="color:#f92672">==</span> Messages<span style="color:#f92672">::</span>AcceleratedSurface<span style="color:#f92672">::</span>FrameDone<span style="color:#f92672">::</span>name())
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> IPC<span style="color:#f92672">::</span>handleMessage<span style="color:#f92672">&lt;</span>Messages<span style="color:#f92672">::</span>AcceleratedSurface<span style="color:#f92672">::</span>FrameDone<span style="color:#f92672">&gt;</span>(connection, decoder, <span style="color:#66d9ef">this</span>, <span style="color:#f92672">&amp;</span>AcceleratedSurface<span style="color:#f92672">::</span>frameDone);
+</span></span><span style="display:flex;"><span>    UNUSED_PARAM(connection);
+</span></span><span style="display:flex;"><span>    RELEASE_LOG_ERROR(IPC, <span style="color:#e6db74">&#34;Unhandled message %s to %&#34;</span> PRIu64, IPC<span style="color:#f92672">::</span>description(decoder.messageName()).characters(), decoder.destinationID());
+</span></span><span style="display:flex;"><span>    decoder.markInvalid();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>由于我们是基于WPEWebkit,编译的PORT也是WPE,自然容易认为调用点是1，由此得出的结论是：libwpe.so的<code>frame_complete</code>回调失效了。</p>
+<p>为此，笔者尝试编译了一个<a href="https://github.com/WebPlatformForEmbedded/libwpe">WebPlatformForEmbedded/libwpe</a>以排查问题，担发现相关日志并未触发。最终调试证实，真正的调用点是2。</p>
+<p>为了理清这个问题，有必要理清这两个调用点的使用条件，以Linux平台为例，相关代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// Source/WebCore/platform/graphics/PlatformDisplay.h
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">enum</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Type</span> {
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#if PLATFORM(WIN)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Windows, <span style="color:#75715e">// 不编译
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#if USE(WPE_RENDERER)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        WPE, <span style="color:#75715e">// 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Surfaceless, <span style="color:#75715e">// 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#if USE(GBM)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        GBM, <span style="color:#75715e">// 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#if PLATFORM(GTK)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Default, <span style="color:#75715e">// 3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    };
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Source/WebKit/WebProcess/WebPage/CoordinatedGraphics/AcceleratedSurface.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>AcceleratedSurface<span style="color:#f92672">::</span>SwapChain<span style="color:#f92672">::</span>SwapChain(<span style="color:#66d9ef">uint64_t</span> surfaceID)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">:</span> m_surfaceID(surfaceID)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> display <span style="color:#f92672">=</span> PlatformDisplay<span style="color:#f92672">::</span>sharedDisplay();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">switch</span> (display.type()) {
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#if PLATFORM(GTK) || ENABLE(WPE_PLATFORM)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">case</span> PlatformDisplay<span style="color:#f92672">::</span>Type<span style="color:#f92672">::</span>Surfaceless:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (display.eglExtensions().MESA_image_dma_buf_export <span style="color:#f92672">&amp;&amp;</span> WebProcess<span style="color:#f92672">::</span>singleton().rendererBufferTransportMode().contains(RendererBufferTransportMode<span style="color:#f92672">::</span>Hardware))
+</span></span><span style="display:flex;"><span>            m_type <span style="color:#f92672">=</span> Type<span style="color:#f92672">::</span>Texture;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>            m_type <span style="color:#f92672">=</span> Type<span style="color:#f92672">::</span>SharedMemory;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#if USE(GBM)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">case</span> PlatformDisplay<span style="color:#f92672">::</span>Type<span style="color:#f92672">::</span>GBM:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (display.eglExtensions().EXT_image_dma_buf_import)
+</span></span><span style="display:flex;"><span>            m_type <span style="color:#f92672">=</span> Type<span style="color:#f92672">::</span>EGLImage;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>            m_type <span style="color:#f92672">=</span> Type<span style="color:#f92672">::</span>SharedMemory;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#if USE(WPE_RENDERER)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">case</span> PlatformDisplay<span style="color:#f92672">::</span>Type<span style="color:#f92672">::</span>WPE:
+</span></span><span style="display:flex;"><span>        m_type <span style="color:#f92672">=</span> Type<span style="color:#f92672">::</span>WPEBackend;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>影响<code>frameDone</code>调用来源的因素其实是wpe api的选择。</p>
+<ol>
+<li>使用wpe 1.1，<code>display.type()</code>是<code>Type::WPE</code>,对应<code>SwapChain::Type::WPEBackend</code></li>
+<li>使用wpe 2.0，<code>display.type()</code>是<code>Type::GBM</code>,（通常）对应<code>SwapChain::Type::EGLImage</code></li>
+</ol>
+<p>wpe1.1 的核心是依赖<code>libwpe.so</code>, 而wpe2.0则抛弃了这个库，重新封装了DRM和Wayland的调用，主要代码在<code>Source/WebKit/WPEPlatform</code>目录.</p>
+<p>在wpewebkit-2.46.2和wpewebkit-2.50.0的<code>Tools/MiniBrowser/wpe/main.cpp</code>中，对开启wpe2.0的参数设计也有变化，如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// wpewebkit-2.46.2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> GOptionEntry commandLineOptions[] <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// strip some code..........
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#if ENABLE_WPE_PLATFORM
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    { <span style="color:#e6db74">&#34;use-wpe-platform-api&#34;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, G_OPTION_ARG_NONE, <span style="color:#f92672">&amp;</span>useWPEPlatformAPI, <span style="color:#e6db74">&#34;Use the WPE platform API&#34;</span>, <span style="color:#66d9ef">nullptr</span> },
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// strip some code..........
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// wpewebkit-2.50.0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> GOptionEntry commandLineOptions[] <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// strip some code..........
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#if ENABLE_WPE_PLATFORM
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    { <span style="color:#e6db74">&#34;use-legacy-api&#34;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, G_OPTION_ARG_NONE, <span style="color:#f92672">&amp;</span>useLegacyAPI, <span style="color:#e6db74">&#34;Use the WPE legacy API (libwpe)&#34;</span>, <span style="color:#66d9ef">nullptr</span> },
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// strip some code..........
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span></code></pre></div><p>也就是说，在2.46,wpe2.0(<code>use-wpe-platform-api</code>)还是默认关闭的，默认使用wpe1.1,而2.50后，wpe2.0是默认开启的（前提是编译开启了），使用wpe1.1需要显式声明。</p>
+<p>这种细小的改变也说明了WPEWebkit的发展方向，当然，也要承认Webkit在WPE的基础上衍生出好几个相关的宏<code>WPE</code> \ <code>WPE_PLATFORM</code> \ <code>WPE_RENDERER</code>造成了理解上的负担,如果不建立全局的理解，就容易像笔者这样误入歧途，浪费时间。</p>
+<h3 id="3-从framedone切入ipc">3. 从frameDone切入IPC</h3>
+<p>至此，正确的排查方向是:<span style="color:red;font-weight: bold">为什么UI进程不发送frameDone消息了？</span></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// Source/WebKit/WebProcess/WebPage/CoordinatedGraphics/AcceleratedSurface.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> AcceleratedSurface<span style="color:#f92672">::</span>RenderTargetShareableBuffer<span style="color:#f92672">::</span>didRenderFrame(Vector<span style="color:#f92672">&lt;</span>IntRect, <span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;&amp;&amp;</span> damageRects)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    WebProcess<span style="color:#f92672">::</span>singleton().parentProcessConnection()<span style="color:#f92672">-&gt;</span>send(Messages<span style="color:#f92672">::</span>AcceleratedBackingStore<span style="color:#f92672">::</span>Frame(m_id, WTFMove(damageRects), WTFMove(m_renderingFenceFD)), m_surfaceID);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Source/WeobKit/UIProcess/gtk/AcceleratedBackingStore.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> AcceleratedBackingStore<span style="color:#f92672">::</span>bufferReleased(WPEBuffer<span style="color:#f92672">*</span> buffer)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">auto</span> id <span style="color:#f92672">=</span> m_bufferIDs.get(buffer)) {
+</span></span><span style="display:flex;"><span>        UnixFileDescriptor releaseFence;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (WPE_IS_BUFFER_DMA_BUF(buffer))
+</span></span><span style="display:flex;"><span>            releaseFence <span style="color:#f92672">=</span> UnixFileDescriptor { wpe_buffer_dma_buf_take_release_fence(WPE_BUFFER_DMA_BUF(buffer)), UnixFileDescriptor<span style="color:#f92672">::</span>Adopt };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (RefPtr legacyMainFrameProcess <span style="color:#f92672">=</span> m_legacyMainFrameProcess.get())
+</span></span><span style="display:flex;"><span>            legacyMainFrameProcess<span style="color:#f92672">-&gt;</span>send(Messages<span style="color:#f92672">::</span>AcceleratedSurface<span style="color:#f92672">::</span>ReleaseBuffer(id, WTFMove(releaseFence)), m_surfaceID);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> AcceleratedBackingStore<span style="color:#f92672">::</span>frameDone()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (RefPtr legacyMainFrameProcess <span style="color:#f92672">=</span> m_legacyMainFrameProcess.get())
+</span></span><span style="display:flex;"><span>        legacyMainFrameProcess<span style="color:#f92672">-&gt;</span>send(Messages<span style="color:#f92672">::</span>AcceleratedSurface<span style="color:#f92672">::</span>FrameDone(), m_surfaceID);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这里的排查和调试细节略去，过于琐碎，核心在于这个流程：</p>
+<ol>
+<li>一帧渲染完成，Web进程发送AcceleratedBackingStore::Frame消息，通知UI进程上屏</li>
+<li>UI进程对于已经完成上屏的Buffer,通知Web进程对应的缓冲区(ReleaseBuffer)可用于渲染（可选）</li>
+<li>UI进程对于已经上屏的帧，通知Web进程，发送AcceleratedSurface::FrameDone消息</li>
+</ol>
+<p>实际排查发现，frameDone没有按预期发送的原因其实是这一帧的AcceleratedBackingStore::Frame（Web-&gt;UI）消息没有接收到，<strong>由于前置逻辑没有执行，frameDone自然没有执行</strong>。</p>
+<p>继续分析，发现卡死前的IPC失败点如下:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// Source/WebKit/Platform/IPC/unix/ConnectionUnix.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">static</span> ssize_t <span style="color:#a6e22e">readBytesFromSocket</span>(<span style="color:#66d9ef">int</span> socketDescriptor, Vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint8_t</span><span style="color:#f92672">&gt;&amp;</span> buffer, Vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> fileDescriptors)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// strip some code ....
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (true) {
+</span></span><span style="display:flex;"><span>        ssize_t bytesRead <span style="color:#f92672">=</span> recvmsg(socketDescriptor, <span style="color:#f92672">&amp;</span>message, MSG_NOSIGNAL);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (bytesRead <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// strip some code ....
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 失败在这个if分支
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (message.msg_flags <span style="color:#f92672">&amp;</span> MSG_CTRUNC) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Control data has been discarded, which is expected by processMessage(), so consider this a read failure.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            buffer.shrink(previousBufferSize);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">cmsghdr</span><span style="color:#f92672">*</span> controlMessage;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// strip some code ....
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>要继续后文的分析，要对Linux的IPC机制和fd(文件描述符)的传递有个基本理解，在此不展开，直接说重点：</p>
+<ol>
+<li>发送AcceleratedBackingStore::Frame时，是会带一个fd信息（即<code>m_renderingFenceFD</code>）的，用于实现GPU侧的Fence Sync</li>
+<li>这个fd通过Socket IPC传递时是放在<code>msghdr-&gt;msg_control</code>字段的，而不是作为普通的数据传递</li>
+<li>卡死前的那一次IPC处理时,这个消息触发了上面代码的<code>message.msg_flags &amp; MSG_CTRUNC</code>判断，进而被丢弃，<span style="color:red;font-weight: bold">导致UI侧认为没有新的帧到来，而Web侧认为当前帧没有完成上屏，从而形成卡死！！！</span></li>
+</ol>
+<p>接下来，就是分析为什么900多帧后的这次IPC会触发这个<code>MSG_CTRUNC</code>，<strong>更诡异的是，为什么Wayland模式下就不会失败，而切换成DRM模式就必然失败？按理IPC和上屏模式是完全无关的</strong>。</p>
+<h3 id="4-从ipc切入fd泄漏">4. 从IPC切入fd泄漏</h3>
+<p><strong>事后看，这个Bug和IPC其实完全没有关系，但站在这个时间节点，我们能看到的、明确有错误的地方就是：IPC消息读取失败、msg_control字段被截断</strong>。</p>
+<p>笔者一开始也是基于这个错误，把全部精力都放在了IPC的实现细节上，自然是没有什么进展。</p>
+<p>但随着对整个渲染上屏逻辑的理解,并在怀疑的地方尽可能加上日志，终于找到了一些线索。</p>
+<p>具体工作非常依赖灵光一现，这里只讲述最终成功的那个尝试路径：</p>
+<ol>
+<li>比较<code>WPEViewWayland.cpp</code>和<code>WPEViewDRM.cpp</code>的实现，发现wpe_buffer_dma_buf_set_release_fence只有在Wayland模式下才被调用，在DRM模式下，UI进程是不会通知Web进程这个消息的，于是尝试让DRM模式下也增加这个逻辑</li>
+<li>修改代码后，发现UI-&gt;Web的IPC消息的fd字段的值并不像Wayland模式下那么稳定，而是递增的</li>
+</ol>
+<p>为什么会递增呢？这是因为fd通过IPC传递之前，为了防止失败，都会复制一份，如下:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// Source/WTF/wtf/unix/UniStdExtrasUnix.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">dupCloseOnExec</span>(<span style="color:#66d9ef">int</span> fileDescriptor)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> duplicatedFileDescriptor <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#ifdef F_DUPFD_CLOEXEC
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> ((duplicatedFileDescriptor <span style="color:#f92672">=</span> fcntl(fileDescriptor, F_DUPFD_CLOEXEC, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> errno <span style="color:#f92672">==</span> EINTR) { }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (duplicatedFileDescriptor <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> duplicatedFileDescriptor;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// strip some code....
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> duplicatedFileDescriptor;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>正常情况下，<code>fcntl</code>会返回当前可用的最小fd数值，但现在每次都会增大1。笔者一开始认为是IPC时创建的fd没有正常回收，但<code>close(fd)</code>的返回值又确实是0，说明fd的close是成功的。</p>
+<p>就在没有思路时，一条新的错误日志引起了笔者的注意：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>Failed to render buffer: failed to commit properties:Bad file Descriptor.
+</span></span></code></pre></div><p>其对应的逻辑如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// Source/WebKit/WPEPlatform/wpe/drm/WPEViewDRM.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">wpeViewDRMCommitAtomic</span>(WPEViewDRM<span style="color:#f92672">*</span> view, WPE<span style="color:#f92672">::</span>DRM<span style="color:#f92672">::</span>Buffer<span style="color:#f92672">*</span> buffer, std<span style="color:#f92672">::</span>optional<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint32_t</span><span style="color:#f92672">&gt;</span> damageID, GError<span style="color:#f92672">**</span> error)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// strip some code ....
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">auto</span> fd <span style="color:#f92672">=</span> gbm_device_get_fd(wpe_display_drm_get_device(display));
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// strip some code ....
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    WTFLogAlways(<span style="color:#e6db74">&#34;drmModeAtomicCommit: %d&#34;</span>, fd); <span style="color:#75715e">// 发现这个fd是递增的
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (drmModeAtomicCommit(fd, request.get(), flags, view)) {
+</span></span><span style="display:flex;"><span>        g_set_error(error, WPE_VIEW_ERROR, WPE_VIEW_ERROR_RENDER_FAILED, <span style="color:#e6db74">&#34;Failed to render buffer: failed to commit properties: %s&#34;</span>, strerror(errno));
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 此处应该close(fd)，但没有
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> true;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>通过日志，发现这个fd确实是递增的，说明泄漏其实来源于此，而非笔者增改的逻辑，<strong>但恰恰是笔者增改的逻辑让fd泄漏浮出水面！！！</strong></p>
+<p>另外，通过<code>/proc/pid/fd</code>也容易发现，如果是IPC的dup - fd泄漏，则泄漏fd指向的应该是<code>anon_inode:sync_file</code>,而实际指向的是<code>/dev/dri/card0</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@rk3562-buildroot:/# ls -la /proc/4528/fd
+</span></span><span style="display:flex;"><span>......
+</span></span><span style="display:flex;"><span>lrwx------ <span style="color:#ae81ff">1</span> root root <span style="color:#ae81ff">64</span> Dec <span style="color:#ae81ff">15</span> 19:38 <span style="color:#ae81ff">90</span> -&gt; /dev/dri/card0
+</span></span><span style="display:flex;"><span>.......
+</span></span><span style="display:flex;"><span>lrwx------ <span style="color:#ae81ff">1</span> root root <span style="color:#ae81ff">64</span> Dec <span style="color:#ae81ff">15</span> 19:38 <span style="color:#ae81ff">96</span> -&gt; /dev/dri/card0
+</span></span><span style="display:flex;"><span>lrwx------ <span style="color:#ae81ff">1</span> root root <span style="color:#ae81ff">64</span> Dec <span style="color:#ae81ff">15</span> 19:38 <span style="color:#ae81ff">97</span> -&gt; /dev/dri/card0
+</span></span><span style="display:flex;"><span>lrwx------ <span style="color:#ae81ff">1</span> root root <span style="color:#ae81ff">64</span> Dec <span style="color:#ae81ff">15</span> 19:38 <span style="color:#ae81ff">98</span> -&gt; /dev/dri/card0
+</span></span><span style="display:flex;"><span>lrwx------ <span style="color:#ae81ff">1</span> root root <span style="color:#ae81ff">64</span> Dec <span style="color:#ae81ff">15</span> 19:38 <span style="color:#ae81ff">99</span> -&gt; /dev/dri/card0
+</span></span></code></pre></div><p>在上面<code>wpeViewDRMCommitAtomic</code>结束前，加上<code>clsoe(fd)</code>，<span style="color:red;font-weight: bold">卡死的问题果然消失了！！至此，原因水落石出</span></p>
+<p>但有一个问题，笔者觉得有必要明确：<span style="color:red;font-weight: bold">既然是fd的泄漏，为什么<code>Bad file Descriptor.</code>的报错一开始没有，而必需在笔者的一番修改之下才出现在日志呢？</span></p>
+<p>个人猜测是：UI进程的fd是泄漏的，UI进程每接收Web进程的frame消息时，由于有fd数据，所以需要分配一个fd，但IPC的<code>recvmsg</code>逻辑比<code>gbm_device_get_fd</code> <strong>更先触发</strong>这个Bug,因此一开始的报错在<code>MSG_CTRUNC</code>，而笔者修改的逻辑会导致UI进程消耗fd的速度增加，进而导致<code>gbm_device_get_fd</code>先触发这个Bug,从而打出了关键日志！！</p>
+<p>为了验证这个猜想，我们重置所有代码，只修改一处:对<code>gbm_device_get_fd</code>多次调用，如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// Source/WebKit/WPEPlatform/wpe/drm/WPEViewDRM.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">auto</span> fd <span style="color:#f92672">=</span> gbm_device_get_fd(wpe_display_drm_get_device(display));
+</span></span><span style="display:flex;"><span>    fd <span style="color:#f92672">=</span> gbm_device_get_fd(wpe_display_drm_get_device(display));
+</span></span><span style="display:flex;"><span>    fd <span style="color:#f92672">=</span> gbm_device_get_fd(wpe_display_drm_get_device(display));
+</span></span></code></pre></div><p>这样fd在这个环节耗尽的概率就增大，实现测试时，如此修改后每次都会打印出这个日志:</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2025/Snipaste_2025-12-17_16-38-39.png" alt=""></p>
+<p>至此，所有的疑问和现象都自洽了。但还有一些问题值得深思。</p>
+<h3 id="5-对比官方代码的迭代">5. 对比官方代码的迭代</h3>
+<p>实际上，对于此类问题，笔者好奇的是：难道官方就没有人发现吗？可能有两个原因：</p>
+<ol>
+<li>生产环境还是Wayland模式用的多？</li>
+<li>对于wpe2.0 DRM模式，没有充分测试?</li>
+</ol>
+<p>其实，在排查的过程中，笔者也尝试了官方的最新代码，发现wpe2.0 + drm相关的代码一直在改动，比如，笔者在排查过程中发现DRM模式并没有处理releaseFenceFD的问题，官方的代码已经在做类似优化，和笔者的预期是一致的。</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2025/Snipaste_2025-12-17_16-28-40.png" alt=""></p>
+<p>另外，官方最新的tag是wpewebkit-2.51.3,而<a href="https://github.com/WebKit/WebKit">WebKit/WebKit</a>（不是<a href="https://github.com/WebPlatformForEmbedded/WPEWebKit">WebPlatformForEmbedded/WPEWebKit</a>）的main分支其实有对<code>wpeViewDRMCommitAtomic</code>的修改，返回前增了一个<code>wpeScreenDRMDestroyDumbBufferIfNeeded</code>调用(说明维护人员也注意到了这里的资源管理有缺陷？):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// Source/WebKit/WPEPlatform/wpe/drm/WPEScreenDRM.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">wpeScreenDRMDestroyDumbBufferIfNeeded</span>(WPEScreenDRM<span style="color:#f92672">*</span> screen, <span style="color:#66d9ef">int</span> fd)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">auto</span><span style="color:#f92672">*</span> priv <span style="color:#f92672">=</span> screen<span style="color:#f92672">-&gt;</span>priv;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>priv<span style="color:#f92672">-&gt;</span>dumb.bufferID)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    drmModeRmFB(fd, priv<span style="color:#f92672">-&gt;</span>dumb.frameBufferID);
+</span></span><span style="display:flex;"><span>    drmModeDestroyDumbBuffer(fd, priv<span style="color:#f92672">-&gt;</span>dumb.bufferID);
+</span></span><span style="display:flex;"><span>    priv<span style="color:#f92672">-&gt;</span>dumb.bufferID <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    priv<span style="color:#f92672">-&gt;</span>dumb.frameBufferID <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>详见：<a href="https://github.com/WebKit/WebKit/pull/49876/files">[WPE] Launching MiniBrowser on DRM mode doesn&rsquo;t pick VSync clock by dpino · Pull Request #49876 · WebKit/WebKit · GitHub</a></p>
+<p>但依然没有加上fd的释放，故运行依然会卡死，而且上屏也是有问题的，如下：</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2025/ezgif_2025-12-17_20-38-40.gif" alt="">
+(Webkit-main分支，commit:b08a6a752d5fe71e8b155bb2017626ed4c868ed9)</p>
+<h2 id="三总结">三、总结</h2>
+<p><span style="color:red;font-weight: bold">本身是一个很低级、很小的Bug, 但由于卡死时，触发<code>MSG_CTRUNC</code>后是没有任何报错的，只是丢掉消息，所以定位到这个环节就花了不少时间。如果一开始有<code>Bad file descriptor</code>的日志，这个Bug可能半天就解决了</span></p>
+<p>这个Bug的排查过程，在我解Bug的经历中，也是值得单开一文记录的，其他的如：</p>
+<ul>
+<li><a href="https://vimerzhao.top/articles/solve-of-android-p-inline-opt/">Android P内联优化导致的一个诡异Bug - 赵裕的博客</a></li>
+<li><a href="https://vimerzhao.top/articles/fix-a-serious-flutter-engine-multithread-bug/">抽丝剥茧：Flutter Engine隐藏的一个惊天Bug - 赵裕的博客</a></li>
+</ul>
+<p>最后，这个Bug的排查过程也留下了不少有益的经验：</p>
+<ol>
+<li>以后遇到传递fd时发生<code>MSG_CTRUNC</code>，应该重点关注fd的泄漏</li>
+<li>通过泄漏fd指向的path(可通过<code>readlink</code>或<code>/proc/pid/fd</code>获取)，可判断fd的泄漏来源</li>
+<li><code>MSG_CTRUNC</code>发生时，应该至少有一条Warn级别的日志</li>
+<li>渲染上屏的全链路，是一个涉及面广且特别精细的流程，借助排查这个Bug，也加深了理解，后续应该逐步建立全局的理解，避免出现问题时过于被动</li>
+</ol>
+<p>2025-12-17</p>
+
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/clearing-up-a-messy-debt/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">一笔糊涂帐的清算</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/use-protobuf-in-cmake/">CMake使用Protobuf的正确姿势</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/migrate-wxwork-chat-history-in-windows-vm/">Windows虚拟机内的企微聊天记录迁移</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">2</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMAKE">CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言">编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
