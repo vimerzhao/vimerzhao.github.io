@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/clearing-up-a-messy-debt/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2025-11-14T00:00:00+00:00" />
-<meta property="article:modified_time" content="2025-11-14T17:23:28+08:00" />
+<meta property="article:modified_time" content="2026-01-30T14:21:51+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="一笔糊涂帐的清算"/>
 <meta name="twitter:description" content="去年开始接触一个项目，这个项目编出来后运行时出现权限问题(Permission Denied)，于是就用sudo运行. 因此，基于VSCode调试时就要先用sudo code --no-sandbox --user-data-dir vscode-root启动VSCo"/>
@@ -113,10 +113,10 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-11-14T00:00:00Z">2025-11-14</time>
-	<time class="meta__text" datetime="2025-11-14T17:23:28&#43;08:00">(最后修改: 2025-11-14)</time></div></div>
+	<time class="meta__text" datetime="2026-01-30T14:21:51&#43;08:00">(最后修改: 2026-01-30)</time></div></div>
 		</header>
 		
-    <span style="color:grey; font-size: 0.9em">本文约 700 字，阅读需 2 分钟。</span>
+    <span style="color:grey; font-size: 0.9em">本文约 1000 字，阅读需 2 分钟。</span>
     <p/><div class="content post__content clearfix">
 			<p>去年开始接触一个项目，这个项目编出来后运行时出现权限问题(Permission Denied)，于是就用sudo运行.</p>
 <p>因此，基于VSCode调试时就要先用<code>sudo code --no-sandbox --user-data-dir vscode-root</code>启动VSCode,再Debug-Launch.</p>
@@ -138,6 +138,12 @@
 <p>另外root的VSCode还无法使用Linux的五笔中文输入法，这下也解决了。。。。。。</p>
 <p>当初的一笔糊涂帐，最近由于想用AI,一下子理清了&hellip;&hellip;</p>
 <p>mark</p>
+<p>11/18补档：
+今天遇到一个问题，一个小程序一直无法跑起来，另外两个更复杂点的小程序都可以，由于工程中改了一些代码，猜测可能是改动导致的。
+于是用另一个干净的工程运行，结果提示要下载子包，比较奇怪的是子包是已经存在的，为什么还要下载呢？
+用ls查看了下，发现普通用户没有read权限！！
+其实是因为，这个小程序<strong>之前用root权限运行过，就导致其包的本地缓存无法被后续的非root权限的程序读取</strong>，
+修改的代码遇到此状况不会报错，而干净的工程（也就是修改前的）会触发下载，因此得以发现。</p>
 
 		</div>
     <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
@@ -263,7 +269,7 @@
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2025 赵裕的博客.
+			&copy; 2026 赵裕的博客.
 			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
 		</div>
     <span>

@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/the-born-of-a-book/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2022-01-15T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-01-30T14:21:51+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="一本书的诞生"/>
 <meta name="twitter:description" content="零、背景 今天(2022-01-12)对我来说应该算是一个特别的日子，自己花了小半年撰写的《Flutter内核源码剖析》终于出版了。 思来想去，还是应该写点什么。毕竟，这件事情倾注了自己不少心血，一条简简"/>
@@ -113,7 +113,7 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-01-15T00:00:00Z">2022-01-15</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-01-30T14:21:51&#43;08:00">(最后修改: 2026-01-30)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 2000 字，阅读需 4 分钟。</span>
@@ -136,13 +136,13 @@
 <div id="outline-text-headline-2" class="outline-text-2">
 <p>2020年下旬的时候，我因为工作内容调整，开始接触Flutter，当时可供系统研究的资料并不多，加之遇到问题时感觉自己总是囿于局部而不见整体，于是便梳理了一个Flutter相关知识点的脑图，并开始逐步研究：</p>
 <p>
-<img src="http://images.vimerzhao.top/01-2020%E5%B9%B4%E5%BA%95%E5%8F%91%E8%A1%A8%E7%9A%84%E5%87%A0%E7%AF%87%E6%96%87%E7%AB%A0.jpg" alt="http://images.vimerzhao.top/01-2020%E5%B9%B4%E5%BA%95%E5%8F%91%E8%A1%A8%E7%9A%84%E5%87%A0%E7%AF%87%E6%96%87%E7%AB%A0.jpg" title="http://images.vimerzhao.top/01-2020%E5%B9%B4%E5%BA%95%E5%8F%91%E8%A1%A8%E7%9A%84%E5%87%A0%E7%AF%87%E6%96%87%E7%AB%A0.jpg" /></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/01-2020%E5%B9%B4%E5%BA%95%E5%8F%91%E8%A1%A8%E7%9A%84%E5%87%A0%E7%AF%87%E6%96%87%E7%AB%A0.jpg" alt="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/01-2020%E5%B9%B4%E5%BA%95%E5%8F%91%E8%A1%A8%E7%9A%84%E5%87%A0%E7%AF%87%E6%96%87%E7%AB%A0.jpg" title="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/01-2020%E5%B9%B4%E5%BA%95%E5%8F%91%E8%A1%A8%E7%9A%84%E5%87%A0%E7%AF%87%E6%96%87%E7%AB%A0.jpg" /></p>
 <p>
 图1： 2020年底发表的几篇文章</p>
 <p>
 没写几篇文章后，出版社的一位编辑就通过微信公众号后台找到了我。由于我之前已经梳理了一个Flutter相关的脑图，于是写书的计划我们算是一拍即合。</p>
 <p>
-<img src="http://images.vimerzhao.top/02-%E5%92%8C%E7%BC%96%E8%BE%91%E4%B8%80%E6%8B%8D%E5%8D%B3%E5%90%88.jpg" alt="http://images.vimerzhao.top/02-%E5%92%8C%E7%BC%96%E8%BE%91%E4%B8%80%E6%8B%8D%E5%8D%B3%E5%90%88.jpg" title="http://images.vimerzhao.top/02-%E5%92%8C%E7%BC%96%E8%BE%91%E4%B8%80%E6%8B%8D%E5%8D%B3%E5%90%88.jpg" /></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/02-%E5%92%8C%E7%BC%96%E8%BE%91%E4%B8%80%E6%8B%8D%E5%8D%B3%E5%90%88.jpg" alt="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/02-%E5%92%8C%E7%BC%96%E8%BE%91%E4%B8%80%E6%8B%8D%E5%8D%B3%E5%90%88.jpg" title="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/02-%E5%92%8C%E7%BC%96%E8%BE%91%E4%B8%80%E6%8B%8D%E5%8D%B3%E5%90%88.jpg" /></p>
 <p>
 图2: 和编辑一拍即合，决定写书</p>
 <p>
@@ -186,7 +186,7 @@
 <div id="outline-text-headline-6" class="outline-text-3">
 <p>不得不说，写作也是一项体力活。比如画图，一开始自己计划用graphviz画图，好处是一旦定型，后面的修改管理都很方便。但是，我发现很多图由于过于复杂，用结构化文本描述的效率其实比手工绘制还要低，于是我统一换成了draw.io绘图，差不多50多张图，一张一张手绘~</p>
 <p>
-<img src="http://images.vimerzhao.top/03-%E5%90%84%E7%A7%8D%E6%89%8B%E7%BB%98%E7%9A%84%E9%85%8D%E5%9B%BE.jpg" alt="http://images.vimerzhao.top/03-%E5%90%84%E7%A7%8D%E6%89%8B%E7%BB%98%E7%9A%84%E9%85%8D%E5%9B%BE.jpg" title="http://images.vimerzhao.top/03-%E5%90%84%E7%A7%8D%E6%89%8B%E7%BB%98%E7%9A%84%E9%85%8D%E5%9B%BE.jpg" /></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/03-%E5%90%84%E7%A7%8D%E6%89%8B%E7%BB%98%E7%9A%84%E9%85%8D%E5%9B%BE.jpg" alt="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/03-%E5%90%84%E7%A7%8D%E6%89%8B%E7%BB%98%E7%9A%84%E9%85%8D%E5%9B%BE.jpg" title="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/03-%E5%90%84%E7%A7%8D%E6%89%8B%E7%BB%98%E7%9A%84%E9%85%8D%E5%9B%BE.jpg" /></p>
 <p>
 图3： 各种手绘的配图</p>
 <p>
@@ -207,7 +207,7 @@
 <div id="outline-text-headline-8" class="outline-text-3">
 <p>客观来说，写书让自己在工作之余的恢复时间几乎没有了。但另一方面，自己在工作上遇到的问题，也得益于写书期间的积累，而得以逐一攻克。</p>
 <p>
-<img src="http://images.vimerzhao.top/04-%E5%B7%A5%E4%BD%9C%E6%9C%9F%E9%97%B4%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98.jpg" alt="http://images.vimerzhao.top/04-%E5%B7%A5%E4%BD%9C%E6%9C%9F%E9%97%B4%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98.jpg" title="http://images.vimerzhao.top/04-%E5%B7%A5%E4%BD%9C%E6%9C%9F%E9%97%B4%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98.jpg" /></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/04-%E5%B7%A5%E4%BD%9C%E6%9C%9F%E9%97%B4%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98.jpg" alt="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/04-%E5%B7%A5%E4%BD%9C%E6%9C%9F%E9%97%B4%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98.jpg" title="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/04-%E5%B7%A5%E4%BD%9C%E6%9C%9F%E9%97%B4%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98.jpg" /></p>
 <p>
 图4：工作期间解决的一些问题</p>
 </div>
@@ -223,7 +223,7 @@
 <p>
 此外，在等待出版期间，我还将本书的核心内容提炼成了一门课程：《Flutter源码导读》，讲了几次，效果都还可以，自己也从学员的反馈中受益匪浅。</p>
 <p>
-<img src="http://images.vimerzhao.top/05-%E4%B8%80%E4%BA%9B%E8%AF%BE%E7%A8%8B%E5%8F%8D%E9%A6%88.jpg" alt="http://images.vimerzhao.top/05-%E4%B8%80%E4%BA%9B%E8%AF%BE%E7%A8%8B%E5%8F%8D%E9%A6%88.jpg" title="http://images.vimerzhao.top/05-%E4%B8%80%E4%BA%9B%E8%AF%BE%E7%A8%8B%E5%8F%8D%E9%A6%88.jpg" /></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/05-%E4%B8%80%E4%BA%9B%E8%AF%BE%E7%A8%8B%E5%8F%8D%E9%A6%88.jpg" alt="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/05-%E4%B8%80%E4%BA%9B%E8%AF%BE%E7%A8%8B%E5%8F%8D%E9%A6%88.jpg" title="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/05-%E4%B8%80%E4%BA%9B%E8%AF%BE%E7%A8%8B%E5%8F%8D%E9%A6%88.jpg" /></p>
 <p>
 图5：一些课程反馈</p>
 </div>
@@ -236,7 +236,7 @@
 </h2>
 <div id="outline-text-headline-10" class="outline-text-2">
 <p>
-<img src="http://images.vimerzhao.top/06-%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9B%AE%E5%BD%95%E5%A4%A7%E7%BA%B2.png" alt="http://images.vimerzhao.top/06-%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9B%AE%E5%BD%95%E5%A4%A7%E7%BA%B2.png" title="http://images.vimerzhao.top/06-%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9B%AE%E5%BD%95%E5%A4%A7%E7%BA%B2.png" /></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/06-%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9B%AE%E5%BD%95%E5%A4%A7%E7%BA%B2.png" alt="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/06-%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9B%AE%E5%BD%95%E5%A4%A7%E7%BA%B2.png" title="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/06-%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9B%AE%E5%BD%95%E5%A4%A7%E7%BA%B2.png" /></p>
 <p>
 图6: 本书的目录大纲</p>
 <p>
@@ -273,7 +273,7 @@
 <li>淘宝： <a href="https://detail.tmall.com/item.htm?id=666650086940">https://detail.tmall.com/item.htm?id=666650086940</a></li>
 </ul>
 <p>
-<img src="http://images.vimerzhao.top/07-%E4%B9%A6%E7%B1%8DDemoFlutter%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.jpg" alt="http://images.vimerzhao.top/07-%E4%B9%A6%E7%B1%8DDemoFlutter%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.jpg" title="http://images.vimerzhao.top/07-%E4%B9%A6%E7%B1%8DDemoFlutter%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.jpg" />
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/07-%E4%B9%A6%E7%B1%8DDemoFlutter%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.jpg" alt="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/07-%E4%B9%A6%E7%B1%8DDemoFlutter%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.jpg" title="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/07-%E4%B9%A6%E7%B1%8DDemoFlutter%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.jpg" />
 图7： Flutter内核源码剖析</p>
 </div>
 </div>
@@ -413,7 +413,7 @@
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2025 赵裕的博客.
+			&copy; 2026 赵裕的博客.
 			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
 		</div>
     <span>

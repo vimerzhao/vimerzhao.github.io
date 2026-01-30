@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/fix-a-serious-flutter-engine-multithread-bug/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2021-08-08T15:53:53+08:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-01-30T14:21:51+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="抽丝剥茧：Flutter Engine隐藏的一个惊天Bug"/>
 <meta name="twitter:description" content="零、背景介绍 Flutter技术在微视内经过大半年的探索，已经从存量业务的改造尝试阶段，开始进入增量业务的承接阶段。横版视频的为你推荐就是这样一个场景，原Native体验如下： 使用Flutter完成新业"/>
@@ -113,23 +113,23 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-08-08T15:53:53&#43;08:00">2021-08-08</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-01-30T14:21:51&#43;08:00">(最后修改: 2026-01-30)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 9000 字，阅读需 18 分钟。</span>
     <p/><div class="content post__content clearfix">
 			<h1 id="零背景介绍">零、背景介绍</h1>
 <p>Flutter技术在微视内经过大半年的探索，已经从存量业务的改造尝试阶段，开始进入增量业务的承接阶段。横版视频的<strong>为你推荐</strong>就是这样一个场景，原Native体验如下：</p>
-<p><img src="http://images.vimerzhao.top/2021-08-08-01.gif" alt=""></p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2021-08-08-01.gif" alt=""></p>
 <p>使用Flutter完成新业务的改造后体验如下：</p>
-<p><img src="http://images.vimerzhao.top/2021-08-08-02.gif" alt=""></p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2021-08-08-02.gif" alt=""></p>
 <p>新的UI体验更加丰富，在一些细节上（比如跟手滑动）也有所优化，后面将详细复盘挑战与解法。</p>
 <p>本文将分析，由该业务上线而牵出的一个Flutte Engine的巨大Bug。在解决问题的过程，有山重水复、走投无路的沮丧，也有峰回路转、醍醐灌顶的激动，故此记录，以飨读者。</p>
 <h1 id="一crash来袭">一、Crash来袭</h1>
 <p>在Flutter版本的为你推荐页面上线后（放量10%），负责质量的同学stevenqihu向我们反馈了一个Flutter的Native Crash。虽然没有完全放量，该Crash的发生次数已经来到了Top 2。</p>
-<p><img src="http://images.vimerzhao.top/2021-08-08-03.png" alt=""></p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2021-08-08-03.png" alt=""></p>
 <p>一方面，我们要保证质量数据的稳定；另一方面，也要保证产品需求的上线，所以解决这个问题<strong>迫在眉睫</strong>。</p>
-<p><img src="http://images.vimerzhao.top/2021-08-08-04.png" alt=""></p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2021-08-08-04.png" alt=""></p>
 <h1 id="二疑云重重">二、疑云重重</h1>
 <p>由于我并不是专业解Crash的同学，所以负责这块工作的bingozhuang也参与了进来。按照常规的解法，我们从Bugly上拿到了Crash的堆栈，如下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>#12927 1.io
@@ -174,7 +174,7 @@
 <p>此外，我们的Flutter SDK版本是2.0.1，仅在Flutte 2.0发布后升级过一次，是不是因为这个版本还不太稳定（虽然也是stable分支的）。抱着一丝幻想，我们做了第一个尝试，把Flutter SDK升级到最新的稳定版本2.2.3。或许，这就是Flutter在开发过程中的一个Bug，升级到最新版本就好了，抱着一丝侥幸心理，我们进行了升级和灰度。天不遂人愿，Crash依然“源源不断”地有上报。</p>
 <p>继续分析堆栈的潜在信息，可以发现堆栈的最下面有 <code>pthread_start</code> 和 <code>ALooper_pollOnce</code> 等信息，据此判断，应该是io线程创建后，启动（消息循环post的第一个逻辑）时发生的，于是我们把io线程的启动逻辑捋了一遍，找到一些可疑点但最后都被推翻了。事后来看，这是一个缺乏经验的判断，因为任何一次Crash，只要一直往上回溯，都能回溯到 <code>ALooper_pollOnce</code> 。不过，这部分尝试也不是完全没有价值：io线程，这个隐藏在Flutter Engine最底层的线程，开始漏出了它的冰山一角。</p>
 <p>这一阶段，做了很多尝试，但是并没有什么有价值的突破。But，距离我给产品的deadline也越来越近</p>
-<p><img src="http://images.vimerzhao.top/2021-08-08-05.png" alt=""></p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2021-08-08-05.png" alt=""></p>
 <h1 id="三峰回路转">三、峰回路转</h1>
 <p>就在这疑云重重的时候，我们组另外一位同学（nickdxuli）反馈他遇到了一次为你推荐的Crash，堆栈和Bugly的一摸一样，于是我继续了解了下他的Crash场景：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>vimerzhao 7-16 20:43
@@ -206,7 +206,7 @@
 </span></span><span style="display:flex;"><span>   sleep <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
 </span></span></code></pre></div><p>果然，通过以上脚本，就可以在100次之内触发这个问题！至此，我们也看到了这个Crash的真面目：</p>
-<p><img src="http://images.vimerzhao.top/2021-08-08-06.gif" alt=""></p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2021-08-08-06.gif" alt=""></p>
 <p>这时，我冒出一个猜想，如果这个问题普遍存在，那么应该早就有人反馈给Flutter官方并被解决了（后面证明我还是too young），我们这个业务比较特殊，他是竖屏转横屏，那么<strong>有没有可能在某个瞬间Flutter以为当前是竖屏，然后下一个刻到达了横屏的临界点，于是发生了非法的内存访问，</strong> 看起来有点戏，和上面图中Crash发生时的横竖屏切换也能对得上。于是，我又做了一次灰度：延迟500ms初始化，如果猜想正确，Crash应该大大减少，然而并没有。</p>
 <p>至此，又一个可能性破灭。</p>
 <p>好在天无绝人之路，组内另外一个同事（panyu）也遇到了一次这个问题，并提供了一个不一样的堆栈，他的堆栈<strong>是可以还原的</strong>！！（注：为啥这次的堆栈可以还原？唯一说得通的特殊之处是panyu的手机是Google原生系统）</p>
@@ -274,7 +274,7 @@
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>经验丰富的庄老师（bingo）一下就看出可能是 <code>fGpu</code> 这个对象在访问时已经被释放了，导致访问了一个非法地址，这是非常合理的！</p>
 <p>于是我们在关键节点加上日志，得到如下信息：</p>
-<p><img src="http://images.vimerzhao.top/2021-08-08-07.png" alt=""></p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2021-08-08-07.png" alt=""></p>
 <p>虽然无法理解，但是铁证如山：<code>GrGLGpu</code> 有一定概率在 <code>GrGLSemaphore</code> 之前先析构（注意，这只是表象，我们后面会分析出真正的原因）。</p>
 <h1 id="四妥协规避">四、妥协规避</h1>
 <p>在排查分析了一天（这里其实方向错了，我们去分析 <code>deleteSync</code> 里面的逻辑，试图揭开 <code>GrGLGpu</code> 提前析构的原因 ）之后，我们依旧无法解释这个现象。但是产品迫切希望这个Crash能在当前版本全量之前解决。</p>
@@ -350,7 +350,7 @@
 <h2 id="53-grglgpu--grglsemaphore-等关键类的析构顺序">5.3 GrGLGpu 、 GrGLSemaphore 等关键类的析构顺序？</h2>
 <p>由于问题出在析构顺序错乱，所以，我们迫切需要知道这些类的析构是如何触发的。</p>
 <p>一开始，我们使用 <code>_Unwind_Backtrace</code> 和 <code>dladdr</code> 在 <code>GrGLGpu</code> 的析构函数执行时进行回栈，但效果并不理想，如下：</p>
-<p><img src="http://images.vimerzhao.top/2021-08-08-08.png" alt=""></p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2021-08-08-08.png" alt=""></p>
 <p>和Bugly上的Crash上报差不多，关键信息并没有还原，而且这些偏移值也无法从符号表还原出来，只有前几位能对得上。</p>
 <p>但是，转念一想，无论析构顺序是否发生错乱，每次析构的触发流程应该都是一样的，所以我们只需要观察正常情况的下的析构顺序就行了。于是，我们构建了一个debug版的libflutter.so，通过llvm调试，拿到了 <code>GrGLGpu</code> / <code>GrGLSemaphore</code> 的析构调用栈。<code>GrGLGpu</code>的回栈：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>(lldb) c
@@ -702,7 +702,7 @@
 <li>SkImage 开始销毁，一步步调用到 <code>GrGLSemaphore</code> 的析构函数，访问到 <code>fGpu</code> （第2步中已经销毁）的非法内存，报错</li>
 </ol>
 <p>如下图</p>
-<p><img src="http://images.vimerzhao.top/2021-08-08-09.png" alt=""></p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2021-08-08-09.png" alt=""></p>
 <p>以上解释，和我们的复现手段完全对得上，即：进入包含图片加载的Flutter页面，然后快速退出（卡退出时ui线程请求图片io线程解码的时间差）。</p>
 <h1 id="七治标治本">七、治标治本</h1>
 <p>至此，我们终于找到了这个Crash的真正原因。那么如何解决呢？在此，笔者提出一个简单的方法：既然io线程有一定概率在销毁自身之后仍有需要销毁的图片，那我们可以给 IO Manager 增加一个计数器，IO线程每生产一张图片，计数器+1；ui线程每消费一张图片，计数器-1。然后，在 代码清单 10 中，io线程销毁时，判断计数器如果大于0，则等待几毫秒，等待ui线程全部消费完成。核心逻辑如下：</p>
@@ -739,7 +739,7 @@
 <p>本文已经很冗长了，但实际上，我们在解决问题时做的尝试和思考远远更多，由于堆栈无法还原+相关逻辑不熟悉，我们80%的时间其实都在试错。</p>
 <h2 id="82-为什么我们遇到了">8.2 为什么我们遇到了</h2>
 <p>其实，从Github的issue来看，早前已经有人遇到过了一摸一样的问题： <a href="https://github.com/flutter/flutter/issues/48062">https://github.com/flutter/flutter/issues/48062</a> &amp; <a href="https://github.com/flutter/flutter/issues/50959">https://github.com/flutter/flutter/issues/50959</a>。</p>
-<p><img src="http://images.vimerzhao.top/2021-08-08-10.png" alt=""></p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2021-08-08-10.png" alt=""></p>
 <p>只是，由于这个问题的出现概率非常极限，而提出issue的人无法提供稳定复现的路径，所以这个issue自动被关闭了。</p>
 <p>那为什么我们就这么倒霉，偏偏以如此高的概率遇到了？我个人认为有以下几个原因：</p>
 <ol>
@@ -894,7 +894,7 @@
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2025 赵裕的博客.
+			&copy; 2026 赵裕的博客.
 			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
 		</div>
     <span>

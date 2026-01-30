@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/flutter-nested-scroll-conflict/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2021-05-27T19:22:48+08:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-01-30T14:21:51+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="大道至简：Flutter嵌套滑动冲突解决之路"/>
 <meta name="twitter:description" content="背景与挑战 为了充分验证Flutter在UI开发上的完备性（能Cover住足够复杂的场景），我们选择了微视端内最复杂的页面之一的个人页进行改造，其UI形态如下。 用户1: 用户2: 观察可以发现，对于UI层面"/>
@@ -113,7 +113,7 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-05-27T19:22:48&#43;08:00">2021-05-27</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-01-30T14:21:51&#43;08:00">(最后修改: 2026-01-30)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 9200 字，阅读需 19 分钟。</span>
@@ -129,7 +129,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/weishi-personal-page-1.gif" alt="weishi personal page 1"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/weishi-personal-page-1.gif" alt="weishi personal page 1"/>
 </div>
 </div>
 <div class="paragraph">
@@ -137,7 +137,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/weishi-personal-page-2.gif" alt="weishi personal page 2"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/weishi-personal-page-2.gif" alt="weishi personal page 2"/>
 </div>
 </div>
 <div class="paragraph">
@@ -158,7 +158,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/Kapture%202021-06-01%20_pullrefresher.gif" alt="Kapture%202021 06 01%20 pullrefresher"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/Kapture%202021-06-01%20_pullrefresher.gif" alt="Kapture%202021 06 01%20 pullrefresher"/>
 </div>
 </div>
 <div class="paragraph">
@@ -259,7 +259,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/personal-page-ui-model.png" alt="personal page ui model"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/personal-page-ui-model.png" alt="personal page ui model"/>
 </div>
 </div>
 <div class="paragraph">
@@ -289,7 +289,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/flutter-scrollable-model.png" alt="flutter scrollable model"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/flutter-scrollable-model.png" alt="flutter scrollable model"/>
 </div>
 </div>
 <div class="paragraph">
@@ -297,7 +297,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/2021-05-27_20-scroll-position.png" alt="2021 05 27 20 scroll position"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2021-05-27_20-scroll-position.png" alt="2021 05 27 20 scroll position"/>
 </div>
 </div>
 <div class="paragraph">
@@ -323,7 +323,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/2021-05-28_09-58-33-coordinator.png" alt="2021 05 28 09 58 33 coordinator"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2021-05-28_09-58-33-coordinator.png" alt="2021 05 28 09 58 33 coordinator"/>
 </div>
 </div>
 <div class="paragraph">
@@ -404,7 +404,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/ezgif-flutter-nest-list.gif" alt="ezgif flutter nest list"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/ezgif-flutter-nest-list.gif" alt="ezgif flutter nest list"/>
 </div>
 </div>
 <div class="paragraph">
@@ -478,7 +478,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/ezgif-flutter-webview-in-list-1.gif" alt="ezgif flutter webview in list 1"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/ezgif-flutter-webview-in-list-1.gif" alt="ezgif flutter webview in list 1"/>
 </div>
 </div>
 <div class="paragraph">
@@ -512,7 +512,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/android-nest-webview-demo.png" alt="android nest webview demo"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/android-nest-webview-demo.png" alt="android nest webview demo"/>
 </div>
 </div>
 <div class="paragraph">
@@ -646,7 +646,7 @@ public void onHeightUpdate(double newSize) {
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/ezgif-flutter-webview-in-list-2.gif" alt="ezgif flutter webview in list 2"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/ezgif-flutter-webview-in-list-2.gif" alt="ezgif flutter webview in list 2"/>
 </div>
 </div>
 <div class="paragraph">
@@ -737,7 +737,7 @@ void pointerScroll(double delta);</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/ezgif-webview-horizontal-1.gif" alt="ezgif webview horizontal 1"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/ezgif-webview-horizontal-1.gif" alt="ezgif webview horizontal 1"/>
 </div>
 </div>
 <div class="paragraph">
@@ -745,7 +745,7 @@ void pointerScroll(double delta);</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/ezgif-webview-horizontal-2.gif" alt="ezgif webview horizontal 2"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/ezgif-webview-horizontal-2.gif" alt="ezgif webview horizontal 2"/>
 </div>
 </div>
 <div class="paragraph">
@@ -768,7 +768,7 @@ void pointerScroll(double delta);</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/ezgif-pageview-webview-horizontal-demo.gif" alt="ezgif pageview webview horizontal demo"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/ezgif-pageview-webview-horizontal-demo.gif" alt="ezgif pageview webview horizontal demo"/>
 </div>
 </div>
 <div class="paragraph">
@@ -776,7 +776,7 @@ void pointerScroll(double delta);</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/ezgif-webview-in-pageview-error.gif" alt="ezgif webview in pageview error"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/ezgif-webview-in-pageview-error.gif" alt="ezgif webview in pageview error"/>
 </div>
 </div>
 <div class="paragraph">
@@ -787,7 +787,7 @@ void pointerScroll(double delta);</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/pageview-nested-webview-model-2.png" alt="pageview nested webview model 2"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/pageview-nested-webview-model-2.png" alt="pageview nested webview model 2"/>
 </div>
 </div>
 <div class="paragraph">
@@ -890,7 +890,7 @@ void applyPaintTransform(covariant RenderObject child, Matrix4 transform) {
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/ezgif-viewpager2-flutter.gif" alt="ezgif viewpager2 flutter"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/ezgif-viewpager2-flutter.gif" alt="ezgif viewpager2 flutter"/>
 </div>
 </div>
 <div class="paragraph">
@@ -1020,7 +1020,7 @@ void applyPaintTransform(covariant RenderObject child, Matrix4 transform) {
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://images.vimerzhao.top/ezgif-viewpager2-nest-flutter-demo.gif" alt="ezgif viewpager2 nest flutter demo"/>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/ezgif-viewpager2-nest-flutter-demo.gif" alt="ezgif viewpager2 nest flutter demo"/>
 </div>
 </div>
 </div>
@@ -1182,7 +1182,7 @@ void applyPaintTransform(covariant RenderObject child, Matrix4 transform) {
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2025 赵裕的博客.
+			&copy; 2026 赵裕的博客.
 			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
 		</div>
     <span>
