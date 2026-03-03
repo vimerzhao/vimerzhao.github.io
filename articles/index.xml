@@ -6,8 +6,15 @@
     <description>Recent content in Articles on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 30 Jan 2026 14:21:51 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 03 Mar 2026 16:40:36 +0800</lastBuildDate>
     <atom:link href="/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025年回顾及后面的一些想法</title>
+      <link>/articles/2025-retrospective-and-some-thoughts/</link>
+      <pubDate>Tue, 03 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>/articles/2025-retrospective-and-some-thoughts/</guid>
+      <description>本文纯手打，如有AI生成内容，会予以标注 本文想分享的：过去1.6年工作和思考 好久没有写公众号，如前一篇所言，原因有很多。今天突然思绪万千，兴之所至，故写一篇，把过往的一段记忆存档。 【离开腾讯文档】 20</description>
+    </item>
     <item>
       <title>Webkit在嵌入式设备渲染卡死现象的分析</title>
       <link>/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/</link>
