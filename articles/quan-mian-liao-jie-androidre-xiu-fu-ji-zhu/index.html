@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/quan-mian-liao-jie-androidre-xiu-fu-ji-zhu/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2017-09-10T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-03-18T14:20:47+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="全面了解Android热修复技术"/>
 <meta name="twitter:description" content="全面了解Android热修复技术 引言:本文全面地探讨了Android热修复技术的发展脉络，现状及其未来。 热修复技术概述 热修复技术在近年来飞速发展，尤其是在InstantRun方案推出之后，各种热修复技"/>
@@ -113,7 +113,7 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2017-09-10T00:00:00Z">2017-09-10</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/android/" rel="category">Android</a>
+	<time class="meta__text" datetime="2026-03-18T14:20:47&#43;08:00">(最后修改: 2026-03-18)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/android/" rel="category">Android</a>
 	</span>
 </div></div>
 		</header>
@@ -148,7 +148,7 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>可以看出当有多个dex文件时，他们会组成一个有序数组，按顺序加载，而对于一个已经加载的Class是不会再次加载的，由此得出热修复方案：把需要修复的类打包成一个dex文件下发，并在APP启动时通过反射，将这个dex文件放在<code>dexElements</code>的最前面，这样修复了的Class就会比有Bug的Class优先加载了。如下图所示：
-<img src="http://ond7j4cnz.bkt.clouddn.com/2017-9-102017-09-10%2015-30-05%20%E5%88%9B%E5%BB%BA%E7%9A%84%E6%88%AA%E5%9B%BE.png" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2017-9-102017-09-10%2015-30-05%20%E5%88%9B%E5%BB%BA%E7%9A%84%E6%88%AA%E5%9B%BE.png" alt=""></p>
 <p>但在实现过程中，会遇到<code>unexpected DEX problem</code>异常，Qzone方案为了解决这个问题采用了插桩的策略来规避这个异常。实际上，Android系统的检查和优化都是有其意义的，因此这种方法在Dalvik和Art上都会遇到问题。</p>
 <ul>
 <li>在Dalvik虚拟机，APP在安装的时候会被执行<code>dexopt</code>操作，同一个dex文件内的Class会被打上<code>CLASS_ISPREVERIFIED</code>标志，而补丁包中的类并没有打上此标志，因此抛出异常。解决方法就是在第一次打包APK时让所有类都引用另一个dex文件中的类，这样所有的类始终不会打上<code>CLASS_ISPREVERIFIED</code>标志，因此补丁包可以顺利加载，但是Dalvik虚拟机在检测到一个类未打上<code>CLASS_ISPREVERIFIED</code>之后会再次在类加载的时候进行<code>dexopt</code>相关的操作，如果一次性加载很多类，速度将明显变慢。</li>
@@ -185,7 +185,7 @@
 </span></span><span style="display:flex;"><span>    meth<span style="color:#f92672">-&gt;</span>nativeFunc <span style="color:#f92672">=</span> target<span style="color:#f92672">-&gt;</span>nativeFunc;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>其实就是修改了方法包括入口地址在内的每一项数据的地址，使之指向一个新的方法。在后台，使用Andfix提供的apkpatch工具，可以得到补丁文件out.apatch，这个文件记录了哪些方法需要修改，以及修改后的方法。关于Andfix的原理，具体可以参考：<a href="https://vimerzhao.github.io/2017/08/20/Andfix%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">Andfix源码解析</a>。Andfix效果：</p>
-<p><img src="http://ond7j4cnz.bkt.clouddn.com/blogandfix-demo.gif" alt="">
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogandfix-demo.gif" alt="">
 （注意我一直在点击，下发补丁后发生了变化……）</p>
 <h2 id="资源修复">资源修复</h2>
 <p>除了代码热修复，资源热修复也很常见。各大主流方案在资源修复的实现上大多参考了InstantRun的实现方式，因此本章节先讨论了InstantRun，再分析了基于InstantRun所实现的热修复。</p>
@@ -330,7 +330,7 @@ InstantRun包括代码修复和在资源修复，资源修复的核心代码:</p
 <p>关键是要熟悉Android相关源码，才能确定哪些字段是需要更新引用的。通过以上两步即可实现资源替换。</p>
 <h3 id="资源热修复实现">资源热修复实现</h3>
 <p>将InstantRun的<code>monkeyPatchExistingResource</code>方法引入我们的代码就可以实现资源热修复，效果如下:
-<img src="http://ond7j4cnz.bkt.clouddn.com/bloghotfix-resouce.gif" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/bloghotfix-resouce.gif" alt=""></p>
 <h2 id="so库热修复">SO库热修复</h2>
 <p>so库的修复本质是对native方法的修复和替换，和类加载方案类似，可以把补丁so库的路径插入到<code>nativeLibraryDirectories</code>数组的最前面，使得优先加载补丁库而不是原来的库来达到修复目的。在此不做赘述。</p>
 <h2 id="热修复的稳定性">热修复的稳定性</h2>

@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/yu-virtualboxxia-linuxxu-ni-ji-gong-xiang-wen-jian/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2017-05-29T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-03-18T14:20:47+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="与VirtualBox下Linux虚拟机共享文件"/>
 <meta name="twitter:description" content="与VirtualBox下Linux虚拟机共享文件 记录了如何与VirtualBox下的Linux虚拟机共享文件。 最近，需要在Ubuntu虚拟机里面调试HotSpot，截了些图需要在本机上处理一下，所以需"/>
@@ -113,7 +113,7 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2017-05-29T00:00:00Z">2017-05-29</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-03-18T14:20:47&#43;08:00">(最后修改: 2026-03-18)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 500 字，阅读需 1 分钟。</span>
@@ -123,12 +123,12 @@
 最近，需要在Ubuntu虚拟机里面调试HotSpot，截了些图需要在本机上处理一下，所以需要共享文件。其实经常有这种需求，之前一直是用百度云盘或者QQ邮箱的中转站来传输文件，觉得实在太麻烦了，所以决定今天把这个问题解决了。
 前两天才发现，像共享粘贴板、文件夹之类的功能都需要安装增强功能，怪不得之前有时成功有时失败。此外，在Windows下比较容易，但在Linux下要手动挂载共享了的文件。
 第一步，配置VirtualBox，记住共享文件夹名称：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogshare-file-01.png" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogshare-file-01.png" alt="">
 第二步，在Linux虚拟机挂在文件：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogshare-file-02.png" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogshare-file-02.png" alt="">
 关于挂载位置，<code>mnt</code>就是<code>mount</code>的缩写，放的就是一些挂载的设备文件，但挂载之后，如果想把自己用户目录下文件移到共享目录需要<code>root</code>才行，应该也可以直接挂载在用户目录下，下次可以试试。
 第三步，在Linux虚拟机下把要转移的文件放在共享目录，在本机就可以得到了
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogshare-file-03.png" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogshare-file-03.png" alt=""></p>
 
 		</div>
     <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>

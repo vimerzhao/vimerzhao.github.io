@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/cao-zuo-xi-tong-shang-ji-zong-jie/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2017-05-22T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-03-18T14:20:47+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="操作系统上机总结"/>
 <meta name="twitter:description" content="操作系统上机总结 记录了操作系统上机的内容以及一点小小的思考。 题目 如下图： 解答 所有的代码都放在CodeBin/OS-Lab目录下。 实验一：进程管理 关于fork的概念理解之后代码不难写，CSAPP讲的很清"/>
@@ -113,7 +113,7 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2017-05-22T00:00:00Z">2017-05-22</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-03-18T14:20:47&#43;08:00">(最后修改: 2026-03-18)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 1700 字，阅读需 4 分钟。</span>
@@ -122,18 +122,18 @@
 <p>记录了操作系统上机的内容以及一点小小的思考。</p>
 <h2 id="题目">题目</h2>
 <p>如下图：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blog%E6%80%BB%E4%BD%93%E8%A6%81%E6%B1%82.png" alt="总体要求">
-<img src="http://ond7j4cnz.bkt.clouddn.com/blog%E5%AE%9E%E9%AA%8C%E4%B8%80.png" alt="实验一">
-<img src="http://ond7j4cnz.bkt.clouddn.com/blog%E5%AE%9E%E9%AA%8C%E4%B8%80%E8%A6%81%E6%B1%82.png" alt="实验一">
-<img src="http://ond7j4cnz.bkt.clouddn.com/blog%E5%AE%9E%E9%AA%8C%E4%BA%8C.png" alt="实验二">
-<img src="http://ond7j4cnz.bkt.clouddn.com/blog%E5%AE%9E%E9%AA%8C%E4%B8%89.png" alt="实验三">
-<img src="http://ond7j4cnz.bkt.clouddn.com/blog%E5%AE%9E%E9%AA%8C%E5%9B%9B.png" alt="实验四">
-<img src="http://ond7j4cnz.bkt.clouddn.com/blog%E5%AE%9E%E9%AA%8C%E4%BA%94.png" alt="实验五"></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blog%E6%80%BB%E4%BD%93%E8%A6%81%E6%B1%82.png" alt="总体要求">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blog%E5%AE%9E%E9%AA%8C%E4%B8%80.png" alt="实验一">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blog%E5%AE%9E%E9%AA%8C%E4%B8%80%E8%A6%81%E6%B1%82.png" alt="实验一">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blog%E5%AE%9E%E9%AA%8C%E4%BA%8C.png" alt="实验二">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blog%E5%AE%9E%E9%AA%8C%E4%B8%89.png" alt="实验三">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blog%E5%AE%9E%E9%AA%8C%E5%9B%9B.png" alt="实验四">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blog%E5%AE%9E%E9%AA%8C%E4%BA%94.png" alt="实验五"></p>
 <h2 id="解答">解答</h2>
 <p>所有的代码都放在<a href="https://github.com/zhaoyu1995/CodeBin/tree/master/OS-Lab">CodeBin/OS-Lab</a>目录下。</p>
 <h3 id="实验一进程管理">实验一：进程管理</h3>
 <p>关于<code>fork</code>的概念理解之后代码不难写，CSAPP讲的很清楚，看完实验一不是问题。主要是shell，要尽可能的模拟Linux的shell，以下是我的代码效果：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blog%E5%AE%9E%E9%AA%8C%E4%B8%80%E6%95%88%E6%9E%9C%E6%BC%94%E7%A4%BA.gif" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blog%E5%AE%9E%E9%AA%8C%E4%B8%80%E6%95%88%E6%9E%9C%E6%BC%94%E7%A4%BA.gif" alt="">
 看到一份非常烂的代码要批判。前面检查的同学就像没用过shell一样，我看了一眼就发现</p>
 <pre tabindex="0"><code>//大概这样，具体记不太清
 int a = argv[1];
@@ -148,7 +148,7 @@ int b = argv[2];
 <li>可拓展性差，RR算法只支持时间片为1。</li>
 </ol>
 <p>说说我的实现，数据当然放在文本里用<code>&lt;</code>重定向。排版如下(支持不同时间片)：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blog%E5%AE%9E%E9%AA%8C%E4%BA%8C-%E6%BC%94%E7%A4%BA.gif" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blog%E5%AE%9E%E9%AA%8C%E4%BA%8C-%E6%BC%94%E7%A4%BA.gif" alt=""></p>
 <p>一个简单的表格输出。测试用例<code>test1.txt</code>：</p>
 <pre tabindex="0"><code>A 0 3
 B 2 6
@@ -156,16 +156,16 @@ C 4 4
 D 6 5
 E 8 2
 </code></pre><p>来自书上：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blog%E5%AE%9E%E9%AA%8C%E4%BA%8C-%E6%B5%8B%E8%AF%95.jpg" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blog%E5%AE%9E%E9%AA%8C%E4%BA%8C-%E6%B5%8B%E8%AF%95.jpg" alt="">
 通过和书上比较可以判断算法是否正确。</p>
 <blockquote>
 <p>如果有优化意识会发现SJF如果用最小堆的话时间复杂度可以从$O(n)$降为$O(logn)$，貌似前面用python实现的同学也没用，我用C语言自己写个堆也不过30行代码，何况python两行可以搞定的事。毫无优化意识，不像学过数据结构的计算机系大三学生。</p>
 </blockquote>
 <h3 id="实验三存储管理">实验三：存储管理</h3>
 <p>实验二说的那几个问题，前面同学依然存在，输入还是手工输入，输出也没什么格式排版。我依然用的书上一个例子，类似实验二，不详述。具体测试用例在<a href="https://github.com/zhaoyu1995/CodeBin/tree/master/OS-Lab">CodeBin/OS-Lab</a>都能找到。
-<img src="http://ond7j4cnz.bkt.clouddn.com/blog%E5%AE%9E%E9%AA%8C%E4%B8%89-%E6%BC%94%E7%A4%BA.gif" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blog%E5%AE%9E%E9%AA%8C%E4%B8%89-%E6%BC%94%E7%A4%BA.gif" alt=""></p>
 <h3 id="实验四磁盘移臂调度">实验四：磁盘移臂调度</h3>
-<p><img src="http://ond7j4cnz.bkt.clouddn.com/blog%E5%AE%9E%E9%AA%8C%E5%9B%9B-%E6%BC%94%E7%A4%BA.gif" alt=""></p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blog%E5%AE%9E%E9%AA%8C%E5%9B%9B-%E6%BC%94%E7%A4%BA.gif" alt=""></p>
 <blockquote>
 <p>关于实验四，我写了一个小网页，用于显示比较各个算法的差别。此外，这个算法的实现有一个非常有意思的技巧，仔细分析一下可以发现，各个算法唯一不同的就是如何选择下一步移动的位置，所以可以复用其他代码，单独实现选择部分的代码，作为函数指针传入，这样不仅简短了代码，而且提高了拓展性（比如新加入一个算法，只需要实现函数，然后传入指针，而不需要修改其他代码）。最经典的函数指针例子就是qsort函数（如果你用过）。</p>
 </blockquote>
@@ -188,7 +188,7 @@ run(queue, order, begin, cnt, SCANnext);
 ...
 </code></pre><h3 id="实验五文件管理">实验五：文件管理</h3>
 <p>主要是如何表示那些已经使用，这里用红色表示使用，绿色表示未使用。具体见<a href="https://github.com/zhaoyu1995/CodeBin/tree/master/OS-Lab">CodeBin/OS-Lab</a>的实验报告。
-<img src="http://ond7j4cnz.bkt.clouddn.com/blog%E5%AE%9E%E9%AA%8C%E4%BA%94-%E6%BC%94%E7%A4%BA.gif" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blog%E5%AE%9E%E9%AA%8C%E4%BA%94-%E6%BC%94%E7%A4%BA.gif" alt=""></p>
 <h2 id="思考">思考</h2>
 <p>平时一直没见过其他人的代码，今天真好第二个验收，于是认真听了第一个同学的报告。发现确实不少问题。</p>
 <ul>

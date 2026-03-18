@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/tcplian-jie-de-jian-li-yu-shi-fang/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2017-04-21T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-03-18T14:20:47+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="TCP连接的建立与释放"/>
 <meta name="twitter:description" content="TCP连接的建立与释放 本文通过实际抓包验证了TCP连接建立与释放的方式。 关于计算机网络 我在大三上修了计算机网络这门课，这门课真是我大学最差的记忆之一。教授这门课的老师水平很低，以至于辅导员安排另一位老"/>
@@ -113,7 +113,7 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2017-04-21T00:00:00Z">2017-04-21</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-03-18T14:20:47&#43;08:00">(最后修改: 2026-03-18)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 1400 字，阅读需 3 分钟。</span>
@@ -124,12 +124,12 @@
 <p>我在大三上修了计算机网络这门课，这门课真是我大学最差的记忆之一。教授这门课的老师水平很低，以至于辅导员安排另一位老师偷偷在考试前给我们安排了两次突击。此外这门课本身就知识面广，内容理论而抽象，所以理解起来本身就很费劲。即使考试拿了80分，我也自认为对这门课一无所知。
 幸而，本学期的计网实验课给了我一些实际的体验，感觉收获远比上学期理论课收获多！此外，因为实验有一个调研IPv6的环节，我为此编写了一个IPv6的抓包程序，并取得了不错的效果。今天突发奇想，这个程序可不仅仅只能解析IPv6的数据包，由于我当时抓取到了传输层，所以我应该也能从抓到的TCP/UDP包头里面找到一些有用的东西！
 我决定，分析一下抓取到的TCP包，来验证所谓的“三次握手”、“四次挥手”。书上虽然讲的很详细，但终究纸上得来终觉浅，觉知此事要躬行！就我而言，光看看书基本过两天就忘了&hellip;&hellip;
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogTCP-Link.png" alt="">
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogTCP-Free.png" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogTCP-Link.png" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogTCP-Free.png" alt=""></p>
 <h2 id="如何抓包">如何抓包</h2>
 <p>在之前计网实验的时候，用WireShark抓过包，当时是使用TCP/UDP通信软件进行抓包的，冗余信息较少（因为没连外网），而这次决定用自己写的程序（做了小的修改，不完整的包也抓取下来了），并完全在真实环境下抓包（在浏览器打开一个链接）。
 为什么不用WireShark呢，一方面我不需要那么多功能，另一方面我觉得自己的程序更适合这个需求，WireShark反而显示地没那么完整：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogWireShark.PNG" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogWireShark.PNG" alt=""></p>
 <h2 id="tcp连接的建立">TCP连接的建立</h2>
 <p>首先看看我从抓取到的数据里提取的以下三个包：</p>
 <pre tabindex="0"><code>Ethernet Header

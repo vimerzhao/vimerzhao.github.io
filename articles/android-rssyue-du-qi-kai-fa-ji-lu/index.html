@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/android-rssyue-du-qi-kai-fa-ji-lu/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2017-11-18T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-03-18T14:20:47+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Android RSS阅读器开发记录"/>
 <meta name="twitter:description" content="Android RSS阅读器开发记录 本文的时间跨度比较长，全程记录了我完成一个RSS阅读器的经历，包括踩过的坑以及自己的一些思考。 背景介绍 大概大一的时候我就见过RSS，但一直没明白这东西是干嘛的。很长一段时间自己都"/>
@@ -113,7 +113,7 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2017-11-18T00:00:00Z">2017-11-18</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-03-18T14:20:47&#43;08:00">(最后修改: 2026-03-18)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 3000 字，阅读需 6 分钟。</span>
@@ -128,7 +128,7 @@
 </blockquote>
 <p>简而言之，通过RSS我可以定制信息来源，而不用去我关注的网站逐一检查是否有内容更新。
 其实，市场上已经有一些类似的APP，如Palabre（下图）、红板报等，但毕竟面对的还是所有群体，对于我来说里面99%的内容是不需要的。比如，我需要订阅的可能就是Python.ory等非常专业的网站的内容，集中在编程领域，显然不会有公司专门来做这个一个产品，毕竟受众太少了。
-<img src="http://ond7j4cnz.bkt.clouddn.com/2017-11-18palabre.jpg" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2017-11-18palabre.jpg" alt="">
 可能网上也有Android RSS阅读器的开源项目，但是就我的调查而言，应该没有特别优秀的（GitHub上1000+star），而且这个东西的实现也不算复杂，正好最近在学习Kotlin，正好可以用来练手。
 基于以上这些背景，我开始开发这个APP了，大学几年，做过不少程序，但随着经历的增多，每次写代码时都会有不同的关注点，下文会多次提及。</p>
 <h2 id="设计实现">设计实现</h2>
@@ -142,8 +142,8 @@
 </ul>
 <h3 id="ui设计">UI设计</h3>
 <p>最终的效果如下：
-<img src="http://ond7j4cnz.bkt.clouddn.com/2017-11-18rssreader-01.jpg" alt="">
-<img src="http://ond7j4cnz.bkt.clouddn.com/2017-11-18rssreader-02.jpg" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2017-11-18rssreader-01.jpg" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2017-11-18rssreader-02.jpg" alt="">
 在侧边栏实现一级分类（按照主题分类如新闻资讯、编程语言、网络&hellip;..），在每个页面的顶部实现二级分类（如编程语言可以分为Kotlin、Python、C++&hellip;..）点击二级分类后会刷新列表，每个二级分类对应着一组RSS，如上图对应的配置为</p>
 <pre tabindex="0"><code>{
     &#34;category&#34;: &#34;编程语言&#34;,

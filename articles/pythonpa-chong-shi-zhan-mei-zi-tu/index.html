@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/pythonpa-chong-shi-zhan-mei-zi-tu/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2017-07-02T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-03-18T14:20:47+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="&#39;Python爬虫实战:妹子图&#39;"/>
 <meta name="twitter:description" content="&lsquo;Python爬虫实战:妹子图&rsquo; 本文记录了一些爬虫的基础知识，并实现了一个50行左右的爬虫脚本。 前言 看了一些Python的语法后打算做一个小项目练手，打发一下时间。爬虫比较容易"/>
@@ -113,7 +113,7 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2017-07-02T00:00:00Z">2017-07-02</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-03-18T14:20:47&#43;08:00">(最后修改: 2026-03-18)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 2200 字，阅读需 5 分钟。</span>
@@ -133,13 +133,13 @@ sudo pip3 install beautifulsoup4
 <h2 id="开始爬虫">开始爬虫</h2>
 <h3 id="第一步分析">第一步：分析</h3>
 <p>对于本次任务，只需做两件事：1.找到图片；2.下载图片。关键是如何找到图片，这就需要分析目标网站：<a href="http://www.mzitu.com/">妹子图</a>。观察首页可以看到每个套图都有一张预览图，而一个页面由若干个套图的入口（图片预览和文字链接）组成。
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogmzitu01.png" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogmzitu01.png" alt=""></p>
 <p>翻到最下方发现有若干页面选择
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogmzitu03.png" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogmzitu03.png" alt=""></p>
 <p>点进一个套图之后，发现每个页面显示一张图片，下方会显示本套图一共多少页。
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogmzitu02.png" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogmzitu02.png" alt=""></p>
 <p>针对套图中的某一页，在新标签页打开图片，上方的url地址就是我们的目标了
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogmzitu04.png" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogmzitu04.png" alt=""></p>
 <p>从图片的url地址以及刚才的分析来看，这个网站还是十分有规律的，适合新手练习。</p>
 <h3 id="第二步获取网页">第二步：获取网页</h3>
 <p>需要注意的是，由于涉及网络和文件读写操作，在Linux环境需要在<code>root</code>下运行（亲测命令行需要，PyCharm不需要）。
@@ -153,11 +153,11 @@ sudo pip3 install beautifulsoup4
 </span></span><span style="display:flex;"><span>main_page <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, headers <span style="color:#f92672">=</span> header)
 </span></span><span style="display:flex;"><span>print(main_page<span style="color:#f92672">.</span>text)
 </span></span></code></pre></div><p>通过以上4行代码就可以获取得到首页内容
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogmzitu05.png" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogmzitu05.png" alt=""></p>
 <h3 id="第三步解析网页">第三步：解析网页</h3>
 <p>分析可以发现，这个网站的每页的url其实就是<code>www.mzitu.com/n/</code>，其中n是数字，n为1的时候会重定向到<code>www.mzitu.com</code>，所以我们可以设置一个n的最大值，不超过网页实际最大值即可，如此就可实现网页的跳转了，而不用模拟点击了翻页的按钮。
 我们比较关心的内容是套图的入口地址，再对网页进行分析，可以发现，所有链接都在一个<code>id</code>为<code>pins</code>的<code>ul</code>里面，如此便可获取该页面全部套图的入口地址了。
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogmzitu-7.png" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogmzitu-7.png" alt=""></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env python3</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> bs4 <span style="color:#f92672">import</span> BeautifulSoup
@@ -178,11 +178,11 @@ sudo pip3 install beautifulsoup4
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> link <span style="color:#f92672">in</span> preview_link_list:
 </span></span><span style="display:flex;"><span>        print(link)
 </span></span></code></pre></div><p>结果如下，可以看到，现在已经获取到每个套图的入口地址了。
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogmzitu08.png" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogmzitu08.png" alt=""></p>
 <h3 id="第四步解析套图网页">第四步：解析套图网页</h3>
 <p>每个网页显示套图中的一张图片，所以我们需要做两件事：1.分析有多少图片（即网页）2.每个图片的地址（即右键选择“在新标签页打开”时的地址）。
 分析可以发现，页面数量在<code>class</code>为<code>pagenavi</code>的<code>div</code>里面，而图片地址在<code>class</code>为<code>main-image</code>的<code>div</code>里面，并且每个每个网页格式一致：<code>www.mzitu.com/套图id/n</code>，其中n为不超过图片数量的一个数字。
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogmzitu09.png" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogmzitu09.png" alt=""></p>
 <pre tabindex="0"><code>#!/usr/bin/env python3
 import requests
 from bs4 import BeautifulSoup
@@ -214,7 +214,7 @@ for cur_page in range(1, int(preview_page_cnt)+1):
             pic_src = soup.find(&#39;div&#39;, &#39;main-image&#39;).find(&#39;img&#39;)[&#39;src&#39;]
             print(pic_src)
 </code></pre><p>运行之后如下：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogmzitu10.png" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogmzitu10.png" alt=""></p>
 <h3 id="第五步下载图片">第五步：下载图片</h3>
 <p>主要涉及文件读写，比较简单，添加之后完整代码如下：</p>
 <pre tabindex="0"><code>#!/usr/bin/env python3
@@ -268,7 +268,7 @@ for cur_page in range(1, int(preview_page_cnt) + 1):
 print(&#39;下载完成&#39;)    
 </code></pre><h3 id="第六步爬取图片">第六步：爬取图片</h3>
 <p>如下：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogmzitu-demo.gif" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogmzitu-demo.gif" alt=""></p>
 <h2 id="总结">总结</h2>
 <p>人生苦短，我用Python。何况我是泽学家。</p>
 <h2 id="2018-4-11更新">2018-4-11更新</h2>

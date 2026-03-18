@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/openjdk7u40bian-yi-yu-diao-shi-shi-zhan/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2017-05-28T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-03-18T14:20:47+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="OpenJDK7u40编译与调试实战"/>
 <meta name="twitter:description" content="OpenJDK7u40编译与调试实战 记录了第一次编译调试OpenJDK的经过。 JDK与OpenJDK的关系 简单来说，OpenJDK是OracleJDK（也就是我们平时用的Java JDK，由Oracle"/>
@@ -113,7 +113,7 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2017-05-28T00:00:00Z">2017-05-28</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-03-18T14:20:47&#43;08:00">(最后修改: 2026-03-18)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 1700 字，阅读需 4 分钟。</span>
@@ -127,13 +127,13 @@
 <p>说一个最直接的例子，我在参加阿里面试的时候，一面、二面面试官均问了一些关于JVM虚拟机的问题，我一个也没答上来，虽然说了解虚拟机的本科生本来就凤毛麟角，但并不能以此为借口。
 从技术的角度来说，研究OpenJDK有助于了解Java底层的机制，就算用Java写过几万行代码，只要没了解虚拟机也就算不上高手，只要遇到如虚拟机内存耗尽的问题照样无从下手。
 OpenJDK中最核心的技术就是虚拟机，Java语言可能会被淘汰、被超越，但虚拟机不会。下面是一张JVM生态圈的截图：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogjvm-lang.png" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogjvm-lang.png" alt="">
 可以看到，很多有前景的语言都是基于JVM的，比如前不久取代Java成为Android官方开发语言的Kotlin，以及Scala等已经取得成功的语言，所以，研究JVM对于将来学习其他语言也很有帮助。</p>
 <h2 id="编译openjdk的步骤">编译OpenJDK的步骤</h2>
 <p>在《Java虚拟机精讲》有这么一段：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogopenjdk-2017-5-28.png" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogopenjdk-2017-5-28.png" alt="">
 我第一次花了两天时间搞定了所有问题，虽然花了不少时间，但带来的<strong>收获和成就感</strong>绝对不是所花的时间能衡量的。纸上得来终觉浅，只有在实践中才能发现问题，我在下面的每一个环节中都遇到了问题，而且书上都没提到。最关键的一点就是，不要放弃：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogopenjdk-weibo.png" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogopenjdk-weibo.png" alt="">
 我的操作系统Ubuntu12.04-i386</p>
 <h3 id="下载源码">下载源码</h3>
 <p>关于下载源码的一些问题：书上给的下载链接已经不可用了，更准确说是官方网站已经不提供下载了，但可以在Oracle的网站上找到相关源码，也可在网上搜到别人以前下载并分享出来的，比如我用的就是别人分享到百度云的（见参考链接）。
@@ -152,7 +152,7 @@ sudo apt-get install openjdk-7-jdk
 
 sudo apt-get install build-essential gawk m4 libasound2-dev libcups2-dev libxrender-dev xorg-dev xutils-dev x11proto-print-dev ant
 </code></pre><p>LinuxMint18.1下的依赖问题：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogopenjdk-dependency.png" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogopenjdk-dependency.png" alt=""></p>
 <h3 id="make配置检查">make配置检查</h3>
 <p>编译之前需要配置编译参数，以下是一个参考，路径需要做修改</p>
 <pre tabindex="0"><code>#!/bin/bash
@@ -188,15 +188,15 @@ export SKIP_DEBUG_BUILD=false
 export SKIP_FASTDEBUG_BUILD=true
 export DEBUG_NAME=debug
 </code></pre><p>设定成功后执行<code>make sanity</code>，编译通过如下：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogopenjdk-001.png" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogopenjdk-001.png" alt="">
 如果依赖构建成功，一般都会通过，如果失败了<strong>应该根据错误信息寻找原因</strong>。此外，编译通过依然不代表能编译成功。</p>
 <h3 id="编译openjdk">编译OpenJDK</h3>
 <p>编译通过执行<code>make</code>：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogopenjdk-make.gif" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogopenjdk-make.gif" alt="">
 这里可能会有一个问题：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogopenjdk-10years.png" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogopenjdk-10years.png" alt="">
 是因为某个文件(见参考链接)的时间配置问题（说明我编译的JDK太老了），只需要手动修改时间配置：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogopenjdk-modify-date.png" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogopenjdk-modify-date.png" alt="">
 具体如何修改见参考链接或者自己搜索。
 清理下失败的编译<code>make clean</code>。如果遇到：</p>
 <pre tabindex="0"><code>This OS is not supported:&#34; `uname -a`; exit 1;&#34;

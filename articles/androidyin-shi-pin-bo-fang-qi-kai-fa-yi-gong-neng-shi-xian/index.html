@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/androidyin-shi-pin-bo-fang-qi-kai-fa-yi-gong-neng-shi-xian/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2017-10-16T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-03-18T14:20:47+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Android音视频播放器开发（一）：功能实现"/>
 <meta name="twitter:description" content="Android音视频播放器开发（一）：功能实现 本文主要介绍了一个简单的Android音视频播放器的功能模块实现。 概述 本文主要介绍开发一个Android音视频播放器的功能实现，包括4个模块：音乐列表，视"/>
@@ -113,7 +113,7 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2017-10-16T00:00:00Z">2017-10-16</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-03-18T14:20:47&#43;08:00">(最后修改: 2026-03-18)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 2600 字，阅读需 6 分钟。</span>
@@ -329,7 +329,7 @@
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>视频列表的显示同理，此时的效果：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogmedia-player-4.gif" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogmedia-player-4.gif" alt=""></p>
 <h2 id="播放音频">播放音频</h2>
 <p>由于音频界面可以切换歌曲，所以点击调转时不能传递点击项的歌曲路径，而是全部歌曲的列表。即上面代码的：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>....
@@ -437,7 +437,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>使用其实非常简单，但是需要加上不同的循环模式，暂停效果，播放切换就需要一点代码代码，具体请阅读源码。音乐和视频播放效果：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogmedia-player-5.gif" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogmedia-player-5.gif" alt=""></p>
 <h2 id="自定义view">自定义View</h2>
 <p>所谓自定义View就是使用非Android提供的控件，能够提高视觉效果。</p>
 <h3 id="方形textview">方形TextView</h3>
@@ -466,11 +466,11 @@
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>使用系统<code>TextView</code>的效果：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogmedia-player-1.jpg" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogmedia-player-1.jpg" alt=""></p>
 <p>使用自定义<code>TextView</code>的效果：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogmedia-player-3.jpg" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogmedia-player-3.jpg" alt=""></p>
 <p>这个想法来自网易云音乐：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogmedia-player-2.jpg" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogmedia-player-2.jpg" alt=""></p>
 <h3 id="音乐频谱">音乐频谱</h3>
 <p>添加一个随音乐跳动的频谱可以使APP更加美观，其核心也是自定义View并重写<code>onDraw</code>方法，在播放音乐时监听频率变化：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    ......

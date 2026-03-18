@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/andfixyuan-ma-jie-xi/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2017-08-20T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-03-18T14:20:47+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Andfix源码解析"/>
 <meta name="twitter:description" content="Andfix源码解析 本文介绍了Andfix热修复框架的原理及实现代码。 Andfix概述 Andfix是阿里开源的一套热修复框架，效果如下 （注意我一直在点击，下发补丁后发生了变化&hellip;&hell"/>
@@ -113,7 +113,7 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2017-08-20T00:00:00Z">2017-08-20</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-03-18T14:20:47&#43;08:00">(最后修改: 2026-03-18)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 3900 字，阅读需 8 分钟。</span>
@@ -122,7 +122,7 @@
 <p>本文介绍了Andfix热修复框架的原理及实现代码。</p>
 <h2 id="andfix概述">Andfix概述</h2>
 <p><code>Andfix</code>是阿里开源的一套热修复框架，效果如下</p>
-<p><img src="http://ond7j4cnz.bkt.clouddn.com/blogandfix-demo.gif" alt="">
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogandfix-demo.gif" alt="">
 （注意我一直在点击，下发补丁后发生了变化&hellip;&hellip;）</p>
 <h2 id="反编译分析">反编译分析</h2>
 <p>关键就是下发的恶<code>out.apatch</code>文件，其实这个一个<code>jar</code>文件，解压后如下:</p>
@@ -143,7 +143,7 @@
 
 5 directories, 8 files
 </code></pre><p>利用<code>dex2jar</code>对<code>diff.dex</code>进行反编译:
-<img src="http://ond7j4cnz.bkt.clouddn.com/blogandfix-decompile.png" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blogandfix-decompile.png" alt="">
 可以看到被修改的方法添加了一条注解！而<code>out.apatch</code>里面的<code>dex</code>就是这个<code>diff.dex</code>文件，还包含了签名等各种配置信息。</p>
 <h2 id="apkpatch工具分析">apkPatch工具分析</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {

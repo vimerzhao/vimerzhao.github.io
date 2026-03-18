@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/cai-keng-ji-linuxmint18zi-ti-bian-wei-kai-ti-de-xiu-fu/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2017-03-25T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-03-18T14:20:47+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="踩坑记：LinuxMint18字体变为楷体的修复"/>
 <meta name="twitter:description" content="踩坑记：LinuxMint18字体变为楷体的修复 本文记录了一次修复系统字体的经历。 起因 起因很奇怪，本来打算今天把动态规划算法好好研究一番，结果一大早起来发现中文输入法消失了！因为之前有次发生这种情况是"/>
@@ -113,7 +113,7 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2017-03-25T00:00:00Z">2017-03-25</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-03-18T14:20:47&#43;08:00">(最后修改: 2026-03-18)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 1100 字，阅读需 2 分钟。</span>
@@ -122,12 +122,12 @@
 <p>本文记录了一次修复系统字体的经历。</p>
 <h2 id="起因">起因</h2>
 <p>起因很奇怪，本来打算今天把动态规划算法好好研究一番，结果一大早起来发现中文输入法消失了！因为之前有次发生这种情况是因为<strong>一部分软件包未安装更新</strong>，所以先尝试了更新软件包。结果仍然不行。只好放弃搜狗输入法（因为这个有deb包，安装比较方便，因此之前一直用这个），使用设置里面的IBus,结果安装完发现网页和开始菜单的字体全部变成了楷体：
-<img src="http://ond7j4cnz.bkt.clouddn.com/blog2017-03-25%2009-26-47%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blog2017-03-25%2009-26-47%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt=""></p>
 <p>excuse me?</p>
 <h2 id="解决">解决</h2>
 <p>上午花了大概两个钟头，大概一个钟头解决了输入法，又花了一个钟头修复字体。但是<code>系统设置-字体</code>只能修改桌面、文件夹之类的字体，网页和开始菜单的字体始终无法修改，于是放弃。
 唯一的发现是修改选择主题包下的<code>cinnamon.css</code>文件可以修改大小，但是字体仍然无法修改！
-<img src="http://ond7j4cnz.bkt.clouddn.com/blog2017-03-25%2009-33-02%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blog2017-03-25%2009-33-02%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt=""></p>
 <p>下午回来，还是觉得实在受不了，楷体既发虚又难看，于是下定决心要解决这个问题，终于在贴吧里（万万没想到）发现了一点线索，原来这是一个Bug!顺着摸索，找到了这个Bug页面。主要信息如下:</p>
 <blockquote>
 <p>After completing language support installation, fonts-arphic-ukai and fonts-arphic-uming are pulled into user&rsquo;s system and then fontconfig chooses Ukai over Droid Sans Fallback for the default sans-serif font. This is not the desired behavior as Ukai doesn&rsquo;t fit well into the category of screen fonts comparing to Droid Sans.</p>
@@ -173,9 +173,9 @@ h_TW.EUC-TW&hellip; done
 zh_TW.UTF-8&hellip; done
 /etc/locale.gen使用文本编辑器比如kate打开，可以看到所有的locale语言列表</p>
 <p>还真是要到病除:
-<img src="http://ond7j4cnz.bkt.clouddn.com/blog2017-03-25%2016-25-16%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blog2017-03-25%2016-25-16%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="">
 网页也好了:
-<img src="http://ond7j4cnz.bkt.clouddn.com/blog2017-03-25%2016-35-23%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt=""></p>
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/blog2017-03-25%2016-35-23%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt=""></p>
 <p>看来自己还是要多学习一个！</p>
 <h2 id="参考">参考</h2>
 <ul>
