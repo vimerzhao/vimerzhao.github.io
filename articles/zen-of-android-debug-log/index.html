@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/zen-of-android-debug-log/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2020-03-05T12:09:38+08:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-07-05T13:17:49+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="客户端调试日志编码之道"/>
 <meta name="twitter:description" content="日志分很多种了，这里针对的是客户端的、开发调试用的日志，为什么要加这两个限制呢？ 后台日志都在服务器，开发容易操作，客户端日志大部分在本机，有的测试甚至不会捞日志，开发想帮忙都鞭长莫及 开发调试的日志，其"/>
@@ -113,18 +113,13 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-03-05T12:09:38&#43;08:00">2020-03-05</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 1300 字，阅读需 3 分钟。</span>
     <p/><div class="content post__content clearfix">
-			<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>日志分很多种了，这里针对的是客户端的、开发调试用的日志，为什么要加这两个限制呢？</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
+			<p>日志分很多种了，这里针对的是客户端的、开发调试用的日志，为什么要加这两个限制呢？</p>
+<ol>
 <li>
 <p>后台日志都在服务器，开发容易操作，客户端日志大部分在本机，有的测试甚至不会捞日志，开发想帮忙都鞭长莫及</p>
 </li>
@@ -132,20 +127,10 @@
 <p>开发调试的日志，其目的是辅助开发，不同于正式环境的日志</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
 <p>当然了，相信下面的内容对其他场景也有启发。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_什么时候打日志">什么时候打日志</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<h1 id="什么时候打日志">什么时候打日志</h1>
 <p>任何时候都应该打日志，很多人喜欢Debug按钮调试，效率不说，很多场景是无法调试的：</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
+<ol>
 <li>
 <p>App的启动过程，你可能都来不及attach</p>
 </li>
@@ -159,74 +144,38 @@
 <p>等等</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
 <p>一开始你觉得Debug更顺手，更多是因为你的日志打得不够好，就好像一开始我们学习C语言的时候，也不会单步调试，用的是<code>printf</code>打印中间结果，这其实就是一种朴素的日志思想。</p>
-</div>
-<div class="paragraph">
 <p>下文主要讨论，我踩过的坑以及我心中好的日志。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_保持齐整">保持齐整</h2>
-<div class="sectionbody">
-<div class="quoteblock">
+<h1 id="保持齐整">保持齐整</h1>
 <blockquote>
-<div class="paragraph">
 <p>一个模块的日志最重要的就是齐齐整整。</p>
-</div>
 </blockquote>
-</div>
-<div class="paragraph">
 <p>摘录几个项目里面的日志（不算什么机密代码吧~）：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>//1
+<pre><code>//1
 if (Global.ASSISTANT_DEBUG) {
-    XLog.d(&#34;ResourcePreloader&#34;, &#34;[ResourcePreloader][onDownloaded]: taskId=&#34; + taskId + &#34;, ResourceInfo=&#34; + downloadedRes);
+    XLog.d(&quot;ResourcePreloader&quot;, &quot;[ResourcePreloader][onDownloaded]: taskId=&quot; + taskId + &quot;, ResourceInfo=&quot; + downloadedRes);
 }
 
 //2
-if (Global.ASSISTANT_DEBUG) XLog.d(TAG,&#34;onDestroy&#34;);
+if (Global.ASSISTANT_DEBUG) XLog.d(TAG,&quot;onDestroy&quot;);
 
 //3
-XLog.d(&#34;harry&#34;, &#34;qrcode: &#34; + qrcode);</pre>
-</div>
-</div>
-<div class="paragraph">
+XLog.d(&quot;harry&quot;, &quot;qrcode: &quot; + qrcode);
+</code></pre>
 <p>可以看到，3个日志的TAG各具特色，有的业务名、有的是TAG（一般是类名）、有的是名字，然后第一个的日志看起来带了格式，第三个也有点，第二个没有，就是提示作用。</p>
-</div>
-<div class="paragraph">
 <p>说实话，第一个日志的格式，对于<code>grep</code>之类的文本处理工具其实不算友好，写起来也不能充分利用编辑器的补全功能。</p>
-</div>
-<div class="paragraph">
 <p>所以，第一个建议就是：<strong>日志信息要有自己的格式，不要直接塞字符串</strong>，例如：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>class VLog {
+<pre><code>class VLog {
     String author; // 打印人
     String module; // 业务模块
     HashMap&lt;String, String&gt; info;
     HashMap&lt;String, String&gt; desc;
-}</pre>
-</div>
-</div>
-<div class="paragraph">
+}
+</code></pre>
 <p>那打印的类、打印的时间呢？这些其实系统自带的，不需要多此一举。当然，也可以为了避免内部匿名类、混淆的干扰加上一个字段。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_关键节点">关键节点</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<h1 id="关键节点">关键节点</h1>
 <p>日志的目的是辅助定位问题，所以好的日志应该是信息充分的。一般来说，主要关注两个问题：</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
+<ol>
 <li>
 <p><strong>分叉节点前的关键值</strong>。比如某个条件判断之前打印相关变量，就能分析进入非预期分支的原因类。</p>
 </li>
@@ -234,37 +183,15 @@ XLog.d(&#34;harry&#34;, &#34;qrcode: &#34; + qrcode);</pre>
 <p><strong>收敛节点后的关键值</strong>。比如App首页可能有闪屏、直接进入、外部Call起、Push、其他页面等多个入口，这时候最后打印出前几层的调用路径（stacktrace）。</p>
 </li>
 </ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_存至本地">存至本地</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>一开始的时候，我的日志都很奔放，自己都是<code>adb logcat</code>+ <code>grep</code>，再凌乱的日志也能过滤的恰到好处，然后联调测试的时候，就会发现其他开发根本不会<code>logcat</code>，很多测试外包还在用Eclipse的<code>logcat</code>，更别说<code>grep</code>了。导致别人要么什么日志都拿不出、要么几秒钟的操作，给你一个几十<code>M</code>的日志文件。</p>
-</div>
-<div class="paragraph">
+<h1 id="存至本地">存至本地</h1>
+<p>一开始的时候，我的日志都很奔放，自己都是<code>adb</code> <code>logcat</code>+
+<code>grep</code>，再凌乱的日志也能过滤的恰到好处，然后联调测试的时候，就会发现其他开发根本不会<code>logcat</code>，很多测试外包还在用Eclipse的<code>logcat</code>，更别说<code>grep</code>了。导致别人要么什么日志都拿不出、要么几秒钟的操作，给你一个几十<code>M</code>的日志文件。</p>
 <p>真的要换位思考，没有人把熟练掌握<code>logcat</code>等命令行工具和正则表达式当作理所当然。</p>
-</div>
-<div class="paragraph">
 <p>后面打算开发一个工具类，一方面做日志的格式化，另一方面打印的同时写一份到本地，尤其是遇到一些偶现问题时，对于保留现场十分有帮助。</p>
-</div>
-<div class="paragraph">
 <p>同时这个日志工具类有类似logcat的正则过滤功能，因为项目的日志会越来越膨胀，但每次关心的其实是某一小块的日志。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_有机整体">有机整体</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<h1 id="有机整体">有机整体</h1>
 <p>前面说的，其实是一个有机的整体，只有格式齐整了，才能很好地过滤；只要关键节点覆盖到了，才能辅助解决问题，切忌本末倒置，为了打日志而打日志。</p>
-</div>
-<div class="paragraph">
 <p>暂时想到这么多，以后再做补充。</p>
-</div>
-</div>
-</div>
 
 		</div>
     <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
@@ -323,11 +250,11 @@ XLog.d(&#34;harry&#34;, &#34;qrcode: &#34; + qrcode);</pre>
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
-			<li class="widget__item"><a class="widget__link" href="/articles/use-protobuf-in-cmake/">CMake使用Protobuf的正确姿势</a></li>
 		</ul>
 	</div>
 </div>
@@ -345,7 +272,11 @@ XLog.d(&#34;harry&#34;, &#34;qrcode: &#34; + qrcode);</pre>
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
-				<span class="widget__counter widget__counter--bubble">2</span>
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
 				</li>
 		</ul>
 	</div>
@@ -353,11 +284,13 @@ XLog.d(&#34;harry&#34;, &#34;qrcode: &#34; + qrcode);</pre>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMAKE">CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
@@ -365,7 +298,6 @@ XLog.d(&#34;harry&#34;, &#34;qrcode: &#34; + qrcode);</pre>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言">编程语言 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>

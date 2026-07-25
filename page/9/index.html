@@ -109,220 +109,218 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/blog-refresh-bugfix/" rel="bookmark">
-			记一个博客刷新的Bug
+			<a href="/articles/macbook-external-display/" rel="bookmark">
+			Mac外接显示器问题处理记录
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-04-30T10:20:44&#43;08:00">2020-04-30</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-10-29T15:46:57&#43;08:00">2020-10-29</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		之前通过教程草草建立了一个博客，后来申请到了备案号，于是更新了代码，但是Gunicorn操作不是很熟悉，导致重启服务后出现了如下问题： 备案号时有时无，今天又要添加公安备案号，于是打算查查这个问题，发现
+		背景 最近双十一，买了一台AOC的外接显示器，4K分辨率。为了达到最大的使用体验，处理了一些问题，在此记录。 睡眠唤醒 一开始用type-c的线连接，发现每次电脑睡眠后，重新唤醒时外接屏幕无法唤醒，打开显示
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/blog-refresh-bugfix/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/macbook-external-display/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/android-p-source-code-build/" rel="bookmark">
-			Android P源码构建记录
+			<a href="/articles/flutter-source-code-analyze-1/" rel="bookmark">
+			Flutter源码剖析(一):源码获取与构建
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-04-29T12:11:29&#43;08:00">2020-04-29</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-10-29T12:23:10&#43;08:00">2020-10-29</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		缘由 最近在追查一个dex2oat的问题时，看源码觉得有些地方不单步调试或者加些日志，实在是不方便，另外由于最近的工作和Framework层打交道比较多，也有必要搞个源码环境，趁机深入学习一下。 虚拟机 一
+		概述 本文介绍了Flutter源码的获取与构建，后面会另有文章介绍Flutter源码的版本管理、开发环境搭建等主题。 准备工作 Flutter源码分为两个部分： flutter/flutter是框架层，为开发
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/android-p-source-code-build/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/flutter-source-code-analyze-1/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/base-and-skill-of-presentation/" rel="bookmark">
-			表达的世界观基础与方法论建设
+			<a href="/articles/maoxuan-kernel/" rel="bookmark">
+			毛选精读（一）内核：《实践论》与《矛盾论》
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-04-25T20:13:50&#43;08:00">2020-04-25</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-10-17T23:44:11&#43;08:00">2020-10-17</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		编号004。 核心内容。 为什么想讲这个主题，起因之一就是自己第一次做技术分享时效果就很差，后面自己对此进行了一些反思。除此之外，自己也听过不少其他人（主要是技术同学）的分享，也会发现一些不足之处。所以我
+		概述 个人认为，读毛选应该先读《实践论》和《矛盾论》，这两篇发表于1937年下旬的文章，上承土地革命战争（1927～1937），下启启抗日战争和解放战争。在过往的十年里，共产党先后经历了右倾机会主义和左
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/base-and-skill-of-presentation/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/maoxuan-kernel/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/solve-of-android-p-inline-opt/" rel="bookmark">
-			Android P内联优化导致的一个诡异Bug
+			<a href="/articles/why-and-how-read-maoxuan/" rel="bookmark">
+			为什么读毛选以及怎么读毛选
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-04-24T23:51:25&#43;08:00">2020-04-24</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/android/" rel="category">Android</a>
-	</span>
-</div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-10-10T23:41:01&#43;08:00">2020-10-10</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		问题背景 最近，我们的业务在动态加载一款第三方游戏时出现了奇怪的现象，本地开发测试体验良好，但是使用CI构建的正式包体验时会出现启动闪退。 问题分析 分析日志 首先，我们自然而然看了下Crash日志，如下： ---------
+		为什么读 领袖发家史、中国近代史 首先，《毛选》可以说是领袖的一本自传，也从侧面反映了近代中国从第一次国内革命战争时期到文化大革命时期，70年波澜壮阔的历史。 领袖曾在17岁作诗： 《七绝·改诗赠父亲》 孩儿立
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/solve-of-android-p-inline-opt/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/why-and-how-read-maoxuan/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/virtualbox-lose-64-bit/" rel="bookmark">
-			Windows10下VirtualBox不支持64位
+			<a href="/articles/self-struggle-and-historical-itinerary/" rel="bookmark">
+			自我奋斗与历史进程
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-04-20T10:20:21&#43;08:00">2020-04-20</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-10-09T20:18:33&#43;08:00">2020-10-09</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		参考https://www.4spaces.org/windows-10-virtualbox-no-64bit/[解决Windows10中Virtualbox安装虚拟机没有64位选项(N种情形盘点)
+		一 人生的道路虽然漫长，但要紧处常常只有几步，特别是当人年轻的时候。 没有一个人的生活道路是笔直的，没有岔道的，有些岔道口譬如政治上岔道口，个人生活上的岔道口，你走错一步，可以影响人生的一个时期，也可以影
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/virtualbox-lose-64-bit/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/self-struggle-and-historical-itinerary/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/software-similarity-tester/" rel="bookmark">
-			代码相似性检测工具
+			<a href="/articles/android-system-service-cache-analyze/" rel="bookmark">
+			Android系统服务的注册缓存机制分析
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-04-14T12:33:16&#43;08:00">2020-04-14</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-08-21T12:18:22&#43;08:00">2020-08-21</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		背景 最近由于工作需要，想找一个能够检查代码相似性的工具。这种工具主要有两个应用： 代码自身的冗余检查 查重，例如检查学生的编程作业是否有抄袭 工具 最后找到了两个工具sim和moss，具体实现算法还没有研究，
+		本文说明 本文虽名为《Android系统服务的注册缓存机制分析》，但主要记录的是笔者最近解决一个单机型Bug的经历。在解决这个Bug的过程中，我对于Android系统服务的注册缓存机制也有了更深入的了解
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/software-similarity-tester/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/android-system-service-cache-analyze/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/a-weird-bug-record/" rel="bookmark">
-			记一次诡异的Bug
+			<a href="/articles/how-to-achieve-self-growth-in-business-development/" rel="bookmark">
+			如何在业务开发中实现自我成长
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-04-13T00:00:00Z">2020-04-13</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-07-28T00:00:00Z">2020-07-28</time>
+	<time class="meta__text" datetime="2023-05-01T11:38:46&#43;08:00">(最后修改: 2023-05-01)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		背景 上周四的时候，发了一个maven，结果报ExceptionInInitializerError错误： java.lang.ExceptionInInitializerError at repackage.aw.̍(ProGuard:43) at com.tencent.sandbox.PluginHelper.applicationAttachBaseContext(ProGuard:160) ...... Caused by: java.lang.IllegalArgumentException: Illegal pattern character &#39;V&#39; at java.text.SimpleDateFormat.compile(SimpleDateFormat.java:870) at java.text.SimpleDateFormat.initialize(SimpleDateFormat.java:684) at java.text.SimpleDateFormat.&lt;init&gt;(SimpleDateFormat.java:623) at java.text.SimpleDateFormat.&lt;init&gt;(SimpleDateFormat.java:598) at
+		笔者按 悟已往之不谏，知来者之可追。 从初入职场到现在，已经两年有余，看起来还是前途有限、后患无穷。写罢此文，聊以自慰，勉过往而励将来。 长久以来，我一直在思考两件事情：怎么把过往的经历抽象成可复用的经验，
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/a-weird-bug-record/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/how-to-achieve-self-growth-in-business-development/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/read-twint/" rel="bookmark">
-			twint源码阅读笔记
+			<a href="/articles/the-technician_s-guide-to-writing/" rel="bookmark">
+			技术人员的写作指南
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-04-05T23:48:26&#43;08:00">2020-04-05</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-07-20T00:00:00Z">2020-07-20</time>
+	<time class="meta__text" datetime="2023-04-29T22:21:16&#43;08:00">(最后修改: 2023-04-29)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		介绍 twint全称Twitter Intelligence Tool，是一个twitter爬虫工具。官方介绍如下： Twint is an advanced Twitter scraping tool written in Python that allows for scraping Tweets from Twitter profiles without using Twitter’s API. Twint utilizes Twitter’s search operators to let you scrape Tweets from specific users, scrape Tweets relating to certain
+		本文详细论述了3个问题： 为什么技术人员需要坚持写作？–动机篇。 需要做哪些准备？–准备篇。 写作的长期实践中应该注意哪些问题？–技巧篇。 一、动机篇 有人说费曼学习法的本质就是：“通过向别人清楚地解说一件事，
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/read-twint/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/the-technician_s-guide-to-writing/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/my-tmux-manual/" rel="bookmark">
-			我的tmux使用手册
+			<a href="/articles/clean-my-room/" rel="bookmark">
+			拾屋记
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-04-05T12:33:00&#43;08:00">2020-04-05</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-06-21T20:16:53&#43;08:00">2020-06-21</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		基础概念 Session：用来概括一个任务，是一组窗口的集合。通过在任务开始前创建一个Session，在该Session中进行任务，之后通过断开Session来暂时中断任务，此时与任务相关的状态都会保存
+		最近要搬家，周末收拾了下，记录一点感悟。 破窗效应 本来整洁有序的房间，因为一两次松懈，或是没有及时把用过的物品归回原位，或是没有及时清理产生的垃圾，就形成了一扇破窗。破窗的产生导致了自己对周围环境要求的
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/my-tmux-manual/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/clean-my-room/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/presentation-zen/" rel="bookmark">
-			读书:《演说之禅》
+			<a href="/articles/eat-that-frog/" rel="bookmark">
+			读书:《吃掉那只青蛙》
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-04-05T09:32:45&#43;08:00">2020-04-05</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-06-20T09:44:18&#43;08:00">2020-06-20</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		概览 这本书的副标题叫做&#34;`职场必知的幻灯片秘技`&#34;，但感觉有点不合适，在我看来，书里提倡的思想只有真正的大师才能用，但是在职场，很多时候还是要按照规矩来。如果不是绝对的权利压制，还是不
+		笔记 C01 明确目标 第一步：明确你究竟想要什么 第二步：把你的目标写下来 第三步：为你的目标设定一个完成的最后期限 第四步：为了实现目标，把你所能想到的、所有要完成的事项都列在一个清单上 第五步：进一步梳理整个清单
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/presentation-zen/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/eat-that-frog/">阅读全文…</a>
 	</div>
 </article>
 </main>
 
 <div class="pagination">
 	<a class="pagination__item pagination__item--prev btn" href="/page/8/">«</a>
-	<span class="pagination__item pagination__item--current">9/21</span>
+	<span class="pagination__item pagination__item--current">9/23</span>
 	<a class="pagination__item pagination__item--next btn" href="/page/10/">»</a>
 </div>
 
@@ -340,11 +338,11 @@
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
-			<li class="widget__item"><a class="widget__link" href="/articles/use-protobuf-in-cmake/">CMake使用Protobuf的正确姿势</a></li>
 		</ul>
 	</div>
 </div>
@@ -362,7 +360,11 @@
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
-				<span class="widget__counter widget__counter--bubble">2</span>
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
 				</li>
 		</ul>
 	</div>
@@ -370,11 +372,13 @@
 <div class="widget-taglist widget">
 	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMAKE">CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
@@ -382,7 +386,6 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言">编程语言 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>配置一个Flutter的远程Android调试环境 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="配置一个Flutter的远程Android调试环境" />
+<meta property="og:description" content="1.构建制品 之前已经构建过：Flutter源码剖析(一):源码获取与构建 - 赵裕的博客 新遇到一些错误，记录下： $ ../flutter/bin/flutter build --local-engine-src-path ../src --local-engine=android_debug_unopt android ...... You are using a locally built engine (--local-engine) but have not specified --local-engine-host. You may be building with a different engine than the one you are running with. See https://github.com/flutter/flutter/issues/132245 for details. &lt;&n" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/configure-android-debug-environment-for-flutter-on-a-remote-server/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2023-10-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-05T13:17:49+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="配置一个Flutter的远程Android调试环境"/>
+<meta name="twitter:description" content="1.构建制品 之前已经构建过：Flutter源码剖析(一):源码获取与构建 - 赵裕的博客 新遇到一些错误，记录下： $ ../flutter/bin/flutter build --local-engine-src-path ../src --local-engine=android_debug_unopt android ...... You are using a locally built engine (--local-engine) but have not specified --local-engine-host. You may be building with a different engine than the one you are running with. See https://github.com/flutter/flutter/issues/132245 for details. &lt;&n"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">配置一个Flutter的远程Android调试环境</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-10-22T00:00:00Z">2023-10-22</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text">
+	</span>
+</div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 2700 字，阅读需 6 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<h2 id="1构建制品">1.构建制品</h2>
+<p>之前已经构建过：<a href="https://vimerzhao.top/articles/flutter-source-code-analyze-1/">Flutter源码剖析(一):源码获取与构建 - 赵裕的博客</a></p>
+<p>新遇到一些错误，记录下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>$ ../flutter/bin/flutter build --local-engine-src-path ../src  --local-engine=android_debug_unopt android
+</span></span><span style="display:flex;"><span>......
+</span></span><span style="display:flex;"><span>You are using a locally built engine (--local-engine) but have not specified --local-engine-host.
+</span></span><span style="display:flex;"><span>You may be building with a different engine than the one you are running with. See https://github.com/flutter/flutter/issues/132245 for
+</span></span><span style="display:flex;"><span>details.
+</span></span></code></pre></div><p>&lt;&ndash;原因：现在这个参数要强行配置。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>Could not execute [class org.jetbrains.kotlin.gradle.plugin.statistics.KotlinBuildStatHandler.buildFinished]
+</span></span><span style="display:flex;"><span>FAILURE: Build failed with an exception.
+</span></span><span style="display:flex;"><span>* Where:
+</span></span><span style="display:flex;"><span>Build file &#39;/data/research/flutter/my_app_1/android/app/build.gradle&#39; line: 4
+</span></span><span style="display:flex;"><span>* What went wrong:
+</span></span><span style="display:flex;"><span>An exception occurred applying plugin request [id: &#39;dev.flutter.flutter-gradle-plugin&#39;, version: &#39;1.0.0&#39;]
+</span></span><span style="display:flex;"><span>&gt; Failed to apply plugin &#39;dev.flutter.flutter-gradle-plugin&#39;.
+</span></span><span style="display:flex;"><span>   &gt; local-engine-out must point to a local engine build
+</span></span><span style="display:flex;"><span>* Try:
+</span></span><span style="display:flex;"><span>&gt; Run with --debug option to get more log output.
+</span></span><span style="display:flex;"><span>&gt; Run with --scan to get full insights.
+</span></span><span style="display:flex;"><span>* Exception is:
+</span></span></code></pre></div><p>&lt;&ndash;原因：<code>--local-engine-src-path</code>不要用相对路径。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>../flutter/bin/flutter build --local-engine-src-path<span style="color:#f92672">=</span>/data/research/flutter/src  --local-engine<span style="color:#f92672">=</span>android_debug_unopt --local-engine-host<span style="color:#f92672">=</span>host_debug_unopt apk --debug --verbose
+</span></span></code></pre></div><h2 id="2远程调试">2.远程调试</h2>
+<p>这部分基于之前的工作：<a href="https://vimerzhao.top/articles/configure-android-dev-environment-on-a-remote-server/">在服务器上搭建Android开发调试环境的尝试 - 赵裕的博客</a>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># 错误1：</span>
+</span></span><span style="display:flex;"><span>error: attach failed: Failed to connect port
+</span></span></code></pre></div><p>确保端口都转发且对应得上。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># 错误2：</span>
+</span></span><span style="display:flex;"><span>error: attach failed: Cannot get process architecture
+</span></span></code></pre></div><p>确定是APP的主进程，不要attach错了。</p>
+<p>最终成功的效果：</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2023/2023-10-14-19-21-09.png" alt=""></p>
+<p>注意要添加Debug Symbol，不然无法设置断点（PS：后面优化到脚本里去了）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#e6db74">&#34;add-dsym  </span><span style="color:#e6db74">${</span>workspaceFolder<span style="color:#e6db74">}</span><span style="color:#e6db74">/src/out/android_debug_unopt/libflutter.so&#34;</span>
+</span></span></code></pre></div><p>注意<code>libflutter.so</code>要加载(<code>System.loadLibrary</code>)过一次，不然会有这个错误：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>error: symbol file <span style="color:#e6db74">&#39;/data/research/flutter/src/out/android_debug_unopt/libflutter.so&#39;</span> does not match any existing module
+</span></span></code></pre></div><p>Trick: 如果要Debug启动过程，可以加个入口Activity，进一次页面退出，再<code>add-dsym</code>，就可以开始调试了。</p>
+<h2 id="3优化使用">3.优化使用</h2>
+<p>之前写了个脚本，主要功能是获取目标App的Pid，启动lldb-server。然后，在<code>launch.json</code>作如下配置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;0.2.0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;configurations&#34;</span>: [
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;DebugAndroid&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;lldb&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;request&#34;</span>: <span style="color:#e6db74">&#34;custom&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;initCommands&#34;</span>: [
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;platform select remote-android&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;platform connect connect://f6d56607:10087&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;process attach -p xxx&#34;</span>,
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;exitCommands&#34;</span>: [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;platform disconnect&#34;</span>,
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>这样使用有个问题，就是DeviceId(f6d56607)和App的PID(xxx)是经常需要修改的，特别是后者。此外，每次使用前如果App重启了，需要执行下脚本，获取新的Pid。</p>
+<p>作为一个“<strong>懒惰的</strong>”程序员，得想想办法。正常来说，<code>launch.json</code>和脚本通过<code>preLaunchTask</code>连接，应该可以通过env传递，试了好几种方法但没成功。我觉得本质是VSCode没有预设这么高耦合的用法，就算可以也没那么优雅。</p>
+<p>再想想，可以利用lldb的特性，把脚本的准备工作和<code>launch.json</code>的调试工作通过文件（其实是两个模块的通信协议）连接。<code>launch.json</code>如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;0.2.0&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;configurations&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;DebugAndroid&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;lldb&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;request&#34;</span>: <span style="color:#e6db74">&#34;custom&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;preLaunchTask&#34;</span>: <span style="color:#e6db74">&#34;start_lldb_server&#34;</span>, <span style="color:#75715e">// 执行脚本
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#f92672">&#34;initCommands&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;version&#34;</span>, <span style="color:#75715e">// use custom build lldb(version &gt; 16) for port forward
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#e6db74">&#34;command source ${workspaceFolder}/launch.sh&#34;</span>
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;exitCommands&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;platform disconnect&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;shell ${workspaceFolder}/before_lldb_quit.sh&#34;</span>,
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>start_lldb_server</code>其实就是启动了这个脚本：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;2.0.0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;tasks&#34;</span>: [
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;label&#34;</span>: <span style="color:#e6db74">&#34;start_lldb_server&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;shell&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;sh ~/.power_script/android_dev/launch_debuggable_app.sh com.example.my_app 10087&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;problemMatcher&#34;</span>: []
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>脚本内容如下（from:<a href="https://github.com/vimerzhao/power_script/blob/master/android_dev/launch_debuggable_app.sh">power_script/android_dev/launch_debuggable_app.sh at master · vimerzhao/power_script</a>）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/sh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e"># build &amp; install &amp; launch，比较定制化且相对低频，就不纳入脚本了</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$#<span style="color:#e6db74">&#34;</span> -ne <span style="color:#ae81ff">2</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;./launch_debuggable_app.sh \$PKG_NAME \$PORT_NUM&#34;</span>
+</span></span><span style="display:flex;"><span>    exit <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>PKG_NAME<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>PORT_NUM<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$2<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>TARGET_PID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>adb shell pidof <span style="color:#e6db74">${</span>PKG_NAME<span style="color:#e6db74">}</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;---&gt;TARGET_PID: </span>$TARGET_PID<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>TARGET_PID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;Package: </span><span style="color:#e6db74">${</span>PKG_NAME<span style="color:#e6db74">}</span><span style="color:#e6db74"> is not running!!!&#34;</span>
+</span></span><span style="display:flex;"><span>    exit <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> run_in_android<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> adb shell <span style="color:#e6db74">&#34;run-as </span><span style="color:#e6db74">${</span>PKG_NAME<span style="color:#e6db74">}</span><span style="color:#e6db74"> sh -c &#39;</span><span style="color:#e6db74">${</span>1<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;&#34;</span> <span style="color:#75715e"># 解决权限问题</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Step 1 清理之前可能残留的lldb进程</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># enable for debug</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;---&gt;before clear:&#34;</span>
+</span></span><span style="display:flex;"><span>run_in_android ps
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;---&gt;start clear lldb-server if needed&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 可能有 lldb-server 和 [lldb-server] ，只需要命中前者并kill即可</span>
+</span></span><span style="display:flex;"><span>CLIENT_LLDB_ID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>run_in_android ps| grep <span style="color:#e6db74">&#39;lldb-server$&#39;</span> | awk <span style="color:#e6db74">&#39;{print $2}&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CLIENT_LLDB_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> !<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;---&gt;Kill LLDB: </span><span style="color:#e6db74">${</span>CLIENT_LLDB_ID<span style="color:#e6db74">}</span><span style="color:#e6db74"> &lt;---&#34;</span>
+</span></span><span style="display:flex;"><span>    run_in_android <span style="color:#e6db74">&#34;kill -9 </span><span style="color:#e6db74">${</span>CLIENT_LLDB_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;---&gt;current process info(after clear):&#34;</span>
+</span></span><span style="display:flex;"><span>run_in_android ps
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Step 2 准备Server</span>
+</span></span><span style="display:flex;"><span>LLDB_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/data/data/</span><span style="color:#e6db74">${</span>PKG_NAME<span style="color:#e6db74">}</span><span style="color:#e6db74">/lldb&#34;</span>
+</span></span><span style="display:flex;"><span>SERVER_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>LLDB_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/bin/&#34;</span>
+</span></span><span style="display:flex;"><span>run_in_android <span style="color:#e6db74">&#34;mkdir -p </span><span style="color:#e6db74">${</span>SERVER_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>SERVER_PATH<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>SERVER_DIR<span style="color:#e6db74">}</span>/lldb-server
+</span></span><span style="display:flex;"><span>TMP_SERVER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/data/local/tmp/lldb-server&#34;</span>
+</span></span><span style="display:flex;"><span>run_in_android <span style="color:#e6db74">&#34;cp -F </span><span style="color:#e6db74">${</span>TMP_SERVER<span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">${</span>SERVER_PATH<span style="color:#e6db74">}</span><span style="color:#e6db74"> &amp;&amp; chmod 700 </span><span style="color:#e6db74">${</span>SERVER_PATH<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Step 3(如果是还命令行调用，则有必要设置环境变量，VSCode有专门的配置入口: Lldb-&gt;Adapter Env)</span>
+</span></span><span style="display:flex;"><span>export ANDROID_PLATFORM_LOCAL_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">50012</span>
+</span></span><span style="display:flex;"><span>export ANDROID_PLATFORM_LOCAL_GDB_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">50013</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#echo &#34;ANDROID_PLATFORM_LOCAL_PORT=${ANDROID_PLATFORM_LOCAL_PORT}&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#echo &#34;ANDROID_PLATFORM_LOCAL_GDB_PORT=${ANDROID_PLATFORM_LOCAL_GDB_PORT}&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Step 4 开始监听</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;---&gt;start listen to </span><span style="color:#e6db74">${</span>PORT_NUM<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>run_in_android <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SERVER_PATH<span style="color:#e6db74">}</span><span style="color:#e6db74"> platform --listen \&#34;*:</span><span style="color:#e6db74">${</span>PORT_NUM<span style="color:#e6db74">}</span><span style="color:#e6db74">\&#34; --server&#34;</span> &amp;
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;---&gt;current process info(after launch listening):&#34;</span>
+</span></span><span style="display:flex;"><span>run_in_android ps <span style="color:#75715e"># verbose info</span>
+</span></span><span style="display:flex;"><span>gen<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.generated&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> ! -d <span style="color:#e6db74">&#34;</span>$gen<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>  mkdir <span style="color:#e6db74">${</span>gen<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;Directory exists: </span>$directory<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>CLIENT_LLDB_ID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>run_in_android ps| grep lldb | awk <span style="color:#e6db74">&#39;{print $2}&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CLIENT_LLDB_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> !<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># launch.json的exitCommand中调用，每次使用完及时清理lldb server进程</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;---&gt;new client lldb id: </span><span style="color:#e6db74">${</span>CLIENT_LLDB_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;#Generated at </span><span style="color:#66d9ef">$(</span>date<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span> &gt; <span style="color:#e6db74">${</span>gen<span style="color:#e6db74">}</span>/before_lldb_quit.sh
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;adb shell \&#34;run-as </span><span style="color:#e6db74">${</span>PKG_NAME<span style="color:#e6db74">}</span><span style="color:#e6db74"> sh -c &#39;kill -9 </span><span style="color:#e6db74">${</span>CLIENT_LLDB_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;\&#34;&#34;</span> &gt;&gt; <span style="color:#e6db74">${</span>gen<span style="color:#e6db74">}</span>/before_lldb_quit.sh
+</span></span><span style="display:flex;"><span>    chmod +x <span style="color:#e6db74">${</span>gen<span style="color:#e6db74">}</span>/before_lldb_quit.sh
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Step 5 生成lldb命令，让VSCode加载，因为DeviceId / 端口 / 进程id 都在脚本生成，在`launch.json`直接运行lldb其实不方便，</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#        这里利用 temp 文件传递了这些信息</span>
+</span></span><span style="display:flex;"><span>launch_file<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>gen<span style="color:#e6db74">}</span>/launch.sh
+</span></span><span style="display:flex;"><span>device_id<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>adb devices | head -2 |tail -1 | cut -f 1<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;platform select remote-android&#34;</span> &gt; <span style="color:#e6db74">${</span>launch_file<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;platform connect connect://</span><span style="color:#e6db74">${</span>device_id<span style="color:#e6db74">}</span><span style="color:#e6db74">:</span><span style="color:#e6db74">${</span>PORT_NUM<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> &gt;&gt; <span style="color:#e6db74">${</span>launch_file<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;process attach -p </span><span style="color:#e6db74">${</span>TARGET_PID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> &gt;&gt; <span style="color:#e6db74">${</span>launch_file<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>current_path<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 这一句衔接在attach后面不会生效，需要研究下......</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;add-dsym </span><span style="color:#e6db74">${</span>current_path<span style="color:#e6db74">}</span><span style="color:#e6db74">/src/out/android_debug_unopt/libflutter.so&#34;</span> &gt;&gt; <span style="color:#e6db74">${</span>launch_file<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># from terminal</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># lldb -s temp</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;---&gt;Try Kill in this place&#34;</span>
+</span></span></code></pre></div><p>这样，每次启动App后，只要点一下Button就可以开始调试了。</p>
+<h2 id="4代码跳转">4.代码跳转</h2>
+<p>这里有个深坑，之前在工作中曾经想用VSCode开发，也是由于代码跳转一直没整明白，就搁置了。</p>
+<p>按照Flutter官方文档的<a href="https://github.com/flutter/flutter/wiki/Setting-up-the-Engine-development-environment#vscode-with-cc-intellisense-cc">VSCode with C/C++ Intellisense [C/C++]</a> 所说，其实有两种配置<code>compile_command.json</code>的方法:</p>
+<ol>
+<li>其中一种是依赖官方的C/C++插件，在<code>c_cpp_properties.json</code>这个文件配置<code>&quot;compileCommands&quot;: &quot;/path/to/compile_commands.json&quot;,</code>，详见（<a href="https://code.visualstudio.com/docs/cpp/c-cpp-properties-schema-reference">c_cpp_properties.json reference</a>）</li>
+<li>另外一种是安装clangd插件，在<code>settings.json</code>配置，但好像也没有文档讲的特别清楚（<a href="https://github.com/clangd/vscode-clangd">clangd/vscode-clangd: Visual Studio Code extension for clangd</a>）</li>
+</ol>
+<p>如果用第1种，问题很多，建立索引的过程又慢又卡，基本会Crash，如下：</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2023/2023-10-17-19-53-10.png" alt=""></p>
+<p>对于方法2，和Vim的体验很类似，基本不会卡UI，另外可以加以下配置，体验更好：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span># VSCode settings -&gt; Clangd: Arguments
+</span></span><span style="display:flex;"><span>--background-index --clang-tidy
+</span></span></code></pre></div><p>在Mac平台，如果用第一种，会导致内核态CPU占用非常高，甚至重启（所以我之前基本没有重度使用VSCode，因此就没有深入研究这个问题，死锁了&hellip;.）</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2023/2023-10-17-19-49-58.png" alt=""></p>
+<h2 id="5遗留问题">5.遗留问题</h2>
+<h3 id="51-启动过程无法调试">5.1 启动过程无法调试</h3>
+<p>发现在调试时，如果在启动那块逻辑打断点，会莫名其妙Crash，如下:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>I  Timeline: Activity_launch_request time:10635159384
+</span></span><span style="display:flex;"><span>D  initViewContentFetcherClass
+</span></span><span style="display:flex;"><span>I  ViewContentFetcher : ViewContentFetcher
+</span></span><span style="display:flex;"><span>D  createInterceptor took 0ms
+</span></span><span style="display:flex;"><span>E  [ERROR:flutter/shell/platform/android/android_egl_surface.cc(52)] EGL
+</span></span><span style="display:flex;"><span>   Error: EGL_SUCCESS (12288)
+</span></span><span style="display:flex;"><span>A  [FATAL:flutter/shell/platform/android/platform_view_android.cc(143)] Check
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    failed: android_context_-&gt;IsValid(). Could not create surface from invalid Android context.
+</span></span></code></pre></div><p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2023/2023-10-16-15-02-14.png" alt=""></p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2023/2023-10-21-14-53-59.png" alt=""></p>
+<p>是什么原因？</p>
+<ul>
+<li>远程调试引入的问题？</li>
+<li>代码问题？一设置断点（造成时序改变）就触发了Crash？</li>
+</ul>
+<p>其实是因为用的是默认arm架构的原因，如果用arm64架构就好了，围绕这个原因的发现，自己大概零散花了两个周末，因为是远程调试，多踩了不少坑（也因此对这个调试过程加深了不少理解，顺便验证了脚本的通用性），后面会单独一篇文章详细记录。</p>
+<p>TODO1-&gt;补齐文章链接.</p>
+<h3 id="52-调试非常卡">5.2 调试非常卡</h3>
+<p>这个有两方面：</p>
+<ol>
+<li>因为是远程调试，本机只是跳板，所以网络延迟，必然体现在调试速度上。周末还试了下把<code>符号表+要调试的代码</code>下载到本地，用Android Studio去调试(路径映射)，速度是快了不少的</li>
+<li>对比了下，VSCode/AS调试Android确实比XCode调试iOS要慢一些，可能和内部实现有关（比如通信机制）</li>
+</ol>
+<h2 id="附录">附录</h2>
+<ul>
+<li>flutter commit id: 9f985ad755d9fd7a7fb11ef8a7fbbf76927f9ad3 (3.16版本附近)</li>
+<li>engine commit id: 452e75f2a6b6ce3ee6ef71e5e1686ce4cfef91b4</li>
+</ul>
+
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/set-up-flutter-debug-env-for-mac-and-ios/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">配置一个Mac/iOS平台的Flutter源码调试环境</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/articles/from-vim-to-vscode-2023/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">从Vim到VSCode</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

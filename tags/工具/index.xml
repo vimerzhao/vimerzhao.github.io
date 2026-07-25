@@ -6,7 +6,7 @@
     <description>Recent content in 工具 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 18 Mar 2026 14:20:47 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2026 13:17:49 +0800</lastBuildDate>
     <atom:link href="/tags/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>关于笔记软件的比较研究</title>
@@ -48,7 +48,7 @@
       <link>/articles/configure-hugo-asciidoc-blog/</link>
       <pubDate>Sat, 08 May 2021 19:41:53 +0800</pubDate>
       <guid>/articles/configure-hugo-asciidoc-blog/</guid>
-      <description>【2021-05-08】今天参考几篇文章，完成了Hugo博客的配置，特此记录一下： 搭建教程 Blogging with Asciidoctor and Hugo | Gabriel Arazas Better Hugo/AsciiDoc HTML - ratfactor diguage/www.diguage.com: &amp;#34;地瓜哥&amp;#34;博客网 使用 Hugo 搭建博客 - &amp;#34;地瓜哥&amp;#34;博客网 Mainroad/README.md</description>
+      <description>【2021-05-08】今天参考几篇文章，完成了Hugo博客的配置，特此记录一下： 搭建教程 Blogging with Asciidoctor and Hugo | Gabriel Arazas Better Hugo/AsciiDoc HTML - ratfactor diguage/www.diguage.com: &amp;ldquo;地瓜哥&amp;quot;博客网 使用 Hugo 搭建博客 - &amp;ldquo;地瓜哥&amp;quo</description>
     </item>
     <item>
       <title>gitbook安装中的一些问题</title>
@@ -83,7 +83,7 @@
       <link>/articles/virtualbox-lose-64-bit/</link>
       <pubDate>Mon, 20 Apr 2020 10:20:21 +0800</pubDate>
       <guid>/articles/virtualbox-lose-64-bit/</guid>
-      <description>参考https://www.4spaces.org/windows-10-virtualbox-no-64bit/[解决Windows10中Virtualbox安装虚拟机没有64位选项(N种情形盘点)</description>
+      <description>参考解决Windows10中Virtualbox安装虚拟机没有64位选项(N种情形盘点)-四个空格，除了关闭HyperV，还需要卸载雷电模拟器等，这些软件都有可能占用虚拟驱动。 Mark一下</description>
     </item>
     <item>
       <title>代码相似性检测工具</title>
@@ -104,7 +104,7 @@
       <link>/articles/git-practice/</link>
       <pubDate>Fri, 13 Dec 2019 12:32:25 +0800</pubDate>
       <guid>/articles/git-practice/</guid>
-      <description>本文导读 本文对应的 git-standardize 项目地址 https://github.com/vimerzhao/git-standardize 问题背景 大部分程序员对于Git的理解还停留在 git add . git commit -m &amp;#34;update&amp;#34; git pull git push 的阶段，但这在实际项目开发中是远远不够的。 + 举一个简单的例子，现在我们需要过滤所有修复bug的提交，该怎</description>
+      <description>本文导读 本文对应的 git-standardize 项目地址 https://github.com/vimerzhao/git-standardize 问题背景 大部分程序员对于Git的理解还停留在 git add . git commit -m &amp;quot;update&amp;quot; git pull git push 的阶段，但这在实际项目开发中是远远不够的。 + 举一个简单的例子，现在我们需要过滤所有修复bug的提交，该怎</description>
     </item>
     <item>
       <title>Git内部原理剖析</title>

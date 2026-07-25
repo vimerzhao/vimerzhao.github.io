@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/macbook-external-display/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2020-10-29T15:46:57+08:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-07-05T13:17:49+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Mac外接显示器问题处理记录"/>
 <meta name="twitter:description" content="背景 最近双十一，买了一台AOC的外接显示器，4K分辨率。为了达到最大的使用体验，处理了一些问题，在此记录。 睡眠唤醒 一开始用type-c的线连接，发现每次电脑睡眠后，重新唤醒时外接屏幕无法唤醒，打开显示"/>
@@ -113,49 +113,30 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-10-29T15:46:57&#43;08:00">2020-10-29</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 		</header>
 		
-    <span style="color:grey; font-size: 0.9em">本文约 1000 字，阅读需 2 分钟。</span>
+    <span style="color:grey; font-size: 0.9em">本文约 800 字，阅读需 2 分钟。</span>
     <p/><div class="content post__content clearfix">
-			<div class="sect1">
-<h2 id="_背景">背景</h2>
-<div class="sectionbody">
-<div class="paragraph">
+			<h1 id="背景">背景</h1>
 <p>最近双十一，买了一台AOC的外接显示器，4K分辨率。为了达到最大的使用体验，处理了一些问题，在此记录。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_睡眠唤醒">睡眠唤醒</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<h1 id="睡眠唤醒">睡眠唤醒</h1>
 <p>一开始用<code>type-c</code>的线连接，发现每次电脑睡眠后，重新唤醒时外接屏幕无法唤醒，打开<code>显示器设置</code>发现没有检测到！！！换成HDMI后，就可以了。个人猜测是<code>type-c</code>接口的原因，只能买一条<code>type-c转HDMI</code>的线。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_切换焦点">切换焦点</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>这个问题比较蛋疼，就是通过<code>Option Tab</code>切换的时候，只显示本屏幕的窗口，只能通过<code>Command Tab</code>切换到另一个屏幕，这样就很慢。</p>
-</div>
-<div class="paragraph">
-<p>考虑一种情况：我有两个编辑界面，分别处于两个屏幕，我希望在两个界面之间快速切换焦点。由于<code>Option Tab</code>不支持跨窗口，<code>Command Tab</code>不支持应用内窗口细分，只能用鼠标点。这就很蛋疼，背离了我全键盘操作的初衷。</p>
-</div>
-<div class="paragraph">
+<h1 id="切换焦点">切换焦点</h1>
+<p>这个问题比较蛋疼，就是通过<code>Option</code>
+<code>Tab</code>切换的时候，只显示本屏幕的窗口，只能通过<code>Command</code>
+<code>Tab</code>切换到另一个屏幕，这样就很慢。</p>
+<p>考虑一种情况：我有两个编辑界面，分别处于两个屏幕，我希望在两个界面之间快速切换焦点。由于<code>Option</code>
+<code>Tab</code>不支持跨窗口，<code>Command</code>
+<code>Tab</code>不支持应用内窗口细分，只能用鼠标点。这就很蛋疼，背离了我全键盘操作的初衷。</p>
 <p>这个问题的本质其实就是能在两个屏幕之间快速切换焦点即可。</p>
-</div>
-<div class="paragraph">
-<p>一开始搜索到https://github.com/round/CatchMouse[round/CatchMouse]，但这个东西很蛋疼的就是无法聚焦，只能移动鼠标位置。于是又了解到另外一种方案：https://github.com/rfyiamcool/multi-screen-jump/tree/master/mac-workflow[Automator + cliclick]/http://xiaorui.cc/archives/6884[mac外接多屏幕应用焦点切换方案]。通过后者移动鼠标并点击，通过前者绑定快捷键。但是实验之后发现https://github.com/BlueM/cliclick[BlueM/cliclick]无法点击外接屏幕的内容，比如 <code>c:10000, 600</code>只能到主屏幕的最右边，不能到外接屏幕，实验了很多次都不行。</p>
-</div>
-<div class="paragraph">
-<p>于是想到了<code>CatchMouse + cliclick + Automator</code>，但是发现CatchMouse无法通过Automator的快捷键触发，cliclick只是产生了点击效果，并没有把焦点放上去。</p>
-</div>
-<div class="paragraph">
+<p>一开始搜索到<a href="https://github.com/round/CatchMouse">round/CatchMouse</a>，但这个东西很蛋疼的就是无法聚焦，只能移动鼠标位置。于是又了解到另外一种方案：<a href="https://github.com/rfyiamcool/multi-screen-jump/tree/master/mac-workflow">Automator +
+cliclick</a>/<a href="http://xiaorui.cc/archives/6884">mac外接多屏幕应用焦点切换方案</a>。通过后者移动鼠标并点击，通过前者绑定快捷键。但是实验之后发现<a href="https://github.com/BlueM/cliclick">BlueM/cliclick</a>无法点击外接屏幕的内容，比如
+<code>c:10000,</code>
+<code>600</code>只能到主屏幕的最右边，不能到外接屏幕，实验了很多次都不行。</p>
+<p>于是想到了<code>CatchMouse</code> <code>+</code> <code>cliclick</code> <code>+</code>
+<code>Automator</code>，但是发现CatchMouse无法通过Automator的快捷键触发，cliclick只是产生了点击效果，并没有把焦点放上去。</p>
 <p>最后想了一个下下策：</p>
-</div>
-<div class="ulist">
 <ul>
 <li>
 <p>先用CatchMouse移动鼠标</p>
@@ -164,18 +145,9 @@
 <p>在用系统的辅助功能，模拟产生鼠标点击</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
 <p>这样是可行，就是得按两次快捷键。设计的比较靠近，勉强能接受。</p>
-</div>
-<div class="paragraph">
 <p>位置：<code>系统偏好设置-辅助功能-指针控制-备选控制方法</code>。</p>
-</div>
-<div class="paragraph">
 <p>目前就发现以上问题。</p>
-</div>
-</div>
-</div>
 
 		</div>
     <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
@@ -245,11 +217,11 @@
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
-			<li class="widget__item"><a class="widget__link" href="/articles/use-protobuf-in-cmake/">CMake使用Protobuf的正确姿势</a></li>
 		</ul>
 	</div>
 </div>
@@ -267,7 +239,11 @@
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
-				<span class="widget__counter widget__counter--bubble">2</span>
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
 				</li>
 		</ul>
 	</div>
@@ -275,11 +251,13 @@
 <div class="widget-taglist widget">
 	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMAKE">CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
@@ -287,7 +265,6 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言">编程语言 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>

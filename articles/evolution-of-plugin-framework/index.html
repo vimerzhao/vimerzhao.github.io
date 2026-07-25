@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/evolution-of-plugin-framework/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2020-05-13T12:14:43+08:00" />
-<meta property="article:modified_time" content="2026-01-30T14:21:51+08:00" />
+<meta property="article:modified_time" content="2026-07-05T13:17:49+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="插件化技术的演进之路"/>
 <meta name="twitter:description" content="序言 关于本次分享 今天要和大家分享的是Android的插件化技术，这在Android中其实是一个相对来说比较复杂，历史悠久，内容庞杂的知识，不是今天一个小时能讲完的，所以我今天也是有选择地分享一些我认为"/>
@@ -113,27 +113,17 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-05-13T12:14:43&#43;08:00">2020-05-13</time>
-	<time class="meta__text" datetime="2026-01-30T14:21:51&#43;08:00">(最后修改: 2026-01-30)</time></div></div>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 		</header>
 		
-    <span style="color:grey; font-size: 0.9em">本文约 9000 字，阅读需 18 分钟。</span>
+    <span style="color:grey; font-size: 0.9em">本文约 8900 字，阅读需 18 分钟。</span>
     <p/><div class="content post__content clearfix">
-			<div class="sect1">
-<h2 id="_序言">序言</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_关于本次分享">关于本次分享</h3>
-<div class="paragraph">
+			<h1 id="序言">序言</h1>
+<h2 id="关于本次分享">关于本次分享</h2>
 <p>今天要和大家分享的是Android的插件化技术，这在Android中其实是一个相对来说<strong>比较复杂，历史悠久，内容庞杂</strong>的知识，不是今天一个小时能讲完的，所以我今天也是有选择地分享一些我认为比较重要的内容。</p>
-</div>
-<div class="paragraph">
 <p>在坐的大多有3年以上的开发经验，对于插件化技术也或多或少有所了解，相反是我入行时间更短一点，所以今天分享不会是单方面的知识灌输，更准确地说是我把最近的一些收获、心得整理出来，抛砖引玉，能让大家有所启发，并产生一些有益的讨论。</p>
-</div>
-<div class="paragraph">
 <p>下面进入正题，今天大概会讨论5部分的内容，分别是：</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
+<ol>
 <li>
 <p>插件化的前置知识</p>
 </li>
@@ -150,330 +140,218 @@
 <p>对于插件化的几点思考</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
 <p>需要事先告知的是，接下来一个小时的内容其实是比较艰深晦涩的，所以希望大家稍微集中注意力，我其实是不太喜欢信息密度过大的分享的，但是限于时间，只能做一些妥协了。</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_插件化的前置知识">插件化的前置知识</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<h1 id="插件化的前置知识">插件化的前置知识</h1>
 <p>这一部分，每一个基础知识都可以单独拎出来讲上一个小时的，所以我只是简单提及一下，不会深入讲解，平时大家也多少有些了解，这就足够应付接下来的内容了</p>
-</div>
-<div class="paragraph">
-<p>什么是插件化(What)?
- 不依赖安装，动态加载Native功能。</p>
-</div>
-<div class="paragraph">
-<p>为什么要插件化(Why)?
- 动态发版、包大小精简、逻辑解耦、编译提速？</p>
-</div>
-<div class="paragraph">
-<p>方向提问：带来这些好处的背后，有哪些挑战？  客户端稳定性，开发体验。</p>
-</div>
-<div class="paragraph">
-<p>什么时候出现插件化(When)?
- 2012年。</p>
-</div>
-<div class="paragraph">
-<p>插件化在哪些地方盛行(Where)?
- 国内，手淘、携程、滴滴等大型App</p>
-</div>
-<div class="paragraph">
-<p>谁在做插件化(Who)?
- 前期个人开发者，后期大公司。</p>
-</div>
-<div class="paragraph">
+<p>什么是插件化(What)? &amp;emsp;不依赖安装，动态加载Native功能。</p>
+<p>为什么要插件化(Why)? &amp;emsp;动态发版、包大小精简、逻辑解耦、编译提速？</p>
+<p>方向提问：带来这些好处的背后，有哪些挑战？
+&amp;emsp;客户端稳定性，开发体验。</p>
+<p>什么时候出现插件化(When)? &amp;emsp;2012年。</p>
+<p>插件化在哪些地方盛行(Where)? &amp;emsp;国内，手淘、携程、滴滴等大型App</p>
+<p>谁在做插件化(Who)? &amp;emsp;前期个人开发者，后期大公司。</p>
 <p>怎么做插件化(How)?
- 总的来说，插件化分Hook派和静态代理派，Hook派涉及的基础知识会更多一些。</p>
-</div>
-<div class="sect2">
-<h3 id="_apk打包流程gradleaapt">Apk打包流程（Gradle、aapt）</h3>
-<div class="paragraph">
+&amp;emsp;总的来说，插件化分Hook派和静态代理派，Hook派涉及的基础知识会更多一些。</p>
+<h2 id="apk打包流程gradleaapt">Apk打包流程（Gradle、aapt）</h2>
 <p>有一些方案会在编译器修改插件的字节码，还有些方案在编译器做资源重排，所以要了解此部分内容。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_apk安装流程pmsmanifest解析dexopt">Apk安装流程（PMS、Manifest解析、dexopt）</h3>
-<div class="paragraph">
+<h2 id="apk安装流程pmsmanifest解析dexopt">Apk安装流程（PMS、Manifest解析、dexopt）</h2>
 <p>类似DroidPlugin、VirutalApp等方案，模拟了系统安装apk等流程，所以这部分需要了解。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_四大组件的管理ams主要是启动流程生命周期">四大组件的管理（AMS，主要是启动流程、生命周期）</h3>
-<div class="paragraph">
+<h2 id="四大组件的管理ams主要是启动流程生命周期">四大组件的管理（AMS，主要是启动流程、生命周期）</h2>
 <p>插件化的核心就是四大组件的插件化，所以这部分必须了解。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_资源so库的加载机制">资源、so库的加载机制</h3>
-<div class="paragraph">
+<h2 id="资源so库的加载机制">资源、so库的加载机制</h2>
 <p>同上。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_ipcbinder">IPC/Binder</h3>
-<div class="paragraph">
+<h2 id="ipcbinder">IPC/Binder</h2>
 <p>Hook派插件化要和<code>system_process</code>进程打交道，而比较成熟的方案都会把插件作为一个单独的进程，所以这部分也要了解。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_类加载机制">类加载机制</h3>
-<div class="paragraph">
+<h2 id="类加载机制">类加载机制</h2>
 <p>加载插件的重要环节就是加载插件类，这个是任何方案都无法避免的。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_反射与动态代理">反射与动态代理</h3>
-<div class="paragraph">
+<h2 id="反射与动态代理">反射与动态代理</h2>
 <p>Hook派插件必须用到的Java技术。</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_插件化的发展历史">插件化的发展历史</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<h1 id="插件化的发展历史">插件化的发展历史</h1>
 <p>下面的表格中，我梳理了插件化技术各开源方案的出现时间，主要参考自<strong>前人的文章</strong>和自己<strong>对相关新闻以及代码提交记录的整理</strong>（这部分有点考究历史资料的感觉），一个方案的出现不适一蹴而就的，公布时间和开始开发时间肯定有个跨度，所有过于计较时间的精确度意义不大，但输出出时间脉络也有助于我们获得一些信息。另外，之前网上也有一些版本，但是都比较老旧了，而且有些遗漏。我有信心说是目前（2020年5月）最完善、最新的就是我整理的这张表了。</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;"/>
-<col style="width: 25%;"/>
-<col style="width: 25%;"/>
-<col style="width: 25%;"/>
-</colgroup>
+<table>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top">时间</th>
-<th class="tableblock halign-center valign-top">方案</th>
-<th class="tableblock halign-center valign-top">介绍</th>
-<th class="tableblock halign-center valign-top">主体</th>
+<th style="text-align:center">时间</th>
+<th style="text-align:center">方案</th>
+<th style="text-align:center">介绍</th>
+<th style="text-align:center">主体</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">2012年7月</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/mmin18/AndroidDynamicLoader">mmin18/AndroidDynamicLoader</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">A plugin system that runs like a browser, but instead of load web pages, it load apk plugins which runs natively on Android system.</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">大众点评/屠毅敏</p></td>
+<td style="text-align:center">2012年7月</td>
+<td style="text-align:center"><a href="https://github.com/mmin18/AndroidDynamicLoader">mmin18/AndroidDynamicLoader</a></td>
+<td style="text-align:center">A plugin system that runs like a browser, but instead of load web pages, it load apk plugins which runs natively on Android system.</td>
+<td style="text-align:center">大众点评/屠毅敏</td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">2013年</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">23Code</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">-</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">-</p></td>
+<td style="text-align:center">2013年</td>
+<td style="text-align:center">23Code</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">2014年初</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/alibaba/atlas">alibaba/atlas</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">A powerful Android Dynamic Component Framework.</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">阿里/伯奎</p></td>
+<td style="text-align:center">2014年初</td>
+<td style="text-align:center"><a href="https://github.com/alibaba/atlas">alibaba/atlas</a></td>
+<td style="text-align:center">A powerful Android Dynamic Component Framework.</td>
+<td style="text-align:center">阿里/伯奎</td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">2014年7月</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/houkx/android-pluginmgr">houkx/android-pluginmgr</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">apk plug apkplug apk load</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">houkx</p></td>
+<td style="text-align:center">2014年7月</td>
+<td style="text-align:center"><a href="https://github.com/houkx/android-pluginmgr">houkx/android-pluginmgr</a></td>
+<td style="text-align:center">apk plug apkplug apk load</td>
+<td style="text-align:center">houkx</td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">2014年底</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/singwhatiwanna/dynamic-load-apk">singwhatiwanna/dynamic-load-apk</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">DL : dynamic load framework in android</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">百度/任玉刚</p></td>
+<td style="text-align:center">2014年底</td>
+<td style="text-align:center"><a href="https://github.com/singwhatiwanna/dynamic-load-apk">singwhatiwanna/dynamic-load-apk</a></td>
+<td style="text-align:center">DL : dynamic load framework in android</td>
+<td style="text-align:center">百度/任玉刚</td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">2014年11月</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://gitee.com/oycocean/Direct-Load-apk/">Direct-Load-apk</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">a very powerful plugin framework, through the use of it, you can achieve incredible function ----load directly from a basic apk!</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">罗迪</p></td>
+<td style="text-align:center">2014年11月</td>
+<td style="text-align:center"><a href="https://gitee.com/oycocean/Direct-Load-apk/">Direct-Load-apk</a></td>
+<td style="text-align:center">a very powerful plugin framework, through the use of it, you can achieve incredible function &mdash;-load directly from a basic apk!</td>
+<td style="text-align:center">罗迪</td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">2015年4月</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/HiWong/OpenAtlas">HiWong/OpenAtlas</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">OpenAtlasCore，Android Component Dynamic Deployment(plugin) Framework</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">BunnyBlue</p></td>
+<td style="text-align:center">2015年4月</td>
+<td style="text-align:center"><a href="https://github.com/HiWong/OpenAtlas">HiWong/OpenAtlas</a></td>
+<td style="text-align:center">OpenAtlasCore，Android Component Dynamic Deployment(plugin) Framework</td>
+<td style="text-align:center">BunnyBlue</td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">2015年8月</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/DroidPluginTeam/DroidPlugin">DroidPluginTeam/DroidPlugin</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">A plugin framework on android,Run any third-party apk without installation, modification or repackage</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">360/张勇</p></td>
+<td style="text-align:center">2015年8月</td>
+<td style="text-align:center"><a href="https://github.com/DroidPluginTeam/DroidPlugin">DroidPluginTeam/DroidPlugin</a></td>
+<td style="text-align:center">A plugin framework on android,Run any third-party apk without installation, modification or repackage</td>
+<td style="text-align:center">360/张勇</td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">2015年底</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/CtripMobile/DynamicAPK">CtripMobile/DynamicAPK</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Solution to implement multi apk dynamic loading and hot fixing for Android App.</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">-</p></td>
+<td style="text-align:center">2015年底</td>
+<td style="text-align:center"><a href="https://github.com/CtripMobile/DynamicAPK">CtripMobile/DynamicAPK</a></td>
+<td style="text-align:center">Solution to implement multi apk dynamic loading and hot fixing for Android App.</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">2015年底</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/wequick/Small">wequick/Small</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">A small framework to split app into small parts</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">林广亮</p></td>
+<td style="text-align:center">2015年底</td>
+<td style="text-align:center"><a href="https://github.com/wequick/Small">wequick/Small</a></td>
+<td style="text-align:center">A small framework to split app into small parts</td>
+<td style="text-align:center">林广亮</td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">2016年7月</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/asLody/VirtualApp">asLody/VirtualApp</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Virtual Engine for Android(Support 10.0 in business version)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">罗迪</p></td>
+<td style="text-align:center">2016年7月</td>
+<td style="text-align:center"><a href="https://github.com/asLody/VirtualApp">asLody/VirtualApp</a></td>
+<td style="text-align:center">Virtual Engine for Android(Support 10.0 in business version)</td>
+<td style="text-align:center">罗迪</td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">2017年6月</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/didi/VirtualAPK">didi/VirtualAPK</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">A powerful and lightweight plugin framework for Android</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">-</p></td>
+<td style="text-align:center">2017年6月</td>
+<td style="text-align:center"><a href="https://github.com/didi/VirtualAPK">didi/VirtualAPK</a></td>
+<td style="text-align:center">A powerful and lightweight plugin framework for Android</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">2017年7月</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/Qihoo360/RePlugin">Qihoo360/RePlugin</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">RePlugin - A flexible, stable, easy-to-use Android Plug-in Framework</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">-</p></td>
+<td style="text-align:center">2017年7月</td>
+<td style="text-align:center"><a href="https://github.com/Qihoo360/RePlugin">Qihoo360/RePlugin</a></td>
+<td style="text-align:center">RePlugin - A flexible, stable, easy-to-use Android Plug-in Framework</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">2018年10月</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/ManbangGroup/Phantom">ManbangGroup/Phantom</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Phantom — 唯一零 Hook 稳定占坑类 Android 热更新插件化方案</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">-</p></td>
+<td style="text-align:center">2018年10月</td>
+<td style="text-align:center"><a href="https://github.com/ManbangGroup/Phantom">ManbangGroup/Phantom</a></td>
+<td style="text-align:center">Phantom — 唯一零 Hook 稳定占坑类 Android 热更新插件化方案</td>
+<td style="text-align:center">-</td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">2019年6月</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/Tencent/Shadow">Tencent/Shadow</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">零反射全动态Android插件框架</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">-</p></td>
+<td style="text-align:center">2019年6月</td>
+<td style="text-align:center"><a href="https://github.com/Tencent/Shadow">Tencent/Shadow</a></td>
+<td style="text-align:center">零反射全动态Android插件框架</td>
+<td style="text-align:center">-</td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
 <p>粗略看这种表格，我个人有以下发现，欢迎补充：</p>
-</div>
-<div class="ulist">
 <ul>
 <li>
-<p>早期野蛮生长，以<strong>个人</strong>名义开源为主；后期逐渐成熟，以<strong>公司</strong>名义开源为主。前期注重方案实现，后期注重方案可用性（如RePlugin的口号中提到的&#34;`flexible, stable, easy-to-use`&#34;）。</p>
+<p>早期野蛮生长，以<strong>个人</strong>名义开源为主；后期逐渐成熟，以<strong>公司</strong>名义开源为主。前期注重方案实现，后期注重方案可用性（如RePlugin的口号中提到的“flexible,
+stable, easy-to-use”）。</p>
 </li>
 <li>
 <p>16年是一个分水岭，其后的方案都是优化（具体优化后面会说），没有突破性的创新。</p>
 </li>
 <li>
-<p>16年之前，描述侧重框架特色，并没有统一使用<code>Plugin Framework</code>这个词，16年之后插件化一词深入人心，侧重描述方案的完备性、稳定性、灵活性等实际诉求。</p>
+<p>16年之前，描述侧重框架特色，并没有统一使用<code>Plugin</code>
+<code>Framework</code>这个词，16年之后插件化一词深入人心，侧重描述方案的完备性、稳定性、灵活性等实际诉求。</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
 <p>那下载估计大家有点晕了，我们所知道的插件化原理其实就那么几板斧，面对出现过的这么多方案，我们该怎么消化呢？</p>
-</div>
-<div class="paragraph">
 <p>这也是我结下来内容安排的原因，我们先来看看插件化最核心的能力：Activity在framework层是怎么处理，再来逐一分析每个方案的<strong>借鉴与创新</strong>，而不是孤立地看待每个方案，相信这样会轻松很多。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_activity的framework源码与插件化实现">Activity的framework源码与插件化实现</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<h1 id="activity的framework源码与插件化实现">Activity的framework源码与插件化实现</h1>
 <p>为什么从原理到实现方案都重点分析Activity？因为它是最重要、最常用的、最复杂的组件，也是插件化方案的核心，最简单的app可以只有Activity。</p>
-</div>
-<div class="sect2">
-<h3 id="_启动流程">启动流程</h3>
-<div class="paragraph">
+<h2 id="启动流程">启动流程</h2>
 <p>Activity的启动流程算是我们面试的必问题了，相信大家也比较清楚。这里我做了一个单步调试的视频，帮助大家回忆一下。总结来说，Activity的启动流程可以用下面这张图来概括：</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/activity_start_process.png" alt="https://juejin.im/post/5c7f3471f265da2db5425c4b"/>
-</div>
-</div>
-<div class="quoteblock">
+<figure>
+<img
+src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/activity_start_process.png"
+alt="https://juejin.im/post/5c7f3471f265da2db5425c4b" />
+</figure>
 <blockquote>
-<div class="paragraph">
-<p>图片来自：https://juejin.im/post/5c7f3471f265da2db5425c4b</p>
-</div>
+<p>图片来自：<a href="https://juejin.im/post/5c7f3471f265da2db5425c4b">https://juejin.im/post/5c7f3471f265da2db5425c4b</a></p>
 </blockquote>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_活动管理">活动管理</h3>
-<div class="paragraph">
+<h2 id="活动管理">活动管理</h2>
 <p>关于Activity，我觉得还有一个点可以单独拿出来讨论，就是其栈管理机制，比较完备的插件化方案是无法避免这个问题的，比如DroidPlugin里面就有这样的代码：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>......
+<pre><code>......
  &lt;activity
-            android:name=&#34;.stub.ActivityStub$P00$Standard00&#34;
-            android:allowTaskReparenting=&#34;true&#34;
-            android:excludeFromRecents=&#34;true&#34;
-            android:exported=&#34;false&#34;
-            android:hardwareAccelerated=&#34;true&#34;
-            android:label=&#34;@string/stub_name_activity&#34;
-            android:launchMode=&#34;standard&#34;
-            android:noHistory=&#34;true&#34;
-            android:theme=&#34;@style/DroidPluginTheme&#34;&gt;
+            android:name=&quot;.stub.ActivityStub$P00$Standard00&quot;
+            android:allowTaskReparenting=&quot;true&quot;
+            android:excludeFromRecents=&quot;true&quot;
+            android:exported=&quot;false&quot;
+            android:hardwareAccelerated=&quot;true&quot;
+            android:label=&quot;@string/stub_name_activity&quot;
+            android:launchMode=&quot;standard&quot;
+            android:noHistory=&quot;true&quot;
+            android:theme=&quot;@style/DroidPluginTheme&quot;&gt;
             &lt;intent-filter&gt;
-                &lt;action android:name=&#34;android.intent.action.MAIN&#34; /&gt;
-                &lt;category android:name=&#34;com.morgoo.droidplugin.category.PROXY_STUB&#34; /&gt;
+                &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+                &lt;category android:name=&quot;com.morgoo.droidplugin.category.PROXY_STUB&quot; /&gt;
             &lt;/intent-filter&gt;
             &lt;meta-data
-                android:name=&#34;com.morgoo.droidplugin.ACTIVITY_STUB_INDEX&#34;
-                android:value=&#34;0&#34; /&gt;
+                android:name=&quot;com.morgoo.droidplugin.ACTIVITY_STUB_INDEX&quot;
+                android:value=&quot;0&quot; /&gt;
         &lt;/activity&gt;
         &lt;activity
-            android:name=&#34;.stub.ActivityStub$P00$SingleInstance00&#34;
-            android:allowTaskReparenting=&#34;true&#34;
-            android:excludeFromRecents=&#34;true&#34;
-            android:exported=&#34;false&#34;
-            android:hardwareAccelerated=&#34;true&#34;
-            android:label=&#34;@string/stub_name_activity&#34;
-            android:launchMode=&#34;singleInstance&#34;
-            android:theme=&#34;@style/DroidPluginTheme&#34;&gt;
+            android:name=&quot;.stub.ActivityStub$P00$SingleInstance00&quot;
+            android:allowTaskReparenting=&quot;true&quot;
+            android:excludeFromRecents=&quot;true&quot;
+            android:exported=&quot;false&quot;
+            android:hardwareAccelerated=&quot;true&quot;
+            android:label=&quot;@string/stub_name_activity&quot;
+            android:launchMode=&quot;singleInstance&quot;
+            android:theme=&quot;@style/DroidPluginTheme&quot;&gt;
             &lt;intent-filter&gt;
-                &lt;action android:name=&#34;android.intent.action.MAIN&#34; /&gt;
-                &lt;category android:name=&#34;com.morgoo.droidplugin.category.PROXY_STUB&#34; /&gt;
+                &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+                &lt;category android:name=&quot;com.morgoo.droidplugin.category.PROXY_STUB&quot; /&gt;
             &lt;/intent-filter&gt;
             &lt;meta-data
-                android:name=&#34;com.morgoo.droidplugin.ACTIVITY_STUB_INDEX&#34;
-                android:value=&#34;0&#34; /&gt;
+                android:name=&quot;com.morgoo.droidplugin.ACTIVITY_STUB_INDEX&quot;
+                android:value=&quot;0&quot; /&gt;
         &lt;/activity&gt;
-......</pre>
-</div>
-</div>
-<div class="paragraph">
+......
+</code></pre>
 <p>VirtualAPK、RePlugin里面也有类似的。可见各家方案，都有兼容各种launch的野心～</p>
-</div>
-<div class="paragraph">
 <p>那我们来看下framework层是怎么实现的呢？借用gityuan和大圣丶的两张图可以清楚得表面其设计：</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/dasheng.png" alt="dasheng"/>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/gityuan_activity_record.jpg" alt="gityuan activity record"/>
-</div>
-</div>
-<div class="paragraph">
-<p>具体源码在http://androidxref.com/9.0.0_r3/xref/frameworks/base/services/core/java/com/android/server/am/ActivityStarter.java#1220[startActivityUnchecked]，非常繁杂，这里我就不多做分析了，大家知道宏观示意即可。</p>
-</div>
-<div class="paragraph">
+<figure>
+<img
+src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/dasheng.png" />
+</figure>
+<figure>
+<img
+src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/gityuan_activity_record.jpg" />
+</figure>
+<p>具体源码在<a href="http://androidxref.com/9.0.0_r3/xref/frameworks/base/services/core/java/com/android/server/am/ActivityStarter.java#1220">startActivityUnchecked</a>，非常繁杂，这里我就不多做分析了，大家知道宏观示意即可。</p>
 <p>看过一些源码之后，我发现VirtualApp的实现是最完善的，在此不做具体分析，简单来说就它也像AMS一样记录了Activity栈的变化（相当于把AMS的数据做了一份快照在自己的进程，不知道能不能直接获取AMS的数据，应该没有这样的接口～），并根据launchMode/Flag触发<code>onNewIntent</code>之类的回调，可以说是所有方案里面完成度最高的了，其他方案都只能支持比较简单的launchMode。</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_各大插件化方案的借鉴与革新">各大插件化方案的借鉴与革新</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<h1 id="各大插件化方案的借鉴与革新">各大插件化方案的借鉴与革新</h1>
 <p>开始下面的内容之前，有必要区分本质问题与衍生问题：</p>
-</div>
-<div class="ulist">
 <ul>
 <li>
 <p>本质问题：如何启动插件Activity，加载资源、so，实现生命周期回调等</p>
@@ -482,10 +360,7 @@
 <p>衍生问题：插件管理、安装、加载，页面路由等</p>
 </li>
 </ul>
-</div>
-<div class="sect2">
-<h3 id="_mmin18androiddynamicloader">mmin18/AndroidDynamicLoader</h3>
-<div class="ulist">
+<h2 id="mmin18androiddynamicloader">mmin18/AndroidDynamicLoader</h2>
 <ul>
 <li>
 <p>借助fragment实现插件化</p>
@@ -494,30 +369,20 @@
 <p>反射<code>addAssetPath</code>实现资源插件化出现</p>
 </li>
 </ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>	static MyResources getResource(MyClassLoader mcl) {
+<!-- -->
+<pre><code>    static MyResources getResource(MyClassLoader mcl) {
         ......
-		try {
-			AssetManager am = (AssetManager) AssetManager.class.newInstance();
-			am.getClass().getMethod(&#34;addAssetPath&#34;, String.class).invoke(am, path.getAbsolutePath());
-			Resources superRes = MyApplication.instance().getResources();
-			Resources res = new Resources(am, superRes.getDisplayMetrics(), superRes.getConfiguration());
+        try {
+            AssetManager am = (AssetManager) AssetManager.class.newInstance();
+            am.getClass().getMethod(&quot;addAssetPath&quot;, String.class).invoke(am, path.getAbsolutePath());
+            Resources superRes = MyApplication.instance().getResources();
+            Resources res = new Resources(am, superRes.getDisplayMetrics(), superRes.getConfiguration());
             ......
-        }</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_23code">23Code</h3>
-<div class="paragraph">
+        }
+</code></pre>
+<h2 id="23code">23Code</h2>
 <p>Pass</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_alibabaatlas">alibaba/atlas</h3>
-<div class="ulist">
+<h2 id="alibabaatlas">alibaba/atlas</h2>
 <ul>
 <li>
 <p>开始出现了对framework的Hook，对后面的方案影响深远。下图是伯奎当时的分享</p>
@@ -526,16 +391,11 @@
 <p>开源的版本17年才公布，和分享时的设计已经差别较大了</p>
 </li>
 </ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-05-10-atlas.png" alt="2020 05 10 atlas"/>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_houkxandroid_pluginmgr">houkx/android-pluginmgr</h3>
-<div class="ulist">
+<figure>
+<img
+src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-05-10-atlas.png" />
+</figure>
+<h2 id="houkxandroid-pluginmgr">houkx/android-pluginmgr</h2>
 <ul>
 <li>
 <p>这个方案很有趣，但很少被提及，首先Hook掉ClassLoader，通过DexMaker在客户端修改插件类（变成一个已经在Manifest注册过的类）</p>
@@ -544,21 +404,13 @@
 <p>但是客户端做这个事情效率很低，事实上后来的RePlugin、Shadow又走回了这条路，只是放在了编译期</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-05-11-android-pluginmgr-01.png" alt="2020 05 11 android pluginmgr 01"/></span> <span class="image"><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-05-11-android-pluginmgr-02.png" alt="2020 05 11 android pluginmgr 02"/></span> <span class="image"><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-05-11-android-pluginmgr-03.png" alt="2020 05 11 android pluginmgr 03"/></span></p>
-</div>
-<div class="quoteblock">
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-05-11-android-pluginmgr-01.png" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-05-11-android-pluginmgr-02.png" alt="">
+<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-05-11-android-pluginmgr-03.png" alt=""></p>
 <blockquote>
-<div class="paragraph">
-<p>From: <a href="https://blog.csdn.net/hkxxx/article/details/42194387" class="bare">https://blog.csdn.net/hkxxx/article/details/42194387</a></p>
-</div>
+<p>From: <a href="https://blog.csdn.net/hkxxx/article/details/42194387">https://blog.csdn.net/hkxxx/article/details/42194387</a></p>
 </blockquote>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_singwhatiwannadynamic_load_apk">singwhatiwanna/dynamic-load-apk</h3>
-<div class="ulist">
+<h2 id="singwhatiwannadynamic-load-apk">singwhatiwanna/dynamic-load-apk</h2>
 <ul>
 <li>
 <p>用静态代理实现，第一个完成度比较高的插件化方案</p>
@@ -567,11 +419,7 @@
 <p>但是包括that关键字在内的设计，对开发侵入性较大</p>
 </li>
 </ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_direct_load_apk">Direct-Load-apk</h3>
-<div class="ulist">
+<h2 id="direct-load-apk">Direct-Load-apk</h2>
 <ul>
 <li>
 <p>lody早期的项目，针对上两种方案的优化（开发体验）</p>
@@ -580,37 +428,29 @@
 <p>试图通过把StubActivity的数据给插件Activity，让插件Activity能像正常Activit一样，参见下面的核心代码：</p>
 </li>
 </ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">    public void dispatchProxyToPlugin() {
-        try {
-            //开始伪装插件为实体Activity
-            pluginRef.set(&#34;mBase&#34;, proxy);
-            pluginRef.set(&#34;mDecor&#34;, proxyRef.get(&#34;mDecor&#34;));
-            pluginRef.set(&#34;mTitleColor&#34;, proxyRef.get(&#34;mTitleColor&#34;));
-            ......
-            Instrumentation instrumentation = proxyRef.get(&#34;mInstrumentation&#34;);
-            pluginRef.set(&#34;mInstrumentation&#34;, new LPluginInsrument(instrumentation));
-            ......
-            pluginRef.set(&#34;mUiThread&#34;, proxyRef.get(&#34;mUiThread&#34;));
-            pluginRef.set(&#34;mHandler&#34;, proxyRef.get(&#34;mHandler&#34;));
-            pluginRef.set(&#34;mInstanceTracker&#34;, proxyRef.get(&#34;mInstanceTracker&#34;));
-            ......
-        } catch (ReflectException e) {
-            e.printStackTrace();
-        }
-
-    }</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_hiwongopenatlas">HiWong/OpenAtlas</h3>
-<div class="ulist">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dispatchProxyToPlugin</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//开始伪装插件为实体Activity</span>
+</span></span><span style="display:flex;"><span>            pluginRef.<span style="color:#a6e22e">set</span>(<span style="color:#e6db74">&#34;mBase&#34;</span>, proxy);
+</span></span><span style="display:flex;"><span>            pluginRef.<span style="color:#a6e22e">set</span>(<span style="color:#e6db74">&#34;mDecor&#34;</span>, proxyRef.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#34;mDecor&#34;</span>));
+</span></span><span style="display:flex;"><span>            pluginRef.<span style="color:#a6e22e">set</span>(<span style="color:#e6db74">&#34;mTitleColor&#34;</span>, proxyRef.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#34;mTitleColor&#34;</span>));
+</span></span><span style="display:flex;"><span>            ......
+</span></span><span style="display:flex;"><span>            Instrumentation instrumentation <span style="color:#f92672">=</span> proxyRef.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#34;mInstrumentation&#34;</span>);
+</span></span><span style="display:flex;"><span>            pluginRef.<span style="color:#a6e22e">set</span>(<span style="color:#e6db74">&#34;mInstrumentation&#34;</span>, <span style="color:#66d9ef">new</span> LPluginInsrument(instrumentation));
+</span></span><span style="display:flex;"><span>            ......
+</span></span><span style="display:flex;"><span>            pluginRef.<span style="color:#a6e22e">set</span>(<span style="color:#e6db74">&#34;mUiThread&#34;</span>, proxyRef.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#34;mUiThread&#34;</span>));
+</span></span><span style="display:flex;"><span>            pluginRef.<span style="color:#a6e22e">set</span>(<span style="color:#e6db74">&#34;mHandler&#34;</span>, proxyRef.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#34;mHandler&#34;</span>));
+</span></span><span style="display:flex;"><span>            pluginRef.<span style="color:#a6e22e">set</span>(<span style="color:#e6db74">&#34;mInstanceTracker&#34;</span>, proxyRef.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#34;mInstanceTracker&#34;</span>));
+</span></span><span style="display:flex;"><span>            ......
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (ReflectException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h2 id="hiwongopenatlas">HiWong/OpenAtlas</h2>
 <ul>
 <li>
-<p>作者通过逆向手淘代码，实现的&#34;`山寨版`&#34;atlas，由于一些原因删库了，后来变成了ACDD，算是OpenAtlas的优化版</p>
+<p>作者通过逆向手淘代码，实现的“山寨版”atlas，由于一些原因删库了，后来变成了ACDD，算是OpenAtlas的优化版</p>
 </li>
 <li>
 <p>公开了一个hook编译工具aapt来解决资源冲突的实现，对后面的方案影响深远</p>
@@ -622,52 +462,40 @@
 <p>绕过Activity启动检查的方案初具雏形，开始Hook一些我们耳熟能详的方法，参考核心代码：</p>
 </li>
 </ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">    /****
-     *
-     * public ActivityResult execStartActivity( Context who, IBinder
-     * contextThread, IBinder token, Activity target, Intent intent, int
-     * requestCode);
-     * ***/
-    public InstrumentationHook(Instrumentation instrumentation, Context context) {
-        this.context = context;
-        this.mBase = instrumentation;
-        try {
-            mInstrumentationInvoke = Hack.into(&#34;android.app.Instrumentation&#34;);
-            if (Build.VERSION.SDK_INT &gt; Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-                mExecStartActivity = mInstrumentationInvoke.method(&#34;execStartActivity&#34;, Context.class,
-                        IBinder.class, IBinder.class, Activity.class, Intent.class, int.class, Bundle.class);
-            } else {
-                mExecStartActivity = mInstrumentationInvoke.method(&#34;execStartActivity&#34;, Context.class,
-                        IBinder.class, IBinder.class, Activity.class, Intent.class, int.class);
-            }
-            ......
-        } catch (HackAssertionException e) {
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
-    }</code></pre>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://alibaba.github.io/atlas/principle-intro/Project_architectured_img/resources.png" alt="resources"/>
-</div>
-</div>
-<div class="quoteblock">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#75715e">/****
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * public ActivityResult execStartActivity( Context who, IBinder
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * contextThread, IBinder token, Activity target, Intent intent, int
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * requestCode);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * ***/</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">InstrumentationHook</span>(Instrumentation instrumentation, Context context) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">context</span> <span style="color:#f92672">=</span> context;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">mBase</span> <span style="color:#f92672">=</span> instrumentation;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            mInstrumentationInvoke <span style="color:#f92672">=</span> Hack.<span style="color:#a6e22e">into</span>(<span style="color:#e6db74">&#34;android.app.Instrumentation&#34;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (Build.<span style="color:#a6e22e">VERSION</span>.<span style="color:#a6e22e">SDK_INT</span> <span style="color:#f92672">&gt;</span> Build.<span style="color:#a6e22e">VERSION_CODES</span>.<span style="color:#a6e22e">ICE_CREAM_SANDWICH_MR1</span>) {
+</span></span><span style="display:flex;"><span>                mExecStartActivity <span style="color:#f92672">=</span> mInstrumentationInvoke.<span style="color:#a6e22e">method</span>(<span style="color:#e6db74">&#34;execStartActivity&#34;</span>, Context.<span style="color:#a6e22e">class</span>,
+</span></span><span style="display:flex;"><span>                        IBinder.<span style="color:#a6e22e">class</span>, IBinder.<span style="color:#a6e22e">class</span>, Activity.<span style="color:#a6e22e">class</span>, Intent.<span style="color:#a6e22e">class</span>, <span style="color:#66d9ef">int</span>.<span style="color:#a6e22e">class</span>, Bundle.<span style="color:#a6e22e">class</span>);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                mExecStartActivity <span style="color:#f92672">=</span> mInstrumentationInvoke.<span style="color:#a6e22e">method</span>(<span style="color:#e6db74">&#34;execStartActivity&#34;</span>, Context.<span style="color:#a6e22e">class</span>,
+</span></span><span style="display:flex;"><span>                        IBinder.<span style="color:#a6e22e">class</span>, IBinder.<span style="color:#a6e22e">class</span>, Activity.<span style="color:#a6e22e">class</span>, Intent.<span style="color:#a6e22e">class</span>, <span style="color:#66d9ef">int</span>.<span style="color:#a6e22e">class</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            ......
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (HackAssertionException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IllegalArgumentException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><figure>
+<img
+src="https://alibaba.github.io/atlas/principle-intro/Project_architectured_img/resources.png" />
+</figure>
 <blockquote>
-<div class="paragraph">
-<p>From: <a href="https://alibaba.github.io/atlas/principle-intro/Runtime_principle.html" class="bare">https://alibaba.github.io/atlas/principle-intro/Runtime_principle.html</a></p>
-</div>
+<p>From:
+<a href="https://alibaba.github.io/atlas/principle-intro/Runtime_principle.html">https://alibaba.github.io/atlas/principle-intro/Runtime_principle.html</a></p>
 </blockquote>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_droidpluginteamdroidplugin">DroidPluginTeam/DroidPlugin</h3>
-<div class="ulist">
+<h2 id="droidpluginteamdroidplugin">DroidPluginTeam/DroidPlugin</h2>
 <ul>
 <li>
 <p>第一个Hook流派的完成度非常高的版本，几乎Hook了AMS、PMS等相关服务</p>
@@ -679,92 +507,76 @@
 <p>从这里开始，插件化具备了成为沙盒/虚拟机的可能，而不是宿主的能力补充</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
 <p>调用AMS前：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">        protected boolean doReplaceIntentForStartActivityAPIHigh(Object[] args) throws RemoteException {
-            int intentOfArgIndex = findFirstIntentIndexInArgs(args);
-            if (args != null &amp;&amp; args.length &gt; 1 &amp;&amp; intentOfArgIndex &gt;= 0) {
-                Intent intent = (Intent) args[intentOfArgIndex];
-                //XXX String callingPackage = (String) args[1];
-                if (!PluginPatchManager.getInstance().canStartPluginActivity(intent)) {
-                    PluginPatchManager.getInstance().startPluginActivity(intent);
-                    return false;
-                }
-                ActivityInfo activityInfo = resolveActivity(intent);
-                if (activityInfo != null &amp;&amp; isPackagePlugin(activityInfo.packageName)) {
-                    ComponentName component = selectProxyActivity(intent);
-                    if (component != null) {
-                        Intent newIntent = new Intent();
-                        try {
-                            ClassLoader pluginClassLoader = PluginProcessManager.getPluginClassLoader(component.getPackageName());
-                            setIntentClassLoader(newIntent, pluginClassLoader);
-                        } catch (Exception e) {
-                            Log.w(TAG, &#34;Set Class Loader to new Intent fail&#34;, e);
-                        }
-                        newIntent.setComponent(component);
-                        newIntent.putExtra(Env.EXTRA_TARGET_INTENT, intent);
-                        newIntent.setFlags(intent.getFlags());
-
-
-                        String callingPackage = (String) args[1];
-                        if (TextUtils.equals(mHostContext.getPackageName(), callingPackage)) {
-                            newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        args[intentOfArgIndex] = newIntent;
-                        args[1] = mHostContext.getPackageName();
-                    } else {
-                        Log.w(TAG, &#34;startActivity,replace selectProxyActivity fail&#34;);
-                    }
-                }
-            }
-
-            return true;
-        }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>AMS反调回来</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">    @Override
-    public boolean handleMessage(Message msg) {
-        long b = System.currentTimeMillis();
-        try {
-            if (!mEnable) {
-                return false;
-            }
-
-            if (PluginProcessManager.isPluginProcess(mHostContext)) {
-                if (!PluginManager.getInstance().isConnected()) {
-                    Log.i(TAG, &#34;handleMessage not isConnected post and wait,msg=%s&#34;, msg);
-                    mOldHandle.sendMessageDelayed(Message.obtain(msg), 5);
-                    return true;
-                }
-            }
-
-            if (msg.what == LAUNCH_ACTIVITY) {
-                return handleLaunchActivity(msg);
-            }
-            if (mCallback != null) {
-                return mCallback.handleMessage(msg);
-            } else {
-                return false;
-            }
-        } finally {
-            Log.i(TAG, &#34;handleMessage(%s,%s) cost %s ms&#34;, msg.what, codeToString(msg.what), (System.currentTimeMillis() - b));
-
-        }
-    }</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_ctripmobiledynamicapk">CtripMobile/DynamicAPK</h3>
-<div class="ulist">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>        <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">doReplaceIntentForStartActivityAPIHigh</span>(Object<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> RemoteException {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> intentOfArgIndex <span style="color:#f92672">=</span> findFirstIntentIndexInArgs(args);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (args <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> args.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> 1 <span style="color:#f92672">&amp;&amp;</span> intentOfArgIndex <span style="color:#f92672">&gt;=</span> 0) {
+</span></span><span style="display:flex;"><span>                Intent intent <span style="color:#f92672">=</span> (Intent) args<span style="color:#f92672">[</span>intentOfArgIndex<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//XXX String callingPackage = (String) args[1];</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>PluginPatchManager.<span style="color:#a6e22e">getInstance</span>().<span style="color:#a6e22e">canStartPluginActivity</span>(intent)) {
+</span></span><span style="display:flex;"><span>                    PluginPatchManager.<span style="color:#a6e22e">getInstance</span>().<span style="color:#a6e22e">startPluginActivity</span>(intent);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                ActivityInfo activityInfo <span style="color:#f92672">=</span> resolveActivity(intent);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (activityInfo <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> isPackagePlugin(activityInfo.<span style="color:#a6e22e">packageName</span>)) {
+</span></span><span style="display:flex;"><span>                    ComponentName component <span style="color:#f92672">=</span> selectProxyActivity(intent);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (component <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                        Intent newIntent <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Intent();
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                            ClassLoader pluginClassLoader <span style="color:#f92672">=</span> PluginProcessManager.<span style="color:#a6e22e">getPluginClassLoader</span>(component.<span style="color:#a6e22e">getPackageName</span>());
+</span></span><span style="display:flex;"><span>                            setIntentClassLoader(newIntent, pluginClassLoader);
+</span></span><span style="display:flex;"><span>                        } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>                            Log.<span style="color:#a6e22e">w</span>(TAG, <span style="color:#e6db74">&#34;Set Class Loader to new Intent fail&#34;</span>, e);
+</span></span><span style="display:flex;"><span>                        }
+</span></span><span style="display:flex;"><span>                        newIntent.<span style="color:#a6e22e">setComponent</span>(component);
+</span></span><span style="display:flex;"><span>                        newIntent.<span style="color:#a6e22e">putExtra</span>(Env.<span style="color:#a6e22e">EXTRA_TARGET_INTENT</span>, intent);
+</span></span><span style="display:flex;"><span>                        newIntent.<span style="color:#a6e22e">setFlags</span>(intent.<span style="color:#a6e22e">getFlags</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                        String callingPackage <span style="color:#f92672">=</span> (String) args<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">if</span> (TextUtils.<span style="color:#a6e22e">equals</span>(mHostContext.<span style="color:#a6e22e">getPackageName</span>(), callingPackage)) {
+</span></span><span style="display:flex;"><span>                            newIntent.<span style="color:#a6e22e">addFlags</span>(Intent.<span style="color:#a6e22e">FLAG_ACTIVITY_NEW_TASK</span>);
+</span></span><span style="display:flex;"><span>                        args<span style="color:#f92672">[</span>intentOfArgIndex<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> newIntent;
+</span></span><span style="display:flex;"><span>                        args<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> mHostContext.<span style="color:#a6e22e">getPackageName</span>();
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                        Log.<span style="color:#a6e22e">w</span>(TAG, <span style="color:#e6db74">&#34;startActivity,replace selectProxyActivity fail&#34;</span>);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span></code></pre></div><p>AMS反调回来</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">handleMessage</span>(Message msg) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">long</span> b <span style="color:#f92672">=</span> System.<span style="color:#a6e22e">currentTimeMillis</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>mEnable) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (PluginProcessManager.<span style="color:#a6e22e">isPluginProcess</span>(mHostContext)) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>PluginManager.<span style="color:#a6e22e">getInstance</span>().<span style="color:#a6e22e">isConnected</span>()) {
+</span></span><span style="display:flex;"><span>                    Log.<span style="color:#a6e22e">i</span>(TAG, <span style="color:#e6db74">&#34;handleMessage not isConnected post and wait,msg=%s&#34;</span>, msg);
+</span></span><span style="display:flex;"><span>                    mOldHandle.<span style="color:#a6e22e">sendMessageDelayed</span>(Message.<span style="color:#a6e22e">obtain</span>(msg), 5);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (msg.<span style="color:#a6e22e">what</span> <span style="color:#f92672">==</span> LAUNCH_ACTIVITY) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> handleLaunchActivity(msg);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (mCallback <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> mCallback.<span style="color:#a6e22e">handleMessage</span>(msg);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">finally</span> {
+</span></span><span style="display:flex;"><span>            Log.<span style="color:#a6e22e">i</span>(TAG, <span style="color:#e6db74">&#34;handleMessage(%s,%s) cost %s ms&#34;</span>, msg.<span style="color:#a6e22e">what</span>, codeToString(msg.<span style="color:#a6e22e">what</span>), (System.<span style="color:#a6e22e">currentTimeMillis</span>() <span style="color:#f92672">-</span> b));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h2 id="ctripmobiledynamicapk">CtripMobile/DynamicAPK</h2>
 <ul>
 <li>
 <p>主要借鉴了OpenAtlas</p>
@@ -773,11 +585,7 @@
 <p>aapt部分有所创新</p>
 </li>
 </ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_wequicksmall">wequick/Small</h3>
-<div class="ulist">
+<h2 id="wequicksmall">wequick/Small</h2>
 <ul>
 <li>
 <p>提供了一种通过脚本的方式解决资源冲突</p>
@@ -786,24 +594,15 @@
 <p>Activity依然是通过Hook的方式，没有特别大的改动</p>
 </li>
 </ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_aslodyvirtualapp">asLody/VirtualApp</h3>
-<div class="ulist">
+<h2 id="aslodyvirtualapp">asLody/VirtualApp</h2>
 <ul>
-<li>
-<p>算是对DroidPlugin的一次大升级，把虚拟framework完整地实现了，在源码命名和结构上就有所体现了</p>
-</li>
+<li>算是对DroidPlugin的一次大升级，把虚拟framework完整地实现了，在源码命名和结构上就有所体现了</li>
 </ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_didivirtualapk">didi/VirtualAPK</h3>
-<div class="ulist">
+<h2 id="didivirtualapk">didi/VirtualAPK</h2>
 <ul>
 <li>
-<p>综合考虑了大量Hook导致的不稳定问题和静态代理的开发侵入性，又开始回归到仅Hook <code>mInstrumentation</code> 的设计，主要是<code>execStartActivity</code> 和 <code>newActivity</code></p>
+<p>综合考虑了大量Hook导致的不稳定问题和静态代理的开发侵入性，又开始回归到仅Hook
+<code>mInstrumentation</code> 的设计，主要是<code>execStartActivity</code> 和 <code>newActivity</code></p>
 </li>
 <li>
 <p>Service主要用两个真实的Service做转调</p>
@@ -812,59 +611,53 @@
 <p>ContentProvider通过一个代理Provider进行操作的分发</p>
 </li>
 </ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_qihoo360replugin">Qihoo360/RePlugin</h3>
-<div class="ulist">
+<h2 id="qihoo360replugin">Qihoo360/RePlugin</h2>
 <ul>
 <li>
-<p>更进一步，One Hook，结合编译期的修改，把插件变成类似静态代理的类（像是把<code>houkx/android-pluginmgr</code>的策略换了个地方），同时Hook了ClassLoader使之加载插件的类：</p>
-<div class="ulist">
+<p>更进一步，One
+Hook，结合编译期的修改，把插件变成类似静态代理的类（像是把<code>houkx/android-pluginmgr</code>的策略换了个地方），同时Hook了ClassLoader使之加载插件的类：</p>
 <ul>
 <li>
-<p>记录下目标页 ActivityA，替换成已自动注册在 AndroidManifest 中的坑位 ActivityNS。</p>
+<p>记录下目标页 ActivityA，替换成已自动注册在 AndroidManifest 中的坑位
+ActivityNS。</p>
 </li>
 <li>
 <p>在 ClassLoader 中拦截ActivityNS的创建，创建出ActivityA返回。</p>
 </li>
 <li>
-<p>返回的ActivityA占用着 ActivityNS 这个坑位， 坑位由 Gradle 编译时自动生成在AndroidManifest中。</p>
+<p>返回的ActivityA占用着 ActivityNS 这个坑位， 坑位由 Gradle
+编译时自动生成在AndroidManifest中。</p>
 </li>
 </ul>
-</div>
 </li>
 <li>
 <p>主打的是稳定性和兼容性，文档资料相对来说比较健全</p>
 </li>
 </ul>
-</div>
-<div class="quoteblock">
 <blockquote>
-<div class="paragraph">
-<p>Q：您们和360之前发的DroidPlugin的主要区别是什么？ A：这个问题问得很好。很多人都有这个疑惑----“为什么你们360要开发两套不同的插件化框架呢”？ 其实归根结底，最根本的区别是----目标的不同： DroidPlugin主要解决的是各个独立功能拼装在一起，能够快速发布，其间不需要有任何的交互。目前市面上的一些双开应用，和DroidPlugin的思路有共同之处。当然了，要做到完整的双开，则仍需要大量的修改，如Native Hook等。 RePlugin解决的是各个功能模块能独立升级，又能需要和宿主、插件之间有一定交互和耦合。 此外，从技术层面上，其最核心的区别就一个：Hook点的多少。 DroidPlugin可以做到让APK&#34;`直接运行在主程序`&#34;中，无需任何额外修改。但需要Hook大量的API（包括AMS、PackageManager等），在适配上需要做大量的工作。 RePlugin只Hook了ClassLoader，所以极为稳定，且同样支持绝大多数单品的特性，但需要插件做&#34;`少许修改`&#34;。好在作为插件开发者而言无需过于关心，因为通过&#34;`动态编译方案`&#34;，开发者可做到&#34;`无需开发者修改Java Code，即可运行在主程序中`&#34;的效果。 可以肯定的是，DroidPlugin也是一款业界公认的，优秀的免安装插件方案。我相信，随着时间的推移，RePlugin和DroidPlugin会分别在各自领域（全面插件化 &amp; 应用免安装）打造出属于自己的一番天地。 回答者：@张炅轩</p>
-</div>
+<p>Q：您们和360之前发的DroidPlugin的主要区别是什么？
+A：这个问题问得很好。很多人都有这个疑惑&mdash;-“为什么你们360要开发两套不同的插件化框架呢”？
+其实归根结底，最根本的区别是&mdash;-目标的不同：
+DroidPlugin主要解决的是各个独立功能拼装在一起，能够快速发布，其间不需要有任何的交互。目前市面上的一些双开应用，和DroidPlugin的思路有共同之处。当然了，要做到完整的双开，则仍需要大量的修改，如Native
+Hook等。
+RePlugin解决的是各个功能模块能独立升级，又能需要和宿主、插件之间有一定交互和耦合。
+此外，从技术层面上，其最核心的区别就一个：Hook点的多少。
+DroidPlugin可以做到让APK“直接运行在主程序”中，无需任何额外修改。但需要Hook大量的API（包括AMS、PackageManager等），在适配上需要做大量的工作。
+RePlugin只Hook了ClassLoader，所以极为稳定，且同样支持绝大多数单品的特性，但需要插件做“少许修改”。好在作为插件开发者而言无需过于关心，因为通过“动态编译方案”，开发者可做到“无需开发者修改Java
+Code，即可运行在主程序中”的效果。
+可以肯定的是，DroidPlugin也是一款业界公认的，优秀的免安装插件方案。我相信，随着时间的推移，RePlugin和DroidPlugin会分别在各自领域（全面插件化
+&amp; 应用免安装）打造出属于自己的一番天地。 回答者：@张炅轩</p>
 </blockquote>
-</div>
-<div class="paragraph">
-<p>From: <a href="https://github.com/Qihoo360/RePlugin/wiki/FAQ" class="bare">https://github.com/Qihoo360/RePlugin/wiki/FAQ</a></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-05-12-shadow-to-replugin-pr.png" alt="2020 05 12 shadow to replugin pr"/>
-</div>
-</div>
-<div class="quoteblock">
+<p>From: <a href="https://github.com/Qihoo360/RePlugin/wiki/FAQ">https://github.com/Qihoo360/RePlugin/wiki/FAQ</a></p>
+<figure>
+<img
+src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-05-12-shadow-to-replugin-pr.png" />
+</figure>
 <blockquote>
-<div class="paragraph">
-<p>From:https://github.com/Qihoo360/RePlugin/pull/840 在看shadow的时候，发现其作者提出了一个改进，但是并未被接受，这个死循环也没有解释原因，感觉维护者这个态度有问题啊～个人感觉这个改的挺好的</p>
-</div>
+<p>From:<a href="https://github.com/Qihoo360/RePlugin/pull/840">https://github.com/Qihoo360/RePlugin/pull/840</a>
+在看shadow的时候，发现其作者提出了一个改进，但是并未被接受，这个死循环也没有解释原因，感觉维护者这个态度有问题啊～个人感觉这个改的挺好的</p>
 </blockquote>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_manbanggroupphantom">ManbangGroup/Phantom</h3>
-<div class="ulist">
+<h2 id="manbanggroupphantom">ManbangGroup/Phantom</h2>
 <ul>
 <li>
 <p>比360的RePlugin更进一步，宣称零Hook</p>
@@ -876,23 +669,14 @@
 <p>分析其代码后发现还是拓展了RePlugin</p>
 </li>
 </ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-05-12-Phantom.png" alt="2020 05 12 Phantom"/>
-</div>
-</div>
-<div class="quoteblock">
+<figure>
+<img
+src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-05-12-Phantom.png" />
+</figure>
 <blockquote>
-<div class="paragraph">
 <p>编译期替换，静态代理</p>
-</div>
 </blockquote>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_tencentshadow">Tencent/Shadow</h3>
-<div class="ulist">
+<h2 id="tencentshadow">Tencent/Shadow</h2>
 <ul>
 <li>
 <p>同样是零Hook，同时宣称支持插件框架本身的动态化（这个其实也不难）</p>
@@ -901,25 +685,12 @@
 <p>更像是RePlugin的另一个种实现，没有本质的不同</p>
 </li>
 </ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_对于插件化的几点思考">对于插件化的几点思考</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>前面，我们快速看完了每一个插件化的主要特点，隐隐约约已有所感悟，似乎应了《三国演义》的那句&#34;`合久必分、分久必合`&#34;，很多方案看似新颖，但无不是在前人的基础上，根据自己的业务做一些创新，论里程碑的仁者见仁、智者见智，但切不可被花里胡哨的项目<code>README.md</code>迷惑双眼。</p>
-</div>
-<div class="paragraph">
-<p>从脉络上来看，从静态代理、Hook framework各自的蓬勃发展，到最近几年，两个方案互相取长补短，总体似乎是朝着客户端轻Hook+编译期侵入修改的方向走去，下面我来拆分几个维度，具体讨论一下。</p>
-</div>
-<div class="sect2">
-<h3 id="_开发期or运行期">开发期or运行期</h3>
-<div class="paragraph">
+<h1 id="对于插件化的几点思考">对于插件化的几点思考</h1>
+<p>前面，我们快速看完了每一个插件化的主要特点，隐隐约约已有所感悟，似乎应了《三国演义》的那句“合久必分、分久必合”，很多方案看似新颖，但无不是在前人的基础上，根据自己的业务做一些创新，论里程碑的仁者见仁、智者见智，但切不可被花里胡哨的项目<code>README.md</code>迷惑双眼。</p>
+<p>从脉络上来看，从静态代理、Hook
+framework各自的蓬勃发展，到最近几年，两个方案互相取长补短，总体似乎是朝着客户端轻Hook+编译期侵入修改的方向走去，下面我来拆分几个维度，具体讨论一下。</p>
+<h2 id="开发期or运行期">开发期or运行期</h2>
 <p>想把我们的插件Activity像正常Activity一样启动，做一些侵入性的修改是不可避免的，在我看来，一路发展过来，主要分了三个方向：</p>
-</div>
-<div class="ulist">
 <ul>
 <li>
 <p>以dynamic-load-apk为代表的，开发期侵入</p>
@@ -931,432 +702,305 @@
 <p>以RePlugin、shadow为代表的，编译期侵入</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
 <p>编译期侵入算是开发期侵入的自动化版本，既避免了不稳定的Hook，也可以保证开发人员的体验；运行期侵入对于追求稳定来说，始终是一个挑战。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_独立or合并">独立or合并</h3>
-<div class="paragraph">
-<p>对于ClassLoader和Resource都存在这个问题，有些方案会选择公用类加载器或者资源，这样就要解决插件和宿主，插件和插件的潜在冲突，aapt的魔改正是为了处理这种情况。特别是Resource，独立可以避免冲突，共用则能降低插件size。 我觉得还是要区分场景，DroidPlugin这种每个插件都很独立，适合分开加载；如果插件是宿主功能的一个补充，则可以共用。 Shawdow甚至通过白名单来控制是隔离还是共用ClassLoader。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_动态化or插件化">动态化or插件化</h3>
-<div class="paragraph">
+<h2 id="独立or合并">独立or合并</h2>
+<p>对于ClassLoader和Resource都存在这个问题，有些方案会选择公用类加载器或者资源，这样就要解决插件和宿主，插件和插件的潜在冲突，aapt的魔改正是为了处理这种情况。特别是Resource，独立可以避免冲突，共用则能降低插件size。
+我觉得还是要区分场景，DroidPlugin这种每个插件都很独立，适合分开加载；如果插件是宿主功能的一个补充，则可以共用。
+Shawdow甚至通过白名单来控制是隔离还是共用ClassLoader。</p>
+<h2 id="动态化or插件化">动态化or插件化</h2>
 <p>插件化和动态化多少有一些共通之处，他们都可以降低宿主大小、动态发版等，目前来看，插件化的优势是涉及到四大组件的时候更合适，而动态化则适合纯View级别的修改。</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_参考文章">参考文章</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<h1 id="参考文章">参考文章</h1>
 <p>Atlas:</p>
-</div>
-<div class="ulist">
 <ul>
 <li>
 <p><a href="https://mp.weixin.qq.com/s?%5F%5Fbiz=MzAxNDEwNjk5OQ==&amp;mid=2650400348&amp;idx=1&amp;sn=99bc1bce932c5b9000d5b54afa2de70e">Atlas-手淘组件化框架的前世今生和未来的路</a></p>
 </li>
 <li>
-<p><a href="https://v.youku.com/v_show/id_XNTMzMjYzMzM2.html">阿里技术沙龙第十六期《android插件化及动态部署—​ATLAS 》伯奎-优酷</a></p>
+<p><a href="https://v.youku.com/v_show/id_XNTMzMjYzMzM2.html">阿里技术沙龙第十六期《android插件化及动态部署—​ATLAS
+》伯奎-优酷</a></p>
 </li>
 <li>
 <p><a href="https://alibaba.github.io/atlas/">Atlas - Introduction · GitBook</a></p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
 <p>android-pluginmgr:</p>
-</div>
-<div class="ulist">
 <ul>
 <li>
 <p><a href="https://blog.csdn.net/hkxxx/article/details/42194387">动态加载APK原理分享-CSDN博客</a></p>
 </li>
 <li>
-<p><a href="https://segmentfault.com/a/1190000004077469">Android动态加载黑科技 动态创建Activity模式</a></p>
+<p><a href="https://segmentfault.com/a/1190000004077469">Android动态加载黑科技
+动态创建Activity模式</a></p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
 <p>dynamic-load-apk：</p>
-</div>
-<div class="ulist">
 <ul>
 <li>
-<p><a href="https://blog.csdn.net/u012124438/article/details/53241755">Android插件化学习之路（八）之DynamicLoadApk 源码解析（上）-CSDN博客</a></p>
+<p><a href="https://blog.csdn.net/u012124438/article/details/53241755">Android插件化学习之路（八）之DynamicLoadApk
+源码解析（上）-CSDN博客</a></p>
 </li>
 <li>
-<p><a href="https://blog.csdn.net/u012124438/article/details/53242838">Android插件化学习之路（九）之DynamicLoadApk 源码解析（下）-CSDN博客</a></p>
+<p><a href="https://blog.csdn.net/u012124438/article/details/53242838">Android插件化学习之路（九）之DynamicLoadApk
+源码解析（下）-CSDN博客</a></p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
 <p>Direct-Load-apk:</p>
-</div>
-<div class="ulist">
 <ul>
-<li>
-<p><a href="https://my.oschina.net/913731137/blog/393252#OSC_h3_4">Direct-Load-apk启动插件的原理 - Lody的个人页面 - OSCHINA</a></p>
-</li>
+<li><a href="https://my.oschina.net/913731137/blog/393252#OSC_h3_4">Direct-Load-apk启动插件的原理 - Lody的个人页面 -
+OSCHINA</a></li>
 </ul>
-</div>
-<div class="paragraph">
 <p>OpenAtlas:</p>
-</div>
-<div class="ulist">
 <ul>
-<li>
-<p></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;"/>
-<col style="width: 50%;"/>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[Android插件化(一):OpenAtlas架构以及实现原理概要</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/01/24/2017-01-24-androidcha-jian-hua-one-openatlasjia-gou-yi-ji-shi-xian-yuan-li/" class="bare">https://blog.imallen.wang/2017/01/24/2017-01-24-androidcha-jian-hua-one-openatlasjia-gou-yi-ji-shi-xian-yuan-li/</a>)</p></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;"/>
-<col style="width: 50%;"/>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[Android插件化(二):OpenAtlas插件安装过程分析</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/02/03/2017-02-03-openatlascha-jian-an-zhuang-guo-cheng-fen-xi/" class="bare">https://blog.imallen.wang/2017/02/03/2017-02-03-openatlascha-jian-an-zhuang-guo-cheng-fen-xi/</a>)</p></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;"/>
-<col style="width: 50%;"/>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[Android插件化(三):OpenAtlas的插件重建以及使用时安装</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasde-cha-jian-zhong-jian-yi-ji-shi-yong-shi-an-zhuang/" class="bare">https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasde-cha-jian-zhong-jian-yi-ji-shi-yong-shi-an-zhuang/</a>)</p></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;"/>
-<col style="width: 50%;"/>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[Android插件化(四):OpenAtlasの插件的卸载与更新</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasfalsecha-jian-de-xie-zai-yu-geng-xin/" class="bare">https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasfalsecha-jian-de-xie-zai-yu-geng-xin/</a>)</p></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;"/>
-<col style="width: 50%;"/>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[Android插件化(五):OpenAtlasの四大组件的Hack</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasfalsesi-da-zu-jian-de-hack/" class="bare">https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasfalsesi-da-zu-jian-de-hack/</a>)</p></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;"/>
-<col style="width: 50%;"/>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[Android插件化(六): OpenAtlasの改写aapt以防止资源ID冲突</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasfalsegai-xie-aaptyi-fang-zhi-zi-yuan-idchong-tu/" class="bare">https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasfalsegai-xie-aaptyi-fang-zhi-zi-yuan-idchong-tu/</a>)</p></td>
-</tr>
-</tbody>
-</table>
-</li>
+<li></li>
 </ul>
-</div>
-<div class="paragraph">
+<table>
+<thead>
+<tr>
+<th>[Android插件化(一):OpenAtlas架构以及实现原理概要</th>
+<th>AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/01/24/2017-01-24-androidcha-jian-hua-one-openatlasjia-gou-yi-ji-shi-xian-yuan-li/">https://blog.imallen.wang/2017/01/24/2017-01-24-androidcha-jian-hua-one-openatlasjia-gou-yi-ji-shi-xian-yuan-li/</a>)</th>
+</tr>
+</thead>
+</table>
+<ul>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>[Android插件化(二):OpenAtlas插件安装过程分析</th>
+<th>AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/02/03/2017-02-03-openatlascha-jian-an-zhuang-guo-cheng-fen-xi/">https://blog.imallen.wang/2017/02/03/2017-02-03-openatlascha-jian-an-zhuang-guo-cheng-fen-xi/</a>)</th>
+</tr>
+</thead>
+</table>
+<ul>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>[Android插件化(三):OpenAtlas的插件重建以及使用时安装</th>
+<th>AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasde-cha-jian-zhong-jian-yi-ji-shi-yong-shi-an-zhuang/">https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasde-cha-jian-zhong-jian-yi-ji-shi-yong-shi-an-zhuang/</a>)</th>
+</tr>
+</thead>
+</table>
+<ul>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>[Android插件化(四):OpenAtlasの插件的卸载与更新</th>
+<th>AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasfalsecha-jian-de-xie-zai-yu-geng-xin/">https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasfalsecha-jian-de-xie-zai-yu-geng-xin/</a>)</th>
+</tr>
+</thead>
+</table>
+<ul>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>[Android插件化(五):OpenAtlasの四大组件的Hack</th>
+<th>AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasfalsesi-da-zu-jian-de-hack/">https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasfalsesi-da-zu-jian-de-hack/</a>)</th>
+</tr>
+</thead>
+</table>
+<ul>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>[Android插件化(六): OpenAtlasの改写aapt以防止资源ID冲突</th>
+<th>AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasfalsegai-xie-aaptyi-fang-zhi-zi-yuan-idchong-tu/">https://blog.imallen.wang/2017/02/03/2017-02-03-openatlasfalsegai-xie-aaptyi-fang-zhi-zi-yuan-idchong-tu/</a>)</th>
+</tr>
+</thead>
+</table>
 <p>Small:</p>
-</div>
-<div class="ulist">
+<!-- -->
 <ul>
-<li>
-<p></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;"/>
-<col style="width: 50%;"/>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[Small源码分析</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">GeekFan’s Android Blog](<a href="http://geekfan.tech/2017/04/20/small/" class="bare">http://geekfan.tech/2017/04/20/small/</a>)</p></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;"/>
-<col style="width: 50%;"/>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[Android 插件化框架Small解析—​开始了解Small</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">孤舟蓑笠翁，独钓寒江雪](<a href="https://www.heqiangfly.com/2017/05/08/open-source-android-plugins-small-sample/" class="bare">https://www.heqiangfly.com/2017/05/08/open-source-android-plugins-small-sample/</a>)</p></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;"/>
-<col style="width: 50%;"/>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[Android 插件化框架Small解析—​初始化</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">孤舟蓑笠翁，独钓寒江雪](<a href="https://www.heqiangfly.com/2017/05/10/open-source-android-plugins-small-init/" class="bare">https://www.heqiangfly.com/2017/05/10/open-source-android-plugins-small-init/</a>)</p></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;"/>
-<col style="width: 50%;"/>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[Android 插件化框架Small解析 — 类的动态加载源码分析</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">孤舟蓑笠翁，独钓寒江雪](<a href="https://www.heqiangfly.com/2017/05/20/open-source-android-plugins-small-dynamic-load-class/" class="bare">https://www.heqiangfly.com/2017/05/20/open-source-android-plugins-small-dynamic-load-class/</a>)</p></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;"/>
-<col style="width: 50%;"/>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[Android 插件化框架Small解析—​动态注册组件原理及启动插件Activity流程</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">孤舟蓑笠翁，独钓寒江雪](<a href="https://www.heqiangfly.com/2017/05/12/open-source-android-plugins-small-principle/" class="bare">https://www.heqiangfly.com/2017/05/12/open-source-android-plugins-small-principle/</a>)</p></td>
-</tr>
-</tbody>
-</table>
-</li>
+<li></li>
 </ul>
-</div>
-<div class="paragraph">
+<table>
+<thead>
+<tr>
+<th>[Small源码分析</th>
+<th>GeekFan’s Android Blog](<a href="http://geekfan.tech/2017/04/20/small/">http://geekfan.tech/2017/04/20/small/</a>)</th>
+</tr>
+</thead>
+</table>
+<ul>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>[Android 插件化框架Small解析—​开始了解Small</th>
+<th>孤舟蓑笠翁，独钓寒江雪](<a href="https://www.heqiangfly.com/2017/05/08/open-source-android-plugins-small-sample/">https://www.heqiangfly.com/2017/05/08/open-source-android-plugins-small-sample/</a>)</th>
+</tr>
+</thead>
+</table>
+<ul>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>[Android 插件化框架Small解析—​初始化</th>
+<th>孤舟蓑笠翁，独钓寒江雪](<a href="https://www.heqiangfly.com/2017/05/10/open-source-android-plugins-small-init/">https://www.heqiangfly.com/2017/05/10/open-source-android-plugins-small-init/</a>)</th>
+</tr>
+</thead>
+</table>
+<ul>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>[Android 插件化框架Small解析 — 类的动态加载源码分析</th>
+<th>孤舟蓑笠翁，独钓寒江雪](<a href="https://www.heqiangfly.com/2017/05/20/open-source-android-plugins-small-dynamic-load-class/">https://www.heqiangfly.com/2017/05/20/open-source-android-plugins-small-dynamic-load-class/</a>)</th>
+</tr>
+</thead>
+</table>
+<ul>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>[Android 插件化框架Small解析—​动态注册组件原理及启动插件Activity流程</th>
+<th>孤舟蓑笠翁，独钓寒江雪](<a href="https://www.heqiangfly.com/2017/05/12/open-source-android-plugins-small-principle/">https://www.heqiangfly.com/2017/05/12/open-source-android-plugins-small-principle/</a>)</th>
+</tr>
+</thead>
+</table>
 <p>DynamicAPK:</p>
-</div>
-<div class="ulist">
+<!-- -->
 <ul>
 <li>
-<p><a href="https://mp.weixin.qq.com/s?%5F%5Fbiz=MzAwMTcwNTE0NA==&amp;mid=400217391&amp;idx=1&amp;sn=86181541ce0164156dfab135ed99bb5c&amp;scene=1&amp;srcid=1104yOOxo7c2fr3ooaz9Pcv5#rd">携程Android App插件化和动态加载实践</a></p>
+<p><a href="https://mp.weixin.qq.com/s?%5F%5Fbiz=MzAwMTcwNTE0NA==&amp;mid=400217391&amp;idx=1&amp;sn=86181541ce0164156dfab135ed99bb5c&amp;scene=1&amp;srcid=1104yOOxo7c2fr3ooaz9Pcv5#rd">携程Android
+App插件化和动态加载实践</a></p>
 </li>
 <li>
-<p><a href="https://www.infoq.cn/article/ctrip-android-dynamic-loading/">携程Android App插件化和动态加载实践 - InfoQ</a></p>
+<p><a href="https://www.infoq.cn/article/ctrip-android-dynamic-loading/">携程Android App插件化和动态加载实践 -
+InfoQ</a></p>
 </li>
 <li>
 <p><a href="https://blog.csdn.net/nupt123456789/article/details/50531709">携程DynamicAPK插件化框架源码分析</a></p>
 </li>
 <li>
-<p><a href="https://www.zhihu.com/question/38083715" class="bare">https://www.zhihu.com/question/38083715</a>[你怎么看待携程DynamicApk插件化框架的抄袭现象?</p>
-<div class="ulist">
+<p><a href="https://www.zhihu.com/question/38083715">https://www.zhihu.com/question/38083715</a>[你怎么看待携程DynamicApk插件化框架的抄袭现象?</p>
 <ul>
-<li>
-<p>知乎]</p>
+<li>知乎]</li>
+</ul>
 </li>
 </ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
 <p>VirtualAPK:</p>
-</div>
-<div class="ulist">
 <ul>
 <li>
 <p><a href="https://mp.weixin.qq.com/s?%5F%5Fbiz=MzUxMzcxMzE5Ng==&amp;mid=2247488236&amp;idx=1&amp;sn=55c929d60f423d9970b91ad783bd1cac&amp;source=41#wechat_redirect">滴滴插件化项目VirtualAPK开源！</a></p>
 </li>
 <li>
-<p><a href="https://juejin.im/post/5a7ec6545188257a5e573ec8#heading-3">Android开源框架源码鉴赏：VirtualAPK - 掘金</a></p>
+<p><a href="https://juejin.im/post/5a7ec6545188257a5e573ec8#heading-3">Android开源框架源码鉴赏：VirtualAPK -
+掘金</a></p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
 <p>RePlugin:</p>
-</div>
-<div class="ulist">
 <ul>
 <li>
-<p><a href="http://www.360.cn/newslist/qtxw/azjrqmcjhsd360xbRePluginjky.html">安卓进入&#34;`全面插件化`&#34;时代 360宣布RePlugin将开源</a></p>
+<p><a href="http://www.360.cn/newslist/qtxw/azjrqmcjhsd360xbRePluginjky.html">安卓进入“全面插件化”时代
+360宣布RePlugin将开源</a></p>
 </li>
 <li>
 <p><a href="https://tech.sina.cn/2017-07-01/detail-ifyhrttz1950622.d.html">360手机卫士插件化RePlugin宣布开源-手机新浪网</a></p>
 </li>
 <li>
-<p><a href="https://www.zhihu.com/question/61187557">如何评价360的Android插件化框架RePlugin？ - 知乎</a></p>
+<p><a href="https://www.zhihu.com/question/61187557">如何评价360的Android插件化框架RePlugin？ -
+知乎</a></p>
 </li>
 <li>
-<p><a href="https://www.jianshu.com/p/18530be5dcdd">Android全面插件化RePlugin流程与源码解析 - 简书</a></p>
+<p><a href="https://www.jianshu.com/p/18530be5dcdd">Android全面插件化RePlugin流程与源码解析 -
+简书</a></p>
 </li>
-<li>
-<p></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;"/>
-<col style="width: 50%;"/>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[RePlugin解析(-):startActivity流程分析</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/12/05/RePlugin%E8%A7%A3%E6%9E%90-startActivity%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/" class="bare">https://blog.imallen.wang/2017/12/05/RePlugin%E8%A7%A3%E6%9E%90-startActivity%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/</a>)</p></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;"/>
-<col style="width: 50%;"/>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[RePlugin解析startService流程分析</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/12/15/RePlugin%E8%A7%A3%E6%9E%90startService%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/" class="bare">https://blog.imallen.wang/2017/12/15/RePlugin%E8%A7%A3%E6%9E%90startService%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/</a>)</p></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;"/>
-<col style="width: 50%;"/>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[RePlugin解析之BroadcastReceiver</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/12/16/RePlugin%E8%A7%A3%E6%9E%90%E4%B9%8BBroadcastReceiver/" class="bare">https://blog.imallen.wang/2017/12/16/RePlugin%E8%A7%A3%E6%9E%90%E4%B9%8BBroadcastReceiver/</a>)</p></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;"/>
-<col style="width: 50%;"/>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[RePlugin解析之ContentProvider</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/12/19/RePlugin%E8%A7%A3%E6%9E%90%E4%B9%8BContentProvider/" class="bare">https://blog.imallen.wang/2017/12/19/RePlugin%E8%A7%A3%E6%9E%90%E4%B9%8BContentProvider/</a>)</p></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p><a href="https://github.com/Qihoo360/RePlugin/wiki/%E9%AB%98%E7%BA%A7%E8%AF%9D%E9%A2%98">高级话题 · Qihoo360/RePlugin Wiki</a></p>
-</li>
+<li></li>
 </ul>
-</div>
-<div class="paragraph">
+<table>
+<thead>
+<tr>
+<th>[RePlugin解析(-):startActivity流程分析</th>
+<th>AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/12/05/RePlugin%E8%A7%A3%E6%9E%90-startActivity%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/">https://blog.imallen.wang/2017/12/05/RePlugin%E8%A7%A3%E6%9E%90-startActivity%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/</a>)</th>
+</tr>
+</thead>
+</table>
+<ul>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>[RePlugin解析startService流程分析</th>
+<th>AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/12/15/RePlugin%E8%A7%A3%E6%9E%90startService%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/">https://blog.imallen.wang/2017/12/15/RePlugin%E8%A7%A3%E6%9E%90startService%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/</a>)</th>
+</tr>
+</thead>
+</table>
+<ul>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>[RePlugin解析之BroadcastReceiver</th>
+<th>AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/12/16/RePlugin%E8%A7%A3%E6%9E%90%E4%B9%8BBroadcastReceiver/">https://blog.imallen.wang/2017/12/16/RePlugin%E8%A7%A3%E6%9E%90%E4%B9%8BBroadcastReceiver/</a>)</th>
+</tr>
+</thead>
+</table>
+<ul>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>[RePlugin解析之ContentProvider</th>
+<th>AllenWang的个人博客](<a href="https://blog.imallen.wang/2017/12/19/RePlugin%E8%A7%A3%E6%9E%90%E4%B9%8BContentProvider/">https://blog.imallen.wang/2017/12/19/RePlugin%E8%A7%A3%E6%9E%90%E4%B9%8BContentProvider/</a>)</th>
+</tr>
+</thead>
+</table>
+<ul>
+<li><a href="https://github.com/Qihoo360/RePlugin/wiki/%E9%AB%98%E7%BA%A7%E8%AF%9D%E9%A2%98">高级话题 · Qihoo360/RePlugin
+Wiki</a></li>
+</ul>
 <p>综述类：</p>
-</div>
-<div class="ulist">
 <ul>
 <li>
-<p><a href="https://www.zhihu.com/question/32037895/answer/56229332">Android 开发有哪些新技术出现？ - 知乎</a></p>
+<p><a href="https://www.zhihu.com/question/32037895/answer/56229332">Android 开发有哪些新技术出现？ -
+知乎</a></p>
 </li>
 <li>
-<p><a href="https://www.infoq.cn/article/android-plug-ins-from-entry-to-give-up">Android插件化：从入门到放弃 - InfoQ</a></p>
+<p><a href="https://www.infoq.cn/article/android-plug-ins-from-entry-to-give-up">Android插件化：从入门到放弃 -
+InfoQ</a></p>
 </li>
-<li>
-<p></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;"/>
-<col style="width: 50%;"/>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[Android 插件化的 过去 现在 未来</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">开源实验室](<a href="https://www.kymjs.com/code/2016/05/04/01/" class="bare">https://www.kymjs.com/code/2016/05/04/01/</a>)</p></td>
-</tr>
-</tbody>
-</table>
-</li>
+<li></li>
 </ul>
-</div>
-<div class="paragraph">
+<table>
+<thead>
+<tr>
+<th>[Android 插件化的 过去 现在 未来</th>
+<th>开源实验室](<a href="https://www.kymjs.com/code/2016/05/04/01/">https://www.kymjs.com/code/2016/05/04/01/</a>)</th>
+</tr>
+</thead>
+</table>
 <p>Shadow:</p>
-</div>
-<div class="ulist">
+<!-- -->
 <ul>
-<li>
-<p></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;"/>
-<col style="width: 50%;"/>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[Tencent Shadow</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MySlide - 专注PPT分享，追随SlideShare和SpeakerDeck的脚步](<a href="https://myslide.cn/slides/21645" class="bare">https://myslide.cn/slides/21645</a>)</p></td>
-</tr>
-</tbody>
-</table>
-</li>
+<li></li>
 </ul>
-</div>
-</div>
-</div>
+<table>
+<thead>
+<tr>
+<th>[Tencent Shadow</th>
+<th>MySlide - 专注PPT分享，追随SlideShare和SpeakerDeck的脚步](<a href="https://myslide.cn/slides/21645">https://myslide.cn/slides/21645</a>)</th>
+</tr>
+</thead>
+</table>
 
 		</div>
     <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
@@ -1426,11 +1070,11 @@
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
-			<li class="widget__item"><a class="widget__link" href="/articles/use-protobuf-in-cmake/">CMake使用Protobuf的正确姿势</a></li>
 		</ul>
 	</div>
 </div>
@@ -1448,7 +1092,11 @@
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
-				<span class="widget__counter widget__counter--bubble">2</span>
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
 				</li>
 		</ul>
 	</div>
@@ -1456,11 +1104,13 @@
 <div class="widget-taglist widget">
 	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMAKE">CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
@@ -1468,7 +1118,6 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言">编程语言 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>

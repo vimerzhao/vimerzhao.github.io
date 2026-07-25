@@ -20,14 +20,17 @@
     <loc>/about/</loc>
     <lastmod>2023-10-14T20:15:57+08:00</lastmod>
   </url><url>
-    <loc>/articles/2025-retrospective-and-some-thoughts/</loc>
-    <lastmod>2026-03-03T17:03:22+08:00</lastmod>
-  </url><url>
     <loc>/articles/</loc>
-    <lastmod>2026-03-18T14:23:12+08:00</lastmod>
+    <lastmod>2026-07-25T11:20:46+08:00</lastmod>
+  </url><url>
+    <loc>/articles/2026-first-research-on-openclaw/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/</loc>
-    <lastmod>2026-03-18T14:23:12+08:00</lastmod>
+    <lastmod>2026-07-25T11:20:46+08:00</lastmod>
+  </url><url>
+    <loc>/articles/2025-retrospective-and-some-thoughts/</loc>
+    <lastmod>2026-03-03T17:03:22+08:00</lastmod>
   </url><url>
     <loc>/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/</loc>
     <lastmod>2025-12-18T10:25:36+08:00</lastmod>
@@ -38,14 +41,26 @@
     <loc>/articles/process-of-build-wpe-webkit-android/</loc>
     <lastmod>2025-11-08T23:18:26+08:00</lastmod>
   </url><url>
+    <loc>/articles/embedded-development-memo/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
     <loc>/articles/use-protobuf-in-cmake/</loc>
     <lastmod>2025-10-27T20:53:29+08:00</lastmod>
+  </url><url>
+    <loc>/articles/pitfalls-about-using-linux-as-dev-machine/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/migrate-wxwork-chat-history-in-windows-vm/</loc>
     <lastmod>2025-10-20T19:53:37+08:00</lastmod>
   </url><url>
+    <loc>/articles/try-install-chromium-and-webkit-on-rk1126/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
     <loc>/articles/setup-wpewebkit-2.46-debug-environment/</loc>
     <lastmod>2025-07-02T15:08:09+08:00</lastmod>
+  </url><url>
+    <loc>/articles/debug-records/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/configure-a-linux-development-environment/</loc>
     <lastmod>2025-10-20T19:53:37+08:00</lastmod>
@@ -59,17 +74,41 @@
     <loc>/articles/skia-debug-inline-pitfall/</loc>
     <lastmod>2024-09-19T13:07:58+08:00</lastmod>
   </url><url>
+    <loc>/articles/generate-clangd-index-for-webkit/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/record-android-build-error-20240816/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/mac_windows_linux_usage_memo/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
     <loc>/articles/optimize-mac-with-windows-development/</loc>
     <lastmod>2024-09-19T13:07:58+08:00</lastmod>
   </url><url>
+    <loc>/articles/the-tragedy-of-cpp-upgrade/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
     <loc>/articles/vcpkg-source-code-of-install/</loc>
     <lastmod>2024-06-17T10:27:21+08:00</lastmod>
+  </url><url>
+    <loc>/articles/empty-binary-cache-issue-of-vcpkg/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/vcpkg-introduction/</loc>
     <lastmod>2024-06-17T10:27:21+08:00</lastmod>
   </url><url>
     <loc>/articles/an-error-about-building-icu-for-android-via-vcpkg/</loc>
     <lastmod>2024-06-17T10:27:21+08:00</lastmod>
+  </url><url>
+    <loc>/articles/cmake-cookbook/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/cmake-details/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/cmake-pitfalls/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/how-to-use-release-apk-to-find-performance-issue/</loc>
     <lastmod>2024-05-09T18:45:29+08:00</lastmod>
@@ -80,14 +119,47 @@
     <loc>/articles/review-skia-upgrade-m104-to-m122/</loc>
     <lastmod>2024-03-13T14:32:06+08:00</lastmod>
   </url><url>
+    <loc>/articles/common-sense-determines-efficiency/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/support-wasm-multithread-in-vcpkg/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
     <loc>/articles/custom-cmake-in-android-gradle/</loc>
     <lastmod>2024-06-13T19:11:25+08:00</lastmod>
+  </url><url>
+    <loc>/categories/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2026-07-25T11:20:46+08:00</lastmod>
+  </url><url>
+    <loc>/tags/vim/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/tags/vscode/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/from-vim-to-vscode-2023/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/configure-android-debug-environment-for-flutter-on-a-remote-server/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/set-up-flutter-debug-env-for-mac-and-ios/</loc>
     <lastmod>2023-09-27T18:39:36+08:00</lastmod>
   </url><url>
     <loc>/articles/use-vscode-as-debug-frontend-of-chromium-project/</loc>
     <lastmod>2023-07-24T12:34:55+08:00</lastmod>
+  </url><url>
+    <loc>/articles/traceability-of-ios-exception-pop-up/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/courses/</loc>
     <lastmod>2023-06-24T13:00:40+08:00</lastmod>
@@ -104,16 +176,10 @@
     <loc>/articles/summarize-of-202305/</loc>
     <lastmod>2023-06-04T12:29:53+08:00</lastmod>
   </url><url>
-    <loc>/categories/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
-  </url><url>
     <loc>/articles/about-quick-note/</loc>
     <lastmod>2023-06-24T13:00:40+08:00</lastmod>
   </url><url>
     <loc>/articles/configure-android-dev-environment-on-a-remote-server/</loc>
-    <lastmod>2023-10-14T20:13:56+08:00</lastmod>
-  </url><url>
-    <loc>/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/</loc>
     <lastmod>2023-10-14T20:13:56+08:00</lastmod>
   </url><url>
     <loc>/articles/repairing-a-massage-pillow-with-a-dead-battery/</loc>
@@ -124,9 +190,6 @@
   </url><url>
     <loc>/tags/bug%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2023-04-14T18:27:23+08:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
   </url><url>
     <loc>/articles/color-picker-bug-on-imac/</loc>
     <lastmod>2023-04-14T18:27:23+08:00</lastmod>
@@ -141,58 +204,55 @@
     <lastmod>2023-04-01T16:55:30+08:00</lastmod>
   </url><url>
     <loc>/articles/impression-on-self-introduction/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/tags/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/tags/android%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/upgrade-xiaomi6-rom-manually/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/record-of-goolge-io-06-12/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/use-cmake-3.18.1-in-android-studio/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
-    <loc>/tags/cmake/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <loc>/tags/android%E5%BC%80%E5%8F%91-cmake/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/infinite-scenery-in-the-dangerous-peak/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/how-to-read/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/under-epidemic-and-layoffs/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
-    <loc>/tags/c&#43;&#43;/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <loc>/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/cpp-function-callstack-backtrace-1/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
-  </url><url>
-    <loc>/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/from-reactnative-to-flutter/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/the-born-of-a-book/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/research-about-note-software/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/change-input-method-with-left-shift/</loc>
     <lastmod>2026-01-30T14:21:51+08:00</lastmod>
@@ -213,79 +273,79 @@
     <lastmod>2023-04-01T16:49:27+08:00</lastmod>
   </url><url>
     <loc>/tags/%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/tags/bugfix/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-25T11:20:46+08:00</lastmod>
   </url><url>
     <loc>/articles/fix-a-serious-flutter-engine-multithread-bug/</loc>
     <lastmod>2026-01-30T14:21:51+08:00</lastmod>
   </url><url>
     <loc>/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/flutter-nested-scroll-conflict/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/categories/flutter/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/record-a-flutter-platform-view-bug/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/configure-hugo-asciidoc-blog/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/all-takenism-and-positivism/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/moral-of-developing-tools/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/android-profile-tool-bug-record/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/flutter-source-code-analyze-4/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/thinking-on-sprint/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/flutter-source-code-analyze-3/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/gitbook-install-record/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/best-android-projector/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/flutter-source-code-analyze-2/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/macbook-external-display/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/flutter-source-code-analyze-1/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/tags/%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/maoxuan-kernel/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/why-and-how-read-maoxuan/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/self-struggle-and-historical-itinerary/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/android-system-service-cache-analyze/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/how-to-achieve-self-growth-in-business-development/</loc>
     <lastmod>2023-05-01T11:38:46+08:00</lastmod>
@@ -294,178 +354,178 @@
     <lastmod>2023-04-29T22:21:16+08:00</lastmod>
   </url><url>
     <loc>/articles/clean-my-room/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/eat-that-frog/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/android-remote-debug-method/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/the-skinny-on-time-management/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/macbook-over-hot/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/evolution-of-plugin-framework/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/android-make-debuggable/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/2020-youth-day/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/mac-osx-config-record/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/sanguo-caocao/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/blog-refresh-bugfix/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/android-p-source-code-build/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/base-and-skill-of-presentation/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/categories/android/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/solve-of-android-p-inline-opt/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/virtualbox-lose-64-bit/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/software-similarity-tester/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/a-weird-bug-record/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/read-twint/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/my-tmux-manual/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/presentation-zen/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/add-recent-task-for-droidplugin/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/sports-and-diet/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/android-proguard-problem/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/abstractmethoderror-solve/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/yujun-product-methodology/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
-  </url><url>
-    <loc>/articles/proguard-result-in-nosuchmethodexception/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
-  </url><url>
-    <loc>/articles/history-of-my-blog/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
-  </url><url>
-    <loc>/articles/zen-of-android-debug-log/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
-  </url><url>
-    <loc>/articles/secure-file-transfer-base-on-android-signature/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
-  </url><url>
-    <loc>/articles/bilibili-report-2020-02/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
-  </url><url>
-    <loc>/articles/solve-unsatisfiedlinkerror-is-32-bit-instead-of-64-bit/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
-  </url><url>
-    <loc>/articles/how-an-economy-grows-and-why-it-crashes/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
-  </url><url>
-    <loc>/articles/keep-webview-from-gc/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
-  </url><url>
-    <loc>/articles/apk-size-opt-summary/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
-  </url><url>
-    <loc>/articles/there-are-chances-somewhere/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
-  </url><url>
-    <loc>/articles/base-ability/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
-  </url><url>
-    <loc>/articles/amusing-ourselves-to-death/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
-  </url><url>
-    <loc>/articles/opt-apk-size-by-remove-debuginfo/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
-  </url><url>
-    <loc>/articles/learn-writing-by-zhouzuoluo/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/proguard-inline-optimieze-make-stacktrace-loss/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-25T11:20:46+08:00</lastmod>
+  </url><url>
+    <loc>/articles/proguard-result-in-nosuchmethodexception/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/history-of-my-blog/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/zen-of-android-debug-log/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/secure-file-transfer-base-on-android-signature/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/bilibili-report-2020-02/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/solve-unsatisfiedlinkerror-is-32-bit-instead-of-64-bit/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/how-an-economy-grows-and-why-it-crashes/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/keep-webview-from-gc/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/apk-size-opt-summary/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/there-are-chances-somewhere/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/base-ability/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/amusing-ourselves-to-death/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/opt-apk-size-by-remove-debuginfo/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+  </url><url>
+    <loc>/articles/learn-writing-by-zhouzuoluo/</loc>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/2019-vichiku-summary-2/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/2019-vichiku-summary/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/2019-end/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/pead/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/earthbound-china/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/tao-and-art-of-writing-tech-docs/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/git-practice/</loc>
-    <lastmod>2024-08-28T11:10:23+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/working-effectively-with-legacy-code/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/git-internals/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/model-of-thinking/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/about-netease-staff/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/introduction-of-youglish/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/cross-platform-mobile-ui-development-evolution/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/financing-introduction/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url><url>
     <loc>/articles/linuxmintpei-zhi-zhi-nan/</loc>
     <lastmod>2023-04-01T16:49:27+08:00</lastmod>
@@ -705,6 +765,6 @@
     <lastmod>2023-04-01T16:49:27+08:00</lastmod>
   </url><url>
     <loc>/articles/change-major-record/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
   </url>
 </urlset>

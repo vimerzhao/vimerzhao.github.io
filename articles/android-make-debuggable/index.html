@@ -8,14 +8,14 @@
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 		<meta property="og:title" content="设置Android全局可调试" />
-<meta property="og:description" content="背景 最近要看一些系统打印的日志，发现需要开启debuggable标志，于是调研了一下。 实现 参考https://www.renyiwei.com/archives/1704.html[Android修改" />
+<meta property="og:description" content="背景 最近要看一些系统打印的日志，发现需要开启debuggable标志，于是调研了一下。 实现 参考Android修改ro.debuggable 华为真机adb调试所有进程 — 全栈笔记使用mprop这个工具成功" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/android-make-debuggable/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2020-05-07T12:13:23+08:00" />
-<meta property="article:modified_time" content="2026-01-30T14:21:51+08:00" />
+<meta property="article:modified_time" content="2026-07-05T13:17:49+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="设置Android全局可调试"/>
-<meta name="twitter:description" content="背景 最近要看一些系统打印的日志，发现需要开启debuggable标志，于是调研了一下。 实现 参考https://www.renyiwei.com/archives/1704.html[Android修改"/>
+<meta name="twitter:description" content="背景 最近要看一些系统打印的日志，发现需要开启debuggable标志，于是调研了一下。 实现 参考Android修改ro.debuggable 华为真机adb调试所有进程 — 全栈笔记使用mprop这个工具成功"/>
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -113,76 +113,50 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-05-07T12:13:23&#43;08:00">2020-05-07</time>
-	<time class="meta__text" datetime="2026-01-30T14:21:51&#43;08:00">(最后修改: 2026-01-30)</time></div></div>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 		</header>
 		
-    <span style="color:grey; font-size: 0.9em">本文约 800 字，阅读需 2 分钟。</span>
+    <span style="color:grey; font-size: 0.9em">本文约 700 字，阅读需 2 分钟。</span>
     <p/><div class="content post__content clearfix">
-			<div class="sect1">
-<h2 id="_背景">背景</h2>
-<div class="sectionbody">
-<div class="paragraph">
+			<h1 id="背景">背景</h1>
 <p>最近要看一些系统打印的日志，发现需要开启<code>debuggable</code>标志，于是调研了一下。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_实现">实现</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>参考https://www.renyiwei.com/archives/1704.html[Android修改ro.debuggable 华为真机adb调试所有进程 — 全栈笔记]使用<code>mprop</code>这个工具成功实现了，但日志还是没有，因为判断是否打日志的标记，是在<code>system_process</code>初始化的时候赋值的，所以即使修改了也没用。</p>
-</div>
-<div class="paragraph">
+<h1 id="实现">实现</h1>
+<p>参考<a href="https://www.renyiwei.com/archives/1704.html">Android修改ro.debuggable
+华为真机adb调试所有进程 — 全栈笔记</a>使用<code>mprop</code>这个工具成功实现了，但日志还是没有，因为判断是否打日志的标记，是在<code>system_process</code>初始化的时候赋值的，所以即使修改了也没用。</p>
 <p>但是看了下，<code>XDebuggable</code>这个工具应该可以做到，因为Xposed是在所有进程初始化之前Hook的。</p>
-</div>
-<div class="paragraph">
 <p>不过看日志的问题由于找到了其他方法，已经不需要了，最大的收获是<code>mprop</code>这个工具。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_扩展">扩展</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<h1 id="扩展">扩展</h1>
 <p><code>mprop</code>或者<code>XDebuggable</code>除了释放一些日志的打印，还有更大的价值，比如逆向调试一些应用等，一般做安全方向的人都会熟悉这个修改。</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-05-07-enable-debug.png" alt="2020 05 07 enable debug"/>
-</div>
-</div>
-<div class="paragraph">
+<figure>
+<img
+src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-05-07-enable-debug.png" />
+</figure>
 <p>粗略看了下<code>mprop</code>的实现原理，其实就是利用ptrace来修改了init进程的内存变量，只能感叹学海无涯呀，又发现了知识的新大陆！！</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_参考">参考</h2>
-<div class="sectionbody">
-<div class="ulist">
+<h1 id="参考">参考</h1>
 <ul>
 <li>
-<p><a href="https://www.renyiwei.com/archives/1704.html">Android修改ro.debuggable 华为真机adb调试所有进程 — 全栈笔记</a></p>
+<p><a href="https://www.renyiwei.com/archives/1704.html">Android修改ro.debuggable
+华为真机adb调试所有进程 — 全栈笔记</a></p>
 </li>
 <li>
-<p><a href="https://bbs.pediy.com/thread-246081.htm">[原创]android ro.debuggable属性调试修改(mprop逆向)-『Android安全』-看雪安全论坛</a></p>
+<p><a href="https://bbs.pediy.com/thread-246081.htm">[原创\</a>android
+ro.debuggable属性调试修改(mprop逆向)-『Android安全』-看雪安全论坛]</p>
 </li>
 <li>
-<p><a href="https://bbs.pediy.com/thread-215311-1.htm#1558392">[原创]修改ro属性的小工具新版本-170119-『Android安全』-看雪安全论坛</a></p>
+<p><a href="https://bbs.pediy.com/thread-215311-1.htm#1558392">[原创\</a>修改ro属性的小工具新版本-170119-『Android安全』-看雪安全论坛]</p>
 </li>
 <li>
 <p><a href="https://blog.csdn.net/tangsilian/article/details/87949689">XDebuggable&amp;mprop代码分析_移动开发_tangsilian的博客-CSDN博客</a></p>
 </li>
 <li>
-<p><a href="https://security.tencent.com/index.php/opensource/detail/17">BDOpener----开启APK调试与备份选项的Xposed模块 - 实验室 - 腾讯安全应急响应中心</a></p>
+<p><a href="https://security.tencent.com/index.php/opensource/detail/17">BDOpener&mdash;-开启APK调试与备份选项的Xposed模块 - 实验室 -
+腾讯安全应急响应中心</a></p>
 </li>
 <li>
-<p><a href="https://sspai.com/post/53043">每个 Android 玩家都不可错过的神器（一）：Magisk 初识与安装 - 少数派</a></p>
+<p><a href="https://sspai.com/post/53043">每个 Android 玩家都不可错过的神器（一）：Magisk 初识与安装 -
+少数派</a></p>
 </li>
 </ul>
-</div>
-</div>
-</div>
 
 		</div>
     <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
@@ -252,11 +226,11 @@
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
-			<li class="widget__item"><a class="widget__link" href="/articles/use-protobuf-in-cmake/">CMake使用Protobuf的正确姿势</a></li>
 		</ul>
 	</div>
 </div>
@@ -274,7 +248,11 @@
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
-				<span class="widget__counter widget__counter--bubble">2</span>
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
 				</li>
 		</ul>
 	</div>
@@ -282,11 +260,13 @@
 <div class="widget-taglist widget">
 	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMAKE">CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
@@ -294,7 +274,6 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言">编程语言 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>

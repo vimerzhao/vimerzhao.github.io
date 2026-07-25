@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/proguard-result-in-nosuchmethodexception/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2020-03-16T09:54:14+08:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-07-05T13:17:49+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Proguard导致的NoSuchMethodException问题排查"/>
 <meta name="twitter:description" content="背景 之前项目的混淆配置一直没开启Proguard的优化选项 -dontoptimize 最近为了做安装包优化，把这行注释掉了 #-dontoptimize 问题 于是项目里的各种优化配置开始生效了，但是测试反馈了一个Bug：悬浮窗的搜索框点击之后没有反应了。 排"/>
@@ -113,44 +113,22 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-03-16T09:54:14&#43;08:00">2020-03-16</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 600 字，阅读需 2 分钟。</span>
     <p/><div class="content post__content clearfix">
-			<div class="sect1">
-<h2 id="_背景">背景</h2>
-<div class="sectionbody">
-<div class="paragraph">
+			<h1 id="背景">背景</h1>
 <p>之前项目的混淆配置一直没开启Proguard的优化选项</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>-dontoptimize</pre>
-</div>
-</div>
-<div class="paragraph">
+<pre><code>-dontoptimize
+</code></pre>
 <p>最近为了做安装包优化，把这行注释掉了</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>#-dontoptimize</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_问题">问题</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<pre><code>#-dontoptimize
+</code></pre>
+<h1 id="问题">问题</h1>
 <p>于是项目里的各种优化配置开始生效了，但是测试反馈了一个Bug：悬浮窗的搜索框点击之后没有反应了。</p>
-</div>
-<div class="paragraph">
 <p>排查一番后发现了问题代码的位置：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    ......
+<pre><code>    ......
     try {
 
         .....
@@ -162,18 +140,13 @@
         ......
     } catch (Exception e) {
         if (Global.ASSISTANT_DEBUG)e.printStackTrace();
-        Log.e(FloatWindowBigView.tag, &#34;exc &#34; + e.getMessage());
+        Log.e(FloatWindowBigView.tag, &quot;exc &quot; + e.getMessage());
     } catch (Throwable tr) {
-        Log.e(FloatWindowBigView.tag, &#34;exc &#34; + tr.getMessage());
-    }</pre>
-</div>
-</div>
-<div class="paragraph">
+        Log.e(FloatWindowBigView.tag, &quot;exc &quot; + tr.getMessage());
+    }
+</code></pre>
 <p>对应的错误日志如下：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>java.lang.NoSuchMethodException: &lt;init&gt; [class android.content.Context]
+<pre><code>java.lang.NoSuchMethodException: &lt;init&gt; [class android.content.Context]
     at java.lang.Class.getConstructor0(Class.java:2320)
     at java.lang.Class.getConstructor(Class.java:1725)
     at com.tencent.nucleus.manager.floatingwindow.manager.FloatingWindowManager.a(ProGuard:385)
@@ -187,48 +160,30 @@
     at java.lang.reflect.Method.invoke(Native Method)
     at com.android.internal.os.Zygote$MethodAndArgsCaller.run(Zygote.java:249)
     at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:783)
-exc &lt;init&gt; [class android.content.Context]</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>即 <code>&lt;init&gt;</code> 这个方法找不到了，于是看了Proguard的配置，发现其实是有配置相关的：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>#&lt;!-- 悬浮窗的view不混淆 --&gt;
+exc &lt;init&gt; [class android.content.Context]
+</code></pre>
+<p>即 <code>&lt;init&gt;</code>
+这个方法找不到了，于是看了Proguard的配置，发现其实是有配置相关的：</p>
+<pre><code>#&lt;!-- 悬浮窗的view不混淆 --&gt;
 -keepclasseswithmembers class com.tencent.nucleus.manager.floatingwindow.view.* {public &lt;init&gt;(android.content.Context);}
 -keepclasseswithmembers class com.tencent.nucleus.manager.floatingwindow.view.* {public &lt;init&gt;(android.content.Context,android.os.Bundle);}
 -keepclasseswithmembers class com.tencent.assistant.manager.specialpermission.GuideFloatView {public &lt;init&gt;(android.content.Context);}
--keepclasseswithmembers class com.tencent.assistant.manager.specialpermission.GuideFloatView {public &lt;init&gt;(android.content.Context,android.os.Bundle);}</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_解决">解决</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>那么为什么还是出了问题呢？原因就在于之前的开发同学把搜索框相关的类<code>FloatWindowSearchView</code> 和 <code>FloatWindowSearchResultView</code> 放在了 <code>floatingwindow.manager</code> 包下面，而不是 <code>floatingwindow.view</code> ，所以这个类的<code>&lt;init&gt;</code> 方法被优化掉了。那为什么之前没问题呢？</p>
-</div>
-<div class="paragraph">
-<p>因为之前设置了 <code>-dontoptimize</code> 这个选项，所以不会针对 <code>&lt;init&gt;</code> 这个级别的方法做优化，只会针对工程代码混淆。</p>
-</div>
-<div class="paragraph">
+-keepclasseswithmembers class com.tencent.assistant.manager.specialpermission.GuideFloatView {public &lt;init&gt;(android.content.Context,android.os.Bundle);}
+</code></pre>
+<h1 id="解决">解决</h1>
+<p>那么为什么还是出了问题呢？原因就在于之前的开发同学把搜索框相关的类<code>FloatWindowSearchView</code>
+和 <code>FloatWindowSearchResultView</code> 放在了 <code>floatingwindow.manager</code>
+包下面，而不是 <code>floatingwindow.view</code> ，所以这个类的<code>&lt;init&gt;</code>
+方法被优化掉了。那为什么之前没问题呢？</p>
+<p>因为之前设置了 <code>-dontoptimize</code> 这个选项，所以不会针对 <code>&lt;init&gt;</code>
+这个级别的方法做优化，只会针对工程代码混淆。</p>
 <p>解决办法就是把搜索框相关的两个类也放在<code>floatingwindow.view</code> 包下面。</p>
-</div>
-<div class="paragraph">
-<p><strong>感觉这真是一个经典的前人挖坑后人踩的案例，也说明了按照项目规范组织文件的重要性</strong>～</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://github.com/vimerzhao/images/raw/master/2020-03/Snipaste_2020-03-16_20-28-32.png" alt="Snipaste 2020 03 16 20 28 32"/>
-</div>
-</div>
-<div class="paragraph">
+<p>*感觉这真是一个经典的前人挖坑后人踩的案例，也说明了按照项目规范组织文件的重要性*～</p>
+<figure>
+<img
+src="https://github.com/vimerzhao/images/raw/master/2020-03/Snipaste_2020-03-16_20-28-32.png" />
+</figure>
 <p>(注意manager下面有两个自定义View)</p>
-</div>
-</div>
-</div>
 
 		</div>
     <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
@@ -268,9 +223,9 @@ exc &lt;init&gt; [class android.content.Context]</pre>
 		</a>
 	</div>
 	<div class="pager__item pager__item--next">
-		<a class="pager__link" href="/articles/yujun-product-methodology/" rel="next">
+		<a class="pager__link" href="/articles/proguard-inline-optimieze-make-stacktrace-loss/" rel="next">
 			<span class="pager__subtitle">下一篇&thinsp;»</span>
-			<p class="pager__title">读书:《俞军产品方法论》</p>
+			<p class="pager__title">Proguard导致的NoSuchMethodException问题排查</p>
 		</a>
 	</div>
 </nav>
@@ -298,11 +253,11 @@ exc &lt;init&gt; [class android.content.Context]</pre>
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
-			<li class="widget__item"><a class="widget__link" href="/articles/use-protobuf-in-cmake/">CMake使用Protobuf的正确姿势</a></li>
 		</ul>
 	</div>
 </div>
@@ -320,7 +275,11 @@ exc &lt;init&gt; [class android.content.Context]</pre>
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
-				<span class="widget__counter widget__counter--bubble">2</span>
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
 				</li>
 		</ul>
 	</div>
@@ -328,11 +287,13 @@ exc &lt;init&gt; [class android.content.Context]</pre>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMAKE">CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
@@ -340,7 +301,6 @@ exc &lt;init&gt; [class android.content.Context]</pre>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言">编程语言 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>

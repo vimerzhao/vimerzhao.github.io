@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/secure-file-transfer-base-on-android-signature/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2020-03-05T12:05:39+08:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-07-05T13:17:49+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="基于Android签名机制的文件安全下发方法"/>
 <meta name="twitter:description" content="问题背景 Android中存在大量需要动态下发文件的场景： 下发布局资源文件实现UI动态化 下发Dex文件、lua文件，实现局部功能的动态化 下发Android插件 下发多媒体资源等 等等 对于其中一些文件，如De"/>
@@ -113,20 +113,15 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-03-05T12:05:39&#43;08:00">2020-03-05</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/android/" rel="category">Android</a>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/android/" rel="category">Android</a>
 	</span>
 </div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 800 字，阅读需 2 分钟。</span>
     <p/><div class="content post__content clearfix">
-			<div class="sect1">
-<h2 id="_问题背景">问题背景</h2>
-<div class="sectionbody">
-<div class="paragraph">
+			<h1 id="问题背景">问题背景</h1>
 <p>Android中存在大量需要动态下发文件的场景：</p>
-</div>
-<div class="ulist">
 <ul>
 <li>
 <p>下发布局资源文件实现UI动态化</p>
@@ -144,11 +139,7 @@
 <p>等等</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
 <p>对于其中一些文件，如Dex、lua可以通过混淆、编译做一定程度的保护，但是仍然潜在被篡改，进而攻击系统内部的可能，因此，在使用动态下发的文件之前，最好有一种机制，能够做到</p>
-</div>
-<div class="ulist">
 <ul>
 <li>
 <p>防篡改（内容可信）</p>
@@ -157,35 +148,18 @@
 <p>防劫持（来源可信）</p>
 </li>
 </ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_方法描述">方法描述</h2>
-<div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="https://github.com/vimerzhao/images/raw/master/2020-03/structure.png" alt="structure"/>
-</div>
-</div>
-<div class="paragraph">
+<h1 id="方法描述">方法描述</h1>
+<figure>
+<img
+src="https://github.com/vimerzhao/images/raw/master/2020-03/structure.png" />
+</figure>
 <p>这个方法最投机的一点就是利用了一个前提：<strong>宿主已经安装成功，说明公钥是相对可信的</strong>（由于是自签名，所以不是绝对可信的）。那么，第三方想要篡改，由于没有私钥，必然导致宿主加载失败。</p>
-</div>
-<div class="paragraph">
-<p>这么看似乎更直接一点： <span class="image"><img src="https://github.com/vimerzhao/images/raw/master/2020-03/Snipaste_2020-03-11_20-19-36.png" alt="Snipaste 2020 03 11 20 19 36"/></span></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_实例演示">实例演示</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<p>这么看似乎更直接一点：
+<img src="https://github.com/vimerzhao/images/raw/master/2020-03/Snipaste_2020-03-11_20-19-36.png" alt=""></p>
+<h1 id="实例演示">实例演示</h1>
 <p>根据keystore提取私钥，并进行签名（服务器端）：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    public static void run(HashMap&lt;String, String&gt; args) throws Exception{
-        String keyStoreType = &#34;jks&#34;;
+<pre><code>    public static void run(HashMap&lt;String, String&gt; args) throws Exception{
+        String keyStoreType = &quot;jks&quot;;
         String keystoreFile = args.get(INPUT);
         String password = args.get(PASS);
         String alias = args.get(ALIAS);
@@ -197,12 +171,12 @@
         keyStore.load(new FileInputStream(keystoreFile), password.toCharArray());
         KeyPair keyPair = getKeyPair(keyStore, alias, aliasPassword.toCharArray());
         if (keyPair != null) {
-            String  ret = RsaUtils.sign(FileUtils.toByteArray2(&#34;./demo.dex&#34;), Base64.encode(keyPair.getPrivate().getEncoded()));
+            String  ret = RsaUtils.sign(FileUtils.toByteArray2(&quot;./demo.dex&quot;), Base64.encode(keyPair.getPrivate().getEncoded()));
             System.out.println(ret);
         }
     }
-
-	// RsaUtils.java
+    
+    // RsaUtils.java
     public static String sign(byte[] data, String privateKey) throws Exception {
         byte[] keyBytes = Base64.decode(privateKey);
         PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(keyBytes);
@@ -212,27 +186,17 @@
         signature.initSign(privateK);
         signature.update(data);
         return Base64.encode(signature.sign());
-    }</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>根据以下代码生成一个Dex，用于动态加载：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>public class Test {
-    public void  toast(Context c) {
-        Toast.makeText(c, &#34;just do it~~~&#34;, Toast.LENGTH_SHORT).show();
     }
-}</pre>
-</div>
-</div>
-<div class="paragraph">
+</code></pre>
+<p>根据以下代码生成一个Dex，用于动态加载：</p>
+<pre><code>public class Test {
+    public void  toast(Context c) {
+        Toast.makeText(c, &quot;just do it~~~&quot;, Toast.LENGTH_SHORT).show();
+    }
+}
+</code></pre>
 <p>获取宿主的公钥，并验证Dex的签名：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>		....
+<pre><code>        ....
         String base64Key = GetPublicKey.getSignInfo(this);
         try {
             boolean b = RsaUtils.verify(FileUtils.toByteArray2(filePath),  base64Key, sign);
@@ -245,10 +209,10 @@
         DexClassLoader dexClassLoader = new DexClassLoader(filePath, path, null, getClassLoader());
         Class c = null;
         try {
-            c = dexClassLoader.loadClass(&#34;com.tencent.demo.Test&#34;);
+            c = dexClassLoader.loadClass(&quot;com.tencent.demo.Test&quot;);
             Object obj = c.newInstance();
 
-            Method getImeiMethod = c.getMethod(&#34;toast&#34;, Context.class);
+            Method getImeiMethod = c.getMethod(&quot;toast&quot;, Context.class);
             getImeiMethod.setAccessible(true);
             getImeiMethod.invoke(obj, new Object[] {this});
 
@@ -256,7 +220,7 @@
     ......
     // GetPublicKey.java
     protected static String getSignInfo(Context mContext) {
-        String signcode = &#34;&#34;;
+        String signcode = &quot;&quot;;
         try {
             PackageInfo packageInfo = mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), PackageManager.GET_SIGNATURES);
             Signature[] signs = packageInfo.signatures;
@@ -267,9 +231,9 @@
     }
 
     protected static String parseSignature(byte[] signature) {
-        String sign = &#34;&#34;;
+        String sign = &quot;&quot;;
         try {
-            CertificateFactory certFactory = CertificateFactory.getInstance(&#34;X.509&#34;);
+            CertificateFactory certFactory = CertificateFactory.getInstance(&quot;X.509&quot;);
             X509Certificate cert = (X509Certificate) certFactory.generateCertificate(new ByteArrayInputStream(signature));
             sign = Base64.encodeToString(cert.getPublicKey().getEncoded(), Base64.DEFAULT);
         } catch (CertificateException e) {}
@@ -286,35 +250,20 @@
         signature.initVerify(publicK);
         signature.update(data);
         return signature.verify(Base64.decode(sign));
-    }</pre>
-</div>
-</div>
-<div class="paragraph">
+    }
+</code></pre>
 <p>效果：</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://github.com/vimerzhao/images/raw/master/2020-03/demo-android-dynamic.png" alt="demo android dynamic"/>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_局限性">局限性</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<figure>
+<img
+src="https://github.com/vimerzhao/images/raw/master/2020-03/demo-android-dynamic.png" />
+</figure>
+<h1 id="局限性">局限性</h1>
 <p>对于第三方SDK的动态化及类似场景并不适用，因为依赖于宿主的密钥，不同宿主的签名不一样，会变得十分繁琐，除非搭建一套后台系统，由SDK接入方适配。</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://github.com/vimerzhao/images/raw/master/2020-03/structure02.png" alt="structure02"/>
-</div>
-</div>
-<div class="paragraph">
+<figure>
+<img
+src="https://github.com/vimerzhao/images/raw/master/2020-03/structure02.png" />
+</figure>
 <p>对于安全性追求较高的或者单一App的文件下发，这确实是一种比较好的方案。</p>
-</div>
-</div>
-</div>
 
 		</div>
     <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
@@ -373,11 +322,11 @@
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
-			<li class="widget__item"><a class="widget__link" href="/articles/use-protobuf-in-cmake/">CMake使用Protobuf的正确姿势</a></li>
 		</ul>
 	</div>
 </div>
@@ -395,7 +344,11 @@
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
-				<span class="widget__counter widget__counter--bubble">2</span>
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
 				</li>
 		</ul>
 	</div>
@@ -403,11 +356,13 @@
 <div class="widget-taglist widget">
 	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMAKE">CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
@@ -415,7 +370,6 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言">编程语言 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>

@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/flutter-source-code-analyze-4/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2020-11-22T12:23:18+08:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-07-05T13:17:49+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Flutter源码剖析(四):flutter run流程解析"/>
 <meta name="twitter:description" content="关于flutter run flutter run负责执行构建一个flutter工程，输出产物到对应设备，并负责提供基本的交互控制，使用效果如下： $ flutter run Launching lib/main.dart on COL AL10 in debug mode... Running Gradle task &#39;assembleDebug&#39;... Running Gradle task &#39;assembleDebug&#39;... Done 23.8s ✓ Built build/app/outputs/flutter-apk/app-debug.apk. Installing build/app/outputs/flutter-apk/app.apk... 13.7s Waiting for COL AL10 to report its views... 7ms Syncing files"/>
@@ -113,138 +113,105 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-11-22T12:23:18&#43;08:00">2020-11-22</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 1900 字，阅读需 4 分钟。</span>
     <p/><div class="content post__content clearfix">
-			<div class="sect1">
-<h2 id="_关于flutter_run">关于<code>flutter run</code></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><code>flutter run</code>负责执行构建一个flutter工程，输出产物到对应设备，并负责提供基本的交互控制，使用效果如下：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ flutter run
-Launching lib/main.dart on COL AL10 in debug mode...
-Running Gradle task &#39;assembleDebug&#39;...
-Running Gradle task &#39;assembleDebug&#39;... Done                        23.8s
-✓ Built build/app/outputs/flutter-apk/app-debug.apk.
-Installing build/app/outputs/flutter-apk/app.apk...                13.7s
-Waiting for COL AL10 to report its views...                          7ms
-Syncing files to device COL AL10...                                279ms
-
-Flutter run key commands.
-r Hot reload. 🔥🔥🔥
-R Hot restart.
-h Repeat this help message.
-d Detach (terminate &#34;flutter run&#34; but leave application running).
-c Clear the screen
-q Quit (terminate the application on the device).
-An Observatory debugger and profiler on COL AL10 is available at: http://127.0.0.1:65470/jL7vVcN78XI=/
-D/AwareBitmapCacher(10010): handleInit switch not opened pid=10010</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>下面走读这个命令的执行流程。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_libexecutable_dartmain"><code>lib/executable.dart#main</code></h2>
-<div class="sectionbody">
-<div class="paragraph">
+			<h1 id="关于flutter-run">关于<code>flutter</code> <code>run</code></h1>
+<p><code>flutter</code>
+<code>run</code>负责执行构建一个flutter工程，输出产物到对应设备，并负责提供基本的交互控制，使用效果如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ flutter run
+</span></span><span style="display:flex;"><span>Launching lib/main.dart on COL AL10 in debug mode...
+</span></span><span style="display:flex;"><span>Running Gradle task <span style="color:#e6db74">&#39;assembleDebug&#39;</span>...
+</span></span><span style="display:flex;"><span>Running Gradle task <span style="color:#e6db74">&#39;assembleDebug&#39;</span>... Done                        23.8s
+</span></span><span style="display:flex;"><span>✓ Built build/app/outputs/flutter-apk/app-debug.apk.
+</span></span><span style="display:flex;"><span>Installing build/app/outputs/flutter-apk/app.apk...                13.7s
+</span></span><span style="display:flex;"><span>Waiting <span style="color:#66d9ef">for</span> COL AL10 to report its views...                          7ms
+</span></span><span style="display:flex;"><span>Syncing files to device COL AL10...                                279ms
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Flutter run key commands.
+</span></span><span style="display:flex;"><span>r Hot reload. 🔥🔥🔥
+</span></span><span style="display:flex;"><span>R Hot restart.
+</span></span><span style="display:flex;"><span>h Repeat this help message.
+</span></span><span style="display:flex;"><span>d Detach <span style="color:#f92672">(</span>terminate <span style="color:#e6db74">&#34;flutter run&#34;</span> but leave application running<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>c Clear the screen
+</span></span><span style="display:flex;"><span>q Quit <span style="color:#f92672">(</span>terminate the application on the device<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>An Observatory debugger and profiler on COL AL10 is available at: http://127.0.0.1:65470/jL7vVcN78XI<span style="color:#f92672">=</span>/
+</span></span><span style="display:flex;"><span>D/AwareBitmapCacher<span style="color:#f92672">(</span>10010<span style="color:#f92672">)</span>: handleInit switch not opened pid<span style="color:#f92672">=</span><span style="color:#ae81ff">10010</span>
+</span></span></code></pre></div><p>下面走读这个命令的执行流程。</p>
+<h1 id="libexecutabledartmain"><code>lib/executable.dart#main</code></h1>
 <p><code>lib/executable.dart#main</code>是所有命令执行的入口：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-dart" data-lang="dart">Future&lt;void&gt; main(List&lt;String&gt; args) async {
-  ....
-  await runner.run(args, () =&gt; &lt;FlutterCommand&gt;[
-    AssembleCommand(),
-    AttachCommand(verboseHelp: verboseHelp),
-    RunCommand(verboseHelp: verboseHelp),
-    ScreenshotCommand(),
-    ShellCompletionCommand(),
-    ....
-  );
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>通过层层封装转调之后，<code>flutter run</code>这个命令，最终会调用到<code>lib/src/commands/run.dart#RunCommand</code>的<code>runCommand</code>方法。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_runcommandruncommand"><code>RunCommand#runCommand</code></h2>
-<div class="sectionbody">
-<div class="paragraph">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dart" data-lang="dart"><span style="display:flex;"><span>Future<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span><span style="color:#f92672">&gt;</span> main(List<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">String</span><span style="color:#f92672">&gt;</span> args) <span style="color:#66d9ef">async</span> {
+</span></span><span style="display:flex;"><span>  ....
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> runner.run(args, () <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&lt;</span>FlutterCommand<span style="color:#f92672">&gt;</span>[
+</span></span><span style="display:flex;"><span>    AssembleCommand(),
+</span></span><span style="display:flex;"><span>    AttachCommand(verboseHelp: verboseHelp),
+</span></span><span style="display:flex;"><span>    RunCommand(verboseHelp: verboseHelp),
+</span></span><span style="display:flex;"><span>    ScreenshotCommand(),
+</span></span><span style="display:flex;"><span>    ShellCompletionCommand(),
+</span></span><span style="display:flex;"><span>    ....
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>通过层层封装转调之后，<code>flutter</code>
+<code>run</code>这个命令，最终会调用到<code>lib/src/commands/run.dart#RunCommand</code>的<code>runCommand</code>方法。</p>
+<h1 id="runcommandruncommand"><code>RunCommand#runCommand</code></h1>
 <p>核心代码如下：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-dart" data-lang="dart">  @override
-  Future&lt;FlutterCommandResult&gt; runCommand() async {
-    // Enable hot mode by default if `--no-hot` was not passed and we are in
-    // debug mode.
-    final bool hotMode = shouldUseHotMode();
-
-    writePidFile(stringArg(&#39;pid-file&#39;));
-
-    ......
-    ResidentRunner runner;
-    final String applicationBinaryPath = stringArg(&#39;use-application-binary&#39;);
-    if (hotMode &amp;&amp; !webMode) {
-      runner = HotRunner(
-        flutterDevices,
-        target: targetFile,
-        debuggingOptions: _createDebuggingOptions(),
-        benchmarkMode: boolArg(&#39;benchmark&#39;),
-        applicationBinary: applicationBinaryPath == null
-            ? null
-            : globals.fs.file(applicationBinaryPath),
-        projectRootPath: stringArg(&#39;project-root&#39;),
-        dillOutputPath: stringArg(&#39;output-dill&#39;),
-        stayResident: stayResident,
-        ipv6: ipv6,
-      );
-    } else if (webMode) {
-      ......
-    } else {
-      ......
-    }
-
-    DateTime appStartedTime;
-    final Completer&lt;void&gt; appStartedTimeRecorder = Completer&lt;void&gt;.sync();
-    // This callback can&#39;t throw.
-    unawaited(appStartedTimeRecorder.future.then&lt;void&gt;(
-      (_) {
-        appStartedTime = globals.systemClock.now();
-        if (stayResident) {
-          TerminalHandler(runner)
-            ..setupTerminal()
-            ..registerSignalHandlers();
-        }
-      }
-    ));
-
-    final int result = await runner.run(
-      appStartedCompleter: appStartedTimeRecorder,
-      route: route,
-    );
-    if (result != 0) {
-      throwToolExit(null, exitCode: result);
-    }
-    ......
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>重要的逻辑有两个：</p>
-</div>
-<div class="ulist">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dart" data-lang="dart"><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">@</span>override
+</span></span><span style="display:flex;"><span>  Future<span style="color:#f92672">&lt;</span>FlutterCommandResult<span style="color:#f92672">&gt;</span> runCommand() <span style="color:#66d9ef">async</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Enable hot mode by default if `--no-hot` was not passed and we are in
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// debug mode.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">bool</span> hotMode <span style="color:#f92672">=</span> shouldUseHotMode();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    writePidFile(stringArg(<span style="color:#e6db74">&#39;pid-file&#39;</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ......
+</span></span><span style="display:flex;"><span>    ResidentRunner runner;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">String</span> applicationBinaryPath <span style="color:#f92672">=</span> stringArg(<span style="color:#e6db74">&#39;use-application-binary&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (hotMode <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>webMode) {
+</span></span><span style="display:flex;"><span>      runner <span style="color:#f92672">=</span> HotRunner(
+</span></span><span style="display:flex;"><span>        flutterDevices,
+</span></span><span style="display:flex;"><span>        target: targetFile,
+</span></span><span style="display:flex;"><span>        debuggingOptions: _createDebuggingOptions(),
+</span></span><span style="display:flex;"><span>        benchmarkMode: boolArg(<span style="color:#e6db74">&#39;benchmark&#39;</span>),
+</span></span><span style="display:flex;"><span>        applicationBinary: applicationBinaryPath <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">?</span> <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">:</span> globals.fs.file(applicationBinaryPath),
+</span></span><span style="display:flex;"><span>        projectRootPath: stringArg(<span style="color:#e6db74">&#39;project-root&#39;</span>),
+</span></span><span style="display:flex;"><span>        dillOutputPath: stringArg(<span style="color:#e6db74">&#39;output-dill&#39;</span>),
+</span></span><span style="display:flex;"><span>        stayResident: stayResident,
+</span></span><span style="display:flex;"><span>        ipv6: ipv6,
+</span></span><span style="display:flex;"><span>      );
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (webMode) {
+</span></span><span style="display:flex;"><span>      ......
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      ......
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    DateTime appStartedTime;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> Completer<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span><span style="color:#f92672">&gt;</span> appStartedTimeRecorder <span style="color:#f92672">=</span> Completer<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span><span style="color:#f92672">&gt;</span>.<span style="color:#66d9ef">sync</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// This callback can&#39;t throw.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    unawaited(appStartedTimeRecorder.future.then<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span><span style="color:#f92672">&gt;</span>(
+</span></span><span style="display:flex;"><span>      (_) {
+</span></span><span style="display:flex;"><span>        appStartedTime <span style="color:#f92672">=</span> globals.systemClock.now();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (stayResident) {
+</span></span><span style="display:flex;"><span>          TerminalHandler(runner)
+</span></span><span style="display:flex;"><span>            ..setupTerminal()
+</span></span><span style="display:flex;"><span>            ..registerSignalHandlers();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    ));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> runner.run(
+</span></span><span style="display:flex;"><span>      appStartedCompleter: appStartedTimeRecorder,
+</span></span><span style="display:flex;"><span>      route: route,
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (result <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>      throwToolExit(<span style="color:#66d9ef">null</span>, exitCode: result);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    ......
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>重要的逻辑有两个：</p>
 <ul>
 <li>
 <p>创建一个<code>HotRunner</code>，支持后面的热更</p>
@@ -253,72 +220,59 @@ D/AwareBitmapCacher(10010): handleInit switch not opened pid=10010</code></pre>
 <p>设定在构建完成后启动命令行程序</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
 <p>先看<code>HotRunner</code>的<code>run</code>方法。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_hotrunnerrun"><code>HotRunner#run</code></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-dart" data-lang="dart">  Future&lt;int&gt; run({
-    Completer&lt;DebugConnectionInfo&gt; connectionInfoCompleter,
-    Completer&lt;void&gt; appStartedCompleter,
-    String route,
-  }) async {
-    ......
-
-    final List&lt;Future&lt;bool&gt;&gt; startupTasks = &lt;Future&lt;bool&gt;&gt;[];
-    final PackageConfig packageConfig = await loadPackageConfigWithLogging(
-      globals.fs.file(debuggingOptions.buildInfo.packagesPath),
-      logger: globals.logger,
-    );
-    for (final FlutterDevice device in flutterDevices) {
-      await runSourceGenerators();
-      if (device.generator != null) {
-        startupTasks.add(
-          device.generator.recompile(
-            globals.fs.file(mainPath).uri,
-            &lt;Uri&gt;[],
-            suppressErrors: applicationBinary == null,
-            outputPath: dillOutputPath ??
-              getDefaultApplicationKernelPath(trackWidgetCreation: debuggingOptions.buildInfo.trackWidgetCreation),
-            packageConfig: packageConfig,
-          ).then((CompilerOutput output) =&gt; output?.errorCount == 0)
-        );
-      }
-      startupTasks.add(device.runHot(
-        hotRunner: this,
-        route: route,
-      ).then((int result) =&gt; result == 0));
-    }
-    try {
-      final List&lt;bool&gt; results = await Future.wait(startupTasks);
-      if (!results.every((bool passed) =&gt; passed)) {
-        appFailedToStart();
-        return 1;
-      }
-      cacheInitialDillCompilation();
-    } on Exception catch (err) {
-      globals.printError(err.toString());
-      appFailedToStart();
-      return 1;
-    }
-
-    return attach(
-      connectionInfoCompleter: connectionInfoCompleter,
-      appStartedCompleter: appStartedCompleter,
-    );
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>主要有两件事：</p>
-</div>
-<div class="ulist">
+<h1 id="hotrunnerrun"><code>HotRunner#run</code></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dart" data-lang="dart"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Future<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> run({
+</span></span><span style="display:flex;"><span>    Completer<span style="color:#f92672">&lt;</span>DebugConnectionInfo<span style="color:#f92672">&gt;</span> connectionInfoCompleter,
+</span></span><span style="display:flex;"><span>    Completer<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span><span style="color:#f92672">&gt;</span> appStartedCompleter,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">String</span> route,
+</span></span><span style="display:flex;"><span>  }) <span style="color:#66d9ef">async</span> {
+</span></span><span style="display:flex;"><span>    ......
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> List<span style="color:#f92672">&lt;</span>Future<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;&gt;</span> startupTasks <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>Future<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;&gt;</span>[];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> PackageConfig packageConfig <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> loadPackageConfigWithLogging(
+</span></span><span style="display:flex;"><span>      globals.fs.file(debuggingOptions.buildInfo.packagesPath),
+</span></span><span style="display:flex;"><span>      logger: globals.logger,
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">final</span> FlutterDevice device <span style="color:#66d9ef">in</span> flutterDevices) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">await</span> runSourceGenerators();
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (device.generator <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>        startupTasks.add(
+</span></span><span style="display:flex;"><span>          device.generator.recompile(
+</span></span><span style="display:flex;"><span>            globals.fs.file(mainPath).uri,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;</span>Uri<span style="color:#f92672">&gt;</span>[],
+</span></span><span style="display:flex;"><span>            suppressErrors: applicationBinary <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>            outputPath: dillOutputPath <span style="color:#f92672">??</span>
+</span></span><span style="display:flex;"><span>              getDefaultApplicationKernelPath(trackWidgetCreation: debuggingOptions.buildInfo.trackWidgetCreation),
+</span></span><span style="display:flex;"><span>            packageConfig: packageConfig,
+</span></span><span style="display:flex;"><span>          ).then((CompilerOutput output) <span style="color:#f92672">=&gt;</span> output<span style="color:#f92672">?</span>.errorCount <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      startupTasks.add(device.runHot(
+</span></span><span style="display:flex;"><span>        hotRunner: <span style="color:#66d9ef">this</span>,
+</span></span><span style="display:flex;"><span>        route: route,
+</span></span><span style="display:flex;"><span>      ).then((<span style="color:#66d9ef">int</span> result) <span style="color:#f92672">=&gt;</span> result <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">final</span> List<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span> results <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> Future.wait(startupTasks);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>results.every((<span style="color:#66d9ef">bool</span> passed) <span style="color:#f92672">=&gt;</span> passed)) {
+</span></span><span style="display:flex;"><span>        appFailedToStart();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      cacheInitialDillCompilation();
+</span></span><span style="display:flex;"><span>    } on Exception <span style="color:#66d9ef">catch</span> (err) {
+</span></span><span style="display:flex;"><span>      globals.printError(err.toString());
+</span></span><span style="display:flex;"><span>      appFailedToStart();
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> attach(
+</span></span><span style="display:flex;"><span>      connectionInfoCompleter: connectionInfoCompleter,
+</span></span><span style="display:flex;"><span>      appStartedCompleter: appStartedCompleter,
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>主要有两件事：</p>
 <ul>
 <li>
 <p>针对每个设备，进行源码构建，并执行热更</p>
@@ -327,338 +281,279 @@ D/AwareBitmapCacher(10010): handleInit switch not opened pid=10010</code></pre>
 <p>全部完成后开始<code>attach</code>设备</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
 <p>先看<code>FlutterDevice#runHot</code>这个方法</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_flutterdevicerunhot"><code>FlutterDevice#runHot</code></h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-dart" data-lang="dart">  Future&lt;int&gt; runHot({
-    HotRunner hotRunner,
-    String route,
-  }) async {
-    .....
-
-    // Start the application.
-    final Future&lt;LaunchResult&gt; futureResult = device.startApp(
-      package,
-      mainPath: hotRunner.mainPath,
-      debuggingOptions: hotRunner.debuggingOptions,
-      platformArgs: platformArgs,
-      route: route,
-      prebuiltApplication: prebuiltMode,
-      ipv6: hotRunner.ipv6,
-      userIdentifier: userIdentifier,
-    );
-
-    final LaunchResult result = await futureResult;
-
-    .....
-    return 0;
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>继续追踪<code>startApp</code>方法，这个方法不同平台有不同实现，这里看<code>AndroidDevice</code>的：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-dart" data-lang="dart">  @override
-  Future&lt;LaunchResult&gt; startApp(
-    AndroidApk package, {
-    String mainPath,
-    String route,
-    DebuggingOptions debuggingOptions,
-    Map&lt;String, dynamic&gt; platformArgs,
-    bool prebuiltApplication = false,
-    bool ipv6 = false,
-    String userIdentifier,
-  }) async {
-    ......
-    if (!prebuiltApplication || _androidSdk.licensesAvailable &amp;&amp; _androidSdk.latestVersion == null) {
-      _logger.printTrace(&#39;Building APK&#39;);
-      final FlutterProject project = FlutterProject.current();
-      await androidBuilder.buildApk(
-          project: project,
-          target: mainPath,
-          androidBuildInfo: AndroidBuildInfo(
-            debuggingOptions.buildInfo,
-            targetArchs: &lt;AndroidArch&gt;[androidArch],
-            fastStart: debuggingOptions.fastStart
-          ),
-      );
-      // Package has been built, so we can get the updated application ID and
-      // activity name from the .apk.
-      package = await AndroidApk.fromAndroidProject(project.android);
-    }
-
-    if (!await _installLatestApp(package, userIdentifier)) {
-      return LaunchResult.failed();
-    }
-    .....
-
-    List&lt;String&gt; cmd;
-
-    cmd = &lt;String&gt;[
-      &#39;shell&#39;, &#39;am&#39;, &#39;start&#39;,
-      &#39;-a&#39;, &#39;android.intent.action.RUN&#39;,
-      &#39;-f&#39;, &#39;0x20000000&#39;, // FLAG_ACTIVITY_SINGLE_TOP
-      &#39;--ez&#39;, &#39;enable-background-compilation&#39;, &#39;true&#39;,
-      &#39;--ez&#39;, &#39;enable-dart-profiling&#39;, &#39;true&#39;,
-    ....
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>可以看到，主要是buildApk，然后<code>_installLatestApp</code>负责安装，最后启动。</p>
-</div>
-<div class="paragraph">
+<h1 id="flutterdevicerunhot"><code>FlutterDevice#runHot</code></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dart" data-lang="dart"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Future<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> runHot({
+</span></span><span style="display:flex;"><span>    HotRunner hotRunner,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">String</span> route,
+</span></span><span style="display:flex;"><span>  }) <span style="color:#66d9ef">async</span> {
+</span></span><span style="display:flex;"><span>    .....
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Start the application.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">final</span> Future<span style="color:#f92672">&lt;</span>LaunchResult<span style="color:#f92672">&gt;</span> futureResult <span style="color:#f92672">=</span> device.startApp(
+</span></span><span style="display:flex;"><span>      package,
+</span></span><span style="display:flex;"><span>      mainPath: hotRunner.mainPath,
+</span></span><span style="display:flex;"><span>      debuggingOptions: hotRunner.debuggingOptions,
+</span></span><span style="display:flex;"><span>      platformArgs: platformArgs,
+</span></span><span style="display:flex;"><span>      route: route,
+</span></span><span style="display:flex;"><span>      prebuiltApplication: prebuiltMode,
+</span></span><span style="display:flex;"><span>      ipv6: hotRunner.ipv6,
+</span></span><span style="display:flex;"><span>      userIdentifier: userIdentifier,
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> LaunchResult result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> futureResult;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    .....
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>继续追踪<code>startApp</code>方法，这个方法不同平台有不同实现，这里看<code>AndroidDevice</code>的：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dart" data-lang="dart"><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">@</span>override
+</span></span><span style="display:flex;"><span>  Future<span style="color:#f92672">&lt;</span>LaunchResult<span style="color:#f92672">&gt;</span> startApp(
+</span></span><span style="display:flex;"><span>    AndroidApk package, {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">String</span> mainPath,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">String</span> route,
+</span></span><span style="display:flex;"><span>    DebuggingOptions debuggingOptions,
+</span></span><span style="display:flex;"><span>    Map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">dynamic</span><span style="color:#f92672">&gt;</span> platformArgs,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> prebuiltApplication <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> ipv6 <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">String</span> userIdentifier,
+</span></span><span style="display:flex;"><span>  }) <span style="color:#66d9ef">async</span> {
+</span></span><span style="display:flex;"><span>    ......
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>prebuiltApplication <span style="color:#f92672">||</span> _androidSdk.licensesAvailable <span style="color:#f92672">&amp;&amp;</span> _androidSdk.latestVersion <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>      _logger.printTrace(<span style="color:#e6db74">&#39;Building APK&#39;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">final</span> FlutterProject project <span style="color:#f92672">=</span> FlutterProject.current();
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">await</span> androidBuilder.buildApk(
+</span></span><span style="display:flex;"><span>          project: project,
+</span></span><span style="display:flex;"><span>          target: mainPath,
+</span></span><span style="display:flex;"><span>          androidBuildInfo: AndroidBuildInfo(
+</span></span><span style="display:flex;"><span>            debuggingOptions.buildInfo,
+</span></span><span style="display:flex;"><span>            targetArchs: <span style="color:#f92672">&lt;</span>AndroidArch<span style="color:#f92672">&gt;</span>[androidArch],
+</span></span><span style="display:flex;"><span>            fastStart: debuggingOptions.fastStart
+</span></span><span style="display:flex;"><span>          ),
+</span></span><span style="display:flex;"><span>      );
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Package has been built, so we can get the updated application ID and
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#75715e">// activity name from the .apk.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      package <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> AndroidApk.fromAndroidProject(project.android);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#66d9ef">await</span> _installLatestApp(package, userIdentifier)) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> LaunchResult.failed();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    .....
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">String</span><span style="color:#f92672">&gt;</span> cmd;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cmd <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">String</span><span style="color:#f92672">&gt;</span>[
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#39;shell&#39;</span>, <span style="color:#e6db74">&#39;am&#39;</span>, <span style="color:#e6db74">&#39;start&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#39;-a&#39;</span>, <span style="color:#e6db74">&#39;android.intent.action.RUN&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#39;-f&#39;</span>, <span style="color:#e6db74">&#39;0x20000000&#39;</span>, <span style="color:#75715e">// FLAG_ACTIVITY_SINGLE_TOP
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#e6db74">&#39;--ez&#39;</span>, <span style="color:#e6db74">&#39;enable-background-compilation&#39;</span>, <span style="color:#e6db74">&#39;true&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#39;--ez&#39;</span>, <span style="color:#e6db74">&#39;enable-dart-profiling&#39;</span>, <span style="color:#e6db74">&#39;true&#39;</span>,
+</span></span><span style="display:flex;"><span>    ....
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>可以看到，主要是buildApk，然后<code>_installLatestApp</code>负责安装，最后启动。</p>
 <p>首先看buildApk过程，在<code>AndroidBuilderImpl#buildApk</code>：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-dart" data-lang="dart">  @override
-  Future&lt;void&gt; buildApk({
-    @required FlutterProject project,
-    @required AndroidBuildInfo androidBuildInfo,
-    @required String target,
-  }) async {
-    try {
-      await buildGradleApp(
-        project: project,
-        androidBuildInfo: androidBuildInfo,
-        target: target,
-        isBuildingBundle: false,
-        localGradleErrors: gradleErrors,
-      );
-    } finally {
-      globals.androidSdk?.reinitialize();
-    }
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>最后是真正的构建逻辑，还是通过gradle来进行调用的：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-dart" data-lang="dart">Future&lt;void&gt; buildGradleApp({
-  @required FlutterProject project,
-  @required AndroidBuildInfo androidBuildInfo,
-  @required String target,
-  @required bool isBuildingBundle,
-  @required List&lt;GradleHandledError&gt; localGradleErrors,
-  bool shouldBuildPluginAsAar = false,
-  int retries = 1,
-}) async {
-  ......
-
-  final BuildInfo buildInfo = androidBuildInfo.buildInfo;
-  final String assembleTask = isBuildingBundle
-    ? getBundleTaskFor(buildInfo)
-    : getAssembleTaskFor(buildInfo);
-
-  ......
-  final List&lt;String&gt; command = &lt;String&gt;[
-    gradleUtils.getExecutable(project),
-  ];
-  if (globals.logger.isVerbose) {
-    command.add(&#39;-Pverbose=true&#39;);
-  } else {
-    command.add(&#39;-q&#39;);
-  }
-  .....
-  if (target != null) {
-    command.add(&#39;-Ptarget=$target&#39;);
-  }
-  assert(buildInfo.trackWidgetCreation != null);
-  command.add(&#39;-Ptrack-widget-creation=${buildInfo.trackWidgetCreation}&#39;);
-
-  if (buildInfo.extraFrontEndOptions != null) {
-    command.add(&#39;-Pextra-front-end-options=${encodeDartDefines(buildInfo.extraFrontEndOptions)}&#39;);
-  }
-  if (buildInfo.extraGenSnapshotOptions != null) {
-    command.add(&#39;-Pextra-gen-snapshot-options=${encodeDartDefines(buildInfo.extraGenSnapshotOptions)}&#39;);
-  }
-  if (buildInfo.fileSystemRoots != null &amp;&amp; buildInfo.fileSystemRoots.isNotEmpty) {
-    command.add(&#39;-Pfilesystem-roots=${buildInfo.fileSystemRoots.join(&#39;|&#39;)}&#39;);
-  }
-  if (buildInfo.fileSystemScheme != null) {
-    command.add(&#39;-Pfilesystem-scheme=${buildInfo.fileSystemScheme}&#39;);
-  }
-  if (androidBuildInfo.splitPerAbi) {
-    command.add(&#39;-Psplit-per-abi=true&#39;);
-  }
-  .....
-  command.add(assembleTask);
-  .....
-
-  }
-  .....
-  try {
-    exitCode = await processUtils.stream(
-      command,
-      workingDirectory: project.android.hostAppGradleRoot.path,
-      allowReentrantFlutter: true,
-      environment: gradleEnvironment,
-      mapFunction: consumeLog,
-    );
-  } on ProcessException catch(exception) {
-  .....
-  // Gradle produced an APK.
-  final Iterable&lt;String&gt; apkFilesPaths = project.isModule
-    ? findApkFilesModule(project, androidBuildInfo)
-    : listApkPaths(androidBuildInfo);
-  final Directory apkDirectory = getApkDirectory(project);
-  final File apkFile = apkDirectory.childFile(apkFilesPaths.first);
-
-  .....
-  final String appSize = (buildInfo.mode == BuildMode.debug)
-    ? &#39;&#39; // Don&#39;t display the size when building a debug variant.
-    : &#39; (${getSizeAsMB(apkFile.lengthSync())})&#39;;
-  globals.printStatus(
-    &#39;$successMark Built ${globals.fs.path.relative(apkFile.path)}$appSize.&#39;,
-    color: TerminalColor.green,
-  );
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>这里会创建gradle所需的全部参数，然后通过<code>processUtils</code>启动执行，执行后APK文件就会出现在构建目录了。</p>
-</div>
-<div class="paragraph">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dart" data-lang="dart"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">@</span>override
+</span></span><span style="display:flex;"><span>  Future<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span><span style="color:#f92672">&gt;</span> buildApk({
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#66d9ef">required</span> FlutterProject project,
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#66d9ef">required</span> AndroidBuildInfo androidBuildInfo,
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#66d9ef">required</span> <span style="color:#66d9ef">String</span> target,
+</span></span><span style="display:flex;"><span>  }) <span style="color:#66d9ef">async</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">await</span> buildGradleApp(
+</span></span><span style="display:flex;"><span>        project: project,
+</span></span><span style="display:flex;"><span>        androidBuildInfo: androidBuildInfo,
+</span></span><span style="display:flex;"><span>        target: target,
+</span></span><span style="display:flex;"><span>        isBuildingBundle: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>        localGradleErrors: gradleErrors,
+</span></span><span style="display:flex;"><span>      );
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">finally</span> {
+</span></span><span style="display:flex;"><span>      globals.androidSdk<span style="color:#f92672">?</span>.reinitialize();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>最后是真正的构建逻辑，还是通过gradle来进行调用的：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dart" data-lang="dart"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Future<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span><span style="color:#f92672">&gt;</span> buildGradleApp({
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#66d9ef">required</span> FlutterProject project,
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#66d9ef">required</span> AndroidBuildInfo androidBuildInfo,
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#66d9ef">required</span> <span style="color:#66d9ef">String</span> target,
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#66d9ef">required</span> <span style="color:#66d9ef">bool</span> isBuildingBundle,
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#66d9ef">required</span> List<span style="color:#f92672">&lt;</span>GradleHandledError<span style="color:#f92672">&gt;</span> localGradleErrors,
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">bool</span> shouldBuildPluginAsAar <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> retries <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>}) <span style="color:#66d9ef">async</span> {
+</span></span><span style="display:flex;"><span>  ......
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">final</span> BuildInfo buildInfo <span style="color:#f92672">=</span> androidBuildInfo.buildInfo;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">String</span> assembleTask <span style="color:#f92672">=</span> isBuildingBundle
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">?</span> getBundleTaskFor(buildInfo)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">:</span> getAssembleTaskFor(buildInfo);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  ......
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">final</span> List<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">String</span><span style="color:#f92672">&gt;</span> command <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">String</span><span style="color:#f92672">&gt;</span>[
+</span></span><span style="display:flex;"><span>    gradleUtils.getExecutable(project),
+</span></span><span style="display:flex;"><span>  ];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (globals.logger.isVerbose) {
+</span></span><span style="display:flex;"><span>    command.add(<span style="color:#e6db74">&#39;-Pverbose=true&#39;</span>);
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    command.add(<span style="color:#e6db74">&#39;-q&#39;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  .....
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (target <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>    command.add(<span style="color:#e6db74">&#39;-Ptarget=</span><span style="color:#e6db74">$</span>target<span style="color:#e6db74">&#39;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">assert</span>(buildInfo.trackWidgetCreation <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span>  command.add(<span style="color:#e6db74">&#39;-Ptrack-widget-creation=</span><span style="color:#e6db74">${</span>buildInfo.trackWidgetCreation<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (buildInfo.extraFrontEndOptions <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>    command.add(<span style="color:#e6db74">&#39;-Pextra-front-end-options=</span><span style="color:#e6db74">${</span>encodeDartDefines(buildInfo.extraFrontEndOptions)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (buildInfo.extraGenSnapshotOptions <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>    command.add(<span style="color:#e6db74">&#39;-Pextra-gen-snapshot-options=</span><span style="color:#e6db74">${</span>encodeDartDefines(buildInfo.extraGenSnapshotOptions)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (buildInfo.fileSystemRoots <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> buildInfo.fileSystemRoots.isNotEmpty) {
+</span></span><span style="display:flex;"><span>    command.add(<span style="color:#e6db74">&#39;-Pfilesystem-roots=</span><span style="color:#e6db74">${</span>buildInfo.fileSystemRoots.join(<span style="color:#e6db74">&#39;|&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (buildInfo.fileSystemScheme <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>    command.add(<span style="color:#e6db74">&#39;-Pfilesystem-scheme=</span><span style="color:#e6db74">${</span>buildInfo.fileSystemScheme<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (androidBuildInfo.splitPerAbi) {
+</span></span><span style="display:flex;"><span>    command.add(<span style="color:#e6db74">&#39;-Psplit-per-abi=true&#39;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  .....
+</span></span><span style="display:flex;"><span>  command.add(assembleTask);
+</span></span><span style="display:flex;"><span>  .....
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  .....
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    exitCode <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> processUtils.stream(
+</span></span><span style="display:flex;"><span>      command,
+</span></span><span style="display:flex;"><span>      workingDirectory: project.android.hostAppGradleRoot.path,
+</span></span><span style="display:flex;"><span>      allowReentrantFlutter: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      environment: gradleEnvironment,
+</span></span><span style="display:flex;"><span>      mapFunction: consumeLog,
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>  } on ProcessException <span style="color:#66d9ef">catch</span>(exception) {
+</span></span><span style="display:flex;"><span>  .....
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Gradle produced an APK.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">final</span> Iterable<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">String</span><span style="color:#f92672">&gt;</span> apkFilesPaths <span style="color:#f92672">=</span> project.isModule
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">?</span> findApkFilesModule(project, androidBuildInfo)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">:</span> listApkPaths(androidBuildInfo);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">final</span> Directory apkDirectory <span style="color:#f92672">=</span> getApkDirectory(project);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">final</span> File apkFile <span style="color:#f92672">=</span> apkDirectory.childFile(apkFilesPaths.first);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  .....
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">String</span> appSize <span style="color:#f92672">=</span> (buildInfo.mode <span style="color:#f92672">==</span> BuildMode.debug)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;&#39;</span> <span style="color:#75715e">// Don&#39;t display the size when building a debug variant.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39; (</span><span style="color:#e6db74">${</span>getSizeAsMB(apkFile.lengthSync())<span style="color:#e6db74">}</span><span style="color:#e6db74">)&#39;</span>;
+</span></span><span style="display:flex;"><span>  globals.printStatus(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">$</span>successMark<span style="color:#e6db74"> Built </span><span style="color:#e6db74">${</span>globals.fs.path.relative(apkFile.path)<span style="color:#e6db74">}$</span>appSize<span style="color:#e6db74">.&#39;</span>,
+</span></span><span style="display:flex;"><span>    color: TerminalColor.green,
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这里会创建gradle所需的全部参数，然后通过<code>processUtils</code>启动执行，执行后APK文件就会出现在构建目录了。</p>
 <p>此时<code>androidBuilder.buildApk</code>就执行完了，后面的<code>_installLatestApp</code>负责apk文件的安装工作：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-dart" data-lang="dart">  Future&lt;bool&gt; _installLatestApp(AndroidApk package, String userIdentifier) async {
-    final bool wasInstalled = await isAppInstalled(package, userIdentifier: userIdentifier);
-    if (wasInstalled) {
-      if (await isLatestBuildInstalled(package)) {
-        _logger.printTrace(&#39;Latest build already installed.&#39;);
-        return true;
-      }
-    }
-    _logger.printTrace(&#39;Installing APK.&#39;);
-    if (!await installApp(package, userIdentifier: userIdentifier)) {
-    .....</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>真正的安装工作：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-dart" data-lang="dart">  @override
-  Future&lt;bool&gt; installApp(
-    AndroidApk app, {
-    String userIdentifier,
-  }) async {
-    .....
-
-    final Status status = _logger.startProgress(
-      &#39;Installing ${_fileSystem.path.relative(app.file.path)}...&#39;,
-      timeout: _timeoutConfiguration.slowOperation,
-    );
-    final RunResult installResult = await _processUtils.run(
-      adbCommandForDevice(&lt;String&gt;[
-        &#39;install&#39;,
-        &#39;-t&#39;,
-        &#39;-r&#39;,
-        if (userIdentifier != null)
-          ...&lt;String&gt;[&#39;--user&#39;, userIdentifier],
-        app.file.path
-      ]));
-    status.stop();
-    .....
-    return true;
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>可以看出，本质还是通过adb命令进行安装。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_attach">attach</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dart" data-lang="dart"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Future<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span> _installLatestApp(AndroidApk package, <span style="color:#66d9ef">String</span> userIdentifier) <span style="color:#66d9ef">async</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">bool</span> wasInstalled <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> isAppInstalled(package, userIdentifier: userIdentifier);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (wasInstalled) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">await</span> isLatestBuildInstalled(package)) {
+</span></span><span style="display:flex;"><span>        _logger.printTrace(<span style="color:#e6db74">&#39;Latest build already installed.&#39;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    _logger.printTrace(<span style="color:#e6db74">&#39;Installing APK.&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#66d9ef">await</span> installApp(package, userIdentifier: userIdentifier)) {
+</span></span><span style="display:flex;"><span>    .....
+</span></span></code></pre></div><p>真正的安装工作：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dart" data-lang="dart"><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">@</span>override
+</span></span><span style="display:flex;"><span>  Future<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span> installApp(
+</span></span><span style="display:flex;"><span>    AndroidApk app, {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">String</span> userIdentifier,
+</span></span><span style="display:flex;"><span>  }) <span style="color:#66d9ef">async</span> {
+</span></span><span style="display:flex;"><span>    .....
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> Status status <span style="color:#f92672">=</span> _logger.startProgress(
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#39;Installing </span><span style="color:#e6db74">${</span>_fileSystem.path.relative(app.file.path)<span style="color:#e6db74">}</span><span style="color:#e6db74">...&#39;</span>,
+</span></span><span style="display:flex;"><span>      timeout: _timeoutConfiguration.slowOperation,
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> RunResult installResult <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> _processUtils.run(
+</span></span><span style="display:flex;"><span>      adbCommandForDevice(<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">String</span><span style="color:#f92672">&gt;</span>[
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;install&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;-t&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;-r&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (userIdentifier <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>)
+</span></span><span style="display:flex;"><span>          ...<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">String</span><span style="color:#f92672">&gt;</span>[<span style="color:#e6db74">&#39;--user&#39;</span>, userIdentifier],
+</span></span><span style="display:flex;"><span>        app.file.path
+</span></span><span style="display:flex;"><span>      ]));
+</span></span><span style="display:flex;"><span>    status.stop();
+</span></span><span style="display:flex;"><span>    .....
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>可以看出，本质还是通过adb命令进行安装。</p>
+<h1 id="attach">attach</h1>
 <p>安装启动之后，会初始化交互式命令行，在之前的<code>setupTerminal</code>里面：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>  void setupTerminal() {
+<pre><code>  void setupTerminal() {
     if (!globals.logger.quiet) {
-      globals.printStatus(&#39;&#39;);
+      globals.printStatus('');
       residentRunner.printHelp(details: false);
     }
     globals.terminal.singleCharMode = true;
     subscription = globals.terminal.keystrokes.listen(processTerminalInput);
-  }</pre>
-</div>
-</div>
-<div class="paragraph">
+  }
+</code></pre>
 <p><code>processTerminalInput</code>负责处理用户输入</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-dart" data-lang="dart">  Future&lt;void&gt; processTerminalInput(String command) async {
-    ......
-    try {
-      lastReceivedCommand = command;
-      await _commonTerminalInputHandler(command);
-    // Catch all exception since this is doing cleanup and rethrowing.
-    } catch (error, st) { // ignore: avoid_catches_without_on_clauses
-    ....
-
-
-
-  Future&lt;bool&gt; _commonTerminalInputHandler(String character) async {
-    globals.printStatus(&#39;&#39;); // the key the user tapped might be on this line
-    switch(character) {
-      ....
-      case &#39;r&#39;:
-        if (!residentRunner.canHotReload) {
-          return false;
-        }
-        final OperationResult result = await residentRunner.restart(fullRestart: false);
-        if (result.fatal) {
-          throwToolExit(result.message);
-        }
-        if (!result.isOk) {
-          globals.printStatus(&#39;Try again after fixing the above error(s).&#39;, emphasis: true);
-        }
-        return true;
-      case &#39;R&#39;:
-        // If hot restart is not supported for all devices, ignore the command.
-        if (!residentRunner.canHotRestart || !residentRunner.hotMode) {
-          return false;
-        }
-        final OperationResult result = await residentRunner.restart(fullRestart: true);
-        if (result.fatal) {
-          throwToolExit(result.message);
-        }
-        if (!result.isOk) {
-          globals.printStatus(&#39;Try again after fixing the above error(s).&#39;, emphasis: true);
-        }
-        return true;
-      ....
-    }
-    return false;
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>这里只是初始化了命令行环境，还需要建立像设备发送命令的通道（等同于<code>flutter attach</code>），这里涉及到和DartVM的远程通信，有机会留到<code>flutter attach</code>再做分析。</p>
-</div>
-</div>
-</div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dart" data-lang="dart"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Future<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span><span style="color:#f92672">&gt;</span> processTerminalInput(<span style="color:#66d9ef">String</span> command) <span style="color:#66d9ef">async</span> {
+</span></span><span style="display:flex;"><span>    ......
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>      lastReceivedCommand <span style="color:#f92672">=</span> command;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">await</span> _commonTerminalInputHandler(command);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Catch all exception since this is doing cleanup and rethrowing.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">catch</span> (error, st) { <span style="color:#75715e">// ignore: avoid_catches_without_on_clauses
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    ....
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Future<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span> _commonTerminalInputHandler(<span style="color:#66d9ef">String</span> character) <span style="color:#66d9ef">async</span> {
+</span></span><span style="display:flex;"><span>    globals.printStatus(<span style="color:#e6db74">&#39;&#39;</span>); <span style="color:#75715e">// the key the user tapped might be on this line
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">switch</span>(character) {
+</span></span><span style="display:flex;"><span>      ....
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;r&#39;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>residentRunner.canHotReload) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">final</span> OperationResult result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> residentRunner.restart(fullRestart: <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (result.fatal) {
+</span></span><span style="display:flex;"><span>          throwToolExit(result.message);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>result.isOk) {
+</span></span><span style="display:flex;"><span>          globals.printStatus(<span style="color:#e6db74">&#39;Try again after fixing the above error(s).&#39;</span>, emphasis: <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;R&#39;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// If hot restart is not supported for all devices, ignore the command.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>residentRunner.canHotRestart <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>residentRunner.hotMode) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">final</span> OperationResult result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> residentRunner.restart(fullRestart: <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (result.fatal) {
+</span></span><span style="display:flex;"><span>          throwToolExit(result.message);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>result.isOk) {
+</span></span><span style="display:flex;"><span>          globals.printStatus(<span style="color:#e6db74">&#39;Try again after fixing the above error(s).&#39;</span>, emphasis: <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>      ....
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>这里只是初始化了命令行环境，还需要建立像设备发送命令的通道（等同于<code>flutter</code>
+<code>attach</code>），这里涉及到和DartVM的远程通信，有机会留到<code>flutter</code>
+<code>attach</code>再做分析。</p>
 
 		</div>
     <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
@@ -728,11 +623,11 @@ D/AwareBitmapCacher(10010): handleInit switch not opened pid=10010</code></pre>
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
-			<li class="widget__item"><a class="widget__link" href="/articles/use-protobuf-in-cmake/">CMake使用Protobuf的正确姿势</a></li>
 		</ul>
 	</div>
 </div>
@@ -750,7 +645,11 @@ D/AwareBitmapCacher(10010): handleInit switch not opened pid=10010</code></pre>
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
-				<span class="widget__counter widget__counter--bubble">2</span>
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
 				</li>
 		</ul>
 	</div>
@@ -758,11 +657,13 @@ D/AwareBitmapCacher(10010): handleInit switch not opened pid=10010</code></pre>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMAKE">CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
@@ -770,7 +671,6 @@ D/AwareBitmapCacher(10010): handleInit switch not opened pid=10010</code></pre>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言">编程语言 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>

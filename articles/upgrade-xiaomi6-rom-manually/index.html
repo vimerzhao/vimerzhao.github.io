@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/upgrade-xiaomi6-rom-manually/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2022-06-17T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-07-05T13:17:49+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="小米6刷机记录"/>
 <meta name="twitter:description" content="手头的开发机是小米6，升级到MIUI11（Android9）之后，官方貌似也停止了对其的升级。 另一方面，也想为将来真机调试积累点经验，于是研究了下如何刷机。 刷机这种行为，最佳选择自然是Google Pi"/>
@@ -113,69 +113,50 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-06-17T00:00:00Z">2022-06-17</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 600 字，阅读需 2 分钟。</span>
     <p/><div class="content post__content clearfix">
-			<p>
-手头的开发机是小米6，升级到MIUI11（Android9）之后，官方貌似也停止了对其的升级。</p>
-<p>
-另一方面，也想为将来真机调试积累点经验，于是研究了下如何刷机。</p>
-<p>
-刷机这种行为，最佳选择自然是Google Pixel，不过小米的开发者友好度也还可以，所以半天也就搞定了。</p>
-<p>
-首先要对小米进行解锁，有些厂商没有提供这个能力，刷机自然难如登天。按照以下步骤：</p>
-<p>
-<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2022/screenshot_2022-06-17_10-57-10.png" alt="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2022/screenshot_2022-06-17_10-57-10.png" title="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2022/screenshot_2022-06-17_10-57-10.png" /></p>
-<p>
-有个坑是：官网下载的flash unlock工具是 6.5.224.28 的，一打开就提示升级，一开始没有关注，结果一直解锁失败，点击“设置-安装驱动”也失败。
-老实升级到6.5.406.31就好了（先安装驱动现再解锁）。对比发现 <code>MiUsbDriver</code> 这个文件只有高版本有。</p>
-<p>
-<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2022/2022-06-17_13-14-16_01.png" alt="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2022/2022-06-17_13-14-16_01.png" title="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2022/2022-06-17_13-14-16_01.png" /></p>
-<p>
-解锁前后如下：</p>
-<p>
-<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2022/2022-06-17_13-17-17-02.png" alt="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2022/2022-06-17_13-17-17-02.png" title="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2022/2022-06-17_13-17-17-02.png" /></p>
-<p>
-接着，去 <a href="https://download.lineageos.org/sagit#!">https://download.lineageos.org/sagit#!</a> 下载机型对应的 Recovery 和 ROM。</p>
-<p>
-进入 fastboot 模式： <code>adb reboot bootloader</code></p>
-<p>
-如果前面的解锁失败了，则有以下信息：</p>
-<div class="src src-sh">
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ fastboot boot ~/Downloads/lineage-18.1-20220616-recovery-sagit.img
-</span></span><span style="display:flex;"><span>Sending <span style="color:#e6db74">&#39;recovery&#39;</span> <span style="color:#f92672">(</span><span style="color:#ae81ff">22768</span> KB<span style="color:#f92672">)</span>                      OKAY <span style="color:#f92672">[</span>  0.531s<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>Writing <span style="color:#e6db74">&#39;recovery&#39;</span>                                 FAILED <span style="color:#f92672">(</span>remote: <span style="color:#e6db74">&#39;Flashing is not allowed in Lock State&#39;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>fastboot: error: Command failed</span></span></code></pre></div>
-</div>
-<p>
-正确的如下：</p>
-<div class="src src-sh">
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ fastboot boot ~/Downloads/lineage-18.1-20220616-recovery-sagit.img
-</span></span><span style="display:flex;"><span>Sending <span style="color:#e6db74">&#39;boot.img&#39;</span> <span style="color:#f92672">(</span><span style="color:#ae81ff">22768</span> KB<span style="color:#f92672">)</span>                      OKAY <span style="color:#f92672">[</span>  0.481s<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>Booting                                            OKAY <span style="color:#f92672">[</span>  0.001s<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>Finished. Total time: 0.493s</span></span></code></pre></div>
-</div>
-<p>
-然后进入recovery模式（电源 + 音量+）。</p>
-<p>
-选择 <code>Apply update</code> - <code>ADB Sideload</code> ，然后执行：</p>
-<div class="src src-sh">
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>  adb sideload ~/Downloads/lineage-18.1-20220616-nightly-sagit-signed.zip
-</span></span><span style="display:flex;"><span>  serving: <span style="color:#e6db74">&#39;/Users/vimerzhao/Downloads/lineage-18.1-20220616-nightly-sagit-signed.zip&#39;</span>  <span style="color:#f92672">(</span>~47%<span style="color:#f92672">)</span>    adb: failed to read command: Undefined error: <span style="color:#ae81ff">0</span></span></span></code></pre></div>
-</div>
-<p>
-这里的错误信息不用关心。然后启动即可。</p>
-<p>
-注：一开始重启了N次，一度以为变砖了。但最后又好了：</p>
-<p>
-<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2022/2022-06-17_13-15-15-03.png" alt="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2022/2022-06-17_13-15-15-03.png" title="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2022/2022-06-17_13-15-15-03.png" /></p>
-<p>
-参考：</p>
+			<p>手头的开发机是小米6，升级到MIUI11（Android9）之后，官方貌似也停止了对其的升级。</p>
+<p>另一方面，也想为将来真机调试积累点经验，于是研究了下如何刷机。</p>
+<p>刷机这种行为，最佳选择自然是Google
+Pixel，不过小米的开发者友好度也还可以，所以半天也就搞定了。</p>
+<p>首先要对小米进行解锁，有些厂商没有提供这个能力，刷机自然难如登天。按照以下步骤：</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2022/screenshot_2022-06-17_10-57-10.png" alt=""></p>
+<p>有个坑是：官网下载的flash unlock工具是 6.5.224.28
+的，一打开就提示升级，一开始没有关注，结果一直解锁失败，点击“设置-安装驱动”也失败。
+老实升级到6.5.406.31就好了（先安装驱动现再解锁）。对比发现 <code>MiUsbDriver</code>
+这个文件只有高版本有。</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2022/2022-06-17_13-14-16_01.png" alt=""></p>
+<p>解锁前后如下：</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2022/2022-06-17_13-17-17-02.png" alt=""></p>
+<p>接着，去 <a href="https://download.lineageos.org/sagit#!">https://download.lineageos.org/sagit#!</a> 下载机型对应的
+Recovery 和 ROM。</p>
+<p>进入 fastboot 模式： <code>adb reboot bootloader</code></p>
+<p>如果前面的解锁失败了，则有以下信息：</p>
+<p>$ fastboot boot ~/Downloads/lineage-18.1-20220616-recovery-sagit.img
+Sending &lsquo;recovery&rsquo; (22768 KB) OKAY [ 0.531s] Writing &lsquo;recovery&rsquo; FAILED
+(remote: &lsquo;Flashing is not allowed in Lock State&rsquo;) fastboot: error:
+Command failed</p>
+<p>正确的如下：</p>
+<p>$ fastboot boot ~/Downloads/lineage-18.1-20220616-recovery-sagit.img
+Sending &lsquo;boot.img&rsquo; (22768 KB) OKAY [ 0.481s] Booting OKAY [ 0.001s]
+Finished. Total time: 0.493s</p>
+<p>然后进入recovery模式（电源 + 音量+）。</p>
+<p>选择 <code>Apply update</code> - <code>ADB Sideload</code> ，然后执行：</p>
+<p>adb sideload ~/Downloads/lineage-18.1-20220616-nightly-sagit-signed.zip
+serving:
+&lsquo;/Users/vimerzhao/Downloads/lineage-18.1-20220616-nightly-sagit-signed.zip&rsquo;
+(~47%) adb: failed to read command: Undefined error: 0</p>
+<p>这里的错误信息不用关心。然后启动即可。</p>
+<p>注：一开始重启了N次，一度以为变砖了。但最后又好了：</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2022/2022-06-17_13-15-15-03.png" alt=""></p>
+<p>参考：</p>
 <ul>
 <li>小米6续命–刷入安卓11： <a href="https://sspai.com/post/67052">https://sspai.com/post/67052</a></li>
-<li>Install LineageOS on sagit: <a href="https://wiki.lineageos.org/devices/sagit/install">https://wiki.lineageos.org/devices/sagit/install</a></li>
+<li>Install LineageOS on sagit:
+<a href="https://wiki.lineageos.org/devices/sagit/install">https://wiki.lineageos.org/devices/sagit/install</a></li>
 <li>Builds for sagit: <a href="https://download.lineageos.org/sagit#!">https://download.lineageos.org/sagit#!</a></li>
 </ul>
 
@@ -247,11 +228,11 @@
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
-			<li class="widget__item"><a class="widget__link" href="/articles/use-protobuf-in-cmake/">CMake使用Protobuf的正确姿势</a></li>
 		</ul>
 	</div>
 </div>
@@ -269,7 +250,11 @@
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
-				<span class="widget__counter widget__counter--bubble">2</span>
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
 				</li>
 		</ul>
 	</div>
@@ -277,11 +262,13 @@
 <div class="widget-taglist widget">
 	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMAKE">CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
@@ -289,7 +276,6 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言">编程语言 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>

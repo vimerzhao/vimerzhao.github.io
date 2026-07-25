@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/android-system-service-cache-analyze/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2020-08-21T12:18:22+08:00" />
-<meta property="article:modified_time" content="2026-01-30T14:21:51+08:00" />
+<meta property="article:modified_time" content="2026-07-05T13:17:49+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Android系统服务的注册缓存机制分析"/>
 <meta name="twitter:description" content="本文说明 本文虽名为《Android系统服务的注册缓存机制分析》，但主要记录的是笔者最近解决一个单机型Bug的经历。在解决这个Bug的过程中，我对于Android系统服务的注册缓存机制也有了更深入的了解"/>
@@ -113,413 +113,310 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-08-21T12:18:22&#43;08:00">2020-08-21</time>
-	<time class="meta__text" datetime="2026-01-30T14:21:51&#43;08:00">(最后修改: 2026-01-30)</time></div></div>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 4200 字，阅读需 9 分钟。</span>
     <p/><div class="content post__content clearfix">
-			<div class="sect1">
-<h2 id="_本文说明">本文说明</h2>
-<div class="sectionbody">
-<div class="paragraph">
+			<h1 id="本文说明">本文说明</h1>
 <p>本文虽名为《Android系统服务的注册缓存机制分析》，但主要记录的是笔者最近解决一个单机型Bug的经历。在解决这个Bug的过程中，我对于Android系统服务的注册缓存机制也有了更深入的了解。所以，本文的核心是<code>getSystemService</code>这个系统函数背后的复杂机制。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_问题背景">问题背景</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>最近基于DroidPlugin做了一个Demo，测试的时候发现，在几款小米手机（Mix 2、Mix 2s、小米5）的Android 8版本上都会出现插件加载闪退的情况，抓取到的日志如下：</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-08-21-02.png" alt="2020 08 21 02"/>
-</div>
-</div>
-<div class="paragraph">
+<h1 id="问题背景">问题背景</h1>
+<p>最近基于DroidPlugin做了一个Demo，测试的时候发现，在几款小米手机（Mix
+2、Mix 2s、小米5）的Android
+8版本上都会出现插件加载闪退的情况，抓取到的日志如下：</p>
+<figure>
+<img
+src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-08-21-02.png" />
+</figure>
 <p>基于这个信息，我找到了对应的系统源码：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">    /**
-     * Do a quick check to validate if a package name belongs to a UID.
-     *
-     * @throws SecurityException if the package name doesn&#39;t belong to the given
-     *             UID, or if ownership cannot be verified.
-     */
-    public void checkPackage(int uid, String packageName) {
-        try {
-            if (mService.checkPackage(uid, packageName) != MODE_ALLOWED) {
-                throw new SecurityException(
-                        &#34;Package &#34; + packageName + &#34; does not belong to &#34; + uid);
-            }
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-    }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>结合错误信息可知，是由于<code>checkPackage</code>方法使用了插件的包名给系统做校验，而log中的uid（<code>10525</code>）对应的是宿主的包名，所以报了这个错误。</p>
-</div>
-<div class="paragraph">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Do a quick check to validate if a package name belongs to a UID.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @throws SecurityException if the package name doesn&#39;t belong to the given
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     *             UID, or if ownership cannot be verified.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">checkPackage</span>(<span style="color:#66d9ef">int</span> uid, String packageName) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (mService.<span style="color:#a6e22e">checkPackage</span>(uid, packageName) <span style="color:#f92672">!=</span> MODE_ALLOWED) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> SecurityException(
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#34;Package &#34;</span> <span style="color:#f92672">+</span> packageName <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; does not belong to &#34;</span> <span style="color:#f92672">+</span> uid);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (RemoteException e) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> e.<span style="color:#a6e22e">rethrowFromSystemServer</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>结合错误信息可知，是由于<code>checkPackage</code>方法使用了插件的包名给系统做校验，而log中的uid（<code>10525</code>）对应的是宿主的包名，所以报了这个错误。</p>
 <p>于是我直接写了一个Demo，核心代码如下：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">AppOpsManager mAppOps = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
-Log.i(&#34;vimerr&#34;, &#34;--&gt;&#34; + Process.myUid() + &#34;/&#34; + getPackageName());
-mAppOps.checkPackage(Process.myUid(), getPackageName());</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>将其直接在DroidPlugin的源码中加载，可以在<strong>任意机型</strong>得到了类似的错误：</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-08-21-03.jpg" alt="2020 08 21 03"/>
-</div>
-</div>
-<div class="paragraph">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>AppOpsManager mAppOps <span style="color:#f92672">=</span> (AppOpsManager) getSystemService(Context.<span style="color:#a6e22e">APP_OPS_SERVICE</span>);
+</span></span><span style="display:flex;"><span>Log.<span style="color:#a6e22e">i</span>(<span style="color:#e6db74">&#34;vimerr&#34;</span>, <span style="color:#e6db74">&#34;--&gt;&#34;</span> <span style="color:#f92672">+</span> Process.<span style="color:#a6e22e">myUid</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#f92672">+</span> getPackageName());
+</span></span><span style="display:flex;"><span>mAppOps.<span style="color:#a6e22e">checkPackage</span>(Process.<span style="color:#a6e22e">myUid</span>(), getPackageName());
+</span></span></code></pre></div><p>将其直接在DroidPlugin的源码中加载，可以在<strong>任意机型</strong>得到了类似的错误：</p>
+<figure>
+<img
+src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-08-21-03.jpg" />
+</figure>
 <p>至此，可以得出第一个结论：</p>
-</div>
-<div class="quoteblock">
 <blockquote>
-<div class="paragraph">
 <p>这是一个DroidPlugin固有的错误，它不能正确地处理插件对<code>checkPackage</code>的调用。</p>
-</div>
 </blockquote>
-</div>
-<div class="paragraph">
 <p>基于此，下文将主要围绕DroidPlugin的代码分析这个问题。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_缩小范围">缩小范围</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<h1 id="缩小范围">缩小范围</h1>
 <p>通过代码，可以发现DroidPlugin其实做了这个调用的处理：</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-08-21-04.jpg" alt="2020 08 21 04"/>
-</div>
-</div>
-<div class="paragraph">
+<figure>
+<img
+src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-08-21-04.jpg" />
+</figure>
 <p>那么为什么还是不行呢？难道是<code>installHook</code>这个逻辑失败了？于是我扩展了上面的测试用例：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">ClipboardManager clipboardManager = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
-AppOpsManager mAppOps = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
-UserManager manager = (UserManager)  getSystemService(Context.USER_SERVICE);
-
-Log.i(&#34;vimerr&#34;, &#34;clip --&gt;&#34; + clipboardManager.getPrimaryClip());
-Log.i(&#34;vimerr&#34;, &#34;--&gt;&#34; + Process.myUid() + &#34;/&#34; + getPackageName());
-mAppOps.checkPackage(Process.myUid(), getPackageName());</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>并在<code>ServiceManagerCacheBinderHook#invoke</code>的入口加上日志：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">@Override
-public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-    try {
-        Log.d(&#34;vimerr&#34;, method + &#34;/&#34; + mServiceName);
-        IBinder originService = MyServiceManager.getOriginService(mServiceName);
-        ......
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>结果越来奇怪了：</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-08-21-05.jpg" alt="2020 08 21 05"/>
-</div>
-</div>
-<div class="paragraph">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ClipboardManager clipboardManager <span style="color:#f92672">=</span> (ClipboardManager)getSystemService(Context.<span style="color:#a6e22e">CLIPBOARD_SERVICE</span>);
+</span></span><span style="display:flex;"><span>AppOpsManager mAppOps <span style="color:#f92672">=</span> (AppOpsManager) getSystemService(Context.<span style="color:#a6e22e">APP_OPS_SERVICE</span>);
+</span></span><span style="display:flex;"><span>UserManager manager <span style="color:#f92672">=</span> (UserManager)  getSystemService(Context.<span style="color:#a6e22e">USER_SERVICE</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Log.<span style="color:#a6e22e">i</span>(<span style="color:#e6db74">&#34;vimerr&#34;</span>, <span style="color:#e6db74">&#34;clip --&gt;&#34;</span> <span style="color:#f92672">+</span> clipboardManager.<span style="color:#a6e22e">getPrimaryClip</span>());
+</span></span><span style="display:flex;"><span>Log.<span style="color:#a6e22e">i</span>(<span style="color:#e6db74">&#34;vimerr&#34;</span>, <span style="color:#e6db74">&#34;--&gt;&#34;</span> <span style="color:#f92672">+</span> Process.<span style="color:#a6e22e">myUid</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#f92672">+</span> getPackageName());
+</span></span><span style="display:flex;"><span>mAppOps.<span style="color:#a6e22e">checkPackage</span>(Process.<span style="color:#a6e22e">myUid</span>(), getPackageName());
+</span></span></code></pre></div><p>并在<code>ServiceManagerCacheBinderHook#invoke</code>的入口加上日志：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">invoke</span>(Object proxy, Method method, Object<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> Throwable {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>        Log.<span style="color:#a6e22e">d</span>(<span style="color:#e6db74">&#34;vimerr&#34;</span>, method <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#f92672">+</span> mServiceName);
+</span></span><span style="display:flex;"><span>        IBinder originService <span style="color:#f92672">=</span> MyServiceManager.<span style="color:#a6e22e">getOriginService</span>(mServiceName);
+</span></span><span style="display:flex;"><span>        ......
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>结果越来奇怪了：</p>
+<figure>
+<img
+src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/2020-08-21-05.jpg" />
+</figure>
 <p>剪切板服务和<code>appops</code>这个服务走了相同的<code>installHook</code>逻辑，为什么一个hook成功了（能在<code>invoke</code>被拦截），另一个却失败了？</p>
-</div>
-<div class="paragraph">
 <p>通过很多次尝试之后，我把目标聚集到了一个方法上(类名：<code>PluginProcessManager</code>)：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">    //这里为了解决某些插件调用系统服务时，系统服务必须要求要以host包名的身份去调用的问题。
-    public static void fakeSystemService(Context hostContext, Context targetContext) {
-        if (VERSION.SDK_INT &gt;= VERSION_CODES.ICE_CREAM_SANDWICH_MR1 &amp;&amp; !TextUtils.equals(hostContext.getPackageName(), targetContext.getPackageName())) {
-            long b = System.currentTimeMillis();
-            fakeSystemServiceInner(hostContext, targetContext);
-            Log.i(TAG, &#34;Fake SystemService for originContext=%s context=%s,cost %s ms&#34;, targetContext.getPackageName(), targetContext.getPackageName(), (System.currentTimeMillis() - b));
-        }
-    }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>通过注释来看，该方法是解决我这个问题的（内心窃喜）！！但是为啥还是崩了呢？怀着懵逼的想法，我注释了<code>fakeSystemServiceInner</code>这个调用，结果竟然OK了。</p>
-</div>
-<div class="paragraph">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//这里为了解决某些插件调用系统服务时，系统服务必须要求要以host包名的身份去调用的问题。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fakeSystemService</span>(Context hostContext, Context targetContext) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (VERSION.<span style="color:#a6e22e">SDK_INT</span> <span style="color:#f92672">&gt;=</span> VERSION_CODES.<span style="color:#a6e22e">ICE_CREAM_SANDWICH_MR1</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>TextUtils.<span style="color:#a6e22e">equals</span>(hostContext.<span style="color:#a6e22e">getPackageName</span>(), targetContext.<span style="color:#a6e22e">getPackageName</span>())) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">long</span> b <span style="color:#f92672">=</span> System.<span style="color:#a6e22e">currentTimeMillis</span>();
+</span></span><span style="display:flex;"><span>            fakeSystemServiceInner(hostContext, targetContext);
+</span></span><span style="display:flex;"><span>            Log.<span style="color:#a6e22e">i</span>(TAG, <span style="color:#e6db74">&#34;Fake SystemService for originContext=%s context=%s,cost %s ms&#34;</span>, targetContext.<span style="color:#a6e22e">getPackageName</span>(), targetContext.<span style="color:#a6e22e">getPackageName</span>(), (System.<span style="color:#a6e22e">currentTimeMillis</span>() <span style="color:#f92672">-</span> b));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>通过注释来看，该方法是解决我这个问题的（内心窃喜）！！但是为啥还是崩了呢？怀着懵逼的想法，我注释了<code>fakeSystemServiceInner</code>这个调用，结果竟然OK了。</p>
 <p>此刻的我信仰有点崩塌，说好的解决问题呢？冷静一下，我决定看下<code>fakeSystemServiceInner</code>源码（核心部分）：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">    private static void fakeSystemServiceInner(Context hostContext, Context targetContext) {
-        try {
-            Context baseContext = getBaseContext(targetContext);
-            if (mFakedContext.containsValue(baseContext)) {
-                return;
-            } else if (mServiceCache != null) {
-                ......
-            }
-            Object SYSTEM_SERVICE_MAP = null;
-            try {
-                SYSTEM_SERVICE_MAP = FieldUtils.readStaticField(baseContext.getClass(), &#34;SYSTEM_SERVICE_MAP&#34;);
-            } catch (Exception e) {
-                Log.w(TAG, &#34;readStaticField(SYSTEM_SERVICE_MAP) from %s fail&#34;, e, baseContext.getClass());
-            }
-            if (SYSTEM_SERVICE_MAP == null) {
-                try {
-                    SYSTEM_SERVICE_MAP = FieldUtils.readStaticField(Class.forName(&#34;android.app.SystemServiceRegistry&#34;), &#34;SYSTEM_SERVICE_FETCHERS&#34;);
-                } catch (Exception e) {
-                    Log.e(TAG, &#34;readStaticField(SYSTEM_SERVICE_FETCHERS) from android.app.SystemServiceRegistry fail&#34;, e);
-                }
-            }
-
-            if (SYSTEM_SERVICE_MAP != null &amp;&amp; (SYSTEM_SERVICE_MAP instanceof Map)) {
-                //如没有，则创建一个新的。
-                Map&lt;?, ?&gt; sSYSTEM_SERVICE_MAP = (Map&lt;?, ?&gt;) SYSTEM_SERVICE_MAP;
-                Context originContext = getBaseContext(hostContext);
-
-                Object mServiceCache = FieldUtils.readField(originContext, &#34;mServiceCache&#34;);
-                if (mServiceCache instanceof List) {
-                    ((List) mServiceCache).clear();
-                }
-
-                for (Object key : sSYSTEM_SERVICE_MAP.keySet()) {
-                    if (sSkipService.contains(key)) {
-                        continue;
-                    }
-                    Object serviceFetcher = sSYSTEM_SERVICE_MAP.get(key);
-
-                    try {
-                        Method getService = serviceFetcher.getClass().getMethod(&#34;getService&#34;, baseContext.getClass());
-                        getService.invoke(serviceFetcher, originContext);
-                    } catch (InvocationTargetException e) {
-                        Throwable cause = e.getCause();
-                        if (cause != null) {
-                            Log.w(TAG, &#34;Fake system service faile&#34;, e);
-                        } else {
-                            Log.w(TAG, &#34;Fake system service faile&#34;, e);
-                        }
-                    } catch (Exception e) {
-                        Log.w(TAG, &#34;Fake system service faile&#34;, e);
-                    }
-                }
-                mServiceCache = FieldUtils.readField(originContext, &#34;mServiceCache&#34;);
-                FieldUtils.writeField(baseContext, &#34;mServiceCache&#34;, mServiceCache);
-
-                //for context ContentResolver
-                ContentResolver cr = baseContext.getContentResolver();
-                if (cr != null) {
-                    Object crctx = FieldUtils.readField(cr, &#34;mContext&#34;);
-                    if (crctx != null) {
-                        FieldUtils.writeField(crctx, &#34;mServiceCache&#34;, mServiceCache);
-                    }
-                }
-            }
-            if (!mFakedContext.containsValue(baseContext)) {
-                mFakedContext.put(baseContext.hashCode(), baseContext);
-            }
-        } catch (Exception e) {
-            Log.e(TAG, &#34;fakeSystemServiceOldAPI&#34;, e);
-        }
-    }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>发现这个逻辑十分绕，<code>hostContext</code>和<code>targetContext</code>各自什么意思，反射读取的一些字段又是干嘛的？</p>
-</div>
-<div class="paragraph">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fakeSystemServiceInner</span>(Context hostContext, Context targetContext) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            Context baseContext <span style="color:#f92672">=</span> getBaseContext(targetContext);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (mFakedContext.<span style="color:#a6e22e">containsValue</span>(baseContext)) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (mServiceCache <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                ......
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            Object SYSTEM_SERVICE_MAP <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                SYSTEM_SERVICE_MAP <span style="color:#f92672">=</span> FieldUtils.<span style="color:#a6e22e">readStaticField</span>(baseContext.<span style="color:#a6e22e">getClass</span>(), <span style="color:#e6db74">&#34;SYSTEM_SERVICE_MAP&#34;</span>);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>                Log.<span style="color:#a6e22e">w</span>(TAG, <span style="color:#e6db74">&#34;readStaticField(SYSTEM_SERVICE_MAP) from %s fail&#34;</span>, e, baseContext.<span style="color:#a6e22e">getClass</span>());
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (SYSTEM_SERVICE_MAP <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                    SYSTEM_SERVICE_MAP <span style="color:#f92672">=</span> FieldUtils.<span style="color:#a6e22e">readStaticField</span>(Class.<span style="color:#a6e22e">forName</span>(<span style="color:#e6db74">&#34;android.app.SystemServiceRegistry&#34;</span>), <span style="color:#e6db74">&#34;SYSTEM_SERVICE_FETCHERS&#34;</span>);
+</span></span><span style="display:flex;"><span>                } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>                    Log.<span style="color:#a6e22e">e</span>(TAG, <span style="color:#e6db74">&#34;readStaticField(SYSTEM_SERVICE_FETCHERS) from android.app.SystemServiceRegistry fail&#34;</span>, e);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (SYSTEM_SERVICE_MAP <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> (SYSTEM_SERVICE_MAP <span style="color:#66d9ef">instanceof</span> Map)) {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//如没有，则创建一个新的。</span>
+</span></span><span style="display:flex;"><span>                Map<span style="color:#f92672">&lt;?</span>, <span style="color:#f92672">?&gt;</span> sSYSTEM_SERVICE_MAP <span style="color:#f92672">=</span> (Map<span style="color:#f92672">&lt;?</span>, <span style="color:#f92672">?&gt;</span>) SYSTEM_SERVICE_MAP;
+</span></span><span style="display:flex;"><span>                Context originContext <span style="color:#f92672">=</span> getBaseContext(hostContext);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                Object mServiceCache <span style="color:#f92672">=</span> FieldUtils.<span style="color:#a6e22e">readField</span>(originContext, <span style="color:#e6db74">&#34;mServiceCache&#34;</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (mServiceCache <span style="color:#66d9ef">instanceof</span> List) {
+</span></span><span style="display:flex;"><span>                    ((List) mServiceCache).<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> (Object key : sSYSTEM_SERVICE_MAP.<span style="color:#a6e22e">keySet</span>()) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (sSkipService.<span style="color:#a6e22e">contains</span>(key)) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    Object serviceFetcher <span style="color:#f92672">=</span> sSYSTEM_SERVICE_MAP.<span style="color:#a6e22e">get</span>(key);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                        Method getService <span style="color:#f92672">=</span> serviceFetcher.<span style="color:#a6e22e">getClass</span>().<span style="color:#a6e22e">getMethod</span>(<span style="color:#e6db74">&#34;getService&#34;</span>, baseContext.<span style="color:#a6e22e">getClass</span>());
+</span></span><span style="display:flex;"><span>                        getService.<span style="color:#a6e22e">invoke</span>(serviceFetcher, originContext);
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">catch</span> (InvocationTargetException e) {
+</span></span><span style="display:flex;"><span>                        Throwable cause <span style="color:#f92672">=</span> e.<span style="color:#a6e22e">getCause</span>();
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">if</span> (cause <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                            Log.<span style="color:#a6e22e">w</span>(TAG, <span style="color:#e6db74">&#34;Fake system service faile&#34;</span>, e);
+</span></span><span style="display:flex;"><span>                        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                            Log.<span style="color:#a6e22e">w</span>(TAG, <span style="color:#e6db74">&#34;Fake system service faile&#34;</span>, e);
+</span></span><span style="display:flex;"><span>                        }
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>                        Log.<span style="color:#a6e22e">w</span>(TAG, <span style="color:#e6db74">&#34;Fake system service faile&#34;</span>, e);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                mServiceCache <span style="color:#f92672">=</span> FieldUtils.<span style="color:#a6e22e">readField</span>(originContext, <span style="color:#e6db74">&#34;mServiceCache&#34;</span>);
+</span></span><span style="display:flex;"><span>                FieldUtils.<span style="color:#a6e22e">writeField</span>(baseContext, <span style="color:#e6db74">&#34;mServiceCache&#34;</span>, mServiceCache);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//for context ContentResolver</span>
+</span></span><span style="display:flex;"><span>                ContentResolver cr <span style="color:#f92672">=</span> baseContext.<span style="color:#a6e22e">getContentResolver</span>();
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (cr <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                    Object crctx <span style="color:#f92672">=</span> FieldUtils.<span style="color:#a6e22e">readField</span>(cr, <span style="color:#e6db74">&#34;mContext&#34;</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (crctx <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                        FieldUtils.<span style="color:#a6e22e">writeField</span>(crctx, <span style="color:#e6db74">&#34;mServiceCache&#34;</span>, mServiceCache);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>mFakedContext.<span style="color:#a6e22e">containsValue</span>(baseContext)) {
+</span></span><span style="display:flex;"><span>                mFakedContext.<span style="color:#a6e22e">put</span>(baseContext.<span style="color:#a6e22e">hashCode</span>(), baseContext);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>            Log.<span style="color:#a6e22e">e</span>(TAG, <span style="color:#e6db74">&#34;fakeSystemServiceOldAPI&#34;</span>, e);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>发现这个逻辑十分绕，<code>hostContext</code>和<code>targetContext</code>各自什么意思，反射读取的一些字段又是干嘛的？</p>
 <p>看来只有弄清楚这段代码的目的，才能进一步解决问题了。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_分析源码">分析源码</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>首先从我们的Demo入手，以Android 9的代码为例，<code>getSystemService</code> 这个方法最终的调用逻辑如下：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">@Override
-public Object getSystemService(String name) {
-    return SystemServiceRegistry.getSystemService(this, name);
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>继续追踪：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">/**
- * Manages all of the system services that can be returned by {@link Context#getSystemService}.
- * Used by {@link ContextImpl}.
- */
-final class SystemServiceRegistry {
-    ......
-    private static final HashMap&lt;String, ServiceFetcher&lt;?&gt;&gt; SYSTEM_SERVICE_FETCHERS =
-            new HashMap&lt;String, ServiceFetcher&lt;?&gt;&gt;();
-    ......
-     * Gets a system service from a given context.
-     */
-    public static Object getSystemService(ContextImpl ctx, String name) {
-        ServiceFetcher&lt;?&gt; fetcher = SYSTEM_SERVICE_FETCHERS.get(name);
-        return fetcher != null ? fetcher.getService(ctx) : null;
-
-    }
-    ......
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>也就是说，每个服务都会对应一个<code>ServiceFetcher</code>的对象，它的创建过程是静态的，如下：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">static {
-    ......
-    //剪切板服务
-   registerService(Context.CLIPBOARD_SERVICE, ClipboardManager.class,
-            new CachedServiceFetcher&lt;ClipboardManager&gt;() {
-        @Override
-        public ClipboardManager createService(ContextImpl ctx) throws ServiceNotFoundException {
-            return new ClipboardManager(ctx.getOuterContext(),
-                    ctx.mMainThread.getHandler());
-        }});
-    ......
-    //appops服务
-   registerService(Context.APP_OPS_SERVICE, AppOpsManager.class,
-           new CachedServiceFetcher&lt;AppOpsManager&gt;() {
-       @Override
-       public AppOpsManager createService(ContextImpl ctx) throws ServiceNotFoundException {
-           IBinder b = ServiceManager.getServiceOrThrow(Context.APP_OPS_SERVICE);
-           IAppOpsService service = IAppOpsService.Stub.asInterface(b);
-           return new AppOpsManager(ctx, service);
-       }});
-    ......
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>那么，这个<code>CachedServiceFetcher</code>又具体是什么东西呢？它的定义也在<code>SystemServiceRegistry</code>中：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">    /**
-     * Override this class when the system service constructor needs a
-     * ContextImpl and should be cached and retained by that context.
-     */
-    static abstract class CachedServiceFetcher&lt;T&gt; implements ServiceFetcher&lt;T&gt; {
-        private final int mCacheIndex;
-
-        CachedServiceFetcher() {
-            // Note this class must be instantiated only by the static initializer of the
-            // outer class (SystemServiceRegistry), which already does the synchronization,
-            // so bare access to sServiceCacheSize is okay here.
-            mCacheIndex = sServiceCacheSize++;
-        }
-
-        @Override
-        @SuppressWarnings(&#34;unchecked&#34;)
-        public final T getService(ContextImpl ctx) {
-            final Object[] cache = ctx.mServiceCache;
-            final int[] gates = ctx.mServiceInitializationStateArray;
-
-            for (;;) {
-                boolean doInitialize = false;
-                synchronized (cache) {
-                    // Return it if we already have a cached instance.
-                    T service = (T) cache[mCacheIndex];
-                    if (service != null || gates[mCacheIndex] == ContextImpl.STATE_NOT_FOUND) {
-                        return service;
-                    }
-
-                    // If we get here, there&#39;s no cached instance.
-
-                    // Grr... if gate is STATE_READY, then this means we initialized the service
-                    // once but someone cleared it.
-                    // We start over from STATE_UNINITIALIZED.
-                    if (gates[mCacheIndex] == ContextImpl.STATE_READY) {
-                        gates[mCacheIndex] = ContextImpl.STATE_UNINITIALIZED;
-                    }
-
-                    // It&#39;s possible for multiple threads to get here at the same time, so
-                    // use the &#34;gate&#34; to make sure only the first thread will call createService().
-
-                    // At this point, the gate must be either UNINITIALIZED or INITIALIZING.
-                    if (gates[mCacheIndex] == ContextImpl.STATE_UNINITIALIZED) {
-                        doInitialize = true;
-                        gates[mCacheIndex] = ContextImpl.STATE_INITIALIZING;
-                    }
-                }
-
-                if (doInitialize) {
-                    // Only the first thread gets here.
-
-                    T service = null;
-                    @ServiceInitializationState int newState = ContextImpl.STATE_NOT_FOUND;
-                    try {
-                        // This thread is the first one to get here. Instantiate the service
-                        // *without* the cache lock held.
-                        service = createService(ctx);
-                        newState = ContextImpl.STATE_READY;
-
-                    } catch (ServiceNotFoundException e) {
-                        onServiceNotFound(e);
-
-                    } finally {
-                        synchronized (cache) {
-                            cache[mCacheIndex] = service;
-                            gates[mCacheIndex] = newState;
-                            cache.notifyAll();
-                        }
-                    }
-                    return service;
-                }
-                // The other threads will wait for the first thread to call notifyAll(),
-                // and go back to the top and retry.
-                synchronized (cache) {
-                    while (gates[mCacheIndex] &lt; ContextImpl.STATE_READY) {
-                        try {
-                            cache.wait();
-                        } catch (InterruptedException e) {
-                            Log.w(TAG, &#34;getService() interrupted&#34;);
-                            Thread.currentThread().interrupt();
-                            return null;
-                        }
-                    }
-                }
-            }
-        }
-
-        public abstract T createService(ContextImpl ctx) throws ServiceNotFoundException;
-    }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>通过分析<code>getService</code>的逻辑可知：</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
+<h1 id="分析源码">分析源码</h1>
+<p>首先从我们的Demo入手，以Android 9的代码为例，<code>getSystemService</code>
+这个方法最终的调用逻辑如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">getSystemService</span>(String name) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> SystemServiceRegistry.<span style="color:#a6e22e">getSystemService</span>(<span style="color:#66d9ef">this</span>, name);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>继续追踪：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Manages all of the system services that can be returned by {@link Context#getSystemService}.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Used by {@link ContextImpl}.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SystemServiceRegistry</span> {
+</span></span><span style="display:flex;"><span>    ......
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> HashMap<span style="color:#f92672">&lt;</span>String, ServiceFetcher<span style="color:#f92672">&lt;?&gt;&gt;</span> SYSTEM_SERVICE_FETCHERS <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;</span>String, ServiceFetcher<span style="color:#f92672">&lt;?&gt;&gt;</span>();
+</span></span><span style="display:flex;"><span>    ......
+</span></span><span style="display:flex;"><span>     <span style="color:#f92672">*</span> Gets a system service from a given context.
+</span></span><span style="display:flex;"><span>     <span style="color:#f92672">*/</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Object <span style="color:#a6e22e">getSystemService</span>(ContextImpl ctx, String name) {
+</span></span><span style="display:flex;"><span>        ServiceFetcher<span style="color:#f92672">&lt;?&gt;</span> fetcher <span style="color:#f92672">=</span> SYSTEM_SERVICE_FETCHERS.<span style="color:#a6e22e">get</span>(name);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> fetcher <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> fetcher.<span style="color:#a6e22e">getService</span>(ctx) : <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    ......
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>也就是说，每个服务都会对应一个<code>ServiceFetcher</code>的对象，它的创建过程是静态的，如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> {
+</span></span><span style="display:flex;"><span>    ......
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//剪切板服务</span>
+</span></span><span style="display:flex;"><span>   registerService(Context.<span style="color:#a6e22e">CLIPBOARD_SERVICE</span>, ClipboardManager.<span style="color:#a6e22e">class</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> CachedServiceFetcher<span style="color:#f92672">&lt;</span>ClipboardManager<span style="color:#f92672">&gt;</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> ClipboardManager <span style="color:#a6e22e">createService</span>(ContextImpl ctx) <span style="color:#66d9ef">throws</span> ServiceNotFoundException {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> ClipboardManager(ctx.<span style="color:#a6e22e">getOuterContext</span>(),
+</span></span><span style="display:flex;"><span>                    ctx.<span style="color:#a6e22e">mMainThread</span>.<span style="color:#a6e22e">getHandler</span>());
+</span></span><span style="display:flex;"><span>        }});
+</span></span><span style="display:flex;"><span>    ......
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//appops服务</span>
+</span></span><span style="display:flex;"><span>   registerService(Context.<span style="color:#a6e22e">APP_OPS_SERVICE</span>, AppOpsManager.<span style="color:#a6e22e">class</span>,
+</span></span><span style="display:flex;"><span>           <span style="color:#66d9ef">new</span> CachedServiceFetcher<span style="color:#f92672">&lt;</span>AppOpsManager<span style="color:#f92672">&gt;</span>() {
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">public</span> AppOpsManager <span style="color:#a6e22e">createService</span>(ContextImpl ctx) <span style="color:#66d9ef">throws</span> ServiceNotFoundException {
+</span></span><span style="display:flex;"><span>           IBinder b <span style="color:#f92672">=</span> ServiceManager.<span style="color:#a6e22e">getServiceOrThrow</span>(Context.<span style="color:#a6e22e">APP_OPS_SERVICE</span>);
+</span></span><span style="display:flex;"><span>           IAppOpsService service <span style="color:#f92672">=</span> IAppOpsService.<span style="color:#a6e22e">Stub</span>.<span style="color:#a6e22e">asInterface</span>(b);
+</span></span><span style="display:flex;"><span>           <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> AppOpsManager(ctx, service);
+</span></span><span style="display:flex;"><span>       }});
+</span></span><span style="display:flex;"><span>    ......
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>那么，这个<code>CachedServiceFetcher</code>又具体是什么东西呢？它的定义也在<code>SystemServiceRegistry</code>中：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Override this class when the system service constructor needs a
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * ContextImpl and should be cached and retained by that context.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CachedServiceFetcher</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> ServiceFetcher<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> mCacheIndex;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        CachedServiceFetcher() {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Note this class must be instantiated only by the static initializer of the</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// outer class (SystemServiceRegistry), which already does the synchronization,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// so bare access to sServiceCacheSize is okay here.</span>
+</span></span><span style="display:flex;"><span>            mCacheIndex <span style="color:#f92672">=</span> sServiceCacheSize<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@SuppressWarnings</span>(<span style="color:#e6db74">&#34;unchecked&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">final</span> T <span style="color:#a6e22e">getService</span>(ContextImpl ctx) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">final</span> Object<span style="color:#f92672">[]</span> cache <span style="color:#f92672">=</span> ctx.<span style="color:#a6e22e">mServiceCache</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> gates <span style="color:#f92672">=</span> ctx.<span style="color:#a6e22e">mServiceInitializationStateArray</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (;;) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">boolean</span> doInitialize <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">synchronized</span> (cache) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// Return it if we already have a cached instance.</span>
+</span></span><span style="display:flex;"><span>                    T service <span style="color:#f92672">=</span> (T) cache<span style="color:#f92672">[</span>mCacheIndex<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (service <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">||</span> gates<span style="color:#f92672">[</span>mCacheIndex<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> ContextImpl.<span style="color:#a6e22e">STATE_NOT_FOUND</span>) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">return</span> service;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// If we get here, there&#39;s no cached instance.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// Grr... if gate is STATE_READY, then this means we initialized the service</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// once but someone cleared it.</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// We start over from STATE_UNINITIALIZED.</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (gates<span style="color:#f92672">[</span>mCacheIndex<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> ContextImpl.<span style="color:#a6e22e">STATE_READY</span>) {
+</span></span><span style="display:flex;"><span>                        gates<span style="color:#f92672">[</span>mCacheIndex<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> ContextImpl.<span style="color:#a6e22e">STATE_UNINITIALIZED</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// It&#39;s possible for multiple threads to get here at the same time, so</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// use the &#34;gate&#34; to make sure only the first thread will call createService().</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// At this point, the gate must be either UNINITIALIZED or INITIALIZING.</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (gates<span style="color:#f92672">[</span>mCacheIndex<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> ContextImpl.<span style="color:#a6e22e">STATE_UNINITIALIZED</span>) {
+</span></span><span style="display:flex;"><span>                        doInitialize <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>                        gates<span style="color:#f92672">[</span>mCacheIndex<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> ContextImpl.<span style="color:#a6e22e">STATE_INITIALIZING</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (doInitialize) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// Only the first thread gets here.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    T service <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">@ServiceInitializationState</span> <span style="color:#66d9ef">int</span> newState <span style="color:#f92672">=</span> ContextImpl.<span style="color:#a6e22e">STATE_NOT_FOUND</span>;
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                        <span style="color:#75715e">// This thread is the first one to get here. Instantiate the service</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#75715e">// *without* the cache lock held.</span>
+</span></span><span style="display:flex;"><span>                        service <span style="color:#f92672">=</span> createService(ctx);
+</span></span><span style="display:flex;"><span>                        newState <span style="color:#f92672">=</span> ContextImpl.<span style="color:#a6e22e">STATE_READY</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">catch</span> (ServiceNotFoundException e) {
+</span></span><span style="display:flex;"><span>                        onServiceNotFound(e);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">finally</span> {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">synchronized</span> (cache) {
+</span></span><span style="display:flex;"><span>                            cache<span style="color:#f92672">[</span>mCacheIndex<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> service;
+</span></span><span style="display:flex;"><span>                            gates<span style="color:#f92672">[</span>mCacheIndex<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> newState;
+</span></span><span style="display:flex;"><span>                            cache.<span style="color:#a6e22e">notifyAll</span>();
+</span></span><span style="display:flex;"><span>                        }
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span> service;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// The other threads will wait for the first thread to call notifyAll(),</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// and go back to the top and retry.</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">synchronized</span> (cache) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">while</span> (gates<span style="color:#f92672">[</span>mCacheIndex<span style="color:#f92672">]</span> <span style="color:#f92672">&lt;</span> ContextImpl.<span style="color:#a6e22e">STATE_READY</span>) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                            cache.<span style="color:#a6e22e">wait</span>();
+</span></span><span style="display:flex;"><span>                        } <span style="color:#66d9ef">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                            Log.<span style="color:#a6e22e">w</span>(TAG, <span style="color:#e6db74">&#34;getService() interrupted&#34;</span>);
+</span></span><span style="display:flex;"><span>                            Thread.<span style="color:#a6e22e">currentThread</span>().<span style="color:#a6e22e">interrupt</span>();
+</span></span><span style="display:flex;"><span>                            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>                        }
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> T <span style="color:#a6e22e">createService</span>(ContextImpl ctx) <span style="color:#66d9ef">throws</span> ServiceNotFoundException;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>通过分析<code>getService</code>的逻辑可知：</p>
+<ol>
 <li>
 <p>如果是首次创建，则会缓存一份</p>
 </li>
@@ -527,29 +424,19 @@ final class SystemServiceRegistry {
 <p>如果非首次创建，直接读取缓存，缓存是<code>ctx.mServiceCache</code></p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
 <p>缓存是在<code>ContextImpl</code>这个类中的：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">/**
- * Common implementation of Context API, which provides the base
- * context object for Activity and other application components.
- */
-class ContextImpl extends Context {
-    ......
-    // The system service cache for the system services that are cached per-ContextImpl.
-    final Object[] mServiceCache = SystemServiceRegistry.createServiceCache();
-    ......
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>由此，我们得出了<code>getSystemService</code>背后发生的事情：</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Common implementation of Context API, which provides the base
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * context object for Activity and other application components.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ContextImpl</span> <span style="color:#66d9ef">extends</span> Context {
+</span></span><span style="display:flex;"><span>    ......
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// The system service cache for the system services that are cached per-ContextImpl.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> Object<span style="color:#f92672">[]</span> mServiceCache <span style="color:#f92672">=</span> SystemServiceRegistry.<span style="color:#a6e22e">createServiceCache</span>();
+</span></span><span style="display:flex;"><span>    ......
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>由此，我们得出了<code>getSystemService</code>背后发生的事情：</p>
+<ol>
 <li>
 <p>每个<code>ContextImpl</code>创建的时候会持有一个<code>mServiceCache</code>字段，缓存这些服务的fetcher</p>
 </li>
@@ -560,11 +447,7 @@ class ContextImpl extends Context {
 <p>每个服务第一次实际调用，也就是fetcher的<code>getService</code>触发的时候会执行<code>createService</code>的逻辑，并缓存起来</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
 <p>简单来说，这个一个<strong>懒加载+缓存</strong>的经典设计，对于Google工程师来说应该是常规操作了。但是至迟也没看出剪切板服务和<code>appops</code>服务有任何的不同！那么：</p>
-</div>
-<div class="ulist">
 <ul>
 <li>
 <p>为什么在这两个服务demo中调用之后会产生不同的效果呢？</p>
@@ -573,199 +456,134 @@ class ContextImpl extends Context {
 <p>为什么去掉<code>fakeSystemService</code>就能正确执行呢？</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
 <p>是时候重新看下刚才的代码了。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_回到droidplugin">回到DroidPlugin</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<h1 id="回到droidplugin">回到DroidPlugin</h1>
 <p>如果掌握了系统服务的注册缓存机制，那么刚才的代码就比较容易读懂了，以下是注释版：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">    /**
-     * @param hostContext 宿主的context
-     * @param targetContext 插件的context
-     */
-    private static void fakeSystemServiceInner(Context hostContext, Context targetContext) {
-        try {
-            // 获取插件的 mBase，即 ContextImpl对象
-            Context baseContext = getBaseContext(targetContext);
-            if (mFakedContext.containsValue(baseContext)) {
-                return;
-            } else if (mServiceCache != null) {
-                ......
-            }
-            Object SYSTEM_SERVICE_MAP = null;
-            // 获取插件的SYSTEM_SERVICE_MAP字段，它的Key包含了所有的系统服务
-            try {
-                // 低版本的位置
-                SYSTEM_SERVICE_MAP = FieldUtils.readStaticField(baseContext.getClass(), &#34;SYSTEM_SERVICE_MAP&#34;);
-            } catch (Exception e) {
-                Log.w(TAG, &#34;readStaticField(SYSTEM_SERVICE_MAP) from %s fail&#34;, e, baseContext.getClass());
-            }
-            if (SYSTEM_SERVICE_MAP == null) {
-                try {
-                    SYSTEM_SERVICE_MAP = FieldUtils.readStaticField(Class.forName(&#34;android.app.SystemServiceRegistry&#34;), &#34;SYSTEM_SERVICE_FETCHERS&#34;);
-                } catch (Exception e) {
-                    Log.e(TAG, &#34;readStaticField(SYSTEM_SERVICE_FETCHERS) from android.app.SystemServiceRegistry fail&#34;, e);
-                }
-            }
-
-            if (SYSTEM_SERVICE_MAP != null &amp;&amp; (SYSTEM_SERVICE_MAP instanceof Map)) {
-                //如没有，则创建一个新的。
-                Map&lt;?, ?&gt; sSYSTEM_SERVICE_MAP = (Map&lt;?, ?&gt;) SYSTEM_SERVICE_MAP;
-                // 获取插件的 mBase，即 ContextImpl对象
-                Context originContext = getBaseContext(hostContext);
-
-                // 获取宿主ContextImpl的mServiceCache，也就是系统服务的fetcher缓存
-                Object mServiceCache = FieldUtils.readField(originContext, &#34;mServiceCache&#34;);
-                // 清空缓存
-                if (mServiceCache instanceof List) {
-                    ((List) mServiceCache).clear();
-                }
-
-                for (Object key : sSYSTEM_SERVICE_MAP.keySet()) {
-                    // 不需要替换包名的跳过，显然appops是需要的
-                    if (sSkipService.contains(key)) {
-                        continue;
-                    }
-                    Object serviceFetcher = sSYSTEM_SERVICE_MAP.get(key);
-
-                    try {
-                        // 调用插件的 getService，导致插件的ContextImpl缓存全部赋值,从后面看这一句貌似没有必要
-                        Method getService = serviceFetcher.getClass().getMethod(&#34;getService&#34;, baseContext.getClass());
-                        getService.invoke(serviceFetcher, originContext);
-                    } catch (InvocationTargetException e) {
-                        Throwable cause = e.getCause();
-                        if (cause != null) {
-                            Log.w(TAG, &#34;Fake system service faile&#34;, e);
-                        } else {
-                            Log.w(TAG, &#34;Fake system service faile&#34;, e);
-                        }
-                    } catch (Exception e) {
-                        Log.w(TAG, &#34;Fake system service faile&#34;, e);
-                    }
-                }
-                // 读取宿主的ContextImpl的缓存
-                mServiceCache = FieldUtils.readField(originContext, &#34;mServiceCache&#34;);
-                // 用宿主的覆盖插件的，注意宿主的前面已经clear了
-                FieldUtils.writeField(baseContext, &#34;mServiceCache&#34;, mServiceCache);
-
-                //for context ContentResolver
-                ContentResolver cr = baseContext.getContentResolver();
-                if (cr != null) {
-                    Object crctx = FieldUtils.readField(cr, &#34;mContext&#34;);
-                    if (crctx != null) {
-                        FieldUtils.writeField(crctx, &#34;mServiceCache&#34;, mServiceCache);
-                    }
-                }
-            }
-            if (!mFakedContext.containsValue(baseContext)) {
-                mFakedContext.put(baseContext.hashCode(), baseContext);
-            }
-        } catch (Exception e) {
-            Log.e(TAG, &#34;fakeSystemServiceOldAPI&#34;, e);
-        }
-    }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>简单来说，这个方法把宿主和插件的ContextImpl对象的<code>mServiceCache</code>字段全部清空重置了，为什么要这么做的呢？</p>
-</div>
-<div class="quoteblock">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param hostContext 宿主的context
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param targetContext 插件的context
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fakeSystemServiceInner</span>(Context hostContext, Context targetContext) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 获取插件的 mBase，即 ContextImpl对象</span>
+</span></span><span style="display:flex;"><span>            Context baseContext <span style="color:#f92672">=</span> getBaseContext(targetContext);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (mFakedContext.<span style="color:#a6e22e">containsValue</span>(baseContext)) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (mServiceCache <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                ......
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            Object SYSTEM_SERVICE_MAP <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 获取插件的SYSTEM_SERVICE_MAP字段，它的Key包含了所有的系统服务</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 低版本的位置</span>
+</span></span><span style="display:flex;"><span>                SYSTEM_SERVICE_MAP <span style="color:#f92672">=</span> FieldUtils.<span style="color:#a6e22e">readStaticField</span>(baseContext.<span style="color:#a6e22e">getClass</span>(), <span style="color:#e6db74">&#34;SYSTEM_SERVICE_MAP&#34;</span>);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>                Log.<span style="color:#a6e22e">w</span>(TAG, <span style="color:#e6db74">&#34;readStaticField(SYSTEM_SERVICE_MAP) from %s fail&#34;</span>, e, baseContext.<span style="color:#a6e22e">getClass</span>());
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (SYSTEM_SERVICE_MAP <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                    SYSTEM_SERVICE_MAP <span style="color:#f92672">=</span> FieldUtils.<span style="color:#a6e22e">readStaticField</span>(Class.<span style="color:#a6e22e">forName</span>(<span style="color:#e6db74">&#34;android.app.SystemServiceRegistry&#34;</span>), <span style="color:#e6db74">&#34;SYSTEM_SERVICE_FETCHERS&#34;</span>);
+</span></span><span style="display:flex;"><span>                } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>                    Log.<span style="color:#a6e22e">e</span>(TAG, <span style="color:#e6db74">&#34;readStaticField(SYSTEM_SERVICE_FETCHERS) from android.app.SystemServiceRegistry fail&#34;</span>, e);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (SYSTEM_SERVICE_MAP <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> (SYSTEM_SERVICE_MAP <span style="color:#66d9ef">instanceof</span> Map)) {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//如没有，则创建一个新的。</span>
+</span></span><span style="display:flex;"><span>                Map<span style="color:#f92672">&lt;?</span>, <span style="color:#f92672">?&gt;</span> sSYSTEM_SERVICE_MAP <span style="color:#f92672">=</span> (Map<span style="color:#f92672">&lt;?</span>, <span style="color:#f92672">?&gt;</span>) SYSTEM_SERVICE_MAP;
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 获取插件的 mBase，即 ContextImpl对象</span>
+</span></span><span style="display:flex;"><span>                Context originContext <span style="color:#f92672">=</span> getBaseContext(hostContext);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 获取宿主ContextImpl的mServiceCache，也就是系统服务的fetcher缓存</span>
+</span></span><span style="display:flex;"><span>                Object mServiceCache <span style="color:#f92672">=</span> FieldUtils.<span style="color:#a6e22e">readField</span>(originContext, <span style="color:#e6db74">&#34;mServiceCache&#34;</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 清空缓存</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (mServiceCache <span style="color:#66d9ef">instanceof</span> List) {
+</span></span><span style="display:flex;"><span>                    ((List) mServiceCache).<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> (Object key : sSYSTEM_SERVICE_MAP.<span style="color:#a6e22e">keySet</span>()) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// 不需要替换包名的跳过，显然appops是需要的</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (sSkipService.<span style="color:#a6e22e">contains</span>(key)) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    Object serviceFetcher <span style="color:#f92672">=</span> sSYSTEM_SERVICE_MAP.<span style="color:#a6e22e">get</span>(key);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                        <span style="color:#75715e">// 调用插件的 getService，导致插件的ContextImpl缓存全部赋值,从后面看这一句貌似没有必要</span>
+</span></span><span style="display:flex;"><span>                        Method getService <span style="color:#f92672">=</span> serviceFetcher.<span style="color:#a6e22e">getClass</span>().<span style="color:#a6e22e">getMethod</span>(<span style="color:#e6db74">&#34;getService&#34;</span>, baseContext.<span style="color:#a6e22e">getClass</span>());
+</span></span><span style="display:flex;"><span>                        getService.<span style="color:#a6e22e">invoke</span>(serviceFetcher, originContext);
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">catch</span> (InvocationTargetException e) {
+</span></span><span style="display:flex;"><span>                        Throwable cause <span style="color:#f92672">=</span> e.<span style="color:#a6e22e">getCause</span>();
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">if</span> (cause <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                            Log.<span style="color:#a6e22e">w</span>(TAG, <span style="color:#e6db74">&#34;Fake system service faile&#34;</span>, e);
+</span></span><span style="display:flex;"><span>                        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                            Log.<span style="color:#a6e22e">w</span>(TAG, <span style="color:#e6db74">&#34;Fake system service faile&#34;</span>, e);
+</span></span><span style="display:flex;"><span>                        }
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>                        Log.<span style="color:#a6e22e">w</span>(TAG, <span style="color:#e6db74">&#34;Fake system service faile&#34;</span>, e);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 读取宿主的ContextImpl的缓存</span>
+</span></span><span style="display:flex;"><span>                mServiceCache <span style="color:#f92672">=</span> FieldUtils.<span style="color:#a6e22e">readField</span>(originContext, <span style="color:#e6db74">&#34;mServiceCache&#34;</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 用宿主的覆盖插件的，注意宿主的前面已经clear了</span>
+</span></span><span style="display:flex;"><span>                FieldUtils.<span style="color:#a6e22e">writeField</span>(baseContext, <span style="color:#e6db74">&#34;mServiceCache&#34;</span>, mServiceCache);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//for context ContentResolver</span>
+</span></span><span style="display:flex;"><span>                ContentResolver cr <span style="color:#f92672">=</span> baseContext.<span style="color:#a6e22e">getContentResolver</span>();
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (cr <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                    Object crctx <span style="color:#f92672">=</span> FieldUtils.<span style="color:#a6e22e">readField</span>(cr, <span style="color:#e6db74">&#34;mContext&#34;</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (crctx <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                        FieldUtils.<span style="color:#a6e22e">writeField</span>(crctx, <span style="color:#e6db74">&#34;mServiceCache&#34;</span>, mServiceCache);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>mFakedContext.<span style="color:#a6e22e">containsValue</span>(baseContext)) {
+</span></span><span style="display:flex;"><span>                mFakedContext.<span style="color:#a6e22e">put</span>(baseContext.<span style="color:#a6e22e">hashCode</span>(), baseContext);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>            Log.<span style="color:#a6e22e">e</span>(TAG, <span style="color:#e6db74">&#34;fakeSystemServiceOldAPI&#34;</span>, e);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>简单来说，这个方法把宿主和插件的ContextImpl对象的<code>mServiceCache</code>字段全部清空重置了，为什么要这么做的呢？</p>
 <blockquote>
-<div class="paragraph">
-<p>我们知道DroidPlugin的核心是通过Hook Binder来拦截系统服务，但是有些服务启动的很早，在我们Hook之前就已经创建并且缓存了，那么我们就需要通过这个逻辑清除缓存，<strong>让下一次调用重新创建，而此时创建的就是我们Hook过的代理对象了</strong>。</p>
-</div>
+<p>我们知道DroidPlugin的核心是通过Hook
+Binder来拦截系统服务，但是有些服务启动的很早，在我们Hook之前就已经创建并且缓存了，那么我们就需要通过这个逻辑清除缓存，<strong>让下一次调用重新创建，而此时创建的就是我们Hook过的代理对象了</strong>。</p>
 </blockquote>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_得出结论">得出结论</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>如果仔细阅读了上面的分析，可能你已经发现了问题的原因。可以看到，DroidPlugin认为<code>mServiceCache</code>字段是一个<code>List</code>，但是9.0的代码却是<code>Object []</code>类型，这就是问题所在了：</p>
-</div>
-<div class="quoteblock">
+<h1 id="得出结论">得出结论</h1>
+<p>如果仔细阅读了上面的分析，可能你已经发现了问题的原因。可以看到，DroidPlugin认为<code>mServiceCache</code>字段是一个<code>List</code>，但是9.0的代码却是<code>Object</code>
+<code>[]</code>类型，这就是问题所在了：</p>
 <blockquote>
-<div class="paragraph">
 <p>由于类型判断错误，导致这个缓存根本没有清理掉，甚至还用宿主的缓存覆盖了插件的缓存。</p>
-</div>
 </blockquote>
-</div>
-<div class="paragraph">
 <p>而在Android 5.0上，它确实是一个<code>List</code>：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">// The system service cache for the system services that are
-// cached per-ContextImpl.  Package-scoped to avoid accessor
-// methods.
-final ArrayList&lt;Object&gt; mServiceCache = new ArrayList&lt;Object&gt;();</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>那么为什么我注释了这个方法也能正确运行呢？</p>
-</div>
-<div class="quoteblock">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// The system service cache for the system services that are</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// cached per-ContextImpl.  Package-scoped to avoid accessor</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// methods.</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> ArrayList<span style="color:#f92672">&lt;</span>Object<span style="color:#f92672">&gt;</span> mServiceCache <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>Object<span style="color:#f92672">&gt;</span>();
+</span></span></code></pre></div><p>那么为什么我注释了这个方法也能正确运行呢？</p>
 <blockquote>
-<div class="paragraph">
 <p>那是因为插件的ContextImpl在这个场景确实是没有初始化的，纯粹是因为宿主（已经初始化并缓存）覆盖导致的，如果直接注释，也就不会被覆盖了。</p>
-</div>
 </blockquote>
-</div>
-<div class="paragraph">
 <p>所以解法就是新增一个判断：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">......
-if (mServiceCache instanceof List) {
-    ((List) mServiceCache).clear();
-}
-// For 高版本
-if (mServiceCache instanceof Object[]) {
-    int len = ((Object[])mServiceCache).length;
-    mServiceCache = new Object[len];
-    FieldUtils.writeField(originContext, &#34;mServiceCache&#34;, mServiceCache);
-}
-......</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_回到问题">回到问题</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>......
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (mServiceCache <span style="color:#66d9ef">instanceof</span> List) {
+</span></span><span style="display:flex;"><span>    ((List) mServiceCache).<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// For 高版本</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (mServiceCache <span style="color:#66d9ef">instanceof</span> Object<span style="color:#f92672">[]</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> ((Object<span style="color:#f92672">[]</span>)mServiceCache).<span style="color:#a6e22e">length</span>;
+</span></span><span style="display:flex;"><span>    mServiceCache <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[</span>len<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>    FieldUtils.<span style="color:#a6e22e">writeField</span>(originContext, <span style="color:#e6db74">&#34;mServiceCache&#34;</span>, mServiceCache);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>......
+</span></span></code></pre></div><h1 id="回到问题">回到问题</h1>
 <p>解决这个问题后我重试了小米/Android8.0的机型，发现这个问题在我的工程依然存在，但是DroidPlugin竟然好了！陷入新一轮懵逼，经过一番测试后，发现是我在初始化这个之前先初始化了灯塔SDK，如果将其调整在后面就不会有这个问题！</p>
-</div>
-<div class="paragraph">
 <p>大胆的猜测，可能是这个SDK导致了AppOps在attach之后、<code>fakeSystemService</code>之前创建了，而此时是没有Hook的。只可惜这个SDK和MIUI对于我来说都是黑盒系统，对于<code>checkPackage</code>的探究已经让我收获颇丰，至少在其他常规时机调用这个方法已经不会有问题了，这个小米+Android8的问题也可以通过调整初始化顺序解决，再去深究一个没有源码的问题恐怕也收益不大，于是就此收手吧。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_文末总结">文末总结</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<h1 id="文末总结">文末总结</h1>
 <p>这个问题算是一个典型的DroidPlugin式问题了：</p>
-</div>
-<div class="quoteblock">
 <blockquote>
-<div class="paragraph">
 <p>由于Hook了系统，就要不断的去兼容系统，最可怕的是你不能一下子知道下一个版本你需要兼容哪些改动。</p>
-</div>
 </blockquote>
-</div>
-</div>
-</div>
 
 		</div>
     <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
@@ -838,11 +656,11 @@ if (mServiceCache instanceof Object[]) {
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
-			<li class="widget__item"><a class="widget__link" href="/articles/use-protobuf-in-cmake/">CMake使用Protobuf的正确姿势</a></li>
 		</ul>
 	</div>
 </div>
@@ -860,7 +678,11 @@ if (mServiceCache instanceof Object[]) {
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
-				<span class="widget__counter widget__counter--bubble">2</span>
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
 				</li>
 		</ul>
 	</div>
@@ -868,11 +690,13 @@ if (mServiceCache instanceof Object[]) {
 <div class="widget-taglist widget">
 	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMAKE">CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
@@ -880,7 +704,6 @@ if (mServiceCache instanceof Object[]) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言">编程语言 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>

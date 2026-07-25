@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/gitbook-install-record/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2020-11-13T15:50:24+08:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-07-05T13:17:49+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="gitbook安装中的一些问题"/>
 <meta name="twitter:description" content="在新的iMac上安装gitbook后，一直无法使用，提示错误如下： Installing GitBook 3.2.3 if (cb) cb.apply(this, arguments) TypeError: cb.apply is not a function at /usr/local/lib/node_modules/gitbook-cli/node_modules/npmi/node_modules/npm/node_modules/graceful-fs/polyfills.js:267:18 at FSReqCallback.oncomplete (fs.js:169:5) 查找诸多问题后，最终确定是新版本的问题，可以通过nvm这个工具控制node的版本，npm不需要关心"/>
@@ -113,88 +113,54 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-11-13T15:50:24&#43;08:00">2020-11-13</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 400 字，阅读需 1 分钟。</span>
     <p/><div class="content post__content clearfix">
-			<div class="paragraph">
-<p>在新的iMac上安装gitbook后，一直无法使用，提示错误如下：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">Installing GitBook 3.2.3
-      if (cb) cb.apply(this, arguments)
-      TypeError: cb.apply is not a function
-   at /usr/local/lib/node_modules/gitbook-cli/node_modules/npmi/node_modules/npm/node_modules/graceful-fs/polyfills.js:267:18
-   at FSReqCallback.oncomplete (fs.js:169:5)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>查找诸多问题后，最终确定是新版本的问题，可以通过<code>nvm</code>这个工具控制<code>node</code>的版本，<code>npm</code>不需要关心，是和node联动的。</p>
-</div>
-<div class="paragraph">
+			<p>在新的iMac上安装gitbook后，一直无法使用，提示错误如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Installing GitBook 3.2.3
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>cb<span style="color:#f92672">)</span> cb.apply<span style="color:#f92672">(</span>this, arguments<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>      TypeError: cb.apply is not a <span style="color:#66d9ef">function</span>
+</span></span><span style="display:flex;"><span>   at /usr/local/lib/node_modules/gitbook-cli/node_modules/npmi/node_modules/npm/node_modules/graceful-fs/polyfills.js:267:18
+</span></span><span style="display:flex;"><span>   at FSReqCallback.oncomplete <span style="color:#f92672">(</span>fs.js:169:5<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>查找诸多问题后，最终确定是新版本的问题，可以通过<code>nvm</code>这个工具控制<code>node</code>的版本，<code>npm</code>不需要关心，是和node联动的。</p>
 <p>这个工具有一个坑，<code>brew</code>安装之后无法立即生效，得新启动一个命令行。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">nvm install v12.12.0</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>然后按照之前电脑的版本设置了版本，还是报错。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">Errorloadingversionlatest:Error:Cannotfindmodule&#39;extend&#39;
-Requirestack:
-    -/Users/vimerzhao/.gitbook/versions/3.2.3/lib/index.js
-    -/usr/local/lib/node_modules/gitbook-cli/lib/local.js
-    -/usr/local/lib/node_modules/gitbook-cli/lib/index.js
-    -/usr/local/lib/node_modules/gitbook-cli/bin/gitbook.js
-    atFunction.Module._resolveFilename(internal/modules/cjs/loader.js:794:15)
-    atFunction.Module._load(internal/modules/cjs/loader.js:687:27)
-    atModule.require(internal/modules/cjs/loader.js:849:19)
-    atrequire(internal/modules/cjs/helpers.js:74:18)
-    atObject.&lt;anonymous&gt;(/Users/vimerzhao/.gitbook/versions/3.2.3/lib/index.js:1:14)
-    atModule._compile(internal/modules/cjs/loader.js:956:30)
-    atObject.Module._extensions..js(internal/modules/cjs/loader.js:973:10)
-    atModule.load(internal/modules/cjs/loader.js:812:32)
-    atFunction.Module._load(internal/modules/cjs/loader.js:724:14)
-    atModule.require(internal/modules/cjs/loader.js:849:19)
-TypeError: Cannot read property &#39;commands&#39; of null</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>仔细分析下，只能呢是gitbook版本的原因了，于是安装了特定版本的<code>gitbok-cli</code>，注意不是<code>gitbook</code>，它是通过<code>gitbook-cli</code>安装的。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ gitbook init
-You need to install &#39;gitbook-cli&#39; to have access to the gitbook command anywhere on your system.
-If you&#39;ve installed this package globally, you need to uninstall it.
-&gt;&gt; Run &#39;npm uninstall -g gitbook&#39; then &#39;npm install -g gitbook-cli&#39;
-
-$ npm install gitbook-cli@2.3.2 -g</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>这里记录一下版本，防止以后踩坑：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ node -v
-v12.12.0
-$ npm -v
-6.11.3
-$ gitbook -V
-CLI version: 2.3.2
-GitBook version: 3.2.3</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>定位原因花了好多时间，垃圾玩意。</p>
-</div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nvm install v12.12.0
+</span></span></code></pre></div><p>然后按照之前电脑的版本设置了版本，还是报错。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Errorloadingversionlatest:Error:Cannotfindmodule<span style="color:#e6db74">&#39;extend&#39;</span>
+</span></span><span style="display:flex;"><span>Requirestack:
+</span></span><span style="display:flex;"><span>    -/Users/vimerzhao/.gitbook/versions/3.2.3/lib/index.js
+</span></span><span style="display:flex;"><span>    -/usr/local/lib/node_modules/gitbook-cli/lib/local.js
+</span></span><span style="display:flex;"><span>    -/usr/local/lib/node_modules/gitbook-cli/lib/index.js
+</span></span><span style="display:flex;"><span>    -/usr/local/lib/node_modules/gitbook-cli/bin/gitbook.js
+</span></span><span style="display:flex;"><span>    atFunction.Module._resolveFilename<span style="color:#f92672">(</span>internal/modules/cjs/loader.js:794:15<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    atFunction.Module._load<span style="color:#f92672">(</span>internal/modules/cjs/loader.js:687:27<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    atModule.require<span style="color:#f92672">(</span>internal/modules/cjs/loader.js:849:19<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    atrequire<span style="color:#f92672">(</span>internal/modules/cjs/helpers.js:74:18<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    atObject.&lt;anonymous&gt;<span style="color:#f92672">(</span>/Users/vimerzhao/.gitbook/versions/3.2.3/lib/index.js:1:14<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    atModule._compile<span style="color:#f92672">(</span>internal/modules/cjs/loader.js:956:30<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    atObject.Module._extensions..js<span style="color:#f92672">(</span>internal/modules/cjs/loader.js:973:10<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    atModule.load<span style="color:#f92672">(</span>internal/modules/cjs/loader.js:812:32<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    atFunction.Module._load<span style="color:#f92672">(</span>internal/modules/cjs/loader.js:724:14<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    atModule.require<span style="color:#f92672">(</span>internal/modules/cjs/loader.js:849:19<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>TypeError: Cannot read property <span style="color:#e6db74">&#39;commands&#39;</span> of null
+</span></span></code></pre></div><p>仔细分析下，只能呢是gitbook版本的原因了，于是安装了特定版本的<code>gitbok-cli</code>，注意不是<code>gitbook</code>，它是通过<code>gitbook-cli</code>安装的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ gitbook init
+</span></span><span style="display:flex;"><span>You need to install <span style="color:#e6db74">&#39;gitbook-cli&#39;</span> to have access to the gitbook command anywhere on your system.
+</span></span><span style="display:flex;"><span>If you<span style="color:#e6db74">&#39;ve installed this package globally, you need to uninstall it.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&gt;&gt; Run &#39;</span>npm uninstall -g gitbook<span style="color:#e6db74">&#39; then &#39;</span>npm install -g gitbook-cli<span style="color:#960050;background-color:#1e0010">&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ npm install gitbook-cli@2.3.2 -g
+</span></span></code></pre></div><p>这里记录一下版本，防止以后踩坑：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ node -v
+</span></span><span style="display:flex;"><span>v12.12.0
+</span></span><span style="display:flex;"><span>$ npm -v
+</span></span><span style="display:flex;"><span>6.11.3
+</span></span><span style="display:flex;"><span>$ gitbook -V
+</span></span><span style="display:flex;"><span>CLI version: 2.3.2
+</span></span><span style="display:flex;"><span>GitBook version: 3.2.3
+</span></span></code></pre></div><p>定位原因花了好多时间，垃圾玩意。</p>
 
 		</div>
     <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
@@ -264,11 +230,11 @@ GitBook version: 3.2.3</code></pre>
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
-			<li class="widget__item"><a class="widget__link" href="/articles/use-protobuf-in-cmake/">CMake使用Protobuf的正确姿势</a></li>
 		</ul>
 	</div>
 </div>
@@ -286,7 +252,11 @@ GitBook version: 3.2.3</code></pre>
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
-				<span class="widget__counter widget__counter--bubble">2</span>
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
 				</li>
 		</ul>
 	</div>
@@ -294,11 +264,13 @@ GitBook version: 3.2.3</code></pre>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMAKE">CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
@@ -306,7 +278,6 @@ GitBook version: 3.2.3</code></pre>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言">编程语言 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>

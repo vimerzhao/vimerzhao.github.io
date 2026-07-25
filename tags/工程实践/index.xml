@@ -6,7 +6,7 @@
     <description>Recent content in 工程实践 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 18 Mar 2026 14:20:47 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2026 13:17:49 +0800</lastBuildDate>
     <atom:link href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Android客户端远程调试方法</title>
@@ -20,7 +20,7 @@
       <link>/articles/android-make-debuggable/</link>
       <pubDate>Thu, 07 May 2020 12:13:23 +0800</pubDate>
       <guid>/articles/android-make-debuggable/</guid>
-      <description>背景 最近要看一些系统打印的日志，发现需要开启debuggable标志，于是调研了一下。 实现 参考https://www.renyiwei.com/archives/1704.html[Android修改</description>
+      <description>背景 最近要看一些系统打印的日志，发现需要开启debuggable标志，于是调研了一下。 实现 参考Android修改ro.debuggable 华为真机adb调试所有进程 — 全栈笔记使用mprop这个工具成功</description>
     </item>
     <item>
       <title>Android安装包优化</title>

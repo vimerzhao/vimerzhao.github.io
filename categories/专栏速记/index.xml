@@ -6,8 +6,15 @@
     <description>Recent content in 专栏|速记 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 14 Oct 2023 20:13:56 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2026 13:17:49 +0800</lastBuildDate>
     <atom:link href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>配置一个Flutter的远程Android调试环境</title>
+      <link>/articles/configure-android-debug-environment-for-flutter-on-a-remote-server/</link>
+      <pubDate>Sun, 22 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/configure-android-debug-environment-for-flutter-on-a-remote-server/</guid>
+      <description>1.构建制品 之前已经构建过：Flutter源码剖析(一):源码获取与构建 - 赵裕的博客 新遇到一些错误，记录下： $ ../flutter/bin/flutter build --local-engine-src-path ../src --local-engine=android_debug_unopt android ...... You are using a locally built engine (--local-engine) but have not specified --local-engine-host. You may be building with a different engine than the one you are running with. See https://github.com/flutter/flutter/issues/132245 for details. &amp;lt;&amp;n</description>
+    </item>
     <item>
       <title>关于专栏“速记”的说明</title>
       <link>/articles/about-quick-note/</link>

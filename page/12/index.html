@@ -109,215 +109,220 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/2019-vichiku-summary-2/" rel="bookmark">
-			研究|2019鬼畜区热点事件分析
+			<a href="/articles/android-proguard-problem/" rel="bookmark">
+			Android混淆问题一则
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-01-11T19:53:53&#43;08:00">2020-01-11</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-03-24T09:56:45&#43;08:00">2020-03-24</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		不小心把markdown删了，看公众号吧： 研究 | 2019鬼畜区热点事件分析
+		问题 dex包里面的build.gradle通过api引用了一个包，同事主工程调用dex包里面的方法抛出ClassNotFoundException。 分析 使用AS的Analyze APK发现该类其实是存在
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/articles/android-proguard-problem/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/2019-vichiku-summary/" rel="bookmark">
-			通过7万条视频数据看2019年B站鬼畜区发生了什么
+			<a href="/articles/abstractmethoderror-solve/" rel="bookmark">
+			记一次AbstractMethodError
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-01-05T19:51:58&#43;08:00">2020-01-05</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-03-24T09:55:46&#43;08:00">2020-03-24</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		前言 鬼畜就是通过对严肃正经话题进行解剖后通过重复，再创作等形式用以达到颠覆经典、解构传统、张扬个性、强化焦点、讽刺社会的一种艺术形式。 引自百度百科 作为常年混迹于B站鬼畜区的潜水怪，今天心血来潮，趁着周
+		最近在灰度的时候发现了一个Error： 详细信息如下： 结合机型分布，可以判断是部分ROM自己的修改导致的问题(因为已经走到系统Api里面了)。 最后直接catch住了，因为触发的机型其实很少，灰度15w，
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/2019-vichiku-summary/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/abstractmethoderror-solve/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/2019-end/" rel="bookmark">
-			2019年终总结
+			<a href="/articles/yujun-product-methodology/" rel="bookmark">
+			读书:《俞军产品方法论》
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-01-01T20:02:29&#43;08:00">2020-01-01</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-03-22T09:30:19&#43;08:00">2020-03-22</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		水逆的上半年 上半年其实是相当平淡的，回头想想，有很多事情可以去做，只是当时囿于那个环境和心态，不能下定决心去做。工作上经历了很多变动，很多老同事离开了团队，甚至组织架构也发生了变动，自己也在一次次的动
+		正文 这两周利用零散时间粗读了《俞军产品方法论》一书，在查阅资料的时候发现这本书的豆瓣评分从一开始的8.8(2019-12-24)变成了现在(2020-03-22)的7.9，也是比较符合我自己的阅读感受
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/2019-end/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/yujun-product-methodology/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/pead/" rel="bookmark">
-			读书:《刻意练习》
+			<a href="/articles/proguard-inline-optimieze-make-stacktrace-loss/" rel="bookmark">
+			Proguard导致的NoSuchMethodException问题排查
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2019-12-28T09:19:39&#43;08:00">2019-12-28</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-03-16T09:54:14&#43;08:00">2020-03-16</time>
+	<time class="meta__text" datetime="2026-07-25T11:20:46&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		这本书豆瓣评分7.9，最大的问题就是信息密度太低，大概就是一篇几千字的公众号文章能讲明白的事情，作者却用了大量篇幅去举例，导致这个命题的信息量膨胀成了一本书。此外，这本的结构划分也不是很合理，导致很多
+		背景 最近在处理异常时遇到一个诡异的问题：自己的Demo里面混淆一个类后，打印Crash堆栈时这个类里面的调用点直接失踪了！ 下面用测试代码说明。 测试代码 // MainActivity.java public class MainActivity extends AppCompatActivity { @Override protected void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); setContentView(R.layout.activity_main); new Test().fun1(); } } // Test.java public class Test
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/pead/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/proguard-inline-optimieze-make-stacktrace-loss/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/earthbound-china/" rel="bookmark">
-			读书:《乡土中国》
+			<a href="/articles/proguard-result-in-nosuchmethodexception/" rel="bookmark">
+			Proguard导致的NoSuchMethodException问题排查
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2019-12-22T09:18:06&#43;08:00">2019-12-22</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-03-16T09:54:14&#43;08:00">2020-03-16</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		概览 本书是费孝通1937年在云南教书时，从《乡村社会学》这门课的讲义中整理而来，书中的观点都是作者实地考察和教学思考的结果，充分分析了乡村社会的特点及其成因，豆瓣评分9.2，当之无愧的大师之作。不同于
+		背景 之前项目的混淆配置一直没开启Proguard的优化选项 -dontoptimize 最近为了做安装包优化，把这行注释掉了 #-dontoptimize 问题 于是项目里的各种优化配置开始生效了，但是测试反馈了一个Bug：悬浮窗的搜索框点击之后没有反应了。 排
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/earthbound-china/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/proguard-result-in-nosuchmethodexception/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/tao-and-art-of-writing-tech-docs/" rel="bookmark">
-			文档编写的术与道
+			<a href="/articles/history-of-my-blog/" rel="bookmark">
+			博客往事
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2019-12-19T19:38:07&#43;08:00">2019-12-19</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-03-15T19:41:05&#43;08:00">2020-03-15</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		文档的范围很广，本文特指 开发人员撰写的包含基本产品背景和主要技术设计的文档 。 世界观 为什么要写技术文档 对于这个问题，我个人觉得很容易回答，写技术文档可以帮助团队完成 当前的信息共享和长期的知识传承 。对于个
+		周末花了点时间，把废置了的域名 www.vimerzhao.top 重新折腾了一下，同时将之前写过的博客迁移到了自己的服务器上。 借此机会，也以博客为脉络谈谈最近几年的技术经历吧。 CSDN 我大概是15年开始接触编程的，现在能找到的最早的博客是1
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/tao-and-art-of-writing-tech-docs/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/history-of-my-blog/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/git-practice/" rel="bookmark">
-			Git工程化最佳实践
+			<a href="/articles/zen-of-android-debug-log/" rel="bookmark">
+			客户端调试日志编码之道
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2019-12-13T12:32:25&#43;08:00">2019-12-13</time>
-	<time class="meta__text" datetime="2024-08-28T11:10:23&#43;08:00">(最后修改: 2024-08-28)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-03-05T12:09:38&#43;08:00">2020-03-05</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		本文导读 本文对应的 git-standardize 项目地址 https://github.com/vimerzhao/git-standardize 问题背景 大部分程序员对于Git的理解还停留在 git add . git commit -m &#34;update&#34; git pull git push 的阶段，但这在实际项目开发中是远远不够的。 + 举一个简单的例子，现在我们需要过滤所有修复bug的提交，该怎
+		日志分很多种了，这里针对的是客户端的、开发调试用的日志，为什么要加这两个限制呢？ 后台日志都在服务器，开发容易操作，客户端日志大部分在本机，有的测试甚至不会捞日志，开发想帮忙都鞭长莫及 开发调试的日志，其
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/git-practice/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/zen-of-android-debug-log/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/working-effectively-with-legacy-code/" rel="bookmark">
-			修改遗留代码的艺术
+			<a href="/articles/secure-file-transfer-base-on-android-signature/" rel="bookmark">
+			基于Android签名机制的文件安全下发方法
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2019-12-02T19:35:55&#43;08:00">2019-12-02</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-03-05T12:05:39&#43;08:00">2020-03-05</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/android/" rel="category">Android</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		导语 之前内部的一次技术分享，为了防止PPT弄丢，特意整理成了文章，由于我的PPT风格比较简洁，所以额外加了一些批注。 + 注意这里图片缩小了，可以 新标签页打开图片 查看高清图。 正文 1. 2. 3. 4. 5. 6. 7 这页其实还内
+		问题背景 Android中存在大量需要动态下发文件的场景： 下发布局资源文件实现UI动态化 下发Dex文件、lua文件，实现局部功能的动态化 下发Android插件 下发多媒体资源等 等等 对于其中一些文件，如De
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/working-effectively-with-legacy-code/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/secure-file-transfer-base-on-android-signature/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/git-internals/" rel="bookmark">
-			Git内部原理剖析
+			<a href="/articles/bilibili-report-2020-02/" rel="bookmark">
+			B站2月份创作者分析
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2019-11-26T12:31:51&#43;08:00">2019-11-26</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-03-01T19:57:34&#43;08:00">2020-03-01</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		导读 为什么写这篇文章 写这篇文章的本意有二: 工作安排原因，常有同事询问我一些关于 Git 的问题，总觉得自己解释的不够透彻，因此觉得有必要深入了解一下。 目前中文的 Git 教程往往本末倒置， 一味从版本管理工具的角度去堆
+		Welcome Star and Issues: vimerzhao/BilibiliReport 各区投稿比例 前三： 游戏 生活 影视 头部区域细分比例 Top1000视频分布 稿件时长分布 每日投稿趋势 24小时投稿分布 结论 超过60%的创作发生在游戏区和生活区 播放最多的是代表视听的音乐区和娱乐区 但是收
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/git-internals/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/bilibili-report-2020-02/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/articles/model-of-thinking/" rel="bookmark">
-			信息、思考、知识
+			<a href="/articles/solve-unsatisfiedlinkerror-is-32-bit-instead-of-64-bit/" rel="bookmark">
+			UnsatisfiedLinkError...is32-bit instead of 64-bit问题解决
 			</a>
 		</h2>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2019-11-25T20:01:28&#43;08:00">2019-11-25</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-02-28T09:52:52&#43;08:00">2020-02-28</time>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		最近在思考的一个问题，当一件热点事件发生的时候，如何能够透过各种声音看到问题的本质，并给出客观、全面的评价，这其实是一件非常困难的事情，我觉得必须具备三要素。 知识 知识就像机器学习里面的训练集。放到具体
+		背景 在做沙箱动态化时遇到一个问题： 请假其他同事之后发现是因为Android高版本上，默认是64-bit的方式运行，而某些游戏是32-bit的，所以出现了冲突，解决办法就是强制使用32-bit的，而不是
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/articles/model-of-thinking/">阅读全文…</a>
+		<a class="list__footer-readmore btn" href="/articles/solve-unsatisfiedlinkerror-is-32-bit-instead-of-64-bit/">阅读全文…</a>
 	</div>
 </article>
 </main>
 
 <div class="pagination">
 	<a class="pagination__item pagination__item--prev btn" href="/page/11/">«</a>
-	<span class="pagination__item pagination__item--current">12/21</span>
+	<span class="pagination__item pagination__item--current">12/23</span>
 	<a class="pagination__item pagination__item--next btn" href="/page/13/">»</a>
 </div>
 
@@ -335,11 +340,11 @@
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
-			<li class="widget__item"><a class="widget__link" href="/articles/use-protobuf-in-cmake/">CMake使用Protobuf的正确姿势</a></li>
 		</ul>
 	</div>
 </div>
@@ -357,7 +362,11 @@
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
-				<span class="widget__counter widget__counter--bubble">2</span>
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
 				</li>
 		</ul>
 	</div>
@@ -365,11 +374,13 @@
 <div class="widget-taglist widget">
 	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMAKE">CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
@@ -377,7 +388,6 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言">编程语言 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>

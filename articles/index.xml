@@ -6,8 +6,15 @@
     <description>Recent content in Articles on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 18 Mar 2026 14:23:12 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 25 Jul 2026 11:20:46 +0800</lastBuildDate>
     <atom:link href="/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>初探OpenClaw</title>
+      <link>/articles/2026-first-research-on-openclaw/</link>
+      <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>/articles/2026-first-research-on-openclaw/</guid>
+      <description>本文纯手打，如有AI生成内容，会予以标注 前一篇文章还在说要考虑参与AI的浪潮，最近工作上就有了一些契机，得以投入一周多时间，专注研究OpenClaw，并做了一个分享 比起平时琐碎零星的学习，这种长时间、</description>
+    </item>
     <item>
       <title>2025年回顾及后面的一些想法</title>
       <link>/articles/2025-retrospective-and-some-thoughts/</link>
@@ -37,11 +44,25 @@
       <description>最近打算研下 GitHub - Igalia/wpe-android: WPE WebKit for Android。 git clone之后，对应的是main分支，commit id为: commit 53b3e13ef2c330e9335d9fdd542e5c42a559ca15 (HEAD -&amp;gt; main, tag: latest-preview, origin/main, origin/HEAD) Author: Adrian Perez de Castro &amp;lt;aperez@igalia.com&amp;gt; Date: Fri Sep 26 16:22:54 2025 +0300 [wpe] Update to WPE WebKit 2.50.0 Even when this is an update to a new release series, there are no differences from the packaging point of view, so</description>
     </item>
     <item>
+      <title>嵌入式开发备忘录</title>
+      <link>/articles/embedded-development-memo/</link>
+      <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/embedded-development-memo/</guid>
+      <description>命令行 # 设置宽高，方便htop这样的工具显示(嵌入式设设备通过adb登陆，terminal不和设备宽高是不匹配的) # stty 是 Set Teletype 的缩写。它是一个用于显示和修改终端行设置（Terminal Line Settings</description>
+    </item>
+    <item>
       <title>CMake使用Protobuf的正确姿势</title>
       <link>/articles/use-protobuf-in-cmake/</link>
       <pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate>
       <guid>/articles/use-protobuf-in-cmake/</guid>
       <description>工程上有一个非常基础的原则，就是: 关联度越高的逻辑应该越靠近 。 但实践中，往往容易忽视，导致的结果就是：出了问题，我们要从一个非常遥远的错误，慢慢回溯，找到最根本的原因。 近来研究如何在cmake中使用P</description>
+    </item>
+    <item>
+      <title>Linux开发机问题汇总</title>
+      <link>/articles/pitfalls-about-using-linux-as-dev-machine/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/pitfalls-about-using-linux-as-dev-machine/</guid>
+      <description>DNS解析问题 在不同场景下遇到过几次，具体表现： 不连接有线，只Wifi连接热点 iOA无法加载扫码，网页无法加载 ping www.baidu.com 失败 原因其实是DNS解析失败了，查看这个文件 cat /etc/resolv.conf # This is /run/systemd/resolve/stub-resolv.conf managed by man:systemd-resolved(8). # Do not edit. # This file might be symlinked as /etc/resolv.conf.</description>
     </item>
     <item>
       <title>Windows虚拟机内的企微聊天记录迁移</title>
@@ -51,11 +72,25 @@
       <description>背景是： 由于工作场景原因，主机安装的是Linux,于是安装了VirtualBox,通过Windows虚拟机使用企微 后面申请了MacBook,加上VirtualBox带个Windows比较拖累性能，就打</description>
     </item>
     <item>
+      <title>rk1126尝试运行chromium和webkit</title>
+      <link>/articles/try-install-chromium-and-webkit-on-rk1126/</link>
+      <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/try-install-chromium-and-webkit-on-rk1126/</guid>
+      <description>rk1126上跑着一个apt都没有的linux，由于一些研究需要，想让其运行下chromium和webkit,但最终失败了，简单记录下其过程： 大致有3个思路： 安装apt，再配置安装源，用apt安装 使用</description>
+    </item>
+    <item>
       <title>WPEWebKit2.46调试环境</title>
       <link>/articles/setup-wpewebkit-2.46-debug-environment/</link>
       <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
       <guid>/articles/setup-wpewebkit-2.46-debug-environment/</guid>
       <description>以下讨论均基于`https://github.com/WebPlatformForEmbedded/WPEWebKit的 commit 38067c965fd39dbc4294c1be8f9394fb4c39d90c (HEAD -&amp;gt; wpe-2.46, origin/wpe-2.46, origin/HEAD) Author: Philippe Normand &amp;lt;philn@igalia.com&amp;gt; Date: Tue Nov 1 15:51:24 2022 +0000 pointer-lock WIP 编译 之前已经编过几次，最近一次：WebK</description>
+    </item>
+    <item>
+      <title>Debug实录</title>
+      <link>/articles/debug-records/</link>
+      <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/debug-records/</guid>
+      <description>2025 指定远程调试链接页面不显示 Older 工位升降台失效 电脑键盘无响应</description>
     </item>
     <item>
       <title>配置一个Linux开发环境</title>
@@ -86,6 +121,27 @@
       <description>以下代码可能出现看起来诡异的错误 { auto data = image-&amp;gt;encodeToData(); std::stringstream ss; ss &amp;lt;&amp;lt; count++ &amp;lt;&amp;lt; &amp;#34;_output.png&amp;#34;; if (data) { SkFILEWStream out(ss.str().c_str()); out.write(data-&amp;gt;writable_data(), data-&amp;gt;size()); } } 错误如下： * thread #3, name = &amp;#39;RasterThread&amp;#39;, stop reason = signal SIGILL: illegal operand * frame #0: 0x000000000c02edd4 Sxxxx`sk_abort_no_print() at SkMemory_malloc.cpp:51:5 frame #1: 0x000000000bbbee39 Sxxxx`SkNVRefCnt&amp;lt;SkData&amp;gt;::~SkNVRefCnt(this=0x00007fffafdff530)::&amp;#39;lambda&amp;#39;()::operator()() const at SkRefCnt.h:165:9 frame #2: 0x000000000bbbec35 Sxxxx`SkNVRefCnt&amp;lt;SkData&amp;gt;::~SkNVRefCnt(this=0x00007fffa8006090) at SkRefCnt.h:165:9 frame #3: 0x000000000bbbd8ba Sxxxx`SkData::~SkData(this=0x00007fffa8006090) at SkData.cpp:37:1 具体是因为这个ASSERT: ~SkNVRefCnt() { #ifdef SK_DEBUG int</description>
     </item>
     <item>
+      <title>webkit生成clang索引</title>
+      <link>/articles/generate-clangd-index-for-webkit/</link>
+      <pubDate>Mon, 26 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/generate-clangd-index-for-webkit/</guid>
+      <description>今天开始接触一个新的项目(基于webkit)，第一步自然是搭建源码开发环境。 整个项目通过CMake组织，默认是生成VS工程，再用VS打开sln工程进行构建。这一步OK。 为了生成compile_comm</description>
+    </item>
+    <item>
+      <title>记录一个Android构建错误</title>
+      <link>/articles/record-android-build-error-20240816/</link>
+      <pubDate>Fri, 16 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/record-android-build-error-20240816/</guid>
+      <description>今天发现个人Devcloud可以升级到32核，于是升级了下（+重启），升级完成后Android就构建失败了，错误日志如下： * What went wrong: Execution failed for task &amp;#39;:app:processDebugResources&amp;#39;. &amp;gt; A failure occurred while executing com.android.build.gradle.internal.res.LinkApplicationAndroidResourcesTask$TaskAction &amp;gt; Android resource linking failed /data/work/****App/****App/build/app/intermediates/packaged_manifests/debug/AndroidManifest.xml:245: error: resource attr/??? (aka com.tencent.docs:attr/???) not found. error: failed processing manifest. 打开这个文件</description>
+    </item>
+    <item>
+      <title>Mac&amp;Windows&amp;Linux使用备忘录</title>
+      <link>/articles/mac_windows_linux_usage_memo/</link>
+      <pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/mac_windows_linux_usage_memo/</guid>
+      <description>Mac 1.不要同时编译两个大型C++项目，之前同时使用XCode和Ninja编译两个不同的项目，但底层都使用了clang，结果就是Mac的内核态CPU特别高（超过50%，主要是来自kernal_task这</description>
+    </item>
+    <item>
       <title>Mac与Windows混合开发体验优化</title>
       <link>/articles/optimize-mac-with-windows-development/</link>
       <pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate>
@@ -93,11 +149,25 @@
       <description>后面的工作中，可能要经常使用Windows开发，而过去一段时间，主要使用iMac开发，个人还是更习惯用iMac作为主力开发设备： 屏幕大且清晰 键盘组合更科学，Windows的Win键比较影响，Mac的C</description>
     </item>
     <item>
+      <title>C&#43;&#43;升级之殇</title>
+      <link>/articles/the-tragedy-of-cpp-upgrade/</link>
+      <pubDate>Mon, 01 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/the-tragedy-of-cpp-upgrade/</guid>
+      <description>是否应该从公司级统一升级Android NDK版本? 如果我们的引擎SDK升级到NDK25，那么调用我们的app都要升级NDK25. 我们的SDK也要给微信，手Q使用，如果让他们也去升级NDK25，不太现实</description>
+    </item>
+    <item>
       <title>vcpkg源码之install流程</title>
       <link>/articles/vcpkg-source-code-of-install/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
       <guid>/articles/vcpkg-source-code-of-install/</guid>
       <description>简介 vcpck install的主要工作是&amp;quot;构建(如果需要)和安装依赖包&amp;quot;，是vcpkg中最关键、也是使用者感知最明显的环节，有必要对其流程有一个更底层的理解，这样对一些问题的理解也将更加深</description>
+    </item>
+    <item>
+      <title>vcpkg踩坑之空缓存问题</title>
+      <link>/articles/empty-binary-cache-issue-of-vcpkg/</link>
+      <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/empty-binary-cache-issue-of-vcpkg/</guid>
+      <description></description>
     </item>
     <item>
       <title>vcpkg简介</title>
@@ -112,6 +182,27 @@
       <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
       <guid>/articles/an-error-about-building-icu-for-android-via-vcpkg/</guid>
       <description>我们的项目通过vcpkg依赖了icu，但在构建Android平台的icu制品时，却失败了。 Installing 15/45 icu:arm-neon-android@73.1#1... Building icu:arm-neon-android@73.1#1... /root/.cache/vcpkg/registries/git-trees/eaccfc7689fb55d4badf3d2321a8be62ae5be84e: info: installing overlay port from here -- Downloading https://github.com/unicode-org/icu/releases/download/release-73-1/icu4c-73_1-src.tgz -&amp;gt; icu4c-73_1-src.tgz... -- Extracting source /data/landun/workspace/tdf_build_env/.vcpkg/downloads/icu4c-73_1-src.tgz -- Applying patch disable-escapestr-tool.patch -- Applying patch remove-MD-from-configure.patch -- Applying patch fix_parallel_build_on_windows.patch -- Applying patch fix-extra.patch -- Applying patch mingw-dll-install.patch -- Applying patch disable-static-prefix.patch -- Applying patch fix-win-build.patch -- Using source at /data/landun/workspace/tdf_build_env/.vcpkg/buildtrees/icu/src/c-73_1-src-72ff750ba0.clean --</description>
+    </item>
+    <item>
+      <title>CMake Cookbook</title>
+      <link>/articles/cmake-cookbook/</link>
+      <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/cmake-cookbook/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CMake Details</title>
+      <link>/articles/cmake-details/</link>
+      <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/cmake-details/</guid>
+      <description>CMAKE_BUILD_TYPE的Debug, Release, RelWithDebInfo and MinSizeRel有什么区别? Debug: -g(默认-O0) Rlease: -O3 -DNDEBUG RleWithDebInfo: -O2 -g -DNDEBUG</description>
+    </item>
+    <item>
+      <title>CMake Pitfalls</title>
+      <link>/articles/cmake-pitfalls/</link>
+      <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/cmake-pitfalls/</guid>
+      <description></description>
     </item>
     <item>
       <title>如何利用ReleaseApk辅助排查性能问题</title>
@@ -135,11 +226,39 @@
       <description>最近需要把Skia进行一次升级，首先查看下接口变动，See： RELEASE_NOTES.md 大部分都是接口的小调整，基本没什么难度，但注意m122的一个改动: SkFontMgr::RefDefault() has been deleted. Clients should instantiate and manage their own SkFontMgrs and use them to explicitly create SkTypefaces 找到这个改动的原因： Remove default SkFontMgr [305780908] - Skia 是</description>
     </item>
     <item>
+      <title>常识决定效率</title>
+      <link>/articles/common-sense-determines-efficiency/</link>
+      <pubDate>Tue, 23 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/common-sense-determines-efficiency/</guid>
+      <description>这周帮同事解决了一个编译问题，如果不是我“多管闲事”，这个问题可能要以重装系统的方式处理了。 这一两年解决的类似疑难杂症其实挺多，大多有着不同的表象和相同的本质。如果想要总结下，为什么最终都是我发现了原</description>
+    </item>
+    <item>
+      <title>VCPKG如何支持WASM多线程</title>
+      <link>/articles/support-wasm-multithread-in-vcpkg/</link>
+      <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/support-wasm-multithread-in-vcpkg/</guid>
+      <description>工作中遇到的一个问题，如果没有多VCPKG比较深入的理解，处理这个问题还是会比较棘手的。 本身来说，开启多线程在emscripten体系下还比较简单的，开启-pthread即可。详见Pthreads support 问</description>
+    </item>
+    <item>
       <title>Android Gradle使用自定义的CMake</title>
       <link>/articles/custom-cmake-in-android-gradle/</link>
       <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
       <guid>/articles/custom-cmake-in-android-gradle/</guid>
       <description>背景 最近重构项目的CMake后，开始了Android平台的适配，踩了些坑，简单记录下。 Cmake版本过低 test 重构后的CMake使用了一些高版本的特性，比如： CMP0135: New in version 3.24. -&amp;gt; https://cmake.org/cmake/help/latest/policy/CMP0135.html FILE_SET &amp;lt;set-name&amp;gt;: New in version 3.23 -&amp;gt; https://cmake.org/cmake/help/latest/command/install.html 但Android</description>
+    </item>
+    <item>
+      <title>从Vim到VSCode</title>
+      <link>/articles/from-vim-to-vscode-2023/</link>
+      <pubDate>Mon, 23 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/from-vim-to-vscode-2023/</guid>
+      <description>我和Vim的故事还是挺长的，之前的一些博客： 现阶段（2021年10月）对于Vim和Emacs的思考 - 赵裕的博客 Vim键盘布局的起源 - 赵裕的博客 借助Vim宏处理重复工作 - 赵裕的博客 Vim的哲学 - 赵裕的博</description>
+    </item>
+    <item>
+      <title>配置一个Flutter的远程Android调试环境</title>
+      <link>/articles/configure-android-debug-environment-for-flutter-on-a-remote-server/</link>
+      <pubDate>Sun, 22 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/configure-android-debug-environment-for-flutter-on-a-remote-server/</guid>
+      <description>1.构建制品 之前已经构建过：Flutter源码剖析(一):源码获取与构建 - 赵裕的博客 新遇到一些错误，记录下： $ ../flutter/bin/flutter build --local-engine-src-path ../src --local-engine=android_debug_unopt android ...... You are using a locally built engine (--local-engine) but have not specified --local-engine-host. You may be building with a different engine than the one you are running with. See https://github.com/flutter/flutter/issues/132245 for details. &amp;lt;&amp;n</description>
     </item>
     <item>
       <title>配置一个Mac/iOS平台的Flutter源码调试环境</title>
@@ -154,6 +273,13 @@
       <pubDate>Mon, 24 Jul 2023 00:00:00 +0000</pubDate>
       <guid>/articles/use-vscode-as-debug-frontend-of-chromium-project/</guid>
       <description>之前试过VSCode作为C++工程的开发工具，但如果工程过于庞大，每次打开都会卡死在索引阶段。 总的来说，NeoVim+Clangd是我认为通用性、性能、开发体验综合最好的选择。 但有一个问题，怎么调试？</description>
+    </item>
+    <item>
+      <title>iOS异常弹窗溯源</title>
+      <link>/articles/traceability-of-ios-exception-pop-up/</link>
+      <pubDate>Thu, 13 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/traceability-of-ios-exception-pop-up/</guid>
+      <description>业务接入我们的框架后，反馈一个问题：iOS首次安装启动时，会在业务的协议弹窗前触发一个系统弹窗(访问本地网络的权限)。即：如果有 App 要连接到本地网络上的设备 - 官方 Apple 支持 (中国)。 不太熟悉iOS，一开始看</description>
     </item>
     <item>
       <title>北京之行：技术与人生的思考</title>
@@ -356,14 +482,14 @@
       <link>/articles/record-a-flutter-platform-view-bug/</link>
       <pubDate>Wed, 26 May 2021 09:54:17 +0800</pubDate>
       <guid>/articles/record-a-flutter-platform-view-bug/</guid>
-      <description>最近在Flutter中嵌入WebView的时候，遇到一个奇怪的Bug，不仅闪退，还会导致应用锁屏，现状如下（在当前页面卡顿很久，然后黑屏、锁屏…​…​）： 抓到的错误日志如下： + 分析之后发现是使用Vir</description>
+      <description>最近在Flutter中嵌入WebView的时候，遇到一个奇怪的Bug，不仅闪退，还会导致应用锁屏，现状如下（在当前页面卡顿很久，然后黑屏、锁屏……）： 抓到的错误日志如下： + 分析之后发现是使用Virtu</description>
     </item>
     <item>
       <title>Hugo&#43;Asciidoc配置记录</title>
       <link>/articles/configure-hugo-asciidoc-blog/</link>
       <pubDate>Sat, 08 May 2021 19:41:53 +0800</pubDate>
       <guid>/articles/configure-hugo-asciidoc-blog/</guid>
-      <description>【2021-05-08】今天参考几篇文章，完成了Hugo博客的配置，特此记录一下： 搭建教程 Blogging with Asciidoctor and Hugo | Gabriel Arazas Better Hugo/AsciiDoc HTML - ratfactor diguage/www.diguage.com: &amp;#34;地瓜哥&amp;#34;博客网 使用 Hugo 搭建博客 - &amp;#34;地瓜哥&amp;#34;博客网 Mainroad/README.md</description>
+      <description>【2021-05-08】今天参考几篇文章，完成了Hugo博客的配置，特此记录一下： 搭建教程 Blogging with Asciidoctor and Hugo | Gabriel Arazas Better Hugo/AsciiDoc HTML - ratfactor diguage/www.diguage.com: &amp;ldquo;地瓜哥&amp;quot;博客网 使用 Hugo 搭建博客 - &amp;ldquo;地瓜哥&amp;quo</description>
     </item>
     <item>
       <title>拿来主义与实证精神</title>
@@ -531,7 +657,7 @@
       <link>/articles/android-make-debuggable/</link>
       <pubDate>Thu, 07 May 2020 12:13:23 +0800</pubDate>
       <guid>/articles/android-make-debuggable/</guid>
-      <description>背景 最近要看一些系统打印的日志，发现需要开启debuggable标志，于是调研了一下。 实现 参考https://www.renyiwei.com/archives/1704.html[Android修改</description>
+      <description>背景 最近要看一些系统打印的日志，发现需要开启debuggable标志，于是调研了一下。 实现 参考Android修改ro.debuggable 华为真机adb调试所有进程 — 全栈笔记使用mprop这个工具成功</description>
     </item>
     <item>
       <title>不气盛叫年轻人吗？</title>
@@ -587,7 +713,7 @@
       <link>/articles/virtualbox-lose-64-bit/</link>
       <pubDate>Mon, 20 Apr 2020 10:20:21 +0800</pubDate>
       <guid>/articles/virtualbox-lose-64-bit/</guid>
-      <description>参考https://www.4spaces.org/windows-10-virtualbox-no-64bit/[解决Windows10中Virtualbox安装虚拟机没有64位选项(N种情形盘点)</description>
+      <description>参考解决Windows10中Virtualbox安装虚拟机没有64位选项(N种情形盘点)-四个空格，除了关闭HyperV，还需要卸载雷电模拟器等，这些软件都有可能占用虚拟驱动。 Mark一下</description>
     </item>
     <item>
       <title>代码相似性检测工具</title>
@@ -601,7 +727,7 @@
       <link>/articles/a-weird-bug-record/</link>
       <pubDate>Mon, 13 Apr 2020 00:00:00 +0000</pubDate>
       <guid>/articles/a-weird-bug-record/</guid>
-      <description>背景 上周四的时候，发了一个maven，结果报ExceptionInInitializerError错误： java.lang.ExceptionInInitializerError at repackage.aw.̍(ProGuard:43) at com.tencent.sandbox.PluginHelper.applicationAttachBaseContext(ProGuard:160) ...... Caused by: java.lang.IllegalArgumentException: Illegal pattern character &amp;#39;V&amp;#39; at java.text.SimpleDateFormat.compile(SimpleDateFormat.java:870) at java.text.SimpleDateFormat.initialize(SimpleDateFormat.java:684) at java.text.SimpleDateFormat.&amp;lt;init&amp;gt;(SimpleDateFormat.java:623) at java.text.SimpleDateFormat.&amp;lt;init&amp;gt;(SimpleDateFormat.java:598) at</description>
+      <description>背景 上周四的时候，发了一个maven，结果报ExceptionInInitializerError错误： java.lang.ExceptionInInitializerError at repackage.aw.̍(ProGuard:43) at com.tencent.sandbox.PluginHelper.applicationAttachBaseContext(ProGuard:160) ...... Caused by: java.lang.IllegalArgumentException: Illegal pattern character &#39;V&#39; at java.text.SimpleDateFormat.compile(SimpleDateFormat.java:870) at java.text.SimpleDateFormat.initialize(SimpleDateFormat.java:684) at java.text.SimpleDateFormat.&amp;lt;init&amp;gt;(SimpleDateFormat.java:623) at java.text.SimpleDateFormat.&amp;lt;init&amp;gt;(SimpleDateFormat.java:598) at</description>
     </item>
     <item>
       <title>twint源码阅读笔记</title>
@@ -622,7 +748,7 @@
       <link>/articles/presentation-zen/</link>
       <pubDate>Sun, 05 Apr 2020 09:32:45 +0800</pubDate>
       <guid>/articles/presentation-zen/</guid>
-      <description>概览 这本书的副标题叫做&amp;#34;`职场必知的幻灯片秘技`&amp;#34;，但感觉有点不合适，在我看来，书里提倡的思想只有真正的大师才能用，但是在职场，很多时候还是要按照规矩来。如果不是绝对的权利压制，还是不</description>
+      <description>概览 这本书的副标题叫做“职场必知的幻灯片秘技”，但感觉有点不合适，在我看来，书里提倡的思想只有真正的大师才能用，但是在职场，很多时候还是要按照规矩来。如果不是绝对的权利压制，还是不要妄用这本书的全部思</description>
     </item>
     <item>
       <title>给DroidPlugin添加概览屏幕</title>
@@ -658,6 +784,13 @@
       <pubDate>Sun, 22 Mar 2020 09:30:19 +0800</pubDate>
       <guid>/articles/yujun-product-methodology/</guid>
       <description>正文 这两周利用零散时间粗读了《俞军产品方法论》一书，在查阅资料的时候发现这本书的豆瓣评分从一开始的8.8(2019-12-24)变成了现在(2020-03-22)的7.9，也是比较符合我自己的阅读感受</description>
+    </item>
+    <item>
+      <title>Proguard导致的NoSuchMethodException问题排查</title>
+      <link>/articles/proguard-inline-optimieze-make-stacktrace-loss/</link>
+      <pubDate>Mon, 16 Mar 2020 09:54:14 +0800</pubDate>
+      <guid>/articles/proguard-inline-optimieze-make-stacktrace-loss/</guid>
+      <description>背景 最近在处理异常时遇到一个诡异的问题：自己的Demo里面混淆一个类后，打印Crash堆栈时这个类里面的调用点直接失踪了！ 下面用测试代码说明。 测试代码 // MainActivity.java public class MainActivity extends AppCompatActivity { @Override protected void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); setContentView(R.layout.activity_main); new Test().fun1(); } } // Test.java public class Test</description>
     </item>
     <item>
       <title>Proguard导致的NoSuchMethodException问题排查</title>
@@ -758,13 +891,6 @@
       <description>最近利用两个周末的时间读完了一本书，叫《学会写作》，豆瓣信息如下： 作者: 粥左罗 + 出版社: 人民邮电出版社 + 出品方: 智元微库 OPEN MIND + 副标题: 自我进阶的高效方法 + 出版年: 2019-5 + 页数: 280 + 定价: 59元 + 装帧: 平装</description>
     </item>
     <item>
-      <title>警惕Proguard内联优化导致Crash堆栈信息丢失</title>
-      <link>/articles/proguard-inline-optimieze-make-stacktrace-loss/</link>
-      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/articles/proguard-inline-optimieze-make-stacktrace-loss/</guid>
-      <description>背景 最近在处理异常时遇到一个诡异的问题：自己的Demo里面混淆一个类后，打印Crash堆栈时这个类里面的调用点直接失踪了！ 下面用测试代码说明。 测试代码 // MainActivity.java public class MainActivity extends AppCompatActivity { @Override protected void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); setContentView(R.layout.activity_main); new Test().fun1(); } } // Test.java public class Test</description>
-    </item>
-    <item>
       <title>研究|2019鬼畜区热点事件分析</title>
       <link>/articles/2019-vichiku-summary-2/</link>
       <pubDate>Sat, 11 Jan 2020 19:53:53 +0800</pubDate>
@@ -811,7 +937,7 @@
       <link>/articles/git-practice/</link>
       <pubDate>Fri, 13 Dec 2019 12:32:25 +0800</pubDate>
       <guid>/articles/git-practice/</guid>
-      <description>本文导读 本文对应的 git-standardize 项目地址 https://github.com/vimerzhao/git-standardize 问题背景 大部分程序员对于Git的理解还停留在 git add . git commit -m &amp;#34;update&amp;#34; git pull git push 的阶段，但这在实际项目开发中是远远不够的。 + 举一个简单的例子，现在我们需要过滤所有修复bug的提交，该怎</description>
+      <description>本文导读 本文对应的 git-standardize 项目地址 https://github.com/vimerzhao/git-standardize 问题背景 大部分程序员对于Git的理解还停留在 git add . git commit -m &amp;quot;update&amp;quot; git pull git push 的阶段，但这在实际项目开发中是远远不够的。 + 举一个简单的例子，现在我们需要过滤所有修复bug的提交，该怎</description>
     </item>
     <item>
       <title>修改遗留代码的艺术</title>
@@ -860,7 +986,7 @@
       <link>/articles/financing-introduction/</link>
       <pubDate>Sat, 02 Nov 2019 09:16:19 +0800</pubDate>
       <guid>/articles/financing-introduction/</guid>
-      <description>发刊词:未来穷人更穷,富人更富 钱背后的含义?贫富差距(基尼系数) 教育 寒门再难出贵子 概率学显示,85%状元都是城镇户口 父母的资源决定了子女的眼界等 医疗 有钱能让人获得更多的&amp;#34;`隐形福利`&amp;#34;</description>
+      <description>发刊词:未来穷人更穷,富人更富 钱背后的含义?贫富差距(基尼系数) 教育 寒门再难出贵子 概率学显示,85%状元都是城镇户口 父母的资源决定了子女的眼界等 医疗 有钱能让人获得更多的“隐形福利” 医疗保险意识 投资观念</description>
     </item>
     <item>
       <title>LinuxMint配置指南</title>

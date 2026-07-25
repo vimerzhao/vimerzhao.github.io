@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/flutter-source-code-analyze-1/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2020-10-29T12:23:10+08:00" />
-<meta property="article:modified_time" content="2026-01-30T14:21:51+08:00" />
+<meta property="article:modified_time" content="2026-07-05T13:17:49+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Flutter源码剖析(一):源码获取与构建"/>
 <meta name="twitter:description" content="概述 本文介绍了Flutter源码的获取与构建，后面会另有文章介绍Flutter源码的版本管理、开发环境搭建等主题。 准备工作 Flutter源码分为两个部分： flutter/flutter是框架层，为开发"/>
@@ -113,26 +113,15 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-10-29T12:23:10&#43;08:00">2020-10-29</time>
-	<time class="meta__text" datetime="2026-01-30T14:21:51&#43;08:00">(最后修改: 2026-01-30)</time></div></div>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 		</header>
 		
-    <span style="color:grey; font-size: 0.9em">本文约 3000 字，阅读需 6 分钟。</span>
+    <span style="color:grey; font-size: 0.9em">本文约 2800 字，阅读需 6 分钟。</span>
     <p/><div class="content post__content clearfix">
-			<div class="sect1">
-<h2 id="_概述">概述</h2>
-<div class="sectionbody">
-<div class="paragraph">
+			<h1 id="概述">概述</h1>
 <p>本文介绍了Flutter源码的获取与构建，后面会另有文章介绍Flutter源码的版本管理、开发环境搭建等主题。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_准备工作">准备工作</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<h1 id="准备工作">准备工作</h1>
 <p>Flutter源码分为两个部分：</p>
-</div>
-<div class="ulist">
 <ul>
 <li>
 <p><a href="https://github.com/flutter/flutter">flutter/flutter</a>是框架层，为开发者提供各种接口，主要是dart代码。</p>
@@ -141,130 +130,87 @@
 <p><a href="https://github.com/flutter/engine">flutter/engine</a>是引擎层，负责Flutter的渲染以及宿主的交互。</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>相关依赖的安装可参考官方文档：https://github.com/flutter/flutter/wiki/Setting-up-the-Engine-development-environment[Setting up the Engine development environment · flutter/flutter Wiki]。以我的Mac为例，如JDK等一般都已经安装，无需担心。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_源码下载">源码下载</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<p>相关依赖的安装可参考官方文档：<a href="https://github.com/flutter/flutter/wiki/Setting-up-the-Engine-development-environment">Setting up the Engine development
+environment · flutter/flutter
+Wiki</a>。以我的Mac为例，如JDK等一般都已经安装，无需担心。</p>
+<h1 id="源码下载">源码下载</h1>
 <p><code>flutter/flutter</code>可以直接通过git下载，但是<code>flutter/engine</code>需要通过<code>gclient</code>工具获取，因为<code>engine</code>有很多依赖，<code>gclient</code>可以很好地处理这些依赖，简化源码管理流程。</p>
-</div>
-<div class="paragraph">
 <p>首先，新建一个目录，下载<code>flutter</code>框架代码：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ mkdir flutter_source_code
-$ cd flutter_source_code
-$ git clone https://github.com/flutter/flutter.git
-Cloning into &#39;flutter&#39;...
-remote: Enumerating objects: 12, done.
-remote: Counting objects: 100% (12/12), done.
-remote: Compressing objects: 100% (12/12), done.
-remote: Total 272396 (delta 0), reused 6 (delta 0), pack-reused 272384
-Receiving objects: 100% (272396/272396), 116.98 MiB | 2.48 MiB/s, done.
-Resolving deltas: 100% (210440/210440), done.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>获取<code>depot_tools</code>工具（这个一开始是用来管理<code>chromium</code>源码的）：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
-Cloning into &#39;depot_tools&#39;...
-remote: Sending approximately 34.14 MiB ...
-remote: Total 40539 (delta 27803), reused 40539 (delta 27803)
-Receiving objects: 100% (40539/40539), 34.14 MiB | 5.04 MiB/s, done.
-Resolving deltas: 100% (27803/27803), done.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>设置环境变量（每次构建之前都要设置，也可以写入系统配置）：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">export PATH=$PATH:`pwd`/depot_tools</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>开始拉取代码（这一步比较耗时）</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ gclient sync                                                                                               [18:04:43]
-
-......
-
-remote: Enumerating objects: 25, done.
-remote: Counting objects: 100% (25/25), done.
-remote: Compressing objects: 100% (22/22), done.
-remote: Total 209672 (delta 10), reused 13 (delta 3), pack-reused 209647
-Receiving objects: 100% (209672/209672), 196.61 MiB | 3.74 MiB/s, done.
-Resolving deltas: 100% (153791/153791), done.
-Syncing projects:  31% (33/104) src/third_party/vulkan
-[0:03:59] Still working on:
-[0:03:59]   src/ios_tools
-[0:03:59]   src/third_party/angle
-[0:03:59]   src/third_party/dart
-[0:03:59]   src/third_party/icu
-
-......
-
-[0:12:48] Still working on:
-[0:12:48]   src/third_party/dart
-
-Syncing projects: 100% (104/104), done.
-Running hooks: 100% ( 9/ 9) dart package config
-________ running &#39;vpython src/flutter/tools/run_third_party_dart.py&#39; in &#39;/Users/vimerzhao/WorkProject/flutter_source_code&#39;
-Resolving dependencies... (1.7s)
-+ charcode 1.1.3
-+ collection 1.14.13
-+ meta 1.2.3
-+ package_config 1.9.3
-+ path 1.7.0
-+ pub_semver 1.4.4
-+ source_span 1.7.0
-+ string_scanner 1.0.5
-+ term_glyph 1.1.0
-+ yaml 2.2.1
-Changed 10 dependencies!</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>需要注意的是，<code>Syncing projects: 100% (104/104), done</code>之后，会继续下载一些大文件，可能命令行没有输出，一定不能强制退出，可以通过资源管理器查看网络的流量，确定<code>cipd</code>是否在下载：</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/gclient-sync-cipd.png" alt="gclient sync cipd"/>
-</div>
-</div>
-<div class="paragraph">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mkdir flutter_source_code
+</span></span><span style="display:flex;"><span>$ cd flutter_source_code
+</span></span><span style="display:flex;"><span>$ git clone https://github.com/flutter/flutter.git
+</span></span><span style="display:flex;"><span>Cloning into <span style="color:#e6db74">&#39;flutter&#39;</span>...
+</span></span><span style="display:flex;"><span>remote: Enumerating objects: 12, <span style="color:#66d9ef">done</span>.
+</span></span><span style="display:flex;"><span>remote: Counting objects: 100% <span style="color:#f92672">(</span>12/12<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.
+</span></span><span style="display:flex;"><span>remote: Compressing objects: 100% <span style="color:#f92672">(</span>12/12<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.
+</span></span><span style="display:flex;"><span>remote: Total <span style="color:#ae81ff">272396</span> <span style="color:#f92672">(</span>delta 0<span style="color:#f92672">)</span>, reused <span style="color:#ae81ff">6</span> <span style="color:#f92672">(</span>delta 0<span style="color:#f92672">)</span>, pack-reused <span style="color:#ae81ff">272384</span>
+</span></span><span style="display:flex;"><span>Receiving objects: 100% <span style="color:#f92672">(</span>272396/272396<span style="color:#f92672">)</span>, 116.98 MiB | 2.48 MiB/s, <span style="color:#66d9ef">done</span>.
+</span></span><span style="display:flex;"><span>Resolving deltas: 100% <span style="color:#f92672">(</span>210440/210440<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.
+</span></span></code></pre></div><p>获取<code>depot_tools</code>工具（这个一开始是用来管理<code>chromium</code>源码的）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+</span></span><span style="display:flex;"><span>Cloning into <span style="color:#e6db74">&#39;depot_tools&#39;</span>...
+</span></span><span style="display:flex;"><span>remote: Sending approximately 34.14 MiB ...
+</span></span><span style="display:flex;"><span>remote: Total <span style="color:#ae81ff">40539</span> <span style="color:#f92672">(</span>delta 27803<span style="color:#f92672">)</span>, reused <span style="color:#ae81ff">40539</span> <span style="color:#f92672">(</span>delta 27803<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Receiving objects: 100% <span style="color:#f92672">(</span>40539/40539<span style="color:#f92672">)</span>, 34.14 MiB | 5.04 MiB/s, <span style="color:#66d9ef">done</span>.
+</span></span><span style="display:flex;"><span>Resolving deltas: 100% <span style="color:#f92672">(</span>27803/27803<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.
+</span></span></code></pre></div><p>设置环境变量（每次构建之前都要设置，也可以写入系统配置）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export PATH<span style="color:#f92672">=</span>$PATH:<span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/depot_tools
+</span></span></code></pre></div><p>开始拉取代码（这一步比较耗时）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ gclient sync                                                                                               <span style="color:#f92672">[</span>18:04:43<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>......
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>remote: Enumerating objects: 25, <span style="color:#66d9ef">done</span>.
+</span></span><span style="display:flex;"><span>remote: Counting objects: 100% <span style="color:#f92672">(</span>25/25<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.
+</span></span><span style="display:flex;"><span>remote: Compressing objects: 100% <span style="color:#f92672">(</span>22/22<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.
+</span></span><span style="display:flex;"><span>remote: Total <span style="color:#ae81ff">209672</span> <span style="color:#f92672">(</span>delta 10<span style="color:#f92672">)</span>, reused <span style="color:#ae81ff">13</span> <span style="color:#f92672">(</span>delta 3<span style="color:#f92672">)</span>, pack-reused <span style="color:#ae81ff">209647</span>
+</span></span><span style="display:flex;"><span>Receiving objects: 100% <span style="color:#f92672">(</span>209672/209672<span style="color:#f92672">)</span>, 196.61 MiB | 3.74 MiB/s, <span style="color:#66d9ef">done</span>.
+</span></span><span style="display:flex;"><span>Resolving deltas: 100% <span style="color:#f92672">(</span>153791/153791<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.
+</span></span><span style="display:flex;"><span>Syncing projects:  31% <span style="color:#f92672">(</span>33/104<span style="color:#f92672">)</span> src/third_party/vulkan
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>0:03:59<span style="color:#f92672">]</span> Still working on:
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>0:03:59<span style="color:#f92672">]</span>   src/ios_tools
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>0:03:59<span style="color:#f92672">]</span>   src/third_party/angle
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>0:03:59<span style="color:#f92672">]</span>   src/third_party/dart
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>0:03:59<span style="color:#f92672">]</span>   src/third_party/icu
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>......
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>0:12:48<span style="color:#f92672">]</span> Still working on:
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>0:12:48<span style="color:#f92672">]</span>   src/third_party/dart
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Syncing projects: 100% <span style="color:#f92672">(</span>104/104<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.
+</span></span><span style="display:flex;"><span>Running hooks: 100% <span style="color:#f92672">(</span> 9/ 9<span style="color:#f92672">)</span> dart package config
+</span></span><span style="display:flex;"><span>________ running <span style="color:#e6db74">&#39;vpython src/flutter/tools/run_third_party_dart.py&#39;</span> in <span style="color:#e6db74">&#39;/Users/vimerzhao/WorkProject/flutter_source_code&#39;</span>
+</span></span><span style="display:flex;"><span>Resolving dependencies... <span style="color:#f92672">(</span>1.7s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>+ charcode 1.1.3
+</span></span><span style="display:flex;"><span>+ collection 1.14.13
+</span></span><span style="display:flex;"><span>+ meta 1.2.3
+</span></span><span style="display:flex;"><span>+ package_config 1.9.3
+</span></span><span style="display:flex;"><span>+ path 1.7.0
+</span></span><span style="display:flex;"><span>+ pub_semver 1.4.4
+</span></span><span style="display:flex;"><span>+ source_span 1.7.0
+</span></span><span style="display:flex;"><span>+ string_scanner 1.0.5
+</span></span><span style="display:flex;"><span>+ term_glyph 1.1.0
+</span></span><span style="display:flex;"><span>+ yaml 2.2.1
+</span></span><span style="display:flex;"><span>Changed <span style="color:#ae81ff">10</span> dependencies!
+</span></span></code></pre></div><p>需要注意的是，<code>Syncing</code> <code>projects:</code> <code>100%</code> <code>(104/104),</code>
+<code>done</code>之后，会继续下载一些大文件，可能命令行没有输出，一定不能强制退出，可以通过资源管理器查看网络的流量，确定<code>cipd</code>是否在下载：</p>
+<figure>
+<img
+src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/archive_qiniu/gclient-sync-cipd.png" />
+</figure>
 <p>（因为git不是很擅长下载大文件，所以产生了cipd这个程序来做这些工作）</p>
-</div>
-<div class="paragraph">
 <p>此时的目录结构：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ tree -L 1
-.
-├── depot_tools # 源码管理工具
-├── flutter     # flutter framework目录
-└── src         # flutter engine以及相关依赖所在目录</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>framework的版本和engine的版本是一一对应的，framework的分支规则如下：</p>
-</div>
-<div class="ulist">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ tree -L <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>├── depot_tools <span style="color:#75715e"># 源码管理工具</span>
+</span></span><span style="display:flex;"><span>├── flutter     <span style="color:#75715e"># flutter framework目录</span>
+</span></span><span style="display:flex;"><span>└── src         <span style="color:#75715e"># flutter engine以及相关依赖所在目录</span>
+</span></span></code></pre></div><p>framework的版本和engine的版本是一一对应的，framework的分支规则如下：</p>
 <ul>
 <li>
-<p><code>stable</code>是当前的稳定分支，无特殊情况，推荐开发者使用该分支作为flutter sdk</p>
+<p><code>stable</code>是当前的稳定分支，无特殊情况，推荐开发者使用该分支作为flutter
+sdk</p>
 </li>
 <li>
 <p><code>master</code>包含最新的特性，但是不稳定</p>
@@ -273,268 +219,183 @@ Changed 10 dependencies!</code></pre>
 <p>每个版本会打上对应的tag</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>截止到 2020-10-29 ,最新的较稳定版本是 1.22.0，于是我们也先切到这个版本（不是必选的，但是个人认为：基于一个明确的版本编译和修改源代码似乎更合适）。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ cd flutter
-$ git checkout 1.22.0
-$ cat bin/internal/engine.version
-5babba6c4d25fa237bbf755ab85c9a0c50b3c6ec</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>engine.version</code>这个文件指定了framework对应的engine版本，接下来，我们进入engine目录切换到这次commit。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ cd ../src/flutter
-$ git reset --hard 5babba6c4d25fa237bbf755ab85c9a0c50b3c6ec
-HEAD is now at 5babba6c4 Flutter 1.22.0-12.3.pre engine cherrypicks (#21466)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>此时，我们需要执行以下命令：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ gclient sync --with_branch_heads --with_tags
-Syncing projects: 100% (104/104), done.
-......
-Running hooks: 100% ( 8/ 8) dart package config
-......
-Running hooks: 100% (8/8), done.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>后面这两个参数的含义比较晦涩，参考Chromium的说明，其含义是：</p>
-</div>
-<div class="quoteblock">
+<p>截止到 2020-10-29 ,最新的较稳定版本是
+1.22.0，于是我们也先切到这个版本（不是必选的，但是个人认为：基于一个明确的版本编译和修改源代码似乎更合适）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd flutter
+</span></span><span style="display:flex;"><span>$ git checkout 1.22.0
+</span></span><span style="display:flex;"><span>$ cat bin/internal/engine.version
+</span></span><span style="display:flex;"><span>5babba6c4d25fa237bbf755ab85c9a0c50b3c6ec
+</span></span></code></pre></div><p><code>engine.version</code>这个文件指定了framework对应的engine版本，接下来，我们进入engine目录切换到这次commit。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd ../src/flutter
+</span></span><span style="display:flex;"><span>$ git reset --hard 5babba6c4d25fa237bbf755ab85c9a0c50b3c6ec
+</span></span><span style="display:flex;"><span>HEAD is now at 5babba6c4 Flutter 1.22.0-12.3.pre engine cherrypicks <span style="color:#f92672">(</span><span style="color:#75715e">#21466)</span>
+</span></span></code></pre></div><p>此时，我们需要执行以下命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ gclient sync --with_branch_heads --with_tags
+</span></span><span style="display:flex;"><span>Syncing projects: 100% <span style="color:#f92672">(</span>104/104<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.
+</span></span><span style="display:flex;"><span>......
+</span></span><span style="display:flex;"><span>Running hooks: 100% <span style="color:#f92672">(</span> 8/ 8<span style="color:#f92672">)</span> dart package config
+</span></span><span style="display:flex;"><span>......
+</span></span><span style="display:flex;"><span>Running hooks: 100% <span style="color:#f92672">(</span>8/8<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.
+</span></span></code></pre></div><p>后面这两个参数的含义比较晦涩，参考Chromium的说明，其含义是：</p>
 <blockquote>
-<div class="paragraph">
 <p>Checkout all the submodules at their branch DEPS revisions</p>
-</div>
 </blockquote>
-</div>
-<div class="paragraph">
 <p>因为切换分支之后，某些依赖的版本可能有更改，所以需要再次sync一下，直接在<code>src/flutter</code>目录执行即可。</p>
-</div>
-<div class="paragraph">
 <p>以上就完成了源码环境的搭建，下面正式开始编译。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_源码编译">源码编译</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<h1 id="源码编译">源码编译</h1>
 <p>首先我们退回到src目录，然后通过<code>gn</code>生成<code>ninja</code>需要的元数据：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ cd ..
-$ pwd
-/Users/vimerzhao/WorkProject/flutter_source_code/src
-$ ./flutter/tools/gn --unoptimized --android --runtime-mode debug --android-cpu arm
-Generating GN files in: out/android_debug_unopt
-Generating Xcode projects took 75ms
-Done. Made 438 targets from 197 files in 1960ms</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>对于编译参数，https://github.com/flutter/flutter/wiki/Compiling-the-engine[Compiling the engine · flutter/flutter Wiki]有详细介绍，在此不做赘述，这里我构建的是一个未优化、Android平台、debug版本、arm 32位的 engine。</p>
-</div>
-<div class="paragraph">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd ..
+</span></span><span style="display:flex;"><span>$ pwd
+</span></span><span style="display:flex;"><span>/Users/vimerzhao/WorkProject/flutter_source_code/src
+</span></span><span style="display:flex;"><span>$ ./flutter/tools/gn --unoptimized --android --runtime-mode debug --android-cpu arm
+</span></span><span style="display:flex;"><span>Generating GN files in: out/android_debug_unopt
+</span></span><span style="display:flex;"><span>Generating Xcode projects took 75ms
+</span></span><span style="display:flex;"><span>Done. Made <span style="color:#ae81ff">438</span> targets from <span style="color:#ae81ff">197</span> files in 1960ms
+</span></span></code></pre></div><p>对于编译参数，<a href="https://github.com/flutter/flutter/wiki/Compiling-the-engine">Compiling the engine · flutter/flutter
+Wiki</a>有详细介绍，在此不做赘述，这里我构建的是一个未优化、Android平台、debug版本、arm
+32位的 engine。</p>
 <p>此时，查看out目录，可以看到：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ ls out/
-android_debug_unopt   compile_commands.json</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>compile_commands.json</code>可以作为IDE的索引文件，提供类/函数/变量的跳转等能力，后面会说到。</p>
-</div>
-<div class="paragraph">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ls out/
+</span></span><span style="display:flex;"><span>android_debug_unopt   compile_commands.json
+</span></span></code></pre></div><p><code>compile_commands.json</code>可以作为IDE的索引文件，提供类/函数/变量的跳转等能力，后面会说到。</p>
 <p>然后就可以开始正式的编译了：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ ninja -C out/android_debug_unopt
-ninja: Entering directory `out/android_debug_unopt&#39;
-[38/3844] ACTION //flutter/shell/platform/android:flutter_shell_java(//build/toolchain/android:clang_arm)
-警告: ../../third_party/android_tools/sdk/build-tools/30.0.1/core-lambda-stubs.jar(java/lang/invoke/LambdaMetafactory.class): 主版本 53 比 52 新, 此编译器
-支持最新的主版本。
-  建议升级此编译器。
-注: 某些输入文件使用或覆盖了已过时的 API。
-注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
-1 个警告
-[3844/3844] STAMP obj/default.stamp
-
-$ ls out/android_debug_unopt                                                                 [19:35:15]
-all.xcodeproj                                 flutter_embedding_debug-sources.jar.md5.stamp lib.stripped
-args.gn                                       flutter_embedding_debug.jar                   libflutter.so
-armeabi_v7a_debug.jar                         flutter_embedding_debug.jar.md5.stamp         libflutter.so.TOC
-armeabi_v7a_debug.pom                         flutter_embedding_debug.pom                   obj
-build.ninja                                   flutter_icu                                   toolchain.ninja
-build.ninja.d                                 flutter_patched_sdk                           vm_outline_strong.dill
-clang_x64                                     gen                                           vm_platform_strong.dill
-flutter.jar                                   gyp-mac-tool                                  vm_platform_strong.dill.d
-flutter_embedding_debug-sources.jar           icudtl.dat                                    zip_archives</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>其中，<code>flutter_embedding_debug.jar</code>是Android嵌入层代码，<code>libflutter.so</code>是flutter的引擎层代码，通过这两个文件，可以在Android工程混合接入Flutter代码。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_源码使用">源码使用</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ninja -C out/android_debug_unopt
+</span></span><span style="display:flex;"><span>ninja: Entering directory <span style="color:#e6db74">`</span>out/android_debug_unopt<span style="color:#960050;background-color:#1e0010">&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>38/3844<span style="color:#f92672">]</span> ACTION //flutter/shell/platform/android:flutter_shell_java<span style="color:#f92672">(</span>//build/toolchain/android:clang_arm<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>警告: ../../third_party/android_tools/sdk/build-tools/30.0.1/core-lambda-stubs.jar<span style="color:#f92672">(</span>java/lang/invoke/LambdaMetafactory.class<span style="color:#f92672">)</span>: 主版本 <span style="color:#ae81ff">53</span> 比 <span style="color:#ae81ff">52</span> 新, 此编译器
+</span></span><span style="display:flex;"><span>支持最新的主版本。
+</span></span><span style="display:flex;"><span>  建议升级此编译器。
+</span></span><span style="display:flex;"><span>注: 某些输入文件使用或覆盖了已过时的 API。
+</span></span><span style="display:flex;"><span>注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> 个警告
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>3844/3844<span style="color:#f92672">]</span> STAMP obj/default.stamp
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ ls out/android_debug_unopt                                                                 <span style="color:#f92672">[</span>19:35:15<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>all.xcodeproj                                 flutter_embedding_debug-sources.jar.md5.stamp lib.stripped
+</span></span><span style="display:flex;"><span>args.gn                                       flutter_embedding_debug.jar                   libflutter.so
+</span></span><span style="display:flex;"><span>armeabi_v7a_debug.jar                         flutter_embedding_debug.jar.md5.stamp         libflutter.so.TOC
+</span></span><span style="display:flex;"><span>armeabi_v7a_debug.pom                         flutter_embedding_debug.pom                   obj
+</span></span><span style="display:flex;"><span>build.ninja                                   flutter_icu                                   toolchain.ninja
+</span></span><span style="display:flex;"><span>build.ninja.d                                 flutter_patched_sdk                           vm_outline_strong.dill
+</span></span><span style="display:flex;"><span>clang_x64                                     gen                                           vm_platform_strong.dill
+</span></span><span style="display:flex;"><span>flutter.jar                                   gyp-mac-tool                                  vm_platform_strong.dill.d
+</span></span><span style="display:flex;"><span>flutter_embedding_debug-sources.jar           icudtl.dat                                    zip_archives
+</span></span></code></pre></div><p>其中，<code>flutter_embedding_debug.jar</code>是Android嵌入层代码，<code>libflutter.so</code>是flutter的引擎层代码，通过这两个文件，可以在Android工程混合接入Flutter代码。</p>
+<h1 id="源码使用">源码使用</h1>
 <p>创建一个工程：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ pwd
-/Users/vimerzhao/WorkProject/flutter_source_code
-$ ls
-depot_tools flutter     src
-$ ./flutter/bin/flutter create flutter_demo
-Downloading Dart SDK from Flutter engine 5babba6c4d25fa237bbf755ab85c9a0c50b3c6ec...
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100  172M  100  172M    0     0  4381k      0  0:00:40  0:00:40 --:--:-- 4723k
-Building flutter tool...
-Downloading Material fonts...                                       0.5s
-Downloading Gradle Wrapper...                                       0.1s
-Downloading package sky_engine...                                   0.3s
-Downloading flutter_patched_sdk tools...                            2.7s
-Downloading flutter_patched_sdk_product tools...                    2.1s
-Downloading darwin-x64 tools...                                     8.2s
-Downloading libimobiledevice...                                     0.0s
-Downloading usbmuxd...                                              0.7s
-Downloading libplist...                                             0.0s
-Downloading openssl...                                              0.2s
-
-......
-Creating project flutter_demo...
-  flutter_demo/ios/Runner.xcworkspace/contents.xcworkspacedata (created)
-  flutter_demo/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist (created)
-
-  ......
-
-  flutter_demo/.idea/runConfigurations/main_dart.xml (created)
-  flutter_demo/.idea/libraries/Dart_SDK.xml (created)
-  flutter_demo/.idea/libraries/KotlinJavaRuntime.xml (created)
-  flutter_demo/.idea/modules.xml (created)
-  flutter_demo/.idea/workspace.xml (created)
-Running &#34;flutter pub get&#34; in flutter_demo...                        2.3s
-Wrote 71 files.
-
-All done!
-
-......
-
-Run &#34;flutter doctor&#34; for information about installing additional components.
-
-In order to run your application, type:
-
-  $ cd flutter_demo
-  $ flutter run</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>使用flutter并指定本地engine运行（不指定则会拉远程的、已经构建好的engine）。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$  ../flutter/bin/flutter run --local-engine-src-path ~/WorkProject/flutter_source_code/src --local-engine=android_debug_unopt
-No Flutter engine build found at /Users/vimerzhao/WorkProject/flutter_source_code/src/out/host_debug_unopt.
-
-$ ../flutter/bin/flutter run --local-engine-src-path ~/WorkProject/flutter_source_code/src --local-engine=host_debug_unopt
-Launching lib/main.dart on DUK AL20 in debug mode...
-Oops; flutter has exited unexpectedly: &#34;Invalid argument(s): Cannot find executable for
-/Users/vimerzhao/WorkProject/flutter_source_code/src/out/host_debug_unopt/dart-sdk/bin/dart.&#34;.
-A crash report has been written to /Users/vimerzhao/WorkProject/flutter_source_code/flutter_demo/flutter_02.log.
-...
-FAILURE: Build failed with an exception
-* Where:
-Script &#39;/Users/vimerzhao/WorkProject/flutter_source_code/flutter/packages/flutter_tools/gradle/flutter.gradle&#39; line: 904
-* What went wrong:
-Execution failed for task &#39;:app:compileFlutterBuildDebug&#39;.
-&gt; Process &#39;command &#39;/Users/vimerzhao/WorkProject/flutter_source_code/flutter/bin/flutter&#39;&#39; finished with non-zero exit value 1
-* Try:
-Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
-* Get more help at https://help.gradle.org
-BUILD FAILED in 1s
-Running Gradle task &#39;assembleDebug&#39;...
-Running Gradle task &#39;assembleDebug&#39;... Done                         1.8s
-https://git.io/JTDf0
-
-$../flutter/bin/flutter run --local-engine-src-path ~/WorkProject/flutter_source_code/src --local-engine=h
-ost_debug_unopt
-Launching lib/main.dart on DUK AL20 in debug mode...
-Error: Error when reading &#39;../src/out/host_debug_unopt/gen/frontend_server.dart.snapshot&#39;: No such file or directory
-the Dart compiler exited unexpectedly.
-the Dart compiler exited unexpectedly.
-Running Gradle task &#39;assembleDebug&#39;...</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>总的来说，遇到一些官方文档上没有提到的问题：</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ pwd
+</span></span><span style="display:flex;"><span>/Users/vimerzhao/WorkProject/flutter_source_code
+</span></span><span style="display:flex;"><span>$ ls
+</span></span><span style="display:flex;"><span>depot_tools flutter     src
+</span></span><span style="display:flex;"><span>$ ./flutter/bin/flutter create flutter_demo
+</span></span><span style="display:flex;"><span>Downloading Dart SDK from Flutter engine 5babba6c4d25fa237bbf755ab85c9a0c50b3c6ec...
+</span></span><span style="display:flex;"><span>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+</span></span><span style="display:flex;"><span>                                 Dload  Upload   Total   Spent    Left  Speed
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">100</span>  172M  <span style="color:#ae81ff">100</span>  172M    <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>  4381k      <span style="color:#ae81ff">0</span>  0:00:40  0:00:40 --:--:-- 4723k
+</span></span><span style="display:flex;"><span>Building flutter tool...
+</span></span><span style="display:flex;"><span>Downloading Material fonts...                                       0.5s
+</span></span><span style="display:flex;"><span>Downloading Gradle Wrapper...                                       0.1s
+</span></span><span style="display:flex;"><span>Downloading package sky_engine...                                   0.3s
+</span></span><span style="display:flex;"><span>Downloading flutter_patched_sdk tools...                            2.7s
+</span></span><span style="display:flex;"><span>Downloading flutter_patched_sdk_product tools...                    2.1s
+</span></span><span style="display:flex;"><span>Downloading darwin-x64 tools...                                     8.2s
+</span></span><span style="display:flex;"><span>Downloading libimobiledevice...                                     0.0s
+</span></span><span style="display:flex;"><span>Downloading usbmuxd...                                              0.7s
+</span></span><span style="display:flex;"><span>Downloading libplist...                                             0.0s
+</span></span><span style="display:flex;"><span>Downloading openssl...                                              0.2s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>......
+</span></span><span style="display:flex;"><span>Creating project flutter_demo...
+</span></span><span style="display:flex;"><span>  flutter_demo/ios/Runner.xcworkspace/contents.xcworkspacedata <span style="color:#f92672">(</span>created<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  flutter_demo/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist <span style="color:#f92672">(</span>created<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  ......
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  flutter_demo/.idea/runConfigurations/main_dart.xml <span style="color:#f92672">(</span>created<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  flutter_demo/.idea/libraries/Dart_SDK.xml <span style="color:#f92672">(</span>created<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  flutter_demo/.idea/libraries/KotlinJavaRuntime.xml <span style="color:#f92672">(</span>created<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  flutter_demo/.idea/modules.xml <span style="color:#f92672">(</span>created<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  flutter_demo/.idea/workspace.xml <span style="color:#f92672">(</span>created<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Running <span style="color:#e6db74">&#34;flutter pub get&#34;</span> in flutter_demo...                        2.3s
+</span></span><span style="display:flex;"><span>Wrote <span style="color:#ae81ff">71</span> files.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>All <span style="color:#66d9ef">done</span>!
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>......
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Run <span style="color:#e6db74">&#34;flutter doctor&#34;</span> <span style="color:#66d9ef">for</span> information about installing additional components.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>In order to run your application, type:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  $ cd flutter_demo
+</span></span><span style="display:flex;"><span>  $ flutter run
+</span></span></code></pre></div><p>使用flutter并指定本地engine运行（不指定则会拉远程的、已经构建好的engine）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$  ../flutter/bin/flutter run --local-engine-src-path ~/WorkProject/flutter_source_code/src --local-engine<span style="color:#f92672">=</span>android_debug_unopt
+</span></span><span style="display:flex;"><span>No Flutter engine build found at /Users/vimerzhao/WorkProject/flutter_source_code/src/out/host_debug_unopt.
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>$ ../flutter/bin/flutter run --local-engine-src-path ~/WorkProject/flutter_source_code/src --local-engine<span style="color:#f92672">=</span>host_debug_unopt
+</span></span><span style="display:flex;"><span>Launching lib/main.dart on DUK AL20 in debug mode...
+</span></span><span style="display:flex;"><span>Oops; flutter has exited unexpectedly: &#34;Invalid argument(s): Cannot find executable for
+</span></span><span style="display:flex;"><span>/Users/vimerzhao/WorkProject/flutter_source_code/src/out/host_debug_unopt/dart-sdk/bin/dart.&#34;.
+</span></span><span style="display:flex;"><span>A crash report has been written to /Users/vimerzhao/WorkProject/flutter_source_code/flutter_demo/flutter_02.log.
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>FAILURE: Build failed with an exception
+</span></span><span style="display:flex;"><span>* Where:
+</span></span><span style="display:flex;"><span>Script &#39;/Users/vimerzhao/WorkProject/flutter_source_code/flutter/packages/flutter_tools/gradle/flutter.gradle&#39; line: 904
+</span></span><span style="display:flex;"><span>* What went wrong:
+</span></span><span style="display:flex;"><span>Execution failed for task &#39;:app:compileFlutterBuildDebug&#39;.
+</span></span><span style="display:flex;"><span>&gt; Process <span style="color:#e6db74">&#39;command &#39;</span>/Users/vimerzhao/WorkProject/flutter_source_code/flutter/bin/flutter<span style="color:#e6db74">&#39;&#39;</span> finished with non-zero exit value <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>* Try:
+</span></span><span style="display:flex;"><span>Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+</span></span><span style="display:flex;"><span>* Get more help at https://help.gradle.org
+</span></span><span style="display:flex;"><span>BUILD FAILED in 1s
+</span></span><span style="display:flex;"><span>Running Gradle task &#39;assembleDebug&#39;...
+</span></span><span style="display:flex;"><span>Running Gradle task &#39;assembleDebug&#39;... Done                         1.8s
+</span></span><span style="display:flex;"><span>https://git.io/JTDf0
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>$../flutter/bin/flutter run --local-engine-src-path ~/WorkProject/flutter_source_code/src --local-engine<span style="color:#f92672">=</span>h
+</span></span><span style="display:flex;"><span>ost_debug_unopt
+</span></span><span style="display:flex;"><span>Launching lib/main.dart on DUK AL20 in debug mode...
+</span></span><span style="display:flex;"><span>Error: Error when reading &#39;../src/out/host_debug_unopt/gen/frontend_server.dart.snapshot&#39;: No such file or directory
+</span></span><span style="display:flex;"><span>the Dart compiler exited unexpectedly.
+</span></span><span style="display:flex;"><span>the Dart compiler exited unexpectedly.
+</span></span><span style="display:flex;"><span>Running Gradle task &#39;assembleDebug&#39;...
+</span></span></code></pre></div><p>总的来说，遇到一些官方文档上没有提到的问题：</p>
+<ol>
 <li>
-<p>输入<code>android_debug_unopt</code> 却提示找不到 <code>host_debug_unopt</code>，这个莫名其妙，只能先改一下之前构建的文件夹名称了。</p>
+<p>输入<code>android_debug_unopt</code> 却提示找不到
+<code>host_debug_unopt</code>，这个莫名其妙，只能先改一下之前构建的文件夹名称了。</p>
 </li>
 <li>
 <p>找不到<code>dart-sdk</code>，flutter会下载到<code>bin/cache</code>目录，只能自己手动copy一份到报错的目录。</p>
 </li>
 <li>
-<p>找不到<code>frontend_server.dart.snapshot</code>，在flutter目录用<code>find . -name &#34;frontend_server.dart.snapshot&#34;</code>找到，然后手动copy一份。</p>
+<p>找不到<code>frontend_server.dart.snapshot</code>，在flutter目录用<code>find</code> <code>.</code>
+<code>-name</code> <code>&quot;frontend_server.dart.snapshot&quot;</code>找到，然后手动copy一份。</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
 <p>解决这三个问题之后，终于可以运行了。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ ../flutter/bin/flutter run --local-engine-src-path ~/WorkProject/flutter_source_code/src --local-engine=host_debug_unopt
-Launching lib/main.dart on DUK AL20 in debug mode...
-Running Gradle task &#39;assembleDebug&#39;...
-Running Gradle task &#39;assembleDebug&#39;... Done                        18.1s
-✓ Built build/app/outputs/flutter-apk/app-debug.apk.
-Installing build/app/outputs/flutter-apk/app.apk...                 3.5s
-Waiting for DUK AL20 to report its views...                          8ms
-Syncing files to device DUK AL20...                                210ms
-Flutter run key commands.
-r Hot reload. 🔥🔥🔥
-R Hot restart.
-h Repeat this help message.
-d Detach (terminate &#34;flutter run&#34; but leave application running).
-c Clear the screen
-q Quit (terminate the application on the device).
-An Observatory debugger and profiler on DUK AL20 is available at: http://127.0.0.1:63146/LE7Uc6cshds=/
-D/AwareBitmapCacher(24977): handleInit switch not opened pid=24977
-
-Application finished.</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_总结">总结</h2>
-<div class="sectionbody">
-<div class="paragraph">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ ../flutter/bin/flutter run --local-engine-src-path ~/WorkProject/flutter_source_code/src --local-engine<span style="color:#f92672">=</span>host_debug_unopt
+</span></span><span style="display:flex;"><span>Launching lib/main.dart on DUK AL20 in debug mode...
+</span></span><span style="display:flex;"><span>Running Gradle task &#39;assembleDebug&#39;...
+</span></span><span style="display:flex;"><span>Running Gradle task &#39;assembleDebug&#39;... Done                        18.1s
+</span></span><span style="display:flex;"><span>✓ Built build/app/outputs/flutter-apk/app-debug.apk.
+</span></span><span style="display:flex;"><span>Installing build/app/outputs/flutter-apk/app.apk...                 3.5s
+</span></span><span style="display:flex;"><span>Waiting for DUK AL20 to report its views...                          8ms
+</span></span><span style="display:flex;"><span>Syncing files to device DUK AL20...                                210ms
+</span></span><span style="display:flex;"><span>Flutter run key commands.
+</span></span><span style="display:flex;"><span>r Hot reload. 🔥🔥🔥
+</span></span><span style="display:flex;"><span>R Hot restart.
+</span></span><span style="display:flex;"><span>h Repeat this help message.
+</span></span><span style="display:flex;"><span>d Detach (terminate &#34;flutter run&#34; but leave application running).
+</span></span><span style="display:flex;"><span>c Clear the screen
+</span></span><span style="display:flex;"><span>q Quit (terminate the application on the device).
+</span></span><span style="display:flex;"><span>An Observatory debugger and profiler on DUK AL20 is available at: http://127.0.0.1:63146/LE7Uc6cshds=/
+</span></span><span style="display:flex;"><span>D/AwareBitmapCacher(24977): handleInit switch not opened pid=24977
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>Application finished.
+</span></span></code></pre></div><h1 id="总结">总结</h1>
 <p>以上完成源码的获取与构建，那么：</p>
-</div>
-<div class="ulist">
 <ul>
 <li>
 <p>如何高效率的编辑源码？用Vim/VS Code还是Android Studio？</p>
@@ -546,70 +407,59 @@ Application finished.</code></pre>
 <p>如何修改框架层代码并重新编译？</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
 <p>等等。</p>
-</div>
-<div class="paragraph">
 <p>其实问题还有很多，后面再一一讲解。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_参考">参考</h2>
-<div class="sectionbody">
-<div class="ulist">
+<h1 id="参考">参考</h1>
 <ul>
 <li>
-<p><a href="http://gityuan.com/2019/08/03/flutter_engine_setup/">搭建Flutter Engine源码编译环境</a></p>
+<p><a href="http://gityuan.com/2019/08/03/flutter_engine_setup/">搭建Flutter
+Engine源码编译环境</a></p>
 </li>
 <li>
-<p><a href="https://fucknmb.com/2019/02/26/Flutter-Engine-%E7%BC%96%E8%AF%91%E6%8C%87%E5%8C%97/">Flutter Engine 编译指北</a></p>
+<p><a href="https://fucknmb.com/2019/02/26/Flutter-Engine-%E7%BC%96%E8%AF%91%E6%8C%87%E5%8C%97/">Flutter Engine
+编译指北</a></p>
 </li>
 <li>
-<p><a href="http://zhengxiaoyong.com/2019/03/16/Flutter-Engine%E4%B8%8ESDK%E7%9A%84%E5%AE%9A%E5%88%B6%E5%8C%96%E4%B8%8E%E7%BC%96%E8%AF%91/">Flutter Engine与SDK的定制化与编译</a></p>
+<p><a href="http://zhengxiaoyong.com/2019/03/16/Flutter-Engine%E4%B8%8ESDK%E7%9A%84%E5%AE%9A%E5%88%B6%E5%8C%96%E4%B8%8E%E7%BC%96%E8%AF%91/">Flutter
+Engine与SDK的定制化与编译</a></p>
 </li>
 <li>
-<p><a href="https://github.com/flutter/flutter/wiki/Setting-up-the-Engine-development-environment">Setting up the Engine development environment · flutter/flutter Wiki</a></p>
+<p><a href="https://github.com/flutter/flutter/wiki/Setting-up-the-Engine-development-environment">Setting up the Engine development environment · flutter/flutter
+Wiki</a></p>
 </li>
 <li>
-<p><a href="https://github.com/flutter/flutter/wiki/Compiling-the-engine">Compiling the engine · flutter/flutter Wiki</a></p>
+<p><a href="https://github.com/flutter/flutter/wiki/Compiling-the-engine">Compiling the engine · flutter/flutter
+Wiki</a></p>
 </li>
 <li>
-<p><a href="https://github.com/flutter/flutter/wiki/The-flutter-tool">The flutter tool · flutter/flutter Wiki</a></p>
+<p><a href="https://github.com/flutter/flutter/wiki/The-flutter-tool">The flutter tool · flutter/flutter
+Wiki</a></p>
 </li>
 <li>
-<p><a href="https://www.chromium.org/developers/how-tos/depottools">Using depot_tools - The Chromium Projects</a></p>
+<p><a href="https://www.chromium.org/developers/how-tos/depottools">Using depot_tools - The Chromium
+Projects</a></p>
 </li>
 <li>
-<p><a href="https://www.chromium.org/developers/how-tos/get-the-code/working-with-release-branches">Working with Release Branches - The Chromium Projects</a></p>
+<p><a href="https://www.chromium.org/developers/how-tos/get-the-code/working-with-release-branches">Working with Release Branches - The Chromium
+Projects</a></p>
 </li>
 <li>
-<p><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/cipd.md">CIPD for chromium dependencies</a></p>
+<p><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/cipd.md">CIPD for chromium
+dependencies</a></p>
 </li>
 <li>
-<p><a href="https://ninja-build.org/">Ninja, a small build system with a focus on speed</a></p>
+<p><a href="https://ninja-build.org/">Ninja, a small build system with a focus on
+speed</a></p>
 </li>
 <li>
 <p><a href="https://gn.googlesource.com/gn/">gn - Git at Google</a></p>
 </li>
 </ul>
-</div>
-<div class="quoteblock">
 <blockquote>
-<div class="paragraph">
-<p>更多相关内容可访问我的博客：http://vimerzhao.top/</p>
-</div>
-<div class="paragraph">
+<p>更多相关内容可访问我的博客：<a href="http://vimerzhao.top/">http://vimerzhao.top/</a></p>
 <p>或</p>
-</div>
-<div class="paragraph">
 <p>关注我的公众号:<code>V大师在一号线</code></p>
-</div>
 </blockquote>
-</div>
-</div>
-</div>
 
 		</div>
     <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
@@ -679,11 +529,11 @@ Application finished.</code></pre>
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
-			<li class="widget__item"><a class="widget__link" href="/articles/use-protobuf-in-cmake/">CMake使用Protobuf的正确姿势</a></li>
 		</ul>
 	</div>
 </div>
@@ -701,7 +551,11 @@ Application finished.</code></pre>
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
-				<span class="widget__counter widget__counter--bubble">2</span>
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
 				</li>
 		</ul>
 	</div>
@@ -709,11 +563,13 @@ Application finished.</code></pre>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMAKE">CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
@@ -721,7 +577,6 @@ Application finished.</code></pre>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言">编程语言 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>

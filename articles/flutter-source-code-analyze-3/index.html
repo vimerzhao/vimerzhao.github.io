@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/flutter-source-code-analyze-3/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2020-11-15T12:23:15+08:00" />
-<meta property="article:modified_time" content="2023-04-01T16:49:27+08:00" />
+<meta property="article:modified_time" content="2026-07-05T13:17:49+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Flutter源码剖析(三):Flutter-Android-Embedder启动流程"/>
 <meta name="twitter:description" content="概述 Flutter的启动包括Embedder、Engine、Framework三部分，本文仅描述Android平台的Embdder模块的启动流程。Flutter通常通过启动一个FlutterActiv"/>
@@ -113,103 +113,83 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-11-15T12:23:15&#43;08:00">2020-11-15</time>
-	<time class="meta__text" datetime="2023-04-01T16:49:27&#43;08:00">(最后修改: 2023-04-01)</time></div></div>
+	<time class="meta__text" datetime="2026-07-05T13:17:49&#43;08:00">(最后修改: 2026-07-05)</time></div></div>
 		</header>
 		
     <span style="color:grey; font-size: 0.9em">本文约 2500 字，阅读需 5 分钟。</span>
     <p/><div class="content post__content clearfix">
-			<div class="sect1">
-<h2 id="_概述">概述</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Flutter的启动包括Embedder、Engine、Framework三部分，本文仅描述Android平台的Embdder模块的启动流程。Flutter通常通过启动一个FlutterActivity启动，纯Flutter App则通过FlutterApplication启动。本文以后一种情况为例分析。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_flutterapplicationoncreate">FlutterApplication#onCreate</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">// io/flutter/app/FlutterApplication.java
-
-  @Override
-  @CallSuper
-  public void onCreate() {
-    super.onCreate();
-    FlutterInjector.instance().flutterLoader().startInitialization(this);
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>实际是调用<code>FlutterLoader#startInitialization</code>进行初始化。</p>
-</div>
-<div class="sect2">
-<h3 id="_flutterloaderstartinitialization">FlutterLoader#startInitialization</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">  public void startInitialization(@NonNull Context applicationContext) {
-    startInitialization(applicationContext, new Settings());
-  }
-
-  public void startInitialization(@NonNull Context applicationContext, @NonNull Settings settings) {
-    if (this.settings != null) {
-      return;
-    }
-    if (Looper.myLooper() != Looper.getMainLooper()) {
-      throw new IllegalStateException(&#34;startInitialization must be called on the main thread&#34;);
-    }
-
-    final Context appContext = applicationContext.getApplicationContext();
-
-    this.settings = settings;
-
-    initStartTimestampMillis = SystemClock.uptimeMillis();
-    flutterApplicationInfo = ApplicationInfoLoader.load(appContext);
-    VsyncWaiter.getInstance((WindowManager) appContext.getSystemService(Context.WINDOW_SERVICE))
-        .init();
-
-    // Use a background thread for initialization tasks that require disk access.
-    Callable&lt;InitResult&gt; initTask =
-        new Callable&lt;InitResult&gt;() {
-          @Override
-          public InitResult call() {
-            ResourceExtractor resourceExtractor = initResources(appContext);
-
-            if (FlutterInjector.instance().shouldLoadNative()) {
-              System.loadLibrary(&#34;flutter&#34;);
-            }
-
-            // Prefetch the default font manager as soon as possible on a background thread.
-            // It helps to reduce time cost of engine setup that blocks the platform thread.
-            Executors.newSingleThreadExecutor()
-                .execute(
-                    new Runnable() {
-                      @Override
-                      public void run() {
-                        FlutterJNI.nativePrefetchDefaultFontManager();
-                      }
-                    });
-
-            if (resourceExtractor != null) {
-              resourceExtractor.waitForCompletion();
-            }
-
-            return new InitResult(
-                PathUtils.getFilesDir(appContext),
-                PathUtils.getCacheDirectory(appContext),
-                PathUtils.getDataDirectory(appContext));
-          }
-        };
-    initResultFuture = Executors.newSingleThreadExecutor().submit(initTask);
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>主要做了以下几件事：</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
+			<h1 id="概述">概述</h1>
+<p>Flutter的启动包括Embedder、Engine、Framework三部分，本文仅描述Android平台的Embdder模块的启动流程。Flutter通常通过启动一个FlutterActivity启动，纯Flutter
+App则通过FlutterApplication启动。本文以后一种情况为例分析。</p>
+<h1 id="flutterapplicationoncreate">FlutterApplication#onCreate</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// io/flutter/app/FlutterApplication.java</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@CallSuper</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onCreate</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>.<span style="color:#a6e22e">onCreate</span>();
+</span></span><span style="display:flex;"><span>    FlutterInjector.<span style="color:#a6e22e">instance</span>().<span style="color:#a6e22e">flutterLoader</span>().<span style="color:#a6e22e">startInitialization</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>实际是调用<code>FlutterLoader#startInitialization</code>进行初始化。</p>
+<h2 id="flutterloaderstartinitialization">FlutterLoader#startInitialization</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">startInitialization</span>(<span style="color:#a6e22e">@NonNull</span> Context applicationContext) {
+</span></span><span style="display:flex;"><span>    startInitialization(applicationContext, <span style="color:#66d9ef">new</span> Settings());
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">startInitialization</span>(<span style="color:#a6e22e">@NonNull</span> Context applicationContext, <span style="color:#a6e22e">@NonNull</span> Settings settings) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">settings</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (Looper.<span style="color:#a6e22e">myLooper</span>() <span style="color:#f92672">!=</span> Looper.<span style="color:#a6e22e">getMainLooper</span>()) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException(<span style="color:#e6db74">&#34;startInitialization must be called on the main thread&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> Context appContext <span style="color:#f92672">=</span> applicationContext.<span style="color:#a6e22e">getApplicationContext</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">settings</span> <span style="color:#f92672">=</span> settings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    initStartTimestampMillis <span style="color:#f92672">=</span> SystemClock.<span style="color:#a6e22e">uptimeMillis</span>();
+</span></span><span style="display:flex;"><span>    flutterApplicationInfo <span style="color:#f92672">=</span> ApplicationInfoLoader.<span style="color:#a6e22e">load</span>(appContext);
+</span></span><span style="display:flex;"><span>    VsyncWaiter.<span style="color:#a6e22e">getInstance</span>((WindowManager) appContext.<span style="color:#a6e22e">getSystemService</span>(Context.<span style="color:#a6e22e">WINDOW_SERVICE</span>))
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">init</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Use a background thread for initialization tasks that require disk access.</span>
+</span></span><span style="display:flex;"><span>    Callable<span style="color:#f92672">&lt;</span>InitResult<span style="color:#f92672">&gt;</span> initTask <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> Callable<span style="color:#f92672">&lt;</span>InitResult<span style="color:#f92672">&gt;</span>() {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">public</span> InitResult <span style="color:#a6e22e">call</span>() {
+</span></span><span style="display:flex;"><span>            ResourceExtractor resourceExtractor <span style="color:#f92672">=</span> initResources(appContext);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (FlutterInjector.<span style="color:#a6e22e">instance</span>().<span style="color:#a6e22e">shouldLoadNative</span>()) {
+</span></span><span style="display:flex;"><span>              System.<span style="color:#a6e22e">loadLibrary</span>(<span style="color:#e6db74">&#34;flutter&#34;</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Prefetch the default font manager as soon as possible on a background thread.</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// It helps to reduce time cost of engine setup that blocks the platform thread.</span>
+</span></span><span style="display:flex;"><span>            Executors.<span style="color:#a6e22e">newSingleThreadExecutor</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">execute</span>(
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">new</span> Runnable() {
+</span></span><span style="display:flex;"><span>                      <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>                      <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>                        FlutterJNI.<span style="color:#a6e22e">nativePrefetchDefaultFontManager</span>();
+</span></span><span style="display:flex;"><span>                      }
+</span></span><span style="display:flex;"><span>                    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (resourceExtractor <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>              resourceExtractor.<span style="color:#a6e22e">waitForCompletion</span>();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> InitResult(
+</span></span><span style="display:flex;"><span>                PathUtils.<span style="color:#a6e22e">getFilesDir</span>(appContext),
+</span></span><span style="display:flex;"><span>                PathUtils.<span style="color:#a6e22e">getCacheDirectory</span>(appContext),
+</span></span><span style="display:flex;"><span>                PathUtils.<span style="color:#a6e22e">getDataDirectory</span>(appContext));
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>    initResultFuture <span style="color:#f92672">=</span> Executors.<span style="color:#a6e22e">newSingleThreadExecutor</span>().<span style="color:#a6e22e">submit</span>(initTask);
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>主要做了以下几件事：</p>
+<ol>
 <li>
 <p>检查是否在主线程</p>
 </li>
@@ -218,8 +198,7 @@
 </li>
 <li>
 <p>启动一个异步任务，执行以下操作：</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
+<ol>
 <li>
 <p>加载flutter engine</p>
 </li>
@@ -230,46 +209,30 @@
 <p>加载asset目录下的资源</p>
 </li>
 </ol>
-</div>
 </li>
 </ol>
-</div>
-<div class="paragraph">
 <p>以上是Application会执行的操作，接着一般会进入一个FlutterActivity，那么依次查看其回调。</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_flutteractivityoncreate">FlutterActivity#onCreate</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">// io/flutter/embedding/android/FlutterActivity.java
-
-  @Override
-  protected void onCreate(@Nullable Bundle savedInstanceState) {
-    switchLaunchThemeForNormalTheme();
-
-    super.onCreate(savedInstanceState);
-
-    lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE);
-
-    delegate = new FlutterActivityAndFragmentDelegate(this);
-    delegate.onAttach(this);
-    delegate.onActivityCreated(savedInstanceState);
-
-    configureWindowForTransparency();
-    setContentView(createFlutterView());
-    configureStatusBarForFullscreenFlutterExperience();
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>主要做了以下几件事：</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
+<h1 id="flutteractivityoncreate">FlutterActivity#onCreate</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// io/flutter/embedding/android/FlutterActivity.java</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onCreate</span>(<span style="color:#a6e22e">@Nullable</span> Bundle savedInstanceState) {
+</span></span><span style="display:flex;"><span>    switchLaunchThemeForNormalTheme();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>.<span style="color:#a6e22e">onCreate</span>(savedInstanceState);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    lifecycle.<span style="color:#a6e22e">handleLifecycleEvent</span>(Lifecycle.<span style="color:#a6e22e">Event</span>.<span style="color:#a6e22e">ON_CREATE</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    delegate <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FlutterActivityAndFragmentDelegate(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>    delegate.<span style="color:#a6e22e">onAttach</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>    delegate.<span style="color:#a6e22e">onActivityCreated</span>(savedInstanceState);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    configureWindowForTransparency();
+</span></span><span style="display:flex;"><span>    setContentView(createFlutterView());
+</span></span><span style="display:flex;"><span>    configureStatusBarForFullscreenFlutterExperience();
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>主要做了以下几件事：</p>
+<ol>
 <li>
 <p>从Splash切换成真正要显示的View</p>
 </li>
@@ -283,33 +246,24 @@
 <p>创建一个新的FlutterView，作为Activity的ContentView</p>
 </li>
 </ol>
-</div>
-<div class="sect2">
-<h3 id="_flutteractivityandfragmentdelegateonattach">FlutterActivityAndFragmentDelegate#onAttach</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">  void onAttach(@NonNull Context context) {
-    ensureAlive();
-    if (flutterEngine == null) {
-      setupFlutterEngine();
-    }
-
-    if (host.shouldAttachEngineToActivity()) {
-      Log.v(TAG, &#34;Attaching FlutterEngine to the Activity that owns this delegate.&#34;);
-      flutterEngine.getActivityControlSurface().attachToActivity(this, host.getLifecycle());
-    }
-
-    platformPlugin = host.providePlatformPlugin(host.getActivity(), flutterEngine);
-
-    host.configureFlutterEngine(flutterEngine);
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>主要做了以下几件事：</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
+<h2 id="flutteractivityandfragmentdelegateonattach">FlutterActivityAndFragmentDelegate#onAttach</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onAttach</span>(<span style="color:#a6e22e">@NonNull</span> Context context) {
+</span></span><span style="display:flex;"><span>    ensureAlive();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (flutterEngine <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>      setupFlutterEngine();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (host.<span style="color:#a6e22e">shouldAttachEngineToActivity</span>()) {
+</span></span><span style="display:flex;"><span>      Log.<span style="color:#a6e22e">v</span>(TAG, <span style="color:#e6db74">&#34;Attaching FlutterEngine to the Activity that owns this delegate.&#34;</span>);
+</span></span><span style="display:flex;"><span>      flutterEngine.<span style="color:#a6e22e">getActivityControlSurface</span>().<span style="color:#a6e22e">attachToActivity</span>(<span style="color:#66d9ef">this</span>, host.<span style="color:#a6e22e">getLifecycle</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    platformPlugin <span style="color:#f92672">=</span> host.<span style="color:#a6e22e">providePlatformPlugin</span>(host.<span style="color:#a6e22e">getActivity</span>(), flutterEngine);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    host.<span style="color:#a6e22e">configureFlutterEngine</span>(flutterEngine);
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>主要做了以下几件事：</p>
+<ol>
 <li>
 <p>设置FlutterEngine，一般是新建一个</p>
 </li>
@@ -323,119 +277,103 @@
 <p>engine初始化完毕，触发对应回调</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
 <p>其中，<code>FlutterActivityAndFragmentDelegate#setupFlutterEngine</code>行为比较复杂</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">  /* package */ void setupFlutterEngine() {
-    Log.v(TAG, &#34;Setting up FlutterEngine.&#34;);
-
-    // First, check if the host wants to use a cached FlutterEngine.
-    String cachedEngineId = host.getCachedEngineId();
-    if (cachedEngineId != null) {
-      flutterEngine = FlutterEngineCache.getInstance().get(cachedEngineId);
-      isFlutterEngineFromHost = true;
-      if (flutterEngine == null) {
-        throw new IllegalStateException(
-            &#34;The requested cached FlutterEngine did not exist in the FlutterEngineCache: &#39;&#34;
-                + cachedEngineId
-                + &#34;&#39;&#34;);
-      }
-      return;
-    }
-
-    // Second, defer to subclasses for a custom FlutterEngine.
-    flutterEngine = host.provideFlutterEngine(host.getContext());
-    if (flutterEngine != null) {
-      isFlutterEngineFromHost = true;
-      return;
-    }
-
-    Log.v(
-        TAG,
-        &#34;No preferred FlutterEngine was provided. Creating a new FlutterEngine for&#34;
-            + &#34; this FlutterFragment.&#34;);
-    flutterEngine =
-        new FlutterEngine(
-            host.getContext(),
-            host.getFlutterShellArgs().toArray(),
-            /*automaticallyRegisterPlugins=*/ false,
-            /*willProvideRestorationData=*/ host.shouldRestoreAndSaveState());
-    isFlutterEngineFromHost = false;
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>这里一般是第三种情况，直接新建一个Engine：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">  public FlutterEngine(
-      @NonNull Context context,
-      @Nullable FlutterLoader flutterLoader,
-      @NonNull FlutterJNI flutterJNI,
-      @NonNull PlatformViewsController platformViewsController,
-      @Nullable String[] dartVmArgs,
-      boolean automaticallyRegisterPlugins,
-      boolean waitForRestorationData) {
-    AssetManager assetManager;
-    try {
-      assetManager = context.createPackageContext(context.getPackageName(), 0).getAssets();
-    } catch (NameNotFoundException e) {
-      assetManager = context.getAssets();
-    }
-    this.dartExecutor = new DartExecutor(flutterJNI, assetManager);
-    this.dartExecutor.onAttachedToJNI();
-
-    accessibilityChannel = new AccessibilityChannel(dartExecutor, flutterJNI);
-    keyEventChannel = new KeyEventChannel(dartExecutor);
-    lifecycleChannel = new LifecycleChannel(dartExecutor);
-    localizationChannel = new LocalizationChannel(dartExecutor);
-    mouseCursorChannel = new MouseCursorChannel(dartExecutor);
-    navigationChannel = new NavigationChannel(dartExecutor);
-    platformChannel = new PlatformChannel(dartExecutor);
-    restorationChannel = new RestorationChannel(dartExecutor, waitForRestorationData);
-    settingsChannel = new SettingsChannel(dartExecutor);
-    systemChannel = new SystemChannel(dartExecutor);
-    textInputChannel = new TextInputChannel(dartExecutor);
-
-    this.localizationPlugin = new LocalizationPlugin(context, localizationChannel);
-
-    this.flutterJNI = flutterJNI;
-    if (flutterLoader == null) {
-      flutterLoader = FlutterInjector.instance().flutterLoader();
-    }
-    flutterLoader.startInitialization(context.getApplicationContext());
-    flutterLoader.ensureInitializationComplete(context, dartVmArgs);
-
-    flutterJNI.addEngineLifecycleListener(engineLifecycleListener);
-    flutterJNI.setPlatformViewsController(platformViewsController);
-    flutterJNI.setLocalizationPlugin(localizationPlugin);
-    attachToJni();
-
-    // TODO(mattcarroll): FlutterRenderer is temporally coupled to attach(). Remove that coupling if
-    // possible.
-    this.renderer = new FlutterRenderer(flutterJNI);
-
-    this.platformViewsController = platformViewsController;
-    this.platformViewsController.onAttachedToJNI();
-
-    this.pluginRegistry =
-        new FlutterEngineConnectionRegistry(context.getApplicationContext(), this, flutterLoader);
-
-    if (automaticallyRegisterPlugins) {
-      registerPlugins();
-    }
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>主要做了以下几件事：</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#75715e">/* package */</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setupFlutterEngine</span>() {
+</span></span><span style="display:flex;"><span>    Log.<span style="color:#a6e22e">v</span>(TAG, <span style="color:#e6db74">&#34;Setting up FlutterEngine.&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// First, check if the host wants to use a cached FlutterEngine.</span>
+</span></span><span style="display:flex;"><span>    String cachedEngineId <span style="color:#f92672">=</span> host.<span style="color:#a6e22e">getCachedEngineId</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (cachedEngineId <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>      flutterEngine <span style="color:#f92672">=</span> FlutterEngineCache.<span style="color:#a6e22e">getInstance</span>().<span style="color:#a6e22e">get</span>(cachedEngineId);
+</span></span><span style="display:flex;"><span>      isFlutterEngineFromHost <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (flutterEngine <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;The requested cached FlutterEngine did not exist in the FlutterEngineCache: &#39;&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">+</span> cachedEngineId
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#39;&#34;</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Second, defer to subclasses for a custom FlutterEngine.</span>
+</span></span><span style="display:flex;"><span>    flutterEngine <span style="color:#f92672">=</span> host.<span style="color:#a6e22e">provideFlutterEngine</span>(host.<span style="color:#a6e22e">getContext</span>());
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (flutterEngine <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>      isFlutterEngineFromHost <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Log.<span style="color:#a6e22e">v</span>(
+</span></span><span style="display:flex;"><span>        TAG,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;No preferred FlutterEngine was provided. Creating a new FlutterEngine for&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; this FlutterFragment.&#34;</span>);
+</span></span><span style="display:flex;"><span>    flutterEngine <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> FlutterEngine(
+</span></span><span style="display:flex;"><span>            host.<span style="color:#a6e22e">getContext</span>(),
+</span></span><span style="display:flex;"><span>            host.<span style="color:#a6e22e">getFlutterShellArgs</span>().<span style="color:#a6e22e">toArray</span>(),
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/*automaticallyRegisterPlugins=*/</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/*willProvideRestorationData=*/</span> host.<span style="color:#a6e22e">shouldRestoreAndSaveState</span>());
+</span></span><span style="display:flex;"><span>    isFlutterEngineFromHost <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>这里一般是第三种情况，直接新建一个Engine：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">FlutterEngine</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">@NonNull</span> Context context,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">@Nullable</span> FlutterLoader flutterLoader,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">@NonNull</span> FlutterJNI flutterJNI,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">@NonNull</span> PlatformViewsController platformViewsController,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">@Nullable</span> String<span style="color:#f92672">[]</span> dartVmArgs,
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">boolean</span> automaticallyRegisterPlugins,
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">boolean</span> waitForRestorationData) {
+</span></span><span style="display:flex;"><span>    AssetManager assetManager;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>      assetManager <span style="color:#f92672">=</span> context.<span style="color:#a6e22e">createPackageContext</span>(context.<span style="color:#a6e22e">getPackageName</span>(), 0).<span style="color:#a6e22e">getAssets</span>();
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (NameNotFoundException e) {
+</span></span><span style="display:flex;"><span>      assetManager <span style="color:#f92672">=</span> context.<span style="color:#a6e22e">getAssets</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dartExecutor</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DartExecutor(flutterJNI, assetManager);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dartExecutor</span>.<span style="color:#a6e22e">onAttachedToJNI</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    accessibilityChannel <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AccessibilityChannel(dartExecutor, flutterJNI);
+</span></span><span style="display:flex;"><span>    keyEventChannel <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> KeyEventChannel(dartExecutor);
+</span></span><span style="display:flex;"><span>    lifecycleChannel <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LifecycleChannel(dartExecutor);
+</span></span><span style="display:flex;"><span>    localizationChannel <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LocalizationChannel(dartExecutor);
+</span></span><span style="display:flex;"><span>    mouseCursorChannel <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MouseCursorChannel(dartExecutor);
+</span></span><span style="display:flex;"><span>    navigationChannel <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> NavigationChannel(dartExecutor);
+</span></span><span style="display:flex;"><span>    platformChannel <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PlatformChannel(dartExecutor);
+</span></span><span style="display:flex;"><span>    restorationChannel <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RestorationChannel(dartExecutor, waitForRestorationData);
+</span></span><span style="display:flex;"><span>    settingsChannel <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SettingsChannel(dartExecutor);
+</span></span><span style="display:flex;"><span>    systemChannel <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SystemChannel(dartExecutor);
+</span></span><span style="display:flex;"><span>    textInputChannel <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TextInputChannel(dartExecutor);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">localizationPlugin</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LocalizationPlugin(context, localizationChannel);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">flutterJNI</span> <span style="color:#f92672">=</span> flutterJNI;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (flutterLoader <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>      flutterLoader <span style="color:#f92672">=</span> FlutterInjector.<span style="color:#a6e22e">instance</span>().<span style="color:#a6e22e">flutterLoader</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    flutterLoader.<span style="color:#a6e22e">startInitialization</span>(context.<span style="color:#a6e22e">getApplicationContext</span>());
+</span></span><span style="display:flex;"><span>    flutterLoader.<span style="color:#a6e22e">ensureInitializationComplete</span>(context, dartVmArgs);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    flutterJNI.<span style="color:#a6e22e">addEngineLifecycleListener</span>(engineLifecycleListener);
+</span></span><span style="display:flex;"><span>    flutterJNI.<span style="color:#a6e22e">setPlatformViewsController</span>(platformViewsController);
+</span></span><span style="display:flex;"><span>    flutterJNI.<span style="color:#a6e22e">setLocalizationPlugin</span>(localizationPlugin);
+</span></span><span style="display:flex;"><span>    attachToJni();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// TODO(mattcarroll): FlutterRenderer is temporally coupled to attach(). Remove that coupling if</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// possible.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FlutterRenderer(flutterJNI);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">platformViewsController</span> <span style="color:#f92672">=</span> platformViewsController;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">platformViewsController</span>.<span style="color:#a6e22e">onAttachedToJNI</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">pluginRegistry</span> <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> FlutterEngineConnectionRegistry(context.<span style="color:#a6e22e">getApplicationContext</span>(), <span style="color:#66d9ef">this</span>, flutterLoader);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (automaticallyRegisterPlugins) {
+</span></span><span style="display:flex;"><span>      registerPlugins();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>主要做了以下几件事：</p>
+<ol>
 <li>
 <p>新建Dart运行环境DartExecutor</p>
 </li>
@@ -443,380 +381,303 @@
 <p>创建各种用于Flutter和Android通信的channel对象</p>
 </li>
 <li>
-<p>确认engine初始化完成（调用Native侧的初始化方法，执行Flutter engine的启动逻辑）</p>
+<p>确认engine初始化完成（调用Native侧的初始化方法，执行Flutter
+engine的启动逻辑）</p>
 </li>
 <li>
 <p>插件注册</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><code>flutterLoader.startInitialization</code>由于之前调用过，这里会直接返回。 <code>FlutterLoader#ensureInitializationComplete</code>则负责engine最后的准备工作：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">  public void ensureInitializationComplete(
-      @NonNull Context applicationContext, @Nullable String[] args) {
-    if (initialized) {
-      return;
-    }
-    if (Looper.myLooper() != Looper.getMainLooper()) {
-      throw new IllegalStateException(
-          &#34;ensureInitializationComplete must be called on the main thread&#34;);
-    }
-    if (settings == null) {
-      throw new IllegalStateException(
-          &#34;ensureInitializationComplete must be called after startInitialization&#34;);
-    }
-    try {
-      InitResult result = initResultFuture.get();
-
-      List&lt;String&gt; shellArgs = new ArrayList&lt;&gt;();
-      shellArgs.add(&#34;--icu-symbol-prefix=_binary_icudtl_dat&#34;);
-
-      shellArgs.add(
-          &#34;--icu-native-lib-path=&#34;
-              + flutterApplicationInfo.nativeLibraryDir
-              + File.separator
-              + DEFAULT_LIBRARY);
-      if (args != null) {
-        Collections.addAll(shellArgs, args);
-      }
-
-      String kernelPath = null;
-      if (BuildConfig.DEBUG || BuildConfig.JIT_RELEASE) {
-        String snapshotAssetPath =
-            result.dataDirPath + File.separator + flutterApplicationInfo.flutterAssetsDir;
-        kernelPath = snapshotAssetPath + File.separator + DEFAULT_KERNEL_BLOB;
-        shellArgs.add(&#34;--&#34; + SNAPSHOT_ASSET_PATH_KEY + &#34;=&#34; + snapshotAssetPath);
-        shellArgs.add(&#34;--&#34; + VM_SNAPSHOT_DATA_KEY + &#34;=&#34; + flutterApplicationInfo.vmSnapshotData);
-        shellArgs.add(
-            &#34;--&#34; + ISOLATE_SNAPSHOT_DATA_KEY + &#34;=&#34; + flutterApplicationInfo.isolateSnapshotData);
-      } else {
-        shellArgs.add(
-            &#34;--&#34; + AOT_SHARED_LIBRARY_NAME + &#34;=&#34; + flutterApplicationInfo.aotSharedLibraryName);
-
-        // Most devices can load the AOT shared library based on the library name
-        // with no directory path.  Provide a fully qualified path to the library
-        // as a workaround for devices where that fails.
-        shellArgs.add(
-            &#34;--&#34;
-                + AOT_SHARED_LIBRARY_NAME
-                + &#34;=&#34;
-                + flutterApplicationInfo.nativeLibraryDir
-                + File.separator
-                + flutterApplicationInfo.aotSharedLibraryName);
-      }
-
-      shellArgs.add(&#34;--cache-dir-path=&#34; + result.engineCachesPath);
-      if (!flutterApplicationInfo.clearTextPermitted) {
-        shellArgs.add(&#34;--disallow-insecure-connections&#34;);
-      }
-      if (flutterApplicationInfo.domainNetworkPolicy != null) {
-        shellArgs.add(&#34;--domain-network-policy=&#34; + flutterApplicationInfo.domainNetworkPolicy);
-      }
-      if (settings.getLogTag() != null) {
-        shellArgs.add(&#34;--log-tag=&#34; + settings.getLogTag());
-      }
-
-      long initTimeMillis = SystemClock.uptimeMillis() - initStartTimestampMillis;
-
-      if (FlutterInjector.instance().shouldLoadNative()) {
-        FlutterJNI.nativeInit(
-            applicationContext,
-            shellArgs.toArray(new String[0]),
-            kernelPath,
-            result.appStoragePath,
-            result.engineCachesPath,
-            initTimeMillis);
-      }
-
-      initialized = true;
-    } catch (Exception e) {
-      Log.e(TAG, &#34;Flutter initialization failed.&#34;, e);
-      throw new RuntimeException(e);
-    }
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>主要是拼接各种参数，最终调用了一个native方法，让engine执行自己的初始化逻辑。</p>
-</div>
-<div class="paragraph">
+<p><code>flutterLoader.startInitialization</code>由于之前调用过，这里会直接返回。
+<code>FlutterLoader#ensureInitializationComplete</code>则负责engine最后的准备工作：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ensureInitializationComplete</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">@NonNull</span> Context applicationContext, <span style="color:#a6e22e">@Nullable</span> String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (initialized) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (Looper.<span style="color:#a6e22e">myLooper</span>() <span style="color:#f92672">!=</span> Looper.<span style="color:#a6e22e">getMainLooper</span>()) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException(
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;ensureInitializationComplete must be called on the main thread&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (settings <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException(
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;ensureInitializationComplete must be called after startInitialization&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>      InitResult result <span style="color:#f92672">=</span> initResultFuture.<span style="color:#a6e22e">get</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> shellArgs <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>      shellArgs.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;--icu-symbol-prefix=_binary_icudtl_dat&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      shellArgs.<span style="color:#a6e22e">add</span>(
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;--icu-native-lib-path=&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">+</span> flutterApplicationInfo.<span style="color:#a6e22e">nativeLibraryDir</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">+</span> File.<span style="color:#a6e22e">separator</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">+</span> DEFAULT_LIBRARY);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (args <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>        Collections.<span style="color:#a6e22e">addAll</span>(shellArgs, args);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      String kernelPath <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (BuildConfig.<span style="color:#a6e22e">DEBUG</span> <span style="color:#f92672">||</span> BuildConfig.<span style="color:#a6e22e">JIT_RELEASE</span>) {
+</span></span><span style="display:flex;"><span>        String snapshotAssetPath <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>            result.<span style="color:#a6e22e">dataDirPath</span> <span style="color:#f92672">+</span> File.<span style="color:#a6e22e">separator</span> <span style="color:#f92672">+</span> flutterApplicationInfo.<span style="color:#a6e22e">flutterAssetsDir</span>;
+</span></span><span style="display:flex;"><span>        kernelPath <span style="color:#f92672">=</span> snapshotAssetPath <span style="color:#f92672">+</span> File.<span style="color:#a6e22e">separator</span> <span style="color:#f92672">+</span> DEFAULT_KERNEL_BLOB;
+</span></span><span style="display:flex;"><span>        shellArgs.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;--&#34;</span> <span style="color:#f92672">+</span> SNAPSHOT_ASSET_PATH_KEY <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;=&#34;</span> <span style="color:#f92672">+</span> snapshotAssetPath);
+</span></span><span style="display:flex;"><span>        shellArgs.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;--&#34;</span> <span style="color:#f92672">+</span> VM_SNAPSHOT_DATA_KEY <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;=&#34;</span> <span style="color:#f92672">+</span> flutterApplicationInfo.<span style="color:#a6e22e">vmSnapshotData</span>);
+</span></span><span style="display:flex;"><span>        shellArgs.<span style="color:#a6e22e">add</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;--&#34;</span> <span style="color:#f92672">+</span> ISOLATE_SNAPSHOT_DATA_KEY <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;=&#34;</span> <span style="color:#f92672">+</span> flutterApplicationInfo.<span style="color:#a6e22e">isolateSnapshotData</span>);
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        shellArgs.<span style="color:#a6e22e">add</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;--&#34;</span> <span style="color:#f92672">+</span> AOT_SHARED_LIBRARY_NAME <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;=&#34;</span> <span style="color:#f92672">+</span> flutterApplicationInfo.<span style="color:#a6e22e">aotSharedLibraryName</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Most devices can load the AOT shared library based on the library name</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// with no directory path.  Provide a fully qualified path to the library</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// as a workaround for devices where that fails.</span>
+</span></span><span style="display:flex;"><span>        shellArgs.<span style="color:#a6e22e">add</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;--&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">+</span> AOT_SHARED_LIBRARY_NAME
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;=&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">+</span> flutterApplicationInfo.<span style="color:#a6e22e">nativeLibraryDir</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">+</span> File.<span style="color:#a6e22e">separator</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">+</span> flutterApplicationInfo.<span style="color:#a6e22e">aotSharedLibraryName</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      shellArgs.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;--cache-dir-path=&#34;</span> <span style="color:#f92672">+</span> result.<span style="color:#a6e22e">engineCachesPath</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>flutterApplicationInfo.<span style="color:#a6e22e">clearTextPermitted</span>) {
+</span></span><span style="display:flex;"><span>        shellArgs.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;--disallow-insecure-connections&#34;</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (flutterApplicationInfo.<span style="color:#a6e22e">domainNetworkPolicy</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>        shellArgs.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;--domain-network-policy=&#34;</span> <span style="color:#f92672">+</span> flutterApplicationInfo.<span style="color:#a6e22e">domainNetworkPolicy</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (settings.<span style="color:#a6e22e">getLogTag</span>() <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>        shellArgs.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;--log-tag=&#34;</span> <span style="color:#f92672">+</span> settings.<span style="color:#a6e22e">getLogTag</span>());
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">long</span> initTimeMillis <span style="color:#f92672">=</span> SystemClock.<span style="color:#a6e22e">uptimeMillis</span>() <span style="color:#f92672">-</span> initStartTimestampMillis;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (FlutterInjector.<span style="color:#a6e22e">instance</span>().<span style="color:#a6e22e">shouldLoadNative</span>()) {
+</span></span><span style="display:flex;"><span>        FlutterJNI.<span style="color:#a6e22e">nativeInit</span>(
+</span></span><span style="display:flex;"><span>            applicationContext,
+</span></span><span style="display:flex;"><span>            shellArgs.<span style="color:#a6e22e">toArray</span>(<span style="color:#66d9ef">new</span> String<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>),
+</span></span><span style="display:flex;"><span>            kernelPath,
+</span></span><span style="display:flex;"><span>            result.<span style="color:#a6e22e">appStoragePath</span>,
+</span></span><span style="display:flex;"><span>            result.<span style="color:#a6e22e">engineCachesPath</span>,
+</span></span><span style="display:flex;"><span>            initTimeMillis);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      initialized <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>      Log.<span style="color:#a6e22e">e</span>(TAG, <span style="color:#e6db74">&#34;Flutter initialization failed.&#34;</span>, e);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>主要是拼接各种参数，最终调用了一个native方法，让engine执行自己的初始化逻辑。</p>
 <p>至此，<code>FlutterActivityAndFragmentDelegate#onAttach</code>的逻辑终于走完了。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_flutteractivityandfragmentdelegateonactivitycreated">FlutterActivityAndFragmentDelegate#onActivityCreated</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">  void onActivityCreated(@Nullable Bundle bundle) {
-    Log.v(TAG, &#34;onActivityCreated. Giving framework and plugins an opportunity to restore state.&#34;);
-    ensureAlive();
-
-    Bundle pluginState = null;
-    byte[] frameworkState = null;
-    if (bundle != null) {
-      pluginState = bundle.getBundle(PLUGINS_RESTORATION_BUNDLE_KEY);
-      frameworkState = bundle.getByteArray(FRAMEWORK_RESTORATION_BUNDLE_KEY);
-    }
-
-    if (host.shouldRestoreAndSaveState()) {
-      flutterEngine.getRestorationChannel().setRestorationData(frameworkState);
-    }
-
-    if (host.shouldAttachEngineToActivity()) {
-      flutterEngine.getActivityControlSurface().onRestoreInstanceState(pluginState);
-    }
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>状态恢复相关，一般无需关注。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_flutteractivitycreateflutterview">FlutterActivity#createFlutterView</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">  @NonNull
-  private View createFlutterView() {
-    return delegate.onCreateView(
-        null /* inflater */, null /* container */, null /* savedInstanceState */);
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>继续：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">  View onCreateView(
-      LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    Log.v(TAG, &#34;Creating FlutterView.&#34;);
-    ensureAlive();
-
-    if (host.getRenderMode() == RenderMode.surface) {
-      FlutterSurfaceView flutterSurfaceView =
-          new FlutterSurfaceView(
-              host.getActivity(), host.getTransparencyMode() == TransparencyMode.transparent);
-
-      host.onFlutterSurfaceViewCreated(flutterSurfaceView);
-
-      flutterView = new FlutterView(host.getActivity(), flutterSurfaceView);
-    } else {
-      FlutterTextureView flutterTextureView = new FlutterTextureView(host.getActivity());
-
-      host.onFlutterTextureViewCreated(flutterTextureView);
-
-      flutterView = new FlutterView(host.getActivity(), flutterTextureView);
-    }
-
-    flutterView.addOnFirstFrameRenderedListener(flutterUiDisplayListener);
-
-    flutterSplashView = new FlutterSplashView(host.getContext());
-    if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-      flutterSplashView.setId(View.generateViewId());
-    } else {
-      flutterSplashView.setId(486947586);
-    }
-    flutterSplashView.displayFlutterViewWithSplash(flutterView, host.provideSplashScreen());
-
-    Log.v(TAG, &#34;Attaching FlutterEngine to FlutterView.&#34;);
-    flutterView.attachToFlutterEngine(flutterEngine);
-
-    return flutterSplashView;
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>这里会根据不同mode，创建不同类型的FlutterView，这个View承载了Flutter的UI在Android端的显示。</p>
-</div>
-<div class="paragraph">
+<h2 id="flutteractivityandfragmentdelegateonactivitycreated">FlutterActivityAndFragmentDelegate#onActivityCreated</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onActivityCreated</span>(<span style="color:#a6e22e">@Nullable</span> Bundle bundle) {
+</span></span><span style="display:flex;"><span>    Log.<span style="color:#a6e22e">v</span>(TAG, <span style="color:#e6db74">&#34;onActivityCreated. Giving framework and plugins an opportunity to restore state.&#34;</span>);
+</span></span><span style="display:flex;"><span>    ensureAlive();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Bundle pluginState <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> frameworkState <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (bundle <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>      pluginState <span style="color:#f92672">=</span> bundle.<span style="color:#a6e22e">getBundle</span>(PLUGINS_RESTORATION_BUNDLE_KEY);
+</span></span><span style="display:flex;"><span>      frameworkState <span style="color:#f92672">=</span> bundle.<span style="color:#a6e22e">getByteArray</span>(FRAMEWORK_RESTORATION_BUNDLE_KEY);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (host.<span style="color:#a6e22e">shouldRestoreAndSaveState</span>()) {
+</span></span><span style="display:flex;"><span>      flutterEngine.<span style="color:#a6e22e">getRestorationChannel</span>().<span style="color:#a6e22e">setRestorationData</span>(frameworkState);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (host.<span style="color:#a6e22e">shouldAttachEngineToActivity</span>()) {
+</span></span><span style="display:flex;"><span>      flutterEngine.<span style="color:#a6e22e">getActivityControlSurface</span>().<span style="color:#a6e22e">onRestoreInstanceState</span>(pluginState);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>状态恢复相关，一般无需关注。</p>
+<h2 id="flutteractivitycreateflutterview">FlutterActivity#createFlutterView</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#a6e22e">@NonNull</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> View <span style="color:#a6e22e">createFlutterView</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> delegate.<span style="color:#a6e22e">onCreateView</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">null</span> <span style="color:#75715e">/* inflater */</span>, <span style="color:#66d9ef">null</span> <span style="color:#75715e">/* container */</span>, <span style="color:#66d9ef">null</span> <span style="color:#75715e">/* savedInstanceState */</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>继续：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  View <span style="color:#a6e22e">onCreateView</span>(
+</span></span><span style="display:flex;"><span>      LayoutInflater inflater, <span style="color:#a6e22e">@Nullable</span> ViewGroup container, <span style="color:#a6e22e">@Nullable</span> Bundle savedInstanceState) {
+</span></span><span style="display:flex;"><span>    Log.<span style="color:#a6e22e">v</span>(TAG, <span style="color:#e6db74">&#34;Creating FlutterView.&#34;</span>);
+</span></span><span style="display:flex;"><span>    ensureAlive();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (host.<span style="color:#a6e22e">getRenderMode</span>() <span style="color:#f92672">==</span> RenderMode.<span style="color:#a6e22e">surface</span>) {
+</span></span><span style="display:flex;"><span>      FlutterSurfaceView flutterSurfaceView <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">new</span> FlutterSurfaceView(
+</span></span><span style="display:flex;"><span>              host.<span style="color:#a6e22e">getActivity</span>(), host.<span style="color:#a6e22e">getTransparencyMode</span>() <span style="color:#f92672">==</span> TransparencyMode.<span style="color:#a6e22e">transparent</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      host.<span style="color:#a6e22e">onFlutterSurfaceViewCreated</span>(flutterSurfaceView);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      flutterView <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FlutterView(host.<span style="color:#a6e22e">getActivity</span>(), flutterSurfaceView);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      FlutterTextureView flutterTextureView <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FlutterTextureView(host.<span style="color:#a6e22e">getActivity</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      host.<span style="color:#a6e22e">onFlutterTextureViewCreated</span>(flutterTextureView);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      flutterView <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FlutterView(host.<span style="color:#a6e22e">getActivity</span>(), flutterTextureView);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    flutterView.<span style="color:#a6e22e">addOnFirstFrameRenderedListener</span>(flutterUiDisplayListener);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    flutterSplashView <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FlutterSplashView(host.<span style="color:#a6e22e">getContext</span>());
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (Build.<span style="color:#a6e22e">VERSION</span>.<span style="color:#a6e22e">SDK_INT</span> <span style="color:#f92672">&gt;=</span> Build.<span style="color:#a6e22e">VERSION_CODES</span>.<span style="color:#a6e22e">JELLY_BEAN_MR1</span>) {
+</span></span><span style="display:flex;"><span>      flutterSplashView.<span style="color:#a6e22e">setId</span>(View.<span style="color:#a6e22e">generateViewId</span>());
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      flutterSplashView.<span style="color:#a6e22e">setId</span>(486947586);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    flutterSplashView.<span style="color:#a6e22e">displayFlutterViewWithSplash</span>(flutterView, host.<span style="color:#a6e22e">provideSplashScreen</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Log.<span style="color:#a6e22e">v</span>(TAG, <span style="color:#e6db74">&#34;Attaching FlutterEngine to FlutterView.&#34;</span>);
+</span></span><span style="display:flex;"><span>    flutterView.<span style="color:#a6e22e">attachToFlutterEngine</span>(flutterEngine);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> flutterSplashView;
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>这里会根据不同mode，创建不同类型的FlutterView，这个View承载了Flutter的UI在Android端的显示。</p>
 <p>此外，会创建一个<code>FlutterSplashView</code>作为启动阶段的闪屏。</p>
-</div>
-<div class="paragraph">
 <p>最后，<code>FlutterView#attachToFlutterEngine</code>会把FlutterView和FlutterEngine关联起来：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">  public void attachToFlutterEngine(@NonNull FlutterEngine flutterEngine) {
-    Log.v(TAG, &#34;Attaching to a FlutterEngine: &#34; + flutterEngine);
-    if (isAttachedToFlutterEngine()) {
-      if (flutterEngine == this.flutterEngine) {
-        Log.v(TAG, &#34;Already attached to this engine. Doing nothing.&#34;);
-        return;
-      }
-      Log.v(
-          TAG,
-          &#34;Currently attached to a different engine. Detaching and then attaching&#34;
-              + &#34; to new engine.&#34;);
-      detachFromFlutterEngine();
-    }
-
-    this.flutterEngine = flutterEngine;
-
-    FlutterRenderer flutterRenderer = this.flutterEngine.getRenderer();
-    isFlutterUiDisplayed = flutterRenderer.isDisplayingFlutterUi();
-    renderSurface.attachToRenderer(flutterRenderer);
-    flutterRenderer.addIsDisplayingFlutterUiListener(flutterUiDisplayListener);
-
-    // in a way that Flutter understands.
-    if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.N) {
-      mouseCursorPlugin = new MouseCursorPlugin(this, this.flutterEngine.getMouseCursorChannel());
-    }
-    textInputPlugin =
-        new TextInputPlugin(
-            this,
-            this.flutterEngine.getTextInputChannel(),
-            this.flutterEngine.getPlatformViewsController());
-    localizationPlugin = this.flutterEngine.getLocalizationPlugin();
-    androidKeyProcessor =
-        new AndroidKeyProcessor(this, this.flutterEngine.getKeyEventChannel(), textInputPlugin);
-    androidTouchProcessor =
-        new AndroidTouchProcessor(this.flutterEngine.getRenderer(), /*trackMotionEvents=*/ false);
-    accessibilityBridge =
-        new AccessibilityBridge(
-            this,
-            flutterEngine.getAccessibilityChannel(),
-            (AccessibilityManager) getContext().getSystemService(Context.ACCESSIBILITY_SERVICE),
-            getContext().getContentResolver(),
-            this.flutterEngine.getPlatformViewsController());
-    accessibilityBridge.setOnAccessibilityChangeListener(onAccessibilityChangeListener);
-    resetWillNotDraw(
-        accessibilityBridge.isAccessibilityEnabled(),
-        accessibilityBridge.isTouchExplorationEnabled());
-
-    this.flutterEngine.getPlatformViewsController().attachAccessibilityBridge(accessibilityBridge);
-    this.flutterEngine
-        .getPlatformViewsController()
-        .attachToFlutterRenderer(this.flutterEngine.getRenderer());
-
-    textInputPlugin.getInputMethodManager().restartInput(this);
-
-    // Push View and Context related information from Android to Flutter.
-    sendUserSettingsToFlutter();
-    localizationPlugin.sendLocalesToFlutter(getResources().getConfiguration());
-    sendViewportMetricsToFlutter();
-
-    flutterEngine.getPlatformViewsController().attachToView(this);
-
-    // Notify engine attachment listeners of the attachment.
-    for (FlutterEngineAttachmentListener listener : flutterEngineAttachmentListeners) {
-      listener.onFlutterEngineAttachedToFlutterView(flutterEngine);
-    }
-
-    if (isFlutterUiDisplayed) {
-      flutterUiDisplayListener.onFlutterUiDisplayed();
-    }
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>这里主要是关联两个对象的字段，同时对一些必要的Plugin进行初始化。</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_flutteractivityonstart">FlutterActivity#onStart</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">  @Override
-  protected void onStart() {
-    super.onStart();
-    lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_START);
-    delegate.onStart();
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>核心逻辑在delegate里面：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">  void onStart() {
-    Log.v(TAG, &#34;onStart()&#34;);
-    ensureAlive();
-    doInitialFlutterViewRun();
-  }
-
-
-  private void doInitialFlutterViewRun() {
-    if (host.getCachedEngineId() != null) {
-      return;
-    }
-
-    if (flutterEngine.getDartExecutor().isExecutingDart()) {
-      return;
-    }
-    String initialRoute = host.getInitialRoute();
-    if (initialRoute == null) {
-      initialRoute = getInitialRouteFromIntent(host.getActivity().getIntent());
-    }
-    Log.v(
-        TAG,
-        &#34;Executing Dart entrypoint: &#34;
-            + host.getDartEntrypointFunctionName()
-            + &#34;, and sending initial route: &#34;
-            + initialRoute);
-
-    if (initialRoute != null) {
-      flutterEngine.getNavigationChannel().setInitialRoute(initialRoute);
-    }
-
-    String appBundlePathOverride = host.getAppBundlePath();
-    if (appBundlePathOverride == null || appBundlePathOverride.isEmpty()) {
-      appBundlePathOverride = FlutterInjector.instance().flutterLoader().findAppBundlePath();
-    }
-
-    DartExecutor.DartEntrypoint entrypoint =
-        new DartExecutor.DartEntrypoint(
-            appBundlePathOverride, host.getDartEntrypointFunctionName());
-    flutterEngine.getDartExecutor().executeDartEntrypoint(entrypoint);
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>可见其核心行为是启动dart虚拟机。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_flutteractivityonresume">FlutterActivity#onResume</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">  @Override
-  protected void onResume() {
-    super.onResume();
-    lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_RESUME);
-    delegate.onResume();
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>同样看delegate的代码：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">// io/flutter/embedding/android/FlutterActivityAndFragmentDelegate.java
-  void onResume() {
-    Log.v(TAG, &#34;onResume()&#34;);
-    ensureAlive();
-    flutterEngine.getLifecycleChannel().appIsResumed();
-  }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>这里向Flutter发送了一个通知，宿主Activity处于onResume状态了。</p>
-</div>
-<div class="paragraph">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">attachToFlutterEngine</span>(<span style="color:#a6e22e">@NonNull</span> FlutterEngine flutterEngine) {
+</span></span><span style="display:flex;"><span>    Log.<span style="color:#a6e22e">v</span>(TAG, <span style="color:#e6db74">&#34;Attaching to a FlutterEngine: &#34;</span> <span style="color:#f92672">+</span> flutterEngine);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (isAttachedToFlutterEngine()) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (flutterEngine <span style="color:#f92672">==</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">flutterEngine</span>) {
+</span></span><span style="display:flex;"><span>        Log.<span style="color:#a6e22e">v</span>(TAG, <span style="color:#e6db74">&#34;Already attached to this engine. Doing nothing.&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      Log.<span style="color:#a6e22e">v</span>(
+</span></span><span style="display:flex;"><span>          TAG,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;Currently attached to a different engine. Detaching and then attaching&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; to new engine.&#34;</span>);
+</span></span><span style="display:flex;"><span>      detachFromFlutterEngine();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">flutterEngine</span> <span style="color:#f92672">=</span> flutterEngine;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    FlutterRenderer flutterRenderer <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">flutterEngine</span>.<span style="color:#a6e22e">getRenderer</span>();
+</span></span><span style="display:flex;"><span>    isFlutterUiDisplayed <span style="color:#f92672">=</span> flutterRenderer.<span style="color:#a6e22e">isDisplayingFlutterUi</span>();
+</span></span><span style="display:flex;"><span>    renderSurface.<span style="color:#a6e22e">attachToRenderer</span>(flutterRenderer);
+</span></span><span style="display:flex;"><span>    flutterRenderer.<span style="color:#a6e22e">addIsDisplayingFlutterUiListener</span>(flutterUiDisplayListener);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// in a way that Flutter understands.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (Build.<span style="color:#a6e22e">VERSION</span>.<span style="color:#a6e22e">SDK_INT</span> <span style="color:#f92672">&gt;=</span> Build.<span style="color:#a6e22e">VERSION_CODES</span>.<span style="color:#a6e22e">N</span>) {
+</span></span><span style="display:flex;"><span>      mouseCursorPlugin <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MouseCursorPlugin(<span style="color:#66d9ef">this</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">flutterEngine</span>.<span style="color:#a6e22e">getMouseCursorChannel</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    textInputPlugin <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> TextInputPlugin(
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">flutterEngine</span>.<span style="color:#a6e22e">getTextInputChannel</span>(),
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">flutterEngine</span>.<span style="color:#a6e22e">getPlatformViewsController</span>());
+</span></span><span style="display:flex;"><span>    localizationPlugin <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">flutterEngine</span>.<span style="color:#a6e22e">getLocalizationPlugin</span>();
+</span></span><span style="display:flex;"><span>    androidKeyProcessor <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> AndroidKeyProcessor(<span style="color:#66d9ef">this</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">flutterEngine</span>.<span style="color:#a6e22e">getKeyEventChannel</span>(), textInputPlugin);
+</span></span><span style="display:flex;"><span>    androidTouchProcessor <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> AndroidTouchProcessor(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">flutterEngine</span>.<span style="color:#a6e22e">getRenderer</span>(), <span style="color:#75715e">/*trackMotionEvents=*/</span> <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>    accessibilityBridge <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> AccessibilityBridge(
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span>,
+</span></span><span style="display:flex;"><span>            flutterEngine.<span style="color:#a6e22e">getAccessibilityChannel</span>(),
+</span></span><span style="display:flex;"><span>            (AccessibilityManager) getContext().<span style="color:#a6e22e">getSystemService</span>(Context.<span style="color:#a6e22e">ACCESSIBILITY_SERVICE</span>),
+</span></span><span style="display:flex;"><span>            getContext().<span style="color:#a6e22e">getContentResolver</span>(),
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">flutterEngine</span>.<span style="color:#a6e22e">getPlatformViewsController</span>());
+</span></span><span style="display:flex;"><span>    accessibilityBridge.<span style="color:#a6e22e">setOnAccessibilityChangeListener</span>(onAccessibilityChangeListener);
+</span></span><span style="display:flex;"><span>    resetWillNotDraw(
+</span></span><span style="display:flex;"><span>        accessibilityBridge.<span style="color:#a6e22e">isAccessibilityEnabled</span>(),
+</span></span><span style="display:flex;"><span>        accessibilityBridge.<span style="color:#a6e22e">isTouchExplorationEnabled</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">flutterEngine</span>.<span style="color:#a6e22e">getPlatformViewsController</span>().<span style="color:#a6e22e">attachAccessibilityBridge</span>(accessibilityBridge);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">flutterEngine</span>
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">getPlatformViewsController</span>()
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">attachToFlutterRenderer</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">flutterEngine</span>.<span style="color:#a6e22e">getRenderer</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    textInputPlugin.<span style="color:#a6e22e">getInputMethodManager</span>().<span style="color:#a6e22e">restartInput</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Push View and Context related information from Android to Flutter.</span>
+</span></span><span style="display:flex;"><span>    sendUserSettingsToFlutter();
+</span></span><span style="display:flex;"><span>    localizationPlugin.<span style="color:#a6e22e">sendLocalesToFlutter</span>(getResources().<span style="color:#a6e22e">getConfiguration</span>());
+</span></span><span style="display:flex;"><span>    sendViewportMetricsToFlutter();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    flutterEngine.<span style="color:#a6e22e">getPlatformViewsController</span>().<span style="color:#a6e22e">attachToView</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Notify engine attachment listeners of the attachment.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (FlutterEngineAttachmentListener listener : flutterEngineAttachmentListeners) {
+</span></span><span style="display:flex;"><span>      listener.<span style="color:#a6e22e">onFlutterEngineAttachedToFlutterView</span>(flutterEngine);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (isFlutterUiDisplayed) {
+</span></span><span style="display:flex;"><span>      flutterUiDisplayListener.<span style="color:#a6e22e">onFlutterUiDisplayed</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>这里主要是关联两个对象的字段，同时对一些必要的Plugin进行初始化。</p>
+<h1 id="flutteractivityonstart">FlutterActivity#onStart</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onStart</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>.<span style="color:#a6e22e">onStart</span>();
+</span></span><span style="display:flex;"><span>    lifecycle.<span style="color:#a6e22e">handleLifecycleEvent</span>(Lifecycle.<span style="color:#a6e22e">Event</span>.<span style="color:#a6e22e">ON_START</span>);
+</span></span><span style="display:flex;"><span>    delegate.<span style="color:#a6e22e">onStart</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>核心逻辑在delegate里面：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onStart</span>() {
+</span></span><span style="display:flex;"><span>    Log.<span style="color:#a6e22e">v</span>(TAG, <span style="color:#e6db74">&#34;onStart()&#34;</span>);
+</span></span><span style="display:flex;"><span>    ensureAlive();
+</span></span><span style="display:flex;"><span>    doInitialFlutterViewRun();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doInitialFlutterViewRun</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (host.<span style="color:#a6e22e">getCachedEngineId</span>() <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (flutterEngine.<span style="color:#a6e22e">getDartExecutor</span>().<span style="color:#a6e22e">isExecutingDart</span>()) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    String initialRoute <span style="color:#f92672">=</span> host.<span style="color:#a6e22e">getInitialRoute</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (initialRoute <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>      initialRoute <span style="color:#f92672">=</span> getInitialRouteFromIntent(host.<span style="color:#a6e22e">getActivity</span>().<span style="color:#a6e22e">getIntent</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    Log.<span style="color:#a6e22e">v</span>(
+</span></span><span style="display:flex;"><span>        TAG,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Executing Dart entrypoint: &#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">+</span> host.<span style="color:#a6e22e">getDartEntrypointFunctionName</span>()
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;, and sending initial route: &#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">+</span> initialRoute);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (initialRoute <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>      flutterEngine.<span style="color:#a6e22e">getNavigationChannel</span>().<span style="color:#a6e22e">setInitialRoute</span>(initialRoute);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    String appBundlePathOverride <span style="color:#f92672">=</span> host.<span style="color:#a6e22e">getAppBundlePath</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (appBundlePathOverride <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">||</span> appBundlePathOverride.<span style="color:#a6e22e">isEmpty</span>()) {
+</span></span><span style="display:flex;"><span>      appBundlePathOverride <span style="color:#f92672">=</span> FlutterInjector.<span style="color:#a6e22e">instance</span>().<span style="color:#a6e22e">flutterLoader</span>().<span style="color:#a6e22e">findAppBundlePath</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    DartExecutor.<span style="color:#a6e22e">DartEntrypoint</span> entrypoint <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> DartExecutor.<span style="color:#a6e22e">DartEntrypoint</span>(
+</span></span><span style="display:flex;"><span>            appBundlePathOverride, host.<span style="color:#a6e22e">getDartEntrypointFunctionName</span>());
+</span></span><span style="display:flex;"><span>    flutterEngine.<span style="color:#a6e22e">getDartExecutor</span>().<span style="color:#a6e22e">executeDartEntrypoint</span>(entrypoint);
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>可见其核心行为是启动dart虚拟机。</p>
+<h1 id="flutteractivityonresume">FlutterActivity#onResume</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onResume</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>.<span style="color:#a6e22e">onResume</span>();
+</span></span><span style="display:flex;"><span>    lifecycle.<span style="color:#a6e22e">handleLifecycleEvent</span>(Lifecycle.<span style="color:#a6e22e">Event</span>.<span style="color:#a6e22e">ON_RESUME</span>);
+</span></span><span style="display:flex;"><span>    delegate.<span style="color:#a6e22e">onResume</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>同样看delegate的代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// io/flutter/embedding/android/FlutterActivityAndFragmentDelegate.java</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onResume</span>() {
+</span></span><span style="display:flex;"><span>    Log.<span style="color:#a6e22e">v</span>(TAG, <span style="color:#e6db74">&#34;onResume()&#34;</span>);
+</span></span><span style="display:flex;"><span>    ensureAlive();
+</span></span><span style="display:flex;"><span>    flutterEngine.<span style="color:#a6e22e">getLifecycleChannel</span>().<span style="color:#a6e22e">appIsResumed</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>这里向Flutter发送了一个通知，宿主Activity处于onResume状态了。</p>
 <p>以上，就是Android Embedder层的启动流程。</p>
-</div>
-</div>
-</div>
 
 		</div>
     <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
@@ -886,11 +747,11 @@
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
 			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
-			<li class="widget__item"><a class="widget__link" href="/articles/use-protobuf-in-cmake/">CMake使用Protobuf的正确姿势</a></li>
 		</ul>
 	</div>
 </div>
@@ -908,7 +769,11 @@
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
-				<span class="widget__counter widget__counter--bubble">2</span>
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
 				</li>
 		</ul>
 	</div>
@@ -916,11 +781,13 @@
 <div class="widget-taglist widget">
 	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMAKE">CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
@@ -928,7 +795,6 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言">编程语言 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
