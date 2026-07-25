@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>浅析初等贪吃蛇AI算法 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="浅析初等贪吃蛇AI算法" />
+<meta property="og:description" content="作为小学期程序设计训练大作业的一部分，也是自己之前思考过的一个问题，终于利用小学期完成了贪吃蛇AI的一次尝试，下作一总结。 背景介绍： 首先，我针对贪吃蛇AI这一关键词在百度和google上尽心了检索，大" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/2016-a-brief-analysis-of-the-elementary-snake-ai-algorithm/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2016-07-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-25T16:21:52+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="浅析初等贪吃蛇AI算法"/>
+<meta name="twitter:description" content="作为小学期程序设计训练大作业的一部分，也是自己之前思考过的一个问题，终于利用小学期完成了贪吃蛇AI的一次尝试，下作一总结。 背景介绍： 首先，我针对贪吃蛇AI这一关键词在百度和google上尽心了检索，大"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">浅析初等贪吃蛇AI算法</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-14T00:00:00Z">2016-07-14</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 1900 字，阅读需 4 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<p>作为小学期程序设计训练大作业的一部分，也是自己之前思考过的一个问题，终于利用小学期完成了贪吃蛇AI的一次尝试，下作一总结。</p>
+<h3 id="背景介绍">背景介绍：</h3>
+<p>首先，我针对<strong>贪吃蛇AI</strong>这一关键词在百度和google上尽心了检索，大致获得了一下信息</p>
+<p>1、A*寻路算法是人工智能中的一个经典算法，很多AI利用这个算法提高性能。</p>
+<p>2、在alphaGo一战成名，人工智能家喻户晓之后，有一个贪吃蛇AI吃满全屏的GIF图已读在微博疯转。</p>
+<p>3、这个GIF图早在2013年就已经出现了（其实比alphaGo早）。</p>
+<p>4、国内过于贪吃蛇AI(也就是百度得到的信息)的文章中比较有参考价值的只有两篇：<a href="http://www.hawstein.com/posts/snake-ai.html">如何用Python写一个贪吃蛇AI</a> 以及 <a href="http://www.2cto.com/kf/201402/282140.html">贪吃蛇 AI 的实现 snake AI</a>。但感觉这两篇的算法还是很初级的，我认为不能保证每次都吃满全屏。</p>
+<p>5、那张吃满全屏的GIF是一个俄罗斯人实现的（最后一段还出现了俄文），联想俄罗斯方块，大概俄罗斯程序员就喜欢写这些东西自娱自乐吧。</p>
+<p>6、仔细观察那张GIF，可以断定绝对不是简单的盲目搜索算法，肯定使用了比较高级的AI算法（从蛇吃食物的路径可窥探一二）。</p>
+<p>7、没有可以直接参考的代码，虽然有份python代码，但已经基本看不懂了。。。。</p>
+<h3 id="我的设计">我的设计：</h3>
+<p>首先，我的出发点是希望尽可能利用数据结构课上学到的知识解决这个问题，所以我没用A*（运行之后的效率还是很可观的），更没用其他高级的AI算法。其次，我希望尽量把问题集中在算法设计上（后来证明这个想法还是很明智的），所以放弃了用Java的Swing以及Java2D做图形界面的打算，直接控制台编程，使用C/C++编写代码（后来证明这个想法太愚蠢了）。</p>
+<p>这里直接写我的思路，如果看过上面两个链接的文章理解下面内容肯定更容易。如果没看，就记住两句话，蛇追着自己的尾巴走肯定就不会死，因为尾巴永远在留出空间。蛇每次只移动一步，因为局势时刻在变化。</p>
+<p>首先，分析蛇的状态无非以下三种：</p>
+<pre><code>1、能吃食物，吃完食物后还能找到尾巴，这时候就直接去吃食物。
+</code></pre>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/054a4fccb086342e2849-805eaf54b8aee53ed04e.png" alt=""></p>
+<pre><code>2、蛇不能吃食物，或者吃食物后找不到尾巴（找不到尾巴还去吃是不允许的，这回导致吃完后无路可走），这时候就跟着蛇尾巴走，走到能去吃食物为止（为什么能走到下面解释）。
+</code></pre>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/206891196e1a161ea19e-1172f12f56c95226ec39.png" alt=""></p>
+<pre><code>3、在状态2的前提下，尾巴都找不到，这时候只能随便走一步了（Wander，其实wander策略时这类游戏很重要的一种思想，我也是看过一些书之后才明白）。
+</code></pre>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/48d2151b2d0bf7e8cab7-0b854a394260a02e68b2.png" alt=""></p>
+<p>以上，也是我检索到的AI算法的核心部分，但是，在实践中，我发现很多细节这些文章都没有说清楚，实践起来是不允许有一点差错的，所以，结合自己的实践，对这几种情况做一下更详细的分析：</p>
+<pre><code>1、能吃食物，并且吃完之后能找到尾巴。这种情况只在蛇身较短的时候出现，而且这里吃完之后能找到尾巴，指的是沿最短路径去吃。或许，走最短路吃完食物找不到尾巴了，而走一条较长的路径能找到，但还是认为后一种不属于状态一，否则，编写代码将变得十分复杂。但是有时候，可能不止一个方向到食物的路径最短，这时候可以用类似蒙特卡洛法随机选择方向，可以提高吃完食物后找到尾巴的可能性，实践证明也确实如此。
+
+2、追着尾巴走，也是又讲究的，首先，要保证走完这一步后还能继续找到尾巴，这是基本前提，其次，如果两个方向都能找到尾巴，应该选择离食物较远的方向（注意不是离食物较近或者离尾巴较近），应为只有这样，才能保证留出了足够空间给蛇去吃食物。
+
+3、在我查阅的文章中Wander的策略都是比较简单的随机，但是，我觉得用DFS找出一条比较深的路，按这条路走比较好，但是注意不能贴着墙完全按最深路走，否则会导致蛇无法回头，像这样。
+</code></pre>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/ea7ca980a75f5cc802e5-14a202f21d1d39ef1b4a.png" alt=""></p>
+<p>这样，这个算法就可以写成一下伪代码：</p>
+<pre tabindex="0"><code> 1 if 可以吃食物
+ 2         if 虚拟蛇沿规则最短路吃食物后能找到尾巴
+ 3                 真实蛇移动一步
+ 4                 重新判断
+ 5         else if 虚拟蛇沿不规则最短路去吃食物能找到尾巴
+ 6                 真实蛇移动一步
+ 7                 重新判断
+ 8 else if 可知到达自己的尾巴并且移动一步已让可以到达自己尾巴
+ 9         选择离食物最远的位置移动
+10         重新判断
+11 else
+12         DFS向最深的路径移动一步
+</code></pre><p>纸上得来终觉浅，理解这个算法最好的方式还是实践！实践之后才发现，吃满全屏并不是想象的那么容易，从博弈的角度来看，蛇的信息始终是不完全的，所以，必须有更优秀的算法，才能解决这一问题，除非到一定长度开始沿一条可以遍历所有位置的路径循环反复的绕，但这样太没意思了。记得貌似就有一个比赛是关于AI贪吃蛇的，但确实没检索到太多信息。希望以后还有机会研究出更优的算法。</p>
+<h3 id="demo">demo：</h3>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/e8a09de4aae49f202f5e-4e53b560cadf8e34bd36.gif" alt=""></p>
+<h3 id="源代码获取">源代码获取：</h3>
+<p><strong><a href="https://github.com/zhaoyu1995/ClassicGameForPratice/tree/master/AI-Snake">点这里</a></strong></p>
+
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/2016-data-structure-algorithm-c-language-implementation-32-9-1-static-lookup-table/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">数据结构算法C语言实现（三十二）--- 9.1静态查找表</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/articles/2016-records-of-some-minor-problems-in-building-android-development-environment/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">Android开发环境搭建中的一些小问题记录</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

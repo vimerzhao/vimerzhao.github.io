@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>C语言实现贪吃蛇源码 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="C语言实现贪吃蛇源码" />
+<meta property="og:description" content="先放效果 源代码 //2016-2-12 //zhaoyu //Gmail:zhaoyu1995.com@gmail.com //Language: C //Platform:Code::Blocks #include &lt;stdio.h&gt; #include &lt;windows.h&gt; #include &lt;stdlib.h&gt; #include &lt;time.h&gt; typedef struct snake { int x; int y; struct snake *next; }Snake; int X, Y; enum STATUS{Up = 1, Down, Left, Right}; Snake *pHead, *pBody;//the head of the snake enum STATUS Direction; int score=0, scorePerFood=10; int gameStatus = 0; int timeInterval = 200; void gameEnd(void); void setPosition(int x, int y) { COORD pos; HANDLE hOutput; pos.X = x; pos.Y = y; hOutput = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleCursorPosition(hOutput, pos); } void hideCursor() { CONSOLE_CURSOR_INFO cursor_info = { 1, 0 }; SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;cursor_info);" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/2016-c-language-to-implement-snake-source-code/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2016-03-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-25T16:21:52+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="C语言实现贪吃蛇源码"/>
+<meta name="twitter:description" content="先放效果 源代码 //2016-2-12 //zhaoyu //Gmail:zhaoyu1995.com@gmail.com //Language: C //Platform:Code::Blocks #include &lt;stdio.h&gt; #include &lt;windows.h&gt; #include &lt;stdlib.h&gt; #include &lt;time.h&gt; typedef struct snake { int x; int y; struct snake *next; }Snake; int X, Y; enum STATUS{Up = 1, Down, Left, Right}; Snake *pHead, *pBody;//the head of the snake enum STATUS Direction; int score=0, scorePerFood=10; int gameStatus = 0; int timeInterval = 200; void gameEnd(void); void setPosition(int x, int y) { COORD pos; HANDLE hOutput; pos.X = x; pos.Y = y; hOutput = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleCursorPosition(hOutput, pos); } void hideCursor() { CONSOLE_CURSOR_INFO cursor_info = { 1, 0 }; SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;cursor_info);"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">C语言实现贪吃蛇源码</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-03-20T00:00:00Z">2016-03-20</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 1100 字，阅读需 3 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<p>先放效果</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/3421e42a94afd3f58cda-06ef642b4eb46444a956.png" alt=""></p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/31db5f32b0518281a07a-de9a72a806928074ca0c.png" alt=""></p>
+<p>源代码</p>
+<pre tabindex="0"><code>//2016-2-12
+//zhaoyu
+//Gmail:zhaoyu1995.com@gmail.com
+//Language: C
+//Platform:Code::Blocks
+#include &lt;stdio.h&gt;
+#include &lt;windows.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+
+typedef struct snake
+{
+    int x;
+    int y;
+    struct snake *next;
+}Snake;
+int X, Y;
+enum STATUS{Up = 1, Down, Left, Right};
+
+Snake *pHead, *pBody;//the head of the snake
+
+enum STATUS Direction;
+int score=0, scorePerFood=10;
+int gameStatus = 0;
+int timeInterval = 200;
+void gameEnd(void);
+void setPosition(int x, int y)
+{
+    COORD pos;
+    HANDLE hOutput;
+    pos.X = x;
+    pos.Y = y;
+    hOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleCursorPosition(hOutput, pos);
+}
+void hideCursor()
+{
+	CONSOLE_CURSOR_INFO cursor_info = { 1, 0 };
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;cursor_info);
+}
+void creatInterface(void)
+{
+    int i;
+    for(i=0;i&lt;58;i+=2)
+    {
+        setPosition(i,0);
+        printf(&#34;¡ö&#34;);//a ¡ö occupy two character space
+        setPosition(i,26);
+        printf(&#34;¡ö&#34;);
+    }
+    for(i=1;i&lt;26;i++)
+    {
+        setPosition(0,i);
+        printf(&#34;¡ö&#34;);
+        setPosition(56,i);
+        printf(&#34;¡ö&#34;);
+    }
+    setPosition(65, 10);
+    printf(&#34;Introduction&#34;);
+    setPosition(63,12);
+    printf(&#34;¡ü\tMove up.&#34;);
+    setPosition(63,14);
+    printf(&#34;¡ý\tMove Down.&#34;);
+    setPosition(63,16);
+    printf(&#34;¡û\tMove left.&#34;);
+    setPosition(63,18);
+    printf(&#34;¡ú\tMove right.&#34;);
+    setPosition(63,20);
+    printf(&#34;F1\tSpeed up.&#34;);
+    setPosition(63, 22);
+    printf(&#34;F2\tSlow down.&#34;);
+    setPosition(63, 24);
+    printf(&#34;Space\tGame pause.&#34;);
+    setPosition(63,26);
+    printf(&#34;ESC\tQuit the game.&#34;);
+    setPosition(63, 4);
+    printf(&#34;Score:&#34;);
+    setPosition(63, 6);
+    printf(&#34;Score Per Food:&#34;);
+}
+void initializeSnake(void)
+{
+    Snake *pTail;
+    int i;
+    pTail = (Snake *)malloc(sizeof(Snake));
+    pTail-&gt;x = 24;
+    pTail-&gt;y = 5;
+    pTail-&gt;next = NULL;
+    for (i = 1; i &lt; 4; i++)
+    {
+        pHead = (Snake *)malloc(sizeof(Snake));
+        pHead-&gt;next = pTail;
+        pHead-&gt;x = 24 + 2*i;
+        pHead-&gt;y = 5;
+        pTail = pHead;//Important
+    }
+    while (pTail != NULL)
+    {
+        setPosition(pTail-&gt;x, pTail-&gt;y);
+        printf(&#34;¡ö&#34;);
+        pTail = pTail-&gt;next;
+    }
+}
+int biteSelf(void)
+{
+    Snake *pSelf = pHead-&gt;next;
+    while (pSelf != NULL)
+    {
+        if (pHead-&gt;x==pSelf-&gt;x &amp;&amp; pHead-&gt;y==pSelf-&gt;y)
+        {
+            return 1;
+        }
+        pSelf = pSelf-&gt;next;
+    }
+    return 0;
+}
+void creatFood(void)
+{
+    int flag = 0;
+    X = Y = 4;
+    srand((unsigned)time(NULL));
+    do{
+        X = rand()%52 + 2;
+        Y = rand()%24 + 1;
+
+        if (X%2 != 0)
+        {
+            flag = 1;
+        }
+        else
+        {
+            flag = 0;
+        }//Important
+        pBody = pHead;
+        while (pBody-&gt;next != NULL)
+        {
+            if(pBody-&gt;x==X &amp;&amp; pBody-&gt;y==Y)
+            {
+                flag = 1;
+            }
+            pBody = pBody-&gt;next;
+        }
+    }while(flag==1);
+    setPosition(X, Y);
+    printf(&#34;¡ö&#34;);
+}
+
+void hitWall(void)
+{
+    if (pHead-&gt;x==0 || pHead-&gt;x&gt;=56 || pHead-&gt;y==0 || pHead-&gt;y&gt;=26)
+    {
+        gameStatus = 1;
+        gameEnd();
+    }
+}
+void snakeMove(void)
+{
+    Snake *pNextHead;
+    hitWall();
+
+    pNextHead = (Snake *)malloc(sizeof(Snake));
+    pNextHead-&gt;next = pHead;
+    switch(Direction)
+    {
+    case Up:
+        pNextHead-&gt;x = pHead-&gt;x;
+        pNextHead-&gt;y = pHead-&gt;y - 1;
+        break;
+    case Down:
+        pNextHead-&gt;x = pHead-&gt;x;
+        pNextHead-&gt;y = pHead-&gt;y + 1;
+        break;
+    case Right:
+        pNextHead-&gt;x = pHead-&gt;x + 2;
+        pNextHead-&gt;y = pHead-&gt;y;
+        break;
+    case Left:
+        pNextHead-&gt;x = pHead-&gt;x - 2;
+        pNextHead-&gt;y = pHead-&gt;y;
+        break;
+    default:
+        break;
+    }
+    pHead = pNextHead;
+    pBody = pHead;
+    if (pNextHead-&gt;x == X &amp;&amp; pNextHead-&gt;y == Y)
+    {
+        while (pBody != NULL)
+        {
+            setPosition(pBody-&gt;x, pBody-&gt;y);
+            printf(&#34;¡ö&#34;);
+            pBody = pBody-&gt;next;
+        }
+        score += scorePerFood;
+        creatFood();
+    }
+    else
+    {
+        setPosition(pBody-&gt;x, pBody-&gt;y);
+        printf(&#34;¡ö&#34;);
+        while (pBody-&gt;next-&gt;next != NULL)
+        {
+            pBody = pBody-&gt;next;
+        }
+        setPosition(pBody-&gt;next-&gt;x, pBody-&gt;next-&gt;y);
+        printf(&#34;  &#34;);
+        free(pBody-&gt;next);
+        pBody-&gt;next = NULL;
+    }
+    if (biteSelf() == 1)
+    {
+        gameStatus = 2;
+        gameEnd();
+    }
+}
+void pause(void)
+{
+    while(1)
+    {
+        Sleep(300);
+        if(GetAsyncKeyState(VK_SPACE))
+        {
+            break;
+        }
+    }
+}
+void gameCircle(void)
+{
+    Direction = Right;
+    while (1)
+    {
+        setPosition(72, 4);
+        printf(&#34;%d&#34;, score);
+        setPosition(80, 6);
+        printf(&#34;%d &#34;, scorePerFood);//Attention space is needed
+        if (GetAsyncKeyState(VK_UP) &amp;&amp; Direction!=Down)
+        {
+            Direction = Up;
+        }
+        else if (GetAsyncKeyState(VK_DOWN) &amp;&amp; Direction!=Up)
+        {
+            Direction = Down;
+        }
+        else if (GetAsyncKeyState(VK_LEFT) &amp;&amp; Direction!=Right)
+        {
+            Direction = Left;
+        }
+        else if (GetAsyncKeyState(VK_RIGHT) &amp;&amp; Direction!=Left)
+        {
+            Direction = Right;
+        }
+        else if (GetAsyncKeyState(VK_SPACE))
+        {
+            pause();
+        }
+        else if (GetAsyncKeyState(VK_ESCAPE))
+        {
+            gameStatus = 3;
+            break;
+        }
+        else if (GetAsyncKeyState(VK_F1))
+        {
+            if(timeInterval &gt;= 70)
+            {
+                timeInterval -= 60;
+            }
+        }
+        else if (GetAsyncKeyState(VK_F2))
+        {
+            if (timeInterval &lt;= 400)
+            {
+                timeInterval += 60;
+            }
+
+        }
+        switch (timeInterval)
+        {
+            case 20: scorePerFood = 20;break;
+            case 80: scorePerFood = 15;break;
+            case 140: scorePerFood = 12;break;
+            case 200: scorePerFood = 10;break;
+            case 260: scorePerFood = 8;break;
+            case 320: scorePerFood = 6;break;
+            case 380: scorePerFood = 4;break;
+            case 440: scorePerFood = 2;break;
+            default: scorePerFood = 0;break;
+        }
+        Sleep(timeInterval);
+        snakeMove();
+    }
+}
+void welcomePage(void)
+{
+    setPosition(35,2);
+	printf(&#34;Welcome to Snake&#34;);
+	setPosition(15, 5);
+	printf(&#34;Rules:&#34;);
+	setPosition(15, 7);
+	printf(&#34;1.  Use ¡ü.¡ý.¡û.¡ú to control the movement of the Snake.&#34;);
+	setPosition(15, 9);
+	printf(&#34;2.  Biting the snake itself is forbidden.&#34;);
+	setPosition(15, 11);
+	printf(&#34;3.  Hit the wall is forbidden.&#34;);
+	setPosition(15, 13);
+	printf(&#34;Developeder:  zhaoyu.&#34;);
+    setPosition(15, 15);
+    printf(&#34;Blog:  http://blog.csdn.net/sinat_30046339&#34;);
+    setPosition(28, 23);
+    printf(&#34;Press any key to continue...&#34;);
+	setPosition(0, 28);
+	getchar();
+	system(&#34;cls&#34;);
+}
+void gameEnd(void)
+{
+    system(&#34;cls&#34;);
+    setPosition(32, 10);
+    switch(gameStatus)
+    {
+    case 1:
+        printf(&#34;You hit the wall!&#34;);
+        break;
+    case 2:
+        printf(&#34;You bit yourself!&#34;);
+        break;
+    case 3:
+        printf(&#34;You chose to end the game.&#34;);
+        break;
+    default:
+        break;
+    }
+    setPosition(32, 14);
+    printf(&#34;Your final score is   %d&#34;, score);
+    getchar();
+    setPosition(0, 25);
+    exit(0);
+}
+void gameStart(void)
+{
+	system(&#34;mode con cols=100 lines=30&#34;);//no space around equal sign
+	welcomePage();
+	creatInterface();
+	initializeSnake();
+	creatFood();
+}
+
+
+//Main Function
+int main(void)
+{
+    hideCursor();
+	gameStart();
+	gameCircle();
+	gameEnd();
+	return 0;
+}
+</code></pre>
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/2016-working-completely-with-linux-author-wang-yin/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">《完全用Linux工作》作者：王垠</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/articles/2016-poj-question-classification-reprinted/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">POJ  题目分类（转载）</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta name="generator" content="Hugo 0.124.1">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="编程 职场">
+		<meta property="og:title" content="赵裕的博客" />
+<meta property="og:description" content="编程 职场" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="/" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="赵裕的博客"/>
+<meta name="twitter:description" content="编程 职场"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="alternate" type="application/rss+xml" href="/index.xml" title="赵裕的博客">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main list" role="main">
+	<article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/articles/2016-poj-2457-part-acquisition/" rel="bookmark">
+			POJ 2457 Part Acquisition
+			</a>
+		</h2>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-12T00:00:00Z">2016-08-12</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		第一反应是BFS,比较直观，但是输出路径写的不是很熟练，此外，习惯不好，“==”写成了“=”，所以常量一定放前面！ 1 #include &lt;cstdio&gt; 2 #include &lt;queue&gt; 3 #include &lt;cstring&gt; 4 using namespace std; 5 int N, K; 6 typedef struct node 7 { 8 int in, out; 9 int pos; 10 }Link; 11 const int maxn = 50005; 12 bool vis[maxn]; 13 Link
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/articles/2016-poj-2457-part-acquisition/">阅读全文…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/articles/2016-poj2456-aggressive-cows/" rel="bookmark">
+			POJ2456 Aggressive cows
+			</a>
+		</h2>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-12T00:00:00Z">2016-08-12</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Aggressive cows 二分，关键是转化为二分！ 1 #include &lt;cstdio&gt; 2 #include &lt;algorithm&gt; 3 const int maxn = 1000000005; 4 const int maxN = 100005; 5 6 int N, C; 7 int a[maxN]; 8 using namespace std; 9 bool judge(int x) { 10 int s = 0; 11 for (int i = 1; i &lt; C;i++) { 12 int ctr = s+1; 13 while (ctr &lt; N &amp;&amp; (a[ctr]-a[s] &lt; x)) { 14 ctr++; 15 } 16 if (ctr==N) { 17 return false; 18 } 19 s = ctr; 20 } 21 return
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/articles/2016-poj2456-aggressive-cows/">阅读全文…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/articles/2016-gcd-xor-acm-icpc-dhaka-2013-uva12716/" rel="bookmark">
+			GCD XOR, ACM/ICPC Dhaka 2013, UVa12716
+			</a>
+		</h2>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-09T00:00:00Z">2016-08-09</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		不同的枚举方法，效率完全不同。值得记录一下！ 1 #include &lt;cstdio&gt; 2 #include &lt;cstring&gt; 3 int t, a, b, c, n, cas = 0, count = 0; 4 int cnt[30000000]; 5 void pre() { 6 count = 0; 7 memset(cnt, 0, sizeof(cnt)); 8 9 for (a = 1; a &lt;= 30000000; a++) { 10 for (c = 1; c &lt; a; c++) { 11 if (a%c == 0 &amp;&amp; ((a-c)^a)==c) { 12 count++; 13 } 14 } 15 cnt[a-1] = count; 16 } 17 18 }
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/articles/2016-gcd-xor-acm-icpc-dhaka-2013-uva12716/">阅读全文…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/articles/2016-irrelevant-elements-acm-icpc-neerc-2004-uva1635/" rel="bookmark">
+			Irrelevant Elements, ACM/ICPC NEERC 2004, UVa1635
+			</a>
+		</h2>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-09T00:00:00Z">2016-08-09</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		这种题目最重要的是思路了清晰 1 #include &lt;cstdio&gt; 2 #include &lt;cstring&gt; 3 const int maxn = 100005;//sqrt(n)+1 is enough 4 5 int fac[100][2]; 6 int fac_c[100]; 7 int a[maxn]; 8 void factor(int m) { 9 int&amp; num = fac[0][0]; 10 num = 0; 11 for (int i = 2; i*i &lt;= m; i++) { 12 if(m%i == 0) { 13 fac[++num][0] = i; 14 fac[num][1] = 0; 15 do { 16 fac[num][1]++; 17 m/= i; 18 } while(m%i == 0); 19 } 20 } 21 if (m &gt; 1) { 22
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/articles/2016-irrelevant-elements-acm-icpc-neerc-2004-uva1635/">阅读全文…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/articles/2016-java-naming-conventions/" rel="bookmark">
+			Java命名约定
+			</a>
+		</h2>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-09T00:00:00Z">2016-08-09</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		类名 类名应该是名词， 描述对象。应该按照驼峰式写法，即只有每个单词首字母大写。 接口名称 接口名称应该是形容词，描述功能。应该以“able”、“ible”结尾，否则应该是名词。通常遵循和类名写相同的大小约定
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/articles/2016-java-naming-conventions/">阅读全文…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/articles/2016-unification-of-shortcut-keys-summary-on-the-use-of-development-tools/" rel="bookmark">
+			快捷键的大一统-------开发工具使用总结
+			</a>
+		</h2>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-09T00:00:00Z">2016-08-09</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		使用多个开发工具自后，会发现，每个开发工具的快捷键或多或少有些差异。但是幸好快捷键一般都是可以定制的。所以决定以Sublime为参照，来设置如Eclipse之类的IDE，当然了，不是全部修改，遇到一个
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/articles/2016-unification-of-shortcut-keys-summary-on-the-use-of-development-tools/">阅读全文…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/articles/2016-java-multithreading-practice/" rel="bookmark">
+			Java多线程实践
+			</a>
+		</h2>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-05T00:00:00Z">2016-08-05</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		1.实现Runnable接口 1 import java.util.Random; 2 3 4 public class PrintTask implements Runnable{ 5 private final int sleepTime; 6 private final String taskName; 7 private final static Random generator = new Random(); 8 9 10 public PrintTask(String name) { 11 taskName = name; 12 sleepTime = generator.nextInt(5000); 13 } 14 15 @Override 16 public void run() { 17 try { 18 System.out.printf(&#34;%s going to Sleep for %d milliseconds.\n&#34;, 19 taskName, sleepTime); 20 Thread.sleep(sleepTime); 21 } catch (InterruptedException e) { 22 System.out.printf(&#34;%s %s\n&#34;, taskName, &#34;terminated prematurely&#34; + 23 &#34;
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/articles/2016-java-multithreading-practice/">阅读全文…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/articles/2016-eclipse-code-auto-completion-configuration-method/" rel="bookmark">
+			Eclipse 代码自动补全配置方法
+			</a>
+		</h2>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-26T00:00:00Z">2016-07-26</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Eclipse默认只有在出现 “.”时才进行代码提示，更改方法为： 即把“.”改为“.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ”，表示输入任
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/articles/2016-eclipse-code-auto-completion-configuration-method/">阅读全文…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/articles/2016-examples-of-chapter-7-of-the-purple-book-violent-solution-method/" rel="bookmark">
+			紫书第七章例题（暴力求解法）
+			</a>
+		</h2>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-26T00:00:00Z">2016-07-26</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		1.除法（Division, UVa 725） #include &lt;cstdio&gt; #include &lt;cstring&gt; bool isOk(int a, int b){ char buff[20]; int visited[15]; memset(visited, 0, sizeof(visited)); sprintf(buff, &#34;%05d%05d&#34;, a, b); for (int i =0; i &lt; 10; i++){ int temp = buff[i] - &#39;0&#39;; if (0 == visited[temp]){ visited[temp]++; } else { return false; } } return true; } int main(void){ int N, cnt = 0; bool flag = false; for (;scanf(&#34;%d&#34;, &amp;N) &amp;&amp; N;){ if (cnt &gt; 0){ printf(&#34;\n&#34;); } cnt++; flag = false; for (int i = 1234; i&lt;
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/articles/2016-examples-of-chapter-7-of-the-purple-book-violent-solution-method/">阅读全文…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/articles/2016-recommended-pdf-readers-under-linux/" rel="bookmark">
+			Linux下pdf阅读器推荐
+			</a>
+		</h2>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-23T00:00:00Z">2016-07-23</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		由于需要在pdf文件上做标记，所以自带的文档查看器根本满足了需求，之前去网上查了查，Okular评价挺高，就安装了一个，确实能基本满足我的需求，但是 1.界面感觉还是不太友好，书签栏一直在那。 2.而且，
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/articles/2016-recommended-pdf-readers-under-linux/">阅读全文…</a>
+	</div>
+</article>
+</main>
+
+<div class="pagination">
+	<a class="pagination__item pagination__item--prev btn" href="/page/30/">«</a>
+	<span class="pagination__item pagination__item--current">31/38</span>
+	<a class="pagination__item pagination__item--next btn" href="/page/32/">»</a>
+</div>
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

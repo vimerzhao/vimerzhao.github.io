@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>字符串匹配------回顾大一时的一份代码 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="字符串匹配------回顾大一时的一份代码" />
+<meta property="og:description" content="说明 这是大一下的一份代码，当时不会用github，所以一直没妥善保存，直到最近清理360云盘时才重见天日，现在看来，这份代码水平很低，毕竟的当时也是刚刚接触C语言，当时作为一个非CS专业，指针甚至都不" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/2016-string-matching-reviewing-a-code-from-my-freshman-year/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2016-11-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-25T16:21:52+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="字符串匹配------回顾大一时的一份代码"/>
+<meta name="twitter:description" content="说明 这是大一下的一份代码，当时不会用github，所以一直没妥善保存，直到最近清理360云盘时才重见天日，现在看来，这份代码水平很低，毕竟的当时也是刚刚接触C语言，当时作为一个非CS专业，指针甚至都不"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">字符串匹配------回顾大一时的一份代码</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-11-08T00:00:00Z">2016-11-08</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 2200 字，阅读需 5 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<h1 id="说明">说明</h1>
+<p>这是大一下的一份代码，当时不会用github，所以一直没妥善保存，直到最近清理360云盘时才重见天日，现在看来，这份代码水平很低，毕竟的当时也是刚刚接触C语言，当时作为一个非CS专业，指针甚至都不讲，基本都是自学。但记忆中，正是这份代码，让我体会到编程的快乐，开始了今后的编程之路。故此整理，以作纪念。</p>
+<h1 id="问题">问题</h1>
+<p>这是当时的一个数模比赛题目，以下是原题：</p>
+<blockquote>
+<p><strong>1.1</strong> <strong>背景资料与条件</strong></p>
+<p>给定一个DNA序列,这个序列只含有4个字母A、T、C、G,如S=”CTGTACTGTAT”.给定一个数值k,从S的第一个位置开始,取一连续k个字母的短串,称之为k-mer(如k=5,则此短串为CTGTA),然后从S的第二个位置,取另一k-mer(如k=5,则此短串为TGTAC),这样直至S的末端,就得到一个集合,包含全部k-mer.如对序列S来说,所有5-mer为{CTGTA,TGTAC,GTACT,TACTG,ACTGT,TGTAT}.这就是所谓的DNA序列的k-mer index问题.</p>
+<p>通常这些k-mer需一种数据索引方法,可被后面的操作快速访问.例如,对5-mer来说,当查询CTGTA，通过这种数据索引方法,可返回其在DNA序列S中的位置为{1,6}.</p>
+<p><strong>1.2</strong> <strong>需要解决的问题</strong></p>
+<p>现在以文件形式给定100万个DNA序列,序列编号为1-1000000,每个基因序列长度为100.</p>
+<p>(1)要求对给定k,给出并实现一种数据索引方法,可返回任意一个k-mer所在的DNA序列编号和相应序列中出现的位置.每次建立索引,只需支持一个k值即可,不需要支持全部k值.</p>
+<p>(2)要求索引一旦建立,查询速度尽量快,所用内存尽量小.</p>
+<p>(3)给出建立索引所用的计算复杂度,和空间复杂度分析.</p>
+<p>(4)给出使用索引查询的计算复杂度,和空间复杂度分析.</p>
+<p>(5)假设内存限制为8GB,分析所设计索引方法所能支持的最大k值和相应数据查询效率.</p>
+<p>(6)按重要性由高到低排列,将依据以下几点,来评价索引方法性能</p>
+<p>a.索引查询速度</p>
+<p>b.索引内存使用</p>
+<p>c.8G内存下,所能支持的k值范围</p>
+<p>d.建立索引时间</p>
+</blockquote>
+<p>记得当时说要用哈希表，但当时什么都不懂，直接暴搜了。</p>
+<p>大意就是从下面的100万个数据中找出指定的基因串</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/badc53831f660baffa6d-5a62126dab009c9cce0c.png" alt=""></p>
+<p>当时的思路就是找到数据特征（这是当时的难点）然后分离，然后搜索就简单了</p>
+<h1 id="代码">代码</h1>
+<pre tabindex="0"><code># include &#34;stdio.h&#34;
+# include &#34;stdlib.h&#34;//stdlib 头文件即standard library标准库头文件。stdlib.h里面定义了五种类型、一些宏和通用工具函数。
+# include &#34;time.h&#34;
+
+# define N 60
+
+void PreIndex();//建立索引文本,目录文本
+void DeepInfo1();//关键信息提取
+void Search();//进行查找
+long DeepInfo2();
+int main()
+{
+
+    //PreIndex();
+    //DeepInfo();
+    Search();
+
+    printf(&#34;结束&#34;);
+    return 0;
+}
+
+
+void PreIndex()
+{
+    FILE * fpIndex, * fpCatalog, * fpsource1, * fpsource2;//定义四个指针，分别指向目标文件和两个附件个指针，分别指向目标文件和两个附件
+    fpCatalog = fopen(&#34;Catalog.txt&#34;,&#34;w&#34;);
+    fpIndex = fopen(&#34;Index.txt&#34;,&#34;w&#34;);//目标文件指针指向目标文件
+    if ((fpsource1=fopen(&#34;solexa_100_170_1.fa&#34;,&#34;r&#34;)) == NULL)
+    {
+        printf(&#34;Can&#39;t open the solexa_100_170_1.fa!\n&#34;);
+        getchar();
+        exit(-1);
+    }
+    //if做出判断的同时也指明了指针的指向
+    if ((fpsource2=fopen(&#34;solexa_100_170_2.fa&#34;,&#34;r&#34;)) == NULL)
+    {
+        printf(&#34;Can&#39;t open the solexa_100_170_2.fa!\n&#34;);
+        getchar();
+        exit(-1);
+    }
+    int i;
+    char ch;
+    char str[101];//VC中是不能在中间定义变量的，所以这个代码必须在c99标准下编译
+
+    for (i=0; i&lt;500000; i++)//通过循环从第一个附件中读取50万个数据
+    {
+        while ((ch=fgetc(fpsource1)) &amp;&amp; (ch&lt;&#39;A&#39; || ch&gt;&#39;T&#39;))
+            putc(ch,fpCatalog);
+
+        fputc(ch,fpIndex);
+        fgets(str,101,fpsource1);
+        fputs(str,fpIndex);
+    }
+        //while (ch=fgetc(fpsource1) &amp;&amp; (ch&lt;&#39;A&#39; || ch&gt;&#39;T&#39;));这样是不对的，为什么说不清
+        //这一句好好理解，即读取的字符ASCII码不是ATCG时就不执行操作（注意while后面直接加分号表示不执行操作）
+        //执行while时包含了一个先对ch赋值的操作，每执行while文件位置指针都会后移一个，注意理解
+
+    for (i=0; i&lt;500000; i++)//通过循环从第一个附件中读取50万个数据
+    {
+        while ((ch=fgetc(fpsource2)) &amp;&amp; (ch&lt;&#39;A&#39; || ch&gt;&#39;T&#39;))
+            putc(ch,fpCatalog);
+
+        fputc(ch,fpIndex);
+        fgets(str,101,fpsource2);
+        fputs(str,fpIndex);
+    }
+    fclose(fpCatalog);
+    fclose(fpIndex);
+    fclose(fpsource1);
+    fclose(fpsource2);
+
+}
+
+void DeepInfo1()
+{
+    FILE * fp,* fp0;
+    char ch;
+    int i = 0,j = 0;
+    fp = fopen(&#34;Catalog.txt&#34;, &#34;r&#34;);
+    fp0 = fopen(&#34;DeepCatalog.txt&#34;, &#34;w&#34;);
+    while ((ch = fgetc(fp)) &amp;&amp; ch != EOF)
+    {
+        if (ch == &#39;0&#39;)//1
+        {
+            ch = fgetc(fp);
+            if (ch == &#39;0&#39;)//2
+            {
+                ch = fgetc(fp);
+                if(ch == &#39;0&#39;)//3
+                {
+                    ch = fgetc(fp);
+                    if (ch == &#39;0&#39;)//4
+                    {
+                        ch = fgetc(fp);
+                        if(ch == &#39;0&#39;)//5
+                            ch = fgetc(fp);
+                            if(ch == &#39;0&#39;)//6
+                                ch = fgetc(fp);
+                                if(ch == &#39;0&#39;)//7
+                                {
+                                    ch = fgetc(fp);
+                                    ch = fgetc(fp);
+                                    do{
+                                        fputc(ch,fp0);
+                                        ch = fgetc(fp);
+                                    }while(ch != &#39; &#39;);
+                                    fputc(&#39;\n&#39;,fp0);
+                                }
+
+                    }
+                }
+            }
+        }
+
+    }
+    fclose(fp);
+
+}
+void Search()
+{
+    FILE * fpIndex = fopen(&#34;Index.txt&#34;,&#34;r&#34;);
+    FILE * fpDeepInfo = fopen(&#34;DeepInfo.txt&#34;,&#34;r&#34;);
+    int i = 0,j = -1,n = 0,m = 0, y = -1,v = 0,x = 0,key = 0,q = 0,w = 1;
+    char s[105],p[N];
+    int loc[100];//loc位location位置数组
+
+    printf(&#34;请输入长度为%d的模式串\n&#34;, N);
+    scanf(&#34;%s&#34;, p);
+    for(i=0; i&lt;1000000; i++)
+    {
+        fgets(s,105    ,fpIndex);
+        while(q&lt;(100-N+1))
+        {
+            if(s[n] == p[m])
+            {
+                n++;
+                m++;
+                if (m == N)
+                {
+
+                    n = n - N + 1;
+                    m = 0;
+                    q = n;
+                    j = n;
+                    y++;
+
+                    loc[y] = n;
+                }
+            }
+            else
+            {
+                n = n - m +1;
+                q = n;
+                m = 0;
+            }
+        }
+        n = 0;
+        q = 0;
+        m = 0;
+
+        if(j != -1)
+        {
+            if(i&gt;=500000)
+                w = 2;
+
+            key = DeepInfo2(i);
+            printf(&#34;&gt;read_170_%d_%d random_genome_10000000 %d 100\n&#34;, i+1, w, key);//1还是2，加判断
+            printf(&#34;{&#34;);
+            for(v=0;v&lt;(y+1);v++)
+                printf(&#34;%d, &#34;, loc[v]);
+            printf(&#34;\b\b}\n&#34;);
+            y = -1;
+        }
+        j = -1;
+    }
+
+
+    fclose(fpIndex);
+    fclose(fpDeepInfo);
+}
+
+long DeepInfo2(int i)
+{
+    long key,j,a;
+    FILE * fp;
+    fp = fopen(&#34;DeepCatalog.txt&#34;,&#34;r&#34;);
+    a = i;
+    for (j=0;j&lt;a;j++)
+        fscanf(fp,&#34;%*ld&#34;,&amp;key);
+
+    fscanf(fp,&#34;%ld&#34;,&amp;key);
+    fclose(fp);
+    return key;
+}
+
+//void IndexArray()
+//{}
+//void Search()
+//{}
+</code></pre><h1 id="效果">效果</h1>
+<p>可惜当时没有截图，只是复制了命令行内容：</p>
+<blockquote>
+<p><strong>CGAGCCTCCCAAAGGGTTATGTTCCTGAGATGGAAAAACCTACTCGTAACAAACCA&lt;回车&gt;</strong></p>
+<p><strong>&gt;read_170_127073_1 random_genome_10000000 3750232 100</strong></p>
+<p><strong>{40}</strong></p>
+<p><strong>&gt;read_170_405491_1 random_genome_10000000 3750200 100</strong></p>
+<p><strong>{8}</strong></p>
+<p><strong>&gt;read_170_686709_2 random_genome_10000000 3750228 100</strong></p>
+<p><strong>{36}</strong></p>
+<p><strong>&gt;read_170_694436_2 random_genome_10000000 3750202 100</strong></p>
+<p><strong>{10}</strong></p>
+<p><strong>&gt;read_170_740517_2 random_genome_10000000 3750218 100</strong></p>
+<p><strong>{26}</strong></p>
+<p><strong>&gt;read_170_842871_2 random_genome_10000000 3750211 100</strong></p>
+<p><strong>{19}</strong></p>
+<p><strong>&gt;read_170_882664_2 random_genome_10000000 3750224 100</strong></p>
+<p><strong>{32}</strong></p>
+</blockquote>
+<p>可以看一下</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/a2a7fe16cc44aad9b298-b3f24bd33173af680dcc.png" alt=""></p>
+<p>果然，当初半个月，现在sublime下一个<strong>Ctrl+F</strong>就出来了。。。<img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/d4f342493fb6a5b7087c-b1cea06389e7e441bfe5.png" alt=""></p>
+<h1 id="后记">后记</h1>
+<p>看着当初这份幼稚的代码，或许自己现在的水平已经不可同日而语了，但是，希望自己能保持当初的那份热爱和好奇心吧！</p>
+
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/2016-git-basic-practical-tutorial-picture-and-text/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">Git初级实践教程（图文）</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/articles/2016-a-little-complaint-about-the-so-called-unnecessary-knowledge/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">一点牢骚------关于所谓的“不必要知识”</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

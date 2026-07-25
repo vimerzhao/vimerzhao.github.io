@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>编译原理实践:计算器 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="编译原理实践:计算器" />
+<meta property="og:description" content="概述 本博客主要讲述如何利用编译原理的知识实现一个控制台计算器.如果之前利用栈(在学数据结构的时候)实现过计算器,一定会有所印象,写一个计算器程序最重要的就是把握运算优先级了.而本文换一个角度,利用文法" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/2016-compilation-principles-in-practice-calculator/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2016-11-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-25T16:21:52+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="编译原理实践:计算器"/>
+<meta name="twitter:description" content="概述 本博客主要讲述如何利用编译原理的知识实现一个控制台计算器.如果之前利用栈(在学数据结构的时候)实现过计算器,一定会有所印象,写一个计算器程序最重要的就是把握运算优先级了.而本文换一个角度,利用文法"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">编译原理实践:计算器</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-11-29T00:00:00Z">2016-11-29</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 2200 字，阅读需 5 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<h1 id="概述">概述</h1>
+<p>本博客主要讲述如何利用编译原理的知识实现一个<strong>控制台计算器</strong>.如果之前利用栈(在学数据结构的时候)实现过计算器,一定会有所印象,写一个计算器程序最重要的就是把握运算<strong>优先级</strong>了.而本文换一个角度,利用文法的知识来实现一个功能齐全的计算器.虽然用编译原理的理论来做计算器实在有点杀鸡焉用宰牛刀的味道,但如此实践确实是有必要的.&ldquo;合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下.&rdquo;</p>
+<p>需要说明的是,本文对于不懂编译原理的人来说基本算是天书了,所以,请仔细阅读<strong>预备知识</strong>.</p>
+<h1 id="预备知识">预备知识</h1>
+<p>需要说明的是,越到后面会越发现,写一个程序并不是你会了几种语言的问题,语言只是一个工具,没有扎实的理论,永远写不出好的程序.</p>
+<ol>
+<li>编译原理的知识.比如:如果你不知道怎么消除左递归,那么完全没必要往下看了.</li>
+<li>C语言(用于手工构造),lex/yacc(不懂这一部分可以只看手工构造)</li>
+</ol>
+<h1 id="原理分析">原理分析</h1>
+<p>相信这一部分对于熟悉编译原理的人没有难度.以下是一个计算器输入语句的文法定义</p>
+<blockquote>
+<p>expression : term | expression + term | expression -  term;</p>
+<p>term : primary_expression | term * primary_expression | term / primary_expression;</p>
+<p>primary_expression : DOUBLE_LITERAL | ( expression ) | - primary_expression;</p>
+</blockquote>
+<p>以上文法直接运用到yacc是没问题的,因为yacc生成的是一个<strong>LALR(1)解析器</strong>,但手工构造就没那么幸运了,老司机一眼就能看出来,这是一个<strong>左递归</strong>的BNF,所以需要消除左递归.</p>
+<blockquote>
+<p>expression : term half_expression;</p>
+<p>half_expression : + term half_expression | - term half_expression | ε;</p>
+<p>term :  primary_expression half_term;</p>
+<p>half_term : * primary_expression | / primary_expression | ε;</p>
+<p>primary_expression : DOUBLE_LITERAL | ( expression ) | - primary_expression;</p>
+</blockquote>
+<p>求一下这个文法的<strong>FIRST和FOLLOW集</strong>:</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/1d163e45b507f28d7f6f-f165cd09fec8dbcf1fe0.png" alt=""></p>
+<p>构造一下预测分析表就知道是一个LL(1)文法.</p>
+<p>以上是简单的原理分析.</p>
+<h1 id="手工构造">手工构造</h1>
+<p>所谓手工构造就是自己编写程序,这里使用的是C语言,当然了,其他语言也可以.不过这里多说一句话,如果完整的实现一个编译器,必然要涉及将源程序转化为机器码,这是个面向底层的工作,十分适合C语言来处理.而且lex/yacc生成的也是C程序,虽然也有了像JavaCC等其他语言的词法/语法分析生成器,但还是建议使用C语言.</p>
+<p><a href="https://github.com/zhaoyu1995/calculator">赵裕-GitHub-calculator</a>存放了所有代码,<strong>llparser_version</strong>目录下就是手工构造的源代码.</p>
+<p>手工构造一般采用<strong>递归下降法</strong>(也称递归子程序法),每当遇到一个终结符就会调用一个对应的子函数进行解析,这里不对源代码做原理性详细的分析,因为我假设你已经熟悉了理论层面的知识,只是缺乏一个实践的参照,学习理解这个程序最好的办法就是clone下来,自己进行<strong>单步调试</strong>,这是最有效的学习办法.</p>
+<p>以下是概括性的程序说明:</p>
+<ol>
+<li>token.h存放基本的声明,如+,-,*,/,(,)的标记</li>
+<li>lexical_analyzer.c存放词法解析程序,起中包含的一个主要函数**get_token()**用于返回token</li>
+<li>parser.c存放语法分析程序,包含主函数,以及每个非终结符对应的函数.</li>
+<li>语法分析程序对于超前读取的字符,如果不需要则退回,也可以保持始终预读一个字符.本代码采用前一种.</li>
+</ol>
+<h1 id="lexyacc构造">lex/yacc构造</h1>
+<h2 id="关于lexyacc">关于lex/yacc</h2>
+<p>关于lex/yacc这里不做过多的介绍,学过编译原理或多或少都知道一点,O&rsquo;Reilly出版社的<em><strong>Lex&amp;Yacc</strong></em>是为数不多系统讲解这两个工具的书籍,需要深入了解的可以阅读阅读.</p>
+<h2 id="构造计算器">构造计算器</h2>
+<p>同样,相关代码放在了<strong>lex-yacc_version</strong>目录下面,这里也不直接给出代码,相对于手工构造的代码,lex和yacc的代码都十分易读(前提是你十分熟悉<strong>正则表达式</strong>和<strong>文法</strong>),只是你在使用这两个工具的时候必须熟悉他们的一套规则,这两个工具都有些年头了,所以有些地方或者说有些设计理念可能不是那么优雅,但他们确实十分强大!</p>
+<p>最后,利用这两个工具生成的C代码很有必要打开看看,一般来说词法分析手工构造尚可,但语法分析利用工具确实省时省力又高效,所以,十分有必要看看到底生成的了怎样的代码.</p>
+<p>即使不懂lex/yacc,只要按照如下步骤编译,应该就能得到C语言的目标代码:</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/effe75c98959e6130963-1e2ac2d54bfeab7fa49b.png" alt=""></p>
+<p>使用**-dv<strong>参数是为了生成一个辅助文件</strong>y.output**,这个文件包含很多有用信息,而且如果出现了<strong>冲突</strong>可以给出详细的说明.可以自己打开看看,以下是该文件的一部分:</p>
+<pre tabindex="0"><code> 1 Grammar
+ 2
+ 3     0 $accept: line_list $end
+ 4
+ 5     1 line_list: line
+ 6     2          | line_list line
+ 7
+ 8     3 line: expression CR
+ 9     4     | error CR
+10
+11     5 expression: term
+12     6           | expression ADD term
+13     7           | expression SUB term
+14
+15     8 term: primary_expression
+16     9     | term MUL primary_expression
+17    10     | term DIV primary_expression
+18
+19    11 primary_expression: DOUBLE_LITERAL
+20    12                   | LP expression RP
+21    13                   | SUB primary_expression
+22
+23
+24 Terminals, with rules where they appear
+25
+26 $end (0) 0
+27 error (256) 4
+28 DOUBLE_LITERAL (258) 11
+29 ADD (259) 6
+30 SUB (260) 7 13
+31 MUL (261) 9
+32 DIV (262) 10
+33 CR (263) 3 4
+34 LP (264) 12
+35 RP (265) 12
+36
+37
+38 Nonterminals, with rules where they appear
+39
+40 $accept (11)
+41     on left: 0
+42 line_list (12)
+43     on left: 1 2, on right: 0 2
+44 line (13)
+45     on left: 3 4, on right: 1 2
+46 expression (14)
+47     on left: 5 6 7, on right: 3 6 7 12
+48 term (15)
+49     on left: 8 9 10, on right: 5 6 7 9 10
+50 primary_expression (16)
+51     on left: 11 12 13, on right: 8 9 10 13
+52
+53
+54 State 0
+55
+56     0 $accept: . line_list $end
+57
+58     error           shift, and go to state 1
+59     DOUBLE_LITERAL  shift, and go to state 2
+60     SUB             shift, and go to state 3
+61     LP              shift, and go to state 4
+62
+63     line_list           go to state 5
+64     line                go to state 6
+65     expression          go to state 7
+66     term                go to state 8
+67     primary_expression  go to state 9
+68
+69
+70 State 1
+71
+72     4 line: error . CR
+73
+74     CR  shift, and go to state 10
+75
+76
+77 State 2
+78
+79    11 primary_expression: DOUBLE_LITERAL .
+80
+81     $default  reduce using rule 11 (primary_expression)
+82 ......
+</code></pre><p>View Code</p>
+<h1 id="小结">小结</h1>
+<p>本文介绍了编译原理在编写计算器上的实践,讲的很简略(因为我没有讲解代码,也没有一步一步分析原理,毕竟这不是一两句话的事),充分理解这些在信息的最好方法就是<strong>自己对着代码敲一遍</strong>.</p>
+<p>好久没写博客了,感觉之前写的好多质量都不够高,希望从本篇开始自己能够以一个更务实的心态写一些有水平的东西,做一些有深度的总结.</p>
+<h1 id="参考">参考</h1>
+<p>&laquo;自制编程语言&raquo;,前桥和弥.</p>
+
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/2016-dosbox-automatic-mounting-skills/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">DOSBOX 自动挂载技巧</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/articles/2016-install-win10-and-linux-dual-systems-in-uefi-mode/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">UEFI模式安装Win10和Linux双系统</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

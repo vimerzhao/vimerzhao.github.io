@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>数据结构算法C语言实现（五）---2.3重新定义线性链表及其基本操作 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="数据结构算法C语言实现（五）---2.3重新定义线性链表及其基本操作" />
+<meta property="og:description" content="一.简述 &hellip;由于链表在空间的合理利用上和插入、删除时不需要移动等的优点，因此在很多场合下，它是线性表的首选存储结构。然而，它也存在着实现某些基本操作，如求线性表的长度时不如顺序存储结构的缺" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/2016-data-structure-algorithm-c-language-implementation-5-2-3-redefining-linear-linked-lists-and-their-ba/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2016-06-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-25T16:21:52+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="数据结构算法C语言实现（五）---2.3重新定义线性链表及其基本操作"/>
+<meta name="twitter:description" content="一.简述 &hellip;由于链表在空间的合理利用上和插入、删除时不需要移动等的优点，因此在很多场合下，它是线性表的首选存储结构。然而，它也存在着实现某些基本操作，如求线性表的长度时不如顺序存储结构的缺"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">数据结构算法C语言实现（五）---2.3重新定义线性链表及其基本操作</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-06-06T00:00:00Z">2016-06-06</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 3800 字，阅读需 8 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<p>一.简述</p>
+<p>&hellip;由于链表在空间的合理利用上和插入、删除时不需要移动等的优点，因此在很多场合下，它是线性表的首选存储结构。然而，它也存在着实现某些基本操作，如求线性表的长度时不如顺序存储结构的缺点；另一方面，由于在链表中，结点之间的关系用指针来表示，则数据元素在线性表中的“位序”的概念已经淡化，而被数据元素在线性链表中的“位置”所代替。为此，从实际应用的角度重新定义线性链表及其基本操作。&hellip;.（Page37）</p>
+<p>此外，书上一些地方我认为存在错误，所以写代码时做了修改和注释。并且，由于一些基本操作书中没有具体使用的实例，所以我只实现了算法2.20和算法2.21中出现的基本操作，其他操作会在需要的时候 再做实现。</p>
+<p>二.头文件</p>
+<pre tabindex="0"><code>  1 //LinkList.h
+  2 /**
+  3 《数据结构（C语言版）》 Page 37
+  4 ....为此，从实际应用角度出发重新定义线性链表及其基本操作....
+  5 */
+  6 /**
+  7 author:zhaoyu
+  8 email:zhaoyu1995.com@gmail.com
+  9 date:2016-6-4
+ 10 note:realize my textbook &lt;&lt;数据结构（C语言版）&gt;&gt;
+ 11 */
+ 12 #ifndef _LINKLIST_H_
+ 13 #define _LINKLIST_H_
+ 14 #include &#34;head.h&#34;
+ 15 #include &lt;cstdlib&gt;
+ 16 #define ElemType int
+ 17 typedef struct LNode{
+ 18     ElemType data;
+ 19     struct LNode *next;
+ 20 }*Link, *Position;
+ 21 typedef struct{//链表类型
+ 22     Link head, tail;//分别指向线性链表中的头结点和最后一个结点
+ 23     int len;//指示线性链表中数据元素的个数
+ 24 }LinkList;
+ 25 Status MakeNode(Link &amp;p, ElemType e)
+ 26 {
+ 27     //分配由 p 指向的值为 e 的结点，并返回 OK；若分配失败，则返回 ERROR
+ 28     p = (Link)malloc(sizeof(struct LNode));
+ 29     if (!p)
+ 30     {
+ 31         return ERROR;
+ 32     }
+ 33     p-&gt;data = e;
+ 34     p-&gt;next = NULL;
+ 35     return OK;
+ 36 }
+ 37 Status FreeNode(Link &amp;p)
+ 38 {
+ 39     //释放 p 所指节点
+ 40     p = NULL;//便于回收???释放后再次使用
+ 41     free(p);
+ 42 }
+ 43 Status InitList(LinkList &amp;L)
+ 44 {
+ 45     //构造一个空的线性表L
+ 46     L.head = (Link)malloc(sizeof(struct LNode));
+ 47     L.head-&gt;data = 100;
+ 48     L.head-&gt;next = NULL;
+ 49     L.tail = L.head-&gt;next;
+ 50     L.len = 0;
+ 51 }
+ 52 Status ClearList(LinkList &amp;L)
+ 53 {
+ 54     //将线性链表置为空表并释放原链表的结点空间
+ 55 }
+ 56 Status InsFirst(LinkList &amp;L, Link &amp;h, Link &amp;s)
+ 57 {
+ 58     //已知 h 指向线性链表的头结点，将 s 所指节点插入在第一个结点之前
+ 59     //note:这里的参数与书上有些不一样，LinkList &amp;L是我添加的
+ 60     //因为插入新的元素之后，链表长度应该同步变化
+ 61     //链表的插入是基于地址的，所以我全部加了引用
+ 62     //这一个函数与书上参数完全不同
+ 63     //更新 2016-5-5 16:46
+ 64     //通过分析算法2.20发现 h 不是绝对的头结点，而是接受一个 h
+ 65     //就以它为头结点作参考操作其它元素
+ 66     //这个函数花了不少时间，值得反复思考
+ 67     if (NULL == h)
+ 68     {
+ 69         return ERROR;
+ 70     }
+ 71     else
+ 72     {
+ 73         s-&gt;next = h-&gt;next;
+ 74         h-&gt;next = s;
+ 75     }
+ 76     L.len++;
+ 77     return OK;
+ 78 }
+ 79 Status DelFirst(Link &amp;h, Link &amp;q)
+ 80 {
+ 81     //已知 h 指向线性链表的头结点，删除链表中的第一个节点并以 q 返回
+ 82     if (h == NULL)
+ 83     {
+ 84         return ERROR;
+ 85     }
+ 86     q = h-&gt;next;
+ 87     h-&gt;next = q-&gt;next;
+ 88     q-&gt;next = NULL;
+ 89     return OK;
+ 90 }
+ 91 Status Append(LinkList &amp;L, Link &amp;s)
+ 92 {
+ 93     //将指针 s 所指（彼此以指针相链）的一串结点
+ 94     //链接在线性链表 L 最后一个结点
+ 95     Link q = L.head;
+ 96     while (q-&gt;next != NULL)
+ 97     {
+ 98         q = q-&gt;next;
+ 99     }
+100     q-&gt;next = s;
+101     int cnt = 0;
+102     Link temp = s;
+103     while (temp != NULL)
+104     {
+105         cnt++;
+106         if (NULL == temp-&gt;next)
+107         {
+108             L.tail = temp;//注意更新尾指针
+109         }
+110         temp = temp-&gt;next;
+111     }
+112
+113     L.len += cnt;
+114     //注意要根据这一串结点长度增加链表长度
+115     return OK;
+116 }
+117 Status Remove(LinkList &amp;L, Link &amp;q)
+118 {
+119     //删除线性链表 L 中的尾结点并以 q 返回，改变链表的尾指针指向新的尾结点
+120 }
+121 Status InsBefore(LinkList &amp;L, Link &amp;p, Link s)
+122 {
+123     //已知 p 指向线性链表 L 中的一个结点，将 s 所指结点插入 p 所指节点之前
+124     //并修改指针 p 指向新插入的节点
+125 }
+126 Status InsAfter(LinkList &amp;L, Link &amp;p, Link s)
+127 {
+128     //已知 p 指向线性链表 L 中的一个结点，将 s 所指结点插入 p 所指节点之后
+129     //并修改指针 p 指向新插入的节点
+130 }
+131 Status SetCurElem(Link &amp;p, ElemType e)
+132 {
+133     //已知 p 指向线性链表中的一个结点，用 e 更新 p 所指结点中数据元素的值
+134 }
+135 ElemType GetCurElem(Link p)
+136 {
+137     //已知 p 指向线性链表中的一个节点，返回 p 所指结点中数据元素的值
+138     if (p != NULL)
+139     {
+140         return p-&gt;data;
+141     }
+142     else
+143     {
+144         exit(ERROR);
+145     }
+146 }
+147 Status ListEmpty(LinkList L)
+148 {
+149     //若线性链表 L 为空，则返回 TRUE，否则返回 FALSE
+150 }
+151 int ListLength(LinkList L)
+152 {
+153     //返回线性链表 L 中元素的个数
+154
+155 }
+156 Position GetHead(LinkList L)
+157 {
+158     //返回线性链表 L 中头结点的位置
+159     return L.head;
+160 }
+161 Position GetLast(LinkList L)
+162 {
+163     //返回线性链表 L 中最后一个结点的位置
+164 }
+165 Position PriorPos(LinkList L, Link p)
+166 {
+167     //已知 p 指向线性链表 L 中的一个结点，返回 p 所指结点直接前驱的位置
+168     //若无前驱，则返回NULL
+169 }
+170 Position NextPos(LinkList L, Link p)
+171 {
+172     //已知 p 指向线性链表 L 中的一个节点，返回 p 所指结点
+173     //的直接后继的位置，若无后继，返回 NULL
+174     Link q = L.head;
+175     while (q != NULL)
+176     {
+177         if(q == p)
+178         {
+179             return p-&gt;next;
+180         }
+181         q = q-&gt;next;
+182     }
+183     return NULL;
+184 }
+185 Status LocatePos(LinkList L, int i, Link &amp;p)
+186 {
+187     //返回 p 指示线性链表 L 中第 i 个结点的位置并返回 OK
+188     //i 值不合法时返回ERROR
+189     int cnt = 2;
+190     p = L.head;
+191     if (i &gt; L.len || i &lt; 1)
+192     {
+193         return ERROR;
+194     }
+195     while (cnt &lt;= i)
+196     {
+197         p = p-&gt;next;
+198         cnt++;
+199     }
+200     return OK;
+201
+202 }
+203 Position LocateElem(LinkList L, ElemType e, Status (* compare)(ElemType, ElemType))
+204 {
+205     //返回线性链表中第一个与 e 满足函数compare() 判定关系的元素的位置
+206     //若不存在这样的元素，返回 NULL
+207 }
+208 Status ListTraverse(LinkList L, Status (* visit)())
+209 {
+210     //依次对 L 中每个元素调用函数 visit()，一旦visit() 失败，则操作失败。
+211 }
+212 /**
+213 My Code
+214 */
+215 void PrintList(LinkList L)
+216 {
+217     Link p = L.head-&gt;next;
+218     int cnt = 1;
+219     while (p != NULL &amp;&amp; cnt &lt;= L.len)
+220     {
+221         printf(&#34;%d\t&#34;, p-&gt;data);
+222         p = p-&gt;next;
+223         cnt++;
+224     }
+225     printf(&#34;\n&#34;);
+226 }
+227 int compare(ElemType a, ElemType b)
+228 {
+229     if (a &lt; b)
+230     {
+231         return -1;
+232     }
+233     else if (a == b)
+234     {
+235         return 0;
+236     }
+237     else
+238     {
+239         return 1;
+240     }
+241 }
+242 #endif
+</code></pre><p>View Code</p>
+<p>三.CPP文件</p>
+<pre tabindex="0"><code>  1 //LinkList.h
+  2 /**
+  3 《数据结构（C语言版）》 Page 37
+  4 ....为此，从实际应用角度出发重新定义线性链表及其基本操作....
+  5 */
+  6 /**
+  7 author:zhaoyu
+  8 email:zhaoyu1995.com@gmail.com
+  9 date:2016-6-4
+ 10 note:realize my textbook &lt;&lt;数据结构（C语言版）&gt;&gt;
+ 11 */
+ 12 #ifndef _LINKLIST_H_
+ 13 #define _LINKLIST_H_
+ 14 #include &#34;head.h&#34;
+ 15 #include &lt;cstdlib&gt;
+ 16 #define ElemType int
+ 17 typedef struct LNode{
+ 18     ElemType data;
+ 19     struct LNode *next;
+ 20 }*Link, *Position;
+ 21 typedef struct{//链表类型
+ 22     Link head, tail;//分别指向线性链表中的头结点和最后一个结点
+ 23     int len;//指示线性链表中数据元素的个数
+ 24 }LinkList;
+ 25 Status MakeNode(Link &amp;p, ElemType e)
+ 26 {
+ 27     //分配由 p 指向的值为 e 的结点，并返回 OK；若分配失败，则返回 ERROR
+ 28     p = (Link)malloc(sizeof(struct LNode));
+ 29     if (!p)
+ 30     {
+ 31         return ERROR;
+ 32     }
+ 33     p-&gt;data = e;
+ 34     p-&gt;next = NULL;
+ 35     return OK;
+ 36 }
+ 37 Status FreeNode(Link &amp;p)
+ 38 {
+ 39     //释放 p 所指节点
+ 40     p = NULL;//便于回收???释放后再次使用
+ 41     free(p);
+ 42 }
+ 43 Status InitList(LinkList &amp;L)
+ 44 {
+ 45     //构造一个空的线性表L
+ 46     L.head = (Link)malloc(sizeof(struct LNode));
+ 47     L.head-&gt;data = 100;
+ 48     L.head-&gt;next = NULL;
+ 49     L.tail = L.head-&gt;next;
+ 50     L.len = 0;
+ 51 }
+ 52 Status ClearList(LinkList &amp;L)
+ 53 {
+ 54     //将线性链表置为空表并释放原链表的结点空间
+ 55 }
+ 56 Status InsFirst(LinkList &amp;L, Link &amp;h, Link &amp;s)
+ 57 {
+ 58     //已知 h 指向线性链表的头结点，将 s 所指节点插入在第一个结点之前
+ 59     //note:这里的参数与书上有些不一样，LinkList &amp;L是我添加的
+ 60     //因为插入新的元素之后，链表长度应该同步变化
+ 61     //链表的插入是基于地址的，所以我全部加了引用
+ 62     //这一个函数与书上参数完全不同
+ 63     //更新 2016-5-5 16:46
+ 64     //通过分析算法2.20发现 h 不是绝对的头结点，而是接受一个 h
+ 65     //就以它为头结点作参考操作其它元素
+ 66     //这个函数花了不少时间，值得反复思考
+ 67     if (NULL == h)
+ 68     {
+ 69         return ERROR;
+ 70     }
+ 71     else
+ 72     {
+ 73         s-&gt;next = h-&gt;next;
+ 74         h-&gt;next = s;
+ 75     }
+ 76     L.len++;
+ 77     return OK;
+ 78 }
+ 79 Status DelFirst(Link &amp;h, Link &amp;q)
+ 80 {
+ 81     //已知 h 指向线性链表的头结点，删除链表中的第一个节点并以 q 返回
+ 82     if (h == NULL)
+ 83     {
+ 84         return ERROR;
+ 85     }
+ 86     q = h-&gt;next;
+ 87     h-&gt;next = q-&gt;next;
+ 88     q-&gt;next = NULL;
+ 89     return OK;
+ 90 }
+ 91 Status Append(LinkList &amp;L, Link &amp;s)
+ 92 {
+ 93     //将指针 s 所指（彼此以指针相链）的一串结点
+ 94     //链接在线性链表 L 最后一个结点
+ 95     Link q = L.head;
+ 96     while (q-&gt;next != NULL)
+ 97     {
+ 98         q = q-&gt;next;
+ 99     }
+100     q-&gt;next = s;
+101     int cnt = 0;
+102     Link temp = s;
+103     while (temp != NULL)
+104     {
+105         cnt++;
+106         temp = temp-&gt;next;
+107         if (NULL == temp-&gt;next)
+108         {
+109             L.tail = temp;//注意更新尾指针
+110         }
+111     }
+112
+113     L.len += cnt;
+114     //注意要根据这一串结点长度增加链表长度
+115     return OK;
+116 }
+117 Status Remove(LinkList &amp;L, Link &amp;q)
+118 {
+119     //删除线性链表 L 中的尾结点并以 q 返回，改变链表的尾指针指向新的尾结点
+120 }
+121 Status InsBefore(LinkList &amp;L, Link &amp;p, Link s)
+122 {
+123     //已知 p 指向线性链表 L 中的一个结点，将 s 所指结点插入 p 所指节点之前
+124     //并修改指针 p 指向新插入的节点
+125 }
+126 Status InsAfter(LinkList &amp;L, Link &amp;p, Link s)
+127 {
+128     //已知 p 指向线性链表 L 中的一个结点，将 s 所指结点插入 p 所指节点之后
+129     //并修改指针 p 指向新插入的节点
+130 }
+131 Status SetCurElem(Link &amp;p, ElemType e)
+132 {
+133     //已知 p 指向线性链表中的一个结点，用 e 更新 p 所指结点中数据元素的值
+134 }
+135 ElemType GetCurElem(Link p)
+136 {
+137     //已知 p 指向线性链表中的一个节点，返回 p 所指结点中数据元素的值
+138     if (p != NULL)
+139     {
+140         return p-&gt;data;
+141     }
+142     else
+143     {
+144         exit(ERROR);
+145     }
+146 }
+147 Status ListEmpty(LinkList L)
+148 {
+149     //若线性链表 L 为空，则返回 TRUE，否则返回 FALSE
+150 }
+151 int ListLength(LinkList L)
+152 {
+153     //返回线性链表 L 中元素的个数
+154
+155 }
+156 Position GetHead(LinkList L)
+157 {
+158     //返回线性链表 L 中头结点的位置
+159     return L.head;
+160 }
+161 Position GetLast(LinkList L)
+162 {
+163     //返回线性链表 L 中最后一个结点的位置
+164 }
+165 Position PriorPos(LinkList L, Link p)
+166 {
+167     //已知 p 指向线性链表 L 中的一个结点，返回 p 所指结点直接前驱的位置
+168     //若无前驱，则返回NULL
+169 }
+170 Position NextPos(LinkList L, Link p)
+171 {
+172     //已知 p 指向线性链表 L 中的一个节点，返回 p 所指结点
+173     //的直接后继的位置，若无后继，返回 NULL
+174     Link q = L.head;
+175     while (q != NULL)
+176     {
+177         if(q == p)
+178         {
+179             return p-&gt;next;
+180         }
+181         q = q-&gt;next;
+182     }
+183     return NULL;
+184 }
+185 Status LocatePos(LinkList L, int i, Link &amp;p)
+186 {
+187     //返回 p 指示线性链表 L 中第 i 个结点的位置并返回 OK
+188     //i 值不合法时返回ERROR
+189     int cnt = 2;
+190     p = L.head;
+191     if (i &gt; L.len || i &lt; 1)
+192     {
+193         return ERROR;
+194     }
+195     while (cnt &lt;= i)
+196     {
+197         p = p-&gt;next;
+198         cnt++;
+199     }
+200     return OK;
+201
+202 }
+203 Position LocateElem(LinkList L, ElemType e, Status (* compare)(ElemType, ElemType))
+204 {
+205     //返回线性链表中第一个与 e 满足函数compare() 判定关系的元素的位置
+206     //若不存在这样的元素，返回 NULL
+207 }
+208 Status ListTraverse(LinkList L, Status (* visit)())
+209 {
+210     //依次对 L 中每个元素调用函数 visit()，一旦visit() 失败，则操作失败。
+211 }
+212 /**
+213 My Code
+214 */
+215 void PrintList(LinkList L)
+216 {
+217     Link p = L.head-&gt;next;
+218     int cnt = 1;
+219     while (p != NULL &amp;&amp; cnt &lt;= L.len)
+220     {
+221         printf(&#34;%d\t&#34;, p-&gt;data);
+222         p = p-&gt;next;
+223         cnt++;
+224     }
+225     printf(&#34;\n&#34;);
+226 }
+227 int compare(ElemType a, ElemType b)
+228 {
+229     if (a &lt; b)
+230     {
+231         return -1;
+232     }
+233     else if (a == b)
+234     {
+235         return 0;
+236     }
+237     else
+238     {
+239         return 1;
+240     }
+241 }
+242 #endif
+</code></pre><p>View Code</p>
+<p>四.测试</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/14183bc5e88c6898bd8d-f6efec73d20c4b034b9f.png" alt=""></p>
+
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/2016-data-structure-algorithm-c-language-implementation-2-2-3-linked-representation-of-linear-list-and-im/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">数据结构算法C语言实现（二）---2.3线性表的链式表示和实现之单链表</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/articles/2016-implementation-of-data-structure-algorithm-in-c-language-4-2-3-circular-linked-list-and-doubly-linke/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">数据结构算法C语言实现（四）---2.3循环链表与双向链表</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

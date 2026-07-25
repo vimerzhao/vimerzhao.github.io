@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>数据结构算法C语言实现（十四）--- 4.1&amp;4.2串的类型定义、表示及实现 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="数据结构算法C语言实现（十四）--- 4.1&amp;4.2串的类型定义、表示及实现" />
+<meta property="og:description" content="一.简述 【暂无】 二.头文件 1 //4_2_part1.h 2 /** 3 author:zhaoyu 4 */ 5 //2016-6-10 6 //----串的定长顺序存储表示---- 7 #include &#34;head.h&#34; 8 #define MAXSTRLEN 255//用户可以在255以内定义最大串长 9 //这语法还不是很熟悉 10 typedef unsigned char SString[MAXSTRLEN&#43;1];//0 号单元存放串的长度 11 int StrLength(SString" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/2016-data-structure-algorithm-c-language-implementation-14-4-1-4-2-string-type-definition-representation/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2016-06-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-25T16:21:52+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="数据结构算法C语言实现（十四）--- 4.1&amp;4.2串的类型定义、表示及实现"/>
+<meta name="twitter:description" content="一.简述 【暂无】 二.头文件 1 //4_2_part1.h 2 /** 3 author:zhaoyu 4 */ 5 //2016-6-10 6 //----串的定长顺序存储表示---- 7 #include &#34;head.h&#34; 8 #define MAXSTRLEN 255//用户可以在255以内定义最大串长 9 //这语法还不是很熟悉 10 typedef unsigned char SString[MAXSTRLEN&#43;1];//0 号单元存放串的长度 11 int StrLength(SString"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">数据结构算法C语言实现（十四）--- 4.1&amp;4.2串的类型定义、表示及实现</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-06-10T00:00:00Z">2016-06-10</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 1500 字，阅读需 3 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<p>一.简述</p>
+<p>【暂无】</p>
+<p>二.头文件</p>
+<pre tabindex="0"><code> 1 //4_2_part1.h
+ 2 /**
+ 3 author:zhaoyu
+ 4 */
+ 5 //2016-6-10
+ 6 //----串的定长顺序存储表示----
+ 7 #include &#34;head.h&#34;
+ 8 #define MAXSTRLEN 255//用户可以在255以内定义最大串长
+ 9 //这语法还不是很熟悉
+10 typedef unsigned char SString[MAXSTRLEN+1];//0 号单元存放串的长度
+11 int StrLength(SString T)
+12 {
+13     for (int i = 1; i &lt;= MAXSTRLEN; ++i)
+14     {
+15         if (&#39;\0&#39; == T[i])
+16         {
+17             return i-1;
+18         }
+19     }
+20     return MAXSTRLEN;
+21 }
+22
+23 /**
+24 algorithm 4.2
+25 */
+26 Status Concat(SString &amp;T, SString S1, SString S2)
+27 {
+28     //用 T 返回由 S1 和 S2 连接而成的新串。
+29     //若未截断，则返回 TRUE，否则返回 FALSE
+30     Status uncut;
+31     if (S1[0] + S2[0] &lt; MAXSTRLEN)
+32     {//未截断
+33         int i = 1;
+34         for (i = 1; i &lt;= S1[0]; ++i)
+35         {
+36             T[i] = S1[i];
+37         }
+38         for (i = 1; i &lt;= S2[0]; ++i)
+39         {
+40             T[S1[0]+i] = S2[i];
+41         }
+42         T[0] = S1[0] + S2[0];
+43         uncut = TRUE;
+44     }
+45     else if (S1[0] &lt; MAXSTRLEN)
+46     {
+47         int i = 1;
+48         for (i = 1; i &lt;= S1[0]; i++)
+49         {
+50             T[i] = S1[i];
+51         }
+52         for (i = S1[0]+1; i &lt;= MAXSTRLEN; i++)
+53         {
+54             T[i] = S2[i-S1[0]];
+55         }
+56         T[0] = MAXSTRLEN;
+57         uncut = FALSE;
+58     }
+59     else
+60     {
+61         for (int i = 1; i &lt;= MAXSTRLEN; i++)
+62         {
+63             T[i] = S1[i];
+64         }
+65         T[0] = S1[0] = MAXSTRLEN;
+66         uncut = FALSE;
+67     }
+68     return uncut;
+69 }
+70 /**
+71 algorithm 4.3
+72 */
+73 Status SubString(SString &amp;Sub, SString S, int pos, int len)
+74 {
+75     //用 Sub 返回串 S 的第 pos 个字符起长度为 len 的字串
+76     //其中， 1&lt;= pos &lt;&lt;= SreLength(S) 且 0 &lt;= len &lt;= StrLength(S)-pos+1
+77     if (pos &lt; 1 || pos &gt; S[0] || len &lt; 0 || len &gt; S[0]-pos+1)
+78     {
+79         return ERROR;
+80     }
+81     for (int i = 1; i &lt;= len; i++)
+82     {
+83         Sub[i] = S[i+pos-1];
+84     }
+85     Sub[0] = len;
+86     return OK;
+87 }
+88 void PrintSString(SString T)
+89 {
+90     //if(T[])
+91     for (int i = 1; i &lt;= T[0]; ++i)
+92     {
+93         printf(&#34;%c&#34;, *(T+i));
+94     }
+95     printf(&#34;\n&#34;);
+96 }
+97
+98 4_2_part1.h
+</code></pre><p>4_2_part1.h</p>
+<pre tabindex="0"><code>  1 //4_2_part2.h
+  2 /**
+  3 author:zhaoyu
+  4 */
+  5 //2016-6-12
+  6 #include &#34;head.h&#34;
+  7 #include &lt;cstdlib&gt;
+  8 #include &lt;cstring&gt;
+  9 //----串的对分配存储表示----
+ 10 typedef struct {
+ 11     char *ch;//
+ 12     int length;
+ 13 }HString;
+ 14
+ 15 Status StrInsert(HString &amp;S, int pos, HString T)
+ 16 {//1&lt;= pos &lt;= StrLength(S)+1
+ 17 //在串的第 pos 个字符之前插入串 T
+ 18     if (1 &lt; pos || pos &gt; S.length + 1)
+ 19     {
+ 20         printf(&#34;Illegal pos\n&#34;);
+ 21         return ERROR;
+ 22     }
+ 23     if (T.length){//T 非空，则重新分配空间，插入 T
+ 24         if (!(S.ch = (char *)realloc(S.ch, (S.length +
+ 25          T.length)*sizeof(char))));
+ 26         {
+ 27             exit(OVERFLOW);
+ 28         }
+ 29         for (int i = S.length-1; i &gt;= pos-1; i--)
+ 30         {//为插入 T 为腾出位置
+ 31             S.ch[i+T.length] = S.ch[i];
+ 32         }
+ 33         for (int i = pos-1; i &lt;= pos+T.length-2; i++)
+ 34         {//插入 T
+ 35             S.ch[i] = T.ch[i];
+ 36         }
+ 37         S.length += T.length;
+ 38     }
+ 39     return OK;
+ 40 }
+ 41 //page 76-77
+ 42 //----基本操作的算法描述----
+ 43 Status StrAssign(HString &amp;T, char *chars)
+ 44 {//生成一个其值等于串常量 chars的串 T
+ 45     if (T.ch)
+ 46     {
+ 47         T.ch = NULL;
+ 48     }
+ 49     int L;
+ 50     char *c;;
+ 51     for (L = 0, c = chars; *c!=&#39;\0&#39;; ++L, ++c);//求 chars 的长度 L
+ 52     if(!L)
+ 53     {
+ 54         T.ch = NULL;
+ 55         T.length = 0;
+ 56     }
+ 57     else
+ 58     {
+ 59         if (!(T.ch = (char *)malloc(L*sizeof(char))))
+ 60         {
+ 61             exit(OVERFLOW);
+ 62         }
+ 63         for (int i = 0; i &lt; L; ++i)
+ 64         {
+ 65             T.ch[i] = chars[i];
+ 66         }
+ 67         T.length = L;
+ 68     }
+ 69     return OK;
+ 70 }
+ 71 int StrLength(HString S)
+ 72 {//返回 S 的元素个数， 称为串的长度
+ 73     return S.length;
+ 74 }
+ 75 int StrCompare(HString S, HString T)
+ 76 {//若 S &gt;|=|&lt; T，则返回 &gt;|=|&lt; 0
+ 77     for (int i = 0; i &lt; S.length &amp;&amp; i &lt; T.length; i++)
+ 78     {
+ 79         if (T.ch[i] != S.ch[i])
+ 80         {
+ 81             return S.ch[i] - T.ch[i];
+ 82         }
+ 83     }
+ 84     return S.length - T.length;
+ 85 }
+ 86 Status ClearString(HString &amp;S)
+ 87 {
+ 88     //将 S 清空为空串
+ 89     if (S.ch)
+ 90     {
+ 91         free(S.ch);
+ 92         S.ch = NULL;
+ 93     }
+ 94     S.length = 0;
+ 95     return OK;
+ 96 }
+ 97 Status Concat(HString &amp;T, HString S1, HString S2)
+ 98 {
+ 99     if (T.ch)
+100     {//释放旧空间
+101         free(T.ch);
+102     }
+103     if (!(T.ch = (char *)malloc((S1.length+S2.length)*sizeof(char))))
+104     {
+105         exit(OVERFLOW);
+106     }
+107     for (int i = 0; i &lt; S1.length; ++i)
+108     {
+109         T.ch[i] = S1.ch[i];
+110     }
+111     for (int i = 0; i &lt; S2.length; ++i)
+112     {
+113         T.ch[i+S1.length] = S2.ch[i];
+114     }
+115     T.length = S1.length + S2.length;
+116     return OK;
+117 }
+118 Status SubString(HString &amp;Sub, HString S, int pos, int len)
+119 {
+120     //用 Sub 返回串 S 的第 pos 个字符起长度为 len 的子串
+121     //其中，其中， 1&lt;= pos &lt;&lt;= SreLength(S) 且 0 &lt;= len &lt;= StrLength(S)-pos+1
+122     if (pos &lt; 1 || pos &gt; S.length || len &lt; 0 || len &gt; S.length-pos+1)
+123     {
+124         return ERROR;
+125     }
+126     if (Sub.ch)
+127     {
+128         free(Sub.ch);
+129     }
+130     if (!len)
+131     {//空子串
+132         Sub.ch = NULL;
+133         Sub.length = 0;
+134     }
+135     else
+136     {
+137         Sub.ch = (char *)malloc(len*sizeof(char));
+138         for (int i = 0; i &lt; len; ++i)
+139         {
+140             Sub.ch[i] = S.ch[pos+i-1];
+141         }
+142         Sub.length = len;
+143     }
+144     return OK;
+145 }
+146 void PrintHString(HString S)
+147 {
+148     for (int i = 0; i &lt; S.length; ++i)
+149     {
+150         printf(&#34;%c&#34;, S.ch[i]);
+151     }
+152     printf(&#34;\n&#34;);
+153 }
+</code></pre><p>4_2_part2.h</p>
+<p>三.CPP文件</p>
+<pre tabindex="0"><code> 1 #include &#34;4_2_part1.h&#34;
+ 2 int main(int argc, char const *argv[])
+ 3 {
+ 4     SString S1;
+ 5     SString S2;
+ 6     SString T;
+ 7     scanf(&#34;%s&#34;, S1+1);
+ 8     *S1 = StrLength(S1);
+ 9     scanf(&#34;%s&#34;, S2+1);
+10     *S2 = StrLength(S2);
+11     Concat(T, S1, S2);
+12     PrintSString(T);
+13     int pos = 2, len = 5;
+14     SubString(T, S1, pos, len);
+15     PrintSString(T);
+16     return 0;
+17 }
+</code></pre><p>4_2_part1.cpp</p>
+<pre tabindex="0"><code> 1 #include &#34;4_2_part2.h&#34;
+ 2 int main(int argc, char const *argv[])
+ 3 {
+ 4     char S[100];
+ 5     HString T = {NULL, 0};
+ 6     HString S1 = {NULL, 0};
+ 7     HString S2 = {NULL, 0};
+ 8     scanf(&#34;%s&#34;, S);
+ 9     StrAssign(S1, S);
+10     printf(&#34;S1:\t&#34;);
+11     PrintHString(S1);
+12     printf(&#34;StrLength\t%d\n&#34;, StrLength(S1));
+13     scanf(&#34;%s&#34;, S);
+14     StrAssign(S2, S);
+15     printf(&#34;S2\t&#34;);
+16     PrintHString(S2);
+17     printf(&#34;StrLength\t%d\n&#34;, StrLength(S1));
+18     printf(&#34;Compare S1 vs S2\t%d\n&#34;, StrCompare(S1, S2));
+19     Concat(T, S1, S2);
+20     printf(&#34;T = S1 + S2\t&#34;);
+21     PrintHString(T);
+22     SubString(S1, T, 2, 3);
+23     printf(&#34;Sub :T[2]-T[4]\t&#34;);
+24     PrintHString(S1);
+25     return 0;
+26 }
+</code></pre><p>4_2_part2.cpp</p>
+<p>四.测试</p>
+<p>连接</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/66cbe0fe2a7d2ce230fd-f7714f29dc5886fc5c40.png" alt=""></p>
+<p>求子串</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/a7156cc91b5d8888f03a-f94cc27f4358a8bf26ae.png" alt=""></p>
+<p>比较串</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/9e2eae934006738b9d9c-3cc686ce82ce9bb3548a.png" alt=""></p>
+
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/2016-data-structure-algorithm-implementation-in-c-language-15-4-3-string-pattern-matching-algorithm/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">数据结构算法C语言实现（十五）---4.3 串的模式匹配算法</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/articles/2016-data-structure-algorithm-c-language-implementation-13-3-5-discrete-event-simulation/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">数据结构算法C语言实现（十三）--- 3.5离散事件模拟</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

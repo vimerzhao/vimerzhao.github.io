@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Git初级实践教程（图文） - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Git初级实践教程（图文）" />
+<meta property="og:description" content="关于Git Git的由来 Linux 的创始人 Linus Torvalds 在 2005 年开发了 Git 的原型程序。当时，由于在 Linux 内核开发中使用的既有版本管理系统的开发方许可证发生了变更，为了更换新的版本管理系统， Torvalds 开发了Git。 说在前面 Linux和Ma" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/2016-git-basic-practical-tutorial-picture-and-text/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2016-11-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-25T16:21:52+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Git初级实践教程（图文）"/>
+<meta name="twitter:description" content="关于Git Git的由来 Linux 的创始人 Linus Torvalds 在 2005 年开发了 Git 的原型程序。当时，由于在 Linux 内核开发中使用的既有版本管理系统的开发方许可证发生了变更，为了更换新的版本管理系统， Torvalds 开发了Git。 说在前面 Linux和Ma"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Git初级实践教程（图文）</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-11-06T00:00:00Z">2016-11-06</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 3600 字，阅读需 8 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<h1 id="关于git">关于Git</h1>
+<h2 id="git的由来">Git的由来</h2>
+<p>Linux 的创始人 Linus Torvalds 在 2005 年开发了 Git 的原型程序。当时，由于在 Linux 内核开发中使用的既有版本管理系统的开发方许可证发生了变更，为了更换新的版本管理系统， Torvalds 开发了Git。</p>
+<h2 id="说在前面">说在前面</h2>
+<ul>
+<li>Linux和Mac都预装了Git，Windows上Git的安装也很容易找到教程。在此不做赘述。</li>
+<li>Git属于分布式管理，而之前曾经流行的是集中式管理，如果想要了解两者区别，也可以通过搜索引擎查找到需要的资料。在此亦不做赘述。</li>
+</ul>
+<h1 id="使用git">使用Git</h1>
+<p>直接进入正题</p>
+<h2 id="基本操作">基本操作</h2>
+<h3 id="gitinit初始化仓库">git init——初始化仓库</h3>
+<ol>
+<li><code>$ git init</code></li>
+</ol>
+<p>效果:
+<img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e300020d" alt=""></p>
+<p>如果初始化成功，执行了 <code>git init</code>命令的目录下就会生成<code>.git</code> 目录。这个 <code>.git</code> 目录里存储着管理当前目录内容所需的仓库数据。</p>
+<h3 id="git-status查看仓库的状态">git status——查看仓库的状态</h3>
+<ol>
+<li><code>$ git status</code></li>
+</ol>
+<p><img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e300020c" alt="">
+新建一个文件并再次查看状态：
+<img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e3000207" alt="">
+可以看到：显示新建文件<code>Untracked</code></p>
+<h3 id="git-add向暂存区中添加文件">git add——向暂存区中添加文件</h3>
+<ol>
+<li><code>$ git add</code></li>
+</ol>
+<p>效果：
+<img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e3000210" alt=""></p>
+<h3 id="git-commit保存仓库的历史记录">git commit——保存仓库的历史记录</h3>
+<p>记录一行信息：</p>
+<ol>
+<li><code>$ git commit -m &quot;First commit&quot;</code></li>
+</ol>
+<p>记录详细信息:</p>
+<ol>
+<li><code>$ git commit</code></li>
+</ol>
+<p><img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e3000214" alt=""></p>
+<h3 id="git-log查看提交日志">git log——查看提交日志</h3>
+<p><img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e3000209" alt=""></p>
+<blockquote>
+<p>commit 栏旁边显示的“ 9f129b……”是指向这个提交的哈希值。 Git 的其他命令中，在指向提交时会用到这个哈希值。Author 栏中显示我们给 Git 设置的用户名和邮箱地址。 Date 栏中显示提交执行的日期和时间。再往下就是该提交的提交信息。</p>
+</blockquote>
+<p>只显示提交信息的第一行:</p>
+<ol>
+<li><code>git log --pretty=short</code></li>
+</ol>
+<ul>
+<li>只要在 git log命令后加上目录名，便会只显示该目录下的日志。如果加的是文件名，就会只显示与该文件相关的日志。</li>
+<li>如果想查看提交所带来的改动，可以加上-p参数，文件的前后差别就会显示在提交信息之后。</li>
+</ul>
+<p><img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e3000208" alt=""></p>
+<h3 id="git-diff查看更改前后的差别">git diff——查看更改前后的差别</h3>
+<p>先输入一些内容：
+<img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e3000205" alt="">
+执行 git diff命令，查看当前工作树与暂存区的差别：
+<img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e3000204" alt=""></p>
+<blockquote>
+<p>注：“ +”号标出的是新添加的行，被删除的行则用“ -”号标出。</p>
+</blockquote>
+<p>提交之后再次查看：
+<img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e3000213" alt=""></p>
+<p>要查看与最新提交的差别，执行以下命令:
+<img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e300020b" alt=""></p>
+<blockquote>
+<p>这里的 HEAD 是指向当前分支中最新一次提交的指针。</p>
+</blockquote>
+<h2 id="分支操作">分支操作</h2>
+<h3 id="gitbranch显示分支一览表">git branch——显示分支一览表</h3>
+<p><img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e3000215" alt=""></p>
+<h3 id="gitcheckout-b创建切换分支">git checkout -b——创建、切换分支</h3>
+<p><img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e300020e" alt=""></p>
+<p>等效于以下两条语句:
+<img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e3000211" alt=""></p>
+<blockquote>
+<p>注：“ * ”表示当前分支。</p>
+</blockquote>
+<p>这时候如果提交，则是在<code>branch-B</code>分支下提交，如修改README.md:
+<img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e3000203" alt=""></p>
+<p>再切换回主分支可以看到没有本次提交记录:
+<img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e3000212" alt=""></p>
+<h3 id="git-merge合并分支">git merge——合并分支</h3>
+<p>为了在历史记录中明确记录下本次分支合并，我们需要创建合并提交。因此，在合并时加上<code>--no-ff</code>参数。</p>
+<ol>
+<li><code>$ git merge --no-ff branch-B</code></li>
+</ol>
+<p>随后编辑器会启动，用于录入合并提交的信息:
+<img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e3000206" alt=""></p>
+<blockquote>
+<p>注：退出编辑器：<code>Esc+连按两次大写Z</code></p>
+</blockquote>
+<p><img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e300020a" alt=""></p>
+<h3 id="gitloggraph以图表形式查看分支">git log –graph——以图表形式查看分支</h3>
+<p><img src="https://leanote.com/api/file/getImage?fileId=581dbf14ab644167e300020f" alt=""></p>
+<blockquote>
+<p>这个命令非常好用，务必记住。</p>
+</blockquote>
+<h2 id="更改提交的操作">更改提交的操作</h2>
+<p>Git 的另一特征便是可以灵活操作历史版本。借助分散仓库的优势，可以在不影响其他仓库的前提下对历史版本进行操作。</p>
+<h3 id="gitreset回溯历史版本">git reset——回溯历史版本</h3>
+<p>要让仓库的 HEAD、暂存区、当前工作树回溯到指定状态，需要用到 git rest –hard命令：
+<img src="https://leanote.com/api/file/getImage?fileId=581e85afab644165e50010ac" alt=""></p>
+<blockquote>
+<p>注：绿色箭头指明了当前所处位置。</p>
+</blockquote>
+<p>注意此时<code>README.md</code>文件也跟着回退到该时间点:
+<img src="https://leanote.com/api/file/getImage?fileId=581e85afab644165e500109e" alt=""></p>
+<blockquote>
+<p>注:在branch-B添加并合并的内容没有了。</p>
+</blockquote>
+<p>现在切换到之前创建过的<code>feature-A</code>并写点内容在<code>README.md</code>:
+<img src="https://leanote.com/api/file/getImage?fileId=581e85afab644165e50010a2" alt=""></p>
+<p>提交:
+<img src="https://leanote.com/api/file/getImage?fileId=581e85afab644165e50010b4" alt=""></p>
+<p>现在我们的目标是如下状态:
+<img src="https://leanote.com/api/file/getImage?fileId=581e85afab644165e50010aa" alt=""></p>
+<p>首先恢复到master与branch-B合并的状态（回溯之前的状态，图中下往上书第三个master节点）
+首先，通过<code>git relog</code>看一下我们执行过的操作
+<img src="https://leanote.com/api/file/getImage?fileId=581e85afab644165e50010a0" alt="">
+下往上依次是我们执行过的操作。</p>
+<blockquote>
+<p>只要不进行 Git 的 GC（Garbage Collection，垃圾回收），就可以通过日志随意调取近期的历史状态，就像给时间机器指定一个时间点，在过去未来中自由穿梭一般。即便开发者错误执行了 Git 操作，基本也都可以利用 git reflog命令恢复到原先的状态，所以请务必牢记本部分。</p>
+</blockquote>
+<p>我们恢复到branch-B合并后的master：
+<img src="https://leanote.com/api/file/getImage?fileId=581e85afab644165e50010b8" alt=""></p>
+<p>但是此时合并会发生问题:
+<img src="https://leanote.com/api/file/getImage?fileId=581e85afab644165e50010a8" alt=""></p>
+<p>打开编辑器:
+<img src="https://leanote.com/api/file/getImage?fileId=581e85aeab644165e5001098" alt=""></p>
+<blockquote>
+<p>======= 以上的部分是当前 HEAD的内容，以下的部分是要合并的 feature-A 分支中的内容。</p>
+</blockquote>
+<p>我们在编辑器中将其改成想要的样子：
+<img src="https://leanote.com/api/file/getImage?fileId=581e85aeab644165e500108c" alt="">
+如上所示，本次修正让 feature-A 与 branch-B的内容并存于文件之中。但是在实际的软件开发中，往往需要删除其中之一，所以在处理冲突时，务必要仔细分析冲突部分的内容后再行修改。
+再次提交:
+<img src="https://leanote.com/api/file/getImage?fileId=581e85afab644165e50010b6" alt=""></p>
+<p>但是如果此时觉得写解决冲突不妥，还想修改提交说明，怎么办呢？</p>
+<p>执行以下命令:
+<img src="https://leanote.com/api/file/getImage?fileId=581e85afab644165e50010a4" alt=""></p>
+<p>编辑器启动:
+<img src="https://leanote.com/api/file/getImage?fileId=581e85aeab644165e5001094" alt=""></p>
+<p>我们重新编辑内容，保存并退出,完成修改：
+<img src="https://leanote.com/api/file/getImage?fileId=581e85afab644165e50010a6" alt=""></p>
+<p>验证以下修改是否成功:
+<img src="https://leanote.com/api/file/getImage?fileId=581e85aeab644165e5001090" alt="">
+成功！</p>
+<h3 id="gitrebase-i压缩历史">git rebase -i——压缩历史</h3>
+<p>在合并特性分支之前，如果发现已提交的内容中有些许拼写错误等，不妨提交一个修改，然后将这个修改包含到前一个提交之中，压缩成一个历史记录。这是个会经常用到的技巧。</p>
+<p>再来新建一个特行分支:
+<img src="https://leanote.com/api/file/getImage?fileId=581e85afab644165e50010ae" alt=""></p>
+<p>修改文本:
+<img src="https://leanote.com/api/file/getImage?fileId=581e85afab644165e50010bc" alt=""></p>
+<blockquote>
+<p>这里<code>git commit -am</code>相当于<code>git add README.md</code>+<code>git commit -m &quot;C分支&quot;</code>，因为改动较小，可以使用这种快捷方式</p>
+</blockquote>
+<p><img src="https://leanote.com/api/file/getImage?fileId=581e85afab644165e50010b2" alt=""></p>
+<p>如果我们发现少写了一句话，现在需要修改第五行内容:
+<img src="https://leanote.com/api/file/getImage?fileId=581e85aeab644165e5001092" alt=""></p>
+<p>查看修改:
+<img src="https://leanote.com/api/file/getImage?fileId=581e85aeab644165e500109a" alt=""></p>
+<p>提交:
+<img src="https://leanote.com/api/file/getImage?fileId=581e85afab644165e50010b0" alt=""></p>
+<blockquote>
+<p>思考：实际上，我们不希望在历史记录中看到这类提交，因为健全的历史记录并不需要它们。为一个错误留一条历史记录是在没必要！</p>
+</blockquote>
+<p>来操作一下，输入：</p>
+<ol>
+<li><code>git rebase -i HEAD~2</code></li>
+</ol>
+<p>用上述方式执行 <code>git rebase</code>命令，可以选定当前分支中包含HEAD（最新提交）在内的两个最新历史记录为对象，并在编辑器中打开：
+<img src="https://leanote.com/api/file/getImage?fileId=581e85aeab644165e5001096" alt=""></p>
+<p>我们将 <code>0da8aa9</code> 的 “添加遗漏” 的历史记录压缩到 <code>f512a47</code> 的 “C分支”里。按照下图所示，将 <code>0da8aa9</code> 左侧的 pick 部分删除，改写为 fixup,然后退出：
+<img src="https://leanote.com/api/file/getImage?fileId=581e85afab644165e50010ba" alt=""></p>
+<p>再次查看分支：
+<img src="https://leanote.com/api/file/getImage?fileId=581e85aeab644165e500108e" alt=""></p>
+<p>发现“C分支”对应的hash值被修改，所以操作成功，也就是相当于我们提交了一次没有遗漏的操作，而不是一次有遗漏的操作加一次修改遗漏的操作！</p>
+<p>现在合并一下:
+<img src="https://leanote.com/api/file/getImage?fileId=581e85aeab644165e500109c" alt=""></p>
+<h2 id="推送至远程仓库">推送至远程仓库</h2>
+<p>现在github上创建一个仓库，为了防止与本地冲突，建议不要初始化<code>README.md</code>:
+<img src="https://leanote.com/api/file/getImage?fileId=581e8f16ab644165e5001125" alt=""></p>
+<h3 id="gitremoteadd添加远程仓库">git remote add——添加远程仓库</h3>
+<p>在 GitHub 上创建的仓库路径为“ <a href="mailto:git@github.com">git@github.com</a>:用户名 /git-tutorial.git”。现在我们用 git remote add命令将它设置成本地仓库的远程仓库：
+<img src="https://leanote.com/api/file/getImage?fileId=581e8f16ab644165e500111f" alt=""></p>
+<p>按照上述格式执行 git remote add命令之后， Git会自动将远程仓库的名称设置为 origin（标识符）。</p>
+<h3 id="gitpush推送至远程仓库">git push——推送至远程仓库</h3>
+<p><img src="https://leanote.com/api/file/getImage?fileId=581e8f16ab644165e5001124" alt=""></p>
+<blockquote>
+<p><code>-u</code>参数可以在推送的同时，将 origin 仓库的 master分支设置为本地仓库当前分支的upstream（上游）。添加了这个参数，将来运行 git pull命令从远程仓库获取内容时，本地仓库的这个分支就可以直接从 origin 的 master分支获取内容，省去了另外添加参数的麻烦。</p>
+</blockquote>
+<p>执行该操作后，当前本地仓库 master分支的内容将会被推送到GitHub 的远程仓库中：
+<img src="https://leanote.com/api/file/getImage?fileId=581e8f16ab644165e5001120" alt="">
+除了 master 分支之外，远程仓库也可以创建其他分支。举个例子，我们在本地仓库中创建 new-D分支，并将它以同名形式 push 至远程仓库:
+<img src="https://leanote.com/api/file/getImage?fileId=581e8f16ab644165e500111e" alt=""></p>
+<p>可以看到多了一个分支:
+<img src="https://leanote.com/api/file/getImage?fileId=581e8f16ab644165e5001121" alt=""></p>
+<h2 id="从远程仓库获取">从远程仓库获取</h2>
+<h3 id="gitclone获取远程仓库">git clone——获取远程仓库</h3>
+<p>首先我们换到其他目录下，将 GitHub 上的仓库 clone 到本地。注意不要与之前操作的仓库在同一目录下：
+<img src="https://leanote.com/api/file/getImage?fileId=581e8f16ab644165e5001123" alt=""></p>
+<blockquote>
+<p>可以看到，执行操作之后多了一个目录。
+执行 git clone命令后我们会默认处于 master分支下，同时系统会自动将 origin设置成该远程仓库的标识符。也就是说，当前本地仓库的 master 分支与 GitHub 端远程仓库（origin）的 master 分支在内容上是完全相同的：
+<img src="https://leanote.com/api/file/getImage?fileId=581e8f16ab644165e5001122" alt=""></p>
+</blockquote>
+<p>用 git branch -a命令查看当前分支的相关信息。添加 -a
+参数可以同时显示本地仓库和远程仓库的分支信息。
+我们试着将 new-D 分支获取至本地仓库：
+<img src="https://leanote.com/api/file/getImage?fileId=581e8f16ab644165e500111d" alt=""></p>
+<blockquote>
+<p>注：<code>-b</code> 参数的后面是本地仓库中新建分支的名称。为了便于理解，我们仍将其命名为<code>new-D</code>，让它与远程仓库的对应分支保持同名。新建分支名称后面是获取来源的分支名称。例子中指定了 origin/new-D，就是说以名为origin 的仓库（这里指 GitHub 端的仓库）的 new-D 分支为来源，在本地仓库中创建 new-D 分支。</p>
+</blockquote>
+<p>我们在分支new-D下做一些更改并提交，推送至远程仓库：
+<img src="https://leanote.com/api/file/getImage?fileId=581e91dbab644167e3001087" alt="">
+<img src="https://leanote.com/api/file/getImage?fileId=581e91dbab644167e3001085" alt=""></p>
+<p>可以看到提交的效果:
+<img src="https://leanote.com/api/file/getImage?fileId=581e91dbab644167e3001084" alt=""></p>
+<h3 id="gitpull获取最新的远程仓库分支">git pull——获取最新的远程仓库分支</h3>
+<p>现在我们放下刚刚操作的目录，回到原先的那个目录下。这边的本地仓库中只创建了 new-D 分支，并没有在 new-D
+分支中进行任何操作：
+<img src="https://leanote.com/api/file/getImage?fileId=581e91dbab644167e3001088" alt=""></p>
+<p>然而远程仓库的 new-D分支中已经有了我们刚刚推送的提交。这时我们就可以使用 git pull 命令，将本地的 new-D 分支更新到最新状态。当前分支为 new-D 分支:
+<img src="https://leanote.com/api/file/getImage?fileId=581e91dbab644167e3001086" alt=""></p>
+<p>可以看到，README.md更新了：
+<img src="https://leanote.com/api/file/getImage?fileId=581e91dbab644167e3001089" alt=""></p>
+<blockquote>
+<p>GitHub 端远程仓库中的 new-D分支是最新状态，所以本地仓库中的 new-D 分支就得到了更新。今后只需要像平常一样在本地进行提交再 push 给远程仓库，就可以与其他开发者同时在同一个分支中进行作业，不断给 new-D 增加新功能。如果两人同时修改了同一部分的源代码， push 时就很容易发生冲突。所以多名开发者在同一个分支中进行作业时，为减少冲突情况的发生，建议更频繁地进行 push 和 pull 操作。</p>
+</blockquote>
+<h2 id="深入学习的资料">深入学习的资料</h2>
+<h3 id="pro-git"><em>Pro Git</em></h3>
+<p><em>Pro Git</em> 由就职于 GitHub 公司的 Scott ChaconB 执笔，是一部零基础的 Git 学习资料。基于知识共享的 CC BY-NC-SA 3.0 许可协议，可以免费阅读到包括简体中文在内的各国语言版本。<a href="https://git-scm.com/book/zh/v1">点击阅读</a></p>
+<h3 id="learngitbranching"><em>LearnGitBranching</em></h3>
+<p>LearnGitBranchingA 是学习 Git 基本操作的网站。注重树形结构的学习方式非常适合初学者使用，点击右下角的地球标志还可切换各种语言进行学习。<a href="http://learngitbranching.js.org/">点击开始学习</a></p>
+<h3 id="trygit"><em>tryGit</em></h3>
+<p>通过 tryGitB 我们可以在 Web 上一边操作一边学习 Git 的基本功能。该教程只有英文版。<a href="https://try.github.io/">点击开始学习</a></p>
+<h1 id="其他">其他</h1>
+<ul>
+<li>参考《GitHub入门与实践》</li>
+</ul>
+
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/2016-programmer-s-self-cultivation/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">程序员的自我修养</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/articles/2016-string-matching-reviewing-a-code-from-my-freshman-year/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">字符串匹配------回顾大一时的一份代码</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

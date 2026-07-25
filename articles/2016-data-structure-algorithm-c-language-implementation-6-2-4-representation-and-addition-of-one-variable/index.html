@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>数据结构算法C语言实现（六）---2.4一元多项式的表示及相加 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="数据结构算法C语言实现（六）---2.4一元多项式的表示及相加" />
+<meta property="og:description" content="一.简述 利用链表表示稀疏多项式，并基于之前的一些操作（编程实现上还是有所不同的）组合新的操作实现一元多项式的表示及相加。 二.ADT 1 抽象数据类型一元多项式的定义 2 ADT Polyomail{ 3 数据对象：D = {a[i]|a[i" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/2016-data-structure-algorithm-c-language-implementation-6-2-4-representation-and-addition-of-one-variable/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2016-06-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-25T16:21:52+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="数据结构算法C语言实现（六）---2.4一元多项式的表示及相加"/>
+<meta name="twitter:description" content="一.简述 利用链表表示稀疏多项式，并基于之前的一些操作（编程实现上还是有所不同的）组合新的操作实现一元多项式的表示及相加。 二.ADT 1 抽象数据类型一元多项式的定义 2 ADT Polyomail{ 3 数据对象：D = {a[i]|a[i"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">数据结构算法C语言实现（六）---2.4一元多项式的表示及相加</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-06-07T00:00:00Z">2016-06-07</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 2600 字，阅读需 6 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<p>一.简述</p>
+<p>利用链表表示稀疏多项式，并基于之前的一些操作（编程实现上还是有所不同的）组合新的操作实现一元多项式的表示及相加。</p>
+<p>二.ADT</p>
+<pre tabindex="0"><code> 1 抽象数据类型一元多项式的定义
+ 2 ADT Polyomail{
+ 3     数据对象：D = {a[i]|a[i]属于TermSet, i = 1,2,3...,m,m&gt;=0
+ 4                     TermSet中每个元素包含一个表示系数的实数和表示指数的整数}
+ 5     数据关系
+ 6     基本操作：
+ 7     CreatPolyn(&amp;P, m)
+ 8     操作结果：输入 m 项的系数和指数，建立一元多项式 P
+ 9     DestroyPolyn(&amp;P)
+10     初始条件：一元多项式 P 已存在
+11     操作结果：销毁一元多项式P
+12     PrintPolyn(P)
+13     初始条件：一元多项式 P 已存在
+14     操作结果：打印输出一元多项式 P
+15     PolynLength(P)
+16     初始条件：一元多项式 P 已存在
+17     操作结果：返回一元多项式中 P 的项数
+18     AddPolyn(&amp;Pa, &amp;Pb)
+19     初始条件：一元多项式 Pa 和 Pb 已存在
+20     操作结果：完成多项式相加运算，即：Pa = Pa + Pb,并销毁一元多项式 Pb
+21     SubtractPolyn(&amp;Pa, &amp;Pb)
+22     初始条件：一元多项式 Pa 和 Pb 已存在
+23     操作结果：完成多项式相减运算，即 Pa = Pa - Pb,并销毁一元多项式 Pb
+24     MultiplyPolyn(&amp;Pa, &amp;Pb)
+25     初始条件：一元多项式 Pa 和 Pb 已存在
+26     操作结果：完成多项式相乘运算，即 Pa = Pa x Pb,并销毁一元多项式 Pb
+27 }ADT Polynomial
+28 */
+</code></pre><p>View Code</p>
+<p>三.头文件</p>
+<pre tabindex="0"><code>  1 //2_4.h
+  2 /**
+  3 《数据结构（C语言版）》 Page 37
+  4 ....为此，从实际应用角度出发重新定义线性链表及其基本操作....
+  5 */
+  6 /**
+  7 author:zhaoyu
+  8 email:zhaoyu1995.com@gmail.com
+  9 date:2016-6-6
+ 10 note:realize my textbook &lt;&lt;数据结构（C语言版）&gt;&gt;
+ 11 */
+ 12 #ifndef _2_4_H_
+ 13 #define _2_4_H_
+ 14 #include &#34;head.h&#34;
+ 15 typedef struct{//项的表示，多项式的项作为LinkList的数据元素
+ 16     float coef;//系数
+ 17     int expn;//指数
+ 18 }term, ElemType;//两个类型名：term用于本ADT，ElemType为LinkList的数据对象名
+ 19 typedef struct LNode{
+ 20     ElemType data;
+ 21     struct LNode *next;
+ 22 }*Link, *Position;
+ 23 typedef struct{//链表类型
+ 24     Link head, tail;//分别指向线性链表中的头结点和最后一个结点
+ 25     int len;//指示线性链表中数据元素的个数
+ 26 }LinkList;
+ 27 typedef LinkList polynomial;//用带表头结点的有序链表表示多项式
+ 28
+ 29 int cmp(term a, term b)
+ 30 {
+ 31     //依据 a 的指数值 &lt;(或=)(或&gt;) b 的指数值 ，返回 -1 ，0， +1
+ 32     if(a.expn &lt; b.expn)
+ 33     {
+ 34         return -1;
+ 35     }
+ 36     else if (a.expn == b.expn)
+ 37     {
+ 38         return 0;
+ 39     }
+ 40     else
+ 41     {
+ 42         return 1;
+ 43     }
+ 44 }
+ 45 Status InitList(LinkList &amp;L)
+ 46 {
+ 47     //构造一个空的线性表L
+ 48     L.head = (Link)malloc(sizeof(struct LNode));
+ 49     L.head-&gt;data.coef = 0.0;
+ 50     L.head-&gt;data.expn = -1;
+ 51     L.head-&gt;next = NULL;
+ 52     L.tail = L.head-&gt;next;
+ 53     L.len = 0;
+ 54 }
+ 55 Position GetHead(LinkList L)
+ 56 {
+ 57     //返回线性链表 L 中头结点的位置
+ 58     return L.head;
+ 59 }
+ 60 Status SetCurElem(Link &amp;p, ElemType e)
+ 61 {
+ 62     //已知 p 指向线性链表中的一个结点，用 e 更新 p 所指结点中数据元素的值
+ 63     p-&gt;data.coef = e.coef;
+ 64     p-&gt;data.expn = e.expn;
+ 65     return OK;
+ 66 }
+ 67 Status LocateElem(LinkList L, ElemType e, Position &amp;q, Status (* compare)(ElemType, ElemType))
+ 68 {
+ 69     //若有序链表 L 中存在与 e 满足判定函数 compare() 取值为 0 的函数
+ 70     //则 q 指示 L 中第一个值为 e 的结点的位置，并返回 TRUE；否则 q 指示
+ 71     //第一个与 e 满足compare() 取值&gt;0的元素的前驱的位置，并返回FLASE
+ 72     Link temp = L.head-&gt;next;
+ 73     while (temp != NULL)
+ 74     {
+ 75         if (0 == (* compare)(temp-&gt;data, e))
+ 76         {
+ 77             q = temp;
+ 78             return TRUE;
+ 79         }
+ 80         temp = temp-&gt;next;
+ 81     }
+ 82     temp = L.head;
+ 83     while (temp-&gt;next != NULL)
+ 84     {
+ 85         if ((* compare)(temp-&gt;next-&gt;data, e) &gt; 0)
+ 86         {
+ 87             q = temp;
+ 88             return FALSE;
+ 89         }
+ 90         temp = temp-&gt;next;
+ 91     }
+ 92     q = temp;
+ 93     return FALSE;
+ 94 }
+ 95 Status MakeNode(Link &amp;p, ElemType e)
+ 96 {
+ 97     //分配由 p 指向的值为 e 的结点，并返回 OK；若分配失败，则返回 ERROR
+ 98     p = (Link)malloc(sizeof(struct LNode));
+ 99     if (!p)
+100     {
+101         return ERROR;
+102     }
+103     p-&gt;data.coef = e.coef;
+104     p-&gt;data.expn = e.expn;
+105     p-&gt;next = NULL;
+106     return OK;
+107 }
+108 Status InsFirst(Link &amp;h, Link &amp;s)
+109 {
+110     //已知 h 指向线性链表的头结点，将 s 所指节点插入在第一个结点之前
+111     if (NULL == h)
+112     {
+113         return ERROR;
+114     }
+115     else
+116     {
+117         s-&gt;next = h-&gt;next;
+118         h-&gt;next = s;
+119     }
+120     return OK;
+121 }
+122 ElemType GetCurElem(Link p)
+123 {
+124     //已知 p 指向线性链表中的一个节点，返回 p 所指结点中数据元素的值
+125     if (p != NULL)
+126     {
+127         return p-&gt;data;
+128     }
+129     else
+130     {
+131         exit(ERROR);
+132     }
+133 }
+134 /**
+135 My Code
+136 */
+137 Position NextPos(LinkList L, Link p)
+138 {
+139     //已知 p 指向线性链表 L 中的一个节点，返回 p 所指结点
+140     //的直接后继的位置，若无后继，返回 NULL
+141     Link q = L.head;
+142     while (q-&gt;next != NULL)
+143     {
+144         if(q == p)
+145         {
+146             return p-&gt;next;
+147         }
+148         q = q-&gt;next;
+149     }
+150     return NULL;
+151 }
+152 Status DelFirst(Link &amp;h, Link &amp;q)
+153 {
+154     //已知 h 指向线性链表的头结点，删除链表中的第一个节点并以 q 返回
+155     if (h == NULL)
+156     {
+157         return ERROR;
+158     }
+159     q = h-&gt;next;
+160     h-&gt;next = q-&gt;next;
+161     q-&gt;next = NULL;
+162     return OK;
+163 }
+164 Status FreeNode(Link &amp;p)
+165 {
+166     //释放 p 所指节点
+167     p = NULL;//便于回收???释放后再次使用
+168     free(p);
+169 }
+170 Status ListEmpty(LinkList L)
+171 {
+172     //若线性链表 L 为空，则返回 TRUE，否则返回 FALSE
+173     if (L.head-&gt;next == NULL)
+174     {
+175         return TRUE;
+176     }
+177     else
+178     {
+179         return FALSE;
+180     }
+181 }
+182 Status Append(LinkList &amp;L, Link &amp;s)
+183 {
+184     //将指针 s 所指（彼此以指针相链）的一串结点
+185     //链接在线性链表 L 最后一个结点
+186     Link q = L.head;
+187     while (q-&gt;next != NULL)
+188     {
+189         q = q-&gt;next;
+190     }
+191     q-&gt;next = s;
+192     int cnt = 0;
+193     Link temp = s;
+194     while (temp != NULL)
+195     {
+196         cnt++;
+197         if (NULL == temp-&gt;next)
+198         {
+199             L.tail = temp;//注意更新尾指针
+200         }
+201         temp = temp-&gt;next;//注意这一句要放在最后，否则可能访问非法内存
+202     }
+203
+204     L.len += cnt;
+205     //注意要根据这一串结点长度增加链表长度
+206     return OK;
+207 }
+208 void PrintPolyn(polynomial P)
+209 {
+210     Link temp = P.head-&gt;next;
+211     while (temp != NULL)
+212     {
+213         printf(&#34;%.1f\t&#34;, temp-&gt;data.coef);
+214         temp = temp-&gt;next;
+215     }
+216     printf(&#34;\n&#34;);
+217     temp = P.head-&gt;next;
+218     while (temp != NULL)
+219     {
+220         printf(&#34;%d\t&#34;, temp-&gt;data.expn);
+221         temp = temp-&gt;next;
+222     }
+223     printf(&#34;\n&#34;);
+224 }
+225 /**
+226 algorithm 2.22
+227 */
+228 void CreatPolyn(polynomial &amp;P, int m)
+229 {
+230     //输入 m 项的系数和指数，建立表示一元多项式的有序链表 P
+231     InitList(P);
+232     Link h = GetHead(P), s, q;
+233     ElemType e;
+234     e.coef = 0.0;
+235     e.expn = -1;
+236     SetCurElem(h, e);//设置头结点中的数据元素
+237     for (int i = 1; i &lt;= m; i++)
+238     {//依次输入 m 个非零项
+239         scanf(&#34;%f%d&#34;, &amp;e.coef, &amp;e.expn);
+240         if (!LocateElem(P, e, q, (* cmp)))
+241         {//当前链表中不存在该指数项
+242             if (MakeNode(s, e))
+243             {
+244                 InsFirst(q, s);
+245             }
+246         }
+247     }
+248 }//CreatePolyn
+249 /**
+250 algorithm 2.23
+251 */
+252 void AddPolyn(polynomial &amp;Pa, polynomial &amp;Pb)
+253 {
+254     //多项式加法：Pa = Pa + Pb，利用两个多项式构成和多项式
+255     Link ha = GetHead(Pa);
+256     Link hb = GetHead(Pb);//pa 和 pb 分别指向 Pa 和 Pb 的头结点
+257     Link qa = NextPos(Pa, ha);
+258     Link qb = NextPos(Pb, hb);//qa 和 qb 分别指向 Pa 和 Pb 中当前节点
+259     while (qa &amp;&amp; qb)//qa 和 qb均非空
+260     {
+261         ElemType a = GetCurElem(qa);
+262         ElemType b = GetCurElem(qb);//a、b为两表中当前比较元素
+263         switch ((* cmp)(a, b))
+264         {
+265             case -1://多项式 Pa 中当前节点的指数值小
+266             {
+267                 ha = qa;
+268                 qa = NextPos(Pa, qa);//printf(&#34;%d\n&#34;, qa-&gt;data.expn);
+269                 break;
+270             }
+271             case 0://两者的指数值相等
+272             {
+273                 ElemType S = {a.coef + b.coef, a.expn};
+274                 if(0 != S.coef)
+275                 {//修改多项式 Pa 中当前节点
+276                     SetCurElem(qa, S);
+277                     ha = qa;
+278                 }
+279                 else
+280                 {//删除多项式中 Pa 当前节点
+281                     DelFirst(ha, qa);
+282                     FreeNode(qa);
+283                 }
+284                 DelFirst(hb, qb);
+285                 FreeNode(qb);
+286                 qa = NextPos(Pa, ha);
+287                 qb = NextPos(Pb, hb);
+288                 break;
+289             }
+290             case 1://多项式 Pb 当前结点指数值小
+291             {
+292                 DelFirst(hb, qb);
+293                 InsFirst(ha, qb);
+294                 qb = NextPos(Pb, hb);
+295                 ha = NextPos(Pa, ha);
+296                 break;
+297             }
+298         }//switch
+299     }//while
+300     if (!ListEmpty(Pb))
+301     {
+302         Append(Pa, qb);//链接 Pb 中剩余结点
+303     }
+304     FreeNode(hb);//释放 Pb 的头结点
+305 }//AddPolyn
+306 #endif
+</code></pre><p>View Code</p>
+<p>四.CPP文件</p>
+<pre tabindex="0"><code> 1 #include &#34;2_4.h&#34;
+ 2
+ 3 int main(int argc, char const *argv[])
+ 4 {
+ 5     polynomial Pa, Pb, Pc;
+ 6     int n;
+ 7     printf(&#34;Input n\t&#34;);
+ 8     scanf(&#34;%d&#34;, &amp;n);
+ 9     CreatPolyn(Pa, n);
+10     printf(&#34;Pa\n&#34;);
+11     PrintPolyn(Pa);
+12     printf(&#34;Input n\t&#34;);
+13     scanf(&#34;%d&#34;, &amp;n);
+14     CreatPolyn(Pb, n);
+15     printf(&#34;Lb\n&#34;);
+16     PrintPolyn(Pb);
+17     AddPolyn(Pa, Pb);
+18     printf(&#34;La + Lb\n&#34;);
+19     PrintPolyn(Pa);
+20     return 0;
+21 }
+</code></pre><p>View Code</p>
+<p>五.测试</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/6c3898968d1a00382847-0d8079a28089a38600cf.png" alt=""></p>
+<p>六.小结</p>
+<p>不要对着伪代码一行行敲代码，一定要在理解的基础上实现算法，否则敲错一个变量导致奇怪的错误也要大费周折才能找到。</p>
+
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/2016-data-structure-algorithm-c-language-implementation-7-3-1-linear-implementation-and-application-examp/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">数据结构算法C语言实现（七）--- 3.1栈的线性实现及应用举例</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/articles/2016-subime-learning-record/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">Subime学习记录</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

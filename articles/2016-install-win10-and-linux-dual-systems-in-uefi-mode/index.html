@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>UEFI模式安装Win10和Linux双系统 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="UEFI模式安装Win10和Linux双系统" />
+<meta property="og:description" content="最近心血来潮，想装一个Linux、Windows双系统，吸取上次安装的经验，这次一定都要使用UEFI模式启动，需要注意的是必须是支持此种启动模式的系统（一般解压之后都有efi文件夹不需要刻录），这次遇" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/2016-install-win10-and-linux-dual-systems-in-uefi-mode/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2016-12-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-25T16:21:52+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="UEFI模式安装Win10和Linux双系统"/>
+<meta name="twitter:description" content="最近心血来潮，想装一个Linux、Windows双系统，吸取上次安装的经验，这次一定都要使用UEFI模式启动，需要注意的是必须是支持此种启动模式的系统（一般解压之后都有efi文件夹不需要刻录），这次遇"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">UEFI模式安装Win10和Linux双系统</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-12-01T00:00:00Z">2016-12-01</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 3100 字，阅读需 7 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<p>最近心血来潮，想装一个Linux、Windows双系统，吸取上次安装的经验，这次<strong>一定都要使用UEFI模式启动</strong>，需要注意的是必须是支持此种启动模式的系统（一般解压之后都有efi文件夹不需要刻录），这次遇到的问题主要如何分区，失败几次后找到一篇写的十分详细的博客，自己搬过来，以备以后使用。</p>
+<p>原文链接：<a href="http://blog.csdn.net/ysy950803/article/details/52643737">亲测UEFI启动模式的电脑安装Win10和Ubuntu双系统</a></p>
+<p>&mdash;&mdash;&mdash;&mdash;以下是原文&mdash;&mdash;&mdash;&mdash;&ndash;</p>
+<p>我个人不太喜欢虚拟机下安装系统，一来运行效率不行，二来原生体验不行。</p>
+<p>原本我的电脑是Windows 10专业版，为了体验和学习Linux，我给本本安装了Ubuntu 16.0.4 LTS（目前官网能下载到的最新版本），于是各种搜安装教程，感觉各种复杂。</p>
+<p>后来我发现了他们复杂的原因，我仔细看了下这些教程文章的时间，很多都是好几年前的教程，就算是时间很近的，也是抄来抄去，长篇大论无奇不有。其实那都是因为以前的电脑都不是UEFI启动，而是Legacy，大家都知道Win8以后都有<a href="https://www.baidu.com/s?ie=UTF-8&amp;wd=%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8">快速启动</a>，必须得依靠UEFI。</p>
+<p>然而随着UEFI的普及，现在你去买笔记本电脑几乎买不到不是UEFI的，这是一种先进安全的启动模式，而且Ubuntu本身也是支持UEFI启动的，所以安装双系统是非常简单的事情。</p>
+<p>第一步最重要的就是你要分区，Linux没有什么C盘D盘的概念，只有分区挂载目录的概念，所以你在Windows下<strong>只需要分出一块较大的未分配空间就行，记住不要去格式化</strong>，保证其“未分配”属性（Linux的文件系统和Win是不一样的，NTFS和FAT32都不适用）。
+用Win自带的磁盘管理不能合并不相邻的未分配空间，所以你要想C盘割一点，D盘割一点，再合在一起那是不行的，<em>解决办法是在WinPE系统环境下使用无损分区软件，去合并不同区域的空闲空间，这里不赘述</em>。（如果不愿使用PE的，直接分割已有分区即可，比如你最后一个分区是F盘，分出几十个GB就行，当然前提是你原本空间够大）</p>
+<p>第二，你必须要有一个U盘（光盘就算了太麻烦了），然后使用软碟通或者USBWriter把iso系统镜像文件烧录进去，这是比较传统的方法，但既然我们UEFI启动，那就根本不需要刻录这么麻烦的工作了，<strong>直接将iso里的所有文件解压至U盘即可</strong>。
+<img src="http://img.blog.csdn.net/20160923204154031" alt="这里写图片描述">
+大家可以看到，Ubuntu的镜像文件里本身就有EFI文件夹，说明其实支持UEFI引导安装的。</p>
+<p>然后记得<strong>关闭Windows的快速启动</strong>，重启电脑，我是Dell的本，开机按F2进入BIOS设置，F12进入启动设置，其它电脑类似，大家自行了解。</p>
+<p>进入BIOS设置后，<strong>关闭Security Boot</strong>（我这里Dell的本是按F12，再选最后那个Change Mode……，然后改为UEFI, Security Boot Off），最后<strong>选择UEFI下的U盘启动</strong>，所以整个过程根本不用改为Legacy里的HardDisk启动，那是个既老又慢的启动方式。</p>
+<p>选中USB启动，回车后即进入Ubuntu安装流程，
+前面几步我就不说了，按照正常的步骤，<strong>如果你选择了安装更新和第三方软件，那么一定要记得联网，否则会卡死在最后的进度条上，所以最好不要勾选。另外，不要选择“与其它系统共存”那一项，而选择最后那个“其它选项（创建自己的分区）”。</strong></p>
+<p><strong>最最最关键的就是分区这一步，这一步直接影响你安装双系统是否成功！下面依次点击新建分区表来挂载分区。</strong></p>
+<ol>
+<li><em><strong>swap交换空间</strong></em>，这个也就是虚拟内存的地方，选择<strong>主分区</strong>和<strong>空间起始位置</strong>。如果你给Ubuntu系统分区容量足够的话，最好是能给到你<strong>物理内存的2倍</strong>大小，像我8GB内存，就可以给个16GB的空间给它，这个看个人使用情况，太小也不好，太大也没用。（其实我只给了8GB，没什么问题）</li>
+<li>新建<em><strong>efi系统分区</strong></em>，选中<strong>逻辑分区</strong>（这里不是主分区，请勿怀疑，老式的boot挂载才是主分区）和<strong>空间起始位置</strong>，大小最好不要小于256MB，系统引导文件都会在里面，我给的<strong>512MB</strong>，它的作用和boot引导分区一样，但是boot引导是默认grub引导的，而efi显然是UEFI引导的。不要按照那些老教程去选boot引导分区，<strong>也就是最后你的挂载点里没有“/boot”这一项</strong>，否则你就没办法UEFI启动两个系统了。</li>
+<li><em><strong>挂载“/home”</strong></em>，类型为<strong>EXT4日志文件系统</strong>，选中<strong>逻辑分区</strong>和<strong>空间起始位置</strong>，这个相当于你的个人文件夹，类似Windows里的User，如果你是个娱乐向的用户，我建议最好能分配稍微大点，因为你的图片、视频、下载内容基本都在这里面，这些东西可不像在Win上面你想移动就能移动的。
+总的来说，<strong>最好不要低于8GB</strong>，我Ubuntu分区的总大小是64GB，这里我给了12GB给home。
+（这里特别提醒一下，Ubuntu最新发行版不建议强制获取Root权限，因为我已经玩崩过一次。所以你以后很多文档、图片、包括免安装软件等资源不得不直接放在home分支下面。你作为图形界面用户，只对home分支有完全的读写执行权限，其余分支例如usr你只能在终端使用sudo命令来操作文件，不利于存放一些直接解压使用的免安装软件。因此，建议home分支多分配一点空间，32GB最好……）</li>
+<li><em><strong>挂载“/usr”</strong></em>，类型为<strong>EXT4日志文件系统</strong>，选中<strong>逻辑分区</strong>和<strong>空间起始位置</strong>，这个相当于你的软件安装位置，Linux下一般来说安装第三方软件你是没办法更改安装目录的，系统都会统一地安装到/usr目录下面，因此你就知道了，这个分区必须要大，我给了<strong>32GB</strong>。</li>
+<li>最后，<em><strong>挂载“/”</strong></em>，类型为<strong>EXT4日志文件系统</strong>，选中<strong>逻辑分区</strong>和<strong>空间起始位置</strong>，
+因为除了home和usr还有很多别的目录，但那些都不是最重要的，“/”就把除了之前你挂载的home和usr外的全部杂项囊括了，<strong>大小也不要太小</strong>，最好不低于8GB。如果你非要挨个仔细分配空间，那么你需要知道这些各个分区的含义（<a href="http://blog.sina.com.cn/s/blog_5f0a505101017ruf.html">Linux(ubuntu)分区挂载点介绍</a>）
+不过就算你把所有目录都自定义分配了空间也必须要给“/”挂载点分配一定的空间。</li>
+</ol>
+<p>分配好各个挂载点后，还有一个至关重要的步骤，那就是选择“<strong>安装引导启动器的设备</strong>”，默认是错误的，既然我们为Ubuntu分配了efi系统引导分区，那么显然，这里应该把它<strong>改成刚刚第2步分配efi引导的那个分区</strong>（比如我安装时它是/dev/sda7，那么我就选这个）。</p>
+<p>如此一来，成功一大半，接下来点击安装，等待差不多半小时即可。这个就看电脑配置和网速了。</p>
+<p><em>这里再多说一句，如果你安装进度条卡在最后的update-notifier-common，请拔掉你的网线也就是断网，然后再连接，多等一会儿就会好。你点一下那行字就会看到安装详情，只要详情在刷新就没问题。</em></p>
+<p>安装成功后，会提示你拔掉U盘并且重启，重启后记得进入BIOS改回UEFI Security Boot On模式，也就是重新开启Security Boot，然后再重启你就可以看到选择系统的启动引导界面了，一般来说：
+第一个是Ubuntu，选这个进入Ubuntu系统，
+第二个是Ubuntu高级选项，
+第三个是Windows Boot Manager，也就是启动你的Win10，
+第四个不好意思忘了。</p>
+<p>默认10s自动进入第一个，如果你不动的话。
+以上教程绝对比那些花花绿绿的一大堆的图文有用，只要你耐心看完，保证万无一失。安装成功后，Win10的快速启动也可以重新开启。</p>
+<p>最最最后，如果大家装好系统后想要恢复U盘到普通状态的话，请看我的另一篇博文：<a href="http://blog.csdn.net/ysy950803/article/details/52642887">解决U盘制作Ubuntu系统安装盘后无法格式化且容量无法恢复</a>。</p>
+
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/2016-compilation-principles-in-practice-calculator/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">编译原理实践:计算器</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/articles/2016-a-brief-discussion-on-japanese-technical-books/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">浅谈日系技术书籍</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

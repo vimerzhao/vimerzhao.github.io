@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>C语言用面向对象的思想写贪吃蛇 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="C语言用面向对象的思想写贪吃蛇" />
+<meta property="og:description" content="大概一年前这时候，接触C语言一个月，那时候知之甚少，对面向对象只觉”可远观而不可亵玩“，而且会看到很多言论说C语言就是面向过程的语言，C&#43;&#43;就是面向对象的语言。不过，不记得什么时候在网上看到过一篇博文" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/2016-c-language-uses-object-oriented-thinking-to-write-greedy-snake/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2016-04-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-25T16:21:52+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="C语言用面向对象的思想写贪吃蛇"/>
+<meta name="twitter:description" content="大概一年前这时候，接触C语言一个月，那时候知之甚少，对面向对象只觉”可远观而不可亵玩“，而且会看到很多言论说C语言就是面向过程的语言，C&#43;&#43;就是面向对象的语言。不过，不记得什么时候在网上看到过一篇博文"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">C语言用面向对象的思想写贪吃蛇</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-04-29T00:00:00Z">2016-04-29</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 2100 字，阅读需 4 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<p>大概一年前这时候，接触C语言一个月，那时候知之甚少，对面向对象只觉”可远观而不可亵玩“，而且会看到很多言论说C语言就是面向过程的语言，C++就是面向对象的语言。不过，不记得什么时候在网上看到过一篇博文，大概是说如何优雅的写C语言。其中颇有印象的就是通过结构的函数指针模拟C++中的类。</p>
+<p>今天粗略尝试了一下，写的是之前写过的贪吃蛇。的确，用面向对象的思维写让我的思维变的更加清晰，因为这个游戏（以及大多数显示事物）的天然属性就是对象。</p>
+<p>此外，这次从最关键最核心的写起，如此写起来真是越写越轻松。因为如果关键部分写不出来，其他写的再好也没用。所以这次的顺序大概是：能移动的蛇&mdash;&gt;能吃食物并变长&mdash;&gt;能判断自己是否死亡&mdash;&gt;其他修饰功能。</p>
+<p>最后，调试无误后。在发布代码前写了写注释。发现自己现在命名编码规范了不少，所以注释也并不多。曾经看到一种观点就是，注释关键部分就足够了，最好的注释就是良好的命名习惯、编码风格和清晰的逻辑。</p>
+<p>不过，由于没有太多的规划，都是自己在路上零散构思的，代码还是不够紧凑，逻辑还可以优化。</p>
+<p>头文件</p>
+<pre tabindex="0"><code>  1 #ifndef _HEAD_H_
+  2 #define _HEAD_H_
+  3 #include &lt;stdio.h&gt;
+  4 #include &lt;windows.h&gt;//
+  5 int Score = -1;
+  6 typedef struct node1
+  7 {
+  8     int x;
+  9     int y;
+ 10     struct node1 *next;
+ 11 }SnakeBody;
+ 12 typedef struct node2
+ 13 {
+ 14     int x;
+ 15     int y;//location
+ 16     char Status;
+ 17     char Direction;
+ 18     void (*MoveUp)(struct node2 *);
+ 19     void (*MoveDown)(struct node2 *);
+ 20     void (*MoveRight)(struct node2 *);
+ 21     void (*MoveLeft)(struct node2 *);
+ 22     void (*GrowUp)(struct node2 *);
+ 23     int (*IsDie)(struct node2 *);
+ 24     SnakeBody *next;
+ 25 }SnakeHead;
+ 26 void HideCursor()
+ 27 {
+ 28     CONSOLE_CURSOR_INFO cursor_info = { 1, 0 };
+ 29     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;cursor_info);
+ 30 }
+ 31 void SetPosition(int x, int y)
+ 32 {
+ 33     COORD pos;
+ 34     HANDLE hOutput;
+ 35     pos.X = x;
+ 36     pos.Y = y;
+ 37     hOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+ 38     SetConsoleCursorPosition(hOutput, pos);
+ 39 }
+ 40 void Print(SnakeHead *H)
+ 41 {
+ 42     SetPosition(H-&gt;x, H-&gt;y);
+ 43     printf(&#34;@&#34;);//mean snake head
+ 44     SnakeBody *temp = H-&gt;next;
+ 45     while(NULL != temp)
+ 46     {
+ 47         SetPosition(temp-&gt;x, temp-&gt;y);
+ 48         printf(&#34;+&#34;);//means snake body
+ 49         temp = temp-&gt;next;
+ 50     }
+ 51 }
+ 52 void Move(SnakeHead *H)
+ 53 {
+ 54     SnakeBody *temp = H-&gt;next;
+ 55     while (NULL != temp-&gt;next-&gt;next)
+ 56     {
+ 57         temp = temp-&gt;next;
+ 58     }
+ 59     temp-&gt;next-&gt;next = H-&gt;next;
+ 60     H-&gt;next = temp-&gt;next;
+ 61     SetPosition(temp-&gt;next-&gt;x, temp-&gt;next-&gt;y);
+ 62     printf(&#34; &#34;);
+ 63     temp-&gt;next = NULL;
+ 64     H-&gt;next-&gt;x = H-&gt;x;
+ 65     H-&gt;next-&gt;y = H-&gt;y;
+ 66 }
+ 67 void _MoveUp(SnakeHead *H)
+ 68 {
+ 69     Move(H);
+ 70     H-&gt;y--;
+ 71 }
+ 72 void _MoveDown(SnakeHead *H)
+ 73 {
+ 74     Move(H);
+ 75     H-&gt;y++;
+ 76 }
+ 77 void _MoveRight(SnakeHead *H)
+ 78 {
+ 79     Move(H);
+ 80     H-&gt;x++;
+ 81 }
+ 82 void _MoveLeft(SnakeHead *H)
+ 83 {
+ 84     Move(H);
+ 85     H-&gt;x--;
+ 86 }
+ 87 void _GrowUp(SnakeHead *H)
+ 88 {
+ 89     SnakeBody *temp = (SnakeBody *)malloc(sizeof(SnakeBody));
+ 90     temp-&gt;x = H-&gt;x;
+ 91     temp-&gt;y = H-&gt;y;
+ 92     temp-&gt;next = H-&gt;next;
+ 93     H-&gt;next =  temp;
+ 94     switch (H-&gt;Direction)
+ 95     {
+ 96         case &#39;U&#39;:
+ 97         {
+ 98             H-&gt;y--;
+ 99             break;
+100         }
+101         case &#39;D&#39;:
+102         {
+103             H-&gt;y++;
+104             break;
+105         }
+106         case &#39;L&#39;:
+107         {
+108             H-&gt;x--;
+109             break;
+110         }
+111         case &#39;R&#39;:
+112         {
+113             H-&gt;x++;
+114             break;
+115         }
+116         default:
+117         {
+118             break;
+119         }
+120     }
+121     Print(H);
+122 }
+123 const int Left = 3;
+124 const int Right = 34;
+125 const int Top = 3;
+126 const int Bottom = 27;
+127 void BuildWall()
+128 {
+129     for (int x = Left; x &lt;= Right; x++)
+130     {
+131         SetPosition(x, Top);
+132         printf(&#34;-&#34;);
+133         SetPosition(x, Bottom);
+134         printf(&#34;-&#34;);
+135     }
+136     for (int y = Top; y &lt;= Bottom; y++)
+137     {
+138         SetPosition(Left, y);
+139         printf(&#34;|&#34;);
+140         SetPosition(Right, y);
+141         printf(&#34;|&#34;);
+142     }
+143     //some hint
+144     SetPosition(15, 1);
+145     printf(&#34;Snake&#34;);
+146     SetPosition(20, 2);
+147     printf(&#34;zhaoyu&#34;);
+148     SetPosition(37, 7);
+149     printf(&#34;F1:Slow Down&#34;);
+150     SetPosition(37, 9);
+151     printf(&#34;F2:Speed Up&#34;);
+152     SetPosition(37, 11);
+153     printf(&#34;F3:Speed Up++&#34;);
+154     SetPosition(37, 15);
+155     printf(&#34;Score:&#34;);
+156 }
+157 void CreateFood(int *x, int *y, SnakeHead *H)
+158 {
+159     int flag = 1;
+160     int i = 0, j = 0;
+161     //make sure in the wall &amp;&amp; not on snake
+162     SnakeBody *temp = H-&gt;next;
+163     while (1 == flag)
+164     {
+165         i = rand()%30;
+166         i += 4;
+167         j = rand()%24;
+168         j += 4;
+169         flag = 0;
+170         if (i == H-&gt;x &amp;&amp; j == H-&gt;y)
+171         {
+172             flag = 1;
+173             continue;
+174         }
+175         temp = H-&gt;next;
+176         while (NULL != temp)
+177         {
+178             if (i == temp-&gt;x &amp;&amp; j == temp-&gt;y)
+179             {
+180                 flag = 1;
+181                 break;
+182             }
+183             temp = temp-&gt;next;
+184         }
+185     }
+186
+187     *x = i;
+188     *y = j;
+189     SetPosition(i, j);
+190     printf(&#34;$&#34;);//dollar mead food!
+191     SetPosition(45, 15);
+192     //once food created ,score plus 1
+193     printf(&#34;%d&#34;, ++Score);
+194 }
+195 int Die(SnakeHead *H)
+196 {
+197     //out the wall will die
+198     if (H-&gt;x &lt;= Left || H-&gt;x &gt;= Right || H-&gt;y &gt;= Bottom || H-&gt;y &lt;= Top)
+199     {
+200         return 1;//die
+201     }
+202     // crush into itself will die
+203     SnakeBody *temp = H-&gt;next;
+204     while (NULL !=temp)
+205     {
+206         if (H-&gt;x == temp-&gt;x &amp;&amp; H-&gt;y == temp-&gt;y)
+207         {
+208             return 1;
+209         }
+210         temp = temp-&gt;next;
+211     }
+212     // 0 mean not die
+213     return 0;
+214 }
+215 #endif
+</code></pre><p>源文件</p>
+<pre tabindex="0"><code>  1 #include &#34;head.h&#34;
+  2
+  3
+  4 void StartGame()
+  5 {
+  6     //Create a snake
+  7     SnakeBody *temp = (SnakeBody *)malloc(sizeof(SnakeBody));
+  8     SnakeHead *Head = (SnakeHead *)malloc(sizeof(SnakeHead));
+  9     Head-&gt;Direction = &#39;L&#39;;
+ 10     Head-&gt;Status = 1;
+ 11     Head-&gt;x = 10;
+ 12     Head-&gt;y = 10;
+ 13     //assign some functions to snake
+ 14     Head-&gt;MoveUp = _MoveUp;
+ 15     Head-&gt;MoveDown = _MoveDown;
+ 16     Head-&gt;MoveRight = _MoveRight;
+ 17     Head-&gt;MoveLeft = _MoveLeft;
+ 18     Head-&gt;GrowUp = _GrowUp;
+ 19     Head-&gt;IsDie = Die;
+ 20     temp-&gt;x = 11;
+ 21     temp-&gt;y = 10;
+ 22     temp-&gt;next = NULL;
+ 23     Head-&gt;next = temp;
+ 24     // create snake body
+ 25     for (int i = 0; i &lt; 5; i++)
+ 26     {
+ 27         SnakeBody *move = (SnakeBody *)malloc(sizeof(SnakeBody));
+ 28         move-&gt;x = temp-&gt;x + 1;
+ 29         move-&gt;y = temp-&gt;y;
+ 30         temp-&gt;next = move;
+ 31         temp = move;
+ 32         move-&gt;next = NULL;
+ 33     }
+ 34     //Init food
+ 35     int Foodx = 0, Foody = 0;
+ 36     CreateFood(&amp;Foodx, &amp;Foody, Head);
+ 37     int Speed = 10;
+ 38     while (1 == Head-&gt;Status)
+ 39     {
+ 40         //print the snake
+ 41         Print(Head);
+ 42         //judge is or not die
+ 43         if((*Head-&gt;IsDie)(Head))
+ 44         {
+ 45             break;
+ 46         }
+ 47         //get direction
+ 48         if(GetAsyncKeyState(VK_UP) &amp;&amp; &#39;D&#39; != Head-&gt;Direction)
+ 49         {
+ 50             Head-&gt;Direction = &#39;U&#39;;
+ 51         }
+ 52         else if (GetAsyncKeyState(VK_DOWN) &amp;&amp; &#39;U&#39; != Head-&gt;Direction)
+ 53         {
+ 54             Head-&gt;Direction = &#39;D&#39;;
+ 55         }
+ 56         else if (GetAsyncKeyState(VK_RIGHT) &amp;&amp; &#39;L&#39; != Head-&gt;Direction)
+ 57         {
+ 58             Head-&gt;Direction = &#39;R&#39;;
+ 59         }
+ 60         else if (GetAsyncKeyState(VK_LEFT) &amp;&amp; &#39;R&#39; != Head-&gt;Direction)
+ 61         {
+ 62             Head-&gt;Direction = &#39;L&#39;;
+ 63         }
+ 64         //move
+ 65         switch (Head-&gt;Direction)
+ 66         {
+ 67             case &#39;U&#39;:
+ 68             {
+ 69                 //judge is there a food
+ 70                 if (Head-&gt;x == Foodx &amp;&amp; Head-&gt;y - 1 == Foody)
+ 71                 {
+ 72                     (*Head-&gt;GrowUp)(Head);
+ 73                     CreateFood(&amp;Foodx, &amp;Foody, Head);
+ 74                 }
+ 75                 else//Just move
+ 76                 {
+ 77                     (*Head-&gt;MoveUp)(Head);
+ 78                 }
+ 79                 break;
+ 80             }
+ 81             case &#39;D&#39;:
+ 82             {
+ 83                 if (Head-&gt;x == Foodx &amp;&amp; Head-&gt;y + 1 == Foody)
+ 84                 {
+ 85                     (*Head-&gt;GrowUp)(Head);
+ 86                     CreateFood(&amp;Foodx, &amp;Foody, Head);
+ 87                 }
+ 88                 else
+ 89                 {
+ 90                     (*Head-&gt;MoveDown)(Head);
+ 91                 }
+ 92                 break;
+ 93             }
+ 94             case &#39;R&#39;:
+ 95             {
+ 96                 if (Head-&gt;x + 1 == Foodx &amp;&amp; Head-&gt;y == Foody)
+ 97                 {
+ 98                     (*Head-&gt;GrowUp)(Head);
+ 99                     CreateFood(&amp;Foodx, &amp;Foody, Head);
+100                 }
+101                 else
+102                 {
+103                     (*Head-&gt;MoveRight)(Head);
+104                 }
+105
+106                 break;
+107             }
+108             case &#39;L&#39;:
+109             {
+110                 if (Head-&gt;x - 1 == Foodx &amp;&amp; Head-&gt;y == Foody)
+111                 {
+112                     (*Head-&gt;GrowUp)(Head);
+113                     CreateFood(&amp;Foodx, &amp;Foody, Head);
+114                 }
+115                 else
+116                 {
+117                     (*Head-&gt;MoveLeft)(Head);
+118                 }
+119                 break;
+120             }
+121             default:
+122             {
+123                 break;
+124             }
+125         }
+126         //control
+127         if (GetAsyncKeyState(VK_F1) &amp;&amp; Speed &gt; 6)
+128         {
+129             Speed -= 5;
+130         }
+131         else if (GetAsyncKeyState(VK_F2) &amp;&amp; Speed &lt; 30)
+132         {
+133             Speed += 5;
+134         }
+135         else if (GetAsyncKeyState(VK_F3))
+136         {
+137             Speed += 10;
+138         }
+139         if (&#39;L&#39; == Head-&gt;Direction ||&#39;R&#39; == Head-&gt;Direction)
+140         {
+141             Sleep(1000/Speed);
+142         }
+143         else
+144         {
+145             Sleep(2000/Speed);
+146         }
+147     }
+148 }
+149 int main(int argc, char const *argv[])
+150 {
+151     //init
+152     system(&#34;cls&#34;);
+153     system(&#34;mode con cols=50 lines=30&#34;);//no space around equal sign
+154     BuildWall();
+155     HideCursor();
+156     StartGame();
+157     SetPosition(36, 20);
+158     printf(&#34;Enter to exit!&#34;);
+159     getchar();
+160     return 0;
+161 }
+</code></pre><p>运行：</p>
+<pre><code>![](https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/e1cd268c21640cb4b3f0-efa593cf714161fdf8d7.png)
+</code></pre>
+<p>后记：</p>
+<p>1、函数指针与函数名</p>
+<p>函数名与函数指针都是一样的，即都是函数指针。函数名是一个函数指针常量，而函数指针是一个函数数指针变量。</p>
+<p>一般的C语言书籍都不会谈及这些近乎奇淫技巧的东东。</p>
+<p>2、GetAsyncKeyState函数</p>
+<p>这个函数按下之后其状态会一直存在，我在写俄罗斯方块就大受其害。以下面代码为例。你只需要按一下F1就可以跳出循环了，而不是1000下。因为按下一次之后其状态就始终为真了，除非你按下别的键。</p>
+<pre tabindex="0"><code> 1 #include &lt;stdio.h&gt;
+ 2 #include &lt;windows.h&gt;
+ 3 int main(int argc, char const *argv[])
+ 4 {
+ 5     int i = 0;
+ 6     while (1)
+ 7     {
+ 8         if (GetAsyncKeyState(VK_F1))
+ 9         {
+10             i++;
+11         }
+12         if (i &gt;= 1000)
+13         {
+14             break;
+15         }
+16     }
+17     printf(&#34;%d\n&#34;, i);
+18     return 0;
+19 }
+</code></pre>
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/2016-summary-of-programming-habits-and-coding-style-c-cpp-updated/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">编程习惯与代码风格总结之C/C&#43;&#43;篇（更新······）</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/articles/2016-how-to-use-matlab-to-improve-efficiency/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">提高效率的Matlab使用方式</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

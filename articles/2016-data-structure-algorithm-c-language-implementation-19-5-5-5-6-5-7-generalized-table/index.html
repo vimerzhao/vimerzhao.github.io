@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>数据结构算法C语言实现（十九）--- 5.5&amp;5.6&amp;5.7广义表 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="数据结构算法C语言实现（十九）--- 5.5&amp;5.6&amp;5.7广义表" />
+<meta property="og:description" content="一.简述 传说Lisp的基本数据结构就是广义表，广义表也是具有典型递归属性的数据结构，此外，由于建表要处理字符串，用C语言处理起来也是一脸懵逼&hellip;..最后自己还想写一个将广义表还原成字符串的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/2016-data-structure-algorithm-c-language-implementation-19-5-5-5-6-5-7-generalized-table/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2016-06-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-25T16:21:52+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="数据结构算法C语言实现（十九）--- 5.5&amp;5.6&amp;5.7广义表"/>
+<meta name="twitter:description" content="一.简述 传说Lisp的基本数据结构就是广义表，广义表也是具有典型递归属性的数据结构，此外，由于建表要处理字符串，用C语言处理起来也是一脸懵逼&hellip;..最后自己还想写一个将广义表还原成字符串的"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">数据结构算法C语言实现（十九）--- 5.5&amp;5.6&amp;5.7广义表</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-06-17T00:00:00Z">2016-06-17</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 2100 字，阅读需 5 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<p>一.简述</p>
+<p>传说Lisp的基本数据结构就是广义表，广义表也是具有典型递归属性的数据结构，此外，由于建表要处理字符串，用C语言处理起来也是一脸懵逼&hellip;..最后自己还想写一个将广义表还原成字符串的函数，一是使其可视化，而是验证算法5.6。花了不少功夫才写出来（强烈建议自己动手写一写），最后是借助树形结构的角度才找到一个不错的解决办法。按照《数据结构编程实验》的分类，数据结构无非线性结构、树状结构、图结构，可以说树是特殊的图（图的最小生成树），线性表示特殊的树。。。。。扯远了！</p>
+<p>二.头文件</p>
+<p>补充版字符串处理头文件</p>
+<pre tabindex="0"><code>  1 //4_2_part1.h
+  2 /**
+  3 author:zhaoyu
+  4 */
+  5 //2016-6-10
+  6 //----串的定长顺序存储表示----
+  7 #ifndef _4_2_PART1_H_
+  8 #define _4_2_PART1_H_
+  9 #include &#34;head.h&#34;
+ 10 #define MAXSTRLEN 255//用户可以在255以内定义最大串长
+ 11 //这语法还不是很熟悉
+ 12 typedef unsigned char SString[MAXSTRLEN+1];//0 号单元存放串的长度
+ 13 int StrLength(SString T)
+ 14 {
+ 15     for (int i = 1; i &lt;= MAXSTRLEN; ++i)
+ 16     {
+ 17         if (&#39;\0&#39; == T[i])
+ 18         {
+ 19             return i-1;
+ 20         }
+ 21     }
+ 22     return MAXSTRLEN;
+ 23 }
+ 24
+ 25 /**
+ 26 algorithm 4.2
+ 27 */
+ 28 Status Concat(SString &amp;T, SString S1, SString S2)
+ 29 {
+ 30     //用 T 返回由 S1 和 S2 连接而成的新串。
+ 31     //若未截断，则返回 TRUE，否则返回 FALSE
+ 32     Status uncut;
+ 33     if (S1[0] + S2[0] &lt; MAXSTRLEN)
+ 34     {//未截断
+ 35         int i = 1;
+ 36         for (i = 1; i &lt;= S1[0]; ++i)
+ 37         {
+ 38             T[i] = S1[i];
+ 39         }
+ 40         for (i = 1; i &lt;= S2[0]; ++i)
+ 41         {
+ 42             T[S1[0]+i] = S2[i];
+ 43         }
+ 44         T[0] = S1[0] + S2[0];
+ 45         uncut = TRUE;
+ 46     }
+ 47     else if (S1[0] &lt; MAXSTRLEN)
+ 48     {
+ 49         int i = 1;
+ 50         for (i = 1; i &lt;= S1[0]; i++)
+ 51         {
+ 52             T[i] = S1[i];
+ 53         }
+ 54         for (i = S1[0]+1; i &lt;= MAXSTRLEN; i++)
+ 55         {
+ 56             T[i] = S2[i-S1[0]];
+ 57         }
+ 58         T[0] = MAXSTRLEN;
+ 59         uncut = FALSE;
+ 60     }
+ 61     else
+ 62     {
+ 63         for (int i = 1; i &lt;= MAXSTRLEN; i++)
+ 64         {
+ 65             T[i] = S1[i];
+ 66         }
+ 67         T[0] = S1[0] = MAXSTRLEN;
+ 68         uncut = FALSE;
+ 69     }
+ 70     return uncut;
+ 71 }
+ 72 /**
+ 73 algorithm 4.3
+ 74 */
+ 75 Status SubString(SString &amp;Sub, SString S, int pos, int len)
+ 76 {
+ 77     //用 Sub 返回串 S 的第 pos 个字符起长度为 len 的字串
+ 78     //其中， 1&lt;= pos &lt;&lt;= SreLength(S) 且 0 &lt;= len &lt;= StrLength(S)-pos+1
+ 79     if (pos &lt; 1 || pos &gt; S[0] || len &lt; 0 || len &gt; S[0]-pos+1)
+ 80     {
+ 81         return ERROR;
+ 82     }
+ 83     for (int i = 1; i &lt;= len; i++)
+ 84     {
+ 85         Sub[i] = S[i+pos-1];
+ 86     }
+ 87     Sub[len+1] = &#39;\0&#39;;
+ 88     Sub[0] = len;
+ 89     return OK;
+ 90 }
+ 91 /**
+ 92 add for chapter 5 / page 116.117
+ 93 */
+ 94 Status StrCompare(SString S, SString T)
+ 95 {
+ 96     for (int i = 1; i &lt;= S[0] &amp;&amp; i &lt;=T[0]; i++)
+ 97     {
+ 98         if (S[i]-T[i] &gt; 0){
+ 99             return 1;
+100         }
+101         if (S[i]-T[i] &lt; 0)
+102         {
+103             return -1;
+104         }
+105     }
+106     if (S[0] == T[0])
+107     {
+108         return 0;
+109     }
+110     return S[0]&gt;T[0]?1:-1;
+111 }
+112 Status StrEmpty(SString S)
+113 {
+114     if (0 == StrLength(S))
+115     {
+116         return TRUE;
+117     }
+118     else
+119     {
+120         return FALSE;
+121     }
+122 }
+123 Status StrCopy(SString &amp;T, SString S)
+124 {//健壮性并不够
+125     for (int i = 0; i &lt;= S[0]+1; i++)
+126     {
+127         T[i] = S[i];
+128     }
+129     return OK;
+130 }
+131 Status ClearString(SString S)
+132 {
+133     S[0] = 0;
+134     S[1] = &#39;\0&#39;;
+135     return OK;
+136 }
+137 void PrintSString(SString T)
+138 {
+139     //if(T[])
+140     for (int i = 1; i &lt;= T[0]; ++i)
+141     {
+142         printf(&#34;%c&#34;, *(T+i));
+143     }
+144     printf(&#34;\n&#34;);
+145 }
+146 #endif
+</code></pre><p>4_2_part1.h</p>
+<pre tabindex="0"><code>  1 //5_5.h
+  2 /**
+  3 author:zhaoyu
+  4 date；2016-6-16
+  5 */
+  6 //----广义表的头尾链表存储表示----
+  7 #include &#34;4_2_part1.h&#34;
+  8 #define AtomType char
+  9 typedef enum {ATOM, LIST} ElemTag;//ATOM==0：原子，LIST==1子表
+ 10 typedef struct GLNode
+ 11 {
+ 12     ElemTag tag;//公共部分，用于区分原子结点和表节点
+ 13     union{//原子结点和表节点的公共部分
+ 14         AtomType atom;//atom 是原子结点的值域，AtomType由用户定义
+ 15         struct {struct GLNode *hp, *tp;}ptr;//ptr 是表结点
+ 16         //的指针域，ptr.hp 和 ptr.tp 分别指向表头和表尾
+ 17     };
+ 18 }*GList;//广义表类型
+ 19 /**
+ 20 algorithm 5.5
+ 21 */
+ 22 int GListDepth(GList L)
+ 23 {//采用头尾链表存储结构，求广义表 L 深度
+ 24     if (!L)
+ 25     {
+ 26         return 1;//空表深度为 1
+ 27     }
+ 28     if (L-&gt;tag == ATOM)
+ 29     {
+ 30         return 0;//原子深度为 0
+ 31     }
+ 32     int MAX = 0;
+ 33     for (GList pp = L; pp; pp = pp-&gt;ptr.tp)
+ 34     {
+ 35         int t = GListDepth(pp-&gt;ptr.hp);//求以 ptr.hp 为头指针的子表深度
+ 36         MAX = MAX&gt;t?MAX:t;
+ 37     }
+ 38     return MAX+1;
+ 39 }
+ 40 /**
+ 41 algorithm 5.8
+ 42 */
+ 43 Status sever(SString &amp;str, SString &amp;hstr)
+ 44 {//将非空串 str 分割成两部分：hsub为第一个&#39;,&#39;之前的字串，str 为之后的子串
+ 45     int n = StrLength(str);
+ 46     int i = 0, k = 0;//k 记尚未配对的左括号的个数
+ 47     char ch;
+ 48     SString CH;
+ 49     do{
+ 50         ++i;
+ 51         SubString(CH, str, i, 1);
+ 52         ch = CH[1];
+ 53         if (&#39;(&#39; == ch)
+ 54         {
+ 55             ++k;
+ 56         }
+ 57         else if (&#39;)&#39; == ch){
+ 58             --k;
+ 59         }
+ 60     }while (i &lt; n &amp;&amp; (&#39;,&#39; != ch || 0 != k));
+ 61     if (i &lt; n)
+ 62     {
+ 63         SubString(hstr, str, 1, i-1);
+ 64         SubString(str, str, i+1, n-i);
+ 65     }
+ 66     else
+ 67     {
+ 68         StrCopy(hstr, str);
+ 69         ClearString(str);
+ 70     }
+ 71 }
+ 72
+ 73 /**
+ 74 algorithm 5.7
+ 75 */
+ 76 Status CreateGList(GList &amp;L, SString S)
+ 77 {//采用头尾链表存储结构，由广义表的书写形式串 S 创建广义表 L,设emp=&#34;()&#34;
+ 78     GList q = NULL, p = NULL;
+ 79     SString emp = { 2, &#39;(&#39;, &#39;)&#39;, &#39;\0&#39;};
+ 80     SString sub, hsub;
+ 81     if ( 0 == StrCompare(S, emp))
+ 82     {//创建空表
+ 83         L = NULL;
+ 84     }
+ 85     else
+ 86     {
+ 87         if (!(L = (GList)malloc(sizeof(GLNode))))
+ 88         {
+ 89             exit(OVERFLOW);//建表结点
+ 90         }
+ 91         if (1 == StrLength(S))
+ 92         {//创建单原子广义表
+ 93             L-&gt;tag = ATOM;
+ 94             L-&gt;atom = S[1];
+ 95         }
+ 96         else
+ 97         {
+ 98             L-&gt;tag = LIST;
+ 99             p = L;
+100             SubString(sub, S, 2, StrLength(S)-2);
+101             do{//重复建 n 个子表
+102                 sever(sub, hsub);//从 sub 中分离出表头串 hsub
+103                 CreateGList(p-&gt;ptr.hp, hsub);
+104                 q = p;
+105                 if (!StrEmpty(sub))
+106                 {//表尾不空
+107                     if (!(p = (GList)malloc(sizeof(GLNode))))
+108                     {
+109                         exit(OVERFLOW);
+110                     }
+111                     p-&gt;tag = LIST;
+112                     q-&gt;ptr.tp = p;
+113                 }//if
+114             }while (!StrEmpty(sub));
+115             q-&gt;ptr.tp = NULL;
+116         }//else
+117     }
+118 }
+119 /**
+120 algorithm 5.6
+121 */
+122 Status CopyGList(GList &amp;T, GList L)
+123 {//采用头尾链表存储结构，由广义表 L 复制得到广义表 T
+124     if (!L)
+125     {
+126         T = NULL;
+127     }
+128     else
+129     {
+130         if (!(T = (GList)malloc(sizeof(GLNode))))
+131         {
+132             exit(OVERFLOW);
+133         }
+134         T-&gt;tag = L-&gt;tag;
+135         if (ATOM == L-&gt;tag)
+136         {
+137             T-&gt;atom = L-&gt;atom;
+138         }
+139         else
+140         {
+141             CopyGList(T-&gt;ptr.hp, L-&gt;ptr.hp);
+142             CopyGList(T-&gt;ptr.tp, L-&gt;ptr.tp);
+143         }
+144     }
+145     return OK;
+146 }
+147
+148 /**
+149 my code
+150 */
+151 int cnt = 0;
+152 void PrintGList(GList L)
+153 {
+154     if (NULL == L)
+155     {
+156         printf(&#34;()&#34;);
+157     }
+158     else
+159     {
+160         if (ATOM == L-&gt;tag)
+161         {
+162             printf(&#34;%c&#34;, L-&gt;atom);
+163         }
+164         else
+165         {
+166             if (NULL == L-&gt;ptr.hp)
+167             {
+168                 printf(&#34;(&#34;);
+169             }
+170             if (NULL != L-&gt;ptr.hp &amp;&amp; LIST == L-&gt;ptr.hp-&gt;tag)
+171             {
+172                 printf(&#34;(&#34;);
+173             }
+174             PrintGList(L-&gt;ptr.hp);
+175             if (NULL != L-&gt;ptr.tp &amp;&amp; LIST == L-&gt;ptr.tp-&gt;tag)
+176             {
+177                 printf(&#34;,&#34;);
+178             }
+179             if (NULL == L-&gt;ptr.tp)
+180             {
+181                 printf(&#34;)&#34;);
+182             }
+183             else
+184             {
+185                 PrintGList(L-&gt;ptr.tp);
+186             }
+187
+188
+189         }
+190     }
+191 }
+</code></pre><p>5_5.h</p>
+<p>三.CPP文件</p>
+<pre tabindex="0"><code> 1 #include &#34;5_5.h&#34;
+ 2 int main(int argc, char const *argv[])
+ 3 {
+ 4 //    freopen(&#34;out.txt&#34;, &#34;w&#34;, stdout);
+ 5     //test function sever
+ 6
+ 7     SString s, t;
+ 8     scanf(&#34;%s&#34;, s+1);
+ 9     s[0] = StrLength(s);
+10     sever(s, t);
+11     printf(&#34;t:%s\n&#34;, t+1);
+12     printf(&#34;s:%s\n&#34;, s+1);
+13
+14     GList L = NULL, T = NULL;
+15     SString S;
+16     scanf(&#34;%s&#34;, S+1);
+17     S[0] = StrLength(S);
+18     printf(&#34;len: %d\n&#34;, S[0]);
+19     CreateGList(L, S);
+20     printf(&#34;\nL--Depth\t%d\n&#34;, GListDepth(L));
+21     CopyGList(T, L);
+22     printf(&#34;\nT--Depth\t%d\n&#34;, GListDepth(T));
+23     printf(&#34;T:\t&#34;);
+24     PrintGList(T);
+25     printf(&#34;\n&#34;);
+26     return 0;
+27 }
+</code></pre><p>5_5.cpp</p>
+<p>四.测试</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/b7205cc84051053a7397-15925fb3ac14ca99dde9.png" alt=""></p>
+<p>测试用例是书上的一个例子，其结构图及对应二叉树如下</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/332ac2d871b7f1d20b66-b9d2d78da562f771f247.jpg" alt=""></p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/0c7bbaffc65b91b49328-5208c0f956c286d09eb3.jpg" alt=""></p>
+
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/2016-data-structure-algorithm-c-language-implementation-seventeen-5-1-5-2-array-definition-sequential-rep/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">数据结构算法C语言实现（十七）--- 5.1&amp;5.2数组：定义、顺序表示及实现</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/articles/2016-data-structure-algorithm-c-language-implementation-18-5-3-compressed-storage-of-matrices/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">数据结构算法C语言实现（十八）--- 5.3矩阵的压缩存储</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

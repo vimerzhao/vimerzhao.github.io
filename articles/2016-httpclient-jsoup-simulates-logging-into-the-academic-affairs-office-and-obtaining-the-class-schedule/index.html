@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>HttpClient &#43; Jsoup模拟登录教务处并获取课表 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="HttpClient &#43; Jsoup模拟登录教务处并获取课表" />
+<meta property="og:description" content="1、概述 最近想做一个校园助手类的APP，由于第一次做，所以打算先把每个功能单独实现，防止乱了阵脚。利用教务处登录获取课表和成绩等是一个基本功能，所以以获取课表为例实现了这个功能。完整代码点这里，尝试了" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/2016-httpclient-jsoup-simulates-logging-into-the-academic-affairs-office-and-obtaining-the-class-schedule/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2016-09-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-25T16:21:52+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="HttpClient &#43; Jsoup模拟登录教务处并获取课表"/>
+<meta name="twitter:description" content="1、概述 最近想做一个校园助手类的APP，由于第一次做，所以打算先把每个功能单独实现，防止乱了阵脚。利用教务处登录获取课表和成绩等是一个基本功能，所以以获取课表为例实现了这个功能。完整代码点这里，尝试了"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">HttpClient &#43; Jsoup模拟登录教务处并获取课表</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-09-15T00:00:00Z">2016-09-15</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 4300 字，阅读需 9 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<h1 id="1概述">1、概述</h1>
+<p>最近想做一个校园助手类的APP，由于第一次做，所以打算先把每个功能单独实现，防止乱了阵脚。利用教务处登录获取课表和成绩等是一个基本功能，所以以获取课表为例实现了这个功能。完整代码<a href="http://download.csdn.net/detail/baidu_26118459/9631226">点这里</a>，尝试了好几次的，所以写的比较乱。</p>
+<h1 id="2涉及的关键知识">2、涉及的关键知识</h1>
+<p>首先，明确获取课表的流程：其实，获取课表就是让手机模拟浏览器，给服务器传去账号、密码，然后服务器会返回<strong>cookies</strong>（不懂自行百度），利用cookie就可以穿梭自如了，比如查课表。但是，浏览器登录时，返回的html文件浏览器是会自动解析成网页展现在我们面前的，但是APP就不行了，所以需要我们自己从html字符流中解析出我们需要的信息。就我自己的情况来看，模拟登录花了不少时间（这方面很不熟），解析html很快就解决了（可能是之前实践偶解析JSON）。</p>
+<p>这样一个APP主要涉及到3个重要知识点：</p>
+<p>1、如何模拟登录：java有自己的HttpURLConnection，但是不够灵活，所以用 apache的HttpClient更方便</p>
+<p>2、如何解析HTML：网上查一下，Jsoup很合适。</p>
+<p>3、AsyncTask：显然获取网页并解析是不能再主线程进行的，所以需要使用异步任务。</p>
+<p>4、回调函数：这个不是必须的，但是我为了降低程序耦合度把网络请求那部分单独成了一个类，这时候更新主UI就需要利用回调函数了，之后细说。</p>
+<h1 id="3模拟登陆以窝工upr为例">3、模拟登陆（以窝工UPR为例）</h1>
+<p>1、解析教务处登录界面，看到一些教程用的还是HttpWatch，确实过时了，显然直接Google浏览器F12就行了。如下图，选择Network</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/918cb6cd53b46cde4774-2de15311164e884e06db.png" alt=""></p>
+<p>点一下登录，就可以看到一大堆信息，我们需要的是第一个：</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/ae8c34d9758d089cab2d-34e100b20c3688fa1a7a.png" alt=""></p>
+<p>点击就可以看到详细信息了：</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/1340a1b93eb6b5c8d77f-123513b10c0c6413e154.png" alt=""></p>
+<p>重要的有两个，<strong>Cookie</strong>，拿到这个我们才能导出去访问，Form Data就是模拟登录时要提交（POST）的表单数据；</p>
+<h1 id="4html解析">4、HTML解析</h1>
+<p>利用上一步模拟登录拿到的Cookie就可以去获取课表了，同理，需要解析网页，如下，点击我的课表</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/5ec73f0940620238ef89-bda18fef56a39f9f3931.png" alt=""></p>
+<p>可以看到一大堆信息，找到需要的</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/a49f6fcbd567e22dd842-6ce59f705c0427358896.png" alt=""></p>
+<p>这个Response就是会返回我们的字符流，我们需要的就是解析它，设计到Jsoup的详细使用就不细说了，自己也是今天才接触，</p>
+<p>总之借助以上两步就可以写出主要类Login.java的代码了，如下：</p>
+<pre tabindex="0"><code>  1 package com.example.upr.net;
+  2
+  3 import java.io.BufferedReader;
+  4 import java.io.IOException;
+  5 import java.io.InputStream;
+  6 import java.io.InputStreamReader;
+  7 import java.io.UnsupportedEncodingException;
+  8 import java.util.ArrayList;
+  9 import java.util.List;
+ 10
+ 11 import org.apache.http.HttpEntity;
+ 12 import org.apache.http.HttpResponse;
+ 13 import org.apache.http.NameValuePair;
+ 14 import org.apache.http.client.ClientProtocolException;
+ 15 import org.apache.http.client.HttpClient;
+ 16 import org.apache.http.client.entity.UrlEncodedFormEntity;
+ 17 import org.apache.http.client.methods.HttpGet;
+ 18 import org.apache.http.client.methods.HttpPost;
+ 19 import org.apache.http.cookie.Cookie;
+ 20 import org.apache.http.impl.client.AbstractHttpClient;
+ 21 import org.apache.http.impl.client.DefaultHttpClient;
+ 22 import org.apache.http.message.BasicNameValuePair;
+ 23 import org.jsoup.Jsoup;
+ 24 import org.jsoup.nodes.Document;
+ 25 import org.jsoup.nodes.Element;
+ 26 import org.jsoup.select.Elements;
+ 27
+ 28 import com.example.upr.CompleteListener;
+ 29
+ 30 import android.R.integer;
+ 31 import android.os.AsyncTask;
+ 32 import android.provider.ContactsContract.Contacts.Data;
+ 33 import android.util.Log;
+ 34 import android.widget.Toast;
+ 35
+ 36 public class Login extends AsyncTask&lt;Void, Void, String[][]&gt;{
+ 37
+ 38     private String zjh;
+ 39     private String mm;
+ 40     private String webPage;
+ 41     private String [][] kebiao = new String[15][8];
+ 42     private CompleteListener listener;
+ 43     public Login(String account, String password, CompleteListener listener) {
+ 44         zjh = account;
+ 45         mm = password;
+ 46
+ 47         this.listener = listener;
+ 48     }
+ 49     @Override
+ 50     protected String[][] doInBackground(Void... arg0) {
+ 51         List&lt;NameValuePair&gt; list = new ArrayList&lt;NameValuePair&gt;();
+ 52         list.add(new BasicNameValuePair(&#34;zjh&#34;, zjh));
+ 53         list.add(new BasicNameValuePair(&#34;mm&#34;, mm));//表单信息
+ 54         String encode = &#34;gb2312&#34;;//编码格式，从F12工具中可以找到
+ 55         HttpClient httpClient = new DefaultHttpClient();
+ 56         List&lt;Cookie&gt; cookies;
+ 57         try {
+ 58             HttpEntity entity = new UrlEncodedFormEntity(list ,encode);//封装数据
+ 59             HttpPost post = new HttpPost(com.example.upr.Constant.LOGIN_URL);//建立POST请求
+ 60             post.setEntity(entity);
+ 61             HttpResponse httpResponse = httpClient.execute(post);
+ 62             String data, result;
+ 63             if (httpResponse.getStatusLine().getStatusCode() == 200) {//登录成功
+ 64                 cookies = ((AbstractHttpClient) httpClient).getCookieStore().getCookies();//获取Cookie
+ 65                 HttpGet httpGet = new HttpGet(&#34;http://zhjw.dlut.edu.cn/xkAction.do?actionType=6&#34;);
+ 66                 httpGet.setHeader(&#34;Cookie&#34;, &#34;JSESSIONID=&#34;+ cookies.get(0).getValue()+&#34;;&#34;+
+ 67                         &#34;NSC_kjbpxv-iuuq=&#34;+cookies.get(1).getValue());//注意分号
+ 68                 httpResponse = new DefaultHttpClient().execute(httpGet);
+ 69
+ 70                 StringBuffer sb = new StringBuffer();
+ 71                 entity = httpResponse.getEntity();
+ 72                 InputStream inputStream = entity.getContent();
+ 73                 BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, encode));
+ 74                 while ((data = br.readLine()) != null) {
+ 75                     sb.append(data);  //读取返回的网页
+ 76                 }
+ 77                 result = sb.toString();
+ 78                 webPage = result;
+ 79
+ 80             } else {
+ 81                 return null;
+ 82             }
+ 83         } catch (UnsupportedEncodingException e) {
+ 84             e.printStackTrace();
+ 85             return null;
+ 86         } catch (ClientProtocolException e) {
+ 87             // TODO Auto-generated catch block
+ 88             e.printStackTrace();
+ 89             return null;
+ 90         } catch (IOException e) {
+ 91             // TODO Auto-generated catch block
+ 92             e.printStackTrace();
+ 93             return null;
+ 94         }
+ 95
+ 96         Document document = Jsoup.parse(webPage);
+ 97         if (document != null) {
+ 98             Element element = document.getElementById(&#34;user&#34;);//通过id直接定位到数据
+ 99             Elements trElements = element.select(&#34;tr&#34;);
+100             //以下是提取课表信息，每个网站不同，一下代码要解析的html放在最下面了
+101             for (int i = 0; i &lt; trElements.size(); i++) {
+102                 Elements tdElements = trElements.get(i).select(&#34;td&#34;);
+103                 for (int j = 0; j &lt; tdElements.size(); j++) {
+104                     String text = tdElements.get(j).text();
+105                     if (tdElements.size() == 1) {
+106                         continue;
+107                     } else if (tdElements.size()==9) {
+108                         if (j != 0) {
+109                             kebiao[i][j-1] = text;
+110                         }
+111                     }else {
+112                         kebiao[i][j] = text;
+113                     }
+114
+115                 }
+116             }
+117             return kebiao;
+118         } else {
+119             return null;
+120         }
+121
+122     }
+123     @Override
+124     protected void onPostExecute(String[][] result) {
+125         super.onPostExecute(result);
+126         listener.onConnectFinish(result);//执行回调函数，更新主UI
+127     }
+128 }
+129 /*
+130 &lt;table cellpadding=&#34;0&#34; width=&#34;100%&#34; class=&#34;displayTag&#34; cellspacing=&#34;0&#34; border=&#34;1&#34; id=&#34;user&#34;&gt;
+131             &lt;tr&gt;
+132               &lt;td colspan=&#34;2&#34; class=&#34;sortable&#34;&gt;&amp;nbsp;&lt;/td&gt;
+133               &lt;td width=&#34;13%&#34; class=&#34;sortable&#34;&gt;
+134                 &lt;div align=&#34;center&#34;&gt;星期一&lt;/div&gt;&lt;/td&gt;
+135               &lt;td width=&#34;13%&#34; class=&#34;sortable&#34;&gt;
+136                 &lt;div align=&#34;center&#34;&gt;星期二&lt;/div&gt;&lt;/td&gt;
+137               &lt;td width=&#34;13%&#34; class=&#34;sortable&#34;&gt;
+138                 &lt;div align=&#34;center&#34;&gt;星期三&lt;/div&gt;&lt;/td&gt;
+139               &lt;td width=&#34;13%&#34; class=&#34;sortable&#34;&gt;
+140                 &lt;div align=&#34;center&#34;&gt;星期四&lt;/div&gt;&lt;/td&gt;
+141               &lt;td width=&#34;13%&#34; class=&#34;sortable&#34;&gt;
+142                 &lt;div align=&#34;center&#34;&gt;星期五&lt;/div&gt;&lt;/td&gt;
+143               &lt;td width=&#34;13%&#34; class=&#34;sortable&#34;&gt;
+144                 &lt;div align=&#34;center&#34;&gt;星期六&lt;/div&gt;&lt;/td&gt;
+145               &lt;td width=&#34;13%&#34; class=&#34;sortable&#34;&gt;
+146                 &lt;div align=&#34;center&#34;&gt;星期日&lt;/div&gt;&lt;/td&gt;
+147             &lt;/tr&gt;
+148             &lt;tr bgcolor=&#34;#FFFFFF&#34;&gt;
+149               &lt;td width=&#34;3%&#34; rowspan=&#34;4&#34;&gt;&amp;nbsp;
+150                 &lt;p class=&#34;style4&#34;&gt;上午&lt;/p&gt;&lt;/td&gt;
+151               &lt;td width=&#34;11%&#34;&gt;第1节(08:00-08:45)&lt;/td&gt;
+152               &lt;td&gt;&amp;nbsp; 计算机网络A_01(西部校区综合教学2号楼B406)
+153                 &lt;br&gt;&lt;/td&gt;
+154               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+155               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+156               &lt;td&gt;&amp;nbsp; 编译原理_01(校部综合教学1号楼综151)
+157                 &lt;br&gt;&lt;/td&gt;
+158               &lt;td&gt;&amp;nbsp; 计算机组成原理_01(西部校区综合教学2号楼B103)
+159                 &lt;br&gt;&lt;/td&gt;
+160               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+161               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+162             &lt;tr bgcolor=&#34;#FFFFFF&#34;&gt;
+163               &lt;td width=&#34;11%&#34;&gt;第2节(08:50-09:35)&lt;/td&gt;
+164               &lt;td&gt;&amp;nbsp; 计算机网络A_01(西部校区综合教学2号楼B406)
+165                 &lt;br&gt;&lt;/td&gt;
+166               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+167               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+168               &lt;td&gt;&amp;nbsp; 编译原理_01(校部综合教学1号楼综151)
+169                 &lt;br&gt;&lt;/td&gt;
+170               &lt;td&gt;&amp;nbsp; 计算机组成原理_01(西部校区综合教学2号楼B103)
+171                 &lt;br&gt;&lt;/td&gt;
+172               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+173               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+174             &lt;tr bgcolor=&#34;#FFFFFF&#34;&gt;
+175               &lt;td width=&#34;11%&#34;&gt;第3节(10:05-10:50)&lt;/td&gt;
+176               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+177               &lt;td&gt;&amp;nbsp; 面向对象程序设计_01(西部校区综合教学2号楼A301)
+178                 &lt;br&gt;&lt;/td&gt;
+179               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+180               &lt;td&gt;&amp;nbsp; 人工智能_01(西部校区综合教学2号楼A101)
+181                 &lt;br&gt;&lt;/td&gt;
+182               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+183               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+184               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+185             &lt;tr bgcolor=&#34;#FFFFFF&#34;&gt;
+186               &lt;td width=&#34;11%&#34;&gt;第4节(10:55-11:40)&lt;/td&gt;
+187               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+188               &lt;td&gt;&amp;nbsp; 面向对象程序设计_01(西部校区综合教学2号楼A301)
+189                 &lt;br&gt;&lt;/td&gt;
+190               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+191               &lt;td&gt;&amp;nbsp; 人工智能_01(西部校区综合教学2号楼A101)
+192                 &lt;br&gt;&lt;/td&gt;
+193               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+194               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+195               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+196               &lt;tr bgcolor=&#34;#FFFFFF&#34;&gt;
+197                 &lt;td colspan=&#34;9&#34;&gt;&amp;nbsp;
+198                   &lt;p align=&#34;center&#34; class=&#34;td2 style5&#34;&gt;
+199                     &lt;strong&gt;午 休&lt;/strong&gt;&lt;/p&gt;
+200                 &lt;/td&gt;
+201               &lt;/tr&gt;
+202             &lt;/tr&gt;
+203             &lt;tr bgcolor=&#34;#FFFFFF&#34;&gt;
+204               &lt;td width=&#34;3%&#34; rowspan=&#34;4&#34;&gt;&amp;nbsp;
+205                 &lt;p class=&#34;style4&#34;&gt;下午&lt;/p&gt;&lt;/td&gt;
+206               &lt;td width=&#34;11%&#34;&gt;第5节(13:30-14:15)&lt;/td&gt;
+207               &lt;td&gt;&amp;nbsp; 编译原理_01(校部综合教学1号楼综151)
+208                 &lt;br&gt;&lt;/td&gt;
+209               &lt;td&gt;&amp;nbsp; 计算机组成原理_01(西部校区综合教学2号楼B103)
+210                 &lt;br&gt;&lt;/td&gt;
+211               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+212               &lt;td&gt;&amp;nbsp; 计算机网络A_01(西部校区综合教学2号楼B406)
+213                 &lt;br&gt;&lt;/td&gt;
+214               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+215               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+216               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+217             &lt;tr bgcolor=&#34;#FFFFFF&#34;&gt;
+218               &lt;td width=&#34;11%&#34;&gt;第6节(14:20-15:05)&lt;/td&gt;
+219               &lt;td&gt;&amp;nbsp; 编译原理_01(校部综合教学1号楼综151)
+220                 &lt;br&gt;&lt;/td&gt;
+221               &lt;td&gt;&amp;nbsp; 计算机组成原理_01(西部校区综合教学2号楼B103)
+222                 &lt;br&gt;&lt;/td&gt;
+223               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+224               &lt;td&gt;&amp;nbsp; 计算机网络A_01(西部校区综合教学2号楼B406)
+225                 &lt;br&gt;&lt;/td&gt;
+226               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+227               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+228               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+229             &lt;tr bgcolor=&#34;#FFFFFF&#34;&gt;
+230               &lt;td width=&#34;11%&#34;&gt;第7节(15:35-16:20)&lt;/td&gt;
+231               &lt;td&gt;&amp;nbsp; 人工智能_01(西部校区综合教学2号楼A101)
+232                 &lt;br&gt;&lt;/td&gt;
+233               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+234               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+235               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+236               &lt;td&gt;&amp;nbsp; 面向对象程序设计_01(西部校区综合教学2号楼A301)
+237                 &lt;br&gt;&lt;/td&gt;
+238               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+239               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+240             &lt;tr bgcolor=&#34;#FFFFFF&#34;&gt;
+241               &lt;td width=&#34;11%&#34;&gt;第8节(16:25-17:10)&lt;/td&gt;
+242               &lt;td&gt;&amp;nbsp; 人工智能_01(西部校区综合教学2号楼A101)
+243                 &lt;br&gt;&lt;/td&gt;
+244               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+245               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+246               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+247               &lt;td&gt;&amp;nbsp; 面向对象程序设计_01(西部校区综合教学2号楼A301)
+248                 &lt;br&gt;&lt;/td&gt;
+249               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+250               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+251               &lt;tr bgcolor=&#34;#FFFFFF&#34;&gt;
+252                 &lt;td colspan=&#34;9&#34;&gt;&amp;nbsp;
+253                   &lt;p align=&#34;center&#34; class=&#34;td2 style5&#34;&gt;
+254                     &lt;strong&gt;晚 饭&lt;/strong&gt;&lt;/p&gt;
+255                 &lt;/td&gt;
+256               &lt;/tr&gt;
+257             &lt;/tr&gt;
+258             &lt;tr bgcolor=&#34;#FFFFFF&#34;&gt;
+259               &lt;td width=&#34;3%&#34; rowspan=&#34;4&#34;&gt;&amp;nbsp;
+260                 &lt;p class=&#34;style4&#34;&gt;晚上&lt;/p&gt;&lt;/td&gt;
+261               &lt;td width=&#34;11%&#34;&gt;第9节(18:00-18:45)&lt;/td&gt;
+262               &lt;td&gt;&amp;nbsp; 社会学*_886(校部综合教学1号楼综152)
+263                 &lt;br&gt;&lt;/td&gt;
+264               &lt;td&gt;&amp;nbsp; 人类文明史*_887(校部材料馆材101)
+265                 &lt;br&gt;&lt;/td&gt;
+266               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+267               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+268               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+269               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+270               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+271             &lt;tr bgcolor=&#34;#FFFFFF&#34;&gt;
+272               &lt;td width=&#34;11%&#34;&gt;第10节(18:55-19:40)&lt;/td&gt;
+273               &lt;td&gt;&amp;nbsp; 社会学*_886(校部综合教学1号楼综152)
+274                 &lt;br&gt;&lt;/td&gt;
+275               &lt;td&gt;&amp;nbsp; 人类文明史*_887(校部材料馆材101)
+276                 &lt;br&gt;&lt;/td&gt;
+277               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+278               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+279               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+280               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+281               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+282             &lt;tr bgcolor=&#34;#FFFFFF&#34;&gt;
+283               &lt;td width=&#34;11%&#34;&gt;第11节(19:50-20:35)&lt;/td&gt;
+284               &lt;td&gt;&amp;nbsp; 社会学*_886(校部综合教学1号楼综152)
+285                 &lt;br&gt;&lt;/td&gt;
+286               &lt;td&gt;&amp;nbsp; 人类文明史*_887(校部材料馆材101)
+287                 &lt;br&gt;&lt;/td&gt;
+288               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+289               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+290               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+291               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+292               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+293             &lt;tr bgcolor=&#34;#FFFFFF&#34;&gt;
+294               &lt;td width=&#34;11%&#34;&gt;第12节(20:45-21:30)&lt;/td&gt;
+295               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+296               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+297               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+298               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+299               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+300               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+301               &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+302           &lt;/table&gt;
+303
+304 */
+</code></pre><p>View Code</p>
+<h1 id="5关于回调函数的使用">5、关于回调函数的使用</h1>
+<p>这一部分之前完全没预料到，只是后来才发现，不用内部类，想更新UI就得用回调函数，其更深层次的思想是一种设计模式，还是自己学的太少！知识使用完全浮于表面。</p>
+<h1 id="6demo演示">6、Demo演示</h1>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/202e78a80c1030152e77-a05437661763b053dfdb.gif" alt=""></p>
+<h1 id="7总结">7、总结</h1>
+<p>零零散散花了不少时间，一来确实第一次做类似工作，二来自己习惯非常不好，对于新工具，研究API和即学即用能力不强。明天应该好好研究一下HttpClient和Jsoup，达到熟练抓取各种网页的目的！毕竟这只是开始！现在的学习状态实在太低效了。</p>
+<p>以上。</p>
+
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/2016-java-learning-roadmap/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">Java学习路线图</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/articles/2016-blog-park-custom-template/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">博客园自定义模板</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

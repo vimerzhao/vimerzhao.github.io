@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>数据结构算法C语言实现（八）--- 3.2栈的应用举例：迷宫求解与表达式求值 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="数据结构算法C语言实现（八）--- 3.2栈的应用举例：迷宫求解与表达式求值" />
+<meta property="og:description" content="一.简介 迷宫求解：类似图的DFS。具体的算法思路可以参考书上的50、51页，不过书上只说了粗略的算法，实现起来还是有很多细节需要注意。大多数只是给了个抽象的名字，甚至参数类型，返回值也没说的很清楚，所" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/2016-data-structure-algorithm-c-language-implementation-8-3-2-stack-application-examples-maze-solving-and/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2016-06-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-25T16:21:52+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="数据结构算法C语言实现（八）--- 3.2栈的应用举例：迷宫求解与表达式求值"/>
+<meta name="twitter:description" content="一.简介 迷宫求解：类似图的DFS。具体的算法思路可以参考书上的50、51页，不过书上只说了粗略的算法，实现起来还是有很多细节需要注意。大多数只是给了个抽象的名字，甚至参数类型，返回值也没说的很清楚，所"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">数据结构算法C语言实现（八）--- 3.2栈的应用举例：迷宫求解与表达式求值</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-06-08T00:00:00Z">2016-06-08</time>
+	<time class="meta__text" datetime="2026-07-25T16:21:52&#43;08:00">(最后修改: 2026-07-25)</time></div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 3600 字，阅读需 8 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<p>一.简介</p>
+<p>迷宫求解：类似图的DFS。具体的算法思路可以参考书上的50、51页，不过书上只说了粗略的算法，实现起来还是有很多细节需要注意。大多数只是给了个抽象的名字，甚至参数类型，返回值也没说的很清楚，所以很多需要自己揣摩。这也体现了算法和程序设计语言的特点，算法更侧重本质的描述，而任何编程语言都要照顾到实现的细节以及数据类型等语法方面的需求。</p>
+<p>表达式求值：</p>
+<p>由于数据的读入是按照字符读入的，所以这个简单的小程序只能计算个位数的运算。</p>
+<p>二.头文件</p>
+<p>迷宫求解：</p>
+<pre tabindex="0"><code>  1 //3_2_maze.h
+  2 /**
+  3 author:zhaoyu
+  4 email:zhaoyu1995.com@gmail.com
+  5 date:2016-6-8
+  6 note:realize my textbook &lt;&lt;数据结构（C语言版）&gt;&gt;
+  7 */
+  8 //Page 51
+  9 #ifndef _3_2_MAZE_H
+ 10 #define _3_2_MAZE_H
+ 11 #include &lt;cstdio&gt;
+ 12 #include &lt;cstdlib&gt;
+ 13 #include &lt;cstring&gt;
+ 14 #include &#34;head.h&#34;
+ 15 #define STACK_INIT_SIZE 200//存储空间的初始分配值
+ 16 #define STACKINCREMENT 10//存储空间分配增量
+ 17 #define WALL -1
+ 18 #define PATH 1
+ 19 #define PASSED -2
+ 20 #define UNREACHABLE -3
+ 21 #define FINALPATH -4
+ 22 #define NMAX 50
+ 23 char Map[NMAX][NMAX];
+ 24 typedef struct{
+ 25     int x;
+ 26     int y;
+ 27 }PosType;
+ 28 typedef struct node_1{
+ 29     int x, y;
+ 30     struct node_1 *next;
+ 31 }MazeType;
+ 32 typedef struct{
+ 33     int ord;//通道块在路径上的序号
+ 34     PosType seat;//通道块在迷宫中的位置
+ 35     int direction;//从此通道块走向下一通道块的方向
+ 36 }SElemType;
+ 37 typedef struct{
+ 38     SElemType *base;//在栈构造之前和销毁之后，base 值为 NULL
+ 39     SElemType *top;//栈顶指针
+ 40     int stacksize;//当前已分配的存储空间，以元素为单位
+ 41 }SqStack;
+ 42 Status InitStack(SqStack &amp;S)
+ 43 {
+ 44     //构造一个空栈 S
+ 45     S.base = (SElemType *)malloc(STACK_INIT_SIZE*sizeof(SElemType));
+ 46     if (!S.base)
+ 47     {
+ 48         exit(OVERFLOW);
+ 49     }
+ 50     S.top = S.base;
+ 51     S.stacksize = STACK_INIT_SIZE;
+ 52     return OK;
+ 53 }//InitStack
+ 54 void Assign_PosType(PosType &amp;a, PosType b)
+ 55 {
+ 56     a.x = b.x;
+ 57     a.y = b.y;
+ 58 }//Assign_PosType
+ 59 Status Pass(PosType pos)
+ 60 {//可能写的不对，注意
+ 61     if (PATH == Map[pos.x][pos.y])
+ 62     {
+ 63         return TRUE;
+ 64     }
+ 65     else
+ 66     {
+ 67         return FALSE;
+ 68     }
+ 69 }//Pass
+ 70 void FoorPrint(PosType pos)
+ 71 {
+ 72     Map[pos.x][pos.y] = PASSED;
+ 73 }
+ 74 void Assign_SELemType(SElemType &amp;e, int x, PosType pos, int y)
+ 75 {
+ 76     e.ord = x;
+ 77     Assign_PosType(e.seat, pos);
+ 78     e.direction = y;
+ 79 }
+ 80 Status Push(SqStack &amp;S, SElemType e)
+ 81 {
+ 82     //插入元素 e 为新的栈顶元素
+ 83     if (S.top - S.base &gt;= S.stacksize)
+ 84     {//栈满，追加存储空间
+ 85         S.base = (SElemType *)realloc(S.base,
+ 86             (S.stacksize+STACKINCREMENT)*sizeof(SElemType));
+ 87         if (!S.base)
+ 88         {
+ 89             exit(OVERFLOW);
+ 90         }
+ 91         S.top = S.base + S.stacksize;
+ 92         S.stacksize += STACKINCREMENT;
+ 93     }
+ 94     //*S.top++ = e;
+ 95     Assign_SELemType(*S.top++, e.ord, e.seat, e.direction);
+ 96     return OK;
+ 97 }//Push
+ 98 PosType NextPos(PosType pos, int direction)
+ 99 {
+100     PosType temp;
+101     switch (direction)
+102     {
+103         case 1:
+104         {
+105             temp.x = pos.x;
+106             temp.y = pos.y+1;
+107             break;
+108         }
+109         case 2:
+110         {
+111             temp.x = pos.x + 1;
+112             temp.y = pos.y;
+113             break;
+114         }
+115         case 3:
+116         {
+117             temp.x = pos.x;
+118             temp.y = pos.y - 1;
+119             break;
+120         }
+121         case 4:
+122         {
+123             temp.x = pos.x - 1;
+124             temp.y = pos.y;
+125             break;
+126         }
+127     }
+128     //加一个越界检查
+129     return temp;
+130 }
+131 Status StackEmpty(SqStack S)
+132 {
+133     //若 S 为空栈， 则返回 TRUE， 否则返回 FALSE
+134     if (S.base == S.top)
+135     {
+136         return TRUE;
+137     }
+138     else
+139     {
+140         return FALSE;
+141     }
+142 }
+143 Status Pop(SqStack &amp;S, SElemType &amp;e)
+144 {
+145     //若栈不空，则删除 S 的栈顶元素，用 e 返回其
+146     //值，并返回OK；否则返回ERROR
+147     if (S.top == S.base)
+148     {
+149         return ERROR;
+150     }
+151     //e = *--S.top;
+152     S.top--;
+153     Assign_SELemType(e, (*S.top).ord, (*S.top).seat, (*S.top).direction);
+154     return OK;
+155 }//Pop
+156 void FootPrint(PosType pos)
+157 {
+158     Map[pos.x][pos.y] = PASSED;
+159 }
+160 void MarkPrint(PosType pos)
+161 {
+162     Map[pos.x][pos.y] = UNREACHABLE;
+163 }
+164 void MakeMap(int size)
+165 {
+166     memset(Map, 0, sizeof(Map));
+167     char ch;
+168     getchar();
+169     for (int i = 1; i &lt;= size; i++)
+170     {
+171         for (int j = 1; j &lt;= size; j++)
+172         {
+173             scanf(&#34;%c&#34;, &amp;ch);
+174             if (&#39;X&#39; == ch)
+175             {
+176                 Map[i][j] = UNREACHABLE;
+177             }
+178             else
+179             {
+180                 Map[i][j] = PATH;
+181             }
+182         }
+183         //attention &#39;\n&#39;
+184         getchar();
+185     }
+186     //Print maze
+187     for (int i = 1; i &lt;= size; i++)
+188     {
+189         for (int j = 1; j &lt;= size; j++)
+190         {
+191             if (UNREACHABLE == Map[i][j])
+192             {
+193                 printf(&#34;X&#34;);
+194             }
+195             else
+196             {
+197                 printf(&#34; &#34;);
+198             }
+199         }
+200         printf(&#34;\n&#34;);
+201     }
+202 }
+203 void PrintPath(SqStack S, int size)
+204 {
+205     SElemType e;
+206     SqStack temp;
+207     while (!StackEmpty(S))
+208     {
+209         Pop(S, e);
+210         Map[e.seat.x][e.seat.y] = FINALPATH;
+211     }
+212     for (int i = 1; i &lt;= size; i++)
+213     {
+214         for (int j = 1; j &lt;= size; j++)
+215         {
+216             if (UNREACHABLE == Map[i][j])
+217             {
+218                 printf(&#34;X&#34;);
+219             }
+220             else if (FINALPATH == Map[i][j])
+221             {
+222                 printf(&#34;O&#34;);
+223             }
+224             else
+225             {
+226                 printf(&#34; &#34;);
+227             }
+228         }
+229         printf(&#34;\n&#34;);
+230     }
+231 }
+232 Status MazePath(MazeType maze, PosType start, PosType end, int size)
+233 {
+234     //若迷宫 maze 中存在从入口 start 到出口 end 的通道，
+235     //则求得一条存放在栈中（从栈底到栈顶），并返回 TRUE，
+236     //否则返回 FALSE
+237     SqStack S;
+238     InitStack(S);
+239     //curpos = start
+240     PosType curpos;
+241     Assign_PosType(curpos, start);//设定当前位置为入口位置
+242     int curstep = 1;//探索第一步
+243     SElemType e;
+244     do{
+245         if (TRUE == Pass(curpos))
+246         {//当前位置可以通过
+247             FootPrint(curpos);//留下足迹
+248             //e = (curstep, curpos, 1);
+249             Assign_SELemType(e, curstep, curpos, 1);
+250             Push(S, e);//加入路径
+251             if (curpos.x == end.x &amp;&amp; curpos.y == end.y)
+252             {
+253                 //打印路径
+254                 printf(&#34;PATH EXIST\n&#34;);
+255                 PrintPath(S ,size);
+256                 return TRUE;
+257             }
+258             curpos = NextPos(curpos, 1);//下一位置是当前位置的东邻
+259             curstep++;//探索下一步
+260         }
+261         else
+262         {
+263             if (!StackEmpty(S))
+264             {
+265                 Pop(S, e);
+266                 while (4 == e.direction &amp;&amp; !StackEmpty(S))
+267                 {
+268                     MarkPrint(e.seat);
+269                     Pop(S, e);//留下不能通过的标记，并退回一步
+270                 }
+271                 if (e.direction &lt; 4)
+272                 {
+273                     e.direction++;
+274                     Push(S, e);
+275                     curpos = NextPos(e.seat, e.direction);
+276                 }
+277             }
+278         }
+279     }while (!StackEmpty(S));
+280
+281 }
+282 #endif
+</code></pre><p>3_2_maze.h</p>
+<p>表达式求值：</p>
+<pre tabindex="0"><code>  1 //3_2_maze.h
+  2 /**
+  3 author:zhaoyu
+  4 email:zhaoyu1995.com@gmail.com
+  5 date:2016-6-8
+  6 note:realize my textbook &lt;&lt;数据结构（C语言版）&gt;&gt;
+  7 */
+  8 //Page 53
+  9 #ifndef _3_2_EXPRESSION_H_
+ 10 #define _3_2_EXPRESSION_H_
+ 11 #include &#34;head.h&#34;
+ 12
+ 13 #define SElemType char
+ 14 #define OperandType float
+ 15 #define STACK_INIT_SIZE 100//存储空间的初始分配值
+ 16 #define STACKINCREMENT 10//存储空间分配增量
+ 17 typedef struct{
+ 18     SElemType *base;//在栈构造之前和销毁之后，base 值为 NULL
+ 19     SElemType *top;//栈顶指针
+ 20     int stacksize;//当前已分配的存储空间，以元素为单位
+ 21 }SqStack_Char;
+ 22 typedef struct{
+ 23     OperandType *base;//在栈构造之前和销毁之后，base 值为 NULL
+ 24     OperandType *top;//栈顶指针
+ 25     int stacksize;//当前已分配的存储空间，以元素为单位
+ 26 }SqStack_Float;
+ 27 Status InitStack_Char(SqStack_Char &amp;S)
+ 28 {
+ 29     //构造一个空栈 S
+ 30     S.base = (SElemType *)malloc(STACK_INIT_SIZE*sizeof(SElemType));
+ 31     if (!S.base)
+ 32     {
+ 33         exit(OVERFLOW);
+ 34     }
+ 35     S.top = S.base;
+ 36     S.stacksize = STACK_INIT_SIZE;
+ 37     return OK;
+ 38 }//InitStack
+ 39 Status InitStack_Float(SqStack_Float &amp;S)
+ 40 {
+ 41     //构造一个空栈 S
+ 42     S.base = (OperandType *)malloc(STACK_INIT_SIZE*sizeof(OperandType));
+ 43     if (!S.base)
+ 44     {
+ 45         exit(OVERFLOW);
+ 46     }
+ 47     S.top = S.base;
+ 48     S.stacksize = STACK_INIT_SIZE;
+ 49     return OK;
+ 50 }//InitStack
+ 51 Status Push_Char(SqStack_Char &amp;S, SElemType e)
+ 52 {
+ 53     //插入元素 e 为新的栈顶元素
+ 54     if (S.top - S.base &gt;= S.stacksize)
+ 55     {//栈满，追加存储空间
+ 56         S.base = (SElemType *)realloc(S.base,
+ 57             (S.stacksize+STACKINCREMENT)*sizeof(SElemType));
+ 58         if (!S.base)
+ 59         {
+ 60             exit(OVERFLOW);
+ 61         }
+ 62         S.top = S.base + S.stacksize;
+ 63         S.stacksize += STACKINCREMENT;
+ 64     }
+ 65     *S.top++ = e;
+ 66     return OK;
+ 67 }//Push
+ 68 SElemType GetTop_Char(SqStack_Char S)
+ 69 {
+ 70     //若栈不空，则用 e 返回 S 的栈顶元素，并返回 OK；
+ 71     //否则返回ERROR
+ 72     if (S.top == S.base)
+ 73     {
+ 74         return ERROR;
+ 75     }
+ 76     return *(S.top - 1);
+ 77 }//GetTop
+ 78 Status isInOPTR(SElemType c)
+ 79 {
+ 80     switch (c)
+ 81     {
+ 82         case &#39;+&#39;:
+ 83         case &#39;-&#39;:
+ 84         case &#39;*&#39;:
+ 85         case &#39;/&#39;:
+ 86         case &#39;(&#39;:
+ 87         case &#39;)&#39;:
+ 88         case &#39;#&#39;:
+ 89         {
+ 90             return TRUE;
+ 91             break;
+ 92         }
+ 93         default:
+ 94         {
+ 95             return FALSE;
+ 96             break;
+ 97         }
+ 98     }
+ 99 }
+100 Status Push_Float(SqStack_Float &amp;S, OperandType e)
+101 {
+102     //插入元素 e 为新的栈顶元素
+103     if (S.top - S.base &gt;= S.stacksize)
+104     {//栈满，追加存储空间
+105         S.base = (OperandType *)realloc(S.base,
+106             (S.stacksize+STACKINCREMENT)*sizeof(OperandType));
+107         if (!S.base)
+108         {
+109             exit(OVERFLOW);
+110         }
+111         S.top = S.base + S.stacksize;
+112         S.stacksize += STACKINCREMENT;
+113     }
+114     *S.top++ = e;
+115     return OK;
+116 }//Push
+117 char Precede(SElemType a, SElemType b)
+118 {
+119     char R[7][7] =  {{&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;},
+120                     {&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;},
+121                     {&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&lt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;},
+122                     {&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&lt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;},
+123                     {&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;=&#39;,&#39;#&#39;},
+124                     {&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;#&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;},
+125                     {&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;#&#39;,&#39;=&#39;}};
+126     int i,j;
+127     switch (a)
+128     {
+129         case &#39;+&#39;:i=0;break;
+130         case &#39;-&#39;:i=1;break;
+131         case &#39;*&#39;:i=2;break;
+132         case &#39;/&#39;:i=3;break;
+133         case &#39;(&#39;:i=4;break;
+134         case &#39;)&#39;:i=5;break;
+135         case &#39;#&#39;:i=6;break;
+136         default:i=0;break;
+137     }
+138     switch (b)
+139     {
+140         case &#39;+&#39;:j=0;break;
+141         case &#39;-&#39;:j=1;break;
+142         case &#39;*&#39;:j=2;break;
+143         case &#39;/&#39;:j=3;break;
+144         case &#39;(&#39;:j=4;break;
+145         case &#39;)&#39;:j=5;break;
+146         case &#39;#&#39;:j=6;break;
+147         default:j=0;break;
+148     }
+149     if (&#39;#&#39; == R[i][j])
+150     {
+151         printf(&#34;ERROR\n&#34;);
+152         exit(ERROR);
+153     }
+154     else
+155     {
+156         return R[i][j];
+157     }
+158 }
+159 Status Pop_Char(SqStack_Char &amp;S, SElemType &amp;e)
+160 {
+161     //若栈不空，则删除 S 的栈顶元素，用 e 返回其
+162     //值，并返回OK；否则返回ERROR
+163     if (S.top == S.base)
+164     {
+165         return ERROR;
+166     }
+167     e = *--S.top;
+168     return OK;
+169 }//Pop
+170 Status Pop_Float(SqStack_Float &amp;S, OperandType &amp;e)
+171 {
+172     //若栈不空，则删除 S 的栈顶元素，用 e 返回其
+173     //值，并返回OK；否则返回ERROR
+174     if (S.top == S.base)
+175     {
+176         return ERROR;
+177     }
+178     e = *--S.top;
+179     return OK;
+180 }//Pop
+181 OperandType Operate(OperandType a, SElemType theta, OperandType b)
+182 {
+183     switch (theta)
+184     {
+185         case &#39;+&#39;: return a+b; break;
+186         case &#39;-&#39;: return a-b; break;
+187         case &#39;*&#39;: return a*b; break;
+188         case &#39;/&#39;: return a/b; break;
+189         default:return 0; break;
+190     }
+191 }
+192 OperandType GetTop_Float(SqStack_Float S)
+193 {
+194     //若栈不空，则用 e 返回 S 的栈顶元素，并返回 OK；
+195     //否则返回ERROR
+196     if (S.top == S.base)
+197     {
+198         return ERROR;
+199     }
+200     return *(S.top - 1);
+201 }//GetTop
+202 OperandType EvaluateExpression()
+203 {
+204     //算数表达式求值的算符优先算法。设 OPTR 和 OPND
+205     //分别为运算符栈和运算数栈，OP 为运算符集合
+206     SqStack_Char OPTR;
+207     SqStack_Float OPND;
+208     InitStack_Char(OPTR);
+209     Push_Char(OPTR, &#39;#&#39;);
+210     InitStack_Float(OPND);
+211     char c = getchar(), x, theta;
+212     float a, b;
+213     while (&#39;#&#39; != c || GetTop_Char(OPTR) != &#39;#&#39;)
+214     {
+215         //if (!In(c, OP))
+216         if (!isInOPTR(c))
+217         {
+218             float temp = c-&#39;0&#39;;
+219             Push_Float(OPND, temp);//不是运算符则进栈
+220             c = getchar();
+221         }
+222         else
+223         {
+224             switch (Precede(GetTop_Char(OPTR), c))
+225             {
+226                 case &#39;&lt;&#39;://栈顶元素优先权低
+227                 {
+228                     Push_Char(OPTR, c);
+229                     c = getchar();
+230                     break;
+231                 }
+232                 case &#39;=&#39;://脱括号并接收下一字符
+233                 {
+234                     Pop_Char(OPTR, x);
+235                     c = getchar();
+236                     break;
+237                 }
+238                 case &#39;&gt;&#39;://退栈并将运算符结果入栈
+239                 {
+240                     Pop_Char(OPTR, theta);
+241                     Pop_Float(OPND, b);
+242                     Pop_Float(OPND, a);
+243                     Push_Float(OPND, Operate(a, theta, b));
+244                     break;
+245                 }
+246             }
+247         }
+248     }
+249     return GetTop_Float(OPND);
+250 }
+251 #endif
+</code></pre><p>3_2_expression.h</p>
+<p>三.CPP文件</p>
+<p>迷宫求解：</p>
+<pre tabindex="0"><code> 1 #include &#34;3_2_maze.h&#34;
+ 2 int main(int argc, char const *argv[])
+ 3 {
+ 4     freopen(&#34;map.txt&#34;, &#34;r&#34;, stdin);
+ 5     printf(&#34;Map\n&#34;);
+ 6     int size;
+ 7     scanf(&#34;%d&#34;, &amp;size);
+ 8     MakeMap(size);
+ 9     PosType start, end;
+10     scanf(&#34;%d%d&#34;, &amp;start.x, &amp;start.y);
+11     printf(&#34;start:\tx:%d\ty:%d\n&#34;, start.x, start.y);
+12     scanf(&#34;%d%d&#34;, &amp;end.x, &amp;end.y);
+13     printf(&#34;end:\tx:%d\ty:%d\n&#34;, end.x, end.y);
+14     MazeType maze;//un useded for me
+15     MazePath(maze, start, end, size);
+16     //PrintPath(size);
+17     return 0;
+18 }
+</code></pre><p>3_2_maze.cpp</p>
+<p>表达式求值：</p>
+<pre tabindex="0"><code> 1 #include &#34;3_2_expression.h&#34;
+ 2 int main(int argc, char const *argv[])
+ 3 {
+ 4     float ans;
+ 5     for (int i = 0; i &lt; 5; ++i)
+ 6     {
+ 7         ans = EvaluateExpression();
+ 8         printf(&#34;%.3f\n&#34;, ans);
+ 9     }
+10     return 0;
+11 }
+</code></pre><p>3_2_expression.cpp</p>
+<p>四.测试</p>
+<p>迷宫求解：</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/e512a8b37dab6124db4d-74e5e55bb9f755215091.jpg" alt=""></p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/bfab66aa274368c49583-8817338f2929d3934fda.png" alt=""></p>
+<p>表达式求值:</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/f3c4b24a94c698283c22-2554cd4a9dcf8c7c29c8.png" alt=""></p>
+<p>五.迷宫求解的输入文件map.txt</p>
+<pre tabindex="0"><code>10
+XXXXXXXXXX
+XOOXOOOXOX
+XOOXOOOXOX
+XOOOOXXOOX
+XOXXXOOOOX
+XOOOXOOOOX
+XOXOOOXOOX
+XOXXXOXXOX
+XXOOOOOOOX
+XXXXXXXXXX
+2
+2
+9
+9
+</code></pre><p>map.txt</p>
+<p>六.优化的表达式求值代码</p>
+<p>用了一些简单的C++语法（主要是为了节省代码），写了一个可以计算较复杂表达式的程序。（STL不熟，估计以后看会很蹩脚！）</p>
+<pre tabindex="0"><code>  1 #include &lt;iostream&gt;
+  2 #include &lt;string&gt;
+  3 #include &lt;stack&gt;
+  4 #include &lt;cstdio&gt;
+  5 #include &lt;cstdlib&gt;
+  6 #include &lt;map&gt;
+  7 using namespace std;
+  8 bool isInOPTR(char ch){
+  9     switch (ch)    {
+ 10         case &#39;+&#39;:
+ 11         case &#39;-&#39;:
+ 12         case &#39;*&#39;:
+ 13         case &#39;/&#39;:
+ 14         case &#39;(&#39;:
+ 15         case &#39;)&#39;:
+ 16         case &#39;#&#39;:{
+ 17             return true;
+ 18             break;
+ 19         }
+ 20         default:{
+ 21             return false;
+ 22             break;
+ 23         }
+ 24     }
+ 25 }
+ 26 char Precede(char a, char b){
+ 27     map&lt;char, int&gt; myMap;
+ 28     myMap[&#39;+&#39;] = 0;
+ 29     myMap[&#39;-&#39;] = 1;
+ 30     myMap[&#39;*&#39;] = 2;
+ 31     myMap[&#39;/&#39;] = 3;
+ 32     myMap[&#39;(&#39;] = 4;
+ 33     myMap[&#39;)&#39;] = 5;
+ 34     myMap[&#39;#&#39;] = 6;
+ 35     char R[7][7] =  {{&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;},
+ 36                     {&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;},
+ 37                     {&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&lt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;},
+ 38                     {&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&lt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;},
+ 39                     {&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;=&#39;,&#39;#&#39;},
+ 40                     {&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;,&#39;#&#39;,&#39;&gt;&#39;,&#39;&gt;&#39;},
+ 41                     {&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;&lt;&#39;,&#39;#&#39;,&#39;=&#39;}};
+ 42     if (&#39;#&#39; == R[myMap[a]][myMap[b]]){
+ 43         printf(&#34;Precede ERROE\n&#34;);
+ 44         printf(&#34;%c%c\n&#34;, a, b);
+ 45         exit(-1);
+ 46     }
+ 47     return R[myMap[a]][myMap[b]];
+ 48 }
+ 49 float Caculate(float a, char theta, float b){
+ 50     switch (theta){
+ 51         case &#39;+&#39;:{
+ 52             return a+b;
+ 53             break;
+ 54         }
+ 55         case &#39;-&#39;:{
+ 56             return a-b;
+ 57             break;
+ 58         }
+ 59         case &#39;*&#39;:{
+ 60             return a*b;
+ 61             break;
+ 62         }
+ 63         case &#39;/&#39;:{
+ 64             return a/b;
+ 65         }
+ 66         default:{
+ 67             printf(&#34;Operator ERROR\n&#34;);
+ 68             exit(-1);
+ 69         }
+ 70     }
+ 71 }
+ 72 void expression(void){
+ 73     string Str;
+ 74     getline(cin, Str);
+ 75     cout &lt;&lt;&#34;Your input: &#34; + Str + &#39;\b&#39; + &#39; &#39; &lt;&lt; endl;
+ 76     char Operator = &#39; &#39;;
+ 77     float Operand = 0;
+ 78     stack&lt;char&gt; OPTR;
+ 79     stack&lt;float&gt; OPND;
+ 80     OPTR.push(&#39;#&#39;);
+ 81     int i = 0;
+ 82     char number[20];
+ 83     while (Operator != &#39;#&#39; || OPTR.top() != &#39;#&#39;){
+ 84         //fool code!!!
+ 85         for (int k = 0;i &lt;= Str.length();){
+ 86             if (isInOPTR(Str.at(i)))
+ 87             {
+ 88                 Operator = Str.at(i++);
+ 89                 break;
+ 90             }
+ 91             else
+ 92             {
+ 93                 number[k] = Str.at(i);
+ 94                 k++;
+ 95                 i++;
+ 96                 if (isInOPTR(Str.at(i)))
+ 97                 {
+ 98                     number[k] = &#39;\0&#39;;
+ 99                     Operand = atof(number);
+100                     OPND.push(Operand);
+101                     continue;
+102                 }
+103
+104             }
+105         }
+106         switch (Precede(OPTR.top(), Operator)){
+107             case &#39;&lt;&#39;:{
+108                 OPTR.push(Operator);
+109                 break;
+110             }
+111             case &#39;=&#39;:{
+112                 OPTR.pop();
+113                 break;
+114             }
+115             case &#39;&gt;&#39;:{
+116                 float a, b;
+117                 char theta;
+118                 theta = OPTR.top();
+119                 OPTR.pop();
+120                 b = OPND.top();
+121                 OPND.pop();
+122                 a = OPND.top();
+123                 OPND.pop();
+124                 OPND.push(Caculate(a, theta, b));
+125                 i--;//attention!!!!!!!
+126                 break;
+127             }
+128         }
+129     }
+130     cout &lt;&lt; &#34;Answer: &#34; &lt;&lt;OPND.top() &lt;&lt; endl;
+131
+132 }
+133 int main(int argc, char const *argv[])
+134 {
+135     freopen(&#34;in.txt&#34;, &#34;r&#34;, stdin);
+136     freopen(&#34;out.txt&#34;, &#34;w&#34;, stdout);
+137     for (int i = 0; i &lt; 5; ++i)
+138     {
+139         expression();
+140     }
+141     return 0;
+142 }
+</code></pre><p>final_expression.cpp</p>
+<p>测试数据：</p>
+<pre tabindex="0"><code>3.2*9-3/4+2#
+3.45*100-(10-4)*5#
+3*3/3/3#
+2.22*(10-110)#
+1-1#
+</code></pre><p>in.txt</p>
+<p>结果：</p>
+<pre tabindex="0"><code>Your input: 3.2*9-3/4+2
+Answer: 30.05
+Your input: 3.45*100-(10-4)*5
+Answer: 315
+Your input: 3*3/3/3
+Answer: 1
+Your input: 2.22*(10-110)
+Answer: -222
+Your input: 1-1
+Answer: 0
+</code></pre><p>out.txt</p>
+
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/2016-data-structure-algorithm-c-language-implementation-9-expansion-ai-snake-derived-from-the-maze-proble/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">数据结构算法C语言实现（九）--- 拓展：由迷宫问题引申的AI贪吃蛇</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/articles/2016-data-structure-algorithm-c-language-implementation-11-3-4-chain-representation-and-implementation-of/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">数据结构算法C语言实现（十一）--- 3.4队列的链式表示和实现</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/process-of-build-wpe-webkit-android/">编译wpe-webkit-android的问题记录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

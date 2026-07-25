@@ -6,7 +6,7 @@
     <description>Recent content in Articles on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 25 Jul 2026 11:20:46 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 25 Jul 2026 16:21:52 +0800</lastBuildDate>
     <atom:link href="/articles/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>初探OpenClaw</title>
@@ -1535,11 +1535,1054 @@
       <description>C语言宏展开的顺序问题 本文记录了作者遇到的一个关于C语言宏展开顺序的问题及其解释。 问题 这是我在阅读The C Puzzle Book一书中遇到的一个问题，为了简化问题，我写了以下一段代码 #include &amp;lt;stdio.h&amp;gt; #define TEST(x) x*5 #define PR(x) printf(#x &amp;#34; = %d&amp;#34;, x) #define PRINT1(x) PR(x);printf(&amp;#34;\n&amp;#34;)</description>
     </item>
     <item>
+      <title>git 每次提交需要输入密码</title>
+      <link>/articles/2017-git-requires-a-password-for-each-commit/</link>
+      <pubDate>Mon, 06 Mar 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-git-requires-a-password-for-each-commit/</guid>
+      <description>亲测可行（第一种） 原文：git每次提交都要输入密码怎么办 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝COPY＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ 不少用户反映在使用Git时，经常会遇到需要频繁输入</description>
+    </item>
+    <item>
+      <title>hexo &#43; next 搭建博客时Cannot GET /tags/问题处理</title>
+      <link>/articles/2017-hexo-next-cannot-get-tags-problem-handling-when-building-a-blog/</link>
+      <pubDate>Sun, 05 Mar 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-hexo-next-cannot-get-tags-problem-handling-when-building-a-blog/</guid>
+      <description>原来是要修改新建的index.md文件，不仔细。 此外，愈发觉得百度和谷歌搜索同一问题的差距，谷歌更适合程序员！ https://www.zhihu.com/question/29017171 这个可以解决。但是github的issue里面也有很多有益讨论。</description>
+    </item>
+    <item>
+      <title>wc命令统计目录下所有文件行数</title>
+      <link>/articles/2017-the-wc-command-counts-the-number-of-lines-in-all-files-in-a-directory/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-the-wc-command-counts-the-number-of-lines-in-all-files-in-a-directory/</guid>
+      <description>想统计一下最近一个项目的代码行数，一个一个文件统计显然不是程序员的思维，wc命令可以统计一个文本的行数，结合find命令可以实现我的需求（注意符号）：</description>
+    </item>
+    <item>
+      <title>《Android项目实战－－手机安全卫士》读后感</title>
+      <link>/articles/2017-thoughts-after-reading-android-project-practice-mobile-security-guard/</link>
+      <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-thoughts-after-reading-android-project-practice-mobile-security-guard/</guid>
+      <description>上学期在学校图书馆看到此书，觉得比较贴近实践，于是寒假研究了一番，也算是体会了一把社会培训机构的模式。 由于时间关系，最后两章还没弄完，但感觉每章节的流程相似，加之马上要回学校了，所以打算在家的最后一天</description>
+    </item>
+    <item>
+      <title>LinuxMint自定义快捷键</title>
+      <link>/articles/2017-linuxmint-custom-shortcut-keys/</link>
+      <pubDate>Fri, 24 Feb 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-linuxmint-custom-shortcut-keys/</guid>
+      <description>如图</description>
+    </item>
+    <item>
+      <title>Java逆向之UML查看工具（检索记录）</title>
+      <link>/articles/2017-uml-viewing-tool-for-java-reverse-engineering-retrieval-records/</link>
+      <pubDate>Thu, 23 Feb 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-uml-viewing-tool-for-java-reverse-engineering-retrieval-records/</guid>
+      <description>花了几个钟头时间，搜索了一下，如何从源代码得到UML,因为WCI（Writing Compilers and Interpreters,下同）越往后代码越多，必须得借助工具才能把握整个工程了。初次涉猎此方面，花了不少时间，感觉</description>
+    </item>
+    <item>
+      <title>ClassNotFoundException------IDEA下的一种原因</title>
+      <link>/articles/2017-classnotfoundexception-a-reason-under-idea/</link>
+      <pubDate>Tue, 21 Feb 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-classnotfoundexception-a-reason-under-idea/</guid>
+      <description>由于直接复制文件而未经过IDE造成次异常，需要修改程序入口：</description>
+    </item>
+    <item>
+      <title>ClassNotFoundException------我有一句妈卖批一定要讲</title>
+      <link>/articles/2017-classnotfoundexception-i-have-a-saying-that-i-must-say-when-i-sell-batches/</link>
+      <pubDate>Tue, 21 Feb 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-classnotfoundexception-i-have-a-saying-that-i-must-say-when-i-sell-batches/</guid>
+      <description>最近在写《Writing Compilers and Interpreters》一书的代码，本来打算用vim敲代码，一来每个字母都要自己敲，而来就当练习vim，但是感觉真是太不方便了，各种小错误，而且更奇怪的是放在这个目录不报</description>
+    </item>
+    <item>
+      <title>diff命令的妙用</title>
+      <link>/articles/2017-the-wonderful-use-of-diff-command/</link>
+      <pubDate>Tue, 21 Feb 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-the-wonderful-use-of-diff-command/</guid>
+      <description>在读《Writing compilers and Interpreters》一书时需要按章节修改代码，由于实在一行一行比对实在难受，于是想了个办法，利用diff命令比较两章之间代码的修改位置，大大提高效率！ 此外，还可以利用该命</description>
+    </item>
+    <item>
+      <title>如何申请一个谷歌账号</title>
+      <link>/articles/2017-how-to-apply-for-a-google-account/</link>
+      <pubDate>Fri, 10 Feb 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-how-to-apply-for-a-google-account/</guid>
+      <description>最近想把之前那个十分中二的谷歌邮箱账号（zhaoyu1995.com@gmail.com）换掉，但是发现电脑注册总是无法验证（也不记得之前是怎么申请到账号的）: 经过一番搜索，发现了一个可以解决的办法，</description>
+    </item>
+    <item>
+      <title>《两周自制脚本语言》读后感</title>
+      <link>/articles/2017-thoughts-after-reading-two-weeks-of-homemade-scripting-language/</link>
+      <pubDate>Tue, 07 Feb 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-thoughts-after-reading-two-weeks-of-homemade-scripting-language/</guid>
+      <description>粗略读完了本书，说实话比我想象的好。之前在学校就把基础部分（1-10章）过了一遍，回家之后比较懒，但终于看完了，代码也很好，可惜很多自己都没亲手敲。从消化程度来说，打算回学校之前再精读一遍，并敲完说有</description>
+    </item>
+    <item>
+      <title>Java开发图片浏览器－－记录</title>
+      <link>/articles/2017-java-development-picture-browser-record/</link>
+      <pubDate>Fri, 03 Feb 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-java-development-picture-browser-record/</guid>
+      <description>效果 设计思路 需求分析 图片浏览，上/下一张，放大缩小等基本功能。可以继续拓展的功能：缩略图、旋转，画笔修改等。此外，缩放实现较为简单，所以会出现失真。设计此类软件功能可参考ACDSee或irfanvie</description>
+    </item>
+    <item>
+      <title>spf13-vim 显示neocomplete requires ...th Lua support</title>
+      <link>/articles/2017-spf13-vim-show-neocomplete-requires-th-lua-support/</link>
+      <pubDate>Sat, 28 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-spf13-vim-show-neocomplete-requires-th-lua-support/</guid>
+      <description>安装spf13-vim的时候下载了许多插件，neocomplete应该是比较重要的一个，毕竟自动补全。但是在使用时却一直有：neocomplete requires &amp;hellip;th Lua support的警告。据说要在编译时加入相关选项</description>
+    </item>
+    <item>
+      <title>spf13-vim安装成功</title>
+      <link>/articles/2017-spf13-vim-installed-successfully/</link>
+      <pubDate>Sat, 28 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-spf13-vim-installed-successfully/</guid>
+      <description>之前安装好像都没有出现这个画面，说明我安装得不完整吧！有一个html括号匹配的插件要求输入username和password，不知所以然，没安装上，其他应该一切正常。纪念一个！</description>
+    </item>
+    <item>
+      <title>记Linux下一次乱码事件</title>
+      <link>/articles/2017-remember-the-next-garbled-code-incident-in-linux/</link>
+      <pubDate>Thu, 26 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-remember-the-next-garbled-code-incident-in-linux/</guid>
+      <description>近来需要对着教程敲代码，但是之前在Windows上的压缩包在Linux解压后发生了乱码，主要是文件内乱码，文件名还是正常的。搜索“Linux rar解压乱码“试了一圈也没解决。不过到是发现了winrar</description>
+    </item>
+    <item>
+      <title>Common Lisp学习资源整理</title>
+      <link>/articles/2017-common-lisp-learning-resources-collection/</link>
+      <pubDate>Tue, 24 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-common-lisp-learning-resources-collection/</guid>
+      <description>Lisp Hackers: Interviews with 100x More Productive Programmers Posted on June 26th, 2013 Lisp Hackers: Interviews with 100x More Productive Programmers, by Vsevolod Dyomkin, is available for free in multiple formats from Leanpub. Let Over Lambda Posted on November 18th, 2009 Free online book “Let Over Lambda” is one of the most hardcore computer programming books out there. Lisp Primer Posted on March 24th, 2006 This text has been written to provide a quick introduction to the basic elements of Common Lisp for both experienced and novice programmers. It is not</description>
+    </item>
+    <item>
+      <title>Linux下如何编辑pdf文件目录</title>
+      <link>/articles/2017-how-to-edit-pdf-file-directory-under-linux/</link>
+      <pubDate>Tue, 24 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-how-to-edit-pdf-file-directory-under-linux/</guid>
+      <description>目前，我使用的是系统LinuxMint,之前硬盘没坏时都是用Foxit Reader和Okular查看pdf文件，可是后来发现Foxit Reader十分吃CPU，而且现在换了固态硬盘之后只有120G可用</description>
+    </item>
+    <item>
+      <title>安装lispbox出现：error while loading shared libraries: libjpeg.so.62: cannot open shared object file: No such file or directory</title>
+      <link>/articles/2017-installing-lispbox-appears-error-while-loading-shared-libraries-libjpeg-so-62-cannot-open-shared-obj/</link>
+      <pubDate>Thu, 19 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-installing-lispbox-appears-error-while-loading-shared-libraries-libjpeg-so-62-cannot-open-shared-obj/</guid>
+      <description>如下图，运行lispbox出现如下报错（第一个命令）： 检索之后发现解决办法：Solution to libjpeg.so.62 输入一下两条命令（第二条也必须执行）： sudo apt-get upgrade sudo apt-get install libjpeg62-dev // if not 62-dev, the apt will tell you it can not locate the package libjpeg62 解决问题： 蛤蛤蛤！抓</description>
+    </item>
+    <item>
+      <title>Linux下修改键盘映射</title>
+      <link>/articles/2017-modify-keyboard-mapping-under-linux/</link>
+      <pubDate>Mon, 16 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-modify-keyboard-mapping-under-linux/</guid>
+      <description>一篇关于修改键盘映射比较靠谱的文章，收藏一下！ 原文地址：http://www.07net01.com/2016/04/1436249.html 最近把可乐倒进键盘把，把 ctl 变得阻力超大。。。所以把 ctrl 和 capslock 两</description>
+    </item>
+    <item>
+      <title>记一次奇怪的电脑故障</title>
+      <link>/articles/2017-remember-a-strange-computer-glitch/</link>
+      <pubDate>Mon, 16 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-remember-a-strange-computer-glitch/</guid>
+      <description>一切都要从计原复习开始，因为老师给的PPT在Linux的WPS下看老乱码，于是我就换到了Windows（当时是双系统）。结果回来一看： 看了一会，还是0%，干脆强制关机了。结果，再次开机，出现了之前从未</description>
+    </item>
+    <item>
+      <title>百度与谷歌的差别，英文检索的重要性</title>
+      <link>/articles/2017-the-difference-between-baidu-and-google-the-importance-of-english-search/</link>
+      <pubDate>Tue, 10 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-the-difference-between-baidu-and-google-the-importance-of-english-search/</guid>
+      <description>小记 其实这种差距对普通人来说并不重要，但对于程序员来说，学会Google和英文检索实在是太重要了。我一个建艺的同学在我推荐谷歌（我教她翻墙）之后，说她经常能找到很多其他同学搜索不到的图片（专业需要）。</description>
+    </item>
+    <item>
+      <title>你今天的习惯决定了你将来的位置</title>
+      <link>/articles/2017-your-habits-today-determine-where-you-will-be-in-the-future/</link>
+      <pubDate>Fri, 06 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-your-habits-today-determine-where-you-will-be-in-the-future/</guid>
+      <description>一个不错的视频，部分截图，借以自勉（当然啦，我说的是编程&amp;hellip;&amp;hellip;..）：</description>
+    </item>
+    <item>
+      <title>Coursera上一个不错的Java课</title>
+      <link>/articles/2017-a-good-java-class-on-coursera/</link>
+      <pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-a-good-java-class-on-coursera/</guid>
+      <description>地址：https://www.coursera.org/learn/java-chengxu-sheji/home/welcome 复习天昏地暗，看点视频调剂一下。发现这个讲的还是很不错的。北大毕竟比我</description>
+    </item>
+    <item>
+      <title>无限制使用ppt转pdf功能</title>
+      <link>/articles/2017-unlimited-use-of-ppt-to-pdf-function/</link>
+      <pubDate>Mon, 02 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-unlimited-use-of-ppt-to-pdf-function/</guid>
+      <description>https://smallpdf.com/cn是一个pdf处理网站，十分好用，可是非注册用户有很多限制，比如用两次ppt转pdf就要等待： 于是就想如何让服务器认为我没有用过这个功能呢，感觉应该是用co</description>
+    </item>
+    <item>
       <title>2016年终总结</title>
       <link>/articles/2016nian-zhong-zong-jie/</link>
       <pubDate>Sat, 31 Dec 2016 00:00:00 +0000</pubDate>
       <guid>/articles/2016nian-zhong-zong-jie/</guid>
       <description>2016年终总结 2016年的最后一天，按照惯例，我该写点什么。 嗯，时间过得真快。刚刚把自己的空间、朋友圈、微博翻了一遍。发现这一年确实是最平淡的一年了，没用一会功夫就看完了。其实，我自己也感受到了，这</description>
+    </item>
+    <item>
+      <title>Linux下使用Hexo搭建github博客</title>
+      <link>/articles/2016-using-hexo-to-build-a-github-blog-under-linux/</link>
+      <pubDate>Sat, 31 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-using-hexo-to-build-a-github-blog-under-linux/</guid>
+      <description>找到一篇靠谱的博客，备份一下： －－－－－－－－－以下原文－－－－－－－－－－－－－－－－－－ Nodejs安装 因为hexo是基于nodejs的应用，所以要先安装nodejs才可以。我这里以Ubuntu为</description>
+    </item>
+    <item>
+      <title>一件小事，一点感慨</title>
+      <link>/articles/2016-a-little-thing-a-little-emotion/</link>
+      <pubDate>Thu, 29 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-a-little-thing-a-little-emotion/</guid>
+      <description>大概昨晚，同学找我说大作业遇到点困难，想找我过去帮忙调调代码： 确实，很多细节都忘了。而且他们做的什么利用传感器，传输数据我之前也没接触过。但还是去了，花了3个多钟头基本解决问题。其实浪费时间较多的就是</description>
+    </item>
+    <item>
+      <title>Linux创建WiFi热点</title>
+      <link>/articles/2016-create-wifi-hotspot-in-linux/</link>
+      <pubDate>Tue, 27 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-create-wifi-hotspot-in-linux/</guid>
+      <description>手机流量用完，需要开WiFi,由于是LinuxMint,感觉配置还算容易，找到一个不错的教程，收藏一下，以备后用。除了修改配置文件那步在我的电脑不需要外其他基本正确，而且Mint本来就衍生自Ubunt</description>
+    </item>
+    <item>
+      <title>Linux下几款好用的录屏软件</title>
+      <link>/articles/2016-several-useful-screen-recording-software-under-linux/</link>
+      <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-several-useful-screen-recording-software-under-linux/</guid>
+      <description>最近需要在Linux环境下录制一段视频，自己的Linux是LinuxMint Xfce 18,网上搜了一圈发现都不太顺手。尤其是VLC,感觉不是很易用，幸好最后在Linux自带的软件管理器找到了两个不错的软件。</description>
+    </item>
+    <item>
+      <title>《黑客反汇编揭秘》(2e)推荐书单</title>
+      <link>/articles/2016-secrets-of-hacker-disassembly-2e-recommended-book-list/</link>
+      <pubDate>Wed, 21 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-secrets-of-hacker-disassembly-2e-recommended-book-list/</guid>
+      <description>Must-Read Books and Other References Books on C/C++: The C Programming Language by Brian W. Kernighan and Dennis M. Ritchie. Prentice Hall, 1988. The author’s description of C as defined by American National Standard Institute (ANSI), also called the “Old Testament.” It is old-fashioned but remains a must-read. This book also has a home page: http://cm.bell-labs.com/cm/cs/cbook/index.html. 1001 Visual C++ Programming Tips, first edition, by Kris Jamsa. Muska &amp;amp; Lipman, 2001. Not the “Old Test</description>
+    </item>
+    <item>
+      <title>PL/0编译器实践---后记</title>
+      <link>/articles/2016-pl-0-compiler-practice-postscript/</link>
+      <pubDate>Tue, 20 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-pl-0-compiler-practice-postscript/</guid>
+      <description>花了几天时间，把清华版的《编译原理》一书中的PL/0编译器实践了一遍。颇有收获，记录如下： 理解代码的技巧，如何理解一份代码，比如这个程序，其逻辑相对于一般程序就比较复杂了，如何翻译，虚拟机代码执行时数</description>
+    </item>
+    <item>
+      <title>《Just for Fun》读后感</title>
+      <link>/articles/2016-thoughts-after-reading-just-for-fun/</link>
+      <pubDate>Sun, 11 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-thoughts-after-reading-just-for-fun/</guid>
+      <description>这本书有一个长长的中文名字：《只是为了好玩：Linux之父林纳斯自传》，所以博客标题我就用英文书名了。 读罢此书，不禁想起一位长者的名言：“一个人的成功当然要靠自我奋斗，但也要考虑历史的进程”。可以说L</description>
+    </item>
+    <item>
+      <title>编程的美妙</title>
+      <link>/articles/2016-the-beauty-of-programming/</link>
+      <pubDate>Sun, 11 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-the-beauty-of-programming/</guid>
+      <description>摘自Linus自传《Just for fun》 为什么对编程这么狂热，我自己也解释不来。我姑且说说看吧：在编程的人看来，编程是世上最有意思的事情了。它要比国际象棋之类的游戏复杂得多，你想要什么规则都可以自己设定</description>
+    </item>
+    <item>
+      <title>《C编译器剖析》后记</title>
+      <link>/articles/2016-postscript-to-analysis-of-a-c-compiler/</link>
+      <pubDate>Wed, 07 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-postscript-to-analysis-of-a-c-compiler/</guid>
+      <description>这本书的序言、后记写的都让我很有感触！mark： 后 记 总有曲终人散时，不知不觉我们已经完成了对UCC 编译器的剖析，一路走来，最深的体会仍然是“纸上得来终觉浅，绝知此事要躬行”。按这个道理，理解UCC 编译</description>
+    </item>
+    <item>
+      <title>VirtualBox安装MS-DOS6.22（图文教程）</title>
+      <link>/articles/2016-virtualbox-installation-ms-dos6-22-graphic-tutorial/</link>
+      <pubDate>Tue, 06 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-virtualbox-installation-ms-dos6-22-graphic-tutorial/</guid>
+      <description>最近在读一些计算机发展史之类的文献，总感觉的纸上得来终觉浅，所以打算自己装一个MS-DOS，体验一下远古的操作系统！可以google到MS-DOS的安装文件： 为什么要分成三个呢？可以看到，每个大小都是</description>
+    </item>
+    <item>
+      <title>windows使用git时出现：warning: LF will be replaced by CRLF</title>
+      <link>/articles/2016-when-using-git-in-windows-warning-lf-will-be-replaced-by-crlf/</link>
+      <pubDate>Mon, 05 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-when-using-git-in-windows-warning-lf-will-be-replaced-by-crlf/</guid>
+      <description>windows中的换行符为 CRLF， 而在linux下的换行符为LF，所以在执行add . 时出现提示： 执行以下代码 $ rm -rf .git // 删除.git $ git config --global core.autocrlf false //禁用自动转换 $ git init $ git add . OK</description>
+    </item>
+    <item>
+      <title>使用hexo，如果换了电脑怎么更新博客？</title>
+      <link>/articles/2016-using-hexo-how-do-i-update-my-blog-if-i-change-my-computer/</link>
+      <pubDate>Mon, 05 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-using-hexo-how-do-i-update-my-blog-if-i-change-my-computer/</guid>
+      <description>自己今天想到这个问题，于是去知乎搜索了一番，发现不甚理想。没找到合适的，题目就是知乎原题。只好自己解决了。以下直接把自己的答案粘贴过来 今天我突然想到这个问题，想来参考参考，却发现都不太适合我。首先，我</description>
+    </item>
+    <item>
+      <title>LinuxMint配置GitHub（图文教程）</title>
+      <link>/articles/2016-linuxmint-configuration-github-graphic-tutorial/</link>
+      <pubDate>Sat, 03 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-linuxmint-configuration-github-graphic-tutorial/</guid>
+      <description>1.生成秘钥（直接回车，秘钥存放路径看命令行信息） ２．打开秘钥，需要注意的是**.ssh可能是隐藏的，这时需要Ctrl+H**显示隐藏文件夹 ３．复制秘钥，添加到GitHub(Settings)， 4.添</description>
+    </item>
+    <item>
+      <title>Linux问题处理： stdio.h: No such file or directory linux</title>
+      <link>/articles/2016-linux-problem-handling-stdio-h-no-such-file-or-directory-linux/</link>
+      <pubDate>Sat, 03 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-linux-problem-handling-stdio-h-no-such-file-or-directory-linux/</guid>
+      <description>本来打算编译一下《自制编程语言》一书的代码，结果提示错误： 其实说的还是很清楚的，一般出现这种情况都是没有安装相应的库，所以： 再次编译，成功： 测试代码： # comment print(&amp;#34;hoge\tpiyo\n\\zn&amp;#34;); print(&amp;#34;abc\n&amp;#34;); print(&amp;#34;3 + 5..&amp;#34; + (3 + 5) + &amp;#34;\n&amp;#34;); print(&amp;#34;3 - 5..&amp;#34; + (3 - 5) + &amp;#34;\n&amp;#34;); print(&amp;#34;3 + -5..&amp;#34;</description>
+    </item>
+    <item>
+      <title>浅谈日系技术书籍</title>
+      <link>/articles/2016-a-brief-discussion-on-japanese-technical-books/</link>
+      <pubDate>Fri, 02 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-a-brief-discussion-on-japanese-technical-books/</guid>
+      <description>最近正在读**《C程序性能优化&amp;mdash;20个实验与达人技巧》**，真是又大开眼界了一次。不禁想起最近读过的几本日系技术书籍。 首先不得不说的就是这本书和很像的很早之前看过的一本叫**《短码之美》的</description>
+    </item>
+    <item>
+      <title>UEFI模式安装Win10和Linux双系统</title>
+      <link>/articles/2016-install-win10-and-linux-dual-systems-in-uefi-mode/</link>
+      <pubDate>Thu, 01 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-install-win10-and-linux-dual-systems-in-uefi-mode/</guid>
+      <description>最近心血来潮，想装一个Linux、Windows双系统，吸取上次安装的经验，这次一定都要使用UEFI模式启动，需要注意的是必须是支持此种启动模式的系统（一般解压之后都有efi文件夹不需要刻录），这次遇</description>
+    </item>
+    <item>
+      <title>编译原理实践:计算器</title>
+      <link>/articles/2016-compilation-principles-in-practice-calculator/</link>
+      <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-compilation-principles-in-practice-calculator/</guid>
+      <description>概述 本博客主要讲述如何利用编译原理的知识实现一个控制台计算器.如果之前利用栈(在学数据结构的时候)实现过计算器,一定会有所印象,写一个计算器程序最重要的就是把握运算优先级了.而本文换一个角度,利用文法</description>
+    </item>
+    <item>
+      <title>DOSBOX 自动挂载技巧</title>
+      <link>/articles/2016-dosbox-automatic-mounting-skills/</link>
+      <pubDate>Wed, 16 Nov 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-dosbox-automatic-mounting-skills/</guid>
+      <description>DOSBOX下载之后，win10已经不支持debug了（win-XP虚拟机有！），所以需要单独下载，每次使用都需要挂载上去，十分不方便。 解决办法是修改属性文件，每次挂载都自动执行: 把编写好的汇编文件放</description>
+    </item>
+    <item>
+      <title>JS写小游戏（一）：游戏框架</title>
+      <link>/articles/2016-writing-small-games-with-js-1-game-framework/</link>
+      <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-writing-small-games-with-js-1-game-framework/</guid>
+      <description>前言 前一阵发现一个不错的网站，都是一些用html5+css+js写的小游戏，于是打算学习一番，写下这个系列博客主要是为了加深理解，当然也有一些个人感悟，如果英文好可以直接Click Here. 概述 一般，小游戏都</description>
+    </item>
+    <item>
+      <title>写给程序员的《醒世恒言》(更....)</title>
+      <link>/articles/2016-eternal-words-to-awaken-the-world-written-for-programmers-more/</link>
+      <pubDate>Sun, 13 Nov 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-eternal-words-to-awaken-the-world-written-for-programmers-more/</guid>
+      <description>1.《C编译器剖析》序（节选）： 能写出工业水准的操作系统和编译器的人绝对是大牛，而写出来的操作系统和编译器能被业界普遍接受，则需要命运和机遇的垂青。大部分程序员注定是成为高级或低级的“码农”，成为软件</description>
+    </item>
+    <item>
+      <title>短语、直接短语与句柄</title>
+      <link>/articles/2016-phrases-direct-phrases-and-handles/</link>
+      <pubDate>Wed, 09 Nov 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-phrases-direct-phrases-and-handles/</guid>
+      <description>问题背景 定义 举例 直观解释：</description>
+    </item>
+    <item>
+      <title>一点牢骚------关于所谓的“不必要知识”</title>
+      <link>/articles/2016-a-little-complaint-about-the-so-called-unnecessary-knowledge/</link>
+      <pubDate>Tue, 08 Nov 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-a-little-complaint-about-the-so-called-unnecessary-knowledge/</guid>
+      <description>今天看书，读到一节，如下： 这是LL(1)分析的提取左公共因子啊！但我觉得没有系统学过编译原理的人就算是看懂，理解大概也不深刻，很容易忘记吧！而这本书的前言却如是写到： 不知道是作者对自己的讲解有多自信！</description>
+    </item>
+    <item>
+      <title>字符串匹配------回顾大一时的一份代码</title>
+      <link>/articles/2016-string-matching-reviewing-a-code-from-my-freshman-year/</link>
+      <pubDate>Tue, 08 Nov 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-string-matching-reviewing-a-code-from-my-freshman-year/</guid>
+      <description>说明 这是大一下的一份代码，当时不会用github，所以一直没妥善保存，直到最近清理360云盘时才重见天日，现在看来，这份代码水平很低，毕竟的当时也是刚刚接触C语言，当时作为一个非CS专业，指针甚至都不</description>
+    </item>
+    <item>
+      <title>Git初级实践教程（图文）</title>
+      <link>/articles/2016-git-basic-practical-tutorial-picture-and-text/</link>
+      <pubDate>Sun, 06 Nov 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-git-basic-practical-tutorial-picture-and-text/</guid>
+      <description>关于Git Git的由来 Linux 的创始人 Linus Torvalds 在 2005 年开发了 Git 的原型程序。当时，由于在 Linux 内核开发中使用的既有版本管理系统的开发方许可证发生了变更，为了更换新的版本管理系统， Torvalds 开发了Git。 说在前面 Linux和Ma</description>
+    </item>
+    <item>
+      <title>程序员的自我修养</title>
+      <link>/articles/2016-programmer-s-self-cultivation/</link>
+      <pubDate>Sun, 30 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-programmer-s-self-cultivation/</guid>
+      <description>个人的一些总结，个人的一些看法。 工作篇 拒绝重复劳动 比如，如何合并多个ppt。 生活篇 爱装逼 比如，有没有记录读书进度的APP&amp;mdash;赵裕的回答。 不局限于专业知识 比如，看课外书 坚持运动 比如，篮球 有其他</description>
+    </item>
+    <item>
+      <title>如何合并多个PPT</title>
+      <link>/articles/2016-how-to-merge-multiple-ppts/</link>
+      <pubDate>Sun, 30 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-how-to-merge-multiple-ppts/</guid>
+      <description>事情的起因大概是这样的： 于是我接收了文件 15个ppt，手动合并，我脑子有病吗，作为一个程序员，最基本的修养之一就是：超过三分钟的工作全部给电脑。 于是乎找到了pptjoin（一听名字就知道干嘛的）这个工</description>
+    </item>
+    <item>
+      <title>优秀小工具集锦</title>
+      <link>/articles/2016-collection-of-excellent-gadgets/</link>
+      <pubDate>Tue, 25 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-collection-of-excellent-gadgets/</guid>
+      <description>这里我对小工具的定义安装包&amp;lt;10M 1.GifCam(1.56M,无需安装) 官网，小巧而功能强大的录屏软件。 2.window-on-top(665KB) 官网，Windows On Top 是一个可以让任意 Windows 窗口置于顶层的小软件。 3.pptjoin(2KB) 下载地址，ppt合并</description>
+    </item>
+    <item>
+      <title>VS2015链接错误一则</title>
+      <link>/articles/2016-vs2015-link-error/</link>
+      <pubDate>Sun, 23 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-vs2015-link-error/</guid>
+      <description>以前天真的以为C是C++的子集，.c文件直接.cpp命名没什么影响： 后缀一改 链接器工具错误 LNK2019</description>
+    </item>
+    <item>
+      <title>VisualStudio配色方案</title>
+      <link>/articles/2016-visualstudio-color-scheme/</link>
+      <pubDate>Sat, 22 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-visualstudio-color-scheme/</guid>
+      <description>最近发现一个很神奇的网站，可以方便的为VisualStudio配色：Studio Styles - Visual Studio color schemes 可以下载一份自己喜欢的配色方案 如果还不满意，可以在此配色方案的基础上进行修改，而不必从0开始。用文本编辑器打</description>
+    </item>
+    <item>
+      <title>AI贪吃蛇（二）</title>
+      <link>/articles/2016-ai-snake-2/</link>
+      <pubDate>Fri, 21 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-ai-snake-2/</guid>
+      <description>前言 之前写过一篇关于贪吃蛇AI的博客，当时虽然取得了一些成果，但是也存在许多问题，所以最近又花了三天时间重新思考了一下。以下是之前博客存在的一些问题： 策略不对，只要存在找不到尾巴的情况就可能失败，所以</description>
+    </item>
+    <item>
+      <title>Win7上安装Linux双系统</title>
+      <link>/articles/2016-install-linux-dual-system-on-win7/</link>
+      <pubDate>Sat, 08 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-install-linux-dual-system-on-win7/</guid>
+      <description>今天帮同学在Win7上安装Linux，感觉一篇教程很不错，mark一下 原地址：Win7下U盘安装Ubuntu14.04双系统步骤详解 一、前期准备 1、大于2G的U盘一个(我的系统盘制作完成后大约占1个多</description>
+    </item>
+    <item>
+      <title>做一个阅读管理APP</title>
+      <link>/articles/2016-make-a-reading-management-app/</link>
+      <pubDate>Fri, 07 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-make-a-reading-management-app/</guid>
+      <description>背景 由于最近在看的书有点多，所以一直想找一个能够管理阅读进度的书（鄙人记性不是很好，两天不看就忘了）可惜Android平台上一直找不到合适的APP： 有没有读书进度管理的网站或软件啊？ 有没有记录读书进度</description>
+    </item>
+    <item>
+      <title>Processing基础之绘画</title>
+      <link>/articles/2016-processing-basics-of-painting/</link>
+      <pubDate>Wed, 05 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-processing-basics-of-painting/</guid>
+      <description>图形 //在(x, y)绘制点 point(x, y); //(x1, y1)到(x2, y2)的一条线 line(x1, y1, x2, y2); rect(x, y, weight, height); //Constant有三个值: //默认CORNER:rect(左上x, 左上y, 宽, 高) //CENTER:rect(中心x,</description>
+    </item>
+    <item>
+      <title>掌上大工开发过程中收集的资源整理</title>
+      <link>/articles/2016-compilation-of-resources-collected-during-the-development-of-pocket-work/</link>
+      <pubDate>Tue, 04 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-compilation-of-resources-collected-during-the-development-of-pocket-work/</guid>
+      <description>之前做掌上大工时用到的一些资源，都是对每个知识点讲解得比较符合我的口味的，故此备份： 【Android】ImageView顯示網路圖片(Converting Image URL to Bitmap) Android精美登录界面设计 黑大助手</description>
+    </item>
+    <item>
+      <title>大二在CSDN的博客整理</title>
+      <link>/articles/2016-compilation-of-sophomore-year-s-blogs-on-csdn/</link>
+      <pubDate>Mon, 03 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-compilation-of-sophomore-year-s-blogs-on-csdn/</guid>
+      <description>001我为什么想写博客 控制台版2048 version_1.0总结 022 囚徒困境中的均衡&amp;mdash;&amp;ndash;从一篇经典论文说起 021 模拟退火算法学习（一）&amp;mdash;&amp;ndash;求解最短连通路径 020 小</description>
+    </item>
+    <item>
+      <title>Android利用HttpURLConnection实现模拟登录</title>
+      <link>/articles/2016-android-uses-httpurlconnection-to-implement-simulated-login/</link>
+      <pubDate>Fri, 23 Sep 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-android-uses-httpurlconnection-to-implement-simulated-login/</guid>
+      <description>最近在做一个APP，需要模拟登录教务处，之前曾经用HttpClient做过，点这里，但是发现最新的Android SDK已经不支持Httpclient了，所以只好在琢磨一下HttpURLConnecti</description>
+    </item>
+    <item>
+      <title>AndroidStudio不能解析R的一种可能</title>
+      <link>/articles/2016-one-possibility-that-androidstudio-cannot-parse-r/</link>
+      <pubDate>Tue, 20 Sep 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-one-possibility-that-androidstudio-cannot-parse-r/</guid>
+      <description>最近在做一个APP，突然就无法编译了，提示信息： 查了半天也没找到好的解决办法，最后想起来误删了一个文件，然后Ctrl+Z回退了事，结果不知为何，那个图片文件损坏了，倒是R无法编译出来，方才报错。 记之。</description>
+    </item>
+    <item>
+      <title>Android登录界面实现</title>
+      <link>/articles/2016-android-login-interface-implementation/</link>
+      <pubDate>Mon, 19 Sep 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-android-login-interface-implementation/</guid>
+      <description>花了一些时间实现了一个还算可以等登陆界面，主要是对这两天工作的一个总结：自定义按钮、编辑框、布局、全屏等。 效果如下： 获取代码：点这里</description>
+    </item>
+    <item>
+      <title>博客园自定义模板</title>
+      <link>/articles/2016-blog-park-custom-template/</link>
+      <pubDate>Fri, 16 Sep 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-blog-park-custom-template/</guid>
+      <description>第一次 之前一直用的rivercast这个模板，虽然比较符合我的风格，但是感觉屏幕空间利用太不充分，两边留出了很多空白（只看模板预览还看不出这个问题！），于是想找一个空间安排比较充分的模板，但是又感觉风</description>
+    </item>
+    <item>
+      <title>HttpClient &#43; Jsoup模拟登录教务处并获取课表</title>
+      <link>/articles/2016-httpclient-jsoup-simulates-logging-into-the-academic-affairs-office-and-obtaining-the-class-schedule/</link>
+      <pubDate>Thu, 15 Sep 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-httpclient-jsoup-simulates-logging-into-the-academic-affairs-office-and-obtaining-the-class-schedule/</guid>
+      <description>1、概述 最近想做一个校园助手类的APP，由于第一次做，所以打算先把每个功能单独实现，防止乱了阵脚。利用教务处登录获取课表和成绩等是一个基本功能，所以以获取课表为例实现了这个功能。完整代码点这里，尝试了</description>
+    </item>
+    <item>
+      <title>Java学习路线图</title>
+      <link>/articles/2016-java-learning-roadmap/</link>
+      <pubDate>Wed, 14 Sep 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-java-learning-roadmap/</guid>
+      <description>参考《疯狂Java实战演义》制作，觉得可以做一参考（放大网页看）</description>
+    </item>
+    <item>
+      <title>sublime编写markdown文件中Ctrl&#43;B的作用</title>
+      <link>/articles/2016-the-role-of-ctrl-b-in-sublime-writing-markdown-files/</link>
+      <pubDate>Wed, 14 Sep 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-the-role-of-ctrl-b-in-sublime-writing-markdown-files/</guid>
+      <description>今天，手残，用markdown编辑是按了Ctrl+B，结果发现直接在同一文件夹目录下编译生成了html文件，之前都是Alt+m，可以直接预览，可是后来由于系统更新还是什么，Alt+m只会在用户目录（而</description>
+    </item>
+    <item>
+      <title>数学建模比赛论文的基本结构</title>
+      <link>/articles/2016-the-basic-structure-of-mathematical-modeling-competition-papers/</link>
+      <pubDate>Thu, 08 Sep 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-the-basic-structure-of-mathematical-modeling-competition-papers/</guid>
+      <description>一、常用的三种结构 一 二 三 1.摘要 1.摘要 1.摘要 2.问题重述 2.问题的提出与重述、问题的分析 2.问题的叙述、背景的分析 3.问题的分析 3.变量假设 3.模型的假设、符号说明 4.模型假设 4.模型建立 4.模型</description>
+    </item>
+    <item>
+      <title>GitBash上传代码不计入贡献的问题处理</title>
+      <link>/articles/2016-handling-the-problem-of-gitbash-uploading-code-not-being-counted-as-contribution/</link>
+      <pubDate>Sun, 04 Sep 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-handling-the-problem-of-gitbash-uploading-code-not-being-counted-as-contribution/</guid>
+      <description>发现最近写的代码，通过GitBash上传到github，但是格子确一个都没亮，今天通过一番检索解决了此问题，特做记录： 通过这篇文章找到了原因所在： GitHub 更新代码到底怎样才算贡献？ 通过这篇文章顺利完成了用户</description>
+    </item>
+    <item>
+      <title>Android知识体系图</title>
+      <link>/articles/2016-android-knowledge-system-diagram/</link>
+      <pubDate>Wed, 31 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-android-knowledge-system-diagram/</guid>
+      <description>网上看到，不知哪位大神总结的，存个档（需要放大网页才能看清）</description>
+    </item>
+    <item>
+      <title>Java文件处理：分离全国省市县ID（数据来自和风天气）</title>
+      <link>/articles/2016-java-file-processing-separating-national-province-city-and-county-ids-data-from-zefeng-weather/</link>
+      <pubDate>Tue, 30 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-java-file-processing-separating-national-province-city-and-county-ids-data-from-zefeng-weather/</guid>
+      <description>最近，在做第一行代码上的酷欧天气APP，但是发现书中的API已经用不了了，所以选择了和风天气的API，但是，在遍历省市县数据是遇到了麻烦，之前中国天气网是有个省市对应下一级行政区列表的，像这样： 但是，</description>
+    </item>
+    <item>
+      <title>poj3484 Showstopper 二分</title>
+      <link>/articles/2016-poj3484-showstopper-two-points/</link>
+      <pubDate>Sun, 21 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj3484-showstopper-two-points/</guid>
+      <description>题目地址 二分用的很是巧妙！关键是抽象出问题本质。 1 #include &amp;lt;cstdio&amp;gt; 2 #include &amp;lt;string&amp;gt; 3 #include &amp;lt;cstring&amp;gt; 4 const int maxn = 100000; 5 #define ull unsigned long long 6 ull X[maxn], Y[maxn], Z[maxn], C[maxn]; 7 ull N; 8 ull judge(const ull &amp;amp;mid) { 9 ull sum = 0; 10 for (int i = 0; i &amp;lt; N; i++) { 11 if (mid &amp;gt;= Y[i]) { 12 sum += C[i]; 13 } else if (mid &amp;gt;= X[i]) { 14 sum += ((mid-X[i])/Z[i]+1); 15 }</description>
+    </item>
+    <item>
+      <title>UVA1555-- Garland(推导&#43;二分)</title>
+      <link>/articles/2016-uva1555-garland-derivation-two-points/</link>
+      <pubDate>Sun, 21 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-uva1555-garland-derivation-two-points/</guid>
+      <description>题意：有n个灯，给定第一盏灯A的高度，接下去每盏灯的高度按照公式计算，求使所有灯都不会落在地上（允许碰触）的B的最低高度。 uva 输出 double 用 %f，这一波坑的！ 1 #include &amp;lt;cstdio&amp;gt; 2 int n; 3 double A, B, a[1005]; 4 //h2的值 5 bool check(double x) { 6 a[2]</description>
+    </item>
+    <item>
+      <title>POJ 3662 Telephone Lines(二分&#43;最短路)</title>
+      <link>/articles/2016-poj-3662-telephone-lines-two-points-shortest-path/</link>
+      <pubDate>Sat, 20 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj-3662-telephone-lines-two-points-shortest-path/</guid>
+      <description>查看题目 最小化第K大值。 让我怀疑人生的一题目，我有这么笨？ 1 #include &amp;lt;cstdio&amp;gt; 2 #include &amp;lt;queue&amp;gt; 3 #include &amp;lt;cstring&amp;gt; 4 #include &amp;lt;vector&amp;gt; 5 #include &amp;lt;functional&amp;gt; 6 using namespace std; 7 #define maxv 1010 8 #define maxl 1000000 9 struct edge 10 { 11 int to, cost; 12 edge(){} 13 edge(int to, int cost) : to(to), cost(cost){} 14 }; 15 typedef pair&amp;lt;int, int&amp;gt; P; 16 vector&amp;lt;edge&amp;gt; G[maxv]; 17 int d[maxv]; 18 int V, E; 19 int dij(int s, int x) { 20</description>
+    </item>
+    <item>
+      <title>POJ2010 Moo University - Financial Aid(二分法)</title>
+      <link>/articles/2016-poj2010-moo-university-financial-aid-dichotomy/</link>
+      <pubDate>Fri, 19 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj2010-moo-university-financial-aid-dichotomy/</guid>
+      <description>题目地址 分析：如果用二分法，关键是score和aid分开排序，score排序是为了充分利用中位数的性质，这样就可以确定m左右必须各选N/2个，到这之后有人是用dp求最优解，可以再次按照aid排序一次，</description>
+    </item>
+    <item>
+      <title>MATLAB自定义配置</title>
+      <link>/articles/2016-matlab-custom-configuration/</link>
+      <pubDate>Tue, 16 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-matlab-custom-configuration/</guid>
+      <description>1.设置默认工作路径 一般来说MATLAB的默认工作路径是安装目录下的bin目录，但是，把这个作为自己的工作目录很不方便，以为里面已经有很多安装文件了，容易混淆： 每次打开再更改路径又太麻烦，所以最好的办</description>
+    </item>
+    <item>
+      <title>POJ 2976 Dropping tests（最大化平均值 or 01整数规划）</title>
+      <link>/articles/2016-poj-2976-dropping-tests-maximizing-the-mean-or-01-integer-programming/</link>
+      <pubDate>Mon, 15 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj-2976-dropping-tests-maximizing-the-mean-or-01-integer-programming/</guid>
+      <description>题目链接 忽略运算符逻辑导致奇怪的错误（代码中指明位置了） 输出没加0.5，WA。 还有，注意特殊情况k=0,所以scanf(&amp;quot;%d%d&amp;quot;, &amp;amp;n, &amp;amp;k)&amp;amp;n就够了， scanf(&amp;quot;%d%d&amp;quot;, &amp;amp;n, &amp;am</description>
+    </item>
+    <item>
+      <title>POJ3258 River Hopscotch</title>
+      <link>/articles/2016-poj3258-river-hopscotch/</link>
+      <pubDate>Sat, 13 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj3258-river-hopscotch/</guid>
+      <description>地址 别人的代码，自己边界总是控制不好，还不知道哪里错了！思维！这种问题代码越简洁反而越不容易错吧。。 1 #include&amp;lt;stdio.h&amp;gt; 2 #include&amp;lt;algorithm&amp;gt; 3 typedef long long ll; 4 using namespace std; 5 ll n,m,L,a[100010]; 6 bool bi(ll x){ 7 ll i,cnt=0,now=0; 8 for(i=1;i&amp;lt;=n;i++){ 9 if(a[i]-a[now]&amp;lt;=x)cnt++; 10 else now=i; 11 } 12 if(L-a[now]&amp;lt;x)return 0; 13 return cnt&amp;lt;=m; 14 } 15 int main(){ 16 ll i,l,r,mi; 17 while(~scanf(&amp;#34;%lld%lld%lld&amp;#34;,&amp;amp;L,&amp;amp;n,&amp;amp;m)){ 18 l=0;r=L;</description>
+    </item>
+    <item>
+      <title>POJ3273  Monthly Expense</title>
+      <link>/articles/2016-poj3273-monthly-expense/</link>
+      <pubDate>Sat, 13 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj3273-monthly-expense/</guid>
+      <description>查看原题 边界，就是边界和思维，怎么有效的判断中间值是大了还是小了，以及准确的找到边界！一个&amp;lt;写成&amp;lt;=就前功尽弃，还特别难找到错误！ 1 #include &amp;lt;cstdio&amp;gt; 2 #include &amp;lt;algorithm&amp;gt; 3 const int maxN = 100005; 4 int N, M; 5 int A[maxN]; 6 using namespace std; 7 int main(void) { 8 while</description>
+    </item>
+    <item>
+      <title>“此主机不支持64位客户机操作系统”问题记录</title>
+      <link>/articles/2016-this-host-does-not-support-64-bit-guest-operating-systems-problem-record/</link>
+      <pubDate>Fri, 12 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-this-host-does-not-support-64-bit-guest-operating-systems-problem-record/</guid>
+      <description>由于昨天把系统玩坏了，得重装虚拟机，可是在向导阶段阶段就出现了“此主机不支持64位客户机操作系统&amp;hellip;”的提示，于是网上查了一下解决方法：无非都是Enable VT之类，可是设置这些之后还是有</description>
+    </item>
+    <item>
+      <title>POJ 2457 Part Acquisition</title>
+      <link>/articles/2016-poj-2457-part-acquisition/</link>
+      <pubDate>Fri, 12 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj-2457-part-acquisition/</guid>
+      <description>第一反应是BFS,比较直观，但是输出路径写的不是很熟练，此外，习惯不好，“==”写成了“=”，所以常量一定放前面！ 1 #include &amp;lt;cstdio&amp;gt; 2 #include &amp;lt;queue&amp;gt; 3 #include &amp;lt;cstring&amp;gt; 4 using namespace std; 5 int N, K; 6 typedef struct node 7 { 8 int in, out; 9 int pos; 10 }Link; 11 const int maxn = 50005; 12 bool vis[maxn]; 13 Link</description>
+    </item>
+    <item>
+      <title>POJ2456 Aggressive cows</title>
+      <link>/articles/2016-poj2456-aggressive-cows/</link>
+      <pubDate>Fri, 12 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj2456-aggressive-cows/</guid>
+      <description>Aggressive cows 二分，关键是转化为二分！ 1 #include &amp;lt;cstdio&amp;gt; 2 #include &amp;lt;algorithm&amp;gt; 3 const int maxn = 1000000005; 4 const int maxN = 100005; 5 6 int N, C; 7 int a[maxN]; 8 using namespace std; 9 bool judge(int x) { 10 int s = 0; 11 for (int i = 1; i &amp;lt; C;i++) { 12 int ctr = s+1; 13 while (ctr &amp;lt; N &amp;amp;&amp;amp; (a[ctr]-a[s] &amp;lt; x)) { 14 ctr++; 15 } 16 if (ctr==N) { 17 return false; 18 } 19 s = ctr; 20 } 21 return</description>
+    </item>
+    <item>
+      <title>GCD XOR, ACM/ICPC Dhaka 2013, UVa12716</title>
+      <link>/articles/2016-gcd-xor-acm-icpc-dhaka-2013-uva12716/</link>
+      <pubDate>Tue, 09 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-gcd-xor-acm-icpc-dhaka-2013-uva12716/</guid>
+      <description>不同的枚举方法，效率完全不同。值得记录一下！ 1 #include &amp;lt;cstdio&amp;gt; 2 #include &amp;lt;cstring&amp;gt; 3 int t, a, b, c, n, cas = 0, count = 0; 4 int cnt[30000000]; 5 void pre() { 6 count = 0; 7 memset(cnt, 0, sizeof(cnt)); 8 9 for (a = 1; a &amp;lt;= 30000000; a++) { 10 for (c = 1; c &amp;lt; a; c++) { 11 if (a%c == 0 &amp;amp;&amp;amp; ((a-c)^a)==c) { 12 count++; 13 } 14 } 15 cnt[a-1] = count; 16 } 17 18 }</description>
+    </item>
+    <item>
+      <title>Irrelevant Elements, ACM/ICPC NEERC 2004, UVa1635</title>
+      <link>/articles/2016-irrelevant-elements-acm-icpc-neerc-2004-uva1635/</link>
+      <pubDate>Tue, 09 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-irrelevant-elements-acm-icpc-neerc-2004-uva1635/</guid>
+      <description>这种题目最重要的是思路了清晰 1 #include &amp;lt;cstdio&amp;gt; 2 #include &amp;lt;cstring&amp;gt; 3 const int maxn = 100005;//sqrt(n)+1 is enough 4 5 int fac[100][2]; 6 int fac_c[100]; 7 int a[maxn]; 8 void factor(int m) { 9 int&amp;amp; num = fac[0][0]; 10 num = 0; 11 for (int i = 2; i*i &amp;lt;= m; i++) { 12 if(m%i == 0) { 13 fac[++num][0] = i; 14 fac[num][1] = 0; 15 do { 16 fac[num][1]++; 17 m/= i; 18 } while(m%i == 0); 19 } 20 } 21 if (m &amp;gt; 1) { 22</description>
+    </item>
+    <item>
+      <title>Java命名约定</title>
+      <link>/articles/2016-java-naming-conventions/</link>
+      <pubDate>Tue, 09 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-java-naming-conventions/</guid>
+      <description>类名 类名应该是名词， 描述对象。应该按照驼峰式写法，即只有每个单词首字母大写。 接口名称 接口名称应该是形容词，描述功能。应该以“able”、“ible”结尾，否则应该是名词。通常遵循和类名写相同的大小约定</description>
+    </item>
+    <item>
+      <title>快捷键的大一统-------开发工具使用总结</title>
+      <link>/articles/2016-unification-of-shortcut-keys-summary-on-the-use-of-development-tools/</link>
+      <pubDate>Tue, 09 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-unification-of-shortcut-keys-summary-on-the-use-of-development-tools/</guid>
+      <description>使用多个开发工具自后，会发现，每个开发工具的快捷键或多或少有些差异。但是幸好快捷键一般都是可以定制的。所以决定以Sublime为参照，来设置如Eclipse之类的IDE，当然了，不是全部修改，遇到一个</description>
+    </item>
+    <item>
+      <title>Java多线程实践</title>
+      <link>/articles/2016-java-multithreading-practice/</link>
+      <pubDate>Fri, 05 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-java-multithreading-practice/</guid>
+      <description>1.实现Runnable接口 1 import java.util.Random; 2 3 4 public class PrintTask implements Runnable{ 5 private final int sleepTime; 6 private final String taskName; 7 private final static Random generator = new Random(); 8 9 10 public PrintTask(String name) { 11 taskName = name; 12 sleepTime = generator.nextInt(5000); 13 } 14 15 @Override 16 public void run() { 17 try { 18 System.out.printf(&amp;#34;%s going to Sleep for %d milliseconds.\n&amp;#34;, 19 taskName, sleepTime); 20 Thread.sleep(sleepTime); 21 } catch (InterruptedException e) { 22 System.out.printf(&amp;#34;%s %s\n&amp;#34;, taskName, &amp;#34;terminated prematurely&amp;#34; + 23 &amp;#34;</description>
+    </item>
+    <item>
+      <title>Eclipse 代码自动补全配置方法</title>
+      <link>/articles/2016-eclipse-code-auto-completion-configuration-method/</link>
+      <pubDate>Tue, 26 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-eclipse-code-auto-completion-configuration-method/</guid>
+      <description>Eclipse默认只有在出现 “.”时才进行代码提示，更改方法为： 即把“.”改为“.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ”，表示输入任</description>
+    </item>
+    <item>
+      <title>紫书第七章例题（暴力求解法）</title>
+      <link>/articles/2016-examples-of-chapter-7-of-the-purple-book-violent-solution-method/</link>
+      <pubDate>Tue, 26 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-examples-of-chapter-7-of-the-purple-book-violent-solution-method/</guid>
+      <description>1.除法（Division, UVa 725） #include &amp;lt;cstdio&amp;gt; #include &amp;lt;cstring&amp;gt; bool isOk(int a, int b){ char buff[20]; int visited[15]; memset(visited, 0, sizeof(visited)); sprintf(buff, &amp;#34;%05d%05d&amp;#34;, a, b); for (int i =0; i &amp;lt; 10; i++){ int temp = buff[i] - &amp;#39;0&amp;#39;; if (0 == visited[temp]){ visited[temp]++; } else { return false; } } return true; } int main(void){ int N, cnt = 0; bool flag = false; for (;scanf(&amp;#34;%d&amp;#34;, &amp;amp;N) &amp;amp;&amp;amp; N;){ if (cnt &amp;gt; 0){ printf(&amp;#34;\n&amp;#34;); } cnt++; flag = false; for (int i = 1234; i&amp;lt;</description>
+    </item>
+    <item>
+      <title>Linux下pdf阅读器推荐</title>
+      <link>/articles/2016-recommended-pdf-readers-under-linux/</link>
+      <pubDate>Sat, 23 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-recommended-pdf-readers-under-linux/</guid>
+      <description>由于需要在pdf文件上做标记，所以自带的文档查看器根本满足了需求，之前去网上查了查，Okular评价挺高，就安装了一个，确实能基本满足我的需求，但是 1.界面感觉还是不太友好，书签栏一直在那。 2.而且，</description>
+    </item>
+    <item>
+      <title>Android虚拟机Classic qemu does not support SMP问题记录</title>
+      <link>/articles/2016-android-virtual-machine-classic-qemu-does-not-support-smp-problem-record/</link>
+      <pubDate>Thu, 21 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-android-virtual-machine-classic-qemu-does-not-support-smp-problem-record/</guid>
+      <description>不及之前重装了一次系统，导致要重新搭建android开发环境，但是在启动AVD时queue遇到了这个问题 androidstudio中看到的是这个样子 大概查了一下，应该是创建虚拟机是选择的cpu构架与有</description>
+    </item>
+    <item>
+      <title>Android开发环境搭建中的一些小问题记录</title>
+      <link>/articles/2016-records-of-some-minor-problems-in-building-android-development-environment/</link>
+      <pubDate>Sun, 17 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-records-of-some-minor-problems-in-building-android-development-environment/</guid>
+      <description>1.由于市场上大多数教程是基于Eclipse，而AndroidStudio显然是大势所趋，所有我在电脑上同时搭建了两个IDE，直接在官网下载AndroidStudio比较好，因为SDK，AVD都集成了</description>
+    </item>
+    <item>
+      <title>浅析初等贪吃蛇AI算法</title>
+      <link>/articles/2016-a-brief-analysis-of-the-elementary-snake-ai-algorithm/</link>
+      <pubDate>Thu, 14 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-a-brief-analysis-of-the-elementary-snake-ai-algorithm/</guid>
+      <description>作为小学期程序设计训练大作业的一部分，也是自己之前思考过的一个问题，终于利用小学期完成了贪吃蛇AI的一次尝试，下作一总结。 背景介绍： 首先，我针对贪吃蛇AI这一关键词在百度和google上尽心了检索，大</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（三十二）--- 9.1静态查找表</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-32-9-1-static-lookup-table/</link>
+      <pubDate>Tue, 12 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-32-9-1-static-lookup-table/</guid>
+      <description>一、简述 静态查找表又分为顺序表、有序表、静态树表和索引表。以下只是算法的简单实现及测试，不涉及性能分析。 二、头文件 1 /** 2 author：zhaoyu 3 date:2016-7-12 4 */ 5 #include &amp;#34;6_3_part1_for_chapter9.h&amp;#34; 6 typedef struct { 7 int key; 8 }SElemType; 9 //静态查找表的顺序</description>
+    </item>
+    <item>
+      <title>机器博弈中的数据结构与基本方法（二）-----递归及回溯法实例</title>
+      <link>/articles/2016-data-structures-and-basic-methods-in-machine-games-2-examples-of-recursion-and-backtracking-methods/</link>
+      <pubDate>Mon, 04 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structures-and-basic-methods-in-machine-games-2-examples-of-recursion-and-backtracking-methods/</guid>
+      <description>1、跳马问题：从左上角开始，按照象棋中马的行走规则（但是不考虑马脚，只需要按日字走），要求每个点走一次且仅一次，并且所有的点走走到，求解所有可行走法。 思路及代码： 1 #include &amp;lt;cstdio&amp;gt; 2 int a[9][9]; //包含边界拓展 3 int S = 0;</description>
+    </item>
+    <item>
+      <title>机器博弈中的数据结构与基本方法（三）-----博弈树的搜索之九宫重排问题</title>
+      <link>/articles/2016-data-structure-and-basic-methods-in-machine-games-3-nine-palace-rearrangement-problem-of-game-tree-s/</link>
+      <pubDate>Mon, 04 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-and-basic-methods-in-machine-games-3-nine-palace-rearrangement-problem-of-game-tree-s/</guid>
+      <description>九宫重排问题，如下图所示，九宫重排（或称八数码问题）是人工智能中一个经典问题，这里利用DFS解决这个问题。 通过设置一个OPEN表和一个CLOSE表记录尚未遍历和遍历过的状态，直至找到目标状态或遍历完所</description>
+    </item>
+    <item>
+      <title>机器博弈中的数据结构与基本方法（一）-----总结</title>
+      <link>/articles/2016-data-structure-and-basic-methods-in-machine-games-1-summary/</link>
+      <pubDate>Mon, 04 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-and-basic-methods-in-machine-games-1-summary/</guid>
+      <description>一、基本概念 博弈分类：单人博弈（华容道）、双人博弈（象棋、围棋）、多人博弈（麻将、桥牌）；完全信息博弈（象棋、围棋）、不完全信息博弈（麻将、桥牌、三国杀等）。 注：大一曾选修过一门课：博弈论，也在数模班</description>
+    </item>
+    <item>
+      <title>浅析基本AI五子棋算法</title>
+      <link>/articles/2016-a-brief-analysis-of-the-basic-ai-backgammon-algorithm/</link>
+      <pubDate>Sun, 03 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-a-brief-analysis-of-the-basic-ai-backgammon-algorithm/</guid>
+      <description>五子棋是所有棋类博弈中比较简单的了，这里介绍的也只是一种非常基本的AI策略。其实，包括之前的AI贪吃蛇，感觉这两个AI其实体现的都是一种建模思想，把一个现实中的问题模型化，抽象化，得到其一般特征，再设</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十八）--- 7.4图的连通性问题</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-28-7-4-graph-connectivity-issues/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-28-7-4-graph-connectivity-issues/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十二）--- 6.4树和森林</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-22-6-4-trees-and-forests/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-22-6-4-trees-and-forests/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十九）--- 7.5有向无环图及其应用</title>
+      <link>/articles/2016-data-structure-algorithm-implementation-in-c-language-29-7-5-directed-acyclic-graph-and-its-applicat/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-implementation-in-c-language-29-7-5-directed-acyclic-graph-and-its-applicat/</guid>
+      <description>一.简述</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十六）--- 7.2图的存储结构</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-26-7-2-storage-structure-of-graph/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-26-7-2-storage-structure-of-graph/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十七）--- 7.2图的遍历</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-27-7-2-graph-traversal/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-27-7-2-graph-traversal/</guid>
+      <description>一.简述 栈与队列，DFS与BFS。仅以连接表为例实现。 二.头文件 BFS要用到的头文件 1 //3_4_part1.h 2 /** 3 author:zhaoyu 4 email:zhaoyu1995.com@gmail.com 5 date:2016-6-9 6 2016-6-25修改版，针对第七章 7 note:realize my textbook &amp;lt;&amp;lt;数据结构（C语言版）&amp;gt;&amp;gt</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十三）--- 6.5树与等价问题</title>
+      <link>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-twenty-three-6-5-trees-and-equivalence-prob/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-twenty-three-6-5-trees-and-equivalence-prob/</guid>
+      <description>一.简述</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十四）--- 6.6赫夫曼树及其应用</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-24-6-6-huffman-tree-and-its-application/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-24-6-6-huffman-tree-and-its-application/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十五）--- 6.7回溯法与树的遍历</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-25-6-7-backtracking-method-and-tree-traversal/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-25-6-7-backtracking-method-and-tree-traversal/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十一）--- 6.3.2线索二叉树</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-21-6-3-2-clue-binary-tree/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-21-6-3-2-clue-binary-tree/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（三十）--- 7.6最短路径</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-30-7-6-shortest-path/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-30-7-6-shortest-path/</guid>
+      <description>一.简述</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（三十一）--- 8.3边界标识法</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-31-8-3-boundary-marking-method/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-31-8-3-boundary-marking-method/</guid>
+      <description>一.简述</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十）--- 6.3.1遍历二叉树</title>
+      <link>/articles/2016-data-structure-algorithm-implemented-in-c-language-20-6-3-1-traversing-the-binary-tree/</link>
+      <pubDate>Sat, 18 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-implemented-in-c-language-20-6-3-1-traversing-the-binary-tree/</guid>
+      <description>一.简述 二叉树的遍历主要是先序、中序、后序及对应的递归和非递归算法，共3x2=6种，其中后序非递归在实现上稍复杂一些。二叉树的遍历是理解和学习递归及体会栈的工作原理的绝佳工具！ 此外，非递归所用的栈及相</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十八）--- 5.3矩阵的压缩存储</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-18-5-3-compressed-storage-of-matrices/</link>
+      <pubDate>Fri, 17 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-18-5-3-compressed-storage-of-matrices/</guid>
+      <description>一.简述 【coding】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十九）--- 5.5&amp;5.6&amp;5.7广义表</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-19-5-5-5-6-5-7-generalized-table/</link>
+      <pubDate>Fri, 17 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-19-5-5-5-6-5-7-generalized-table/</guid>
+      <description>一.简述 传说Lisp的基本数据结构就是广义表，广义表也是具有典型递归属性的数据结构，此外，由于建表要处理字符串，用C语言处理起来也是一脸懵逼&amp;hellip;..最后自己还想写一个将广义表还原成字符串的</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十七）--- 5.1&amp;5.2数组：定义、顺序表示及实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-seventeen-5-1-5-2-array-definition-sequential-rep/</link>
+      <pubDate>Wed, 15 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-seventeen-5-1-5-2-array-definition-sequential-rep/</guid>
+      <description>一.简述 理解数组位置的计算公式 LOC(j1, j2, ···, jn) = LOC(0, 0, ..., 0) + (b2x ··· x bnx j1 + b3x ··· x bnx j2 + ··· + bnx jn-1 + jn)L 化简为 可以缩写成 其中 cn = L,ci-1 = bi x ci, 1&amp;lt;i≤n。 二.头文件 1 //5_2.h 2 /** 3 author:zhaoyu 4 date:2016-6-15 5 */ 6 //----</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十六）--- 4.3串的应用举例</title>
+      <link>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-16-4-3-application-examples-of-strings/</link>
+      <pubDate>Fri, 10 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-16-4-3-application-examples-of-strings/</guid>
+      <description>一.简述 【coding】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十三）--- 3.5离散事件模拟</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-13-3-5-discrete-event-simulation/</link>
+      <pubDate>Fri, 10 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-13-3-5-discrete-event-simulation/</guid>
+      <description>一.简述 【coding】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十四）--- 4.1&amp;4.2串的类型定义、表示及实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-14-4-1-4-2-string-type-definition-representation/</link>
+      <pubDate>Fri, 10 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-14-4-1-4-2-string-type-definition-representation/</guid>
+      <description>一.简述 【暂无】 二.头文件 1 //4_2_part1.h 2 /** 3 author:zhaoyu 4 */ 5 //2016-6-10 6 //----串的定长顺序存储表示---- 7 #include &amp;#34;head.h&amp;#34; 8 #define MAXSTRLEN 255//用户可以在255以内定义最大串长 9 //这语法还不是很熟悉 10 typedef unsigned char SString[MAXSTRLEN+1];//0 号单元存放串的长度 11 int StrLength(SString</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十五）---4.3 串的模式匹配算法</title>
+      <link>/articles/2016-data-structure-algorithm-implementation-in-c-language-15-4-3-string-pattern-matching-algorithm/</link>
+      <pubDate>Fri, 10 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-implementation-in-c-language-15-4-3-string-pattern-matching-algorithm/</guid>
+      <description>一.简述 【coding】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十二）--- 3.4循环队列&amp;队列的顺序表示和实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-12-3-4-sequential-representation-and-implementati/</link>
+      <pubDate>Thu, 09 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-12-3-4-sequential-representation-and-implementati/</guid>
+      <description>一.简述 空队列的处理方法：1.另设一个标志位以区别队列是空还是满；2.少用一个元素空间，约定以队列头指针在队尾指针下一位置上作为队列呈满的状态的标志。 二.头文件 1 //3_4_part1.h 2 /** 3 author:zhaoyu 4 email:zhaoyu1995.com@gmail.com 5 date:2016-6-9 6 note:realize my textbook &amp;lt;&amp;l</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十一）--- 3.4队列的链式表示和实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-11-3-4-chain-representation-and-implementation-of/</link>
+      <pubDate>Thu, 09 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-11-3-4-chain-representation-and-implementation-of/</guid>
+      <description>一.简介 FIFO。 二.头文件 1 //3_4_part1.h 2 /** 3 author:zhaoyu 4 email:zhaoyu1995.com@gmail.com 5 date:2016-6-9 6 note:realize my textbook &amp;lt;&amp;lt;数据结构（C语言版）&amp;gt;&amp;gt; 7 */ 8 //Page 61 9 #include &amp;lt;cstdio&amp;gt; 10 #include &amp;#34;head.h&amp;#34; 11 #define QElemType int 12 //----单链队列：队列的链式存储结构---- 13 typedef struct QNode{ 14 QElemType</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（八）--- 3.2栈的应用举例：迷宫求解与表达式求值</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-8-3-2-stack-application-examples-maze-solving-and/</link>
+      <pubDate>Wed, 08 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-8-3-2-stack-application-examples-maze-solving-and/</guid>
+      <description>一.简介 迷宫求解：类似图的DFS。具体的算法思路可以参考书上的50、51页，不过书上只说了粗略的算法，实现起来还是有很多细节需要注意。大多数只是给了个抽象的名字，甚至参数类型，返回值也没说的很清楚，所</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（九）--- 拓展：由迷宫问题引申的AI贪吃蛇</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-9-expansion-ai-snake-derived-from-the-maze-proble/</link>
+      <pubDate>Wed, 08 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-9-expansion-ai-snake-derived-from-the-maze-proble/</guid>
+      <description>一.简述 【开发中】由于期末时间有限，而且要用到后面的最短路径（可能），所以打算小学期在实现这一部分</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十）--- 3.3栈与递归的实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-10-3-3-implementation-of-stack-and-recursion/</link>
+      <pubDate>Wed, 08 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-10-3-3-implementation-of-stack-and-recursion/</guid>
+      <description>一.简介 汉诺塔问题是递归的一个典型例子，而且书上的讲解很详细，对理解C语言函数及函数传参的工作机制很有帮助，值得一看。而且，递归在我看来和分治、DP、贪心等一样是十分优美的思想，值得学习！！！ 二.CP</description>
+    </item>
+    <item>
+      <title>Subime学习记录</title>
+      <link>/articles/2016-subime-learning-record/</link>
+      <pubDate>Tue, 07 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-subime-learning-record/</guid>
+      <description>一.快捷键 注：快捷键这种东西没有必要刻意去记，自己需要就去查查，经常用的自然熟了，关键是时刻保持提高效率的意识，才会主动去发现快捷键。 1.Ctrl + F:查找 2.F12：根据函数定位函数声明（定义）。 3.Alt+</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（六）---2.4一元多项式的表示及相加</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-6-2-4-representation-and-addition-of-one-variable/</link>
+      <pubDate>Tue, 07 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-6-2-4-representation-and-addition-of-one-variable/</guid>
+      <description>一.简述 利用链表表示稀疏多项式，并基于之前的一些操作（编程实现上还是有所不同的）组合新的操作实现一元多项式的表示及相加。 二.ADT 1 抽象数据类型一元多项式的定义 2 ADT Polyomail{ 3 数据对象：D = {a[i]|a[i</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（七）--- 3.1栈的线性实现及应用举例</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-7-3-1-linear-implementation-and-application-examp/</link>
+      <pubDate>Tue, 07 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-7-3-1-linear-implementation-and-application-examp/</guid>
+      <description>一.简述 栈，LIFO。是操作受限的线性表，和线性表一样有两种存储表示方法。下面以顺序存储为例，实现。 二.ADT 暂无。 三.头文件 1 //3_1.h 2 /** 3 author:zhaoyu 4 email:zhaoyu1995.com@gmail.com 5 date:2016-6-7 6 note:realize my textbook &amp;lt;&amp;lt;数据结构（C语言版）&amp;gt;&amp;</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（三）---2.3线性表的链式表示之静态链表</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-3-2-3-static-linked-list-of-linked-representation/</link>
+      <pubDate>Mon, 06 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-3-2-3-static-linked-list-of-linked-representation/</guid>
+      <description>一.简述 【】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（四）---2.3循环链表与双向链表</title>
+      <link>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-4-2-3-circular-linked-list-and-doubly-linke/</link>
+      <pubDate>Mon, 06 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-4-2-3-circular-linked-list-and-doubly-linke/</guid>
+      <description>一.简述 【工作中&amp;hellip;】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（五）---2.3重新定义线性链表及其基本操作</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-5-2-3-redefining-linear-linked-lists-and-their-ba/</link>
+      <pubDate>Mon, 06 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-5-2-3-redefining-linear-linked-lists-and-their-ba/</guid>
+      <description>一.简述 &amp;hellip;由于链表在空间的合理利用上和插入、删除时不需要移动等的优点，因此在很多场合下，它是线性表的首选存储结构。然而，它也存在着实现某些基本操作，如求线性表的长度时不如顺序存储结构的缺</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二）---2.3线性表的链式表示和实现之单链表</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-2-2-3-linked-representation-of-linear-list-and-im/</link>
+      <pubDate>Sun, 05 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-2-2-3-linked-representation-of-linear-list-and-im/</guid>
+      <description>一.简述 【暂无】 二.头文件 1 #ifndef _2_3_part1_H_ 2 #define _2_3_part1_H_ 3 //2_3_part1.h 4 /** 5 author:zhaoyu 6 email:zhaoyu1995.com@gmail.com 7 date:2016-6-4 8 note:realize my textbook &amp;lt;&amp;lt;数据结构（C语言版）&amp;gt;&amp;gt; 9 */ 10 //----线性表的单链表存储结构---- 11 /** 12 My Code 13 to make the paragram run correctlly 14 */ 15 #define ElemType</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现---序言</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-preface/</link>
+      <pubDate>Sat, 04 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-preface/</guid>
+      <description>期末考试即将到来，打算花两周时间实现书上所有的算法。巩固学习成果（其实之前也没怎么听课&amp;hellip;&amp;hellip;）毕竟考前突击，背背，ppt刷个90+是没多大意义的。 没错，就是下面这本 毕竟书也是</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（一）---2.2线性表的顺序表示和实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-1-2-2-sequential-representation-and-implementatio/</link>
+      <pubDate>Sat, 04 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-1-2-2-sequential-representation-and-implementatio/</guid>
+      <description>注意： 虽然是用C语言实现，但是考虑到使用了一个C++的特性&amp;mdash;-引用以简化代码，所以所有的代码均以cpp作为后缀，用g++编译（以后不做说明）。 g++版本： 一.简述 本节主要讲述线性表的顺序实</description>
+    </item>
+    <item>
+      <title>C语言实现penna模型</title>
+      <link>/articles/2016-c-language-to-implement-penna-model/</link>
+      <pubDate>Fri, 03 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-c-language-to-implement-penna-model/</guid>
+      <description>一年前写的代码，偶然翻出来。发现自己当时水平还不赖吗。 1 # include &amp;lt;stdio.h&amp;gt; 2 # include &amp;lt;stdlib.h&amp;gt; 3 # include &amp;lt;time.h&amp;gt; 4 # include &amp;lt;stdbool.h&amp;gt; 5 # include &amp;lt;windows.h&amp;gt; 6 7 # define N0 1000 //初始时刻种群数量为1000 8 # define Nmax 100000 //种群最大数量为100000 9 # define R 6 //最低繁殖年</description>
+    </item>
+    <item>
+      <title>编程碎碎念</title>
+      <link>/articles/2016-random-thoughts-on-programming/</link>
+      <pubDate>Sun, 29 May 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-random-thoughts-on-programming/</guid>
+      <description>2016-5-29： 选择一款适合编程的字体，一款且仅一款。我用的是Consolas，因为微软自带，一般的编辑器都会自带，配置简单。而且编程本来就不需要什么特别的字体，满足等宽等要求就足够了。具体介绍可</description>
+    </item>
+    <item>
+      <title>提高效率的Matlab使用方式</title>
+      <link>/articles/2016-how-to-use-matlab-to-improve-efficiency/</link>
+      <pubDate>Sun, 29 May 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-how-to-use-matlab-to-improve-efficiency/</guid>
+      <description>1.花一点时间学习一些提高效率的技巧永远是值得的； 2.总结和记录永远是必要的。 Command窗口： Editor窗口： 1、Tab自动补全</description>
+    </item>
+    <item>
+      <title>C语言用面向对象的思想写贪吃蛇</title>
+      <link>/articles/2016-c-language-uses-object-oriented-thinking-to-write-greedy-snake/</link>
+      <pubDate>Fri, 29 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-c-language-uses-object-oriented-thinking-to-write-greedy-snake/</guid>
+      <description>大概一年前这时候，接触C语言一个月，那时候知之甚少，对面向对象只觉”可远观而不可亵玩“，而且会看到很多言论说C语言就是面向过程的语言，C++就是面向对象的语言。不过，不记得什么时候在网上看到过一篇博文</description>
+    </item>
+    <item>
+      <title>编程习惯与代码风格总结之C/C&#43;&#43;篇（更新······）</title>
+      <link>/articles/2016-summary-of-programming-habits-and-coding-style-c-cpp-updated/</link>
+      <pubDate>Sun, 17 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-summary-of-programming-habits-and-coding-style-c-cpp-updated/</guid>
+      <description>1、使用“==”做比较判断时常量放在前面，如果错写成了赋值“=”则编译器会报错。 if (&amp;#39;a&amp;#39; == direction)//这是一个判断键盘输入并执行相应操作的比较，如果变量在后面并错写成赋值则会出现不可预料的错误</description>
+    </item>
+    <item>
+      <title>各操作系统系统快捷键（更新）</title>
+      <link>/articles/2016-system-shortcut-keys-for-each-operating-system-updated/</link>
+      <pubDate>Fri, 15 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-system-shortcut-keys-for-each-operating-system-updated/</guid>
+      <description>Windows 10 一、常用 二、奇淫技巧 1.Alt + Ctrl + 方向键：屏幕旋转至指定方向。 LinuxMint 17.3 一、常用 1.Ctrl + Alt +鼠标左键：以立方体形式拖动工作区间。（前提是配置了Compiz） 2.Ctrtl + Alt + 左右方向键 ： 切换工作区间。 3.Ctrl + Alt + 上方向键 ： 展示</description>
+    </item>
+    <item>
+      <title>深入学习 memset 函数</title>
+      <link>/articles/2016-learn-more-about-the-memset-function/</link>
+      <pubDate>Fri, 15 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-learn-more-about-the-memset-function/</guid>
+      <description>最近，和同学讨论了一下memset函数，趁着周五空闲做一总结。 memset函数最常用的功能就是初始化数组了（主要是置零），如 #include &amp;lt;iostream&amp;gt; #include &amp;lt;cstring&amp;gt; using namespace std; int main(int argc, char const *argv[]) { int A[10]; memset(A, 0, sizeof(A)); cout &amp;lt;&amp;lt; A[0] &amp;lt;&amp;lt; &amp;#39;\t&amp;#39; &amp;lt;&amp;lt; A[1] &amp;lt;&amp;lt; endl; return 0; } 输出 0 0 但是，</description>
+    </item>
+    <item>
+      <title>简单二维元胞自动机 MATLAB实现</title>
+      <link>/articles/2016-simple-two-dimensional-cellular-automaton-matlab-implementation/</link>
+      <pubDate>Fri, 08 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-simple-two-dimensional-cellular-automaton-matlab-implementation/</guid>
+      <description>20世纪50年代，乌尔姆和冯·诺依曼（对此人真是崇拜的五体投地）为了研究机器人自我复制的可能性，提出了一种叫做元胞自动机（Cellular Automaton,CA）的算法。该算法采用局相互作用规则，最</description>
+    </item>
+    <item>
+      <title>开学一个多月来，第一次低落</title>
+      <link>/articles/2016-first-low-mood-after-a-month-of-school/</link>
+      <pubDate>Mon, 04 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-first-low-mood-after-a-month-of-school/</guid>
+      <description>开学一个多月来，第一次低落，或许其直接原因是因为放假了，想玩却因为孤身一人无处愿去，昨天去徒步了星海湾大桥，一路上除了倒腾那自己尚不能完全驾驭的单反外也没多太多思考，反倒是发现自己只是在工作学习的时候</description>
+    </item>
+    <item>
+      <title>koch曲线与koch雪花的MATLAB实现</title>
+      <link>/articles/2016-matlab-implementation-of-koch-curve-and-koch-snowflake/</link>
+      <pubDate>Sun, 03 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-matlab-implementation-of-koch-curve-and-koch-snowflake/</guid>
+      <description>代码 1 % 2016-4-3 2 function koch(Ax, Ay, Bx, By) 3 % 控制递归深度 4 Deepth = 20; 5 % 控制图画大小 6 Size = 100; 7 if ((Bx-Ax)^2 + (By-Ay)^2) &amp;lt; Deepth 8 plot([Ax, Bx], [Ay, By], &amp;#39;-r&amp;#39;) 9 hold on 10 axis([0 Size 0 Size]); 11 else 12 Cx = Ax + (Bx-Ax)/3; 13 Cy = Ay + (By-Ay)/3; 14 Dx = Bx - (Bx-Ax)/3; 15 Dy = By - (By-Ay)/3; 16 17 koch(Ax, Ay, Cx, Cy); 18 koch(Dx, Dy, Bx, By); 19 20 L = sqrt((Dx-Cx)^2 + (Dy-Cy)^2);</description>
+    </item>
+    <item>
+      <title>cantor三分集</title>
+      <link>/articles/2016-cantor-three-episodes/</link>
+      <pubDate>Fri, 01 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-cantor-three-episodes/</guid>
+      <description>值得一提的是，第一次听说cantor三分集是在数字电路课上，然而数电是我最不喜欢的课程之一。。。。。。 分形大都具有自相似、自仿射性质，所以cantor三分集用递归再合适不过了，本来不想用matlab的</description>
+    </item>
+    <item>
+      <title>POJ  题目分类（转载）</title>
+      <link>/articles/2016-poj-question-classification-reprinted/</link>
+      <pubDate>Mon, 21 Mar 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj-question-classification-reprinted/</guid>
+      <description>Log 2016-3-21 网上找的POJ分类，来源已经不清楚了。百度能百度到一大把。贴一份在博客上，鞭策自己刷题，不能偷懒！！ 初期: 一.基本算法: (1)枚举. (poj1753,poj2965) (2)贪心(poj1328,poj2109,poj2586) (</description>
+    </item>
+    <item>
+      <title>C语言实现贪吃蛇源码</title>
+      <link>/articles/2016-c-language-to-implement-snake-source-code/</link>
+      <pubDate>Sun, 20 Mar 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-c-language-to-implement-snake-source-code/</guid>
+      <description>先放效果 源代码 //2016-2-12 //zhaoyu //Gmail:zhaoyu1995.com@gmail.com //Language: C //Platform:Code::Blocks #include &amp;lt;stdio.h&amp;gt; #include &amp;lt;windows.h&amp;gt; #include &amp;lt;stdlib.h&amp;gt; #include &amp;lt;time.h&amp;gt; typedef struct snake { int x; int y; struct snake *next; }Snake; int X, Y; enum STATUS{Up = 1, Down, Left, Right}; Snake *pHead, *pBody;//the head of the snake enum STATUS Direction; int score=0, scorePerFood=10; int gameStatus = 0; int timeInterval = 200; void gameEnd(void); void setPosition(int x, int y) { COORD pos; HANDLE hOutput; pos.X = x; pos.Y = y; hOutput = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleCursorPosition(hOutput, pos); } void hideCursor() { CONSOLE_CURSOR_INFO cursor_info = { 1, 0 }; SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;amp;cursor_info);</description>
+    </item>
+    <item>
+      <title>《完全用Linux工作》作者：王垠</title>
+      <link>/articles/2016-working-completely-with-linux-author-wang-yin/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-working-completely-with-linux-author-wang-yin/</guid>
+      <description>注：本文是清华“牛仔”王垠的“成名作”，在网上引起很大的争议。对他崇拜地五体投地者有，对他嗤之以鼻者也有，总之成了一年多以前Linux 爱好者的圈子里的一个很有意思的现象。之后他对这篇文章进行了很大的修</description>
+    </item>
+    <item>
+      <title>Windows键盘映射注册表备忘</title>
+      <link>/articles/2016-windows-keymap-registry-memo/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-windows-keymap-registry-memo/</guid>
+      <description>http://xyztony1985.blog.163.com/blog/static/3611782011752420104/ Windows Registry Editor Version 5.00 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout] &amp;#34;Scancode Map&amp;#34;=hex: 00,00,00,00, 00,00,00,00, 04,00,00,00, 3A,00,1D,00, 1D,00,01,00, 01,00,3A,00, 00,00,00,00</description>
+    </item>
+    <item>
+      <title>Windows装机必备软件列表</title>
+      <link>/articles/2016-list-of-essential-software-for-windows-installation/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-list-of-essential-software-for-windows-installation/</guid>
+      <description>经常装系统，列个List，以后装完之后安装软件直接参照使用!windows版： 输入法： 搜狗输入法（由于长期使用导致此输入法十分熟悉我的输入习惯，以无法自拔）。支持Linux、Windows（太穷还没碰</description>
+    </item>
+    <item>
+      <title>最小生成树问题---Prim算法与Kruskal算法实现（MATLAB语言实现）</title>
+      <link>/articles/2015-minimum-spanning-tree-problem-prim-algorithm-and-kruskal-algorithm-implementation-matlab-language-im/</link>
+      <pubDate>Fri, 18 Dec 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-minimum-spanning-tree-problem-prim-algorithm-and-kruskal-algorithm-implementation-matlab-language-im/</guid>
+      <description>2015-12-17晚，复习，甚是无聊，阅《复杂网络算法与应用》一书，得知**最小生成树问题（Minimum spanning tree）**问题。记之。 何为树：连通且不含圈的图称为树。 图T=(V,E),|V|=n,|</description>
+    </item>
+    <item>
+      <title>一百行写小世界网络和无标度网络</title>
+      <link>/articles/2015-one-hundred-lines-to-write-small-world-network-and-scale-free-network/</link>
+      <pubDate>Mon, 14 Dec 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-one-hundred-lines-to-write-small-world-network-and-scale-free-network/</guid>
+      <description>曾经觉得能写很长的代码就是厉害的表现，随着学习的深入，对于好的代码有了更加深刻的认识，一个好的代码应该： 1、可读性。好的代码不仅能让机器读懂，更要让看代码的人读懂&amp;mdash;-合理布局，逻辑清晰。 2</description>
+    </item>
+    <item>
+      <title>MATLAB for循环优化三例</title>
+      <link>/articles/2015-three-examples-of-matlab-for-loop-optimization/</link>
+      <pubDate>Sun, 13 Dec 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-three-examples-of-matlab-for-loop-optimization/</guid>
+      <description>最近一周，对MATLAB有进行了新一轮的学习，对其矩阵化编程的思维有了更深入的了解。确实精妙！ 例1： 将矩阵A= [1 2 3; 2 4 3; 3 4 5]中所有的数字3替换为33. 如果还停留在C语言的思维可能就是 &amp;gt;&amp;gt; for i=1:3 for j=1:3 if</description>
     </item>
     <item>
       <title>转专业纪</title>
