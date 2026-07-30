@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Flutter on 赵裕的博客</title>
+    <link>/tags/flutter/</link>
+    <description>Recent content in Flutter on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/tags/flutter/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Flutter:移动端跨平台技术演进之路</title>
+      <link>/articles/cross-platform-mobile-ui-development-evolution/</link>
+      <pubDate>Wed, 06 Nov 2019 12:21:29 +0800</pubDate>
+      <guid>/articles/cross-platform-mobile-ui-development-evolution/</guid>
+      <description>导读 本文约4688字，阅读可能需要15分钟。 最早的跨平台开发(摘自《Apache Cordova移动应用开发实战》王亚飞，王洪飞编著). 从广义上来说，跨平台技术早于移动端的出现。因此，本文标题前面也加上</description>
+    </item>
+  </channel>
+</rss>

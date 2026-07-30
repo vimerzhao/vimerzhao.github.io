@@ -6,14 +6,35 @@
     <description>Recent content in VSCode on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 05 Jul 2026 13:17:49 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
     <atom:link href="/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>无妄之灾：记录一个奇怪的codelldb问题</title>
+      <link>/articles/record-a-strange-issue-about-codelldb/</link>
+      <pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/record-a-strange-issue-about-codelldb/</guid>
+      <description>背景：最近打算为项目增加一些测试，重构后的项目比较适合用VSCode + codelldb调试，因为编译适合放在命令行(有一些环境变量依赖)，VSCode直接启动产物并调试就行了，launch.json也</description>
+    </item>
     <item>
       <title>从Vim到VSCode</title>
       <link>/articles/from-vim-to-vscode-2023/</link>
       <pubDate>Mon, 23 Oct 2023 00:00:00 +0000</pubDate>
       <guid>/articles/from-vim-to-vscode-2023/</guid>
       <description>我和Vim的故事还是挺长的，之前的一些博客： 现阶段（2021年10月）对于Vim和Emacs的思考 - 赵裕的博客 Vim键盘布局的起源 - 赵裕的博客 借助Vim宏处理重复工作 - 赵裕的博客 Vim的哲学 - 赵裕的博</description>
+    </item>
+    <item>
+      <title>使用VSCode作为Chromium的调试前端</title>
+      <link>/articles/use-vscode-as-debug-frontend-of-chromium-project/</link>
+      <pubDate>Mon, 24 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/use-vscode-as-debug-frontend-of-chromium-project/</guid>
+      <description>之前试过VSCode作为C++工程的开发工具，但如果工程过于庞大，每次打开都会卡死在索引阶段。 总的来说，NeoVim+Clangd是我认为通用性、性能、开发体验综合最好的选择。 但有一个问题，怎么调试？</description>
+    </item>
+    <item>
+      <title>在服务器上搭建Android开发调试环境的尝试</title>
+      <link>/articles/configure-android-dev-environment-on-a-remote-server/</link>
+      <pubDate>Tue, 16 May 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/configure-android-dev-environment-on-a-remote-server/</guid>
+      <description>1. 背景说明 当前的开发工作特点： 项目代码C++为主，编译任务重，最大的工程全量编一次80min+，小的改动增量10min+，更新一下增量构建30min+。而且编译期间CPU全部占用，无法进行其他工作 涉及</description>
     </item>
   </channel>
 </rss>

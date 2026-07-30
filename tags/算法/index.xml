@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>算法 on 赵裕的博客</title>
+    <link>/tags/%E7%AE%97%E6%B3%95/</link>
+    <description>Recent content in 算法 on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43;函数调用栈回溯初探</title>
+      <link>/articles/cpp-function-callstack-backtrace-1/</link>
+      <pubDate>Sun, 10 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>/articles/cpp-function-callstack-backtrace-1/</guid>
+      <description>背景 之前在解决一个Flutter Engine的C++ Crash问题时，就曾受困于一个问题：如何回溯C++的 函数调用栈？最近频繁使用C++的过程中，这个诉求日益突出。 遂下定决心彻底解决之。 过程 在stac</description>
+    </item>
+    <item>
+      <title>每日一题：A Regular Expression Matcher</title>
+      <link>/articles/mei-ri-yi-ti-a-regular-expression-matcher/</link>
+      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
+      <guid>/articles/mei-ri-yi-ti-a-regular-expression-matcher/</guid>
+      <description>每日一题：A Regular Expression Matcher 选自Beautiful Code第一章：A Regular Expression Matcher。 Task &amp;amp; Background (节选自Beautiful Code) In 1998, Rob Pike and I were writing The Practice of Programming (Addison-Wesley). The last chapter of the book, “Notation,” collected a number of examples where good notation led to better programs and better</description>
+    </item>
+    <item>
+      <title>每日一题：100 doors</title>
+      <link>/articles/mei-ri-yi-ti-100-doors/</link>
+      <pubDate>Wed, 07 Feb 2018 00:00:00 +0000</pubDate>
+      <guid>/articles/mei-ri-yi-ti-100-doors/</guid>
+      <description>每日一题：100 doors 选自100 doors - Rosetta Code Task There are 100 doors in a row that are all initially closed.You make 100 passes by the doors.The first time through, visit every door and toggle the door (if the door is closed, open it;if it is open, close it).The second time, only visit every 2nd door(door #2, #4, #6, &amp;hellip;),and toggle it.The third time, visit every 3rd door(door #3, #6, #9, &amp;hellip;), etc,until you only visit the 100th door. Answer the question: what state are the doors in after the</description>
+    </item>
+    <item>
+      <title>时间复杂度计算类题目两则</title>
+      <link>/articles/shi-jian-fu-za-du-ji-suan-lei-ti-mu-liang-ze/</link>
+      <pubDate>Sat, 25 Mar 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/shi-jian-fu-za-du-ji-suan-lei-ti-mu-liang-ze/</guid>
+      <description>时间复杂度计算类题目两则 本文记录了两则具有代表性的算法复杂度计算题目。 题目1 分析以下代码的时间复杂度: for (int i = 0; i &amp;lt; n; i++) { for (int j = 0; j &amp;lt; i; j++) { for (int k = 0; k &amp;lt; j; k++) { // operations } } } 注：以上代码只作示意，未详细</description>
+    </item>
+    <item>
+      <title>外排序</title>
+      <link>/articles/wai-pai-xu/</link>
+      <pubDate>Mon, 20 Mar 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/wai-pai-xu/</guid>
+      <description>外排序 初探如何对大规模数据进行排序。 问题 问题描述很简单，如何对大规模数据进行排序，比如说一个30G的文件。 分析 解决这个问题主要要解决两件事。第一件就是大文件显然无法一次读入内存，所以只能一次读入一部分</description>
+    </item>
+    <item>
+      <title>poj3484 Showstopper 二分</title>
+      <link>/articles/2016-poj3484-showstopper-two-points/</link>
+      <pubDate>Sun, 21 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj3484-showstopper-two-points/</guid>
+      <description>题目地址 二分用的很是巧妙！关键是抽象出问题本质。 1 #include &amp;lt;cstdio&amp;gt; 2 #include &amp;lt;string&amp;gt; 3 #include &amp;lt;cstring&amp;gt; 4 const int maxn = 100000; 5 #define ull unsigned long long 6 ull X[maxn], Y[maxn], Z[maxn], C[maxn]; 7 ull N; 8 ull judge(const ull &amp;amp;mid) { 9 ull sum = 0; 10 for (int i = 0; i &amp;lt; N; i++) { 11 if (mid &amp;gt;= Y[i]) { 12 sum += C[i]; 13 } else if (mid &amp;gt;= X[i]) { 14 sum += ((mid-X[i])/Z[i]+1); 15 }</description>
+    </item>
+    <item>
+      <title>UVA1555-- Garland(推导&#43;二分)</title>
+      <link>/articles/2016-uva1555-garland-derivation-two-points/</link>
+      <pubDate>Sun, 21 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-uva1555-garland-derivation-two-points/</guid>
+      <description>题意：有n个灯，给定第一盏灯A的高度，接下去每盏灯的高度按照公式计算，求使所有灯都不会落在地上（允许碰触）的B的最低高度。 uva 输出 double 用 %f，这一波坑的！ 1 #include &amp;lt;cstdio&amp;gt; 2 int n; 3 double A, B, a[1005]; 4 //h2的值 5 bool check(double x) { 6 a[2]</description>
+    </item>
+    <item>
+      <title>POJ 3662 Telephone Lines(二分&#43;最短路)</title>
+      <link>/articles/2016-poj-3662-telephone-lines-two-points-shortest-path/</link>
+      <pubDate>Sat, 20 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj-3662-telephone-lines-two-points-shortest-path/</guid>
+      <description>查看题目 最小化第K大值。 让我怀疑人生的一题目，我有这么笨？ 1 #include &amp;lt;cstdio&amp;gt; 2 #include &amp;lt;queue&amp;gt; 3 #include &amp;lt;cstring&amp;gt; 4 #include &amp;lt;vector&amp;gt; 5 #include &amp;lt;functional&amp;gt; 6 using namespace std; 7 #define maxv 1010 8 #define maxl 1000000 9 struct edge 10 { 11 int to, cost; 12 edge(){} 13 edge(int to, int cost) : to(to), cost(cost){} 14 }; 15 typedef pair&amp;lt;int, int&amp;gt; P; 16 vector&amp;lt;edge&amp;gt; G[maxv]; 17 int d[maxv]; 18 int V, E; 19 int dij(int s, int x) { 20</description>
+    </item>
+    <item>
+      <title>POJ2010 Moo University - Financial Aid(二分法)</title>
+      <link>/articles/2016-poj2010-moo-university-financial-aid-dichotomy/</link>
+      <pubDate>Fri, 19 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj2010-moo-university-financial-aid-dichotomy/</guid>
+      <description>题目地址 分析：如果用二分法，关键是score和aid分开排序，score排序是为了充分利用中位数的性质，这样就可以确定m左右必须各选N/2个，到这之后有人是用dp求最优解，可以再次按照aid排序一次，</description>
+    </item>
+    <item>
+      <title>POJ 2976 Dropping tests（最大化平均值 or 01整数规划）</title>
+      <link>/articles/2016-poj-2976-dropping-tests-maximizing-the-mean-or-01-integer-programming/</link>
+      <pubDate>Mon, 15 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj-2976-dropping-tests-maximizing-the-mean-or-01-integer-programming/</guid>
+      <description>题目链接 忽略运算符逻辑导致奇怪的错误（代码中指明位置了） 输出没加0.5，WA。 还有，注意特殊情况k=0,所以scanf(&amp;quot;%d%d&amp;quot;, &amp;amp;n, &amp;amp;k)&amp;amp;n就够了， scanf(&amp;quot;%d%d&amp;quot;, &amp;amp;n, &amp;am</description>
+    </item>
+    <item>
+      <title>POJ3258 River Hopscotch</title>
+      <link>/articles/2016-poj3258-river-hopscotch/</link>
+      <pubDate>Sat, 13 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj3258-river-hopscotch/</guid>
+      <description>地址 别人的代码，自己边界总是控制不好，还不知道哪里错了！思维！这种问题代码越简洁反而越不容易错吧。。 1 #include&amp;lt;stdio.h&amp;gt; 2 #include&amp;lt;algorithm&amp;gt; 3 typedef long long ll; 4 using namespace std; 5 ll n,m,L,a[100010]; 6 bool bi(ll x){ 7 ll i,cnt=0,now=0; 8 for(i=1;i&amp;lt;=n;i++){ 9 if(a[i]-a[now]&amp;lt;=x)cnt++; 10 else now=i; 11 } 12 if(L-a[now]&amp;lt;x)return 0; 13 return cnt&amp;lt;=m; 14 } 15 int main(){ 16 ll i,l,r,mi; 17 while(~scanf(&amp;#34;%lld%lld%lld&amp;#34;,&amp;amp;L,&amp;amp;n,&amp;amp;m)){ 18 l=0;r=L;</description>
+    </item>
+    <item>
+      <title>POJ3273  Monthly Expense</title>
+      <link>/articles/2016-poj3273-monthly-expense/</link>
+      <pubDate>Sat, 13 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj3273-monthly-expense/</guid>
+      <description>查看原题 边界，就是边界和思维，怎么有效的判断中间值是大了还是小了，以及准确的找到边界！一个&amp;lt;写成&amp;lt;=就前功尽弃，还特别难找到错误！ 1 #include &amp;lt;cstdio&amp;gt; 2 #include &amp;lt;algorithm&amp;gt; 3 const int maxN = 100005; 4 int N, M; 5 int A[maxN]; 6 using namespace std; 7 int main(void) { 8 while</description>
+    </item>
+    <item>
+      <title>POJ 2457 Part Acquisition</title>
+      <link>/articles/2016-poj-2457-part-acquisition/</link>
+      <pubDate>Fri, 12 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj-2457-part-acquisition/</guid>
+      <description>第一反应是BFS,比较直观，但是输出路径写的不是很熟练，此外，习惯不好，“==”写成了“=”，所以常量一定放前面！ 1 #include &amp;lt;cstdio&amp;gt; 2 #include &amp;lt;queue&amp;gt; 3 #include &amp;lt;cstring&amp;gt; 4 using namespace std; 5 int N, K; 6 typedef struct node 7 { 8 int in, out; 9 int pos; 10 }Link; 11 const int maxn = 50005; 12 bool vis[maxn]; 13 Link</description>
+    </item>
+    <item>
+      <title>POJ2456 Aggressive cows</title>
+      <link>/articles/2016-poj2456-aggressive-cows/</link>
+      <pubDate>Fri, 12 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj2456-aggressive-cows/</guid>
+      <description>Aggressive cows 二分，关键是转化为二分！ 1 #include &amp;lt;cstdio&amp;gt; 2 #include &amp;lt;algorithm&amp;gt; 3 const int maxn = 1000000005; 4 const int maxN = 100005; 5 6 int N, C; 7 int a[maxN]; 8 using namespace std; 9 bool judge(int x) { 10 int s = 0; 11 for (int i = 1; i &amp;lt; C;i++) { 12 int ctr = s+1; 13 while (ctr &amp;lt; N &amp;amp;&amp;amp; (a[ctr]-a[s] &amp;lt; x)) { 14 ctr++; 15 } 16 if (ctr==N) { 17 return false; 18 } 19 s = ctr; 20 } 21 return</description>
+    </item>
+    <item>
+      <title>GCD XOR, ACM/ICPC Dhaka 2013, UVa12716</title>
+      <link>/articles/2016-gcd-xor-acm-icpc-dhaka-2013-uva12716/</link>
+      <pubDate>Tue, 09 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-gcd-xor-acm-icpc-dhaka-2013-uva12716/</guid>
+      <description>不同的枚举方法，效率完全不同。值得记录一下！ 1 #include &amp;lt;cstdio&amp;gt; 2 #include &amp;lt;cstring&amp;gt; 3 int t, a, b, c, n, cas = 0, count = 0; 4 int cnt[30000000]; 5 void pre() { 6 count = 0; 7 memset(cnt, 0, sizeof(cnt)); 8 9 for (a = 1; a &amp;lt;= 30000000; a++) { 10 for (c = 1; c &amp;lt; a; c++) { 11 if (a%c == 0 &amp;amp;&amp;amp; ((a-c)^a)==c) { 12 count++; 13 } 14 } 15 cnt[a-1] = count; 16 } 17 18 }</description>
+    </item>
+    <item>
+      <title>Irrelevant Elements, ACM/ICPC NEERC 2004, UVa1635</title>
+      <link>/articles/2016-irrelevant-elements-acm-icpc-neerc-2004-uva1635/</link>
+      <pubDate>Tue, 09 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-irrelevant-elements-acm-icpc-neerc-2004-uva1635/</guid>
+      <description>这种题目最重要的是思路了清晰 1 #include &amp;lt;cstdio&amp;gt; 2 #include &amp;lt;cstring&amp;gt; 3 const int maxn = 100005;//sqrt(n)+1 is enough 4 5 int fac[100][2]; 6 int fac_c[100]; 7 int a[maxn]; 8 void factor(int m) { 9 int&amp;amp; num = fac[0][0]; 10 num = 0; 11 for (int i = 2; i*i &amp;lt;= m; i++) { 12 if(m%i == 0) { 13 fac[++num][0] = i; 14 fac[num][1] = 0; 15 do { 16 fac[num][1]++; 17 m/= i; 18 } while(m%i == 0); 19 } 20 } 21 if (m &amp;gt; 1) { 22</description>
+    </item>
+    <item>
+      <title>紫书第七章例题（暴力求解法）</title>
+      <link>/articles/2016-examples-of-chapter-7-of-the-purple-book-violent-solution-method/</link>
+      <pubDate>Tue, 26 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-examples-of-chapter-7-of-the-purple-book-violent-solution-method/</guid>
+      <description>1.除法（Division, UVa 725） #include &amp;lt;cstdio&amp;gt; #include &amp;lt;cstring&amp;gt; bool isOk(int a, int b){ char buff[20]; int visited[15]; memset(visited, 0, sizeof(visited)); sprintf(buff, &amp;#34;%05d%05d&amp;#34;, a, b); for (int i =0; i &amp;lt; 10; i++){ int temp = buff[i] - &amp;#39;0&amp;#39;; if (0 == visited[temp]){ visited[temp]++; } else { return false; } } return true; } int main(void){ int N, cnt = 0; bool flag = false; for (;scanf(&amp;#34;%d&amp;#34;, &amp;amp;N) &amp;amp;&amp;amp; N;){ if (cnt &amp;gt; 0){ printf(&amp;#34;\n&amp;#34;); } cnt++; flag = false; for (int i = 1234; i&amp;lt;</description>
+    </item>
+    <item>
+      <title>浅析初等贪吃蛇AI算法</title>
+      <link>/articles/2016-a-brief-analysis-of-the-elementary-snake-ai-algorithm/</link>
+      <pubDate>Thu, 14 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-a-brief-analysis-of-the-elementary-snake-ai-algorithm/</guid>
+      <description>作为小学期程序设计训练大作业的一部分，也是自己之前思考过的一个问题，终于利用小学期完成了贪吃蛇AI的一次尝试，下作一总结。 背景介绍： 首先，我针对贪吃蛇AI这一关键词在百度和google上尽心了检索，大</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（三十二）--- 9.1静态查找表</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-32-9-1-static-lookup-table/</link>
+      <pubDate>Tue, 12 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-32-9-1-static-lookup-table/</guid>
+      <description>一、简述 静态查找表又分为顺序表、有序表、静态树表和索引表。以下只是算法的简单实现及测试，不涉及性能分析。 二、头文件 1 /** 2 author：zhaoyu 3 date:2016-7-12 4 */ 5 #include &amp;#34;6_3_part1_for_chapter9.h&amp;#34; 6 typedef struct { 7 int key; 8 }SElemType; 9 //静态查找表的顺序</description>
+    </item>
+    <item>
+      <title>机器博弈中的数据结构与基本方法（二）-----递归及回溯法实例</title>
+      <link>/articles/2016-data-structures-and-basic-methods-in-machine-games-2-examples-of-recursion-and-backtracking-methods/</link>
+      <pubDate>Mon, 04 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structures-and-basic-methods-in-machine-games-2-examples-of-recursion-and-backtracking-methods/</guid>
+      <description>1、跳马问题：从左上角开始，按照象棋中马的行走规则（但是不考虑马脚，只需要按日字走），要求每个点走一次且仅一次，并且所有的点走走到，求解所有可行走法。 思路及代码： 1 #include &amp;lt;cstdio&amp;gt; 2 int a[9][9]; //包含边界拓展 3 int S = 0;</description>
+    </item>
+    <item>
+      <title>机器博弈中的数据结构与基本方法（一）-----总结</title>
+      <link>/articles/2016-data-structure-and-basic-methods-in-machine-games-1-summary/</link>
+      <pubDate>Mon, 04 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-and-basic-methods-in-machine-games-1-summary/</guid>
+      <description>一、基本概念 博弈分类：单人博弈（华容道）、双人博弈（象棋、围棋）、多人博弈（麻将、桥牌）；完全信息博弈（象棋、围棋）、不完全信息博弈（麻将、桥牌、三国杀等）。 注：大一曾选修过一门课：博弈论，也在数模班</description>
+    </item>
+    <item>
+      <title>浅析基本AI五子棋算法</title>
+      <link>/articles/2016-a-brief-analysis-of-the-basic-ai-backgammon-algorithm/</link>
+      <pubDate>Sun, 03 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-a-brief-analysis-of-the-basic-ai-backgammon-algorithm/</guid>
+      <description>五子棋是所有棋类博弈中比较简单的了，这里介绍的也只是一种非常基本的AI策略。其实，包括之前的AI贪吃蛇，感觉这两个AI其实体现的都是一种建模思想，把一个现实中的问题模型化，抽象化，得到其一般特征，再设</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十八）--- 7.4图的连通性问题</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-28-7-4-graph-connectivity-issues/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-28-7-4-graph-connectivity-issues/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十二）--- 6.4树和森林</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-22-6-4-trees-and-forests/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-22-6-4-trees-and-forests/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十九）--- 7.5有向无环图及其应用</title>
+      <link>/articles/2016-data-structure-algorithm-implementation-in-c-language-29-7-5-directed-acyclic-graph-and-its-applicat/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-implementation-in-c-language-29-7-5-directed-acyclic-graph-and-its-applicat/</guid>
+      <description>一.简述</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十六）--- 7.2图的存储结构</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-26-7-2-storage-structure-of-graph/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-26-7-2-storage-structure-of-graph/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十七）--- 7.2图的遍历</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-27-7-2-graph-traversal/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-27-7-2-graph-traversal/</guid>
+      <description>一.简述 栈与队列，DFS与BFS。仅以连接表为例实现。 二.头文件 BFS要用到的头文件 1 //3_4_part1.h 2 /** 3 author:zhaoyu 4 email:zhaoyu1995.com@gmail.com 5 date:2016-6-9 6 2016-6-25修改版，针对第七章 7 note:realize my textbook &amp;lt;&amp;lt;数据结构（C语言版）&amp;gt;&amp;gt</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十三）--- 6.5树与等价问题</title>
+      <link>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-twenty-three-6-5-trees-and-equivalence-prob/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-twenty-three-6-5-trees-and-equivalence-prob/</guid>
+      <description>一.简述</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十四）--- 6.6赫夫曼树及其应用</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-24-6-6-huffman-tree-and-its-application/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-24-6-6-huffman-tree-and-its-application/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十五）--- 6.7回溯法与树的遍历</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-25-6-7-backtracking-method-and-tree-traversal/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-25-6-7-backtracking-method-and-tree-traversal/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十一）--- 6.3.2线索二叉树</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-21-6-3-2-clue-binary-tree/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-21-6-3-2-clue-binary-tree/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（三十）--- 7.6最短路径</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-30-7-6-shortest-path/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-30-7-6-shortest-path/</guid>
+      <description>一.简述</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（三十一）--- 8.3边界标识法</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-31-8-3-boundary-marking-method/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-31-8-3-boundary-marking-method/</guid>
+      <description>一.简述</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十）--- 6.3.1遍历二叉树</title>
+      <link>/articles/2016-data-structure-algorithm-implemented-in-c-language-20-6-3-1-traversing-the-binary-tree/</link>
+      <pubDate>Sat, 18 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-implemented-in-c-language-20-6-3-1-traversing-the-binary-tree/</guid>
+      <description>一.简述 二叉树的遍历主要是先序、中序、后序及对应的递归和非递归算法，共3x2=6种，其中后序非递归在实现上稍复杂一些。二叉树的遍历是理解和学习递归及体会栈的工作原理的绝佳工具！ 此外，非递归所用的栈及相</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十八）--- 5.3矩阵的压缩存储</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-18-5-3-compressed-storage-of-matrices/</link>
+      <pubDate>Fri, 17 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-18-5-3-compressed-storage-of-matrices/</guid>
+      <description>一.简述 【coding】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十九）--- 5.5&amp;5.6&amp;5.7广义表</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-19-5-5-5-6-5-7-generalized-table/</link>
+      <pubDate>Fri, 17 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-19-5-5-5-6-5-7-generalized-table/</guid>
+      <description>一.简述 传说Lisp的基本数据结构就是广义表，广义表也是具有典型递归属性的数据结构，此外，由于建表要处理字符串，用C语言处理起来也是一脸懵逼&amp;hellip;..最后自己还想写一个将广义表还原成字符串的</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十七）--- 5.1&amp;5.2数组：定义、顺序表示及实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-seventeen-5-1-5-2-array-definition-sequential-rep/</link>
+      <pubDate>Wed, 15 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-seventeen-5-1-5-2-array-definition-sequential-rep/</guid>
+      <description>一.简述 理解数组位置的计算公式 LOC(j1, j2, ···, jn) = LOC(0, 0, ..., 0) + (b2x ··· x bnx j1 + b3x ··· x bnx j2 + ··· + bnx jn-1 + jn)L 化简为 可以缩写成 其中 cn = L,ci-1 = bi x ci, 1&amp;lt;i≤n。 二.头文件 1 //5_2.h 2 /** 3 author:zhaoyu 4 date:2016-6-15 5 */ 6 //----</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十六）--- 4.3串的应用举例</title>
+      <link>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-16-4-3-application-examples-of-strings/</link>
+      <pubDate>Fri, 10 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-16-4-3-application-examples-of-strings/</guid>
+      <description>一.简述 【coding】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十三）--- 3.5离散事件模拟</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-13-3-5-discrete-event-simulation/</link>
+      <pubDate>Fri, 10 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-13-3-5-discrete-event-simulation/</guid>
+      <description>一.简述 【coding】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十四）--- 4.1&amp;4.2串的类型定义、表示及实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-14-4-1-4-2-string-type-definition-representation/</link>
+      <pubDate>Fri, 10 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-14-4-1-4-2-string-type-definition-representation/</guid>
+      <description>一.简述 【暂无】 二.头文件 1 //4_2_part1.h 2 /** 3 author:zhaoyu 4 */ 5 //2016-6-10 6 //----串的定长顺序存储表示---- 7 #include &amp;#34;head.h&amp;#34; 8 #define MAXSTRLEN 255//用户可以在255以内定义最大串长 9 //这语法还不是很熟悉 10 typedef unsigned char SString[MAXSTRLEN+1];//0 号单元存放串的长度 11 int StrLength(SString</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十五）---4.3 串的模式匹配算法</title>
+      <link>/articles/2016-data-structure-algorithm-implementation-in-c-language-15-4-3-string-pattern-matching-algorithm/</link>
+      <pubDate>Fri, 10 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-implementation-in-c-language-15-4-3-string-pattern-matching-algorithm/</guid>
+      <description>一.简述 【coding】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十二）--- 3.4循环队列&amp;队列的顺序表示和实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-12-3-4-sequential-representation-and-implementati/</link>
+      <pubDate>Thu, 09 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-12-3-4-sequential-representation-and-implementati/</guid>
+      <description>一.简述 空队列的处理方法：1.另设一个标志位以区别队列是空还是满；2.少用一个元素空间，约定以队列头指针在队尾指针下一位置上作为队列呈满的状态的标志。 二.头文件 1 //3_4_part1.h 2 /** 3 author:zhaoyu 4 email:zhaoyu1995.com@gmail.com 5 date:2016-6-9 6 note:realize my textbook &amp;lt;&amp;l</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十一）--- 3.4队列的链式表示和实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-11-3-4-chain-representation-and-implementation-of/</link>
+      <pubDate>Thu, 09 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-11-3-4-chain-representation-and-implementation-of/</guid>
+      <description>一.简介 FIFO。 二.头文件 1 //3_4_part1.h 2 /** 3 author:zhaoyu 4 email:zhaoyu1995.com@gmail.com 5 date:2016-6-9 6 note:realize my textbook &amp;lt;&amp;lt;数据结构（C语言版）&amp;gt;&amp;gt; 7 */ 8 //Page 61 9 #include &amp;lt;cstdio&amp;gt; 10 #include &amp;#34;head.h&amp;#34; 11 #define QElemType int 12 //----单链队列：队列的链式存储结构---- 13 typedef struct QNode{ 14 QElemType</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（八）--- 3.2栈的应用举例：迷宫求解与表达式求值</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-8-3-2-stack-application-examples-maze-solving-and/</link>
+      <pubDate>Wed, 08 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-8-3-2-stack-application-examples-maze-solving-and/</guid>
+      <description>一.简介 迷宫求解：类似图的DFS。具体的算法思路可以参考书上的50、51页，不过书上只说了粗略的算法，实现起来还是有很多细节需要注意。大多数只是给了个抽象的名字，甚至参数类型，返回值也没说的很清楚，所</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（九）--- 拓展：由迷宫问题引申的AI贪吃蛇</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-9-expansion-ai-snake-derived-from-the-maze-proble/</link>
+      <pubDate>Wed, 08 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-9-expansion-ai-snake-derived-from-the-maze-proble/</guid>
+      <description>一.简述 【开发中】由于期末时间有限，而且要用到后面的最短路径（可能），所以打算小学期在实现这一部分</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十）--- 3.3栈与递归的实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-10-3-3-implementation-of-stack-and-recursion/</link>
+      <pubDate>Wed, 08 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-10-3-3-implementation-of-stack-and-recursion/</guid>
+      <description>一.简介 汉诺塔问题是递归的一个典型例子，而且书上的讲解很详细，对理解C语言函数及函数传参的工作机制很有帮助，值得一看。而且，递归在我看来和分治、DP、贪心等一样是十分优美的思想，值得学习！！！ 二.CP</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（六）---2.4一元多项式的表示及相加</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-6-2-4-representation-and-addition-of-one-variable/</link>
+      <pubDate>Tue, 07 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-6-2-4-representation-and-addition-of-one-variable/</guid>
+      <description>一.简述 利用链表表示稀疏多项式，并基于之前的一些操作（编程实现上还是有所不同的）组合新的操作实现一元多项式的表示及相加。 二.ADT 1 抽象数据类型一元多项式的定义 2 ADT Polyomail{ 3 数据对象：D = {a[i]|a[i</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（七）--- 3.1栈的线性实现及应用举例</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-7-3-1-linear-implementation-and-application-examp/</link>
+      <pubDate>Tue, 07 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-7-3-1-linear-implementation-and-application-examp/</guid>
+      <description>一.简述 栈，LIFO。是操作受限的线性表，和线性表一样有两种存储表示方法。下面以顺序存储为例，实现。 二.ADT 暂无。 三.头文件 1 //3_1.h 2 /** 3 author:zhaoyu 4 email:zhaoyu1995.com@gmail.com 5 date:2016-6-7 6 note:realize my textbook &amp;lt;&amp;lt;数据结构（C语言版）&amp;gt;&amp;</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（三）---2.3线性表的链式表示之静态链表</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-3-2-3-static-linked-list-of-linked-representation/</link>
+      <pubDate>Mon, 06 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-3-2-3-static-linked-list-of-linked-representation/</guid>
+      <description>一.简述 【】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（四）---2.3循环链表与双向链表</title>
+      <link>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-4-2-3-circular-linked-list-and-doubly-linke/</link>
+      <pubDate>Mon, 06 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-4-2-3-circular-linked-list-and-doubly-linke/</guid>
+      <description>一.简述 【工作中&amp;hellip;】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（五）---2.3重新定义线性链表及其基本操作</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-5-2-3-redefining-linear-linked-lists-and-their-ba/</link>
+      <pubDate>Mon, 06 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-5-2-3-redefining-linear-linked-lists-and-their-ba/</guid>
+      <description>一.简述 &amp;hellip;由于链表在空间的合理利用上和插入、删除时不需要移动等的优点，因此在很多场合下，它是线性表的首选存储结构。然而，它也存在着实现某些基本操作，如求线性表的长度时不如顺序存储结构的缺</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二）---2.3线性表的链式表示和实现之单链表</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-2-2-3-linked-representation-of-linear-list-and-im/</link>
+      <pubDate>Sun, 05 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-2-2-3-linked-representation-of-linear-list-and-im/</guid>
+      <description>一.简述 【暂无】 二.头文件 1 #ifndef _2_3_part1_H_ 2 #define _2_3_part1_H_ 3 //2_3_part1.h 4 /** 5 author:zhaoyu 6 email:zhaoyu1995.com@gmail.com 7 date:2016-6-4 8 note:realize my textbook &amp;lt;&amp;lt;数据结构（C语言版）&amp;gt;&amp;gt; 9 */ 10 //----线性表的单链表存储结构---- 11 /** 12 My Code 13 to make the paragram run correctlly 14 */ 15 #define ElemType</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现---序言</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-preface/</link>
+      <pubDate>Sat, 04 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-preface/</guid>
+      <description>期末考试即将到来，打算花两周时间实现书上所有的算法。巩固学习成果（其实之前也没怎么听课&amp;hellip;&amp;hellip;）毕竟考前突击，背背，ppt刷个90+是没多大意义的。 没错，就是下面这本 毕竟书也是</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（一）---2.2线性表的顺序表示和实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-1-2-2-sequential-representation-and-implementatio/</link>
+      <pubDate>Sat, 04 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-1-2-2-sequential-representation-and-implementatio/</guid>
+      <description>注意： 虽然是用C语言实现，但是考虑到使用了一个C++的特性&amp;mdash;-引用以简化代码，所以所有的代码均以cpp作为后缀，用g++编译（以后不做说明）。 g++版本： 一.简述 本节主要讲述线性表的顺序实</description>
+    </item>
+    <item>
+      <title>cantor三分集</title>
+      <link>/articles/2016-cantor-three-episodes/</link>
+      <pubDate>Fri, 01 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-cantor-three-episodes/</guid>
+      <description>值得一提的是，第一次听说cantor三分集是在数字电路课上，然而数电是我最不喜欢的课程之一。。。。。。 分形大都具有自相似、自仿射性质，所以cantor三分集用递归再合适不过了，本来不想用matlab的</description>
+    </item>
+    <item>
+      <title>POJ  题目分类（转载）</title>
+      <link>/articles/2016-poj-question-classification-reprinted/</link>
+      <pubDate>Mon, 21 Mar 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj-question-classification-reprinted/</guid>
+      <description>Log 2016-3-21 网上找的POJ分类，来源已经不清楚了。百度能百度到一大把。贴一份在博客上，鞭策自己刷题，不能偷懒！！ 初期: 一.基本算法: (1)枚举. (poj1753,poj2965) (2)贪心(poj1328,poj2109,poj2586) (</description>
+    </item>
+    <item>
+      <title>最小生成树问题---Prim算法与Kruskal算法实现（MATLAB语言实现）</title>
+      <link>/articles/2015-minimum-spanning-tree-problem-prim-algorithm-and-kruskal-algorithm-implementation-matlab-language-im/</link>
+      <pubDate>Fri, 18 Dec 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-minimum-spanning-tree-problem-prim-algorithm-and-kruskal-algorithm-implementation-matlab-language-im/</guid>
+      <description>2015-12-17晚，复习，甚是无聊，阅《复杂网络算法与应用》一书，得知**最小生成树问题（Minimum spanning tree）**问题。记之。 何为树：连通且不含圈的图称为树。 图T=(V,E),|V|=n,|</description>
+    </item>
+  </channel>
+</rss>

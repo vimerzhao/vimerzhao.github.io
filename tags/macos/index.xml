@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MacOS on 赵裕的博客</title>
+    <link>/tags/macos/</link>
+    <description>Recent content in MacOS on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/tags/macos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>色彩空间与取色器错误</title>
+      <link>/articles/color-picker-bug-on-imac/</link>
+      <pubDate>Fri, 07 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/color-picker-bug-on-imac/</guid>
+      <description>背景 同事反馈，用我们的框架绘制了一个纯红色（RGB为#FF0000）的区域，使用取色器却无法取到正确的值，其他颜色也基本都会有一定程度的误差。 我尝试了一下，确实会出现这个情况，这里的取色器可以是： ph</description>
+    </item>
+    <item>
+      <title>定制Mac的输入法切换按键为左Shift</title>
+      <link>/articles/change-input-method-with-left-shift/</link>
+      <pubDate>Mon, 08 Nov 2021 12:56:59 +0800</pubDate>
+      <guid>/articles/change-input-method-with-left-shift/</guid>
+      <description>目前，自己用的是搜狗输入法和Spacemacs，发现高概率偶现一个问题： 每次都要重启Emacs才能解决，十分蛋疼！！！ 于是，想着是不是只有搜狗+Emacs才会有这个问题，因为： 其他场景（包括Vim）都</description>
+    </item>
+    <item>
+      <title>解决MacBook2018过热问题</title>
+      <link>/articles/macbook-over-hot/</link>
+      <pubDate>Tue, 19 May 2020 10:21:13 +0800</pubDate>
+      <guid>/articles/macbook-over-hot/</guid>
+      <description>最近搬工位后给MacBook接了一个外接显示器，放在正中间，但是发现发热很严重。在查阅资料和尝试之后，发现把充电口和显示器接口放在右边比较好。左边好像有个Bug，能不用还是不要用了。 参考： Mac过热降</description>
+    </item>
+  </channel>
+</rss>

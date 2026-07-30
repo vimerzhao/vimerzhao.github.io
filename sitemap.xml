@@ -21,166 +21,220 @@
     <lastmod>2023-10-14T20:15:57+08:00</lastmod>
   </url><url>
     <loc>/articles/</loc>
-    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/bug/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/categories/</loc>
-    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/tags/chromium/</loc>
-    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
-    <loc>/categories/chromium/</loc>
-    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
-  </url><url>
-    <loc>/tags/code-review/</loc>
-    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
-  </url><url>
-    <loc>/tags/devtools/</loc>
-    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
-  </url><url>
-    <loc>/tags/gerrit/</loc>
-    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
-  </url><url>
-    <loc>/tags/oopif/</loc>
-    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
+    <loc>/tags/git/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/tags/</loc>
-    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2026-first-chromium-contribution-oopif-touch/</loc>
-    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8E-web/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/</loc>
-    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2026-first-research-on-openclaw/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2025-retrospective-and-some-thoughts/</loc>
-    <lastmod>2026-03-03T17:03:22+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/categories/%E7%94%9F%E6%B4%BB%E4%B8%8E%E9%9A%8F%E7%AC%94/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/webkit/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/</loc>
-    <lastmod>2025-12-18T10:25:36+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/categories/%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/clearing-up-a-messy-debt/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/android/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/linux/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/process-of-build-wpe-webkit-android/</loc>
-    <lastmod>2025-11-08T23:18:26+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/%E6%9E%84%E5%BB%BA/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/embedded-development-memo/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/cmake/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/use-protobuf-in-cmake/</loc>
-    <lastmod>2025-10-27T20:53:29+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/pitfalls-about-using-linux-as-dev-machine/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/windows/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/migrate-wxwork-chat-history-in-windows-vm/</loc>
-    <lastmod>2025-10-20T19:53:37+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/try-install-chromium-and-webkit-on-rk1126/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/setup-wpewebkit-2.46-debug-environment/</loc>
-    <lastmod>2025-07-02T15:08:09+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/%E8%B0%83%E8%AF%95/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/debug-records/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/configure-a-linux-development-environment/</loc>
-    <lastmod>2025-10-20T19:53:37+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/setup-webkit-debug-environment/</loc>
-    <lastmod>2025-07-02T15:08:09+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/review-webkit-build-process/</loc>
-    <lastmod>2024-09-30T18:09:23+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/skia/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/skia-debug-inline-pitfall/</loc>
-    <lastmod>2024-09-19T13:07:58+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/generate-clangd-index-for-webkit/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/categories/android/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/record-android-build-error-20240816/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/mac_windows_linux_usage_memo/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/optimize-mac-with-windows-development/</loc>
-    <lastmod>2024-09-19T13:07:58+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/c&#43;&#43;/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/the-tragedy-of-cpp-upgrade/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/vcpkg/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/vcpkg-source-code-of-install/</loc>
-    <lastmod>2024-06-17T10:27:21+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/empty-binary-cache-issue-of-vcpkg/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/vcpkg-introduction/</loc>
-    <lastmod>2024-06-17T10:27:21+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/an-error-about-building-icu-for-android-via-vcpkg/</loc>
-    <lastmod>2024-06-17T10:27:21+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/cmake-cookbook/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/cmake-details/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/cmake-pitfalls/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/how-to-use-release-apk-to-find-performance-issue/</loc>
-    <lastmod>2024-05-09T18:45:29+08:00</lastmod>
-  </url><url>
-    <loc>/articles/record-a-strange-issue-about-codelldb/</loc>
-    <lastmod>2024-03-21T10:29:34+08:00</lastmod>
-  </url><url>
-    <loc>/articles/review-skia-upgrade-m104-to-m122/</loc>
-    <lastmod>2024-03-13T14:32:06+08:00</lastmod>
-  </url><url>
-    <loc>/articles/common-sense-determines-efficiency/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/articles/support-wasm-multithread-in-vcpkg/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/articles/custom-cmake-in-android-gradle/</loc>
-    <lastmod>2024-06-13T19:11:25+08:00</lastmod>
-  </url><url>
-    <loc>/tags/vim/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/tags/vscode/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/record-a-strange-issue-about-codelldb/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/review-skia-upgrade-m104-to-m122/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/common-sense-determines-efficiency/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/support-wasm-multithread-in-vcpkg/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/custom-cmake-in-android-gradle/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/gradle/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/vim/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/from-vim-to-vscode-2023/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
-    <loc>/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <loc>/categories/flutter/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/configure-android-debug-environment-for-flutter-on-a-remote-server/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/set-up-flutter-debug-env-for-mac-and-ios/</loc>
-    <lastmod>2023-09-27T18:39:36+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/use-vscode-as-debug-frontend-of-chromium-project/</loc>
-    <lastmod>2023-07-24T12:34:55+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/traceability-of-ios-exception-pop-up/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/courses/</loc>
     <lastmod>2023-06-24T13:00:40+08:00</lastmod>
@@ -189,34 +243,46 @@
     <lastmod>2023-06-24T13:00:40+08:00</lastmod>
   </url><url>
     <loc>/articles/trip-to-beijing-reflections-on-technology-and-life/</loc>
-    <lastmod>2023-06-18T17:17:33+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/categories/%E8%AF%BB%E4%B9%A6%E4%B8%8E%E6%80%9D%E8%80%83/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/thoughts-on-feedback-after-a-class/</loc>
-    <lastmod>2023-06-11T22:56:48+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/%E5%86%99%E4%BD%9C%E4%B8%8E%E8%A1%A8%E8%BE%BE/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/categories/%E8%81%8C%E4%B8%9A%E4%B8%8E%E6%88%90%E9%95%BF/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/summarize-of-202305/</loc>
-    <lastmod>2023-06-04T12:29:53+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/about-quick-note/</loc>
-    <lastmod>2023-06-24T13:00:40+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/configure-android-dev-environment-on-a-remote-server/</loc>
-    <lastmod>2023-10-14T20:13:56+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/repairing-a-massage-pillow-with-a-dead-battery/</loc>
-    <lastmod>2023-04-29T22:28:26+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/is-the-era-of-mobile-clients-over/</loc>
-    <lastmod>2023-04-23T12:23:51+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
-    <loc>/tags/bug%E8%AE%B0%E5%BD%95/</loc>
-    <lastmod>2023-04-14T18:27:23+08:00</lastmod>
+    <loc>/tags/macos/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/color-picker-bug-on-imac/</loc>
-    <lastmod>2023-04-14T18:27:23+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/start-again-after-working-five-years/</loc>
-    <lastmod>2023-05-01T11:38:46+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/talks/flutter-design-impl-evolution/</loc>
     <lastmod>2023-04-01T16:55:30+08:00</lastmod>
@@ -225,1014 +291,1026 @@
     <lastmod>2023-04-01T16:55:30+08:00</lastmod>
   </url><url>
     <loc>/articles/impression-on-self-introduction/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/tags/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/tags/android%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/upgrade-xiaomi6-rom-manually/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/record-of-goolge-io-06-12/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/use-cmake-3.18.1-in-android-studio/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
-    <loc>/tags/android%E5%BC%80%E5%8F%91-cmake/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <loc>/tags/%E9%9A%8F%E7%AC%94/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/infinite-scenery-in-the-dangerous-peak/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
-    <loc>/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <loc>/tags/%E8%AF%BB%E4%B9%A6/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/how-to-read/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/under-epidemic-and-layoffs/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/cpp-function-callstack-backtrace-1/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/from-reactnative-to-flutter/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/the-born-of-a-book/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/research-about-note-software/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/change-input-method-with-left-shift/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/developing-cpp-with-android-sutdio/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/improve-efficiency-by-shuangpin/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/try-to-use-english-everywhere/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/thinking-about-vim-and-emacs/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/thinking-about-past-one-year/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
-  </url><url>
-    <loc>/tags/%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/tags/bugfix/</loc>
-    <lastmod>2026-07-25T11:20:46+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/fix-a-serious-flutter-engine-multithread-bug/</loc>
-    <lastmod>2026-01-30T14:21:51+08:00</lastmod>
-  </url><url>
-    <loc>/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/flutter-nested-scroll-conflict/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/categories/flutter/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/record-a-flutter-platform-view-bug/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/configure-hugo-asciidoc-blog/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/all-takenism-and-positivism/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/moral-of-developing-tools/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/android-profile-tool-bug-record/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/flutter-source-code-analyze-4/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
-    <loc>/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/articles/thinking-on-sprint/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/articles/flutter-source-code-analyze-3/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/articles/gitbook-install-record/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/articles/best-android-projector/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/articles/flutter-source-code-analyze-2/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/articles/macbook-external-display/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/articles/flutter-source-code-analyze-1/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/tags/%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/articles/maoxuan-kernel/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/articles/why-and-how-read-maoxuan/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/articles/self-struggle-and-historical-itinerary/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/articles/android-system-service-cache-analyze/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/articles/how-to-achieve-self-growth-in-business-development/</loc>
-    <lastmod>2023-05-01T11:38:46+08:00</lastmod>
-  </url><url>
-    <loc>/articles/the-technician_s-guide-to-writing/</loc>
-    <lastmod>2023-04-29T22:21:16+08:00</lastmod>
-  </url><url>
-    <loc>/articles/clean-my-room/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/articles/eat-that-frog/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/articles/android-remote-debug-method/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <loc>/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/thinking-on-sprint/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/flutter-source-code-analyze-3/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/gitbook-install-record/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/best-android-projector/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/flutter-source-code-analyze-2/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/macbook-external-display/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/flutter-source-code-analyze-1/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/maoxuan-kernel/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/why-and-how-read-maoxuan/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/self-struggle-and-historical-itinerary/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/android-system-service-cache-analyze/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/how-to-achieve-self-growth-in-business-development/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/the-technician_s-guide-to-writing/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/clean-my-room/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/eat-that-frog/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/articles/android-remote-debug-method/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/the-skinny-on-time-management/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/macbook-over-hot/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/evolution-of-plugin-framework/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/android-make-debuggable/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2020-youth-day/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/mac-osx-config-record/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/sanguo-caocao/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/blog-refresh-bugfix/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/android-p-source-code-build/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/base-and-skill-of-presentation/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/categories/android/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/solve-of-android-p-inline-opt/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/virtualbox/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/virtualbox-lose-64-bit/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/software-similarity-tester/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/a-weird-bug-record/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/read-twint/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/my-tmux-manual/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/presentation-zen/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/add-recent-task-for-droidplugin/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/sports-and-diet/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/%E5%81%A5%E5%BA%B7/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/android-proguard-problem/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/java/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/abstractmethoderror-solve/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/yujun-product-methodology/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/proguard-inline-optimieze-make-stacktrace-loss/</loc>
-    <lastmod>2026-07-25T11:20:46+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/proguard-result-in-nosuchmethodexception/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/history-of-my-blog/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/zen-of-android-debug-log/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/secure-file-transfer-base-on-android-signature/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/bilibili-report-2020-02/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/solve-unsatisfiedlinkerror-is-32-bit-instead-of-64-bit/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/how-an-economy-grows-and-why-it-crashes/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/keep-webview-from-gc/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/apk-size-opt-summary/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/there-are-chances-somewhere/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/base-ability/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/amusing-ourselves-to-death/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/opt-apk-size-by-remove-debuginfo/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/learn-writing-by-zhouzuoluo/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2019-vichiku-summary-2/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2019-vichiku-summary/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2019-end/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/pead/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/earthbound-china/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/tao-and-art-of-writing-tech-docs/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/git-practice/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/working-effectively-with-legacy-code/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/git-internals/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/model-of-thinking/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/about-netease-staff/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/introduction-of-youglish/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/flutter/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/cross-platform-mobile-ui-development-evolution/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/financing-introduction/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/linuxmintpei-zhi-zhi-nan/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/zhong-xin-ren-shi-markdown/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/hexopei-zhi-zhi-nan/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/you-na-xie-zhi-de-jian-chi-de-hao-xi-guan/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/jian-shen-shi-yi-chang-xiu-xing/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/cheng-xu-yuan-jian-shen-zhi-nan/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/android-excludefromrecentscai-keng-zhi-nan/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/zi-ji-dong-shou-xie-shi-jian-zong-xian-eventbus/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/xiao-cheng-xu-yun-kai-fa-shi-zhan-yi-tian-da-jian-xiao-xing-lun-tan/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/zi-ji-dong-shou-xie-androidcha-jian-hua-kuang-jia/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/yuan-ma-yue-du-huan-jing-opengrokda-jian/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/batpi-chu-li-jian-jie-windowszi-dong-hua-zhi-dao/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/xin-shou-cheng-xu-yuan-de-e-xi-bu-liao-jie-zi-ji-diao-yong-de-api/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/androidkai-fa-textviewzhong-gettext-fang-fa-cai-keng-zhi-nan/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/zai-teng-xun-shi-xi-yi-nian-wo-xue-dao-liao-shi-yao/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/si-nian-qian-xie-de-da-xue-gui-hua/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/qu-kuai-lian-zhao-pin-xin-xi-pa-qu-yu-fen-xi/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/ni-zhen-de-xu-yao-dan-yuan-ce-shi-ma/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/yi-zi-ji-dong-shou-xie-qu-kuai-lian/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/ji-suan-ji-cheng-xu-zhong-bug-de-lei-xing-da-quan-yu-li-shi/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/za-ji-chu-dao-shen-zhen/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/mei-ri-yi-ti-a-regular-expression-matcher/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/mei-ri-yi-ti-100-doors/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/dui-yu-cheng-chang-ping-jing-de-si-kao/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/android6-0yuan-ma-bian-yi-jiao-cheng/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017nian-zhong-zong-jie/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/java-urllei-cai-keng-zhi-nan/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/android-rssyue-du-qi-kai-fa-ji-lu/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/linuxmintxiu-gai-cheng-xu-tu-biao-fen-lei/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/androidyin-shi-pin-bo-fang-qi-kai-fa-er-mvpmo-shi-shi-jian/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/androidyin-shi-pin-bo-fang-qi-kai-fa-yi-gong-neng-shi-xian/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/androidhua-ci-fan-yi/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/linuxmint-matezhong-wifizi-dong-guan-bi-wen-ti/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/a-li-360xiao-zhao-mian-shi-zong-jie/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/%E9%9D%A2%E8%AF%95/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/quan-mian-liao-jie-androidre-xiu-fu-ji-zhu/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/%E7%83%AD%E4%BF%AE%E5%A4%8D/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/presentationde-yi-ge-wu-qu/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/dalvikzhi-lei-jia-zai-yuan-ma-fen-xi/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/re-bu-ding-qzonefang-an-zai-dalvikxu-ni-ji-shang-de-shi-xian/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/andfixyuan-ma-jie-xi/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/ni-ming-nei-bu-lei-dao-zhi-re-bu-ding-crash/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/instantrunyuan-li-qian-xi/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/re-xiu-fu-zhi-zi-yuan-geng-xin-de-shi-xian/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/20xing-dai-ma-da-jian-wei-xin-liao-tian-ji-qi-ren/</loc>
-    <lastmod>2026-03-18T14:23:12+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/re-bu-ding-tinkerfang-an-shi-xian/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/ru-he-guan-bi-wang-ye-xuan-fu-chuang/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/re-bu-ding-qzonefang-an-zai-artxu-ni-ji-shang-de-shi-xian/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/aishi-zhan-da-jian-ke-fu-ji-qi-ren/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/zhang-shang-da-gong-di-er-ban-yi-jing-pin-fen-xi-yu-cao-tu/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/activityzhi-jie-tui-chu-ying-yong-xian-xiang/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/pythonpa-chong-shi-zhan-mei-zi-tu/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/python/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/vimjian-pan-bu-ju-de-qi-yuan/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/virtualboxxia-debianzeng-qiang-gong-neng-de-an-zhuang/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/linuxxia-pei-zhi-jdkban-ben-jiao-cheng/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/guan-yu-ying-jie-sheng-xiang-mu-jing-yan-de-si-kao/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017a-li-shi-xi-sheng-mian-shi-zong-jie/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/jie-zhu-vimhong-chu-li-zhong-fu-gong-zuo/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/xue-xi-hotspot-yi-launcher/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/yu-virtualboxxia-linuxxu-ni-ji-gong-xiang-wen-jian/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/openjdk7u40bian-yi-yu-diao-shi-shi-zhan/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/virtualboxxia-xu-ni-dian-nao-mei-you-guang-qu/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/cao-zuo-xi-tong-shang-ji-zong-jie/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017teng-xun-shi-xi-sheng-mian-shi-zong-jie/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/gvimzhong-glib-gobject-warningwen-ti-de-jie-jue-ban-fa/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/ji-nian-yi-ge-bo-ke-quan-zi-dong-guan-li/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/c/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/da-duan-big-endian-yu-xiao-duan-little-endian/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/tcplian-jie-de-jian-li-yu-shi-fang/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/cyu-yan-shi-xian-ipv6zhua-bao-cheng-xu/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/bi-shi-zong-jie-line2018shi-xi-sheng-ruan-jian-gong-cheng-shi/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/vimde-zhe-xue/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/bi-shi-zong-jie-xi-cheng-2018shi-xi-sheng-an-zhuo-kai-fa-gong-cheng-shi/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/build-your-own-lispzhong-de-xian-yan-sui-yu/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/lisp/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/guan-yu-c-c-zhong-zhi-zhen-zi-zeng-yun-suan-fu-de-si-kao/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/cai-keng-ji-linuxmint18zi-ti-bian-wei-kai-ti-de-xiu-fu/</loc>
-    <lastmod>2026-03-18T14:20:47+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/shi-jian-fu-za-du-ji-suan-lei-ti-mu-liang-ze/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/cai-keng-ji-cong-c-bian-liang-dao-javayin-yong/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/wai-pai-xu/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/cyu-yan-zhong-bu-dai-de-dai-ma-kuai/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/cyu-yan-hong-zhan-kai-de-shun-xu-wen-ti/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-git-requires-a-password-for-each-commit/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-hexo-next-cannot-get-tags-problem-handling-when-building-a-blog/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-the-wc-command-counts-the-number-of-lines-in-all-files-in-a-directory/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-thoughts-after-reading-android-project-practice-mobile-security-guard/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-linuxmint-custom-shortcut-keys/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-uml-viewing-tool-for-java-reverse-engineering-retrieval-records/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-classnotfoundexception-a-reason-under-idea/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-classnotfoundexception-i-have-a-saying-that-i-must-say-when-i-sell-batches/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-the-wonderful-use-of-diff-command/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-how-to-apply-for-a-google-account/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-thoughts-after-reading-two-weeks-of-homemade-scripting-language/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-java-development-picture-browser-record/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-spf13-vim-show-neocomplete-requires-th-lua-support/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-spf13-vim-installed-successfully/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-remember-the-next-garbled-code-incident-in-linux/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-common-lisp-learning-resources-collection/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-how-to-edit-pdf-file-directory-under-linux/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-installing-lispbox-appears-error-while-loading-shared-libraries-libjpeg-so-62-cannot-open-shared-obj/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-modify-keyboard-mapping-under-linux/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-remember-a-strange-computer-glitch/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-the-difference-between-baidu-and-google-the-importance-of-english-search/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-your-habits-today-determine-where-you-will-be-in-the-future/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-a-good-java-class-on-coursera/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2017-unlimited-use-of-ppt-to-pdf-function/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016nian-zhong-zong-jie/</loc>
-    <lastmod>2023-04-01T16:49:27+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-using-hexo-to-build-a-github-blog-under-linux/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-a-little-thing-a-little-emotion/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-create-wifi-hotspot-in-linux/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-several-useful-screen-recording-software-under-linux/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-secrets-of-hacker-disassembly-2e-recommended-book-list/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-pl-0-compiler-practice-postscript/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-thoughts-after-reading-just-for-fun/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-the-beauty-of-programming/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-postscript-to-analysis-of-a-c-compiler/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-virtualbox-installation-ms-dos6-22-graphic-tutorial/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-when-using-git-in-windows-warning-lf-will-be-replaced-by-crlf/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-using-hexo-how-do-i-update-my-blog-if-i-change-my-computer/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-linuxmint-configuration-github-graphic-tutorial/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-linux-problem-handling-stdio-h-no-such-file-or-directory-linux/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-a-brief-discussion-on-japanese-technical-books/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-install-win10-and-linux-dual-systems-in-uefi-mode/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-compilation-principles-in-practice-calculator/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-dosbox-automatic-mounting-skills/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/javascript/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-writing-small-games-with-js-1-game-framework/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-eternal-words-to-awaken-the-world-written-for-programmers-more/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-phrases-direct-phrases-and-handles/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-a-little-complaint-about-the-so-called-unnecessary-knowledge/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-string-matching-reviewing-a-code-from-my-freshman-year/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-git-basic-practical-tutorial-picture-and-text/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-programmer-s-self-cultivation/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-how-to-merge-multiple-ppts/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-collection-of-excellent-gadgets/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-vs2015-link-error/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-visualstudio-color-scheme/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-ai-snake-2/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-install-linux-dual-system-on-win7/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-make-a-reading-management-app/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-processing-basics-of-painting/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-compilation-of-resources-collected-during-the-development-of-pocket-work/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-compilation-of-sophomore-year-s-blogs-on-csdn/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-android-uses-httpurlconnection-to-implement-simulated-login/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-one-possibility-that-androidstudio-cannot-parse-r/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-android-login-interface-implementation/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-blog-park-custom-template/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-httpclient-jsoup-simulates-logging-into-the-academic-affairs-office-and-obtaining-the-class-schedule/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-java-learning-roadmap/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-the-role-of-ctrl-b-in-sublime-writing-markdown-files/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
+  </url><url>
+    <loc>/tags/matlab/</loc>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-the-basic-structure-of-mathematical-modeling-competition-papers/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-handling-the-problem-of-gitbash-uploading-code-not-being-counted-as-contribution/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-android-knowledge-system-diagram/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-java-file-processing-separating-national-province-city-and-county-ids-data-from-zefeng-weather/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-poj3484-showstopper-two-points/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-uva1555-garland-derivation-two-points/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-poj-3662-telephone-lines-two-points-shortest-path/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-poj2010-moo-university-financial-aid-dichotomy/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-matlab-custom-configuration/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-poj-2976-dropping-tests-maximizing-the-mean-or-01-integer-programming/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-poj3258-river-hopscotch/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-poj3273-monthly-expense/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-this-host-does-not-support-64-bit-guest-operating-systems-problem-record/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-poj-2457-part-acquisition/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-poj2456-aggressive-cows/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-gcd-xor-acm-icpc-dhaka-2013-uva12716/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-irrelevant-elements-acm-icpc-neerc-2004-uva1635/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-java-naming-conventions/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-unification-of-shortcut-keys-summary-on-the-use-of-development-tools/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-java-multithreading-practice/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-eclipse-code-auto-completion-configuration-method/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-examples-of-chapter-7-of-the-purple-book-violent-solution-method/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-recommended-pdf-readers-under-linux/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-android-virtual-machine-classic-qemu-does-not-support-smp-problem-record/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-records-of-some-minor-problems-in-building-android-development-environment/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-a-brief-analysis-of-the-elementary-snake-ai-algorithm/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-32-9-1-static-lookup-table/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structures-and-basic-methods-in-machine-games-2-examples-of-recursion-and-backtracking-methods/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-and-basic-methods-in-machine-games-3-nine-palace-rearrangement-problem-of-game-tree-s/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-and-basic-methods-in-machine-games-1-summary/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-a-brief-analysis-of-the-basic-ai-backgammon-algorithm/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-28-7-4-graph-connectivity-issues/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-22-6-4-trees-and-forests/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-implementation-in-c-language-29-7-5-directed-acyclic-graph-and-its-applicat/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-26-7-2-storage-structure-of-graph/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-27-7-2-graph-traversal/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-twenty-three-6-5-trees-and-equivalence-prob/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-24-6-6-huffman-tree-and-its-application/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-25-6-7-backtracking-method-and-tree-traversal/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-21-6-3-2-clue-binary-tree/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-30-7-6-shortest-path/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-31-8-3-boundary-marking-method/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-implemented-in-c-language-20-6-3-1-traversing-the-binary-tree/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-18-5-3-compressed-storage-of-matrices/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-19-5-5-5-6-5-7-generalized-table/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-seventeen-5-1-5-2-array-definition-sequential-rep/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-16-4-3-application-examples-of-strings/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-13-3-5-discrete-event-simulation/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-14-4-1-4-2-string-type-definition-representation/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-implementation-in-c-language-15-4-3-string-pattern-matching-algorithm/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-12-3-4-sequential-representation-and-implementati/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-11-3-4-chain-representation-and-implementation-of/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-8-3-2-stack-application-examples-maze-solving-and/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-9-expansion-ai-snake-derived-from-the-maze-proble/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-10-3-3-implementation-of-stack-and-recursion/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-subime-learning-record/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-6-2-4-representation-and-addition-of-one-variable/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-7-3-1-linear-implementation-and-application-examp/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-3-2-3-static-linked-list-of-linked-representation/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-4-2-3-circular-linked-list-and-doubly-linke/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-5-2-3-redefining-linear-linked-lists-and-their-ba/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-2-2-3-linked-representation-of-linear-list-and-im/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-preface/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-data-structure-algorithm-c-language-implementation-1-2-2-sequential-representation-and-implementatio/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-c-language-to-implement-penna-model/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-random-thoughts-on-programming/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-how-to-use-matlab-to-improve-efficiency/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-c-language-uses-object-oriented-thinking-to-write-greedy-snake/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-summary-of-programming-habits-and-coding-style-c-cpp-updated/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-system-shortcut-keys-for-each-operating-system-updated/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-learn-more-about-the-memset-function/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-simple-two-dimensional-cellular-automaton-matlab-implementation/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-first-low-mood-after-a-month-of-school/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-matlab-implementation-of-koch-curve-and-koch-snowflake/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-cantor-three-episodes/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-poj-question-classification-reprinted/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-c-language-to-implement-snake-source-code/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-working-completely-with-linux-author-wang-yin/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-windows-keymap-registry-memo/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2016-list-of-essential-software-for-windows-installation/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2015-minimum-spanning-tree-problem-prim-algorithm-and-kruskal-algorithm-implementation-matlab-language-im/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2015-one-hundred-lines-to-write-small-world-network-and-scale-free-network/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/2015-three-examples-of-matlab-for-loop-optimization/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>/articles/change-major-record/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
+    <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url>
 </urlset>

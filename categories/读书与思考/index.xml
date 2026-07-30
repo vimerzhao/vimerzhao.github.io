@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>读书与思考 on 赵裕的博客</title>
+    <link>/categories/%E8%AF%BB%E4%B9%A6%E4%B8%8E%E6%80%9D%E8%80%83/</link>
+    <description>Recent content in 读书与思考 on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/categories/%E8%AF%BB%E4%B9%A6%E4%B8%8E%E6%80%9D%E8%80%83/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>北京之行：技术与人生的思考</title>
+      <link>/articles/trip-to-beijing-reflections-on-technology-and-life/</link>
+      <pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/trip-to-beijing-reflections-on-technology-and-life/</guid>
+      <description>桃李春风一杯酒，江湖夜雨十年灯。 就着参加WOT技术大会的机会，和一些朋友约了饭，也是第一次来北京，感想颇多，记录一下。 饭局1 周五下午到北京，晚上约了几个高中同学一起吃饭，总体感想： 高中班上，县城的同学</description>
+    </item>
+    <item>
+      <title>五月空档期与一些思考</title>
+      <link>/articles/summarize-of-202305/</link>
+      <pubDate>Sat, 03 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/summarize-of-202305/</guid>
+      <description>五月没有写文章，一方面是五一假期后错峰去了趟重庆，游玩强度有点大。月中有一些输出，但感觉没有特别好的笔记/文章管理手段，写好了也没能高效地同步发表。下旬则因工作和一些思想的懈怠而停滞。 应该是这个月，又</description>
+    </item>
+    <item>
+      <title>如何高效阅读书籍</title>
+      <link>/articles/how-to-read/</link>
+      <pubDate>Wed, 04 May 2022 00:00:00 +0000</pubDate>
+      <guid>/articles/how-to-read/</guid>
+      <description>一、导语 为什么要读书?一般来说动机可以分为以下3类： 纯粹获取信息 在获取信息的基础上内化为自己的能力，比如：修正自己的思想、应用在实践中 陶冶情操、消遣，多适用于文学类书籍 二、如何读书 在探讨这个问题之前，</description>
+    </item>
+    <item>
+      <title>一本书的诞生</title>
+      <link>/articles/the-born-of-a-book/</link>
+      <pubDate>Sat, 15 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>/articles/the-born-of-a-book/</guid>
+      <description>零、背景 今天(2022-01-12)对我来说应该算是一个特别的日子，自己花了小半年撰写的《Flutter内核源码剖析》终于出版了。 思来想去，还是应该写点什么。毕竟，这件事情倾注了自己不少心血，一条简简</description>
+    </item>
+    <item>
+      <title>关于过去一年的思考（2020/9～2021/9）</title>
+      <link>/articles/thinking-about-past-one-year/</link>
+      <pubDate>Tue, 05 Oct 2021 17:39:41 +0800</pubDate>
+      <guid>/articles/thinking-about-past-one-year/</guid>
+      <description>去年这个时候，刚刚活水（即公司内部的岗位调动）到新的部门，当时写了一篇《自我奋斗与历史进程》，里面提到了接下来一年的目标： 交付更有价值的工作成果 成体系地输出自己的影响力 对周遭的变化有更强的控制和适应能</description>
+    </item>
+    <item>
+      <title>拿来主义与实证精神</title>
+      <link>/articles/all-takenism-and-positivism/</link>
+      <pubDate>Sun, 20 Dec 2020 19:49:29 +0800</pubDate>
+      <guid>/articles/all-takenism-and-positivism/</guid>
+      <description>由于工作原因，最近经常需要调研业界方案，因为很多很多东西没有必要重复造轮子，如果别人已经把问题解决了，那么直接使用是没啥问题的，这大概就是所谓的拿来主义。 其实纵观历史，尤其是近代，拿来主义其实不少，马</description>
+    </item>
+    <item>
+      <title>做工具要有&#34;码德&#34;</title>
+      <link>/articles/moral-of-developing-tools/</link>
+      <pubDate>Thu, 10 Dec 2020 19:47:27 +0800</pubDate>
+      <guid>/articles/moral-of-developing-tools/</guid>
+      <description>最近在搞别的事情，没时间写公众号了，不过遇到值得写的，还是要草草记录一下的。 这周经历了一件比较奇葩的事情，大致时间线如下： 周四下午的时候，发现自己一个脚本使用的maven发布功能有一个奇怪的问题：正常</description>
+    </item>
+    <item>
+      <title>毛选精读（一）内核：《实践论》与《矛盾论》</title>
+      <link>/articles/maoxuan-kernel/</link>
+      <pubDate>Sat, 17 Oct 2020 23:44:11 +0800</pubDate>
+      <guid>/articles/maoxuan-kernel/</guid>
+      <description>概述 个人认为，读毛选应该先读《实践论》和《矛盾论》，这两篇发表于1937年下旬的文章，上承土地革命战争（1927～1937），下启启抗日战争和解放战争。在过往的十年里，共产党先后经历了右倾机会主义和左</description>
+    </item>
+    <item>
+      <title>为什么读毛选以及怎么读毛选</title>
+      <link>/articles/why-and-how-read-maoxuan/</link>
+      <pubDate>Sat, 10 Oct 2020 23:41:01 +0800</pubDate>
+      <guid>/articles/why-and-how-read-maoxuan/</guid>
+      <description>为什么读 领袖发家史、中国近代史 首先，《毛选》可以说是领袖的一本自传，也从侧面反映了近代中国从第一次国内革命战争时期到文化大革命时期，70年波澜壮阔的历史。 领袖曾在17岁作诗： 《七绝·改诗赠父亲》 孩儿立</description>
+    </item>
+    <item>
+      <title>自我奋斗与历史进程</title>
+      <link>/articles/self-struggle-and-historical-itinerary/</link>
+      <pubDate>Fri, 09 Oct 2020 20:18:33 +0800</pubDate>
+      <guid>/articles/self-struggle-and-historical-itinerary/</guid>
+      <description>一 人生的道路虽然漫长，但要紧处常常只有几步，特别是当人年轻的时候。 没有一个人的生活道路是笔直的，没有岔道的，有些岔道口譬如政治上岔道口，个人生活上的岔道口，你走错一步，可以影响人生的一个时期，也可以影</description>
+    </item>
+    <item>
+      <title>技术人员的写作指南</title>
+      <link>/articles/the-technician_s-guide-to-writing/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>/articles/the-technician_s-guide-to-writing/</guid>
+      <description>本文详细论述了3个问题： 为什么技术人员需要坚持写作？–动机篇。 需要做哪些准备？–准备篇。 写作的长期实践中应该注意哪些问题？–技巧篇。 一、动机篇 有人说费曼学习法的本质就是：“通过向别人清楚地解说一件事，</description>
+    </item>
+    <item>
+      <title>读书:《时间管理：如何充分利用你的24小时》</title>
+      <link>/articles/the-skinny-on-time-management/</link>
+      <pubDate>Sat, 23 May 2020 09:43:08 +0800</pubDate>
+      <guid>/articles/the-skinny-on-time-management/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>老版《三国演义》中的曹操</title>
+      <link>/articles/sanguo-caocao/</link>
+      <pubDate>Sat, 02 May 2020 20:14:57 +0800</pubDate>
+      <guid>/articles/sanguo-caocao/</guid>
+      <description>近来看了一篇鲍国安先生在拍摄《三国演义》期间的创作手记，不禁感慨这才是一个演员的自我修养呀，比现在这些小鲜肉不知道高到哪里去了。这篇手记如果湮没在各种混杂的信息中实在太可惜，故此整理出来，也可警示自己</description>
+    </item>
+    <item>
+      <title>表达的世界观基础与方法论建设</title>
+      <link>/articles/base-and-skill-of-presentation/</link>
+      <pubDate>Sat, 25 Apr 2020 20:13:50 +0800</pubDate>
+      <guid>/articles/base-and-skill-of-presentation/</guid>
+      <description>编号004。 核心内容。 为什么想讲这个主题，起因之一就是自己第一次做技术分享时效果就很差，后面自己对此进行了一些反思。除此之外，自己也听过不少其他人（主要是技术同学）的分享，也会发现一些不足之处。所以我</description>
+    </item>
+    <item>
+      <title>读书:《演说之禅》</title>
+      <link>/articles/presentation-zen/</link>
+      <pubDate>Sun, 05 Apr 2020 09:32:45 +0800</pubDate>
+      <guid>/articles/presentation-zen/</guid>
+      <description>概览 这本书的副标题叫做“职场必知的幻灯片秘技”，但感觉有点不合适，在我看来，书里提倡的思想只有真正的大师才能用，但是在职场，很多时候还是要按照规矩来。如果不是绝对的权利压制，还是不要妄用这本书的全部思</description>
+    </item>
+    <item>
+      <title>读书:《运动饮食1:9》</title>
+      <link>/articles/sports-and-diet/</link>
+      <pubDate>Sun, 29 Mar 2020 09:31:36 +0800</pubDate>
+      <guid>/articles/sports-and-diet/</guid>
+      <description>疫情期间基本荒废了之前的锻炼成果，最近要开始恢复锻炼了，所以选了一本书温习下基本知识。 纯运动无法减肥 胖的本质是吃的太多，摄入&amp;gt;消耗 有氧运动会促进食欲，影响减肥效果 不要神化基础代谢 运动如果以减肥为</description>
+    </item>
+    <item>
+      <title>读书:《俞军产品方法论》</title>
+      <link>/articles/yujun-product-methodology/</link>
+      <pubDate>Sun, 22 Mar 2020 09:30:19 +0800</pubDate>
+      <guid>/articles/yujun-product-methodology/</guid>
+      <description>正文 这两周利用零散时间粗读了《俞军产品方法论》一书，在查阅资料的时候发现这本书的豆瓣评分从一开始的8.8(2019-12-24)变成了现在(2020-03-22)的7.9，也是比较符合我自己的阅读感受</description>
+    </item>
+    <item>
+      <title>读书:《小岛经济学》</title>
+      <link>/articles/how-an-economy-grows-and-why-it-crashes/</link>
+      <pubDate>Sun, 16 Feb 2020 09:27:34 +0800</pubDate>
+      <guid>/articles/how-an-economy-grows-and-why-it-crashes/</guid>
+      <description>如果将这本书仅仅看作经济学的入门读物，我觉得有失公允，因为这本书对于当下的很多经济现象做了深刻的剖析，且非常鲜明的表达了自己的观点。 + From:推荐序 概览 一开始以为这本书是入门读物，读完有三点感受： 前</description>
+    </item>
+    <item>
+      <title>成为一个完整的社会人</title>
+      <link>/articles/base-ability/</link>
+      <pubDate>Thu, 06 Feb 2020 20:11:55 +0800</pubDate>
+      <guid>/articles/base-ability/</guid>
+      <description>引言 本文是笔者的一些自我反思，工作一年半以来，不足之处的复盘。整理成文，以告过往，以警将来，希望对别人亦有所帮助。 本文将一个完整的社会人应该具备的能力分成了两大类：必修和选修。和大学里面的课程类似，必</description>
+    </item>
+    <item>
+      <title>读书:《娱乐至死》</title>
+      <link>/articles/amusing-ourselves-to-death/</link>
+      <pubDate>Sat, 01 Feb 2020 09:24:31 +0800</pubDate>
+      <guid>/articles/amusing-ourselves-to-death/</guid>
+      <description>今天要和大家分享的书是尼尔·波兹曼的《娱乐至死》。娱乐至死，这个词我们或多或少都有耳闻，虽然这本书出版于1985年，并且讨论的目标主要是电视机娱乐，但直到互联网时代，这个观念才逐渐为人所熟知。用书中的</description>
+    </item>
+    <item>
+      <title>读书:《学会写作》</title>
+      <link>/articles/learn-writing-by-zhouzuoluo/</link>
+      <pubDate>Thu, 16 Jan 2020 09:21:10 +0800</pubDate>
+      <guid>/articles/learn-writing-by-zhouzuoluo/</guid>
+      <description>最近利用两个周末的时间读完了一本书，叫《学会写作》，豆瓣信息如下： 作者: 粥左罗 + 出版社: 人民邮电出版社 + 出品方: 智元微库 OPEN MIND + 副标题: 自我进阶的高效方法 + 出版年: 2019-5 + 页数: 280 + 定价: 59元 + 装帧: 平装</description>
+    </item>
+    <item>
+      <title>读书:《刻意练习》</title>
+      <link>/articles/pead/</link>
+      <pubDate>Sat, 28 Dec 2019 09:19:39 +0800</pubDate>
+      <guid>/articles/pead/</guid>
+      <description>这本书豆瓣评分7.9，最大的问题就是信息密度太低，大概就是一篇几千字的公众号文章能讲明白的事情，作者却用了大量篇幅去举例，导致这个命题的信息量膨胀成了一本书。此外，这本的结构划分也不是很合理，导致很多</description>
+    </item>
+    <item>
+      <title>读书:《乡土中国》</title>
+      <link>/articles/earthbound-china/</link>
+      <pubDate>Sun, 22 Dec 2019 09:18:06 +0800</pubDate>
+      <guid>/articles/earthbound-china/</guid>
+      <description>概览 本书是费孝通1937年在云南教书时，从《乡村社会学》这门课的讲义中整理而来，书中的观点都是作者实地考察和教学思考的结果，充分分析了乡村社会的特点及其成因，豆瓣评分9.2，当之无愧的大师之作。不同于</description>
+    </item>
+    <item>
+      <title>文档编写的术与道</title>
+      <link>/articles/tao-and-art-of-writing-tech-docs/</link>
+      <pubDate>Thu, 19 Dec 2019 19:38:07 +0800</pubDate>
+      <guid>/articles/tao-and-art-of-writing-tech-docs/</guid>
+      <description>文档的范围很广，本文特指 开发人员撰写的包含基本产品背景和主要技术设计的文档 。 世界观 为什么要写技术文档 对于这个问题，我个人觉得很容易回答，写技术文档可以帮助团队完成 当前的信息共享和长期的知识传承 。对于个</description>
+    </item>
+    <item>
+      <title>信息、思考、知识</title>
+      <link>/articles/model-of-thinking/</link>
+      <pubDate>Mon, 25 Nov 2019 20:01:28 +0800</pubDate>
+      <guid>/articles/model-of-thinking/</guid>
+      <description>最近在思考的一个问题，当一件热点事件发生的时候，如何能够透过各种声音看到问题的本质，并给出客观、全面的评价，这其实是一件非常困难的事情，我觉得必须具备三要素。 知识 知识就像机器学习里面的训练集。放到具体</description>
+    </item>
+    <item>
+      <title>Presentation的一个误区</title>
+      <link>/articles/presentationde-yi-ge-wu-qu/</link>
+      <pubDate>Mon, 28 Aug 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/presentationde-yi-ge-wu-qu/</guid>
+      <description>Presentation的一个误区 做技术分享的一次事故及其中得到的教训。 今天做了一个技术分享，感觉效果不是很好。我思考了一下，排除分享的主题是自己无法决定的。一个很大的错误在于自己把需要展示的内容分散</description>
+    </item>
+    <item>
+      <title>《黑客反汇编揭秘》(2e)推荐书单</title>
+      <link>/articles/2016-secrets-of-hacker-disassembly-2e-recommended-book-list/</link>
+      <pubDate>Wed, 21 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-secrets-of-hacker-disassembly-2e-recommended-book-list/</guid>
+      <description>Must-Read Books and Other References Books on C/C++: The C Programming Language by Brian W. Kernighan and Dennis M. Ritchie. Prentice Hall, 1988. The author’s description of C as defined by American National Standard Institute (ANSI), also called the “Old Testament.” It is old-fashioned but remains a must-read. This book also has a home page: http://cm.bell-labs.com/cm/cs/cbook/index.html. 1001 Visual C++ Programming Tips, first edition, by Kris Jamsa. Muska &amp;amp; Lipman, 2001. Not the “Old Test</description>
+    </item>
+    <item>
+      <title>《Just for Fun》读后感</title>
+      <link>/articles/2016-thoughts-after-reading-just-for-fun/</link>
+      <pubDate>Sun, 11 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-thoughts-after-reading-just-for-fun/</guid>
+      <description>这本书有一个长长的中文名字：《只是为了好玩：Linux之父林纳斯自传》，所以博客标题我就用英文书名了。 读罢此书，不禁想起一位长者的名言：“一个人的成功当然要靠自我奋斗，但也要考虑历史的进程”。可以说L</description>
+    </item>
+    <item>
+      <title>编程的美妙</title>
+      <link>/articles/2016-the-beauty-of-programming/</link>
+      <pubDate>Sun, 11 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-the-beauty-of-programming/</guid>
+      <description>摘自Linus自传《Just for fun》 为什么对编程这么狂热，我自己也解释不来。我姑且说说看吧：在编程的人看来，编程是世上最有意思的事情了。它要比国际象棋之类的游戏复杂得多，你想要什么规则都可以自己设定</description>
+    </item>
+    <item>
+      <title>浅谈日系技术书籍</title>
+      <link>/articles/2016-a-brief-discussion-on-japanese-technical-books/</link>
+      <pubDate>Fri, 02 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-a-brief-discussion-on-japanese-technical-books/</guid>
+      <description>最近正在读**《C程序性能优化&amp;mdash;20个实验与达人技巧》**，真是又大开眼界了一次。不禁想起最近读过的几本日系技术书籍。 首先不得不说的就是这本书和很像的很早之前看过的一本叫**《短码之美》的</description>
+    </item>
+    <item>
+      <title>一点牢骚------关于所谓的“不必要知识”</title>
+      <link>/articles/2016-a-little-complaint-about-the-so-called-unnecessary-knowledge/</link>
+      <pubDate>Tue, 08 Nov 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-a-little-complaint-about-the-so-called-unnecessary-knowledge/</guid>
+      <description>今天看书，读到一节，如下： 这是LL(1)分析的提取左公共因子啊！但我觉得没有系统学过编译原理的人就算是看懂，理解大概也不深刻，很容易忘记吧！而这本书的前言却如是写到： 不知道是作者对自己的讲解有多自信！</description>
+    </item>
+    <item>
+      <title>编程碎碎念</title>
+      <link>/articles/2016-random-thoughts-on-programming/</link>
+      <pubDate>Sun, 29 May 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-random-thoughts-on-programming/</guid>
+      <description>2016-5-29： 选择一款适合编程的字体，一款且仅一款。我用的是Consolas，因为微软自带，一般的编辑器都会自带，配置简单。而且编程本来就不需要什么特别的字体，满足等宽等要求就足够了。具体介绍可</description>
+    </item>
+  </channel>
+</rss>

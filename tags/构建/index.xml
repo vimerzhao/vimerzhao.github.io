@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>构建 on 赵裕的博客</title>
+    <link>/tags/%E6%9E%84%E5%BB%BA/</link>
+    <description>Recent content in 构建 on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/tags/%E6%9E%84%E5%BB%BA/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>编译wpe-webkit-android的问题记录</title>
+      <link>/articles/process-of-build-wpe-webkit-android/</link>
+      <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/process-of-build-wpe-webkit-android/</guid>
+      <description>最近打算研下 GitHub - Igalia/wpe-android: WPE WebKit for Android。 git clone之后，对应的是main分支，commit id为: commit 53b3e13ef2c330e9335d9fdd542e5c42a559ca15 (HEAD -&amp;gt; main, tag: latest-preview, origin/main, origin/HEAD) Author: Adrian Perez de Castro &amp;lt;aperez@igalia.com&amp;gt; Date: Fri Sep 26 16:22:54 2025 +0300 [wpe] Update to WPE WebKit 2.50.0 Even when this is an update to a new release series, there are no differences from the packaging point of view, so</description>
+    </item>
+    <item>
+      <title>WPEWebKit2.46调试环境</title>
+      <link>/articles/setup-wpewebkit-2.46-debug-environment/</link>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/setup-wpewebkit-2.46-debug-environment/</guid>
+      <description>以下讨论均基于`https://github.com/WebPlatformForEmbedded/WPEWebKit的 commit 38067c965fd39dbc4294c1be8f9394fb4c39d90c (HEAD -&amp;gt; wpe-2.46, origin/wpe-2.46, origin/HEAD) Author: Philippe Normand &amp;lt;philn@igalia.com&amp;gt; Date: Tue Nov 1 15:51:24 2022 +0000 pointer-lock WIP 编译 之前已经编过几次，最近一次：WebK</description>
+    </item>
+    <item>
+      <title>WebKit调试环境配置</title>
+      <link>/articles/setup-webkit-debug-environment/</link>
+      <pubDate>Sat, 04 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/setup-webkit-debug-environment/</guid>
+      <description>Overview 之前构建过一次WebKit，详见小记WebKit的构建，当时刚刚接触WebKit，很多做法不对，这次重新进行了构建，并搭建了一个调试环境，因此再次简单记录一下。 依赖 之前是在自己的远程开发机（Cent</description>
+    </item>
+    <item>
+      <title>小记WebKit的构建</title>
+      <link>/articles/review-webkit-build-process/</link>
+      <pubDate>Mon, 30 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/review-webkit-build-process/</guid>
+      <description>由于工作需要，计划研究下WebKit的Skia渲染后端，分析cmake容易发现，只有GTK/WPE这两个PORT会开启Skia的渲染后端。 之前从https://github.com/WebKit/We</description>
+    </item>
+    <item>
+      <title>记录一个Android构建错误</title>
+      <link>/articles/record-android-build-error-20240816/</link>
+      <pubDate>Fri, 16 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/record-android-build-error-20240816/</guid>
+      <description>今天发现个人Devcloud可以升级到32核，于是升级了下（+重启），升级完成后Android就构建失败了，错误日志如下： * What went wrong: Execution failed for task &amp;#39;:app:processDebugResources&amp;#39;. &amp;gt; A failure occurred while executing com.android.build.gradle.internal.res.LinkApplicationAndroidResourcesTask$TaskAction &amp;gt; Android resource linking failed /data/work/****App/****App/build/app/intermediates/packaged_manifests/debug/AndroidManifest.xml:245: error: resource attr/??? (aka com.tencent.docs:attr/???) not found. error: failed processing manifest. 打开这个文件</description>
+    </item>
+    <item>
+      <title>vcpkg源码之install流程</title>
+      <link>/articles/vcpkg-source-code-of-install/</link>
+      <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/vcpkg-source-code-of-install/</guid>
+      <description>简介 vcpck install的主要工作是&amp;quot;构建(如果需要)和安装依赖包&amp;quot;，是vcpkg中最关键、也是使用者感知最明显的环节，有必要对其流程有一个更底层的理解，这样对一些问题的理解也将更加深</description>
+    </item>
+    <item>
+      <title>通过vcpkg构建icu-for-android问题一则</title>
+      <link>/articles/an-error-about-building-icu-for-android-via-vcpkg/</link>
+      <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/an-error-about-building-icu-for-android-via-vcpkg/</guid>
+      <description>我们的项目通过vcpkg依赖了icu，但在构建Android平台的icu制品时，却失败了。 Installing 15/45 icu:arm-neon-android@73.1#1... Building icu:arm-neon-android@73.1#1... /root/.cache/vcpkg/registries/git-trees/eaccfc7689fb55d4badf3d2321a8be62ae5be84e: info: installing overlay port from here -- Downloading https://github.com/unicode-org/icu/releases/download/release-73-1/icu4c-73_1-src.tgz -&amp;gt; icu4c-73_1-src.tgz... -- Extracting source /data/landun/workspace/tdf_build_env/.vcpkg/downloads/icu4c-73_1-src.tgz -- Applying patch disable-escapestr-tool.patch -- Applying patch remove-MD-from-configure.patch -- Applying patch fix_parallel_build_on_windows.patch -- Applying patch fix-extra.patch -- Applying patch mingw-dll-install.patch -- Applying patch disable-static-prefix.patch -- Applying patch fix-win-build.patch -- Using source at /data/landun/workspace/tdf_build_env/.vcpkg/buildtrees/icu/src/c-73_1-src-72ff750ba0.clean --</description>
+    </item>
+    <item>
+      <title>Skia升级小记m104-&gt;m122</title>
+      <link>/articles/review-skia-upgrade-m104-to-m122/</link>
+      <pubDate>Tue, 12 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/review-skia-upgrade-m104-to-m122/</guid>
+      <description>最近需要把Skia进行一次升级，首先查看下接口变动，See： RELEASE_NOTES.md 大部分都是接口的小调整，基本没什么难度，但注意m122的一个改动: SkFontMgr::RefDefault() has been deleted. Clients should instantiate and manage their own SkFontMgrs and use them to explicitly create SkTypefaces 找到这个改动的原因： Remove default SkFontMgr [305780908] - Skia 是</description>
+    </item>
+    <item>
+      <title>配置一个Flutter的远程Android调试环境</title>
+      <link>/articles/configure-android-debug-environment-for-flutter-on-a-remote-server/</link>
+      <pubDate>Sun, 22 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/configure-android-debug-environment-for-flutter-on-a-remote-server/</guid>
+      <description>1.构建制品 之前已经构建过：Flutter源码剖析(一):源码获取与构建 - 赵裕的博客 新遇到一些错误，记录下： $ ../flutter/bin/flutter build --local-engine-src-path ../src --local-engine=android_debug_unopt android ...... You are using a locally built engine (--local-engine) but have not specified --local-engine-host. You may be building with a different engine than the one you are running with. See https://github.com/flutter/flutter/issues/132245 for details. &amp;lt;&amp;n</description>
+    </item>
+    <item>
+      <title>配置一个Mac/iOS平台的Flutter源码调试环境</title>
+      <link>/articles/set-up-flutter-debug-env-for-mac-and-ios/</link>
+      <pubDate>Wed, 27 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/set-up-flutter-debug-env-for-mac-and-ios/</guid>
+      <description>背景 最近，由于工作需要，想系统理解下Flutter是如何在MacOS/iOS平台使用OpenGL的。因为Apple早早放弃了对OpenGL的支持，导致这块坑不少，故此希望看看Flutter是怎么处理的</description>
+    </item>
+    <item>
+      <title>Flutter源码剖析(四):flutter run流程解析</title>
+      <link>/articles/flutter-source-code-analyze-4/</link>
+      <pubDate>Sun, 22 Nov 2020 12:23:18 +0800</pubDate>
+      <guid>/articles/flutter-source-code-analyze-4/</guid>
+      <description>关于flutter run flutter run负责执行构建一个flutter工程，输出产物到对应设备，并负责提供基本的交互控制，使用效果如下： $ flutter run Launching lib/main.dart on COL AL10 in debug mode... Running Gradle task &amp;#39;assembleDebug&amp;#39;... Running Gradle task &amp;#39;assembleDebug&amp;#39;... Done 23.8s ✓ Built build/app/outputs/flutter-apk/app-debug.apk. Installing build/app/outputs/flutter-apk/app.apk... 13.7s Waiting for COL AL10 to report its views... 7ms Syncing files</description>
+    </item>
+    <item>
+      <title>Flutter源码剖析(一):源码获取与构建</title>
+      <link>/articles/flutter-source-code-analyze-1/</link>
+      <pubDate>Thu, 29 Oct 2020 12:23:10 +0800</pubDate>
+      <guid>/articles/flutter-source-code-analyze-1/</guid>
+      <description>概述 本文介绍了Flutter源码的获取与构建，后面会另有文章介绍Flutter源码的版本管理、开发环境搭建等主题。 准备工作 Flutter源码分为两个部分： flutter/flutter是框架层，为开发</description>
+    </item>
+    <item>
+      <title>Android P源码构建记录</title>
+      <link>/articles/android-p-source-code-build/</link>
+      <pubDate>Wed, 29 Apr 2020 12:11:29 +0800</pubDate>
+      <guid>/articles/android-p-source-code-build/</guid>
+      <description>缘由 最近在追查一个dex2oat的问题时，看源码觉得有些地方不单步调试或者加些日志，实在是不方便，另外由于最近的工作和Framework层打交道比较多，也有必要搞个源码环境，趁机深入学习一下。 虚拟机 一</description>
+    </item>
+    <item>
+      <title>bat批处理简介：Windows自动化之道</title>
+      <link>/articles/batpi-chu-li-jian-jie-windowszi-dong-hua-zhi-dao/</link>
+      <pubDate>Sun, 09 Sep 2018 00:00:00 +0000</pubDate>
+      <guid>/articles/batpi-chu-li-jian-jie-windowszi-dong-hua-zhi-dao/</guid>
+      <description>bat批处理简介：Windows自动化之道 重复的工作交给代码。 导语 最近在工作中遇到一些纯粹重复的工作，最终都通过脚本方式达到了自动化，大大提高效率。比如之前每次发布zip包都需要手动编译lua文件、替</description>
+    </item>
+    <item>
+      <title>Android6.0源码编译教程</title>
+      <link>/articles/android6-0yuan-ma-bian-yi-jiao-cheng/</link>
+      <pubDate>Wed, 17 Jan 2018 00:00:00 +0000</pubDate>
+      <guid>/articles/android6-0yuan-ma-bian-yi-jiao-cheng/</guid>
+      <description>Android6.0源码编译教程 第一次成功编译了Android的源码，记录一下。 回忆 这是我第二次尝试去编译Android的源码，第一次是半年前，当时刚刚拿到去腾讯实习的Offer，虽然当时会一些And</description>
+    </item>
+    <item>
+      <title>InstantRun原理浅析</title>
+      <link>/articles/instantrunyuan-li-qian-xi/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/instantrunyuan-li-qian-xi/</guid>
+      <description>InstantRun原理浅析 本文从宏观上简要介绍了InstantRun的实现原理。 InstantRun概述 InstantRun是Android Studio2.0推出的新功能，旨在加快构建编译速度，提升</description>
+    </item>
+    <item>
+      <title>OpenJDK7u40编译与调试实战</title>
+      <link>/articles/openjdk7u40bian-yi-yu-diao-shi-shi-zhan/</link>
+      <pubDate>Sun, 28 May 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/openjdk7u40bian-yi-yu-diao-shi-shi-zhan/</guid>
+      <description>OpenJDK7u40编译与调试实战 记录了第一次编译调试OpenJDK的经过。 JDK与OpenJDK的关系 简单来说，OpenJDK是OracleJDK（也就是我们平时用的Java JDK，由Oracle</description>
+    </item>
+    <item>
+      <title>Build Your Own Lisp中的闲言碎语</title>
+      <link>/articles/build-your-own-lispzhong-de-xian-yan-sui-yu/</link>
+      <pubDate>Sat, 08 Apr 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/build-your-own-lispzhong-de-xian-yan-sui-yu/</guid>
+      <description>Build Your Own Lisp中的闲言碎语 Build Your Own Lisp中的一些摘录。 前不久，读完了Build Your Own Lisp。作者用C语言写了一个简单的Lisp解释器，代码之精妙、设计之优雅确实让我受益匪浅！ 不过，除了跟着作者写代码，</description>
+    </item>
+    <item>
+      <title>PL/0编译器实践---后记</title>
+      <link>/articles/2016-pl-0-compiler-practice-postscript/</link>
+      <pubDate>Tue, 20 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-pl-0-compiler-practice-postscript/</guid>
+      <description>花了几天时间，把清华版的《编译原理》一书中的PL/0编译器实践了一遍。颇有收获，记录如下： 理解代码的技巧，如何理解一份代码，比如这个程序，其逻辑相对于一般程序就比较复杂了，如何翻译，虚拟机代码执行时数</description>
+    </item>
+    <item>
+      <title>《C编译器剖析》后记</title>
+      <link>/articles/2016-postscript-to-analysis-of-a-c-compiler/</link>
+      <pubDate>Wed, 07 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-postscript-to-analysis-of-a-c-compiler/</guid>
+      <description>这本书的序言、后记写的都让我很有感触！mark： 后 记 总有曲终人散时，不知不觉我们已经完成了对UCC 编译器的剖析，一路走来，最深的体会仍然是“纸上得来终觉浅，绝知此事要躬行”。按这个道理，理解UCC 编译</description>
+    </item>
+    <item>
+      <title>编译原理实践:计算器</title>
+      <link>/articles/2016-compilation-principles-in-practice-calculator/</link>
+      <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-compilation-principles-in-practice-calculator/</guid>
+      <description>概述 本博客主要讲述如何利用编译原理的知识实现一个控制台计算器.如果之前利用栈(在学数据结构的时候)实现过计算器,一定会有所印象,写一个计算器程序最重要的就是把握运算优先级了.而本文换一个角度,利用文法</description>
+    </item>
+  </channel>
+</rss>

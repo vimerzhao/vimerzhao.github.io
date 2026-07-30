@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>面试 on 赵裕的博客</title>
+    <link>/tags/%E9%9D%A2%E8%AF%95/</link>
+    <description>Recent content in 面试 on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/tags/%E9%9D%A2%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>阿里、360校招面试总结</title>
+      <link>/articles/a-li-360xiao-zhao-mian-shi-zong-jie/</link>
+      <pubDate>Sat, 16 Sep 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/a-li-360xiao-zhao-mian-shi-zong-jie/</guid>
+      <description>阿里、360校招面试总结 背景：笔者八月份处于实习考核阶段时投了阿里和360的Android开发，虽然九月初已确定实习留用，但仍然抱着丰富经历的心态参加了阿里和360的面试，虽然结果平平，但也有不少收获</description>
+    </item>
+    <item>
+      <title>&#39;AI实战:搭建客服机器人&#39;</title>
+      <link>/articles/aishi-zhan-da-jian-ke-fu-ji-qi-ren/</link>
+      <pubDate>Sat, 29 Jul 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/aishi-zhan-da-jian-ke-fu-ji-qi-ren/</guid>
+      <description>&amp;lsquo;AI实战:搭建客服机器人&amp;rsquo; 本文简要介绍了但前客服机器人的发展情况，并实际开发了一个Demo作为演示。 客服机器人 随着科技发展，廉价劳动力正在不断被淘汰。客服机器人就是这样一个例</description>
+    </item>
+    <item>
+      <title>2017阿里实习生面试总结</title>
+      <link>/articles/2017a-li-shi-xi-sheng-mian-shi-zong-jie/</link>
+      <pubDate>Fri, 02 Jun 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017a-li-shi-xi-sheng-mian-shi-zong-jie/</guid>
+      <description>2017阿里实习生面试总结 阿里面试记录的整理以及一些自己的总结。 5-18 晚上突然接到短信，叫我去预约面试时间。真是一脸蒙蔽，真不知道自己那个笔试怎么过的。。。不过既然拿到面试机会了，就作为一次锻炼自己、了解</description>
+    </item>
+    <item>
+      <title>2017腾讯实习生面试总结</title>
+      <link>/articles/2017teng-xun-shi-xi-sheng-mian-shi-zong-jie/</link>
+      <pubDate>Fri, 19 May 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017teng-xun-shi-xi-sheng-mian-shi-zong-jie/</guid>
+      <description>2017腾讯实习生面试总结 之前腾讯面试的记录，明天要参加阿里远程面试了，今天整理一下，以防积压！ 4-23 昨晚收到面试通知，明天面。之前一直没消息，还以为挂了。也给自己提了个醒，时刻准备才能占据主动，所以要高</description>
+    </item>
+    <item>
+      <title>笔试总结：LINE2018实习生（软件工程师）</title>
+      <link>/articles/bi-shi-zong-jie-line2018shi-xi-sheng-ruan-jian-gong-cheng-shi/</link>
+      <pubDate>Tue, 18 Apr 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/bi-shi-zong-jie-line2018shi-xi-sheng-ruan-jian-gong-cheng-shi/</guid>
+      <description>笔试总结：LINE2018实习生（软件工程师） 2018LINE实习生笔试题总结。 今晚LINE和头条的笔试时间冲突，还是选了LINE，因为打算体验一次笔试答题。 简答题 第一题问的是中断是什么，为什么要有中</description>
+    </item>
+    <item>
+      <title>笔试总结：携程2018实习生（安卓开发工程师）</title>
+      <link>/articles/bi-shi-zong-jie-xi-cheng-2018shi-xi-sheng-an-zhuo-kai-fa-gong-cheng-shi/</link>
+      <pubDate>Tue, 11 Apr 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/bi-shi-zong-jie-xi-cheng-2018shi-xi-sheng-an-zhuo-kai-fa-gong-cheng-shi/</guid>
+      <description>笔试总结：携程2018实习生（安卓开发工程师） 时间：2017-4-11，19：00～21：00。 选择题 10个数学智力题，10个Android题。数学智力题花了半个钟头，感觉还是有几题没把握，结果没想到</description>
+    </item>
+  </channel>
+</rss>

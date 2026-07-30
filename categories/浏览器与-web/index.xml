@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>浏览器与 Web on 赵裕的博客</title>
+    <link>/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8E-web/</link>
+    <description>Recent content in 浏览器与 Web on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8E-web/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从一次 OOPIF Touch Bug 到 Chromium 合入：我的首次上游协作复盘</title>
+      <link>/articles/2026-first-chromium-contribution-oopif-touch/</link>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>/articles/2026-first-chromium-contribution-oopif-touch/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;write by ai&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;这是一次完整的 Chromium 上游贡献记录：从一个跨 OOPIF 的触摸模拟问题开始，经过可复现 demo、Chromium Bug、Gerrit 评审、坐标契约重构、CQ 验证，最后由提交队列自动合入 &lt;code&gt;main&lt;/code&gt;。最终 CL 是 &lt;a href=&#34;https://chromium-review.googlesource.com/c/chromium/src/+/8128317&#34;&gt;Fix injected touch coordinates for OOPIF touch emulation&lt;/a&gt;，上游提交是 &lt;a href=&#34;https://chromium.googlesource.com/chromium/src/+/ec8beb01845b094c40f503eea848a0a7c7d4843c&#34;&gt;&lt;code&gt;ec8beb01845b094c40f503eea848a0a7c7d4843c&lt;/code&gt;&lt;/a&gt;。&lt;/p&gt;&#xA;&lt;p&gt;它不是“写完代码、发一个 PR”就结束的过程。对我而言，更重要的收获是：上游协作的核心并不是说服 reviewer 接受一个补丁，而是共同把问题的边界、可复现证据和设计契约解释清楚。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Webkit在嵌入式设备渲染卡死现象的分析</title>
+      <link>/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/</guid>
+      <description>零、引言 所有乍见诡异、无法理解的现象背后，都有一系列我们尚未了解的细节，以及一个合理自洽的解释。 一、问题背景 我们的项目之前使用的上屏方式是基于LVGL改进的一套DRM封装，支持3缓冲，性能尚可，但通过</description>
+    </item>
+    <item>
+      <title>编译wpe-webkit-android的问题记录</title>
+      <link>/articles/process-of-build-wpe-webkit-android/</link>
+      <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/process-of-build-wpe-webkit-android/</guid>
+      <description>最近打算研下 GitHub - Igalia/wpe-android: WPE WebKit for Android。 git clone之后，对应的是main分支，commit id为: commit 53b3e13ef2c330e9335d9fdd542e5c42a559ca15 (HEAD -&amp;gt; main, tag: latest-preview, origin/main, origin/HEAD) Author: Adrian Perez de Castro &amp;lt;aperez@igalia.com&amp;gt; Date: Fri Sep 26 16:22:54 2025 +0300 [wpe] Update to WPE WebKit 2.50.0 Even when this is an update to a new release series, there are no differences from the packaging point of view, so</description>
+    </item>
+    <item>
+      <title>rk1126尝试运行chromium和webkit</title>
+      <link>/articles/try-install-chromium-and-webkit-on-rk1126/</link>
+      <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/try-install-chromium-and-webkit-on-rk1126/</guid>
+      <description>rk1126上跑着一个apt都没有的linux，由于一些研究需要，想让其运行下chromium和webkit,但最终失败了，简单记录下其过程： 大致有3个思路： 安装apt，再配置安装源，用apt安装 使用</description>
+    </item>
+    <item>
+      <title>WPEWebKit2.46调试环境</title>
+      <link>/articles/setup-wpewebkit-2.46-debug-environment/</link>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/setup-wpewebkit-2.46-debug-environment/</guid>
+      <description>以下讨论均基于`https://github.com/WebPlatformForEmbedded/WPEWebKit的 commit 38067c965fd39dbc4294c1be8f9394fb4c39d90c (HEAD -&amp;gt; wpe-2.46, origin/wpe-2.46, origin/HEAD) Author: Philippe Normand &amp;lt;philn@igalia.com&amp;gt; Date: Tue Nov 1 15:51:24 2022 +0000 pointer-lock WIP 编译 之前已经编过几次，最近一次：WebK</description>
+    </item>
+    <item>
+      <title>WebKit调试环境配置</title>
+      <link>/articles/setup-webkit-debug-environment/</link>
+      <pubDate>Sat, 04 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/setup-webkit-debug-environment/</guid>
+      <description>Overview 之前构建过一次WebKit，详见小记WebKit的构建，当时刚刚接触WebKit，很多做法不对，这次重新进行了构建，并搭建了一个调试环境，因此再次简单记录一下。 依赖 之前是在自己的远程开发机（Cent</description>
+    </item>
+    <item>
+      <title>小记WebKit的构建</title>
+      <link>/articles/review-webkit-build-process/</link>
+      <pubDate>Mon, 30 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/review-webkit-build-process/</guid>
+      <description>由于工作需要，计划研究下WebKit的Skia渲染后端，分析cmake容易发现，只有GTK/WPE这两个PORT会开启Skia的渲染后端。 之前从https://github.com/WebKit/We</description>
+    </item>
+    <item>
+      <title>Skia下SK_DEBUG内联的坑</title>
+      <link>/articles/skia-debug-inline-pitfall/</link>
+      <pubDate>Thu, 19 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/skia-debug-inline-pitfall/</guid>
+      <description>以下代码可能出现看起来诡异的错误 { auto data = image-&amp;gt;encodeToData(); std::stringstream ss; ss &amp;lt;&amp;lt; count++ &amp;lt;&amp;lt; &amp;#34;_output.png&amp;#34;; if (data) { SkFILEWStream out(ss.str().c_str()); out.write(data-&amp;gt;writable_data(), data-&amp;gt;size()); } } 错误如下： * thread #3, name = &amp;#39;RasterThread&amp;#39;, stop reason = signal SIGILL: illegal operand * frame #0: 0x000000000c02edd4 Sxxxx`sk_abort_no_print() at SkMemory_malloc.cpp:51:5 frame #1: 0x000000000bbbee39 Sxxxx`SkNVRefCnt&amp;lt;SkData&amp;gt;::~SkNVRefCnt(this=0x00007fffafdff530)::&amp;#39;lambda&amp;#39;()::operator()() const at SkRefCnt.h:165:9 frame #2: 0x000000000bbbec35 Sxxxx`SkNVRefCnt&amp;lt;SkData&amp;gt;::~SkNVRefCnt(this=0x00007fffa8006090) at SkRefCnt.h:165:9 frame #3: 0x000000000bbbd8ba Sxxxx`SkData::~SkData(this=0x00007fffa8006090) at SkData.cpp:37:1 具体是因为这个ASSERT: ~SkNVRefCnt() { #ifdef SK_DEBUG int</description>
+    </item>
+    <item>
+      <title>webkit生成clang索引</title>
+      <link>/articles/generate-clangd-index-for-webkit/</link>
+      <pubDate>Mon, 26 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/generate-clangd-index-for-webkit/</guid>
+      <description>今天开始接触一个新的项目(基于webkit)，第一步自然是搭建源码开发环境。 整个项目通过CMake组织，默认是生成VS工程，再用VS打开sln工程进行构建。这一步OK。 为了生成compile_comm</description>
+    </item>
+    <item>
+      <title>Skia升级小记m104-&gt;m122</title>
+      <link>/articles/review-skia-upgrade-m104-to-m122/</link>
+      <pubDate>Tue, 12 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/review-skia-upgrade-m104-to-m122/</guid>
+      <description>最近需要把Skia进行一次升级，首先查看下接口变动，See： RELEASE_NOTES.md 大部分都是接口的小调整，基本没什么难度，但注意m122的一个改动: SkFontMgr::RefDefault() has been deleted. Clients should instantiate and manage their own SkFontMgrs and use them to explicitly create SkTypefaces 找到这个改动的原因： Remove default SkFontMgr [305780908] - Skia 是</description>
+    </item>
+    <item>
+      <title>使用VSCode作为Chromium的调试前端</title>
+      <link>/articles/use-vscode-as-debug-frontend-of-chromium-project/</link>
+      <pubDate>Mon, 24 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/use-vscode-as-debug-frontend-of-chromium-project/</guid>
+      <description>之前试过VSCode作为C++工程的开发工具，但如果工程过于庞大，每次打开都会卡死在索引阶段。 总的来说，NeoVim+Clangd是我认为通用性、性能、开发体验综合最好的选择。 但有一个问题，怎么调试？</description>
+    </item>
+    <item>
+      <title>【小程序&#43;云开发】实战：一天搭建小型论坛</title>
+      <link>/articles/xiao-cheng-xu-yun-kai-fa-shi-zhan-yi-tian-da-jian-xiao-xing-lun-tan/</link>
+      <pubDate>Sun, 25 Nov 2018 00:00:00 +0000</pubDate>
+      <guid>/articles/xiao-cheng-xu-yun-kai-fa-shi-zhan-yi-tian-da-jian-xiao-xing-lun-tan/</guid>
+      <description>【小程序+云开发】实战：一天搭建小型论坛 笔者最近涉猎了小程序相关的知识，于是利用周末时间开发了一款类似于同事的小程序，深度体验了小程序云开发模式提供的云函数、数据库、存储三大能力。关于云开发，可参考文</description>
+    </item>
+    <item>
+      <title>如何关闭网页悬浮窗</title>
+      <link>/articles/ru-he-guan-bi-wang-ye-xuan-fu-chuang/</link>
+      <pubDate>Mon, 31 Jul 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/ru-he-guan-bi-wang-ye-xuan-fu-chuang/</guid>
+      <description>如何关闭网页悬浮窗 如何巧妙关闭网页的悬浮窗。 最近在查找资料时发现一个网页，需要注册才能查看，我记得豆瓣也有类似的悬浮窗，但是可以点击右上角的小叉号关闭，但这个竟然不能关闭！！ 作为一个程序员此时当然应该</description>
+    </item>
+    <item>
+      <title>JS写小游戏（一）：游戏框架</title>
+      <link>/articles/2016-writing-small-games-with-js-1-game-framework/</link>
+      <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-writing-small-games-with-js-1-game-framework/</guid>
+      <description>前言 前一阵发现一个不错的网站，都是一些用html5+css+js写的小游戏，于是打算学习一番，写下这个系列博客主要是为了加深理解，当然也有一些个人感悟，如果英文好可以直接Click Here. 概述 一般，小游戏都</description>
+    </item>
+    <item>
+      <title>博客园自定义模板</title>
+      <link>/articles/2016-blog-park-custom-template/</link>
+      <pubDate>Fri, 16 Sep 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-blog-park-custom-template/</guid>
+      <description>第一次 之前一直用的rivercast这个模板，虽然比较符合我的风格，但是感觉屏幕空间利用太不充分，两边留出了很多空白（只看模板预览还看不出这个问题！），于是想找一个空间安排比较充分的模板，但是又感觉风</description>
+    </item>
+  </channel>
+</rss>

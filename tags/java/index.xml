@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on 赵裕的博客</title>
+    <link>/tags/java/</link>
+    <description>Recent content in Java on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>记一次AbstractMethodError</title>
+      <link>/articles/abstractmethoderror-solve/</link>
+      <pubDate>Tue, 24 Mar 2020 09:55:46 +0800</pubDate>
+      <guid>/articles/abstractmethoderror-solve/</guid>
+      <description>最近在灰度的时候发现了一个Error： 详细信息如下： 结合机型分布，可以判断是部分ROM自己的修改导致的问题(因为已经走到系统Api里面了)。 最后直接catch住了，因为触发的机型其实很少，灰度15w，</description>
+    </item>
+    <item>
+      <title>Android6.0源码编译教程</title>
+      <link>/articles/android6-0yuan-ma-bian-yi-jiao-cheng/</link>
+      <pubDate>Wed, 17 Jan 2018 00:00:00 +0000</pubDate>
+      <guid>/articles/android6-0yuan-ma-bian-yi-jiao-cheng/</guid>
+      <description>Android6.0源码编译教程 第一次成功编译了Android的源码，记录一下。 回忆 这是我第二次尝试去编译Android的源码，第一次是半年前，当时刚刚拿到去腾讯实习的Offer，虽然当时会一些And</description>
+    </item>
+    <item>
+      <title>Java URL类踩坑指南</title>
+      <link>/articles/java-urllei-cai-keng-zhi-nan/</link>
+      <pubDate>Sun, 26 Nov 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/java-urllei-cai-keng-zhi-nan/</guid>
+      <description>Java URL类踩坑指南 java.net.URL类的几个细节问题。 背景介绍 最近再做一个RSS阅读工具给自己用，其中一个环节是从服务器端获取一个包含了RSS源列表的json文件，再根据这个json文件下载、解</description>
+    </item>
+    <item>
+      <title>Linux下配置JDK版本教程</title>
+      <link>/articles/linuxxia-pei-zhi-jdkban-ben-jiao-cheng/</link>
+      <pubDate>Mon, 12 Jun 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/linuxxia-pei-zhi-jdkban-ben-jiao-cheng/</guid>
+      <description>Linux下配置JDK版本教程 记录了Linux配置JDK版本的方法。 最近，在自己的Ubuntu虚拟及上发现一个奇怪的问题，Java源文件可以编译但不能运行，检查发现原来是编译出来的版本高于JRE的版本</description>
+    </item>
+    <item>
+      <title>学习HotSpot（一）：Launcher</title>
+      <link>/articles/xue-xi-hotspot-yi-launcher/</link>
+      <pubDate>Mon, 29 May 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/xue-xi-hotspot-yi-launcher/</guid>
+      <description>学习HotSpot（一）：Launcher 《Java虚拟机精讲》学习笔记：剖析HotSpot的Launcher。 HotSpot源码目录 可以用tree命令查看源码层次，对源码层次有一定印象有助于学习每个</description>
+    </item>
+    <item>
+      <title>OpenJDK7u40编译与调试实战</title>
+      <link>/articles/openjdk7u40bian-yi-yu-diao-shi-shi-zhan/</link>
+      <pubDate>Sun, 28 May 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/openjdk7u40bian-yi-yu-diao-shi-shi-zhan/</guid>
+      <description>OpenJDK7u40编译与调试实战 记录了第一次编译调试OpenJDK的经过。 JDK与OpenJDK的关系 简单来说，OpenJDK是OracleJDK（也就是我们平时用的Java JDK，由Oracle</description>
+    </item>
+    <item>
+      <title>踩坑记：从C&#43;&#43;变量到Java引用</title>
+      <link>/articles/cai-keng-ji-cong-c-bian-liang-dao-javayin-yong/</link>
+      <pubDate>Fri, 24 Mar 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/cai-keng-ji-cong-c-bian-liang-dao-javayin-yong/</guid>
+      <description>踩坑记：从C++变量到Java引用 本文介绍了Java和C++中变量名（对象类型）的细微差别。 问题引入 问题的产生自另一个题目: 请实现一种数据结构SetOfStacks，由多个栈组成，其中每个栈的大小为s</description>
+    </item>
+    <item>
+      <title>Java逆向之UML查看工具（检索记录）</title>
+      <link>/articles/2017-uml-viewing-tool-for-java-reverse-engineering-retrieval-records/</link>
+      <pubDate>Thu, 23 Feb 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-uml-viewing-tool-for-java-reverse-engineering-retrieval-records/</guid>
+      <description>花了几个钟头时间，搜索了一下，如何从源代码得到UML,因为WCI（Writing Compilers and Interpreters,下同）越往后代码越多，必须得借助工具才能把握整个工程了。初次涉猎此方面，花了不少时间，感觉</description>
+    </item>
+    <item>
+      <title>ClassNotFoundException------IDEA下的一种原因</title>
+      <link>/articles/2017-classnotfoundexception-a-reason-under-idea/</link>
+      <pubDate>Tue, 21 Feb 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-classnotfoundexception-a-reason-under-idea/</guid>
+      <description>由于直接复制文件而未经过IDE造成次异常，需要修改程序入口：</description>
+    </item>
+    <item>
+      <title>ClassNotFoundException------我有一句妈卖批一定要讲</title>
+      <link>/articles/2017-classnotfoundexception-i-have-a-saying-that-i-must-say-when-i-sell-batches/</link>
+      <pubDate>Tue, 21 Feb 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-classnotfoundexception-i-have-a-saying-that-i-must-say-when-i-sell-batches/</guid>
+      <description>最近在写《Writing Compilers and Interpreters》一书的代码，本来打算用vim敲代码，一来每个字母都要自己敲，而来就当练习vim，但是感觉真是太不方便了，各种小错误，而且更奇怪的是放在这个目录不报</description>
+    </item>
+    <item>
+      <title>Java开发图片浏览器－－记录</title>
+      <link>/articles/2017-java-development-picture-browser-record/</link>
+      <pubDate>Fri, 03 Feb 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-java-development-picture-browser-record/</guid>
+      <description>效果 设计思路 需求分析 图片浏览，上/下一张，放大缩小等基本功能。可以继续拓展的功能：缩略图、旋转，画笔修改等。此外，缩放实现较为简单，所以会出现失真。设计此类软件功能可参考ACDSee或irfanvie</description>
+    </item>
+    <item>
+      <title>Coursera上一个不错的Java课</title>
+      <link>/articles/2017-a-good-java-class-on-coursera/</link>
+      <pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-a-good-java-class-on-coursera/</guid>
+      <description>地址：https://www.coursera.org/learn/java-chengxu-sheji/home/welcome 复习天昏地暗，看点视频调剂一下。发现这个讲的还是很不错的。北大毕竟比我</description>
+    </item>
+    <item>
+      <title>Java学习路线图</title>
+      <link>/articles/2016-java-learning-roadmap/</link>
+      <pubDate>Wed, 14 Sep 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-java-learning-roadmap/</guid>
+      <description>参考《疯狂Java实战演义》制作，觉得可以做一参考（放大网页看）</description>
+    </item>
+    <item>
+      <title>Java文件处理：分离全国省市县ID（数据来自和风天气）</title>
+      <link>/articles/2016-java-file-processing-separating-national-province-city-and-county-ids-data-from-zefeng-weather/</link>
+      <pubDate>Tue, 30 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-java-file-processing-separating-national-province-city-and-county-ids-data-from-zefeng-weather/</guid>
+      <description>最近，在做第一行代码上的酷欧天气APP，但是发现书中的API已经用不了了，所以选择了和风天气的API，但是，在遍历省市县数据是遇到了麻烦，之前中国天气网是有个省市对应下一级行政区列表的，像这样： 但是，</description>
+    </item>
+    <item>
+      <title>Java命名约定</title>
+      <link>/articles/2016-java-naming-conventions/</link>
+      <pubDate>Tue, 09 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-java-naming-conventions/</guid>
+      <description>类名 类名应该是名词， 描述对象。应该按照驼峰式写法，即只有每个单词首字母大写。 接口名称 接口名称应该是形容词，描述功能。应该以“able”、“ible”结尾，否则应该是名词。通常遵循和类名写相同的大小约定</description>
+    </item>
+    <item>
+      <title>Java多线程实践</title>
+      <link>/articles/2016-java-multithreading-practice/</link>
+      <pubDate>Fri, 05 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-java-multithreading-practice/</guid>
+      <description>1.实现Runnable接口 1 import java.util.Random; 2 3 4 public class PrintTask implements Runnable{ 5 private final int sleepTime; 6 private final String taskName; 7 private final static Random generator = new Random(); 8 9 10 public PrintTask(String name) { 11 taskName = name; 12 sleepTime = generator.nextInt(5000); 13 } 14 15 @Override 16 public void run() { 17 try { 18 System.out.printf(&amp;#34;%s going to Sleep for %d milliseconds.\n&amp;#34;, 19 taskName, sleepTime); 20 Thread.sleep(sleepTime); 21 } catch (InterruptedException e) { 22 System.out.printf(&amp;#34;%s %s\n&amp;#34;, taskName, &amp;#34;terminated prematurely&amp;#34; + 23 &amp;#34;</description>
+    </item>
+  </channel>
+</rss>

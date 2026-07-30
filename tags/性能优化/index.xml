@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>性能优化 on 赵裕的博客</title>
+    <link>/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</link>
+    <description>Recent content in 性能优化 on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Webkit在嵌入式设备渲染卡死现象的分析</title>
+      <link>/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/</guid>
+      <description>零、引言 所有乍见诡异、无法理解的现象背后，都有一系列我们尚未了解的细节，以及一个合理自洽的解释。 一、问题背景 我们的项目之前使用的上屏方式是基于LVGL改进的一套DRM封装，支持3缓冲，性能尚可，但通过</description>
+    </item>
+    <item>
+      <title>Mac与Windows混合开发体验优化</title>
+      <link>/articles/optimize-mac-with-windows-development/</link>
+      <pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/optimize-mac-with-windows-development/</guid>
+      <description>后面的工作中，可能要经常使用Windows开发，而过去一段时间，主要使用iMac开发，个人还是更习惯用iMac作为主力开发设备： 屏幕大且清晰 键盘组合更科学，Windows的Win键比较影响，Mac的C</description>
+    </item>
+    <item>
+      <title>如何利用ReleaseApk辅助排查性能问题</title>
+      <link>/articles/how-to-use-release-apk-to-find-performance-issue/</link>
+      <pubDate>Tue, 30 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/how-to-use-release-apk-to-find-performance-issue/</guid>
+      <description>背景 最近收到反馈，同样的场景，Android打开明显比iOS卡顿，实际打开也确实如此。故此要进一步排查这个问题。 我们的业务工程非常庞大，之前全量编一次竟然花了快2h。 此外，我负责的是底层渲染模块，此类</description>
+    </item>
+    <item>
+      <title>解决MacBook2018过热问题</title>
+      <link>/articles/macbook-over-hot/</link>
+      <pubDate>Tue, 19 May 2020 10:21:13 +0800</pubDate>
+      <guid>/articles/macbook-over-hot/</guid>
+      <description>最近搬工位后给MacBook接了一个外接显示器，放在正中间，但是发现发热很严重。在查阅资料和尝试之后，发现把充电口和显示器接口放在右边比较好。左边好像有个Bug，能不用还是不要用了。 参考： Mac过热降</description>
+    </item>
+    <item>
+      <title>Android P内联优化导致的一个诡异Bug</title>
+      <link>/articles/solve-of-android-p-inline-opt/</link>
+      <pubDate>Fri, 24 Apr 2020 23:51:25 +0800</pubDate>
+      <guid>/articles/solve-of-android-p-inline-opt/</guid>
+      <description>问题背景 最近，我们的业务在动态加载一款第三方游戏时出现了奇怪的现象，本地开发测试体验良好，但是使用CI构建的正式包体验时会出现启动闪退。 问题分析 分析日志 首先，我们自然而然看了下Crash日志，如下： ---------</description>
+    </item>
+    <item>
+      <title>Android安装包优化</title>
+      <link>/articles/apk-size-opt-summary/</link>
+      <pubDate>Tue, 11 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>/articles/apk-size-opt-summary/</guid>
+      <description>背景 安装包膨胀的原因 业务的增加、产品的演进是安装包大小增加的本质原因。但是在演进之路上，由于一些所谓的技术债务，如： 使用的资源未经裁剪（如全量字体文件、分辨率过大的图片） 不合理的大资源（如大的视频、音</description>
+    </item>
+    <item>
+      <title>Android安装包极限优化</title>
+      <link>/articles/opt-apk-size-by-remove-debuginfo/</link>
+      <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/articles/opt-apk-size-by-remove-debuginfo/</guid>
+      <description>背景 目前Android安装包的优化方法论比较成熟，比如 混淆代码（Proguard、AndResGuard） 移除不在使用的代码和资源 对于音频、图片等使用更轻量的格式 等等 这些方法都比较常规，在项目成熟后优</description>
+    </item>
+    <item>
+      <title>Flutter:移动端跨平台技术演进之路</title>
+      <link>/articles/cross-platform-mobile-ui-development-evolution/</link>
+      <pubDate>Wed, 06 Nov 2019 12:21:29 +0800</pubDate>
+      <guid>/articles/cross-platform-mobile-ui-development-evolution/</guid>
+      <description>导读 本文约4688字，阅读可能需要15分钟。 最早的跨平台开发(摘自《Apache Cordova移动应用开发实战》王亚飞，王洪飞编著). 从广义上来说，跨平台技术早于移动端的出现。因此，本文标题前面也加上</description>
+    </item>
+    <item>
+      <title>对于成长瓶颈的思考</title>
+      <link>/articles/dui-yu-cheng-chang-ping-jing-de-si-kao/</link>
+      <pubDate>Wed, 24 Jan 2018 00:00:00 +0000</pubDate>
+      <guid>/articles/dui-yu-cheng-chang-ping-jing-de-si-kao/</guid>
+      <description>对于成长瓶颈的思考 初学编程，感觉每天都有新的收获，每天都有新的目标。可是一段时间后，掌握了几门语言，实现了几个项目，开始认识到代码是写不完的，很多工作都是重复的或者已经有人做过的。简单的已经会了，想要</description>
+    </item>
+    <item>
+      <title>MATLAB for循环优化三例</title>
+      <link>/articles/2015-three-examples-of-matlab-for-loop-optimization/</link>
+      <pubDate>Sun, 13 Dec 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-three-examples-of-matlab-for-loop-optimization/</guid>
+      <description>最近一周，对MATLAB有进行了新一轮的学习，对其矩阵化编程的思维有了更深入的了解。确实精妙！ 例1： 将矩阵A= [1 2 3; 2 4 3; 3 4 5]中所有的数字3替换为33. 如果还停留在C语言的思维可能就是 &amp;gt;&amp;gt; for i=1:3 for j=1:3 if</description>
+    </item>
+  </channel>
+</rss>

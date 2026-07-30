@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android on 赵裕的博客</title>
+    <link>/tags/android/</link>
+    <description>Recent content in Android on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/tags/android/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>编译wpe-webkit-android的问题记录</title>
+      <link>/articles/process-of-build-wpe-webkit-android/</link>
+      <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/process-of-build-wpe-webkit-android/</guid>
+      <description>最近打算研下 GitHub - Igalia/wpe-android: WPE WebKit for Android。 git clone之后，对应的是main分支，commit id为: commit 53b3e13ef2c330e9335d9fdd542e5c42a559ca15 (HEAD -&amp;gt; main, tag: latest-preview, origin/main, origin/HEAD) Author: Adrian Perez de Castro &amp;lt;aperez@igalia.com&amp;gt; Date: Fri Sep 26 16:22:54 2025 +0300 [wpe] Update to WPE WebKit 2.50.0 Even when this is an update to a new release series, there are no differences from the packaging point of view, so</description>
+    </item>
+    <item>
+      <title>通过vcpkg构建icu-for-android问题一则</title>
+      <link>/articles/an-error-about-building-icu-for-android-via-vcpkg/</link>
+      <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/an-error-about-building-icu-for-android-via-vcpkg/</guid>
+      <description>我们的项目通过vcpkg依赖了icu，但在构建Android平台的icu制品时，却失败了。 Installing 15/45 icu:arm-neon-android@73.1#1... Building icu:arm-neon-android@73.1#1... /root/.cache/vcpkg/registries/git-trees/eaccfc7689fb55d4badf3d2321a8be62ae5be84e: info: installing overlay port from here -- Downloading https://github.com/unicode-org/icu/releases/download/release-73-1/icu4c-73_1-src.tgz -&amp;gt; icu4c-73_1-src.tgz... -- Extracting source /data/landun/workspace/tdf_build_env/.vcpkg/downloads/icu4c-73_1-src.tgz -- Applying patch disable-escapestr-tool.patch -- Applying patch remove-MD-from-configure.patch -- Applying patch fix_parallel_build_on_windows.patch -- Applying patch fix-extra.patch -- Applying patch mingw-dll-install.patch -- Applying patch disable-static-prefix.patch -- Applying patch fix-win-build.patch -- Using source at /data/landun/workspace/tdf_build_env/.vcpkg/buildtrees/icu/src/c-73_1-src-72ff750ba0.clean --</description>
+    </item>
+    <item>
+      <title>在服务器上搭建Android开发调试环境的尝试</title>
+      <link>/articles/configure-android-dev-environment-on-a-remote-server/</link>
+      <pubDate>Tue, 16 May 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/configure-android-dev-environment-on-a-remote-server/</guid>
+      <description>1. 背景说明 当前的开发工作特点： 项目代码C++为主，编译任务重，最大的工程全量编一次80min+，小的改动增量10min+，更新一下增量构建30min+。而且编译期间CPU全部占用，无法进行其他工作 涉及</description>
+    </item>
+    <item>
+      <title>大道至简：Flutter嵌套滑动冲突解决之路</title>
+      <link>/articles/flutter-nested-scroll-conflict/</link>
+      <pubDate>Thu, 27 May 2021 19:22:48 +0800</pubDate>
+      <guid>/articles/flutter-nested-scroll-conflict/</guid>
+      <description>背景与挑战 为了充分验证Flutter在UI开发上的完备性（能Cover住足够复杂的场景），我们选择了微视端内最复杂的页面之一的个人页进行改造，其UI形态如下。 用户1: 用户2: 观察可以发现，对于UI层面</description>
+    </item>
+    <item>
+      <title>Flutter源码剖析(四):flutter run流程解析</title>
+      <link>/articles/flutter-source-code-analyze-4/</link>
+      <pubDate>Sun, 22 Nov 2020 12:23:18 +0800</pubDate>
+      <guid>/articles/flutter-source-code-analyze-4/</guid>
+      <description>关于flutter run flutter run负责执行构建一个flutter工程，输出产物到对应设备，并负责提供基本的交互控制，使用效果如下： $ flutter run Launching lib/main.dart on COL AL10 in debug mode... Running Gradle task &amp;#39;assembleDebug&amp;#39;... Running Gradle task &amp;#39;assembleDebug&amp;#39;... Done 23.8s ✓ Built build/app/outputs/flutter-apk/app-debug.apk. Installing build/app/outputs/flutter-apk/app.apk... 13.7s Waiting for COL AL10 to report its views... 7ms Syncing files</description>
+    </item>
+    <item>
+      <title>Flutter源码剖析(三):Flutter-Android-Embedder启动流程</title>
+      <link>/articles/flutter-source-code-analyze-3/</link>
+      <pubDate>Sun, 15 Nov 2020 12:23:15 +0800</pubDate>
+      <guid>/articles/flutter-source-code-analyze-3/</guid>
+      <description>概述 Flutter的启动包括Embedder、Engine、Framework三部分，本文仅描述Android平台的Embdder模块的启动流程。Flutter通常通过启动一个FlutterActiv</description>
+    </item>
+    <item>
+      <title>Android客户端远程调试方法</title>
+      <link>/articles/android-remote-debug-method/</link>
+      <pubDate>Mon, 25 May 2020 12:16:13 +0800</pubDate>
+      <guid>/articles/android-remote-debug-method/</guid>
+      <description>在最近的需求开发中，会遇到一些兼容性问题，经常只能在特定ROM和Android版本上复现。由于测试和开发不在同一区域办公，往往需要通过物资穿梭车送手机。由此带来两点不便： 使用成本大，调试效率低，因为物</description>
+    </item>
+    <item>
+      <title>插件化技术的演进之路</title>
+      <link>/articles/evolution-of-plugin-framework/</link>
+      <pubDate>Wed, 13 May 2020 12:14:43 +0800</pubDate>
+      <guid>/articles/evolution-of-plugin-framework/</guid>
+      <description>序言 关于本次分享 今天要和大家分享的是Android的插件化技术，这在Android中其实是一个相对来说比较复杂，历史悠久，内容庞杂的知识，不是今天一个小时能讲完的，所以我今天也是有选择地分享一些我认为</description>
+    </item>
+    <item>
+      <title>Android P源码构建记录</title>
+      <link>/articles/android-p-source-code-build/</link>
+      <pubDate>Wed, 29 Apr 2020 12:11:29 +0800</pubDate>
+      <guid>/articles/android-p-source-code-build/</guid>
+      <description>缘由 最近在追查一个dex2oat的问题时，看源码觉得有些地方不单步调试或者加些日志，实在是不方便，另外由于最近的工作和Framework层打交道比较多，也有必要搞个源码环境，趁机深入学习一下。 虚拟机 一</description>
+    </item>
+    <item>
+      <title>Android P内联优化导致的一个诡异Bug</title>
+      <link>/articles/solve-of-android-p-inline-opt/</link>
+      <pubDate>Fri, 24 Apr 2020 23:51:25 +0800</pubDate>
+      <guid>/articles/solve-of-android-p-inline-opt/</guid>
+      <description>问题背景 最近，我们的业务在动态加载一款第三方游戏时出现了奇怪的现象，本地开发测试体验良好，但是使用CI构建的正式包体验时会出现启动闪退。 问题分析 分析日志 首先，我们自然而然看了下Crash日志，如下： ---------</description>
+    </item>
+    <item>
+      <title>Andfix源码解析</title>
+      <link>/articles/andfixyuan-ma-jie-xi/</link>
+      <pubDate>Sun, 20 Aug 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/andfixyuan-ma-jie-xi/</guid>
+      <description>Andfix源码解析 本文介绍了Andfix热修复框架的原理及实现代码。 Andfix概述 Andfix是阿里开源的一套热修复框架，效果如下 （注意我一直在点击，下发补丁后发生了变化&amp;hellip;&amp;hell</description>
+    </item>
+  </channel>
+</rss>

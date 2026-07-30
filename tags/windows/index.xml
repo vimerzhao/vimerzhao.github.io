@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows on 赵裕的博客</title>
+    <link>/tags/windows/</link>
+    <description>Recent content in Windows on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows虚拟机内的企微聊天记录迁移</title>
+      <link>/articles/migrate-wxwork-chat-history-in-windows-vm/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/migrate-wxwork-chat-history-in-windows-vm/</guid>
+      <description>背景是： 由于工作场景原因，主机安装的是Linux,于是安装了VirtualBox,通过Windows虚拟机使用企微 后面申请了MacBook,加上VirtualBox带个Windows比较拖累性能，就打</description>
+    </item>
+    <item>
+      <title>Mac&amp;Windows&amp;Linux使用备忘录</title>
+      <link>/articles/mac_windows_linux_usage_memo/</link>
+      <pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/mac_windows_linux_usage_memo/</guid>
+      <description>Mac 1.不要同时编译两个大型C++项目，之前同时使用XCode和Ninja编译两个不同的项目，但底层都使用了clang，结果就是Mac的内核态CPU特别高（超过50%，主要是来自kernal_task这</description>
+    </item>
+    <item>
+      <title>Mac与Windows混合开发体验优化</title>
+      <link>/articles/optimize-mac-with-windows-development/</link>
+      <pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/optimize-mac-with-windows-development/</guid>
+      <description>后面的工作中，可能要经常使用Windows开发，而过去一段时间，主要使用iMac开发，个人还是更习惯用iMac作为主力开发设备： 屏幕大且清晰 键盘组合更科学，Windows的Win键比较影响，Mac的C</description>
+    </item>
+    <item>
+      <title>bat批处理简介：Windows自动化之道</title>
+      <link>/articles/batpi-chu-li-jian-jie-windowszi-dong-hua-zhi-dao/</link>
+      <pubDate>Sun, 09 Sep 2018 00:00:00 +0000</pubDate>
+      <guid>/articles/batpi-chu-li-jian-jie-windowszi-dong-hua-zhi-dao/</guid>
+      <description>bat批处理简介：Windows自动化之道 重复的工作交给代码。 导语 最近在工作中遇到一些纯粹重复的工作，最终都通过脚本方式达到了自动化，大大提高效率。比如之前每次发布zip包都需要手动编译lua文件、替</description>
+    </item>
+    <item>
+      <title>windows使用git时出现：warning: LF will be replaced by CRLF</title>
+      <link>/articles/2016-when-using-git-in-windows-warning-lf-will-be-replaced-by-crlf/</link>
+      <pubDate>Mon, 05 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-when-using-git-in-windows-warning-lf-will-be-replaced-by-crlf/</guid>
+      <description>windows中的换行符为 CRLF， 而在linux下的换行符为LF，所以在执行add . 时出现提示： 执行以下代码 $ rm -rf .git // 删除.git $ git config --global core.autocrlf false //禁用自动转换 $ git init $ git add . OK</description>
+    </item>
+    <item>
+      <title>UEFI模式安装Win10和Linux双系统</title>
+      <link>/articles/2016-install-win10-and-linux-dual-systems-in-uefi-mode/</link>
+      <pubDate>Thu, 01 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-install-win10-and-linux-dual-systems-in-uefi-mode/</guid>
+      <description>最近心血来潮，想装一个Linux、Windows双系统，吸取上次安装的经验，这次一定都要使用UEFI模式启动，需要注意的是必须是支持此种启动模式的系统（一般解压之后都有efi文件夹不需要刻录），这次遇</description>
+    </item>
+    <item>
+      <title>DOSBOX 自动挂载技巧</title>
+      <link>/articles/2016-dosbox-automatic-mounting-skills/</link>
+      <pubDate>Wed, 16 Nov 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-dosbox-automatic-mounting-skills/</guid>
+      <description>DOSBOX下载之后，win10已经不支持debug了（win-XP虚拟机有！），所以需要单独下载，每次使用都需要挂载上去，十分不方便。 解决办法是修改属性文件，每次挂载都自动执行: 把编写好的汇编文件放</description>
+    </item>
+    <item>
+      <title>VS2015链接错误一则</title>
+      <link>/articles/2016-vs2015-link-error/</link>
+      <pubDate>Sun, 23 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-vs2015-link-error/</guid>
+      <description>以前天真的以为C是C++的子集，.c文件直接.cpp命名没什么影响： 后缀一改 链接器工具错误 LNK2019</description>
+    </item>
+    <item>
+      <title>VisualStudio配色方案</title>
+      <link>/articles/2016-visualstudio-color-scheme/</link>
+      <pubDate>Sat, 22 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-visualstudio-color-scheme/</guid>
+      <description>最近发现一个很神奇的网站，可以方便的为VisualStudio配色：Studio Styles - Visual Studio color schemes 可以下载一份自己喜欢的配色方案 如果还不满意，可以在此配色方案的基础上进行修改，而不必从0开始。用文本编辑器打</description>
+    </item>
+    <item>
+      <title>Win7上安装Linux双系统</title>
+      <link>/articles/2016-install-linux-dual-system-on-win7/</link>
+      <pubDate>Sat, 08 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-install-linux-dual-system-on-win7/</guid>
+      <description>今天帮同学在Win7上安装Linux，感觉一篇教程很不错，mark一下 原地址：Win7下U盘安装Ubuntu14.04双系统步骤详解 一、前期准备 1、大于2G的U盘一个(我的系统盘制作完成后大约占1个多</description>
+    </item>
+    <item>
+      <title>Windows键盘映射注册表备忘</title>
+      <link>/articles/2016-windows-keymap-registry-memo/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-windows-keymap-registry-memo/</guid>
+      <description>http://xyztony1985.blog.163.com/blog/static/3611782011752420104/ Windows Registry Editor Version 5.00 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout] &amp;#34;Scancode Map&amp;#34;=hex: 00,00,00,00, 00,00,00,00, 04,00,00,00, 3A,00,1D,00, 1D,00,01,00, 01,00,3A,00, 00,00,00,00</description>
+    </item>
+    <item>
+      <title>Windows装机必备软件列表</title>
+      <link>/articles/2016-list-of-essential-software-for-windows-installation/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-list-of-essential-software-for-windows-installation/</guid>
+      <description>经常装系统，列个List，以后装完之后安装软件直接参照使用!windows版： 输入法： 搜狗输入法（由于长期使用导致此输入法十分熟悉我的输入习惯，以无法自拔）。支持Linux、Windows（太穷还没碰</description>
+    </item>
+  </channel>
+</rss>

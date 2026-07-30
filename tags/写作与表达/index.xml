@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>写作与表达 on 赵裕的博客</title>
+    <link>/tags/%E5%86%99%E4%BD%9C%E4%B8%8E%E8%A1%A8%E8%BE%BE/</link>
+    <description>Recent content in 写作与表达 on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/tags/%E5%86%99%E4%BD%9C%E4%B8%8E%E8%A1%A8%E8%BE%BE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于一次课后反馈的思考</title>
+      <link>/articles/thoughts-on-feedback-after-a-class/</link>
+      <pubDate>Sun, 11 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/thoughts-on-feedback-after-a-class/</guid>
+      <description>最近，在公司内开讲了一门课程：《软件Bug的排查与解决》。看到课后的学员反馈，感觉是第一次收到如此矛盾的评价，所以觉得有必要思考一下。 以下是原文： 四、学员反馈 在整个培训过程中，什么地方您感到最满意，收</description>
+    </item>
+    <item>
+      <title>关于专栏“速记”的说明</title>
+      <link>/articles/about-quick-note/</link>
+      <pubDate>Tue, 16 May 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/about-quick-note/</guid>
+      <description>最近发现一个问题，自己经常会有一些探索性的实践（或者说踩坑），在此过程会沉淀出一些记录，这些记录如果作为文章发表，会有些随意和不成体系，甚至有些地方是错误的；但这些记录其实还是非常有价值的： 一方面，它</description>
+    </item>
+    <item>
+      <title>技术人员的写作指南</title>
+      <link>/articles/the-technician_s-guide-to-writing/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>/articles/the-technician_s-guide-to-writing/</guid>
+      <description>本文详细论述了3个问题： 为什么技术人员需要坚持写作？–动机篇。 需要做哪些准备？–准备篇。 写作的长期实践中应该注意哪些问题？–技巧篇。 一、动机篇 有人说费曼学习法的本质就是：“通过向别人清楚地解说一件事，</description>
+    </item>
+    <item>
+      <title>表达的世界观基础与方法论建设</title>
+      <link>/articles/base-and-skill-of-presentation/</link>
+      <pubDate>Sat, 25 Apr 2020 20:13:50 +0800</pubDate>
+      <guid>/articles/base-and-skill-of-presentation/</guid>
+      <description>编号004。 核心内容。 为什么想讲这个主题，起因之一就是自己第一次做技术分享时效果就很差，后面自己对此进行了一些反思。除此之外，自己也听过不少其他人（主要是技术同学）的分享，也会发现一些不足之处。所以我</description>
+    </item>
+    <item>
+      <title>读书:《学会写作》</title>
+      <link>/articles/learn-writing-by-zhouzuoluo/</link>
+      <pubDate>Thu, 16 Jan 2020 09:21:10 +0800</pubDate>
+      <guid>/articles/learn-writing-by-zhouzuoluo/</guid>
+      <description>最近利用两个周末的时间读完了一本书，叫《学会写作》，豆瓣信息如下： 作者: 粥左罗 + 出版社: 人民邮电出版社 + 出品方: 智元微库 OPEN MIND + 副标题: 自我进阶的高效方法 + 出版年: 2019-5 + 页数: 280 + 定价: 59元 + 装帧: 平装</description>
+    </item>
+    <item>
+      <title>文档编写的术与道</title>
+      <link>/articles/tao-and-art-of-writing-tech-docs/</link>
+      <pubDate>Thu, 19 Dec 2019 19:38:07 +0800</pubDate>
+      <guid>/articles/tao-and-art-of-writing-tech-docs/</guid>
+      <description>文档的范围很广，本文特指 开发人员撰写的包含基本产品背景和主要技术设计的文档 。 世界观 为什么要写技术文档 对于这个问题，我个人觉得很容易回答，写技术文档可以帮助团队完成 当前的信息共享和长期的知识传承 。对于个</description>
+    </item>
+    <item>
+      <title>重新认识Markdown</title>
+      <link>/articles/zhong-xin-ren-shi-markdown/</link>
+      <pubDate>Thu, 02 May 2019 00:00:00 +0000</pubDate>
+      <guid>/articles/zhong-xin-ren-shi-markdown/</guid>
+      <description>重新认识Markdown 最近在调研文档写作工具，对 Markdown 有了一些新的思考。 Markdown 的优势 毫无疑问，Markdown 是流行的，个人认为有以下几个原因： 容易上手，设计得对新手非常友好，把最常用的十几个样式抽离出来，</description>
+    </item>
+    <item>
+      <title>在腾讯实习一年，我学到了什么</title>
+      <link>/articles/zai-teng-xun-shi-xi-yi-nian-wo-xue-dao-liao-shi-yao/</link>
+      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>/articles/zai-teng-xun-shi-xi-yi-nian-wo-xue-dao-liao-shi-yao/</guid>
+      <description>在腾讯实习一年，我学到了什么 去年大概也是这个时候，我有幸拿到了去腾讯实习的offer。 6月底，我欣然前去，到现在刚好一年时间，马上要回学校了，我觉得该写点什么，因为这是一个很特殊的时间点，我站在学校和</description>
+    </item>
+    <item>
+      <title>Presentation的一个误区</title>
+      <link>/articles/presentationde-yi-ge-wu-qu/</link>
+      <pubDate>Mon, 28 Aug 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/presentationde-yi-ge-wu-qu/</guid>
+      <description>Presentation的一个误区 做技术分享的一次事故及其中得到的教训。 今天做了一个技术分享，感觉效果不是很好。我思考了一下，排除分享的主题是自己无法决定的。一个很大的错误在于自己把需要展示的内容分散</description>
+    </item>
+    <item>
+      <title>数学建模比赛论文的基本结构</title>
+      <link>/articles/2016-the-basic-structure-of-mathematical-modeling-competition-papers/</link>
+      <pubDate>Thu, 08 Sep 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-the-basic-structure-of-mathematical-modeling-competition-papers/</guid>
+      <description>一、常用的三种结构 一 二 三 1.摘要 1.摘要 1.摘要 2.问题重述 2.问题的提出与重述、问题的分析 2.问题的叙述、背景的分析 3.问题的分析 3.变量假设 3.模型的假设、符号说明 4.模型假设 4.模型建立 4.模型</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（八）--- 3.2栈的应用举例：迷宫求解与表达式求值</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-8-3-2-stack-application-examples-maze-solving-and/</link>
+      <pubDate>Wed, 08 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-8-3-2-stack-application-examples-maze-solving-and/</guid>
+      <description>一.简介 迷宫求解：类似图的DFS。具体的算法思路可以参考书上的50、51页，不过书上只说了粗略的算法，实现起来还是有很多细节需要注意。大多数只是给了个抽象的名字，甚至参数类型，返回值也没说的很清楚，所</description>
+    </item>
+  </channel>
+</rss>

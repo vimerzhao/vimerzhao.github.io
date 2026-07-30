@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on 赵裕的博客</title>
+    <link>/tags/git/</link>
+    <description>Recent content in Git on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从一次 OOPIF Touch Bug 到 Chromium 合入：我的首次上游协作复盘</title>
+      <link>/articles/2026-first-chromium-contribution-oopif-touch/</link>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>/articles/2026-first-chromium-contribution-oopif-touch/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;write by ai&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;这是一次完整的 Chromium 上游贡献记录：从一个跨 OOPIF 的触摸模拟问题开始，经过可复现 demo、Chromium Bug、Gerrit 评审、坐标契约重构、CQ 验证，最后由提交队列自动合入 &lt;code&gt;main&lt;/code&gt;。最终 CL 是 &lt;a href=&#34;https://chromium-review.googlesource.com/c/chromium/src/+/8128317&#34;&gt;Fix injected touch coordinates for OOPIF touch emulation&lt;/a&gt;，上游提交是 &lt;a href=&#34;https://chromium.googlesource.com/chromium/src/+/ec8beb01845b094c40f503eea848a0a7c7d4843c&#34;&gt;&lt;code&gt;ec8beb01845b094c40f503eea848a0a7c7d4843c&lt;/code&gt;&lt;/a&gt;。&lt;/p&gt;&#xA;&lt;p&gt;它不是“写完代码、发一个 PR”就结束的过程。对我而言，更重要的收获是：上游协作的核心并不是说服 reviewer 接受一个补丁，而是共同把问题的边界、可复现证据和设计契约解释清楚。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>vcpkg源码之install流程</title>
+      <link>/articles/vcpkg-source-code-of-install/</link>
+      <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/vcpkg-source-code-of-install/</guid>
+      <description>简介 vcpck install的主要工作是&amp;quot;构建(如果需要)和安装依赖包&amp;quot;，是vcpkg中最关键、也是使用者感知最明显的环节，有必要对其流程有一个更底层的理解，这样对一些问题的理解也将更加深</description>
+    </item>
+    <item>
+      <title>Flutter源码剖析(一):源码获取与构建</title>
+      <link>/articles/flutter-source-code-analyze-1/</link>
+      <pubDate>Thu, 29 Oct 2020 12:23:10 +0800</pubDate>
+      <guid>/articles/flutter-source-code-analyze-1/</guid>
+      <description>概述 本文介绍了Flutter源码的获取与构建，后面会另有文章介绍Flutter源码的版本管理、开发环境搭建等主题。 准备工作 Flutter源码分为两个部分： flutter/flutter是框架层，为开发</description>
+    </item>
+    <item>
+      <title>Git工程化最佳实践</title>
+      <link>/articles/git-practice/</link>
+      <pubDate>Fri, 13 Dec 2019 12:32:25 +0800</pubDate>
+      <guid>/articles/git-practice/</guid>
+      <description>本文导读 本文对应的 git-standardize 项目地址 https://github.com/vimerzhao/git-standardize 问题背景 大部分程序员对于Git的理解还停留在 git add . git commit -m &amp;quot;update&amp;quot; git pull git push 的阶段，但这在实际项目开发中是远远不够的。 + 举一个简单的例子，现在我们需要过滤所有修复bug的提交，该怎</description>
+    </item>
+    <item>
+      <title>Git内部原理剖析</title>
+      <link>/articles/git-internals/</link>
+      <pubDate>Tue, 26 Nov 2019 12:31:51 +0800</pubDate>
+      <guid>/articles/git-internals/</guid>
+      <description>导读 为什么写这篇文章 写这篇文章的本意有二: 工作安排原因，常有同事询问我一些关于 Git 的问题，总觉得自己解释的不够透彻，因此觉得有必要深入了解一下。 目前中文的 Git 教程往往本末倒置， 一味从版本管理工具的角度去堆</description>
+    </item>
+    <item>
+      <title>源码阅读环境OpenGrok搭建</title>
+      <link>/articles/yuan-ma-yue-du-huan-jing-opengrokda-jian/</link>
+      <pubDate>Sun, 23 Sep 2018 00:00:00 +0000</pubDate>
+      <guid>/articles/yuan-ma-yue-du-huan-jing-opengrokda-jian/</guid>
+      <description>源码阅读环境OpenGrok搭建 工欲善其事，必先利其器。 导语 阅读源码最常见操作的就是在函数/方法的调用与定义之间跳转，对于只有大部分源码来说，都可以通过ctags+vim获得比较好的体验，但对于And</description>
+    </item>
+    <item>
+      <title>git 每次提交需要输入密码</title>
+      <link>/articles/2017-git-requires-a-password-for-each-commit/</link>
+      <pubDate>Mon, 06 Mar 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-git-requires-a-password-for-each-commit/</guid>
+      <description>亲测可行（第一种） 原文：git每次提交都要输入密码怎么办 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝COPY＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ 不少用户反映在使用Git时，经常会遇到需要频繁输入</description>
+    </item>
+    <item>
+      <title>Linux下使用Hexo搭建github博客</title>
+      <link>/articles/2016-using-hexo-to-build-a-github-blog-under-linux/</link>
+      <pubDate>Sat, 31 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-using-hexo-to-build-a-github-blog-under-linux/</guid>
+      <description>找到一篇靠谱的博客，备份一下： －－－－－－－－－以下原文－－－－－－－－－－－－－－－－－－ Nodejs安装 因为hexo是基于nodejs的应用，所以要先安装nodejs才可以。我这里以Ubuntu为</description>
+    </item>
+    <item>
+      <title>windows使用git时出现：warning: LF will be replaced by CRLF</title>
+      <link>/articles/2016-when-using-git-in-windows-warning-lf-will-be-replaced-by-crlf/</link>
+      <pubDate>Mon, 05 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-when-using-git-in-windows-warning-lf-will-be-replaced-by-crlf/</guid>
+      <description>windows中的换行符为 CRLF， 而在linux下的换行符为LF，所以在执行add . 时出现提示： 执行以下代码 $ rm -rf .git // 删除.git $ git config --global core.autocrlf false //禁用自动转换 $ git init $ git add . OK</description>
+    </item>
+    <item>
+      <title>LinuxMint配置GitHub（图文教程）</title>
+      <link>/articles/2016-linuxmint-configuration-github-graphic-tutorial/</link>
+      <pubDate>Sat, 03 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-linuxmint-configuration-github-graphic-tutorial/</guid>
+      <description>1.生成秘钥（直接回车，秘钥存放路径看命令行信息） ２．打开秘钥，需要注意的是**.ssh可能是隐藏的，这时需要Ctrl+H**显示隐藏文件夹 ３．复制秘钥，添加到GitHub(Settings)， 4.添</description>
+    </item>
+    <item>
+      <title>Git初级实践教程（图文）</title>
+      <link>/articles/2016-git-basic-practical-tutorial-picture-and-text/</link>
+      <pubDate>Sun, 06 Nov 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-git-basic-practical-tutorial-picture-and-text/</guid>
+      <description>关于Git Git的由来 Linux 的创始人 Linus Torvalds 在 2005 年开发了 Git 的原型程序。当时，由于在 Linux 内核开发中使用的既有版本管理系统的开发方许可证发生了变更，为了更换新的版本管理系统， Torvalds 开发了Git。 说在前面 Linux和Ma</description>
+    </item>
+    <item>
+      <title>GitBash上传代码不计入贡献的问题处理</title>
+      <link>/articles/2016-handling-the-problem-of-gitbash-uploading-code-not-being-counted-as-contribution/</link>
+      <pubDate>Sun, 04 Sep 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-handling-the-problem-of-gitbash-uploading-code-not-being-counted-as-contribution/</guid>
+      <description>发现最近写的代码，通过GitBash上传到github，但是格子确一个都没亮，今天通过一番检索解决了此问题，特做记录： 通过这篇文章找到了原因所在： GitHub 更新代码到底怎样才算贡献？ 通过这篇文章顺利完成了用户</description>
+    </item>
+  </channel>
+</rss>

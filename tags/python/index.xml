@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on 赵裕的博客</title>
+    <link>/tags/python/</link>
+    <description>Recent content in Python on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>&#39;Python爬虫实战:妹子图&#39;</title>
+      <link>/articles/pythonpa-chong-shi-zhan-mei-zi-tu/</link>
+      <pubDate>Sun, 02 Jul 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/pythonpa-chong-shi-zhan-mei-zi-tu/</guid>
+      <description>&amp;lsquo;Python爬虫实战:妹子图&amp;rsquo; 本文记录了一些爬虫的基础知识，并实现了一个50行左右的爬虫脚本。 前言 看了一些Python的语法后打算做一个小项目练手，打发一下时间。爬虫比较容易</description>
+    </item>
+  </channel>
+</rss>

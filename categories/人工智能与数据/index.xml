@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>人工智能与数据 on 赵裕的博客</title>
+    <link>/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE/</link>
+    <description>Recent content in 人工智能与数据 on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>初探OpenClaw</title>
+      <link>/articles/2026-first-research-on-openclaw/</link>
+      <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>/articles/2026-first-research-on-openclaw/</guid>
+      <description>本文纯手打，如有AI生成内容，会予以标注 前一篇文章还在说要考虑参与AI的浪潮，最近工作上就有了一些契机，得以投入一周多时间，专注研究OpenClaw，并做了一个分享 比起平时琐碎零星的学习，这种长时间、</description>
+    </item>
+    <item>
+      <title>代码相似性检测工具</title>
+      <link>/articles/software-similarity-tester/</link>
+      <pubDate>Tue, 14 Apr 2020 12:33:16 +0800</pubDate>
+      <guid>/articles/software-similarity-tester/</guid>
+      <description>背景 最近由于工作需要，想找一个能够检查代码相似性的工具。这种工具主要有两个应用： 代码自身的冗余检查 查重，例如检查学生的编程作业是否有抄袭 工具 最后找到了两个工具sim和moss，具体实现算法还没有研究，</description>
+    </item>
+    <item>
+      <title>B站2月份创作者分析</title>
+      <link>/articles/bilibili-report-2020-02/</link>
+      <pubDate>Sun, 01 Mar 2020 19:57:34 +0800</pubDate>
+      <guid>/articles/bilibili-report-2020-02/</guid>
+      <description>Welcome Star and Issues: vimerzhao/BilibiliReport 各区投稿比例 前三： 游戏 生活 影视 头部区域细分比例 Top1000视频分布 稿件时长分布 每日投稿趋势 24小时投稿分布 结论 超过60%的创作发生在游戏区和生活区 播放最多的是代表视听的音乐区和娱乐区 但是收</description>
+    </item>
+    <item>
+      <title>研究|2019鬼畜区热点事件分析</title>
+      <link>/articles/2019-vichiku-summary-2/</link>
+      <pubDate>Sat, 11 Jan 2020 19:53:53 +0800</pubDate>
+      <guid>/articles/2019-vichiku-summary-2/</guid>
+      <description>不小心把markdown删了，看公众号吧： 研究 | 2019鬼畜区热点事件分析</description>
+    </item>
+    <item>
+      <title>通过7万条视频数据看2019年B站鬼畜区发生了什么</title>
+      <link>/articles/2019-vichiku-summary/</link>
+      <pubDate>Sun, 05 Jan 2020 19:51:58 +0800</pubDate>
+      <guid>/articles/2019-vichiku-summary/</guid>
+      <description>前言 鬼畜就是通过对严肃正经话题进行解剖后通过重复，再创作等形式用以达到颠覆经典、解构传统、张扬个性、强化焦点、讽刺社会的一种艺术形式。 引自百度百科 作为常年混迹于B站鬼畜区的潜水怪，今天心血来潮，趁着周</description>
+    </item>
+    <item>
+      <title>区块链招聘信息爬取与分析</title>
+      <link>/articles/qu-kuai-lian-zhao-pin-xin-xi-pa-qu-yu-fen-xi/</link>
+      <pubDate>Wed, 18 Apr 2018 00:00:00 +0000</pubDate>
+      <guid>/articles/qu-kuai-lian-zhao-pin-xin-xi-pa-qu-yu-fen-xi/</guid>
+      <description>区块链招聘信息爬取与分析 最近在研究区块链，闲来无事抓取了拉勾网上450条区块链相关的招聘信息。过程及结果如下。 拉勾网爬取 首先是从拉勾网爬取数据，用的requests库。拉勾网的反爬虫做的还是比较好的，</description>
+    </item>
+    <item>
+      <title>【译】自己动手写区块链</title>
+      <link>/articles/yi-zi-ji-dong-shou-xie-qu-kuai-lian/</link>
+      <pubDate>Sun, 01 Apr 2018 00:00:00 +0000</pubDate>
+      <guid>/articles/yi-zi-ji-dong-shou-xie-qu-kuai-lian/</guid>
+      <description>【译】自己动手写区块链 目前大多数对于区块链的文章都是停留在概念性的描述，大肆宣扬其颠覆性，本文则反其道行之，以一个程序员的视角，通过300行代码，快速实现了一个区块链原型。虽然没有覆盖区块链的全部内容</description>
+    </item>
+    <item>
+      <title>20行代码搭建微信聊天机器人</title>
+      <link>/articles/20xing-dai-ma-da-jian-wei-xin-liao-tian-ji-qi-ren/</link>
+      <pubDate>Thu, 03 Aug 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/20xing-dai-ma-da-jian-wei-xin-liao-tian-ji-qi-ren/</guid>
+      <description>20行代码搭建微信聊天机器人 介绍了如何用20行Python搭建一个微信聊天机器人，并讨论了其可能的拓展方向。 引子 在之前一边文章中介绍客服机器人：AI实战:搭建客服机器人，本文将在此基础上制作一个聊天机</description>
+    </item>
+    <item>
+      <title>&#39;AI实战:搭建客服机器人&#39;</title>
+      <link>/articles/aishi-zhan-da-jian-ke-fu-ji-qi-ren/</link>
+      <pubDate>Sat, 29 Jul 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/aishi-zhan-da-jian-ke-fu-ji-qi-ren/</guid>
+      <description>&amp;lsquo;AI实战:搭建客服机器人&amp;rsquo; 本文简要介绍了但前客服机器人的发展情况，并实际开发了一个Demo作为演示。 客服机器人 随着科技发展，廉价劳动力正在不断被淘汰。客服机器人就是这样一个例</description>
+    </item>
+    <item>
+      <title>AI贪吃蛇（二）</title>
+      <link>/articles/2016-ai-snake-2/</link>
+      <pubDate>Fri, 21 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-ai-snake-2/</guid>
+      <description>前言 之前写过一篇关于贪吃蛇AI的博客，当时虽然取得了一些成果，但是也存在许多问题，所以最近又花了三天时间重新思考了一下。以下是之前博客存在的一些问题： 策略不对，只要存在找不到尾巴的情况就可能失败，所以</description>
+    </item>
+    <item>
+      <title>浅析初等贪吃蛇AI算法</title>
+      <link>/articles/2016-a-brief-analysis-of-the-elementary-snake-ai-algorithm/</link>
+      <pubDate>Thu, 14 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-a-brief-analysis-of-the-elementary-snake-ai-algorithm/</guid>
+      <description>作为小学期程序设计训练大作业的一部分，也是自己之前思考过的一个问题，终于利用小学期完成了贪吃蛇AI的一次尝试，下作一总结。 背景介绍： 首先，我针对贪吃蛇AI这一关键词在百度和google上尽心了检索，大</description>
+    </item>
+    <item>
+      <title>浅析基本AI五子棋算法</title>
+      <link>/articles/2016-a-brief-analysis-of-the-basic-ai-backgammon-algorithm/</link>
+      <pubDate>Sun, 03 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-a-brief-analysis-of-the-basic-ai-backgammon-algorithm/</guid>
+      <description>五子棋是所有棋类博弈中比较简单的了，这里介绍的也只是一种非常基本的AI策略。其实，包括之前的AI贪吃蛇，感觉这两个AI其实体现的都是一种建模思想，把一个现实中的问题模型化，抽象化，得到其一般特征，再设</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据结构 on 赵裕的博客</title>
+    <link>/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+    <description>Recent content in 数据结构 on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43;函数调用栈回溯初探</title>
+      <link>/articles/cpp-function-callstack-backtrace-1/</link>
+      <pubDate>Sun, 10 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>/articles/cpp-function-callstack-backtrace-1/</guid>
+      <description>背景 之前在解决一个Flutter Engine的C++ Crash问题时，就曾受困于一个问题：如何回溯C++的 函数调用栈？最近频繁使用C++的过程中，这个诉求日益突出。 遂下定决心彻底解决之。 过程 在stac</description>
+    </item>
+    <item>
+      <title>抽丝剥茧：Flutter Engine隐藏的一个惊天Bug</title>
+      <link>/articles/fix-a-serious-flutter-engine-multithread-bug/</link>
+      <pubDate>Sun, 08 Aug 2021 15:53:53 +0800</pubDate>
+      <guid>/articles/fix-a-serious-flutter-engine-multithread-bug/</guid>
+      <description>零、背景介绍 Flutter技术在微视内经过大半年的探索，已经从存量业务的改造尝试阶段，开始进入增量业务的承接阶段。横版视频的为你推荐就是这样一个场景，原Native体验如下： 使用Flutter完成新业</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（三十二）--- 9.1静态查找表</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-32-9-1-static-lookup-table/</link>
+      <pubDate>Tue, 12 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-32-9-1-static-lookup-table/</guid>
+      <description>一、简述 静态查找表又分为顺序表、有序表、静态树表和索引表。以下只是算法的简单实现及测试，不涉及性能分析。 二、头文件 1 /** 2 author：zhaoyu 3 date:2016-7-12 4 */ 5 #include &amp;#34;6_3_part1_for_chapter9.h&amp;#34; 6 typedef struct { 7 int key; 8 }SElemType; 9 //静态查找表的顺序</description>
+    </item>
+    <item>
+      <title>机器博弈中的数据结构与基本方法（二）-----递归及回溯法实例</title>
+      <link>/articles/2016-data-structures-and-basic-methods-in-machine-games-2-examples-of-recursion-and-backtracking-methods/</link>
+      <pubDate>Mon, 04 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structures-and-basic-methods-in-machine-games-2-examples-of-recursion-and-backtracking-methods/</guid>
+      <description>1、跳马问题：从左上角开始，按照象棋中马的行走规则（但是不考虑马脚，只需要按日字走），要求每个点走一次且仅一次，并且所有的点走走到，求解所有可行走法。 思路及代码： 1 #include &amp;lt;cstdio&amp;gt; 2 int a[9][9]; //包含边界拓展 3 int S = 0;</description>
+    </item>
+    <item>
+      <title>机器博弈中的数据结构与基本方法（三）-----博弈树的搜索之九宫重排问题</title>
+      <link>/articles/2016-data-structure-and-basic-methods-in-machine-games-3-nine-palace-rearrangement-problem-of-game-tree-s/</link>
+      <pubDate>Mon, 04 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-and-basic-methods-in-machine-games-3-nine-palace-rearrangement-problem-of-game-tree-s/</guid>
+      <description>九宫重排问题，如下图所示，九宫重排（或称八数码问题）是人工智能中一个经典问题，这里利用DFS解决这个问题。 通过设置一个OPEN表和一个CLOSE表记录尚未遍历和遍历过的状态，直至找到目标状态或遍历完所</description>
+    </item>
+    <item>
+      <title>机器博弈中的数据结构与基本方法（一）-----总结</title>
+      <link>/articles/2016-data-structure-and-basic-methods-in-machine-games-1-summary/</link>
+      <pubDate>Mon, 04 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-and-basic-methods-in-machine-games-1-summary/</guid>
+      <description>一、基本概念 博弈分类：单人博弈（华容道）、双人博弈（象棋、围棋）、多人博弈（麻将、桥牌）；完全信息博弈（象棋、围棋）、不完全信息博弈（麻将、桥牌、三国杀等）。 注：大一曾选修过一门课：博弈论，也在数模班</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十八）--- 7.4图的连通性问题</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-28-7-4-graph-connectivity-issues/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-28-7-4-graph-connectivity-issues/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十二）--- 6.4树和森林</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-22-6-4-trees-and-forests/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-22-6-4-trees-and-forests/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十九）--- 7.5有向无环图及其应用</title>
+      <link>/articles/2016-data-structure-algorithm-implementation-in-c-language-29-7-5-directed-acyclic-graph-and-its-applicat/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-implementation-in-c-language-29-7-5-directed-acyclic-graph-and-its-applicat/</guid>
+      <description>一.简述</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十六）--- 7.2图的存储结构</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-26-7-2-storage-structure-of-graph/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-26-7-2-storage-structure-of-graph/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十七）--- 7.2图的遍历</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-27-7-2-graph-traversal/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-27-7-2-graph-traversal/</guid>
+      <description>一.简述 栈与队列，DFS与BFS。仅以连接表为例实现。 二.头文件 BFS要用到的头文件 1 //3_4_part1.h 2 /** 3 author:zhaoyu 4 email:zhaoyu1995.com@gmail.com 5 date:2016-6-9 6 2016-6-25修改版，针对第七章 7 note:realize my textbook &amp;lt;&amp;lt;数据结构（C语言版）&amp;gt;&amp;gt</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十三）--- 6.5树与等价问题</title>
+      <link>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-twenty-three-6-5-trees-and-equivalence-prob/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-twenty-three-6-5-trees-and-equivalence-prob/</guid>
+      <description>一.简述</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十四）--- 6.6赫夫曼树及其应用</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-24-6-6-huffman-tree-and-its-application/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-24-6-6-huffman-tree-and-its-application/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十五）--- 6.7回溯法与树的遍历</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-25-6-7-backtracking-method-and-tree-traversal/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-25-6-7-backtracking-method-and-tree-traversal/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十一）--- 6.3.2线索二叉树</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-21-6-3-2-clue-binary-tree/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-21-6-3-2-clue-binary-tree/</guid>
+      <description>一.简述 coding</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（三十）--- 7.6最短路径</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-30-7-6-shortest-path/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-30-7-6-shortest-path/</guid>
+      <description>一.简述</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（三十一）--- 8.3边界标识法</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-31-8-3-boundary-marking-method/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-31-8-3-boundary-marking-method/</guid>
+      <description>一.简述</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二十）--- 6.3.1遍历二叉树</title>
+      <link>/articles/2016-data-structure-algorithm-implemented-in-c-language-20-6-3-1-traversing-the-binary-tree/</link>
+      <pubDate>Sat, 18 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-implemented-in-c-language-20-6-3-1-traversing-the-binary-tree/</guid>
+      <description>一.简述 二叉树的遍历主要是先序、中序、后序及对应的递归和非递归算法，共3x2=6种，其中后序非递归在实现上稍复杂一些。二叉树的遍历是理解和学习递归及体会栈的工作原理的绝佳工具！ 此外，非递归所用的栈及相</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十八）--- 5.3矩阵的压缩存储</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-18-5-3-compressed-storage-of-matrices/</link>
+      <pubDate>Fri, 17 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-18-5-3-compressed-storage-of-matrices/</guid>
+      <description>一.简述 【coding】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十九）--- 5.5&amp;5.6&amp;5.7广义表</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-19-5-5-5-6-5-7-generalized-table/</link>
+      <pubDate>Fri, 17 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-19-5-5-5-6-5-7-generalized-table/</guid>
+      <description>一.简述 传说Lisp的基本数据结构就是广义表，广义表也是具有典型递归属性的数据结构，此外，由于建表要处理字符串，用C语言处理起来也是一脸懵逼&amp;hellip;..最后自己还想写一个将广义表还原成字符串的</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十七）--- 5.1&amp;5.2数组：定义、顺序表示及实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-seventeen-5-1-5-2-array-definition-sequential-rep/</link>
+      <pubDate>Wed, 15 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-seventeen-5-1-5-2-array-definition-sequential-rep/</guid>
+      <description>一.简述 理解数组位置的计算公式 LOC(j1, j2, ···, jn) = LOC(0, 0, ..., 0) + (b2x ··· x bnx j1 + b3x ··· x bnx j2 + ··· + bnx jn-1 + jn)L 化简为 可以缩写成 其中 cn = L,ci-1 = bi x ci, 1&amp;lt;i≤n。 二.头文件 1 //5_2.h 2 /** 3 author:zhaoyu 4 date:2016-6-15 5 */ 6 //----</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十六）--- 4.3串的应用举例</title>
+      <link>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-16-4-3-application-examples-of-strings/</link>
+      <pubDate>Fri, 10 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-16-4-3-application-examples-of-strings/</guid>
+      <description>一.简述 【coding】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十三）--- 3.5离散事件模拟</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-13-3-5-discrete-event-simulation/</link>
+      <pubDate>Fri, 10 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-13-3-5-discrete-event-simulation/</guid>
+      <description>一.简述 【coding】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十四）--- 4.1&amp;4.2串的类型定义、表示及实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-14-4-1-4-2-string-type-definition-representation/</link>
+      <pubDate>Fri, 10 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-14-4-1-4-2-string-type-definition-representation/</guid>
+      <description>一.简述 【暂无】 二.头文件 1 //4_2_part1.h 2 /** 3 author:zhaoyu 4 */ 5 //2016-6-10 6 //----串的定长顺序存储表示---- 7 #include &amp;#34;head.h&amp;#34; 8 #define MAXSTRLEN 255//用户可以在255以内定义最大串长 9 //这语法还不是很熟悉 10 typedef unsigned char SString[MAXSTRLEN+1];//0 号单元存放串的长度 11 int StrLength(SString</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十五）---4.3 串的模式匹配算法</title>
+      <link>/articles/2016-data-structure-algorithm-implementation-in-c-language-15-4-3-string-pattern-matching-algorithm/</link>
+      <pubDate>Fri, 10 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-implementation-in-c-language-15-4-3-string-pattern-matching-algorithm/</guid>
+      <description>一.简述 【coding】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十二）--- 3.4循环队列&amp;队列的顺序表示和实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-12-3-4-sequential-representation-and-implementati/</link>
+      <pubDate>Thu, 09 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-12-3-4-sequential-representation-and-implementati/</guid>
+      <description>一.简述 空队列的处理方法：1.另设一个标志位以区别队列是空还是满；2.少用一个元素空间，约定以队列头指针在队尾指针下一位置上作为队列呈满的状态的标志。 二.头文件 1 //3_4_part1.h 2 /** 3 author:zhaoyu 4 email:zhaoyu1995.com@gmail.com 5 date:2016-6-9 6 note:realize my textbook &amp;lt;&amp;l</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十一）--- 3.4队列的链式表示和实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-11-3-4-chain-representation-and-implementation-of/</link>
+      <pubDate>Thu, 09 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-11-3-4-chain-representation-and-implementation-of/</guid>
+      <description>一.简介 FIFO。 二.头文件 1 //3_4_part1.h 2 /** 3 author:zhaoyu 4 email:zhaoyu1995.com@gmail.com 5 date:2016-6-9 6 note:realize my textbook &amp;lt;&amp;lt;数据结构（C语言版）&amp;gt;&amp;gt; 7 */ 8 //Page 61 9 #include &amp;lt;cstdio&amp;gt; 10 #include &amp;#34;head.h&amp;#34; 11 #define QElemType int 12 //----单链队列：队列的链式存储结构---- 13 typedef struct QNode{ 14 QElemType</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（八）--- 3.2栈的应用举例：迷宫求解与表达式求值</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-8-3-2-stack-application-examples-maze-solving-and/</link>
+      <pubDate>Wed, 08 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-8-3-2-stack-application-examples-maze-solving-and/</guid>
+      <description>一.简介 迷宫求解：类似图的DFS。具体的算法思路可以参考书上的50、51页，不过书上只说了粗略的算法，实现起来还是有很多细节需要注意。大多数只是给了个抽象的名字，甚至参数类型，返回值也没说的很清楚，所</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（十）--- 3.3栈与递归的实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-10-3-3-implementation-of-stack-and-recursion/</link>
+      <pubDate>Wed, 08 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-10-3-3-implementation-of-stack-and-recursion/</guid>
+      <description>一.简介 汉诺塔问题是递归的一个典型例子，而且书上的讲解很详细，对理解C语言函数及函数传参的工作机制很有帮助，值得一看。而且，递归在我看来和分治、DP、贪心等一样是十分优美的思想，值得学习！！！ 二.CP</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（六）---2.4一元多项式的表示及相加</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-6-2-4-representation-and-addition-of-one-variable/</link>
+      <pubDate>Tue, 07 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-6-2-4-representation-and-addition-of-one-variable/</guid>
+      <description>一.简述 利用链表表示稀疏多项式，并基于之前的一些操作（编程实现上还是有所不同的）组合新的操作实现一元多项式的表示及相加。 二.ADT 1 抽象数据类型一元多项式的定义 2 ADT Polyomail{ 3 数据对象：D = {a[i]|a[i</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（七）--- 3.1栈的线性实现及应用举例</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-7-3-1-linear-implementation-and-application-examp/</link>
+      <pubDate>Tue, 07 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-7-3-1-linear-implementation-and-application-examp/</guid>
+      <description>一.简述 栈，LIFO。是操作受限的线性表，和线性表一样有两种存储表示方法。下面以顺序存储为例，实现。 二.ADT 暂无。 三.头文件 1 //3_1.h 2 /** 3 author:zhaoyu 4 email:zhaoyu1995.com@gmail.com 5 date:2016-6-7 6 note:realize my textbook &amp;lt;&amp;lt;数据结构（C语言版）&amp;gt;&amp;</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（三）---2.3线性表的链式表示之静态链表</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-3-2-3-static-linked-list-of-linked-representation/</link>
+      <pubDate>Mon, 06 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-3-2-3-static-linked-list-of-linked-representation/</guid>
+      <description>一.简述 【】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（四）---2.3循环链表与双向链表</title>
+      <link>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-4-2-3-circular-linked-list-and-doubly-linke/</link>
+      <pubDate>Mon, 06 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-implementation-of-data-structure-algorithm-in-c-language-4-2-3-circular-linked-list-and-doubly-linke/</guid>
+      <description>一.简述 【工作中&amp;hellip;】</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（五）---2.3重新定义线性链表及其基本操作</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-5-2-3-redefining-linear-linked-lists-and-their-ba/</link>
+      <pubDate>Mon, 06 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-5-2-3-redefining-linear-linked-lists-and-their-ba/</guid>
+      <description>一.简述 &amp;hellip;由于链表在空间的合理利用上和插入、删除时不需要移动等的优点，因此在很多场合下，它是线性表的首选存储结构。然而，它也存在着实现某些基本操作，如求线性表的长度时不如顺序存储结构的缺</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（二）---2.3线性表的链式表示和实现之单链表</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-2-2-3-linked-representation-of-linear-list-and-im/</link>
+      <pubDate>Sun, 05 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-2-2-3-linked-representation-of-linear-list-and-im/</guid>
+      <description>一.简述 【暂无】 二.头文件 1 #ifndef _2_3_part1_H_ 2 #define _2_3_part1_H_ 3 //2_3_part1.h 4 /** 5 author:zhaoyu 6 email:zhaoyu1995.com@gmail.com 7 date:2016-6-4 8 note:realize my textbook &amp;lt;&amp;lt;数据结构（C语言版）&amp;gt;&amp;gt; 9 */ 10 //----线性表的单链表存储结构---- 11 /** 12 My Code 13 to make the paragram run correctlly 14 */ 15 #define ElemType</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现---序言</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-preface/</link>
+      <pubDate>Sat, 04 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-preface/</guid>
+      <description>期末考试即将到来，打算花两周时间实现书上所有的算法。巩固学习成果（其实之前也没怎么听课&amp;hellip;&amp;hellip;）毕竟考前突击，背背，ppt刷个90+是没多大意义的。 没错，就是下面这本 毕竟书也是</description>
+    </item>
+    <item>
+      <title>数据结构算法C语言实现（一）---2.2线性表的顺序表示和实现</title>
+      <link>/articles/2016-data-structure-algorithm-c-language-implementation-1-2-2-sequential-representation-and-implementatio/</link>
+      <pubDate>Sat, 04 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-1-2-2-sequential-representation-and-implementatio/</guid>
+      <description>注意： 虽然是用C语言实现，但是考虑到使用了一个C++的特性&amp;mdash;-引用以简化代码，所以所有的代码均以cpp作为后缀，用g++编译（以后不做说明）。 g++版本： 一.简述 本节主要讲述线性表的顺序实</description>
+    </item>
+    <item>
+      <title>POJ  题目分类（转载）</title>
+      <link>/articles/2016-poj-question-classification-reprinted/</link>
+      <pubDate>Mon, 21 Mar 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-poj-question-classification-reprinted/</guid>
+      <description>Log 2016-3-21 网上找的POJ分类，来源已经不清楚了。百度能百度到一大把。贴一份在博客上，鞭策自己刷题，不能偷懒！！ 初期: 一.基本算法: (1)枚举. (poj1753,poj2965) (2)贪心(poj1328,poj2109,poj2586) (</description>
+    </item>
+  </channel>
+</rss>

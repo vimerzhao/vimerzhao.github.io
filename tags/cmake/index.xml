@@ -1,13 +1,48 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>CMAKE on 赵裕的博客</title>
+    <title>CMake on 赵裕的博客</title>
     <link>/tags/cmake/</link>
-    <description>Recent content in CMAKE on 赵裕的博客</description>
+    <description>Recent content in CMake on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 01 Apr 2023 16:49:27 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
     <atom:link href="/tags/cmake/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CMake使用Protobuf的正确姿势</title>
+      <link>/articles/use-protobuf-in-cmake/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/use-protobuf-in-cmake/</guid>
+      <description>工程上有一个非常基础的原则，就是: 关联度越高的逻辑应该越靠近 。 但实践中，往往容易忽视，导致的结果就是：出了问题，我们要从一个非常遥远的错误，慢慢回溯，找到最根本的原因。 近来研究如何在cmake中使用P</description>
+    </item>
+    <item>
+      <title>CMake Cookbook</title>
+      <link>/articles/cmake-cookbook/</link>
+      <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/cmake-cookbook/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CMake Details</title>
+      <link>/articles/cmake-details/</link>
+      <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/cmake-details/</guid>
+      <description>CMAKE_BUILD_TYPE的Debug, Release, RelWithDebInfo and MinSizeRel有什么区别? Debug: -g(默认-O0) Rlease: -O3 -DNDEBUG RleWithDebInfo: -O2 -g -DNDEBUG</description>
+    </item>
+    <item>
+      <title>CMake Pitfalls</title>
+      <link>/articles/cmake-pitfalls/</link>
+      <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
+      <guid>/articles/cmake-pitfalls/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Android Gradle使用自定义的CMake</title>
+      <link>/articles/custom-cmake-in-android-gradle/</link>
+      <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/custom-cmake-in-android-gradle/</guid>
+      <description>背景 最近重构项目的CMake后，开始了Android平台的适配，踩了些坑，简单记录下。 Cmake版本过低 test 重构后的CMake使用了一些高版本的特性，比如： CMP0135: New in version 3.24. -&amp;gt; https://cmake.org/cmake/help/latest/policy/CMP0135.html FILE_SET &amp;lt;set-name&amp;gt;: New in version 3.23 -&amp;gt; https://cmake.org/cmake/help/latest/command/install.html 但Android</description>
+    </item>
     <item>
       <title>AndroidStudio使用Cmake3.18.1的坑</title>
       <link>/articles/use-cmake-3.18.1-in-android-studio/</link>

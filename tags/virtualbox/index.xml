@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VirtualBox on 赵裕的博客</title>
+    <link>/tags/virtualbox/</link>
+    <description>Recent content in VirtualBox on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows10下VirtualBox不支持64位</title>
+      <link>/articles/virtualbox-lose-64-bit/</link>
+      <pubDate>Mon, 20 Apr 2020 10:20:21 +0800</pubDate>
+      <guid>/articles/virtualbox-lose-64-bit/</guid>
+      <description>参考解决Windows10中Virtualbox安装虚拟机没有64位选项(N种情形盘点)-四个空格，除了关闭HyperV，还需要卸载雷电模拟器等，这些软件都有可能占用虚拟驱动。 Mark一下</description>
+    </item>
+    <item>
+      <title>VirtualBox下Debian增强功能的安装</title>
+      <link>/articles/virtualboxxia-debianzeng-qiang-gong-neng-de-an-zhuang/</link>
+      <pubDate>Wed, 14 Jun 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/virtualboxxia-debianzeng-qiang-gong-neng-de-an-zhuang/</guid>
+      <description>VirtualBox下Debian增强功能的安装 本文记录了如何为VirtualBox里面的Debian虚拟机安装增强功能。 问题记录 之前写过一篇博客记录了VirtualBox下安装增强功能的问题，是在U</description>
+    </item>
+    <item>
+      <title>与VirtualBox下Linux虚拟机共享文件</title>
+      <link>/articles/yu-virtualboxxia-linuxxu-ni-ji-gong-xiang-wen-jian/</link>
+      <pubDate>Mon, 29 May 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/yu-virtualboxxia-linuxxu-ni-ji-gong-xiang-wen-jian/</guid>
+      <description>与VirtualBox下Linux虚拟机共享文件 记录了如何与VirtualBox下的Linux虚拟机共享文件。 最近，需要在Ubuntu虚拟机里面调试HotSpot，截了些图需要在本机上处理一下，所以需</description>
+    </item>
+    <item>
+      <title>VirtualBox下虚拟电脑没有光驱</title>
+      <link>/articles/virtualboxxia-xu-ni-dian-nao-mei-you-guang-qu/</link>
+      <pubDate>Sun, 28 May 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/virtualboxxia-xu-ni-dian-nao-mei-you-guang-qu/</guid>
+      <description>VirtualBox下虚拟电脑没有光驱 记录了VirtualBox虚拟电脑安装增强功能时提示没有光驱的问题。 由于编译openjdk的需要，安装了Ubuntu12.04，但是在安装增强功能时候却遇到了以下</description>
+    </item>
+    <item>
+      <title>VirtualBox安装MS-DOS6.22（图文教程）</title>
+      <link>/articles/2016-virtualbox-installation-ms-dos6-22-graphic-tutorial/</link>
+      <pubDate>Tue, 06 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-virtualbox-installation-ms-dos6-22-graphic-tutorial/</guid>
+      <description>最近在读一些计算机发展史之类的文献，总感觉的纸上得来终觉浅，所以打算自己装一个MS-DOS，体验一下远古的操作系统！可以google到MS-DOS的安装文件： 为什么要分成三个呢？可以看到，每个大小都是</description>
+    </item>
+    <item>
+      <title>“此主机不支持64位客户机操作系统”问题记录</title>
+      <link>/articles/2016-this-host-does-not-support-64-bit-guest-operating-systems-problem-record/</link>
+      <pubDate>Fri, 12 Aug 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-this-host-does-not-support-64-bit-guest-operating-systems-problem-record/</guid>
+      <description>由于昨天把系统玩坏了，得重装虚拟机，可是在向导阶段阶段就出现了“此主机不支持64位客户机操作系统&amp;hellip;”的提示，于是网上查了一下解决方法：无非都是Enable VT之类，可是设置这些之后还是有</description>
+    </item>
+  </channel>
+</rss>

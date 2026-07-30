@@ -6,14 +6,77 @@
     <description>Recent content in Flutter on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 05 Jul 2026 13:17:49 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
     <atom:link href="/categories/flutter/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>配置一个Flutter的远程Android调试环境</title>
+      <link>/articles/configure-android-debug-environment-for-flutter-on-a-remote-server/</link>
+      <pubDate>Sun, 22 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/configure-android-debug-environment-for-flutter-on-a-remote-server/</guid>
+      <description>1.构建制品 之前已经构建过：Flutter源码剖析(一):源码获取与构建 - 赵裕的博客 新遇到一些错误，记录下： $ ../flutter/bin/flutter build --local-engine-src-path ../src --local-engine=android_debug_unopt android ...... You are using a locally built engine (--local-engine) but have not specified --local-engine-host. You may be building with a different engine than the one you are running with. See https://github.com/flutter/flutter/issues/132245 for details. &amp;lt;&amp;n</description>
+    </item>
+    <item>
+      <title>配置一个Mac/iOS平台的Flutter源码调试环境</title>
+      <link>/articles/set-up-flutter-debug-env-for-mac-and-ios/</link>
+      <pubDate>Wed, 27 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/set-up-flutter-debug-env-for-mac-and-ios/</guid>
+      <description>背景 最近，由于工作需要，想系统理解下Flutter是如何在MacOS/iOS平台使用OpenGL的。因为Apple早早放弃了对OpenGL的支持，导致这块坑不少，故此希望看看Flutter是怎么处理的</description>
+    </item>
+    <item>
+      <title>从ReactNative到Flutter：跨平台技术的黄金时代与七年之痒</title>
+      <link>/articles/from-reactnative-to-flutter/</link>
+      <pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>/articles/from-reactnative-to-flutter/</guid>
+      <description>零、黎明的前夜 2007年，苹果公司推出了第一代 iPhone，其搭载的 iPhone OS1.0 即是日后 iOS 系统 的前身。次年，谷歌也推出了其酝酿已久的智能手机操作系统 Android 1.0。也就是在这一 年的 8 月，PhoneGap 诞生了。Ph</description>
+    </item>
+    <item>
+      <title>抽丝剥茧：Flutter Engine隐藏的一个惊天Bug</title>
+      <link>/articles/fix-a-serious-flutter-engine-multithread-bug/</link>
+      <pubDate>Sun, 08 Aug 2021 15:53:53 +0800</pubDate>
+      <guid>/articles/fix-a-serious-flutter-engine-multithread-bug/</guid>
+      <description>零、背景介绍 Flutter技术在微视内经过大半年的探索，已经从存量业务的改造尝试阶段，开始进入增量业务的承接阶段。横版视频的为你推荐就是这样一个场景，原Native体验如下： 使用Flutter完成新业</description>
+    </item>
+    <item>
+      <title>大道至简：Flutter嵌套滑动冲突解决之路</title>
+      <link>/articles/flutter-nested-scroll-conflict/</link>
+      <pubDate>Thu, 27 May 2021 19:22:48 +0800</pubDate>
+      <guid>/articles/flutter-nested-scroll-conflict/</guid>
+      <description>背景与挑战 为了充分验证Flutter在UI开发上的完备性（能Cover住足够复杂的场景），我们选择了微视端内最复杂的页面之一的个人页进行改造，其UI形态如下。 用户1: 用户2: 观察可以发现，对于UI层面</description>
+    </item>
     <item>
       <title>Flutter PlatformView大小异常导致闪退锁屏</title>
       <link>/articles/record-a-flutter-platform-view-bug/</link>
       <pubDate>Wed, 26 May 2021 09:54:17 +0800</pubDate>
       <guid>/articles/record-a-flutter-platform-view-bug/</guid>
       <description>最近在Flutter中嵌入WebView的时候，遇到一个奇怪的Bug，不仅闪退，还会导致应用锁屏，现状如下（在当前页面卡顿很久，然后黑屏、锁屏……）： 抓到的错误日志如下： + 分析之后发现是使用Virtu</description>
+    </item>
+    <item>
+      <title>Flutter源码剖析(四):flutter run流程解析</title>
+      <link>/articles/flutter-source-code-analyze-4/</link>
+      <pubDate>Sun, 22 Nov 2020 12:23:18 +0800</pubDate>
+      <guid>/articles/flutter-source-code-analyze-4/</guid>
+      <description>关于flutter run flutter run负责执行构建一个flutter工程，输出产物到对应设备，并负责提供基本的交互控制，使用效果如下： $ flutter run Launching lib/main.dart on COL AL10 in debug mode... Running Gradle task &amp;#39;assembleDebug&amp;#39;... Running Gradle task &amp;#39;assembleDebug&amp;#39;... Done 23.8s ✓ Built build/app/outputs/flutter-apk/app-debug.apk. Installing build/app/outputs/flutter-apk/app.apk... 13.7s Waiting for COL AL10 to report its views... 7ms Syncing files</description>
+    </item>
+    <item>
+      <title>Flutter源码剖析(三):Flutter-Android-Embedder启动流程</title>
+      <link>/articles/flutter-source-code-analyze-3/</link>
+      <pubDate>Sun, 15 Nov 2020 12:23:15 +0800</pubDate>
+      <guid>/articles/flutter-source-code-analyze-3/</guid>
+      <description>概述 Flutter的启动包括Embedder、Engine、Framework三部分，本文仅描述Android平台的Embdder模块的启动流程。Flutter通常通过启动一个FlutterActiv</description>
+    </item>
+    <item>
+      <title>Flutter源码剖析(二):源码的阅读与调试环境配置</title>
+      <link>/articles/flutter-source-code-analyze-2/</link>
+      <pubDate>Thu, 05 Nov 2020 12:23:13 +0800</pubDate>
+      <guid>/articles/flutter-source-code-analyze-2/</guid>
+      <description>综述 Flutter从架构上来说有3部分： 用Dart写的Framework层，面向开发者 用Java/Kotlin写的Embdder层（For Android，iOS是OC/Swift），纯Flutter A</description>
+    </item>
+    <item>
+      <title>Flutter源码剖析(一):源码获取与构建</title>
+      <link>/articles/flutter-source-code-analyze-1/</link>
+      <pubDate>Thu, 29 Oct 2020 12:23:10 +0800</pubDate>
+      <guid>/articles/flutter-source-code-analyze-1/</guid>
+      <description>概述 本文介绍了Flutter源码的获取与构建，后面会另有文章介绍Flutter源码的版本管理、开发环境搭建等主题。 准备工作 Flutter源码分为两个部分： flutter/flutter是框架层，为开发</description>
     </item>
   </channel>
 </rss>

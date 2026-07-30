@@ -6,7 +6,7 @@
     <description>Recent content in Chromium on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 13:07:26 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
     <atom:link href="/tags/chromium/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>从一次 OOPIF Touch Bug 到 Chromium 合入：我的首次上游协作复盘</title>
@@ -14,6 +14,20 @@
       <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
       <guid>/articles/2026-first-chromium-contribution-oopif-touch/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;write by ai&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;这是一次完整的 Chromium 上游贡献记录：从一个跨 OOPIF 的触摸模拟问题开始，经过可复现 demo、Chromium Bug、Gerrit 评审、坐标契约重构、CQ 验证，最后由提交队列自动合入 &lt;code&gt;main&lt;/code&gt;。最终 CL 是 &lt;a href=&#34;https://chromium-review.googlesource.com/c/chromium/src/+/8128317&#34;&gt;Fix injected touch coordinates for OOPIF touch emulation&lt;/a&gt;，上游提交是 &lt;a href=&#34;https://chromium.googlesource.com/chromium/src/+/ec8beb01845b094c40f503eea848a0a7c7d4843c&#34;&gt;&lt;code&gt;ec8beb01845b094c40f503eea848a0a7c7d4843c&lt;/code&gt;&lt;/a&gt;。&lt;/p&gt;&#xA;&lt;p&gt;它不是“写完代码、发一个 PR”就结束的过程。对我而言，更重要的收获是：上游协作的核心并不是说服 reviewer 接受一个补丁，而是共同把问题的边界、可复现证据和设计契约解释清楚。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>rk1126尝试运行chromium和webkit</title>
+      <link>/articles/try-install-chromium-and-webkit-on-rk1126/</link>
+      <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>/articles/try-install-chromium-and-webkit-on-rk1126/</guid>
+      <description>rk1126上跑着一个apt都没有的linux，由于一些研究需要，想让其运行下chromium和webkit,但最终失败了，简单记录下其过程： 大致有3个思路： 安装apt，再配置安装源，用apt安装 使用</description>
+    </item>
+    <item>
+      <title>使用VSCode作为Chromium的调试前端</title>
+      <link>/articles/use-vscode-as-debug-frontend-of-chromium-project/</link>
+      <pubDate>Mon, 24 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/use-vscode-as-debug-frontend-of-chromium-project/</guid>
+      <description>之前试过VSCode作为C++工程的开发工具，但如果工程过于庞大，每次打开都会卡死在索引阶段。 总的来说，NeoVim+Clangd是我认为通用性、性能、开发体验综合最好的选择。 但有一个问题，怎么调试？</description>
     </item>
   </channel>
 </rss>

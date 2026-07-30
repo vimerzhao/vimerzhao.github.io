@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>职业与成长 on 赵裕的博客</title>
+    <link>/categories/%E8%81%8C%E4%B8%9A%E4%B8%8E%E6%88%90%E9%95%BF/</link>
+    <description>Recent content in 职业与成长 on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/categories/%E8%81%8C%E4%B8%9A%E4%B8%8E%E6%88%90%E9%95%BF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于一次课后反馈的思考</title>
+      <link>/articles/thoughts-on-feedback-after-a-class/</link>
+      <pubDate>Sun, 11 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/thoughts-on-feedback-after-a-class/</guid>
+      <description>最近，在公司内开讲了一门课程：《软件Bug的排查与解决》。看到课后的学员反馈，感觉是第一次收到如此矛盾的评价，所以觉得有必要思考一下。 以下是原文： 四、学员反馈 在整个培训过程中，什么地方您感到最满意，收</description>
+    </item>
+    <item>
+      <title>工作五年，重新出发</title>
+      <link>/articles/start-again-after-working-five-years/</link>
+      <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>/articles/start-again-after-working-five-years/</guid>
+      <description>赵裕的第 201 篇文章。 一、前情回顾 最近在整理之前的博客,粗略统计了下,之前写过的文章大概200篇左右。最近一年没怎么更新，故而本篇计作第201篇，算是一个新阶段的开始吧！ 1.1 写作初心 第一次写作是在2015年</description>
+    </item>
+    <item>
+      <title>关于自我介绍的一点感想</title>
+      <link>/articles/impression-on-self-introduction/</link>
+      <pubDate>Sat, 20 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>/articles/impression-on-self-introduction/</guid>
+      <description>最近半年，因为参加一些活动，经常需要写个自我介绍，不由生发出一些感想。 其时自我介绍也是有分类的，比如刚上大学，又或者加入新的团队，自我介绍更多是让别人 了解 自己。 而在校期间的社团选拔、工作后的各种面试，</description>
+    </item>
+    <item>
+      <title>GoogleIO活动后记</title>
+      <link>/articles/record-of-goolge-io-06-12/</link>
+      <pubDate>Sun, 12 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>/articles/record-of-goolge-io-06-12/</guid>
+      <description>一、 前几周，收到了Google I/O Extended的分享邀请，也没多想就答应了，一是自己之前没有此类经历，想着去体验下肯定是不亏的； 二是自认为在Flutter（乃至跨平台这个领域），我还是相对有不少经验</description>
+    </item>
+    <item>
+      <title>在疫情与裁员的阴影下继续生长</title>
+      <link>/articles/under-epidemic-and-layoffs/</link>
+      <pubDate>Sat, 16 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>/articles/under-epidemic-and-layoffs/</guid>
+      <description>遇到什么困难也不要怕，微笑着面对它，消除恐惧的最好办法就是面对恐惧，坚持就是胜利，奥利给！ 最近由于各种原因（工作、练习五笔、懒）没有持续写作，想想这样还是不好，以后还是每周拿出一些时间进行自省。 对于一</description>
+    </item>
+    <item>
+      <title>关于笔记软件的比较研究</title>
+      <link>/articles/research-about-note-software/</link>
+      <pubDate>Sun, 19 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>/articles/research-about-note-software/</guid>
+      <description>一、引言 工作以来，如何高效地整理自己的信息这个问题一直困扰着我。经常会遇到这种情况， 自己需要记录一个信息，但依稀记得自己记录过类似的信息，却又半天找不到。 举个例子，我发现一个学习C++不错的网站，于是</description>
+    </item>
+    <item>
+      <title>如何提高中文输入的效率</title>
+      <link>/articles/improve-efficiency-by-shuangpin/</link>
+      <pubDate>Mon, 11 Oct 2021 16:57:09 +0800</pubDate>
+      <guid>/articles/improve-efficiency-by-shuangpin/</guid>
+      <description>最近写文章和文档的频率比较高，发现常规的全拼输入法的打字速度完全跟不上大脑想表达的速度。于是，想着要不要学一学五笔，调研尝试一番之后发现不太理想，原因有二： 五笔的学习成本比较高 五笔最具优势的场景是看着</description>
+    </item>
+    <item>
+      <title>日常开发尽量使用英文</title>
+      <link>/articles/try-to-use-english-everywhere/</link>
+      <pubDate>Mon, 11 Oct 2021 10:49:57 +0800</pubDate>
+      <guid>/articles/try-to-use-english-everywhere/</guid>
+      <description>以后在日常开发中尽量使用英文，主要包括： 使用英文命名目录 使用英文写代码注释 为什么要这么做？ 主要是为了提高操作和编辑效率。举例： 在切换目录的时候，有的工具能自动在多个目录间跳转（比如zsh下的cd命令）</description>
+    </item>
+    <item>
+      <title>如何在业务开发中实现自我成长</title>
+      <link>/articles/how-to-achieve-self-growth-in-business-development/</link>
+      <pubDate>Tue, 28 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>/articles/how-to-achieve-self-growth-in-business-development/</guid>
+      <description>笔者按 悟已往之不谏，知来者之可追。 从初入职场到现在，已经两年有余，看起来还是前途有限、后患无穷。写罢此文，聊以自慰，勉过往而励将来。 长久以来，我一直在思考两件事情：怎么把过往的经历抽象成可复用的经验，</description>
+    </item>
+    <item>
+      <title>读书:《吃掉那只青蛙》</title>
+      <link>/articles/eat-that-frog/</link>
+      <pubDate>Sat, 20 Jun 2020 09:44:18 +0800</pubDate>
+      <guid>/articles/eat-that-frog/</guid>
+      <description>笔记 C01 明确目标 第一步：明确你究竟想要什么 第二步：把你的目标写下来 第三步：为你的目标设定一个完成的最后期限 第四步：为了实现目标，把你所能想到的、所有要完成的事项都列在一个清单上 第五步：进一步梳理整个清单</description>
+    </item>
+    <item>
+      <title>红利永远都在的</title>
+      <link>/articles/there-are-chances-somewhere/</link>
+      <pubDate>Mon, 10 Feb 2020 20:12:59 +0800</pubDate>
+      <guid>/articles/there-are-chances-somewhere/</guid>
+      <description>今天有个同事在群里分享了一件事情，他面试的一个人独立开发了一个多开app的应用（一种能让某台手机同时打开多个相同app技术，常见的如微信双开），去年年底已经实现了日入1000~2000的水平，实属让人</description>
+    </item>
+    <item>
+      <title>网易裁员碎碎念</title>
+      <link>/articles/about-netease-staff/</link>
+      <pubDate>Sun, 24 Nov 2019 19:59:50 +0800</pubDate>
+      <guid>/articles/about-netease-staff/</guid>
+      <description>这两天被一篇文章刷屏了，即 网易裁员，让保安把身患绝症的我赶出公司。我在网易亲身经历的噩梦！ 。 + 正好这周上了一门课叫《独立思考》，里面提到了认识真相的五大阻力： 从众心理 认知偏见 情绪干扰 思维局限 逻辑谬误 这</description>
+    </item>
+    <item>
+      <title>有哪些值得坚持的好习惯</title>
+      <link>/articles/you-na-xie-zhi-de-jian-chi-de-hao-xi-guan/</link>
+      <pubDate>Sun, 21 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>/articles/you-na-xie-zhi-de-jian-chi-de-hao-xi-guan/</guid>
+      <description>有哪些值得坚持的好习惯 唯有自律，才能自由。 每天Check 七点之前起床，理想时间是6点 早起喝一杯水，白开水、一整杯。 出门之前倒垃圾 时间充裕就去锻炼，然后洗个澡，开始一天 坚持吃早点，不要油腻辛辣，要五谷杂</description>
+    </item>
+    <item>
+      <title>新手程序员的恶习：不了解自己调用的API</title>
+      <link>/articles/xin-shou-cheng-xu-yuan-de-e-xi-bu-liao-jie-zi-ji-diao-yong-de-api/</link>
+      <pubDate>Mon, 20 Aug 2018 00:00:00 +0000</pubDate>
+      <guid>/articles/xin-shou-cheng-xu-yuan-de-e-xi-bu-liao-jie-zi-ji-diao-yong-de-api/</guid>
+      <description>新手程序员的恶习：不了解自己调用的API 记录了自己在第一个需求灰度后的一些感受。 在自己的第一个需求灰度后，发现Crash率严重超标，虽然排查之后发现主要是其他人合入的需求导致的，但也确实发现了两个自己</description>
+    </item>
+    <item>
+      <title>在腾讯实习一年，我学到了什么</title>
+      <link>/articles/zai-teng-xun-shi-xi-yi-nian-wo-xue-dao-liao-shi-yao/</link>
+      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>/articles/zai-teng-xun-shi-xi-yi-nian-wo-xue-dao-liao-shi-yao/</guid>
+      <description>在腾讯实习一年，我学到了什么 去年大概也是这个时候，我有幸拿到了去腾讯实习的offer。 6月底，我欣然前去，到现在刚好一年时间，马上要回学校了，我觉得该写点什么，因为这是一个很特殊的时间点，我站在学校和</description>
+    </item>
+    <item>
+      <title>对于成长瓶颈的思考</title>
+      <link>/articles/dui-yu-cheng-chang-ping-jing-de-si-kao/</link>
+      <pubDate>Wed, 24 Jan 2018 00:00:00 +0000</pubDate>
+      <guid>/articles/dui-yu-cheng-chang-ping-jing-de-si-kao/</guid>
+      <description>对于成长瓶颈的思考 初学编程，感觉每天都有新的收获，每天都有新的目标。可是一段时间后，掌握了几门语言，实现了几个项目，开始认识到代码是写不完的，很多工作都是重复的或者已经有人做过的。简单的已经会了，想要</description>
+    </item>
+    <item>
+      <title>阿里、360校招面试总结</title>
+      <link>/articles/a-li-360xiao-zhao-mian-shi-zong-jie/</link>
+      <pubDate>Sat, 16 Sep 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/a-li-360xiao-zhao-mian-shi-zong-jie/</guid>
+      <description>阿里、360校招面试总结 背景：笔者八月份处于实习考核阶段时投了阿里和360的Android开发，虽然九月初已确定实习留用，但仍然抱着丰富经历的心态参加了阿里和360的面试，虽然结果平平，但也有不少收获</description>
+    </item>
+    <item>
+      <title>关于应届生项目经验的思考</title>
+      <link>/articles/guan-yu-ying-jie-sheng-xiang-mu-jing-yan-de-si-kao/</link>
+      <pubDate>Sat, 03 Jun 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/guan-yu-ying-jie-sheng-xiang-mu-jing-yan-de-si-kao/</guid>
+      <description>关于应届生项目经验的思考 关于应届生找实习、找工作时项目经验的一些思考。 为什么要有项目经验 功利地说，去面试的时候，如果你一个项目也没有，面试官会觉得你并不是很喜欢编程这份工作，导致面试的时候无话可谈，如</description>
+    </item>
+    <item>
+      <title>2017阿里实习生面试总结</title>
+      <link>/articles/2017a-li-shi-xi-sheng-mian-shi-zong-jie/</link>
+      <pubDate>Fri, 02 Jun 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017a-li-shi-xi-sheng-mian-shi-zong-jie/</guid>
+      <description>2017阿里实习生面试总结 阿里面试记录的整理以及一些自己的总结。 5-18 晚上突然接到短信，叫我去预约面试时间。真是一脸蒙蔽，真不知道自己那个笔试怎么过的。。。不过既然拿到面试机会了，就作为一次锻炼自己、了解</description>
+    </item>
+    <item>
+      <title>2017腾讯实习生面试总结</title>
+      <link>/articles/2017teng-xun-shi-xi-sheng-mian-shi-zong-jie/</link>
+      <pubDate>Fri, 19 May 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017teng-xun-shi-xi-sheng-mian-shi-zong-jie/</guid>
+      <description>2017腾讯实习生面试总结 之前腾讯面试的记录，明天要参加阿里远程面试了，今天整理一下，以防积压！ 4-23 昨晚收到面试通知，明天面。之前一直没消息，还以为挂了。也给自己提了个醒，时刻准备才能占据主动，所以要高</description>
+    </item>
+    <item>
+      <title>笔试总结：LINE2018实习生（软件工程师）</title>
+      <link>/articles/bi-shi-zong-jie-line2018shi-xi-sheng-ruan-jian-gong-cheng-shi/</link>
+      <pubDate>Tue, 18 Apr 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/bi-shi-zong-jie-line2018shi-xi-sheng-ruan-jian-gong-cheng-shi/</guid>
+      <description>笔试总结：LINE2018实习生（软件工程师） 2018LINE实习生笔试题总结。 今晚LINE和头条的笔试时间冲突，还是选了LINE，因为打算体验一次笔试答题。 简答题 第一题问的是中断是什么，为什么要有中</description>
+    </item>
+    <item>
+      <title>笔试总结：携程2018实习生（安卓开发工程师）</title>
+      <link>/articles/bi-shi-zong-jie-xi-cheng-2018shi-xi-sheng-an-zhuo-kai-fa-gong-cheng-shi/</link>
+      <pubDate>Tue, 11 Apr 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/bi-shi-zong-jie-xi-cheng-2018shi-xi-sheng-an-zhuo-kai-fa-gong-cheng-shi/</guid>
+      <description>笔试总结：携程2018实习生（安卓开发工程师） 时间：2017-4-11，19：00～21：00。 选择题 10个数学智力题，10个Android题。数学智力题花了半个钟头，感觉还是有几题没把握，结果没想到</description>
+    </item>
+    <item>
+      <title>百度与谷歌的差别，英文检索的重要性</title>
+      <link>/articles/2017-the-difference-between-baidu-and-google-the-importance-of-english-search/</link>
+      <pubDate>Tue, 10 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-the-difference-between-baidu-and-google-the-importance-of-english-search/</guid>
+      <description>小记 其实这种差距对普通人来说并不重要，但对于程序员来说，学会Google和英文检索实在是太重要了。我一个建艺的同学在我推荐谷歌（我教她翻墙）之后，说她经常能找到很多其他同学搜索不到的图片（专业需要）。</description>
+    </item>
+    <item>
+      <title>你今天的习惯决定了你将来的位置</title>
+      <link>/articles/2017-your-habits-today-determine-where-you-will-be-in-the-future/</link>
+      <pubDate>Fri, 06 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/2017-your-habits-today-determine-where-you-will-be-in-the-future/</guid>
+      <description>一个不错的视频，部分截图，借以自勉（当然啦，我说的是编程&amp;hellip;&amp;hellip;..）：</description>
+    </item>
+    <item>
+      <title>写给程序员的《醒世恒言》(更....)</title>
+      <link>/articles/2016-eternal-words-to-awaken-the-world-written-for-programmers-more/</link>
+      <pubDate>Sun, 13 Nov 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-eternal-words-to-awaken-the-world-written-for-programmers-more/</guid>
+      <description>1.《C编译器剖析》序（节选）： 能写出工业水准的操作系统和编译器的人绝对是大牛，而写出来的操作系统和编译器能被业界普遍接受，则需要命运和机遇的垂青。大部分程序员注定是成为高级或低级的“码农”，成为软件</description>
+    </item>
+    <item>
+      <title>程序员的自我修养</title>
+      <link>/articles/2016-programmer-s-self-cultivation/</link>
+      <pubDate>Sun, 30 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-programmer-s-self-cultivation/</guid>
+      <description>个人的一些总结，个人的一些看法。 工作篇 拒绝重复劳动 比如，如何合并多个ppt。 生活篇 爱装逼 比如，有没有记录读书进度的APP&amp;mdash;赵裕的回答。 不局限于专业知识 比如，看课外书 坚持运动 比如，篮球 有其他</description>
+    </item>
+    <item>
+      <title>编程习惯与代码风格总结之C/C&#43;&#43;篇（更新······）</title>
+      <link>/articles/2016-summary-of-programming-habits-and-coding-style-c-cpp-updated/</link>
+      <pubDate>Sun, 17 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-summary-of-programming-habits-and-coding-style-c-cpp-updated/</guid>
+      <description>1、使用“==”做比较判断时常量放在前面，如果错写成了赋值“=”则编译器会报错。 if (&amp;#39;a&amp;#39; == direction)//这是一个判断键盘输入并执行相应操作的比较，如果变量在后面并错写成赋值则会出现不可预料的错误</description>
+    </item>
+  </channel>
+</rss>

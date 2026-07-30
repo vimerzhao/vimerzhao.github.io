@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>热修复 on 赵裕的博客</title>
+    <link>/tags/%E7%83%AD%E4%BF%AE%E5%A4%8D/</link>
+    <description>Recent content in 热修复 on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <atom:link href="/tags/%E7%83%AD%E4%BF%AE%E5%A4%8D/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>全面了解Android热修复技术</title>
+      <link>/articles/quan-mian-liao-jie-androidre-xiu-fu-ji-zhu/</link>
+      <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/quan-mian-liao-jie-androidre-xiu-fu-ji-zhu/</guid>
+      <description>全面了解Android热修复技术 引言:本文全面地探讨了Android热修复技术的发展脉络，现状及其未来。 热修复技术概述 热修复技术在近年来飞速发展，尤其是在InstantRun方案推出之后，各种热修复技</description>
+    </item>
+    <item>
+      <title>热补丁：Qzone方案在Dalvik虚拟机上的实现</title>
+      <link>/articles/re-bu-ding-qzonefang-an-zai-dalvikxu-ni-ji-shang-de-shi-xian/</link>
+      <pubDate>Mon, 21 Aug 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/re-bu-ding-qzonefang-an-zai-dalvikxu-ni-ji-shang-de-shi-xian/</guid>
+      <description>热补丁：Qzone方案在Dalvik虚拟机上的实现 详细分析了Qzone热修复方案在Dalvik平台的实现，包括插桩的由来及其实现。 Qzone热修复原理分析 Qzone热修复方案基于的是android de</description>
+    </item>
+    <item>
+      <title>Andfix源码解析</title>
+      <link>/articles/andfixyuan-ma-jie-xi/</link>
+      <pubDate>Sun, 20 Aug 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/andfixyuan-ma-jie-xi/</guid>
+      <description>Andfix源码解析 本文介绍了Andfix热修复框架的原理及实现代码。 Andfix概述 Andfix是阿里开源的一套热修复框架，效果如下 （注意我一直在点击，下发补丁后发生了变化&amp;hellip;&amp;hell</description>
+    </item>
+    <item>
+      <title>匿名内部类导致热补丁Crash</title>
+      <link>/articles/ni-ming-nei-bu-lei-dao-zhi-re-bu-ding-crash/</link>
+      <pubDate>Sun, 20 Aug 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/ni-ming-nei-bu-lei-dao-zhi-re-bu-ding-crash/</guid>
+      <description>匿名内部类导致热补丁Crash 本文记录了匿名内部类可能导致的热补丁Crash及其原因。 问题描述 新建工程 新建一个工程，集成Andfix（设置权限、添加gradle、自定义Application），同时在</description>
+    </item>
+    <item>
+      <title>热修复之资源更新的实现</title>
+      <link>/articles/re-xiu-fu-zhi-zi-yuan-geng-xin-de-shi-xian/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/re-xiu-fu-zhi-zi-yuan-geng-xin-de-shi-xian/</guid>
+      <description>热修复之资源更新的实现 本文分析了InstantRun的部分源码，并由此得出资源热修复的一种实现方法。 资源热修复 所谓资源热修复就是在不重新安装APP的情况下修改其资源，包括音频、图片，也包括布局、文字等</description>
+    </item>
+    <item>
+      <title>热补丁：Tinker方案实现</title>
+      <link>/articles/re-bu-ding-tinkerfang-an-shi-xian/</link>
+      <pubDate>Thu, 03 Aug 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/re-bu-ding-tinkerfang-an-shi-xian/</guid>
+      <description>热补丁：Tinker方案实现 本文简单分析了Tinker的实现原理并对dex文件更新做了演示Demo。 Qzone方案与Tinker 在之前的博客里简单介绍了Qzone超级热补丁的原理与实现，本文介绍了腾讯</description>
+    </item>
+    <item>
+      <title>热补丁：Qzone方案在Art虚拟机上的实现</title>
+      <link>/articles/re-bu-ding-qzonefang-an-zai-artxu-ni-ji-shang-de-shi-xian/</link>
+      <pubDate>Sun, 30 Jul 2017 00:00:00 +0000</pubDate>
+      <guid>/articles/re-bu-ding-qzonefang-an-zai-artxu-ni-ji-shang-de-shi-xian/</guid>
+      <description>热补丁：Qzone方案在Art虚拟机上的实现 本文对Qzone的超级热补丁方案做了一个简单实现。 引子 当一个App发布之后，突然发现了一个严重bug需要进行紧急修复，这时候公司各方就会忙得焦头烂额：重新打</description>
+    </item>
+  </channel>
+</rss>
