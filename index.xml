@@ -6,7 +6,7 @@
     <description>Recent content on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jul 2026 17:23:48 +0800</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>文章</title>
@@ -49,6 +49,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/about/</guid>
       <description>个人简介 TODO 重要时刻 2023年：年初升级T10成功，WOT优秀讲师 2022年：绩效双五星（没啥用，但必需得有这份经历&amp;hellip;），腾讯学院优秀讲师。 2021年：写完《Flutter内核源码剖析》并出版，年中晋升到T9。 2018年：大学毕业，入职腾讯（T4）。 2017年：在腾讯实习3个月，并转正（第一次来深圳）。 2015年：开始接触编程，并于年中转入“计算机科学与技术”专业。 2014年：考入大连理工大学“过程装备与控制工程”专业。 技术经历 平台框架: Android、iOS、Web、Flutter 编程语言: C、C++、Java、Dart 读过的书(部分) 2022年：《&amp;hellip;》 走过的路(部分) 2023年：重庆、北京、香港、江西（南昌、庐山、景德镇） 2021年：广西（桂林、阳朔）、贵州（黔东南） 2020年：川藏线（四川-拉萨）、湖南（长沙） 2018年：山东（烟台、蓬莱、济南、泰山、曲阜） 最后编辑于 2023-10-14</description>
+    </item>
+    <item>
+      <title></title>
+      <link>/notes/2026-07-30-164208/</link>
+      <pubDate>Thu, 30 Jul 2026 16:42:08 +0800</pubDate>
+      <guid>/notes/2026-07-30-164208/</guid>
+      <description>&lt;p&gt;如何正确、优雅地向AI提供完备的环境信息，是一个值得系统思考的问题。&lt;/p&gt;&#xA;&lt;p&gt;最近就遇到一个典型的案例：目标是用 C++ 实现一个样式，要对齐前端的某个 UI。&lt;/p&gt;&#xA;&lt;p&gt;一开始总有一些细节对不齐，这时候如果通过【截图+拷贝 DOM 结构和 CSS 信息给 AI】，AI 总是不能够全面地理解。&lt;/p&gt;&#xA;&lt;p&gt;正好我们框架预留了一个CDP接口，用于从 &lt;code&gt;chrome://inspect/#devices&lt;/code&gt; 进行devtools的调试。在codex下，可以无缝地通过这个CDP接口让AI去读取目标页面的全部样式信息。&lt;/p&gt;&#xA;&lt;p&gt;这样比手工贴截图更优雅快捷，甚至更节省token。&lt;/p&gt;&#xA;&lt;p&gt;另外，这周还有一个场景是: 线上报了一个 crash，如果直接把Crash Stack给 AI 分析，AI 会出现幻觉。&lt;/p&gt;&#xA;&lt;p&gt;但是如果把 crash 前后的日志同时提供给 AI，AI 就能够从日志中分析当时的用户行为，进行更准确的分析。&lt;/p&gt;&#xA;&lt;p&gt;另外还要注意一点：AI 在分析的时候，一定要把代码切到出现 crash 的分支，不然也有可能出现歧义。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;归根结底就是我们要提供完备而正确的信息。实际上我们自己人为开发的时候也是遵循这样一个路径&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/62a4e90b26975c8db7d2-2026-07-30-17-21-16.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>从一次 OOPIF Touch Bug 到 Chromium 合入：我的首次上游协作复盘</title>
