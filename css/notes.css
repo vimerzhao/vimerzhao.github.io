@@ -1,0 +1,80 @@
+.notes__timeline {
+	border-top: 1px solid #d8d8d8;
+}
+
+.note-preview {
+	padding: 22px 0;
+	border-bottom: 1px solid #d8d8d8;
+}
+
+.note-preview__header,
+.note__header {
+	margin-bottom: 14px;
+	color: #777;
+	font-size: 0.875rem;
+}
+
+.note-preview__header time::before,
+.note__header time::before {
+	content: "●";
+	margin-right: 8px;
+	color: #555;
+	font-size: 0.625rem;
+	vertical-align: 1px;
+}
+
+.note-preview__content > :first-child,
+.note__content > :first-child {
+	margin-top: 0;
+}
+
+.note-preview__content > :last-child,
+.note__content > :last-child {
+	margin-bottom: 0;
+}
+
+/* Consecutive image-only Markdown paragraphs become compact timeline thumbnails. */
+.note-preview__content p:has(> img:only-child) {
+	display: inline-block;
+	box-sizing: border-box;
+	width: calc(33.333% - 6px);
+	margin: 0 6px 6px 0;
+	vertical-align: top;
+}
+
+.note-preview__content p:has(> img:only-child) img {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1;
+	object-fit: cover;
+	margin: 0;
+}
+
+.note-preview__footer {
+	margin-top: 14px;
+	font-size: 0.875rem;
+}
+
+.note__article {
+	padding-top: 6px;
+}
+
+.note__content img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	margin: 1.5rem 0;
+}
+
+@media screen and (max-width: 620px) {
+	.note-preview {
+		padding: 18px 0;
+	}
+
+	.note-preview__content p:has(> img:only-child) {
+		width: calc(33.333% - 4px);
+		margin-right: 4px;
+		margin-bottom: 4px;
+	}
+}
