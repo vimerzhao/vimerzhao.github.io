@@ -6,7 +6,7 @@
     <description>Recent content on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 25 Jul 2026 16:21:52 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jul 2026 13:07:26 +0800</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>文章</title>
@@ -49,6 +49,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/about/</guid>
       <description>个人简介 TODO 重要时刻 2023年：年初升级T10成功，WOT优秀讲师 2022年：绩效双五星（没啥用，但必需得有这份经历&amp;hellip;），腾讯学院优秀讲师。 2021年：写完《Flutter内核源码剖析》并出版，年中晋升到T9。 2018年：大学毕业，入职腾讯（T4）。 2017年：在腾讯实习3个月，并转正（第一次来深圳）。 2015年：开始接触编程，并于年中转入“计算机科学与技术”专业。 2014年：考入大连理工大学“过程装备与控制工程”专业。 技术经历 平台框架: Android、iOS、Web、Flutter 编程语言: C、C++、Java、Dart 读过的书(部分) 2022年：《&amp;hellip;》 走过的路(部分) 2023年：重庆、北京、香港、江西（南昌、庐山、景德镇） 2021年：广西（桂林、阳朔）、贵州（黔东南） 2020年：川藏线（四川-拉萨）、湖南（长沙） 2018年：山东（烟台、蓬莱、济南、泰山、曲阜） 最后编辑于 2023-10-14</description>
+    </item>
+    <item>
+      <title>从一次 OOPIF Touch Bug 到 Chromium 合入：我的首次上游协作复盘</title>
+      <link>/articles/2026-first-chromium-contribution-oopif-touch/</link>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>/articles/2026-first-chromium-contribution-oopif-touch/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;write by ai&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;这是一次完整的 Chromium 上游贡献记录：从一个跨 OOPIF 的触摸模拟问题开始，经过可复现 demo、Chromium Bug、Gerrit 评审、坐标契约重构、CQ 验证，最后由提交队列自动合入 &lt;code&gt;main&lt;/code&gt;。最终 CL 是 &lt;a href=&#34;https://chromium-review.googlesource.com/c/chromium/src/+/8128317&#34;&gt;Fix injected touch coordinates for OOPIF touch emulation&lt;/a&gt;，上游提交是 &lt;a href=&#34;https://chromium.googlesource.com/chromium/src/+/ec8beb01845b094c40f503eea848a0a7c7d4843c&#34;&gt;&lt;code&gt;ec8beb01845b094c40f503eea848a0a7c7d4843c&lt;/code&gt;&lt;/a&gt;。&lt;/p&gt;&#xA;&lt;p&gt;它不是“写完代码、发一个 PR”就结束的过程。对我而言，更重要的收获是：上游协作的核心并不是说服 reviewer 接受一个补丁，而是共同把问题的边界、可复现证据和设计契约解释清楚。&lt;/p&gt;</description>
     </item>
     <item>
       <title>初探OpenClaw</title>

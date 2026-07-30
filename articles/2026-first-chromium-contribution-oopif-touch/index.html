@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>从一次 OOPIF Touch Bug 到 Chromium 合入：我的首次上游协作复盘 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="从一次 OOPIF Touch Bug 到 Chromium 合入：我的首次上游协作复盘" />
+<meta property="og:description" content="
+write by ai
+
+这是一次完整的 Chromium 上游贡献记录：从一个跨 OOPIF 的触摸模拟问题开始，经过可复现 demo、Chromium Bug、Gerrit 评审、坐标契约重构、CQ 验证，最后由提交队列自动合入 main。最终 CL 是 Fix injected touch coordinates for OOPIF touch emulation，上游提交是 ec8beb01845b094c40f503eea848a0a7c7d4843c。
+它不是“写完代码、发一个 PR”就结束的过程。对我而言，更重要的收获是：上游协作的核心并不是说服 reviewer 接受一个补丁，而是共同把问题的边界、可复现证据和设计契约解释清楚。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/2026-first-chromium-contribution-oopif-touch/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2026-07-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-30T13:07:26+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="从一次 OOPIF Touch Bug 到 Chromium 合入：我的首次上游协作复盘"/>
+<meta name="twitter:description" content="
+write by ai
+
+这是一次完整的 Chromium 上游贡献记录：从一个跨 OOPIF 的触摸模拟问题开始，经过可复现 demo、Chromium Bug、Gerrit 评审、坐标契约重构、CQ 验证，最后由提交队列自动合入 main。最终 CL 是 Fix injected touch coordinates for OOPIF touch emulation，上游提交是 ec8beb01845b094c40f503eea848a0a7c7d4843c。
+它不是“写完代码、发一个 PR”就结束的过程。对我而言，更重要的收获是：上游协作的核心并不是说服 reviewer 接受一个补丁，而是共同把问题的边界、可复现证据和设计契约解释清楚。"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">从一次 OOPIF Touch Bug 到 Chromium 合入：我的首次上游协作复盘</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-07-30T00:00:00Z">2026-07-30</time>
+	<time class="meta__text" datetime="2026-07-30T13:07:26&#43;08:00">(最后修改: 2026-07-30)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/chromium/" rel="category">Chromium</a>
+	</span>
+</div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 3700 字，阅读需 8 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<blockquote>
+<p>write by ai</p>
+</blockquote>
+<p>这是一次完整的 Chromium 上游贡献记录：从一个跨 OOPIF 的触摸模拟问题开始，经过可复现 demo、Chromium Bug、Gerrit 评审、坐标契约重构、CQ 验证，最后由提交队列自动合入 <code>main</code>。最终 CL 是 <a href="https://chromium-review.googlesource.com/c/chromium/src/+/8128317">Fix injected touch coordinates for OOPIF touch emulation</a>，上游提交是 <a href="https://chromium.googlesource.com/chromium/src/+/ec8beb01845b094c40f503eea848a0a7c7d4843c"><code>ec8beb01845b094c40f503eea848a0a7c7d4843c</code></a>。</p>
+<p>它不是“写完代码、发一个 PR”就结束的过程。对我而言，更重要的收获是：上游协作的核心并不是说服 reviewer 接受一个补丁，而是共同把问题的边界、可复现证据和设计契约解释清楚。</p>
+<h2 id="问题oopif-中的-touch-emulation-坐标错位">问题：OOPIF 中的 touch emulation 坐标错位</h2>
+<p>问题出现在 DevTools 注入触摸事件、页面包含 OOPIF（Out-Of-Process iframe）时。注入的触点本来以 root view 坐标表达；在 hit test 找到 OOPIF 后，事件会被路由到对应的 target view。错误路径在中间进行了不恰当的坐标往返，导致后续合成的 compatibility click 和 gesture 可能叠加 OOPIF offset，表现为点击/触摸位置错位。</p>
+<p>一开始，这个现象很像“某个坐标转换少了或多了”。但 Chromium 的输入链路涉及 DevTools、输入路由、<code>TouchEmulatorImpl</code>、gesture synthesis、renderer dispatch 等多个组件。只在错误位置加一段逆转换，虽然可能让 demo 表面恢复正常，却不一定说明坐标语义正确。</p>
+<p>因此最先要做的不是改代码，而是把问题变成任何人都能验证的事实。</p>
+<h2 id="先准备可复现证据">先准备可复现证据</h2>
+<p>我将复杂的复现页面独立成了 GitHub 仓库：<a href="https://github.com/vimerzhao/oopif-touch-demo">vimerzhao/oopif-touch-demo</a>。这一步很关键：reviewer 不必从巨大的 Chromium checkout 中猜测页面结构，也不必依赖作者本地环境。</p>
+<p>demo 的说明应该至少包含：</p>
+<ul>
+<li>一键启动命令；</li>
+<li>用官方 Chrome 可稳定复现的步骤；</li>
+<li>官方 Chrome 的精确版本；</li>
+<li>修复版 Chromium 的版本或 revision；</li>
+<li>预期坐标和实际坐标；</li>
+<li>失败截图与成功截图，放在同一位置并清晰命名；</li>
+<li>为什么需要开启 <code>SyntheticPointerActions</code>。</li>
+</ul>
+<p>其中 <code>SyntheticPointerActions</code> 不是这次新发明的开关，而是已有实验性能力。它让页面的输入路径能够触发本次要观察的 synthetic pointer 行为；没有它，demo 可能根本不会走到目标路径。把“为什么必须开它”写进 README，能避免 reviewer 把复现失败理解成问题本身不稳定。</p>
+<p>之后创建 Chromium Bug，并在 Bug 中链接到固定版本的 demo、两张对比截图和可复制的复现命令。这样 Gerrit CL 里的 <code>Bug:</code> 不再是 <code>None</code>，评审者也获得了讨论设计时所需的上下文。</p>
+<p>这里有一个很朴素的经验：截图并不是装饰材料。对于输入坐标 bug，截图、坐标日志和复现命令共同构成最短的证据链。截图只说“结果不对”，而精确版本与步骤说明“别人也能得到同一个结果”。</p>
+<h2 id="第一版修复与评审的开始">第一版修复与评审的开始</h2>
+<p>初始修复上传到 Gerrit 后，CL 经历了多个 patchset。review 早期出现的状态很典型：没有 Code-Review 投票、存在未解决评论、Code Owners 尚未批准、Review Enforcement 不满足。</p>
+<p>这些都不是单一的“失败”。它们分别意味着：</p>
+<ul>
+<li><strong>Code Review</strong>：负责代码正确性、设计与可维护性的 reviewer 尚未给出认可；</li>
+<li><strong>Code Owners</strong>：改动文件所属目录需要相应 owner 的批准；</li>
+<li><strong>Review Enforcement</strong>：项目规则认为当前审批链仍不完整；</li>
+<li><strong>Unresolved comments</strong>：行级讨论还没有被作者和 reviewer 共同结束。</li>
+</ul>
+<p>有位 reviewer 说他愿意做 input 侧的 review，但希望先补充更多 context，例如一个 Bug，以便理解待修问题。这并不等于他认为改动一定错误，而是指出了很实际的评审障碍：没有最小可复现环境和问题陈述，就很难判断坐标语义的改动是否合理。</p>
+<p>这也是为什么先补齐 Bug 与 demo，比急着逐条“Done”评论更能推进评审。</p>
+<h2 id="gerrit-里的-done-不是我回复了">Gerrit 里的 Done 不是“我回复了”</h2>
+<p>在 Gerrit 中，评论会形成 thread（讨论线程）。一个 thread 通常由某条行级评论、回复以及最终的 resolve/Done 状态组成。</p>
+<p>我一度把“回复 done”与“关闭 thread”混在一起。实际上，文字回复 <code>Done</code> 只表示作者声称已经处理；点击评论 thread 的 <strong>Done</strong> 才是把该讨论标记为 resolved。更重要的是，是否应关闭不能只由作者决定：如果 reviewer 的意见属于设计讨论，应该先给出可验证的回应或新 patchset，等待 reviewer 确认，而不是把 thread 当作待办事项自行勾掉。</p>
+<p>Arthur Sonzogni 的一句话很好地说明了这种协作边界：<code>Please close this thread once he approved.</code> 它的意思不是“现在点击 Done”，而是“等待 Kartar 对核心方案认可后，再关闭这个讨论线程”。</p>
+<h2 id="关键分歧是否需要-root--target--root-的往返转换">关键分歧：是否需要 root → target → root 的往返转换</h2>
+<p>Kartar Singh 的评论中，最值得认真对待的不是格式问题，而是对整个坐标设计的质疑：为什么 DevTools injected touch 要先从 root 坐标转到 target 坐标，随后又在 <code>TouchEmulatorImpl::InjectTouchEvent</code> 转回 root 坐标？能不能把前一次转换和后一次反向转换一起删除？</p>
+<p>这个问题不能只回答“另一条 mouse 模拟 touch 的路径就是这样做的”。“历史上存在”不等于“当前专用路径必须复制”。需要先抽出坐标契约，再比较两条路径。</p>
+<p>最终梳理出的契约是：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>DevTools injected touch             root-view 坐标
+</span></span><span style="display:flex;"><span>TouchEmulator / GestureProvider     root-view 坐标
+</span></span><span style="display:flex;"><span>Router 内部路由                     root-view 坐标
+</span></span><span style="display:flex;"><span>最终发往 OOPIF renderer             target-view 坐标（仅在这里转换一次）
+</span></span><span style="display:flex;"><span>PositionInScreen                    由 root view 计算的屏幕绝对坐标
+</span></span></code></pre></div><p>此前的往返转换受到普通 mouse-to-touch emulation 路径的影响：共享 mouse dispatch 在 hit test 后已有 target 坐标，而 <code>TouchEmulator</code> 为 gesture synthesis 需要 root 坐标，所以该共享路径必须进行回转。DevTools injected-touch 却是一条专用路径，原始数据本来就是 root 坐标；复制 mouse 路径的坐标往返没有必要，也会让 offset 被错误处理。</p>
+<p>因此接受了 reviewer 的简化建议：DevTools touch 从注入到 touch emulator 一直保持 root-view 坐标，只有输入事件路由器在最终发往 OOPIF renderer 时做一次 root-to-target 转换。<code>PositionInScreen</code> 同样从 root view 推导。</p>
+<p>这次修改带来的不只是少两段转换代码，而是一个可被单测和后续维护者理解的边界：哪一层拥有哪种坐标，转换只能发生在哪里。</p>
+<h2 id="其他评论小修改也要认真收口">其他评论：小修改也要认真收口</h2>
+<p>评审还包含几条较直接的意见：</p>
+<ol>
+<li>root view 的 fallback 写法应更直观；</li>
+<li>不再使用 <code>last_mouse_move_root_view_</code> 的理由应写进 commit description；</li>
+<li>单测比较表达式应遵循 Chromium C++ 风格，写成 <code>foo == 0</code>，而不是 <code>0 == foo</code>。</li>
+</ol>
+<p>第一项最终写成先保存 <code>root_view</code>，再明确回退到 <code>target</code> 的形式。这样既处理了 <code>target-&gt;GetRootView()</code> 可能为空的情况，也让变量语义一目了然。</p>
+<p>第三项看似只是风格。<code>0 == foo</code> 是为防止误写赋值而流行过的 “Yoda condition”；现代 C++ 编译器和静态检查已经能够有效发现这种错误，Chromium 选择自然的“被比较对象在左、常量在右”写法。我最初没有遵守这一点，是沿用了旧习惯且自检不够严谨；随后已在 patchset 中修正。</p>
+<p>这些评论提醒我，代码审查并非只讨论算法。清晰的 fallback、完整的提交说明和一致的表达式风格，都降低了后来者理解正确设计的成本。</p>
+<h2 id="patchset回复与测试如何配合">Patchset、回复与测试如何配合</h2>
+<p>比较顺畅的节奏是：</p>
+<ol>
+<li>先分析评论是否指出了真实问题；</li>
+<li>对需要变更的意见，修改代码并补充回归测试；</li>
+<li>在 commit description 中记录关键设计取舍；</li>
+<li>上传新的 patchset；</li>
+<li>逐条用英文在 Gerrit 回复：说明具体改了什么、为什么这样改、相应测试覆盖什么；</li>
+<li>不抢先关闭仍需 reviewer 确认的 thread。</li>
+</ol>
+<p>在这次 CL 中，核心设计调整、可读性改动、提交说明补充和测试风格修改被组织进后续 patchset。回归测试验证了 root 坐标注入之后，touch emulator 与 gesture synthesis 保持同一坐标系，最终 renderer dispatch 才转换到 target 坐标。</p>
+<p>本地完成相关 <code>content_unittests</code> 验证后，Gerrit 的 presubmit 也通过。最后的 commit description 明确记录了三个关键事实：历史路径的往返转换、修复后的单次转换，以及为什么 injected touch 不再依赖此前 mouse move 保存的 root view。</p>
+<h2 id="审批gold-与-cq">审批、Gold 与 CQ</h2>
+<p>在 patchset 10，Kartar Singh 给出 <code>Code-Review +1</code> 并触发 CQ dry run；dry run 通过后，Arthur Sonzogni 给出 <code>Code-Review +1</code> 和 <code>Commit-Queue +2</code>。</p>
+<p>这里的 <strong>CQ（Commit Queue）</strong> 是 Chromium 的自动提交队列。它会将 CL 与最新主干组合，运行完整验证；通过后自动 rebase、提交到 <code>main</code>。<code>+2</code> 不是已经合入，而是授权 CQ 尝试合入。</p>
+<p>CL 页面中的 Gold 信息也值得正确理解。例如 “<code>5 new images on patchset 10</code>” 表示该 patchset 的测试结果中有 5 张此前没有基线的图像；“<code>3 untriaged</code>” 表示其中有 3 项视觉结果尚未人工归类。它不自动等同于当前代码导致的失败，是否阻塞以 CQ 的最终状态和具体 builder 日志为准。</p>
+<p>这次先是 dry run 成功，随后 full CQ run 启动。最终 Gerrit 记录为：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Change has been successfully rebased and submitted as
+</span></span><span style="display:flex;"><span>ec8beb01845b094c40f503eea848a0a7c7d4843c
+</span></span></code></pre></div><p>CL 进入 <code>MERGED</code>，未解决评论归零。CQ 自动 rebase 后会产生新的上游 SHA，因此本地工作分支中的 commit SHA 与上游最终 SHA 不同是正常现象。</p>
+<h2 id="事后检查为什么本地还看不到合入提交">事后检查：为什么本地还看不到合入提交</h2>
+<p>Gerrit 已显示 <code>MERGED</code> 并不代表本地 clone 的 <code>origin/main</code> 已经更新。本地远端引用只是上次 <code>fetch</code> 时保存的快照；如果它仍停在旧 revision，就会误以为提交没有进入主干。</p>
+<p>可用下面的命令同步并确认：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>cd C:\Users\vimerzhao\work\chromium_research\src
+</span></span><span style="display:flex;"><span>git fetch origin
+</span></span><span style="display:flex;"><span>git merge-base -<span style="color:#f92672">-is</span>-ancestor ec8beb01845b094c40f503eea848a0a7c7d4843c origin/main
+</span></span></code></pre></div><p>命令返回成功即表示该提交已包含在本地更新后的 <code>origin/main</code> 历史中。Chromium 当前主线名为 <code>main</code>，而不是早期常见的 <code>master</code>。</p>
+<h2 id="小结第一次上游提交学到的不是一条命令">小结：第一次上游提交学到的不是一条命令</h2>
+<p>这次贡献最终改动并不庞大，但把一次代码修改变成可合入的上游协作，至少需要完成以下几件事：</p>
+<ul>
+<li>用独立 demo、版本、截图和 Bug 证明问题真实且可复现；</li>
+<li>先建立坐标契约，再讨论某一行转换是否应删改；</li>
+<li>将 reviewer 的设计意见当作重新验证假设的机会，而不只是待回复的评论；</li>
+<li>把测试、commit description 与代码一起作为变更的一部分；</li>
+<li>理解 Gerrit 的 thread、审批、Code Owners、Gold 和 CQ 各自解决什么问题；</li>
+<li>CQ 合入后，用 <code>git fetch</code> 区分“上游已合入”和“本地引用尚未更新”。</li>
+</ul>
+<p>最后，最有价值的并不是获得一个 <code>MERGED</code> 标记，而是形成一套可以迁移到下一次上游协作的工作方式：让证据先行，让语义清楚，让评审能够独立复现、质疑并最终相信这个改动。</p>
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/chromium/" rel="tag">Chromium</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/gerrit/" rel="tag">Gerrit</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/code-review/" rel="tag">Code Review</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/devtools/" rel="tag">DevTools</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/oopif/" rel="tag">OOPIF</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/2026-first-research-on-openclaw/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">初探OpenClaw</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-chromium-contribution-oopif-touch/">从一次 OOPIF Touch Bug 到 Chromium 合入：我的首次上游协作复盘</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">8</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/chromium/">Chromium</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%B8%93%E6%A0%8F%E9%80%9F%E8%AE%B0/">专栏|速记</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">3</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91/" title="Android开发">Android开发 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/android%E5%BC%80%E5%8F%91-cmake/" title="Android开发 CMAKE">Android开发 CMAKE (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bugfix/" title="BugFix">BugFix (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug%E8%AE%B0%E5%BD%95/" title="BUG记录">BUG记录 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="C&#43;&#43; 编程语言">C&#43;&#43; 编程语言 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/chromium/" title="Chromium">Chromium (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/code-review/" title="Code Review">Code Review (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/devtools/" title="DevTools">DevTools (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gerrit/" title="Gerrit">Gerrit (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/oopif/" title="OOPIF">OOPIF (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E5%85%B7/" title="工具">工具 (28)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E8%80%83/" title="开发思考">开发思考 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%BB%E7%BB%93/" title="总结">总结 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89/" title="技术精选">技术精选 (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="源码剖析">源码剖析 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能">软技能 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (20)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

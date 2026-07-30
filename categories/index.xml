@@ -6,8 +6,15 @@
     <description>Recent content in Categories on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 05 Jul 2026 13:17:49 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jul 2026 13:07:26 +0800</lastBuildDate>
     <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chromium</title>
+      <link>/categories/chromium/</link>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>/categories/chromium/</guid>
+      <description></description>
+    </item>
     <item>
       <title>软件工具</title>
       <link>/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/</link>

@@ -21,13 +21,40 @@
     <lastmod>2023-10-14T20:15:57+08:00</lastmod>
   </url><url>
     <loc>/articles/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
+    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
+  </url><url>
+    <loc>/categories/</loc>
+    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
+  </url><url>
+    <loc>/tags/chromium/</loc>
+    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
+  </url><url>
+    <loc>/categories/chromium/</loc>
+    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
+  </url><url>
+    <loc>/tags/code-review/</loc>
+    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
+  </url><url>
+    <loc>/tags/devtools/</loc>
+    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
+  </url><url>
+    <loc>/tags/gerrit/</loc>
+    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
+  </url><url>
+    <loc>/tags/oopif/</loc>
+    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
+  </url><url>
+    <loc>/articles/2026-first-chromium-contribution-oopif-touch/</loc>
+    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
+  </url><url>
+    <loc>/</loc>
+    <lastmod>2026-07-30T13:07:26+08:00</lastmod>
   </url><url>
     <loc>/articles/2026-first-research-on-openclaw/</loc>
     <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/</loc>
-    <lastmod>2026-07-25T16:21:52+08:00</lastmod>
   </url><url>
     <loc>/articles/2025-retrospective-and-some-thoughts/</loc>
     <lastmod>2026-03-03T17:03:22+08:00</lastmod>
@@ -127,12 +154,6 @@
   </url><url>
     <loc>/articles/custom-cmake-in-android-gradle/</loc>
     <lastmod>2024-06-13T19:11:25+08:00</lastmod>
-  </url><url>
-    <loc>/categories/</loc>
-    <lastmod>2026-07-05T13:17:49+08:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
-    <lastmod>2026-07-25T11:20:46+08:00</lastmod>
   </url><url>
     <loc>/tags/vim/</loc>
     <lastmod>2026-07-05T13:17:49+08:00</lastmod>

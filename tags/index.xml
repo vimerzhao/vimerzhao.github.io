@@ -6,8 +6,43 @@
     <description>Recent content in Tags on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 25 Jul 2026 11:20:46 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jul 2026 13:07:26 +0800</lastBuildDate>
     <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chromium</title>
+      <link>/tags/chromium/</link>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>/tags/chromium/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Code Review</title>
+      <link>/tags/code-review/</link>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>/tags/code-review/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>DevTools</title>
+      <link>/tags/devtools/</link>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>/tags/devtools/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gerrit</title>
+      <link>/tags/gerrit/</link>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>/tags/gerrit/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>OOPIF</title>
+      <link>/tags/oopif/</link>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>/tags/oopif/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Vim</title>
       <link>/tags/vim/</link>

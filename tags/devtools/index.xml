@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevTools on 赵裕的博客</title>
+    <link>/tags/devtools/</link>
+    <description>Recent content in DevTools on 赵裕的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 30 Jul 2026 13:07:26 +0800</lastBuildDate>
+    <atom:link href="/tags/devtools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从一次 OOPIF Touch Bug 到 Chromium 合入：我的首次上游协作复盘</title>
+      <link>/articles/2026-first-chromium-contribution-oopif-touch/</link>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>/articles/2026-first-chromium-contribution-oopif-touch/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;write by ai&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;这是一次完整的 Chromium 上游贡献记录：从一个跨 OOPIF 的触摸模拟问题开始，经过可复现 demo、Chromium Bug、Gerrit 评审、坐标契约重构、CQ 验证，最后由提交队列自动合入 &lt;code&gt;main&lt;/code&gt;。最终 CL 是 &lt;a href=&#34;https://chromium-review.googlesource.com/c/chromium/src/+/8128317&#34;&gt;Fix injected touch coordinates for OOPIF touch emulation&lt;/a&gt;，上游提交是 &lt;a href=&#34;https://chromium.googlesource.com/chromium/src/+/ec8beb01845b094c40f503eea848a0a7c7d4843c&#34;&gt;&lt;code&gt;ec8beb01845b094c40f503eea848a0a7c7d4843c&lt;/code&gt;&lt;/a&gt;。&lt;/p&gt;&#xA;&lt;p&gt;它不是“写完代码、发一个 PR”就结束的过程。对我而言，更重要的收获是：上游协作的核心并不是说服 reviewer 接受一个补丁，而是共同把问题的边界、可复现证据和设计契约解释清楚。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
