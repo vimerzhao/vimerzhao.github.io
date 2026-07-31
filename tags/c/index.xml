@@ -6,7 +6,7 @@
     <description>Recent content in C on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
     <atom:link href="/tags/c/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>大端（Big Endian）与小端（Little Endian）</title>
@@ -294,6 +294,27 @@
       <pubDate>Sun, 20 Mar 2016 00:00:00 +0000</pubDate>
       <guid>/articles/2016-c-language-to-implement-snake-source-code/</guid>
       <description>先放效果 源代码 //2016-2-12 //zhaoyu //Gmail:zhaoyu1995.com@gmail.com //Language: C //Platform:Code::Blocks #include &amp;lt;stdio.h&amp;gt; #include &amp;lt;windows.h&amp;gt; #include &amp;lt;stdlib.h&amp;gt; #include &amp;lt;time.h&amp;gt; typedef struct snake { int x; int y; struct snake *next; }Snake; int X, Y; enum STATUS{Up = 1, Down, Left, Right}; Snake *pHead, *pBody;//the head of the snake enum STATUS Direction; int score=0, scorePerFood=10; int gameStatus = 0; int timeInterval = 200; void gameEnd(void); void setPosition(int x, int y) { COORD pos; HANDLE hOutput; pos.X = x; pos.Y = y; hOutput = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleCursorPosition(hOutput, pos); } void hideCursor() { CONSOLE_CURSOR_INFO cursor_info = { 1, 0 }; SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;amp;cursor_info);</description>
+    </item>
+    <item>
+      <title>算法:从单链表中删除一个中间节点</title>
+      <link>/articles/2015-delete-middle-node-from-singly-linked-list/</link>
+      <pubDate>Fri, 13 Nov 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-delete-middle-node-from-singly-linked-list/</guid>
+      <description>write by ai 原文：CSDN 链接 `n原文连接：http://www.pixelstech.net/article/1446199844-Algorithm-%3A-Delete-middle-node-fro</description>
+    </item>
+    <item>
+      <title>C语言 实现小世界网络</title>
+      <link>/articles/2015-c-language-small-world-network/</link>
+      <pubDate>Sat, 24 Oct 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-c-language-small-world-network/</guid>
+      <description>write by ai 原文：CSDN 链接 `n## 1简介： 小世界网络最早由Watts和Strogtz在1998年提出，小世界网络存在于数学、物理学和社会学中，是一种数学图的模型。在这种图中大部份的结点不与彼此邻接，但大部份结</description>
+    </item>
+    <item>
+      <title>C语言 验证无标度网络的幂律定律</title>
+      <link>/articles/2015-c-language-scale-free-network-power-law/</link>
+      <pubDate>Tue, 06 Oct 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-c-language-scale-free-network-power-law/</guid>
+      <description>write by ai 原文：CSDN 链接 `n1复杂网络发展史 几乎每个人都听说过大数学家欧拉和哥尼斯堡七桥的故事，而1736年29岁的欧拉向圣彼得堡科学院递交了《哥尼斯堡的七座桥》的论文，也正式标志着数学的一个新的分支</description>
     </item>
   </channel>
 </rss>

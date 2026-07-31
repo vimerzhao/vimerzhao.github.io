@@ -6,7 +6,7 @@
     <description>Recent content in MacOS on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
     <atom:link href="/tags/macos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>色彩空间与取色器错误</title>
@@ -28,6 +28,13 @@
       <pubDate>Tue, 19 May 2020 10:21:13 +0800</pubDate>
       <guid>/articles/macbook-over-hot/</guid>
       <description>最近搬工位后给MacBook接了一个外接显示器，放在正中间，但是发现发热很严重。在查阅资料和尝试之后，发现把充电口和显示器接口放在右边比较好。左边好像有个Bug，能不用还是不要用了。 参考： Mac过热降</description>
+    </item>
+    <item>
+      <title>virtualbox上安装Mac OS Mavericks</title>
+      <link>/articles/2016-installing-mac-os-mavericks-on-virtualbox/</link>
+      <pubDate>Sun, 14 Feb 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-installing-mac-os-mavericks-on-virtualbox/</guid>
+      <description>write by ai 原文：CSDN 链接 `n之前安装了virtualbox后，顺利在上面搭建了Ubuntu、Windows XP操作系统。而Mac OS则因为诸多原因，比较难以安装（比如镜像不好找、安装步骤复杂、设计硬件</description>
     </item>
   </channel>
 </rss>

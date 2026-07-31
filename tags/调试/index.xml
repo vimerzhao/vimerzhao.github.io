@@ -6,7 +6,7 @@
     <description>Recent content in 调试 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
     <atom:link href="/tags/%E8%B0%83%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>WPEWebKit2.46调试环境</title>
@@ -112,6 +112,13 @@
       <pubDate>Sun, 28 May 2017 00:00:00 +0000</pubDate>
       <guid>/articles/openjdk7u40bian-yi-yu-diao-shi-shi-zhan/</guid>
       <description>OpenJDK7u40编译与调试实战 记录了第一次编译调试OpenJDK的经过。 JDK与OpenJDK的关系 简单来说，OpenJDK是OracleJDK（也就是我们平时用的Java JDK，由Oracle</description>
+    </item>
+    <item>
+      <title>小记一次网络故障处理</title>
+      <link>/articles/2016-network-failure-troubleshooting-note/</link>
+      <pubDate>Mon, 29 Feb 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-network-failure-troubleshooting-note/</guid>
+      <description>write by ai 原文：CSDN 链接 `n回家换了一台新电脑，但是回学校后发现连宿舍的网线之后，总是显示无法识别的网络，经过一番排查之后发现是在之前申请开通网络服务的时候，是用之前的电脑，所以账号上还是之前的mac</description>
     </item>
     <item>
       <title>《完全用Linux工作》作者：王垠</title>

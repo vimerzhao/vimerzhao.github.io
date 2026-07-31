@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>用LabVIEW和Arduino开发一个温度采集系统 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="用LabVIEW和Arduino开发一个温度采集系统" />
+<meta property="og:description" content="write by ai 原文：CSDN 链接 `n### 1背景 其实满打满算，今天是自己接触LabVIEW的第四天，只是是由于国庆节之前报名参加了一个比赛，国庆节期间又没有引起足够的重视，所以当比赛只剩下四天的时候才开始研究LabV" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/2015-labview-arduino-temperature-acquisition-system/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2015-10-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-31T21:43:22+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="用LabVIEW和Arduino开发一个温度采集系统"/>
+<meta name="twitter:description" content="write by ai 原文：CSDN 链接 `n### 1背景 其实满打满算，今天是自己接触LabVIEW的第四天，只是是由于国庆节之前报名参加了一个比赛，国庆节期间又没有引起足够的重视，所以当比赛只剩下四天的时候才开始研究LabV"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/notes.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/notes/">
+				
+				<span class="menu__text">想法</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">用LabVIEW和Arduino开发一个温度采集系统</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-10-15T00:00:00Z">2015-10-15</time>
+	<time class="meta__text" datetime="2026-07-31T21:43:22&#43;08:00">(最后修改: 2026-07-31)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="category">软件工程</a>
+	</span>
+</div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 1800 字，阅读需 4 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<blockquote>
+<p>write by ai</p>
+</blockquote>
+<blockquote>
+<p>原文：<a href="https://blog.csdn.net/sinat_30046339/article/details/49160557">CSDN 链接</a>
+`n### 1背景</p>
+</blockquote>
+<p>其实满打满算，今天是自己接触LabVIEW的第四天，只是是由于国庆节之前报名参加了一个比赛，国庆节期间又没有引起足够的重视，所以当比赛只剩下四天的时候才开始研究LabVIEW。虽然赶在截止时间几个钟头前完成了预期任务，虽然加班加点、废寝忘食的状态甚是酸爽，但是不得不承认在这么短的时间内以一己之力（虽然是三人组对报名）完成这么一个任务还是太消耗精力了。四天过来，损失的是睡眠和学习的效率以及落下一堆作业，但是看到自己经过四天高强度的学习能拿出一个东西还是万分欣慰，几度觉得自己要完蛋了，但是终究还是坚持下来了，尤其是周三，貌似除了晚上去上了个选修课就一直在学，终于在最后一天升华了，不容易啊。很多时候，打败你的不是困难，而是你的懒惰和随着年龄增长日趋销蚀的耐性啊！</p>
+<h3 id="2介绍">2介绍</h3>
+<p>1、LabVIEW:LabVIEW是一种程序开发环境，由美国国家仪器（NI）公司研制开发，类似于C和BASIC开发环境，但是LabVIEW与其他计算机语言的显著区别是：其他计算机语言都是采用基于文本的语言产生代码，而LabVIEW使用的是图形化编辑语言G编写程序，产生的程序是框图的形式。 LabVIEW软件是NI设计平台的核心，也是开发测量或控制系统的理想选择。
+LabVIEW开发环境集成了工程师和科学家快速构建各种应用所需的所有工具，旨在帮助工程师和科学家解决问题、提高生产力和不断创新。</p>
+<p>2、Arduino:Arduino是一款便捷灵活、方便上手的开源电子原型平台，包含硬件（各种型号的Arduino板）和软件（Arduino IDE)。由一个欧洲开发团队最早于2005年冬季开发。</p>
+<h3 id="3功能预期">3功能预期</h3>
+<p>1实时显示温度；</p>
+<p>2显示温度在一定时期内的变化；</p>
+<p>3用户能设置一些相关参数；</p>
+<p>4报警功能；</p>
+<p>5将历史温度存储到excel表格中；</p>
+<h3 id="4开发流程">4开发流程</h3>
+<p>1更具要求的功能设计前面板（具体如何提高美观程度可自行探索），这是我设计的前面板：</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/daebcaeb9ee74213ecc4-11ff8713179ec08456d4.png" alt="文章配图"></p>
+<p>可能对新手难一点的是设置控件透明和加入图片。</p>
+<p>值得一提的是设计LabVIEW时，一般先根据要达到的功能把前面板上的控件选择好，然后再进行程序框图的设计（关于LabVIEW前面板和程序框图的实用知识可以网上学习，推荐谷歌搜索）。</p>
+<p>前面板设计好后不要急于美化，因为编程序框图时可能会有改动。</p>
+<p>现在还只是有了个外壳，想要让它投入使用还要对程序图进行编程。编程用到的主要是VISA和LIFA,这两个工具都要自己用VIPM配置，具体如何配置也可以找到大量教程。编好后大概如下图</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/4d0650dd2e3a51946214-a14e563a8569bee482f8.png" alt="文章配图"></p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/72d82e51b54c2f5c1f5b-c06fb1c56419cd4aa703.png" alt="文章配图"></p>
+<p>画完程序框图还是不能投入使用！！因为我们只是编好了上位机，下位机的问题还没有解决。一般情况下下位机要自己根据需要自己用C语言编写，但这里NI已经帮我们全部编好了，我们要做的就是把它烧录到Arduino开发板中，这个LIFA_Base.ino文件在路径&hellip;.LabVIEW 2014\vi.lib\LabVIEW Interface for Arduino\Firmware\LIFA_Base中，烧录进Arduino就可以了。</p>
+<p>至此，这个温度采集系统的上位机和下位机已经全部写好了。我用的是LM35 DZ这个温度传感器，用什么常感器其实不重要，只要阅读技术手册就可以以不变应万变了。</p>
+<p>最后看看采集的温度excel表格。</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/8c3bf053f2baf3407c90-a35f087066e9ea64df05.png" alt="文章配图"></p>
+<h3 id="5总结">5总结</h3>
+<p>1科学的使用搜索引擎，否则你会得到一大堆无用的信息（比如YouTube能直接收到相关视频）；</p>
+<p>2不要熬夜，早做准备，曾经熬得夜都是今后受的罪（我这两天就高烧不止、浑身酸痛）；</p>
+<p>3擅长阅读软件自带的帮助文档，逐渐习惯在相关社区提问，不要在大量冗杂信息中迷失了；</p>
+<p>4自己的硬件知识学的确实不过关,这个采集系统还要依靠“调节电阻”来修正，默认电阻是10k欧姆，但是这个系统设置为1000欧姆左右就行了，对LM35的特性能够理解，但具体到开发板中就凌乱了。而且自己今天已经决定退出基地，因为自己下午去“互联网+”工作室，发现自己还是跟喜欢那些东西，也想学硬件，奈何时间和精力都不允许，而且模电和电路分析也还学的模模糊糊，还是应该重视学习。这次比大一顺利多了，用了一个多月已经确定了自己喜欢的方向，一年之后，期待成为web方面的大神，当然退出基地也让自己有更多的自由支配时间，可以做自己喜欢的事，期待明天感冒能好，期待大二的成长。（2015-10-17）</p>
+
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" rel="tag">工程实践</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/2015-c-language-scale-free-network-power-law/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">C语言 验证无标度网络的幂律定律</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/articles/2015-c-language-small-world-network/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">C语言 实现小世界网络</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-chromium-contribution-oopif-touch/">从一次 OOPIF Touch Bug 到 Chromium 合入：我的首次上游协作复盘</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">44</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">10</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE/">人工智能与数据</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">19</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8E-web/">浏览器与 Web</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">16</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E7%94%9F%E6%B4%BB%E4%B8%8E%E9%9A%8F%E7%AC%94/">生活与随笔</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">19</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法与数据结构</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">67</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%B7%A5%E5%85%B7/">系统与工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">95</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">36</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%81%8C%E4%B8%9A%E4%B8%8E%E6%88%90%E9%95%BF/">职业与成长</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">27</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%AF%BB%E4%B9%A6%E4%B8%8E%E6%80%9D%E8%80%83/">读书与思考</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">32</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">27</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android/" title="Android">Android (11)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug/" title="Bug">Bug (42)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c/" title="C">C (44)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/chromium/" title="Chromium">Chromium (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMake">CMake (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/flutter/" title="Flutter">Flutter (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/git/" title="Git">Git (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gradle/" title="Gradle">Gradle (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/java/" title="Java">Java (16)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="JavaScript">JavaScript (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux (29)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lisp/" title="Lisp">Lisp (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/macos/" title="MacOS">MacOS (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/matlab/" title="MATLAB">MATLAB (15)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/skia/" title="Skia">Skia (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vcpkg/" title="Vcpkg">Vcpkg (5)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/virtualbox/" title="VirtualBox">VirtualBox (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/webkit/" title="WebKit">WebKit (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows (16)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="人工智能">人工智能 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%81%A5%E5%BA%B7/" title="健康">健康 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%86%99%E4%BD%9C%E4%B8%8E%E8%A1%A8%E8%BE%BE/" title="写作与表达">写作与表达 (13)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (13)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" title="年度总结">年度总结 (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="性能优化">性能优化 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" title="数据分析">数据分析 (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="数据结构">数据结构 (40)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9E%84%E5%BB%BA/" title="构建">构建 (22)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" title="源码分析">源码分析 (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%83%AD%E4%BF%AE%E5%A4%8D/" title="热修复">热修复 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AE%97%E6%B3%95/" title="算法">算法 (65)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%BB%9C/" title="网络">网络 (13)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/" title="职业发展">职业发展 (5)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6/" title="读书">读书 (19)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%B0%83%E8%AF%95/" title="调试">调试 (17)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/" title="跨平台">跨平台 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (15)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9D%A2%E8%AF%95/" title="面试">面试 (6)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

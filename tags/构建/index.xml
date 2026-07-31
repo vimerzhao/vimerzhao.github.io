@@ -6,7 +6,7 @@
     <description>Recent content in 构建 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
     <atom:link href="/tags/%E6%9E%84%E5%BB%BA/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>编译wpe-webkit-android的问题记录</title>
@@ -154,6 +154,13 @@
       <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
       <guid>/articles/2016-compilation-principles-in-practice-calculator/</guid>
       <description>概述 本博客主要讲述如何利用编译原理的知识实现一个控制台计算器.如果之前利用栈(在学数据结构的时候)实现过计算器,一定会有所印象,写一个计算器程序最重要的就是把握运算优先级了.而本文换一个角度,利用文法</description>
+    </item>
+    <item>
+      <title>QtCreator生成美观的可执行文件</title>
+      <link>/articles/2016-qtcreator-packaging-executable/</link>
+      <pubDate>Thu, 11 Feb 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-qtcreator-packaging-executable/</guid>
+      <description>write by ai 原文：CSDN 链接 `n最近，在极客学院跟着视频教程学习制作了一格简单的计算器，在此做一些加工，使其可以以一个美观的exe文件运行。包括更改图标以及动态编译。 以下是具体步骤： 1、下载一个好看的IC</description>
     </item>
   </channel>
 </rss>

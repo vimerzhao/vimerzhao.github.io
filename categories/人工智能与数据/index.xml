@@ -6,7 +6,7 @@
     <description>Recent content in 人工智能与数据 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
     <atom:link href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>初探OpenClaw</title>
@@ -91,6 +91,55 @@
       <pubDate>Sun, 03 Jul 2016 00:00:00 +0000</pubDate>
       <guid>/articles/2016-a-brief-analysis-of-the-basic-ai-backgammon-algorithm/</guid>
       <description>五子棋是所有棋类博弈中比较简单的了，这里介绍的也只是一种非常基本的AI策略。其实，包括之前的AI贪吃蛇，感觉这两个AI其实体现的都是一种建模思想，把一个现实中的问题模型化，抽象化，得到其一般特征，再设</description>
+    </item>
+    <item>
+      <title>囚徒困境中的均衡-----从一篇经典论文说起</title>
+      <link>/articles/2016-prisoners-dilemma-equilibrium/</link>
+      <pubDate>Fri, 18 Mar 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-prisoners-dilemma-equilibrium/</guid>
+      <description>write by ai 原文：CSDN 链接 `n## 1.囚徒困境 囚徒困境（Prisoner’s Dilemma）是博弈论的非零和博弈中具代表性的例子，反映个人最佳选择并非团体最佳选择。或者说在一个群体中，个人做出理性选择却往往导</description>
+    </item>
+    <item>
+      <title>关于matlab更改默认路径的方法</title>
+      <link>/articles/2016-changing-matlab-default-path/</link>
+      <pubDate>Mon, 01 Feb 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-changing-matlab-default-path/</guid>
+      <description>write by ai 原文：CSDN 链接 `n1、如果你是通过桌面快捷方式（大多数人的选择） 一个比较简单的办法就是将快捷方式的属性中的起始位置更改为你指定的路径。但是这样只能在你通过快捷方式打开matlab时才会奏效。</description>
+    </item>
+    <item>
+      <title>MATLAB复杂网络处理入门</title>
+      <link>/articles/2015-matlab-complex-network-introduction/</link>
+      <pubDate>Sun, 13 Dec 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-matlab-complex-network-introduction/</guid>
+      <description>write by ai 原文：CSDN 链接 `n最近一周花了一些时间在一个所谓的亚太数学建模竞赛上，其实自己主要有两点考虑，一是当做美赛之前的一个热身；二是自己刚刚接触MATLAB编程，希望能锻炼一下。 下面是题目： Identifyingthe error connections</description>
+    </item>
+    <item>
+      <title>MATLAB进阶笔记：告别for循环，走向新巅峰</title>
+      <link>/articles/2015-matlab-for-loop-optimization/</link>
+      <pubDate>Tue, 08 Dec 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-matlab-for-loop-optimization/</guid>
+      <description>write by ai 原文：CSDN 链接 `n2015-12-8 最近在参加一个数学建模比赛，关于复杂网络的（ 002C语言 验证无标度网络的幂律定律、004C语言 实现小世界网络）。想到之前已经对复杂网络有所接触，这次虽不敢说胸有成竹，但至少努</description>
+    </item>
+    <item>
+      <title>MATLAB奇淫技巧之实现图片扫描</title>
+      <link>/articles/2015-matlab-image-scanning-techniques/</link>
+      <pubDate>Mon, 07 Dec 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-matlab-image-scanning-techniques/</guid>
+      <description>write by ai 原文：CSDN 链接 `n最近，由于需要补电路实验，所以把同学的书借来了，还有一个大实验没做，可是同学也要开始做了，所以在还回去之前只好全部拍下来，但是799的手机拍出来的渣渣像素可想而知，于是乎，</description>
+    </item>
+    <item>
+      <title>matlab语言实现一点到对角的路径PART2--优化与升级</title>
+      <link>/articles/2015-matlab-path-to-diagonal-part-2/</link>
+      <pubDate>Sat, 05 Dec 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-matlab-path-to-diagonal-part-2/</guid>
+      <description>write by ai 原文：CSDN 链接 `n之前一篇blog已经说明了最基本的情况，这里不再罪赘述（008 matlab语言实现一点到对角的路径PART1） 最近，对这个问题做了一些改进与优化。 1、改进：增加了不可到达点</description>
+    </item>
+    <item>
+      <title>matlab语言实现一点到对角的路径PART1</title>
+      <link>/articles/2015-matlab-path-to-diagonal-part-1/</link>
+      <pubDate>Thu, 03 Dec 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-matlab-path-to-diagonal-part-1/</guid>
+      <description>write by ai 原文：CSDN 链接 `n昨天，同学在群里发了一个数据结构及算法方面的题目（如下图），由于最近在学习MATLAB，所以突发奇想，能不能借助MATLAB强大的绘图功能把所有路径画出来。经过几次失败的探</description>
     </item>
   </channel>
 </rss>

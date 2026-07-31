@@ -6,7 +6,7 @@
     <description>Recent content in 算法 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
     <atom:link href="/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C&#43;&#43;函数调用栈回溯初探</title>
@@ -401,11 +401,67 @@
       <description>Log 2016-3-21 网上找的POJ分类，来源已经不清楚了。百度能百度到一大把。贴一份在博客上，鞭策自己刷题，不能偷懒！！ 初期: 一.基本算法: (1)枚举. (poj1753,poj2965) (2)贪心(poj1328,poj2109,poj2586) (</description>
     </item>
     <item>
+      <title>囚徒困境中的均衡-----从一篇经典论文说起</title>
+      <link>/articles/2016-prisoners-dilemma-equilibrium/</link>
+      <pubDate>Fri, 18 Mar 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-prisoners-dilemma-equilibrium/</guid>
+      <description>write by ai 原文：CSDN 链接 `n## 1.囚徒困境 囚徒困境（Prisoner’s Dilemma）是博弈论的非零和博弈中具代表性的例子，反映个人最佳选择并非团体最佳选择。或者说在一个群体中，个人做出理性选择却往往导</description>
+    </item>
+    <item>
+      <title>模拟退火算法学习（一）-----求解最短连通路径</title>
+      <link>/articles/2016-simulated-annealing-shortest-connected-path/</link>
+      <pubDate>Thu, 17 Mar 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-simulated-annealing-shortest-connected-path/</guid>
+      <description>write by ai 原文：CSDN 链接 `n#### 1.模拟退火算法概述 模拟退火是一种通用概率算法，用来在固定时间内寻求在一个大的搜寻空间内找到的最优解。模拟退火是S. Kirkpatrick, C. D. Gelatt和M. P. Vecchi在1983年所发明。</description>
+    </item>
+    <item>
       <title>最小生成树问题---Prim算法与Kruskal算法实现（MATLAB语言实现）</title>
       <link>/articles/2015-minimum-spanning-tree-problem-prim-algorithm-and-kruskal-algorithm-implementation-matlab-language-im/</link>
       <pubDate>Fri, 18 Dec 2015 00:00:00 +0000</pubDate>
       <guid>/articles/2015-minimum-spanning-tree-problem-prim-algorithm-and-kruskal-algorithm-implementation-matlab-language-im/</guid>
       <description>2015-12-17晚，复习，甚是无聊，阅《复杂网络算法与应用》一书，得知**最小生成树问题（Minimum spanning tree）**问题。记之。 何为树：连通且不含圈的图称为树。 图T=(V,E),|V|=n,|</description>
+    </item>
+    <item>
+      <title>MATLAB复杂网络处理入门</title>
+      <link>/articles/2015-matlab-complex-network-introduction/</link>
+      <pubDate>Sun, 13 Dec 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-matlab-complex-network-introduction/</guid>
+      <description>write by ai 原文：CSDN 链接 `n最近一周花了一些时间在一个所谓的亚太数学建模竞赛上，其实自己主要有两点考虑，一是当做美赛之前的一个热身；二是自己刚刚接触MATLAB编程，希望能锻炼一下。 下面是题目： Identifyingthe error connections</description>
+    </item>
+    <item>
+      <title>matlab语言实现一点到对角的路径PART2--优化与升级</title>
+      <link>/articles/2015-matlab-path-to-diagonal-part-2/</link>
+      <pubDate>Sat, 05 Dec 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-matlab-path-to-diagonal-part-2/</guid>
+      <description>write by ai 原文：CSDN 链接 `n之前一篇blog已经说明了最基本的情况，这里不再罪赘述（008 matlab语言实现一点到对角的路径PART1） 最近，对这个问题做了一些改进与优化。 1、改进：增加了不可到达点</description>
+    </item>
+    <item>
+      <title>matlab语言实现一点到对角的路径PART1</title>
+      <link>/articles/2015-matlab-path-to-diagonal-part-1/</link>
+      <pubDate>Thu, 03 Dec 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-matlab-path-to-diagonal-part-1/</guid>
+      <description>write by ai 原文：CSDN 链接 `n昨天，同学在群里发了一个数据结构及算法方面的题目（如下图），由于最近在学习MATLAB，所以突发奇想，能不能借助MATLAB强大的绘图功能把所有路径画出来。经过几次失败的探</description>
+    </item>
+    <item>
+      <title>算法:从单链表中删除一个中间节点</title>
+      <link>/articles/2015-delete-middle-node-from-singly-linked-list/</link>
+      <pubDate>Fri, 13 Nov 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-delete-middle-node-from-singly-linked-list/</guid>
+      <description>write by ai 原文：CSDN 链接 `n原文连接：http://www.pixelstech.net/article/1446199844-Algorithm-%3A-Delete-middle-node-fro</description>
+    </item>
+    <item>
+      <title>C语言 实现小世界网络</title>
+      <link>/articles/2015-c-language-small-world-network/</link>
+      <pubDate>Sat, 24 Oct 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-c-language-small-world-network/</guid>
+      <description>write by ai 原文：CSDN 链接 `n## 1简介： 小世界网络最早由Watts和Strogtz在1998年提出，小世界网络存在于数学、物理学和社会学中，是一种数学图的模型。在这种图中大部份的结点不与彼此邻接，但大部份结</description>
+    </item>
+    <item>
+      <title>C语言 验证无标度网络的幂律定律</title>
+      <link>/articles/2015-c-language-scale-free-network-power-law/</link>
+      <pubDate>Tue, 06 Oct 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-c-language-scale-free-network-power-law/</guid>
+      <description>write by ai 原文：CSDN 链接 `n1复杂网络发展史 几乎每个人都听说过大数学家欧拉和哥尼斯堡七桥的故事，而1736年29岁的欧拉向圣彼得堡科学院递交了《哥尼斯堡的七座桥》的论文，也正式标志着数学的一个新的分支</description>
     </item>
   </channel>
 </rss>

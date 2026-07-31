@@ -6,7 +6,7 @@
     <description>Recent content in 浏览器与 Web on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
     <atom:link href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8E-web/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>从一次 OOPIF Touch Bug 到 Chromium 合入：我的首次上游协作复盘</title>
@@ -112,6 +112,13 @@
       <pubDate>Fri, 16 Sep 2016 00:00:00 +0000</pubDate>
       <guid>/articles/2016-blog-park-custom-template/</guid>
       <description>第一次 之前一直用的rivercast这个模板，虽然比较符合我的风格，但是感觉屏幕空间利用太不充分，两边留出了很多空白（只看模板预览还看不出这个问题！），于是想找一个空间安排比较充分的模板，但是又感觉风</description>
+    </item>
+    <item>
+      <title>将博客搬至CSDN</title>
+      <link>/articles/2016-moving-my-blog-to-csdn/</link>
+      <pubDate>Tue, 12 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-moving-my-blog-to-csdn/</guid>
+      <description>write by ai 原文：CSDN 链接 `n为整理博客，搬家</description>
     </item>
   </channel>
 </rss>

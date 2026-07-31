@@ -6,7 +6,7 @@
     <description>Recent content in 工程实践 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
     <atom:link href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>谈小步快跑</title>
@@ -77,6 +77,27 @@
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
       <guid>/articles/2017-thoughts-after-reading-android-project-practice-mobile-security-guard/</guid>
       <description>上学期在学校图书馆看到此书，觉得比较贴近实践，于是寒假研究了一番，也算是体会了一把社会培训机构的模式。 由于时间关系，最后两章还没弄完，但感觉每章节的流程相似，加之马上要回学校了，所以打算在家的最后一天</description>
+    </item>
+    <item>
+      <title>控制台版2048 version_1.0总结</title>
+      <link>/articles/2016-console-2048-version-1-summary/</link>
+      <pubDate>Wed, 23 Mar 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-console-2048-version-1-summary/</guid>
+      <description>write by ai 原文：CSDN 链接 `n这两天大概花了3~4个钟头写了一个简单的控制台版的2048。之前简单的思考过这个游戏，感觉实现逻辑比较简单，适合练手，所以简单构思一下就开始写了。结果真是惨不忍睹。因为总有</description>
+    </item>
+    <item>
+      <title>win10是使用优化两则</title>
+      <link>/articles/2016-two-windows-10-usage-optimizations/</link>
+      <pubDate>Mon, 01 Feb 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-two-windows-10-usage-optimizations/</guid>
+      <description>write by ai 原文：CSDN 链接 `n1.如何去除回收站图标 桌面&amp;mdash;&amp;mdash;-&amp;gt;右键&amp;mdash;&amp;mdash;&amp;gt;个性化&amp;mdash;&amp;mdash;&amp;gt;主题&amp;mdash;&amp;mda</description>
+    </item>
+    <item>
+      <title>用LabVIEW和Arduino开发一个温度采集系统</title>
+      <link>/articles/2015-labview-arduino-temperature-acquisition-system/</link>
+      <pubDate>Thu, 15 Oct 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-labview-arduino-temperature-acquisition-system/</guid>
+      <description>write by ai 原文：CSDN 链接 `n### 1背景 其实满打满算，今天是自己接触LabVIEW的第四天，只是是由于国庆节之前报名参加了一个比赛，国庆节期间又没有引起足够的重视，所以当比赛只剩下四天的时候才开始研究LabV</description>
     </item>
   </channel>
 </rss>

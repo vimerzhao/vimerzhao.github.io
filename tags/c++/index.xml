@@ -6,7 +6,7 @@
     <description>Recent content in C&#43;&#43; on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
     <atom:link href="/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C&#43;&#43;升级之殇</title>
@@ -49,6 +49,13 @@
       <pubDate>Sun, 17 Apr 2016 00:00:00 +0000</pubDate>
       <guid>/articles/2016-summary-of-programming-habits-and-coding-style-c-cpp-updated/</guid>
       <description>1、使用“==”做比较判断时常量放在前面，如果错写成了赋值“=”则编译器会报错。 if (&amp;#39;a&amp;#39; == direction)//这是一个判断键盘输入并执行相应操作的比较，如果变量在后面并错写成赋值则会出现不可预料的错误</description>
+    </item>
+    <item>
+      <title>控制台版2048 version_1.0总结</title>
+      <link>/articles/2016-console-2048-version-1-summary/</link>
+      <pubDate>Wed, 23 Mar 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-console-2048-version-1-summary/</guid>
+      <description>write by ai 原文：CSDN 链接 `n这两天大概花了3~4个钟头写了一个简单的控制台版的2048。之前简单的思考过这个游戏，感觉实现逻辑比较简单，适合练手，所以简单构思一下就开始写了。结果真是惨不忍睹。因为总有</description>
     </item>
   </channel>
 </rss>

@@ -6,7 +6,7 @@
     <description>Recent content in VirtualBox on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
     <atom:link href="/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Windows10下VirtualBox不支持64位</title>
@@ -49,6 +49,20 @@
       <pubDate>Fri, 12 Aug 2016 00:00:00 +0000</pubDate>
       <guid>/articles/2016-this-host-does-not-support-64-bit-guest-operating-systems-problem-record/</guid>
       <description>由于昨天把系统玩坏了，得重装虚拟机，可是在向导阶段阶段就出现了“此主机不支持64位客户机操作系统&amp;hellip;”的提示，于是网上查了一下解决方法：无非都是Enable VT之类，可是设置这些之后还是有</description>
+    </item>
+    <item>
+      <title>virtualbox虚拟机无法上网的一种情况</title>
+      <link>/articles/2016-virtualbox-vm-cannot-access-network/</link>
+      <pubDate>Sun, 21 Feb 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-virtualbox-vm-cannot-access-network/</guid>
+      <description>write by ai 原文：CSDN 链接 `n今天用XP虚拟机突然不能上网了，但是主机能上，google了半下午都没找到解决方案，最后在知乎上一个点赞为0的回答上找到了灵感，原来是硬件的问题，只需要更改控制芯片就可以啦</description>
+    </item>
+    <item>
+      <title>virtualbox上安装Mac OS Mavericks</title>
+      <link>/articles/2016-installing-mac-os-mavericks-on-virtualbox/</link>
+      <pubDate>Sun, 14 Feb 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-installing-mac-os-mavericks-on-virtualbox/</guid>
+      <description>write by ai 原文：CSDN 链接 `n之前安装了virtualbox后，顺利在上面搭建了Ubuntu、Windows XP操作系统。而Mac OS则因为诸多原因，比较难以安装（比如镜像不好找、安装步骤复杂、设计硬件</description>
     </item>
   </channel>
 </rss>

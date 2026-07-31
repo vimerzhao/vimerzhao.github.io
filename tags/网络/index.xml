@@ -6,7 +6,7 @@
     <description>Recent content in 网络 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
     <atom:link href="/tags/%E7%BD%91%E7%BB%9C/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux开发机问题汇总</title>
@@ -77,6 +77,20 @@
       <pubDate>Thu, 15 Sep 2016 00:00:00 +0000</pubDate>
       <guid>/articles/2016-httpclient-jsoup-simulates-logging-into-the-academic-affairs-office-and-obtaining-the-class-schedule/</guid>
       <description>1、概述 最近想做一个校园助手类的APP，由于第一次做，所以打算先把每个功能单独实现，防止乱了阵脚。利用教务处登录获取课表和成绩等是一个基本功能，所以以获取课表为例实现了这个功能。完整代码点这里，尝试了</description>
+    </item>
+    <item>
+      <title>小记一次网络故障处理</title>
+      <link>/articles/2016-network-failure-troubleshooting-note/</link>
+      <pubDate>Mon, 29 Feb 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-network-failure-troubleshooting-note/</guid>
+      <description>write by ai 原文：CSDN 链接 `n回家换了一台新电脑，但是回学校后发现连宿舍的网线之后，总是显示无法识别的网络，经过一番排查之后发现是在之前申请开通网络服务的时候，是用之前的电脑，所以账号上还是之前的mac</description>
+    </item>
+    <item>
+      <title>virtualbox虚拟机无法上网的一种情况</title>
+      <link>/articles/2016-virtualbox-vm-cannot-access-network/</link>
+      <pubDate>Sun, 21 Feb 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-virtualbox-vm-cannot-access-network/</guid>
+      <description>write by ai 原文：CSDN 链接 `n今天用XP虚拟机突然不能上网了，但是主机能上，google了半下午都没找到解决方案，最后在知乎上一个点赞为0的回答上找到了灵感，原来是硬件的问题，只需要更改控制芯片就可以啦</description>
     </item>
     <item>
       <title>一百行写小世界网络和无标度网络</title>

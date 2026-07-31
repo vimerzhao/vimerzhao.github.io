@@ -6,7 +6,7 @@
     <description>Recent content in 数据结构 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
     <atom:link href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C&#43;&#43;函数调用栈回溯初探</title>
@@ -273,6 +273,20 @@
       <pubDate>Mon, 21 Mar 2016 00:00:00 +0000</pubDate>
       <guid>/articles/2016-poj-question-classification-reprinted/</guid>
       <description>Log 2016-3-21 网上找的POJ分类，来源已经不清楚了。百度能百度到一大把。贴一份在博客上，鞭策自己刷题，不能偷懒！！ 初期: 一.基本算法: (1)枚举. (poj1753,poj2965) (2)贪心(poj1328,poj2109,poj2586) (</description>
+    </item>
+    <item>
+      <title>算法:从单链表中删除一个中间节点</title>
+      <link>/articles/2015-delete-middle-node-from-singly-linked-list/</link>
+      <pubDate>Fri, 13 Nov 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-delete-middle-node-from-singly-linked-list/</guid>
+      <description>write by ai 原文：CSDN 链接 `n原文连接：http://www.pixelstech.net/article/1446199844-Algorithm-%3A-Delete-middle-node-fro</description>
+    </item>
+    <item>
+      <title>C语言 实现小世界网络</title>
+      <link>/articles/2015-c-language-small-world-network/</link>
+      <pubDate>Sat, 24 Oct 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-c-language-small-world-network/</guid>
+      <description>write by ai 原文：CSDN 链接 `n## 1简介： 小世界网络最早由Watts和Strogtz在1998年提出，小世界网络存在于数学、物理学和社会学中，是一种数学图的模型。在这种图中大部份的结点不与彼此邻接，但大部份结</description>
     </item>
   </channel>
 </rss>

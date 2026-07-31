@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>matlab语言实现一点到对角的路径PART1 - 赵裕的博客</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="matlab语言实现一点到对角的路径PART1" />
+<meta property="og:description" content="write by ai 原文：CSDN 链接 `n昨天，同学在群里发了一个数据结构及算法方面的题目（如下图），由于最近在学习MATLAB，所以突发奇想，能不能借助MATLAB强大的绘图功能把所有路径画出来。经过几次失败的探" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/2015-matlab-path-to-diagonal-part-1/" /><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2015-12-03T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-31T21:43:22+08:00" />
+
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="matlab语言实现一点到对角的路径PART1"/>
+<meta name="twitter:description" content="write by ai 原文：CSDN 链接 `n昨天，同学在群里发了一个数据结构及算法方面的题目（如下图），由于最近在学习MATLAB，所以突发奇想，能不能借助MATLAB强大的绘图功能把所有路径画出来。经过几次失败的探"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/notes.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="赵裕的博客" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">赵裕的博客</div>
+					<div class="logo__tagline">恒无欲也，以观其妙；恒有欲也，以观其徼。</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">首页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/article-archive/">
+				
+				<span class="menu__text">文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/notes/">
+				
+				<span class="menu__text">想法</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/talk-archive/">
+				
+				<span class="menu__text">演讲</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/courses-archive/">
+				
+				<span class="menu__text">课程</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/works/">
+				
+				<span class="menu__text">作品</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/resource/">
+				
+				<span class="menu__text">资源</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">关于</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">matlab语言实现一点到对角的路径PART1</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">赵裕(vimerzhao)</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-12-03T00:00:00Z">2015-12-03</time>
+	<time class="meta__text" datetime="2026-07-31T21:43:22&#43;08:00">(最后修改: 2026-07-31)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE/" rel="category">人工智能与数据</a>
+	</span>
+</div></div>
+		</header>
+		
+    <span style="color:grey; font-size: 0.9em">本文约 1800 字，阅读需 4 分钟。</span>
+    <p/><div class="content post__content clearfix">
+			<blockquote>
+<p>write by ai</p>
+</blockquote>
+<blockquote>
+<p>原文：<a href="https://blog.csdn.net/sinat_30046339/article/details/50161839">CSDN 链接</a>
+`n昨天，同学在群里发了一个数据结构及算法方面的题目（如下图），由于最近在学习MATLAB，所以突发奇想，能不能借助MATLAB强大的绘图功能把所有路径画出来。经过几次失败的探索，终于算是完整的实现了最初的想法，收获也是相当之多。</p>
+</blockquote>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/af5edf521c12e0539049-a09cdb67324aee38f570.jpg" alt="文章配图"></p>
+<p>这里我并没有一开始就考虑有特殊P点的情况，而是研究从一个顶点到对角顶点的所有路径（考虑P点的情况将在以后给出）。</p>
+<p>首先，对这个问题做一些数学分析（感谢高中的东西还没完全忘记）：对于一个m*n的格子，从（1,1）到（m,n）只能向左或向下走，其实相当于（m-1）次向下加上（n-1）次向右一共有多少种排列组合。又考虑到这些向下和向右其实是暗含次序的，所以，路径一共有A(m+n-2,m+n-2)/<a href="%E6%B3%A8%EF%BC%9AA(M,N)%E8%A1%A8%E7%A4%BA%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88%E5%85%AC%E5%BC%8FM%E4%B8%BA%E4%B8%8A%E6%A0%87%EF%BC%8CN%E4%B8%BA%E4%B8%8B%E6%A0%87">A(m-1,m-1)*A(n-1,n-1)</a>。这里介绍一个MATLAB中求阶乘的函数**factorial**,所以总路径数=<strong>factorial</strong>(m+n-2)/(factorial(m-1)*factorial(n-1))。</p>
+<p>然而，如果要画出所有路径，这样显然是不行的，既然要画出所有路径，就要**枚举**出所有情况，这里，难点就在于如何有条理的枚举出来，在经历了几次失败之后，终于找到了一个不错的方法（如果谁看到本文并且有更好的想法，欢迎评论留言）：</p>
+<p>可以看出，从(1,1)到(m,n)一共要走m+n-2步，所以可以用一个2行m+n-2列的矩阵来表示所走的的路径，矩阵的每一列只能有一行为1（表示向下或向右走了一步），另一行相对应为0（这里本质也就是说对1和0进行排列）。考虑第一行（表示向下），应该有m-1个1以及n-1个0，其十进制最大值应该是**2^(m+n-2)-2^(n-1)**，如m=6,n=4,则<strong>2^(m+n-2)-2^(n-1)=2^8-2^3=248=11111000</strong>;这样，我们从1遍历到2^(m+n-2)-2^(n-1)，将每个十进制数转化为二进制，考察其中1的个数，如果1的个数满足条件，则是一条可行的路径。而且从1到2^(m+n-2)-2^(n-1)可保证不漏（没记错的话，枚举法的精髓就是不重不漏，分类合理）。如果满足条件，则将这一组二进制数转化为矩阵，进而画出路径。以下是完整的matlab程序：</p>
+<p>CSDN_CODE_BLOCK_0_TOKEN</p>
+<p>效果图</p>
+<p><img src="https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/3efc14a1e9a78a61eca9-7da6e718dec65052640e.gif" alt="文章配图"></p>
+<p>算法思想已经基本讲清楚，在介绍一下，几个MATLAB实现的技巧：</p>
+<p><strong>1、dec2bin()将一个十进制数转换成一个二进制的**字符串**</strong></p>
+<p><strong>2、str2double()将一个数字字符串转换成一个数字</strong></p>
+<p><strong>3、length()计算一个字符串的长度</strong></p>
+<p><strong>4、mod()取余函数</strong></p>
+<p><strong>5、floor()取一个浮点数的整数部分</strong></p>
+<p><strong>6、find()找出矩阵中满足条件的数的位置，这些位置组成新的一维矩阵</strong></p>
+<p><strong>7、=~：取反。如a=1,b=~a,则b=0</strong></p>
+<p><strong>8、imagesc(A),二维矩阵A，按不同数字不同颜色画图</strong></p>
+<p><strong>9、pause(t)程序暂停t
+s</strong></p>
+<p>这些函数光看还是很难深刻掌握的，建议自己动手，多尝试多探索。才能真正成为自己的东西。</p>
+<p>一些反思：</p>
+<p>1、一定要先写流程图设计好算法，再写代码，自己昨晚写了一个多钟头，后来到床上一想发现全都是错的（当时是想用随机产生，无限尝试，甚至没考虑1的个数是固定的），今天一开始又没考虑如00110这样的数会被计算机直接当成110.所以，不要一头扎进代码里。</p>
+<p>2、数学真的很重要，无论是前面排列组合的分析还是对二进制与十进制关系的那段分析，都需要数学基础。**为自己大学以来没好好学数学惭愧**，幸好为时不晚。此外，一开始并没注意到Max=2^(m+n-2)-2^(n-1);而是直接</p>
+<p>CSDN_CODE_BLOCK_1_TOKEN</p>
+<p>这样导致输入的m,n稍大一点计算机就会出错，因为那个01序列是被直接当成十进制对待的。而且这样做增加了很多运算，降低了效率。而直接用公式不仅简洁而且效率高，由此可见数学的重要性啊！直达本质。满满的简洁美。还有，深入思考！</p>
+<p>3、有时候还是懒点好，真是因为懒，才挖出了一堆matlab内建函数，本来好几行代码，现在一个函数就搞定了。主要还是敢想，多想想为什么不能简单点呢，为什么不能用更精炼的代码呢？懒，让世界更美好！！现在看上面代码还是很懒的，不过懒得很简洁、很优美。哈哈！！！</p>
+
+		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/matlab/" rel="tag">MATLAB</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="赵裕(vimerzhao) avatar" src="/img/wechat_public.jpeg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 赵裕(vimerzhao)</span>
+	</div>
+	<div class="authorbox__description">
+		🔥 爱折腾的程序员、《Flutter内核源码剖析》作者。 <br>  👈  微信公众号：<b>赵裕</b>（记录所学、所思、所行），欢迎扫码关注。
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/articles/2015-delete-middle-node-from-singly-linked-list/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">算法:从单链表中删除一个中间节点</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/articles/2015-matlab-path-to-diagonal-part-2/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">matlab语言实现一点到对角的路径PART2--优化与升级</p>
+		</a>
+	</div>
+</nav>
+
+<script src="https://utteranc.es/client.js"
+  repo="vimerzhao/vimerzhao.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-chromium-contribution-oopif-touch/">从一次 OOPIF Touch Bug 到 Chromium 合入：我的首次上游协作复盘</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2026-first-research-on-openclaw/">初探OpenClaw</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/2025-retrospective-and-some-thoughts/">2025年回顾及后面的一些想法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/wpewebkit-become-unresponsive-on-wpe-drm-platform/">Webkit在嵌入式设备渲染卡死现象的分析</a></li>
+			<li class="widget__item"><a class="widget__link" href="/articles/clearing-up-a-messy-debt/">一笔糊涂帐的清算</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/android/">Android</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">44</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/flutter/">Flutter</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">10</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE/">人工智能与数据</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">19</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8E-web/">浏览器与 Web</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">16</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E7%94%9F%E6%B4%BB%E4%B8%8E%E9%9A%8F%E7%AC%94/">生活与随笔</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">19</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法与数据结构</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">67</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%B7%A5%E5%85%B7/">系统与工具</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">95</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">36</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%81%8C%E4%B8%9A%E4%B8%8E%E6%88%90%E9%95%BF/">职业与成长</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">27</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%AF%BB%E4%B9%A6%E4%B8%8E%E6%80%9D%E8%80%83/">读书与思考</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">32</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">27</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android/" title="Android">Android (11)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug/" title="Bug">Bug (42)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c/" title="C">C (44)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/chromium/" title="Chromium">Chromium (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cmake/" title="CMake">CMake (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/flutter/" title="Flutter">Flutter (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/git/" title="Git">Git (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gradle/" title="Gradle">Gradle (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/java/" title="Java">Java (16)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="JavaScript">JavaScript (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux (29)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lisp/" title="Lisp">Lisp (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/macos/" title="MacOS">MacOS (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/matlab/" title="MATLAB">MATLAB (15)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/skia/" title="Skia">Skia (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vcpkg/" title="Vcpkg">Vcpkg (5)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/virtualbox/" title="VirtualBox">VirtualBox (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/webkit/" title="WebKit">WebKit (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows (16)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="人工智能">人工智能 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%81%A5%E5%BA%B7/" title="健康">健康 (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%86%99%E4%BD%9C%E4%B8%8E%E8%A1%A8%E8%BE%BE/" title="写作与表达">写作与表达 (13)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" title="工程实践">工程实践 (13)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" title="年度总结">年度总结 (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="性能优化">性能优化 (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" title="数据分析">数据分析 (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="数据结构">数据结构 (40)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9E%84%E5%BB%BA/" title="构建">构建 (22)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" title="源码分析">源码分析 (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%83%AD%E4%BF%AE%E5%A4%8D/" title="热修复">热修复 (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AE%97%E6%B3%95/" title="算法">算法 (65)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%BB%9C/" title="网络">网络 (13)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/" title="职业发展">职业发展 (5)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%AF%BB%E4%B9%A6/" title="读书">读书 (19)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%B0%83%E8%AF%95/" title="调试">调试 (17)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/" title="跨平台">跨平台 (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (15)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%9D%A2%E8%AF%95/" title="面试">面试 (6)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/vimerzhao" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 赵裕的博客.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+    <span>
+      <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次，
+      </span>
+      <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+      </span>
+    </span>
+  </div>
+  
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5f402244ea199b9952086dd1313a204d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</footer>
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

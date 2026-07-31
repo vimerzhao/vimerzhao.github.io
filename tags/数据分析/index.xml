@@ -6,7 +6,7 @@
     <description>Recent content in 数据分析 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
     <atom:link href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>代码相似性检测工具</title>
@@ -42,6 +42,27 @@
       <pubDate>Wed, 18 Apr 2018 00:00:00 +0000</pubDate>
       <guid>/articles/qu-kuai-lian-zhao-pin-xin-xi-pa-qu-yu-fen-xi/</guid>
       <description>区块链招聘信息爬取与分析 最近在研究区块链，闲来无事抓取了拉勾网上450条区块链相关的招聘信息。过程及结果如下。 拉勾网爬取 首先是从拉勾网爬取数据，用的requests库。拉勾网的反爬虫做的还是比较好的，</description>
+    </item>
+    <item>
+      <title>MATLAB复杂网络处理入门</title>
+      <link>/articles/2015-matlab-complex-network-introduction/</link>
+      <pubDate>Sun, 13 Dec 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-matlab-complex-network-introduction/</guid>
+      <description>write by ai 原文：CSDN 链接 `n最近一周花了一些时间在一个所谓的亚太数学建模竞赛上，其实自己主要有两点考虑，一是当做美赛之前的一个热身；二是自己刚刚接触MATLAB编程，希望能锻炼一下。 下面是题目： Identifyingthe error connections</description>
+    </item>
+    <item>
+      <title>MATLAB奇淫技巧之实现图片扫描</title>
+      <link>/articles/2015-matlab-image-scanning-techniques/</link>
+      <pubDate>Mon, 07 Dec 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-matlab-image-scanning-techniques/</guid>
+      <description>write by ai 原文：CSDN 链接 `n最近，由于需要补电路实验，所以把同学的书借来了，还有一个大实验没做，可是同学也要开始做了，所以在还回去之前只好全部拍下来，但是799的手机拍出来的渣渣像素可想而知，于是乎，</description>
+    </item>
+    <item>
+      <title>C语言 验证无标度网络的幂律定律</title>
+      <link>/articles/2015-c-language-scale-free-network-power-law/</link>
+      <pubDate>Tue, 06 Oct 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-c-language-scale-free-network-power-law/</guid>
+      <description>write by ai 原文：CSDN 链接 `n1复杂网络发展史 几乎每个人都听说过大数学家欧拉和哥尼斯堡七桥的故事，而1736年29岁的欧拉向圣彼得堡科学院递交了《哥尼斯堡的七座桥》的论文，也正式标志着数学的一个新的分支</description>
     </item>
   </channel>
 </rss>

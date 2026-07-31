@@ -6,7 +6,7 @@
     <description>Recent content in 写作与表达 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
     <atom:link href="/tags/%E5%86%99%E4%BD%9C%E4%B8%8E%E8%A1%A8%E8%BE%BE/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>关于一次课后反馈的思考</title>
@@ -79,11 +79,25 @@
       <description>一、常用的三种结构 一 二 三 1.摘要 1.摘要 1.摘要 2.问题重述 2.问题的提出与重述、问题的分析 2.问题的叙述、背景的分析 3.问题的分析 3.变量假设 3.模型的假设、符号说明 4.模型假设 4.模型建立 4.模型</description>
     </item>
     <item>
+      <title>将博客搬至CSDN</title>
+      <link>/articles/2016-moving-my-blog-to-csdn/</link>
+      <pubDate>Tue, 12 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-moving-my-blog-to-csdn/</guid>
+      <description>write by ai 原文：CSDN 链接 `n为整理博客，搬家</description>
+    </item>
+    <item>
       <title>数据结构算法C语言实现（八）--- 3.2栈的应用举例：迷宫求解与表达式求值</title>
       <link>/articles/2016-data-structure-algorithm-c-language-implementation-8-3-2-stack-application-examples-maze-solving-and/</link>
       <pubDate>Wed, 08 Jun 2016 00:00:00 +0000</pubDate>
       <guid>/articles/2016-data-structure-algorithm-c-language-implementation-8-3-2-stack-application-examples-maze-solving-and/</guid>
       <description>一.简介 迷宫求解：类似图的DFS。具体的算法思路可以参考书上的50、51页，不过书上只说了粗略的算法，实现起来还是有很多细节需要注意。大多数只是给了个抽象的名字，甚至参数类型，返回值也没说的很清楚，所</description>
+    </item>
+    <item>
+      <title>我为什么想写博客</title>
+      <link>/articles/2015-why-i-want-to-write-a-blog/</link>
+      <pubDate>Thu, 01 Oct 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-why-i-want-to-write-a-blog/</guid>
+      <description>write by ai 原文：CSDN 链接 `n我已经大二了，大一的时候我读的是一个机械类的专业，说实话我很不适合也很不喜欢，但这也是我后来才发现的，也是后来我才发现自己有多么喜欢我现在的专业。这里不得不吐槽一下自己的高</description>
     </item>
   </channel>
 </rss>

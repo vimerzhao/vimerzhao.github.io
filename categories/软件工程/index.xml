@@ -6,7 +6,7 @@
     <description>Recent content in 软件工程 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
     <atom:link href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Debug实录</title>
@@ -189,6 +189,13 @@
       <pubDate>Mon, 22 May 2017 00:00:00 +0000</pubDate>
       <guid>/articles/cao-zuo-xi-tong-shang-ji-zong-jie/</guid>
       <description>操作系统上机总结 记录了操作系统上机的内容以及一点小小的思考。 题目 如下图： 解答 所有的代码都放在CodeBin/OS-Lab目录下。 实验一：进程管理 关于fork的概念理解之后代码不难写，CSAPP讲的很清</description>
+    </item>
+    <item>
+      <title>用LabVIEW和Arduino开发一个温度采集系统</title>
+      <link>/articles/2015-labview-arduino-temperature-acquisition-system/</link>
+      <pubDate>Thu, 15 Oct 2015 00:00:00 +0000</pubDate>
+      <guid>/articles/2015-labview-arduino-temperature-acquisition-system/</guid>
+      <description>write by ai 原文：CSDN 链接 `n### 1背景 其实满打满算，今天是自己接触LabVIEW的第四天，只是是由于国庆节之前报名参加了一个比赛，国庆节期间又没有引起足够的重视，所以当比赛只剩下四天的时候才开始研究LabV</description>
     </item>
   </channel>
 </rss>

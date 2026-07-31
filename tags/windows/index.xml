@@ -6,7 +6,7 @@
     <description>Recent content in Windows on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
     <atom:link href="/tags/windows/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Windows虚拟机内的企微聊天记录迁移</title>
@@ -77,6 +77,34 @@
       <pubDate>Sat, 08 Oct 2016 00:00:00 +0000</pubDate>
       <guid>/articles/2016-install-linux-dual-system-on-win7/</guid>
       <description>今天帮同学在Win7上安装Linux，感觉一篇教程很不错，mark一下 原地址：Win7下U盘安装Ubuntu14.04双系统步骤详解 一、前期准备 1、大于2G的U盘一个(我的系统盘制作完成后大约占1个多</description>
+    </item>
+    <item>
+      <title>QtCreator生成美观的可执行文件</title>
+      <link>/articles/2016-qtcreator-packaging-executable/</link>
+      <pubDate>Thu, 11 Feb 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-qtcreator-packaging-executable/</guid>
+      <description>write by ai 原文：CSDN 链接 `n最近，在极客学院跟着视频教程学习制作了一格简单的计算器，在此做一些加工，使其可以以一个美观的exe文件运行。包括更改图标以及动态编译。 以下是具体步骤： 1、下载一个好看的IC</description>
+    </item>
+    <item>
+      <title>记一次失败的Visual Stdio安装经历</title>
+      <link>/articles/2016-failed-visual-studio-installation/</link>
+      <pubDate>Thu, 04 Feb 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-failed-visual-studio-installation/</guid>
+      <description>write by ai 原文：CSDN 链接 `n121寒假打算从C++开始认真补一补编程，加之又新换了一台电脑，于是乎一个想法油然而生，开始学习VS;因为打算学习多种语言和一些应用开发，而用VC++6.0这种所谓经典的I</description>
+    </item>
+    <item>
+      <title>win10是使用优化两则</title>
+      <link>/articles/2016-two-windows-10-usage-optimizations/</link>
+      <pubDate>Mon, 01 Feb 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-two-windows-10-usage-optimizations/</guid>
+      <description>write by ai 原文：CSDN 链接 `n1.如何去除回收站图标 桌面&amp;mdash;&amp;mdash;-&amp;gt;右键&amp;mdash;&amp;mdash;&amp;gt;个性化&amp;mdash;&amp;mdash;&amp;gt;主题&amp;mdash;&amp;mda</description>
+    </item>
+    <item>
+      <title>关于matlab更改默认路径的方法</title>
+      <link>/articles/2016-changing-matlab-default-path/</link>
+      <pubDate>Mon, 01 Feb 2016 00:00:00 +0000</pubDate>
+      <guid>/articles/2016-changing-matlab-default-path/</guid>
+      <description>write by ai 原文：CSDN 链接 `n1、如果你是通过桌面快捷方式（大多数人的选择） 一个比较简单的办法就是将快捷方式的属性中的起始位置更改为你指定的路径。但是这样只能在你通过快捷方式打开matlab时才会奏效。</description>
     </item>
     <item>
       <title>Windows键盘映射注册表备忘</title>
