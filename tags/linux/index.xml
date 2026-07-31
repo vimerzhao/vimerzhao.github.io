@@ -2,213 +2,213 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on 赵裕的博客</title>
-    <link>/tags/linux/</link>
+    <link>https://vimerzhao.top/tags/linux/</link>
     <description>Recent content in Linux on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
-    <atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>嵌入式开发备忘录</title>
-      <link>/articles/embedded-development-memo/</link>
+      <link>https://vimerzhao.top/articles/embedded-development-memo/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>/articles/embedded-development-memo/</guid>
+      <guid>https://vimerzhao.top/articles/embedded-development-memo/</guid>
       <description>命令行 # 设置宽高，方便htop这样的工具显示(嵌入式设设备通过adb登陆，terminal不和设备宽高是不匹配的) # stty 是 Set Teletype 的缩写。它是一个用于显示和修改终端行设置（Terminal Line Settings</description>
     </item>
     <item>
       <title>Linux开发机问题汇总</title>
-      <link>/articles/pitfalls-about-using-linux-as-dev-machine/</link>
+      <link>https://vimerzhao.top/articles/pitfalls-about-using-linux-as-dev-machine/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/articles/pitfalls-about-using-linux-as-dev-machine/</guid>
+      <guid>https://vimerzhao.top/articles/pitfalls-about-using-linux-as-dev-machine/</guid>
       <description>DNS解析问题 在不同场景下遇到过几次，具体表现： 不连接有线，只Wifi连接热点 iOA无法加载扫码，网页无法加载 ping www.baidu.com 失败 原因其实是DNS解析失败了，查看这个文件 cat /etc/resolv.conf # This is /run/systemd/resolve/stub-resolv.conf managed by man:systemd-resolved(8). # Do not edit. # This file might be symlinked as /etc/resolv.conf.</description>
     </item>
     <item>
       <title>rk1126尝试运行chromium和webkit</title>
-      <link>/articles/try-install-chromium-and-webkit-on-rk1126/</link>
+      <link>https://vimerzhao.top/articles/try-install-chromium-and-webkit-on-rk1126/</link>
       <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>/articles/try-install-chromium-and-webkit-on-rk1126/</guid>
+      <guid>https://vimerzhao.top/articles/try-install-chromium-and-webkit-on-rk1126/</guid>
       <description>rk1126上跑着一个apt都没有的linux，由于一些研究需要，想让其运行下chromium和webkit,但最终失败了，简单记录下其过程： 大致有3个思路： 安装apt，再配置安装源，用apt安装 使用</description>
     </item>
     <item>
       <title>配置一个Linux开发环境</title>
-      <link>/articles/configure-a-linux-development-environment/</link>
+      <link>https://vimerzhao.top/articles/configure-a-linux-development-environment/</link>
       <pubDate>Wed, 12 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>/articles/configure-a-linux-development-environment/</guid>
+      <guid>https://vimerzhao.top/articles/configure-a-linux-development-environment/</guid>
       <description>原始记录 由于iMac到期，加上工作内容的改变，申请更换成了高级开发机，主要配置如下：9950X + 32Gx2内存 + 4T硬盘，比之前的iMac(2020年申请的)配置提高了不少。 设备到手后，进行了一番配置</description>
     </item>
     <item>
       <title>Mac&amp;Windows&amp;Linux使用备忘录</title>
-      <link>/articles/mac_windows_linux_usage_memo/</link>
+      <link>https://vimerzhao.top/articles/mac_windows_linux_usage_memo/</link>
       <pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/mac_windows_linux_usage_memo/</guid>
+      <guid>https://vimerzhao.top/articles/mac_windows_linux_usage_memo/</guid>
       <description>Mac 1.不要同时编译两个大型C++项目，之前同时使用XCode和Ninja编译两个不同的项目，但底层都使用了clang，结果就是Mac的内核态CPU特别高（超过50%，主要是来自kernal_task这</description>
     </item>
     <item>
       <title>LinuxMint配置指南</title>
-      <link>/articles/linuxmintpei-zhi-zhi-nan/</link>
+      <link>https://vimerzhao.top/articles/linuxmintpei-zhi-zhi-nan/</link>
       <pubDate>Thu, 02 May 2019 00:00:00 +0000</pubDate>
-      <guid>/articles/linuxmintpei-zhi-zhi-nan/</guid>
+      <guid>https://vimerzhao.top/articles/linuxmintpei-zhi-zhi-nan/</guid>
       <description>LinuxMint配置指南 LinuxMint使用记录 工具集 图像编辑 Pinta基本够用，可在软件管理器下载。 配置 添加图标 以百度脑图为例，在/home/username/.local/share/appl</description>
     </item>
     <item>
       <title>Android6.0源码编译教程</title>
-      <link>/articles/android6-0yuan-ma-bian-yi-jiao-cheng/</link>
+      <link>https://vimerzhao.top/articles/android6-0yuan-ma-bian-yi-jiao-cheng/</link>
       <pubDate>Wed, 17 Jan 2018 00:00:00 +0000</pubDate>
-      <guid>/articles/android6-0yuan-ma-bian-yi-jiao-cheng/</guid>
+      <guid>https://vimerzhao.top/articles/android6-0yuan-ma-bian-yi-jiao-cheng/</guid>
       <description>Android6.0源码编译教程 第一次成功编译了Android的源码，记录一下。 回忆 这是我第二次尝试去编译Android的源码，第一次是半年前，当时刚刚拿到去腾讯实习的Offer，虽然当时会一些And</description>
     </item>
     <item>
       <title>LinuxMint修改程序图标分类</title>
-      <link>/articles/linuxmintxiu-gai-cheng-xu-tu-biao-fen-lei/</link>
+      <link>https://vimerzhao.top/articles/linuxmintxiu-gai-cheng-xu-tu-biao-fen-lei/</link>
       <pubDate>Fri, 10 Nov 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/linuxmintxiu-gai-cheng-xu-tu-biao-fen-lei/</guid>
+      <guid>https://vimerzhao.top/articles/linuxmintxiu-gai-cheng-xu-tu-biao-fen-lei/</guid>
       <description>LinuxMint修改程序图标分类 本文记录了如何修改开始菜单中图标的分类。 问题 平时一般用lantern翻墙，但是每次安装之后在开始菜单这个程序都没被归类，而是单独分类到其他这个目录,如下： 十分别扭。 修</description>
     </item>
     <item>
       <title>LinuxMint Mate中WiFi自动关闭问题</title>
-      <link>/articles/linuxmint-matezhong-wifizi-dong-guan-bi-wen-ti/</link>
+      <link>https://vimerzhao.top/articles/linuxmint-matezhong-wifizi-dong-guan-bi-wen-ti/</link>
       <pubDate>Fri, 22 Sep 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/linuxmint-matezhong-wifizi-dong-guan-bi-wen-ti/</guid>
+      <guid>https://vimerzhao.top/articles/linuxmint-matezhong-wifizi-dong-guan-bi-wen-ti/</guid>
       <description>LinuxMint Mate中WiFi自动关闭问题 在安装了LinuxMint Mate后，发现WiFi经常自动关闭，花了一点时间发现了解决办法，记录下来以防再次掉坑。 LinuxMint主流的桌面版本有Cinnamon、M</description>
     </item>
     <item>
       <title>VirtualBox下Debian增强功能的安装</title>
-      <link>/articles/virtualboxxia-debianzeng-qiang-gong-neng-de-an-zhuang/</link>
+      <link>https://vimerzhao.top/articles/virtualboxxia-debianzeng-qiang-gong-neng-de-an-zhuang/</link>
       <pubDate>Wed, 14 Jun 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/virtualboxxia-debianzeng-qiang-gong-neng-de-an-zhuang/</guid>
+      <guid>https://vimerzhao.top/articles/virtualboxxia-debianzeng-qiang-gong-neng-de-an-zhuang/</guid>
       <description>VirtualBox下Debian增强功能的安装 本文记录了如何为VirtualBox里面的Debian虚拟机安装增强功能。 问题记录 之前写过一篇博客记录了VirtualBox下安装增强功能的问题，是在U</description>
     </item>
     <item>
       <title>Linux下配置JDK版本教程</title>
-      <link>/articles/linuxxia-pei-zhi-jdkban-ben-jiao-cheng/</link>
+      <link>https://vimerzhao.top/articles/linuxxia-pei-zhi-jdkban-ben-jiao-cheng/</link>
       <pubDate>Mon, 12 Jun 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/linuxxia-pei-zhi-jdkban-ben-jiao-cheng/</guid>
+      <guid>https://vimerzhao.top/articles/linuxxia-pei-zhi-jdkban-ben-jiao-cheng/</guid>
       <description>Linux下配置JDK版本教程 记录了Linux配置JDK版本的方法。 最近，在自己的Ubuntu虚拟及上发现一个奇怪的问题，Java源文件可以编译但不能运行，检查发现原来是编译出来的版本高于JRE的版本</description>
     </item>
     <item>
       <title>与VirtualBox下Linux虚拟机共享文件</title>
-      <link>/articles/yu-virtualboxxia-linuxxu-ni-ji-gong-xiang-wen-jian/</link>
+      <link>https://vimerzhao.top/articles/yu-virtualboxxia-linuxxu-ni-ji-gong-xiang-wen-jian/</link>
       <pubDate>Mon, 29 May 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/yu-virtualboxxia-linuxxu-ni-ji-gong-xiang-wen-jian/</guid>
+      <guid>https://vimerzhao.top/articles/yu-virtualboxxia-linuxxu-ni-ji-gong-xiang-wen-jian/</guid>
       <description>与VirtualBox下Linux虚拟机共享文件 记录了如何与VirtualBox下的Linux虚拟机共享文件。 最近，需要在Ubuntu虚拟机里面调试HotSpot，截了些图需要在本机上处理一下，所以需</description>
     </item>
     <item>
       <title>踩坑记：LinuxMint18字体变为楷体的修复</title>
-      <link>/articles/cai-keng-ji-linuxmint18zi-ti-bian-wei-kai-ti-de-xiu-fu/</link>
+      <link>https://vimerzhao.top/articles/cai-keng-ji-linuxmint18zi-ti-bian-wei-kai-ti-de-xiu-fu/</link>
       <pubDate>Sat, 25 Mar 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/cai-keng-ji-linuxmint18zi-ti-bian-wei-kai-ti-de-xiu-fu/</guid>
+      <guid>https://vimerzhao.top/articles/cai-keng-ji-linuxmint18zi-ti-bian-wei-kai-ti-de-xiu-fu/</guid>
       <description>踩坑记：LinuxMint18字体变为楷体的修复 本文记录了一次修复系统字体的经历。 起因 起因很奇怪，本来打算今天把动态规划算法好好研究一番，结果一大早起来发现中文输入法消失了！因为之前有次发生这种情况是</description>
     </item>
     <item>
       <title>wc命令统计目录下所有文件行数</title>
-      <link>/articles/2017-the-wc-command-counts-the-number-of-lines-in-all-files-in-a-directory/</link>
+      <link>https://vimerzhao.top/articles/2017-the-wc-command-counts-the-number-of-lines-in-all-files-in-a-directory/</link>
       <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-the-wc-command-counts-the-number-of-lines-in-all-files-in-a-directory/</guid>
+      <guid>https://vimerzhao.top/articles/2017-the-wc-command-counts-the-number-of-lines-in-all-files-in-a-directory/</guid>
       <description>想统计一下最近一个项目的代码行数，一个一个文件统计显然不是程序员的思维，wc命令可以统计一个文本的行数，结合find命令可以实现我的需求（注意符号）：</description>
     </item>
     <item>
       <title>LinuxMint自定义快捷键</title>
-      <link>/articles/2017-linuxmint-custom-shortcut-keys/</link>
+      <link>https://vimerzhao.top/articles/2017-linuxmint-custom-shortcut-keys/</link>
       <pubDate>Fri, 24 Feb 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-linuxmint-custom-shortcut-keys/</guid>
+      <guid>https://vimerzhao.top/articles/2017-linuxmint-custom-shortcut-keys/</guid>
       <description>如图</description>
     </item>
     <item>
       <title>diff命令的妙用</title>
-      <link>/articles/2017-the-wonderful-use-of-diff-command/</link>
+      <link>https://vimerzhao.top/articles/2017-the-wonderful-use-of-diff-command/</link>
       <pubDate>Tue, 21 Feb 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-the-wonderful-use-of-diff-command/</guid>
+      <guid>https://vimerzhao.top/articles/2017-the-wonderful-use-of-diff-command/</guid>
       <description>在读《Writing compilers and Interpreters》一书时需要按章节修改代码，由于实在一行一行比对实在难受，于是想了个办法，利用diff命令比较两章之间代码的修改位置，大大提高效率！ 此外，还可以利用该命</description>
     </item>
     <item>
       <title>记Linux下一次乱码事件</title>
-      <link>/articles/2017-remember-the-next-garbled-code-incident-in-linux/</link>
+      <link>https://vimerzhao.top/articles/2017-remember-the-next-garbled-code-incident-in-linux/</link>
       <pubDate>Thu, 26 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-remember-the-next-garbled-code-incident-in-linux/</guid>
+      <guid>https://vimerzhao.top/articles/2017-remember-the-next-garbled-code-incident-in-linux/</guid>
       <description>近来需要对着教程敲代码，但是之前在Windows上的压缩包在Linux解压后发生了乱码，主要是文件内乱码，文件名还是正常的。搜索“Linux rar解压乱码“试了一圈也没解决。不过到是发现了winrar</description>
     </item>
     <item>
       <title>Linux下如何编辑pdf文件目录</title>
-      <link>/articles/2017-how-to-edit-pdf-file-directory-under-linux/</link>
+      <link>https://vimerzhao.top/articles/2017-how-to-edit-pdf-file-directory-under-linux/</link>
       <pubDate>Tue, 24 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-how-to-edit-pdf-file-directory-under-linux/</guid>
+      <guid>https://vimerzhao.top/articles/2017-how-to-edit-pdf-file-directory-under-linux/</guid>
       <description>目前，我使用的是系统LinuxMint,之前硬盘没坏时都是用Foxit Reader和Okular查看pdf文件，可是后来发现Foxit Reader十分吃CPU，而且现在换了固态硬盘之后只有120G可用</description>
     </item>
     <item>
       <title>安装lispbox出现：error while loading shared libraries: libjpeg.so.62: cannot open shared object file: No such file or directory</title>
-      <link>/articles/2017-installing-lispbox-appears-error-while-loading-shared-libraries-libjpeg-so-62-cannot-open-shared-obj/</link>
+      <link>https://vimerzhao.top/articles/2017-installing-lispbox-appears-error-while-loading-shared-libraries-libjpeg-so-62-cannot-open-shared-obj/</link>
       <pubDate>Thu, 19 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-installing-lispbox-appears-error-while-loading-shared-libraries-libjpeg-so-62-cannot-open-shared-obj/</guid>
+      <guid>https://vimerzhao.top/articles/2017-installing-lispbox-appears-error-while-loading-shared-libraries-libjpeg-so-62-cannot-open-shared-obj/</guid>
       <description>如下图，运行lispbox出现如下报错（第一个命令）： 检索之后发现解决办法：Solution to libjpeg.so.62 输入一下两条命令（第二条也必须执行）： sudo apt-get upgrade sudo apt-get install libjpeg62-dev // if not 62-dev, the apt will tell you it can not locate the package libjpeg62 解决问题： 蛤蛤蛤！抓</description>
     </item>
     <item>
       <title>Linux下修改键盘映射</title>
-      <link>/articles/2017-modify-keyboard-mapping-under-linux/</link>
+      <link>https://vimerzhao.top/articles/2017-modify-keyboard-mapping-under-linux/</link>
       <pubDate>Mon, 16 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-modify-keyboard-mapping-under-linux/</guid>
+      <guid>https://vimerzhao.top/articles/2017-modify-keyboard-mapping-under-linux/</guid>
       <description>一篇关于修改键盘映射比较靠谱的文章，收藏一下！ 原文地址：http://www.07net01.com/2016/04/1436249.html 最近把可乐倒进键盘把，把 ctl 变得阻力超大。。。所以把 ctrl 和 capslock 两</description>
     </item>
     <item>
       <title>Linux下使用Hexo搭建github博客</title>
-      <link>/articles/2016-using-hexo-to-build-a-github-blog-under-linux/</link>
+      <link>https://vimerzhao.top/articles/2016-using-hexo-to-build-a-github-blog-under-linux/</link>
       <pubDate>Sat, 31 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-using-hexo-to-build-a-github-blog-under-linux/</guid>
+      <guid>https://vimerzhao.top/articles/2016-using-hexo-to-build-a-github-blog-under-linux/</guid>
       <description>找到一篇靠谱的博客，备份一下： －－－－－－－－－以下原文－－－－－－－－－－－－－－－－－－ Nodejs安装 因为hexo是基于nodejs的应用，所以要先安装nodejs才可以。我这里以Ubuntu为</description>
     </item>
     <item>
       <title>Linux创建WiFi热点</title>
-      <link>/articles/2016-create-wifi-hotspot-in-linux/</link>
+      <link>https://vimerzhao.top/articles/2016-create-wifi-hotspot-in-linux/</link>
       <pubDate>Tue, 27 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-create-wifi-hotspot-in-linux/</guid>
+      <guid>https://vimerzhao.top/articles/2016-create-wifi-hotspot-in-linux/</guid>
       <description>手机流量用完，需要开WiFi,由于是LinuxMint,感觉配置还算容易，找到一个不错的教程，收藏一下，以备后用。除了修改配置文件那步在我的电脑不需要外其他基本正确，而且Mint本来就衍生自Ubunt</description>
     </item>
     <item>
       <title>Linux下几款好用的录屏软件</title>
-      <link>/articles/2016-several-useful-screen-recording-software-under-linux/</link>
+      <link>https://vimerzhao.top/articles/2016-several-useful-screen-recording-software-under-linux/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-several-useful-screen-recording-software-under-linux/</guid>
+      <guid>https://vimerzhao.top/articles/2016-several-useful-screen-recording-software-under-linux/</guid>
       <description>最近需要在Linux环境下录制一段视频，自己的Linux是LinuxMint Xfce 18,网上搜了一圈发现都不太顺手。尤其是VLC,感觉不是很易用，幸好最后在Linux自带的软件管理器找到了两个不错的软件。</description>
     </item>
     <item>
       <title>LinuxMint配置GitHub（图文教程）</title>
-      <link>/articles/2016-linuxmint-configuration-github-graphic-tutorial/</link>
+      <link>https://vimerzhao.top/articles/2016-linuxmint-configuration-github-graphic-tutorial/</link>
       <pubDate>Sat, 03 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-linuxmint-configuration-github-graphic-tutorial/</guid>
+      <guid>https://vimerzhao.top/articles/2016-linuxmint-configuration-github-graphic-tutorial/</guid>
       <description>1.生成秘钥（直接回车，秘钥存放路径看命令行信息） ２．打开秘钥，需要注意的是**.ssh可能是隐藏的，这时需要Ctrl+H**显示隐藏文件夹 ３．复制秘钥，添加到GitHub(Settings)， 4.添</description>
     </item>
     <item>
       <title>Linux问题处理： stdio.h: No such file or directory linux</title>
-      <link>/articles/2016-linux-problem-handling-stdio-h-no-such-file-or-directory-linux/</link>
+      <link>https://vimerzhao.top/articles/2016-linux-problem-handling-stdio-h-no-such-file-or-directory-linux/</link>
       <pubDate>Sat, 03 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-linux-problem-handling-stdio-h-no-such-file-or-directory-linux/</guid>
+      <guid>https://vimerzhao.top/articles/2016-linux-problem-handling-stdio-h-no-such-file-or-directory-linux/</guid>
       <description>本来打算编译一下《自制编程语言》一书的代码，结果提示错误： 其实说的还是很清楚的，一般出现这种情况都是没有安装相应的库，所以： 再次编译，成功： 测试代码： # comment print(&amp;#34;hoge\tpiyo\n\\zn&amp;#34;); print(&amp;#34;abc\n&amp;#34;); print(&amp;#34;3 + 5..&amp;#34; + (3 + 5) + &amp;#34;\n&amp;#34;); print(&amp;#34;3 - 5..&amp;#34; + (3 - 5) + &amp;#34;\n&amp;#34;); print(&amp;#34;3 + -5..&amp;#34;</description>
     </item>
     <item>
       <title>UEFI模式安装Win10和Linux双系统</title>
-      <link>/articles/2016-install-win10-and-linux-dual-systems-in-uefi-mode/</link>
+      <link>https://vimerzhao.top/articles/2016-install-win10-and-linux-dual-systems-in-uefi-mode/</link>
       <pubDate>Thu, 01 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-install-win10-and-linux-dual-systems-in-uefi-mode/</guid>
+      <guid>https://vimerzhao.top/articles/2016-install-win10-and-linux-dual-systems-in-uefi-mode/</guid>
       <description>最近心血来潮，想装一个Linux、Windows双系统，吸取上次安装的经验，这次一定都要使用UEFI模式启动，需要注意的是必须是支持此种启动模式的系统（一般解压之后都有efi文件夹不需要刻录），这次遇</description>
     </item>
     <item>
       <title>Win7上安装Linux双系统</title>
-      <link>/articles/2016-install-linux-dual-system-on-win7/</link>
+      <link>https://vimerzhao.top/articles/2016-install-linux-dual-system-on-win7/</link>
       <pubDate>Sat, 08 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-install-linux-dual-system-on-win7/</guid>
+      <guid>https://vimerzhao.top/articles/2016-install-linux-dual-system-on-win7/</guid>
       <description>今天帮同学在Win7上安装Linux，感觉一篇教程很不错，mark一下 原地址：Win7下U盘安装Ubuntu14.04双系统步骤详解 一、前期准备 1、大于2G的U盘一个(我的系统盘制作完成后大约占1个多</description>
     </item>
     <item>
       <title>Linux下pdf阅读器推荐</title>
-      <link>/articles/2016-recommended-pdf-readers-under-linux/</link>
+      <link>https://vimerzhao.top/articles/2016-recommended-pdf-readers-under-linux/</link>
       <pubDate>Sat, 23 Jul 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-recommended-pdf-readers-under-linux/</guid>
+      <guid>https://vimerzhao.top/articles/2016-recommended-pdf-readers-under-linux/</guid>
       <description>由于需要在pdf文件上做标记，所以自带的文档查看器根本满足了需求，之前去网上查了查，Okular评价挺高，就安装了一个，确实能基本满足我的需求，但是 1.界面感觉还是不太友好，书签栏一直在那。 2.而且，</description>
     </item>
     <item>
       <title>《完全用Linux工作》作者：王垠</title>
-      <link>/articles/2016-working-completely-with-linux-author-wang-yin/</link>
+      <link>https://vimerzhao.top/articles/2016-working-completely-with-linux-author-wang-yin/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-working-completely-with-linux-author-wang-yin/</guid>
+      <guid>https://vimerzhao.top/articles/2016-working-completely-with-linux-author-wang-yin/</guid>
       <description>注：本文是清华“牛仔”王垠的“成名作”，在网上引起很大的争议。对他崇拜地五体投地者有，对他嗤之以鼻者也有，总之成了一年多以前Linux 爱好者的圈子里的一个很有意思的现象。之后他对这篇文章进行了很大的修</description>
     </item>
   </channel>

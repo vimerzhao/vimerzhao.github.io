@@ -2,199 +2,199 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>软件工程 on 赵裕的博客</title>
-    <link>/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/</link>
+    <link>https://vimerzhao.top/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/</link>
     <description>Recent content in 软件工程 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
-    <atom:link href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Debug实录</title>
-      <link>/articles/debug-records/</link>
+      <link>https://vimerzhao.top/articles/debug-records/</link>
       <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>/articles/debug-records/</guid>
+      <guid>https://vimerzhao.top/articles/debug-records/</guid>
       <description>2025 指定远程调试链接页面不显示 Older 工位升降台失效 电脑键盘无响应</description>
     </item>
     <item>
       <title>常识决定效率</title>
-      <link>/articles/common-sense-determines-efficiency/</link>
+      <link>https://vimerzhao.top/articles/common-sense-determines-efficiency/</link>
       <pubDate>Tue, 23 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/common-sense-determines-efficiency/</guid>
+      <guid>https://vimerzhao.top/articles/common-sense-determines-efficiency/</guid>
       <description>这周帮同事解决了一个编译问题，如果不是我“多管闲事”，这个问题可能要以重装系统的方式处理了。 这一两年解决的类似疑难杂症其实挺多，大多有着不同的表象和相同的本质。如果想要总结下，为什么最终都是我发现了原</description>
     </item>
     <item>
       <title>iOS异常弹窗溯源</title>
-      <link>/articles/traceability-of-ios-exception-pop-up/</link>
+      <link>https://vimerzhao.top/articles/traceability-of-ios-exception-pop-up/</link>
       <pubDate>Thu, 13 Jul 2023 00:00:00 +0000</pubDate>
-      <guid>/articles/traceability-of-ios-exception-pop-up/</guid>
+      <guid>https://vimerzhao.top/articles/traceability-of-ios-exception-pop-up/</guid>
       <description>业务接入我们的框架后，反馈一个问题：iOS首次安装启动时，会在业务的协议弹窗前触发一个系统弹窗(访问本地网络的权限)。即：如果有 App 要连接到本地网络上的设备 - 官方 Apple 支持 (中国)。 不太熟悉iOS，一开始看</description>
     </item>
     <item>
       <title>关于专栏“速记”的说明</title>
-      <link>/articles/about-quick-note/</link>
+      <link>https://vimerzhao.top/articles/about-quick-note/</link>
       <pubDate>Tue, 16 May 2023 00:00:00 +0000</pubDate>
-      <guid>/articles/about-quick-note/</guid>
+      <guid>https://vimerzhao.top/articles/about-quick-note/</guid>
       <description>最近发现一个问题，自己经常会有一些探索性的实践（或者说踩坑），在此过程会沉淀出一些记录，这些记录如果作为文章发表，会有些随意和不成体系，甚至有些地方是错误的；但这些记录其实还是非常有价值的： 一方面，它</description>
     </item>
     <item>
       <title>在服务器上搭建Android开发调试环境的尝试</title>
-      <link>/articles/configure-android-dev-environment-on-a-remote-server/</link>
+      <link>https://vimerzhao.top/articles/configure-android-dev-environment-on-a-remote-server/</link>
       <pubDate>Tue, 16 May 2023 00:00:00 +0000</pubDate>
-      <guid>/articles/configure-android-dev-environment-on-a-remote-server/</guid>
+      <guid>https://vimerzhao.top/articles/configure-android-dev-environment-on-a-remote-server/</guid>
       <description>1. 背景说明 当前的开发工作特点： 项目代码C++为主，编译任务重，最大的工程全量编一次80min+，小的改动增量10min+，更新一下增量构建30min+。而且编译期间CPU全部占用，无法进行其他工作 涉及</description>
     </item>
     <item>
       <title>移动客户端的时代过去了吗？</title>
-      <link>/articles/is-the-era-of-mobile-clients-over/</link>
+      <link>https://vimerzhao.top/articles/is-the-era-of-mobile-clients-over/</link>
       <pubDate>Wed, 12 Apr 2023 00:00:00 +0000</pubDate>
-      <guid>/articles/is-the-era-of-mobile-clients-over/</guid>
+      <guid>https://vimerzhao.top/articles/is-the-era-of-mobile-clients-over/</guid>
       <description>一 刚进公司的时候（2018年）我的职位还叫作“移动客户端工程师”，后来公司做了一次通道（工种）合并，把这个职位和“PC客户端”做了合并，统一归类为“客户端开发”。个人感觉，可能是由于当时PC端的式微，</description>
     </item>
     <item>
       <title>色彩空间与取色器错误</title>
-      <link>/articles/color-picker-bug-on-imac/</link>
+      <link>https://vimerzhao.top/articles/color-picker-bug-on-imac/</link>
       <pubDate>Fri, 07 Apr 2023 00:00:00 +0000</pubDate>
-      <guid>/articles/color-picker-bug-on-imac/</guid>
+      <guid>https://vimerzhao.top/articles/color-picker-bug-on-imac/</guid>
       <description>背景 同事反馈，用我们的框架绘制了一个纯红色（RGB为#FF0000）的区域，使用取色器却无法取到正确的值，其他颜色也基本都会有一定程度的误差。 我尝试了一下，确实会出现这个情况，这里的取色器可以是： ph</description>
     </item>
     <item>
       <title>谈小步快跑</title>
-      <link>/articles/thinking-on-sprint/</link>
+      <link>https://vimerzhao.top/articles/thinking-on-sprint/</link>
       <pubDate>Wed, 18 Nov 2020 19:45:41 +0800</pubDate>
-      <guid>/articles/thinking-on-sprint/</guid>
+      <guid>https://vimerzhao.top/articles/thinking-on-sprint/</guid>
       <description>突然觉得需要好好理解一下小步快跑的含义，因为最近的工作就是一个需要小步快跑的工作。 经过一段时间的摸索之后，我觉得当前工作可以分为四个阶段： 接入，踩一遍可能遇到的坑，积累开发经验，证明性能和跨平台的可行</description>
     </item>
     <item>
       <title>Android客户端远程调试方法</title>
-      <link>/articles/android-remote-debug-method/</link>
+      <link>https://vimerzhao.top/articles/android-remote-debug-method/</link>
       <pubDate>Mon, 25 May 2020 12:16:13 +0800</pubDate>
-      <guid>/articles/android-remote-debug-method/</guid>
+      <guid>https://vimerzhao.top/articles/android-remote-debug-method/</guid>
       <description>在最近的需求开发中，会遇到一些兼容性问题，经常只能在特定ROM和Android版本上复现。由于测试和开发不在同一区域办公，往往需要通过物资穿梭车送手机。由此带来两点不便： 使用成本大，调试效率低，因为物</description>
     </item>
     <item>
       <title>插件化技术的演进之路</title>
-      <link>/articles/evolution-of-plugin-framework/</link>
+      <link>https://vimerzhao.top/articles/evolution-of-plugin-framework/</link>
       <pubDate>Wed, 13 May 2020 12:14:43 +0800</pubDate>
-      <guid>/articles/evolution-of-plugin-framework/</guid>
+      <guid>https://vimerzhao.top/articles/evolution-of-plugin-framework/</guid>
       <description>序言 关于本次分享 今天要和大家分享的是Android的插件化技术，这在Android中其实是一个相对来说比较复杂，历史悠久，内容庞杂的知识，不是今天一个小时能讲完的，所以我今天也是有选择地分享一些我认为</description>
     </item>
     <item>
       <title>记一个博客刷新的Bug</title>
-      <link>/articles/blog-refresh-bugfix/</link>
+      <link>https://vimerzhao.top/articles/blog-refresh-bugfix/</link>
       <pubDate>Thu, 30 Apr 2020 10:20:44 +0800</pubDate>
-      <guid>/articles/blog-refresh-bugfix/</guid>
+      <guid>https://vimerzhao.top/articles/blog-refresh-bugfix/</guid>
       <description>之前通过教程草草建立了一个博客，后来申请到了备案号，于是更新了代码，但是Gunicorn操作不是很熟悉，导致重启服务后出现了如下问题： 备案号时有时无，今天又要添加公安备案号，于是打算查查这个问题，发现</description>
     </item>
     <item>
       <title>Android P源码构建记录</title>
-      <link>/articles/android-p-source-code-build/</link>
+      <link>https://vimerzhao.top/articles/android-p-source-code-build/</link>
       <pubDate>Wed, 29 Apr 2020 12:11:29 +0800</pubDate>
-      <guid>/articles/android-p-source-code-build/</guid>
+      <guid>https://vimerzhao.top/articles/android-p-source-code-build/</guid>
       <description>缘由 最近在追查一个dex2oat的问题时，看源码觉得有些地方不单步调试或者加些日志，实在是不方便，另外由于最近的工作和Framework层打交道比较多，也有必要搞个源码环境，趁机深入学习一下。 虚拟机 一</description>
     </item>
     <item>
       <title>Android P内联优化导致的一个诡异Bug</title>
-      <link>/articles/solve-of-android-p-inline-opt/</link>
+      <link>https://vimerzhao.top/articles/solve-of-android-p-inline-opt/</link>
       <pubDate>Fri, 24 Apr 2020 23:51:25 +0800</pubDate>
-      <guid>/articles/solve-of-android-p-inline-opt/</guid>
+      <guid>https://vimerzhao.top/articles/solve-of-android-p-inline-opt/</guid>
       <description>问题背景 最近，我们的业务在动态加载一款第三方游戏时出现了奇怪的现象，本地开发测试体验良好，但是使用CI构建的正式包体验时会出现启动闪退。 问题分析 分析日志 首先，我们自然而然看了下Crash日志，如下： ---------</description>
     </item>
     <item>
       <title>记一次诡异的Bug</title>
-      <link>/articles/a-weird-bug-record/</link>
+      <link>https://vimerzhao.top/articles/a-weird-bug-record/</link>
       <pubDate>Mon, 13 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/articles/a-weird-bug-record/</guid>
+      <guid>https://vimerzhao.top/articles/a-weird-bug-record/</guid>
       <description>背景 上周四的时候，发了一个maven，结果报ExceptionInInitializerError错误： java.lang.ExceptionInInitializerError at repackage.aw.̍(ProGuard:43) at com.tencent.sandbox.PluginHelper.applicationAttachBaseContext(ProGuard:160) ...... Caused by: java.lang.IllegalArgumentException: Illegal pattern character &#39;V&#39; at java.text.SimpleDateFormat.compile(SimpleDateFormat.java:870) at java.text.SimpleDateFormat.initialize(SimpleDateFormat.java:684) at java.text.SimpleDateFormat.&amp;lt;init&amp;gt;(SimpleDateFormat.java:623) at java.text.SimpleDateFormat.&amp;lt;init&amp;gt;(SimpleDateFormat.java:598) at</description>
     </item>
     <item>
       <title>twint源码阅读笔记</title>
-      <link>/articles/read-twint/</link>
+      <link>https://vimerzhao.top/articles/read-twint/</link>
       <pubDate>Sun, 05 Apr 2020 23:48:26 +0800</pubDate>
-      <guid>/articles/read-twint/</guid>
+      <guid>https://vimerzhao.top/articles/read-twint/</guid>
       <description>介绍 twint全称Twitter Intelligence Tool，是一个twitter爬虫工具。官方介绍如下： Twint is an advanced Twitter scraping tool written in Python that allows for scraping Tweets from Twitter profiles without using Twitter’s API. Twint utilizes Twitter’s search operators to let you scrape Tweets from specific users, scrape Tweets relating to certain</description>
     </item>
     <item>
       <title>客户端调试日志编码之道</title>
-      <link>/articles/zen-of-android-debug-log/</link>
+      <link>https://vimerzhao.top/articles/zen-of-android-debug-log/</link>
       <pubDate>Thu, 05 Mar 2020 12:09:38 +0800</pubDate>
-      <guid>/articles/zen-of-android-debug-log/</guid>
+      <guid>https://vimerzhao.top/articles/zen-of-android-debug-log/</guid>
       <description>日志分很多种了，这里针对的是客户端的、开发调试用的日志，为什么要加这两个限制呢？ 后台日志都在服务器，开发容易操作，客户端日志大部分在本机，有的测试甚至不会捞日志，开发想帮忙都鞭长莫及 开发调试的日志，其</description>
     </item>
     <item>
       <title>修改遗留代码的艺术</title>
-      <link>/articles/working-effectively-with-legacy-code/</link>
+      <link>https://vimerzhao.top/articles/working-effectively-with-legacy-code/</link>
       <pubDate>Mon, 02 Dec 2019 19:35:55 +0800</pubDate>
-      <guid>/articles/working-effectively-with-legacy-code/</guid>
+      <guid>https://vimerzhao.top/articles/working-effectively-with-legacy-code/</guid>
       <description>导语 之前内部的一次技术分享，为了防止PPT弄丢，特意整理成了文章，由于我的PPT风格比较简洁，所以额外加了一些批注。 + 注意这里图片缩小了，可以 新标签页打开图片 查看高清图。 正文 1. 2. 3. 4. 5. 6. 7 这页其实还内</description>
     </item>
     <item>
       <title>Flutter:移动端跨平台技术演进之路</title>
-      <link>/articles/cross-platform-mobile-ui-development-evolution/</link>
+      <link>https://vimerzhao.top/articles/cross-platform-mobile-ui-development-evolution/</link>
       <pubDate>Wed, 06 Nov 2019 12:21:29 +0800</pubDate>
-      <guid>/articles/cross-platform-mobile-ui-development-evolution/</guid>
+      <guid>https://vimerzhao.top/articles/cross-platform-mobile-ui-development-evolution/</guid>
       <description>导读 本文约4688字，阅读可能需要15分钟。 最早的跨平台开发(摘自《Apache Cordova移动应用开发实战》王亚飞，王洪飞编著). 从广义上来说，跨平台技术早于移动端的出现。因此，本文标题前面也加上</description>
     </item>
     <item>
       <title>自己动手写事件总线(EventBus)</title>
-      <link>/articles/zi-ji-dong-shou-xie-shi-jian-zong-xian-eventbus/</link>
+      <link>https://vimerzhao.top/articles/zi-ji-dong-shou-xie-shi-jian-zong-xian-eventbus/</link>
       <pubDate>Sun, 23 Dec 2018 00:00:00 +0000</pubDate>
-      <guid>/articles/zi-ji-dong-shou-xie-shi-jian-zong-xian-eventbus/</guid>
+      <guid>https://vimerzhao.top/articles/zi-ji-dong-shou-xie-shi-jian-zong-xian-eventbus/</guid>
       <description>自己动手写事件总线(EventBus) 事件总线核心逻辑的实现。 EventBus的作用 Android中存在各种通信场景，如Activity之间的跳转，Activity与Fragment以及其他组件之间的</description>
     </item>
     <item>
       <title>你真的需要单元测试吗?</title>
-      <link>/articles/ni-zhen-de-xu-yao-dan-yuan-ce-shi-ma/</link>
+      <link>https://vimerzhao.top/articles/ni-zhen-de-xu-yao-dan-yuan-ce-shi-ma/</link>
       <pubDate>Sat, 07 Apr 2018 00:00:00 +0000</pubDate>
-      <guid>/articles/ni-zhen-de-xu-yao-dan-yuan-ce-shi-ma/</guid>
+      <guid>https://vimerzhao.top/articles/ni-zhen-de-xu-yao-dan-yuan-ce-shi-ma/</guid>
       <description>你真的需要单元测试吗? 博主最近在接触一些Android单元测试方面的工作，发现自己并没有体会到大多数文章所宣传的“单元测试会带来工作效率的巨大提升”之类的诸多好处，于是本着批判与自我批判的精神对单元测</description>
     </item>
     <item>
       <title>计算机程序中 Bug 的类型大全与历史</title>
-      <link>/articles/ji-suan-ji-cheng-xu-zhong-bug-de-lei-xing-da-quan-yu-li-shi/</link>
+      <link>https://vimerzhao.top/articles/ji-suan-ji-cheng-xu-zhong-bug-de-lei-xing-da-quan-yu-li-shi/</link>
       <pubDate>Thu, 08 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>/articles/ji-suan-ji-cheng-xu-zhong-bug-de-lei-xing-da-quan-yu-li-shi/</guid>
+      <guid>https://vimerzhao.top/articles/ji-suan-ji-cheng-xu-zhong-bug-de-lei-xing-da-quan-yu-li-shi/</guid>
       <description>计算机程序中 Bug 的类型大全与历史 美国计算机科学家、图灵奖获得者詹姆斯·尼古拉·格雷(Jim Gray)，在他的著名的论文“Why do computers stop and what can be done about it?”中首次提出了程序bug的类型，比如玻尔bug(Bo</description>
     </item>
     <item>
       <title>Android6.0源码编译教程</title>
-      <link>/articles/android6-0yuan-ma-bian-yi-jiao-cheng/</link>
+      <link>https://vimerzhao.top/articles/android6-0yuan-ma-bian-yi-jiao-cheng/</link>
       <pubDate>Wed, 17 Jan 2018 00:00:00 +0000</pubDate>
-      <guid>/articles/android6-0yuan-ma-bian-yi-jiao-cheng/</guid>
+      <guid>https://vimerzhao.top/articles/android6-0yuan-ma-bian-yi-jiao-cheng/</guid>
       <description>Android6.0源码编译教程 第一次成功编译了Android的源码，记录一下。 回忆 这是我第二次尝试去编译Android的源码，第一次是半年前，当时刚刚拿到去腾讯实习的Offer，虽然当时会一些And</description>
     </item>
     <item>
       <title>Andfix源码解析</title>
-      <link>/articles/andfixyuan-ma-jie-xi/</link>
+      <link>https://vimerzhao.top/articles/andfixyuan-ma-jie-xi/</link>
       <pubDate>Sun, 20 Aug 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/andfixyuan-ma-jie-xi/</guid>
+      <guid>https://vimerzhao.top/articles/andfixyuan-ma-jie-xi/</guid>
       <description>Andfix源码解析 本文介绍了Andfix热修复框架的原理及实现代码。 Andfix概述 Andfix是阿里开源的一套热修复框架，效果如下 （注意我一直在点击，下发补丁后发生了变化&amp;hellip;&amp;hell</description>
     </item>
     <item>
       <title>掌上大工第二版（一）：竞品分析与草图</title>
-      <link>/articles/zhang-shang-da-gong-di-er-ban-yi-jing-pin-fen-xi-yu-cao-tu/</link>
+      <link>https://vimerzhao.top/articles/zhang-shang-da-gong-di-er-ban-yi-jing-pin-fen-xi-yu-cao-tu/</link>
       <pubDate>Tue, 25 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/zhang-shang-da-gong-di-er-ban-yi-jing-pin-fen-xi-yu-cao-tu/</guid>
+      <guid>https://vimerzhao.top/articles/zhang-shang-da-gong-di-er-ban-yi-jing-pin-fen-xi-yu-cao-tu/</guid>
       <description>掌上大工第二版（一）：竞品分析与草图 对于掌上大工这个APP最近的思考以及重写的规划。 为何重写 掌上大工这个APP是我在学习Android三个月之后的第一个实战项目，在过去一段时间也算帮了我不少忙，我首先</description>
     </item>
     <item>
       <title>OpenJDK7u40编译与调试实战</title>
-      <link>/articles/openjdk7u40bian-yi-yu-diao-shi-shi-zhan/</link>
+      <link>https://vimerzhao.top/articles/openjdk7u40bian-yi-yu-diao-shi-shi-zhan/</link>
       <pubDate>Sun, 28 May 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/openjdk7u40bian-yi-yu-diao-shi-shi-zhan/</guid>
+      <guid>https://vimerzhao.top/articles/openjdk7u40bian-yi-yu-diao-shi-shi-zhan/</guid>
       <description>OpenJDK7u40编译与调试实战 记录了第一次编译调试OpenJDK的经过。 JDK与OpenJDK的关系 简单来说，OpenJDK是OracleJDK（也就是我们平时用的Java JDK，由Oracle</description>
     </item>
     <item>
       <title>操作系统上机总结</title>
-      <link>/articles/cao-zuo-xi-tong-shang-ji-zong-jie/</link>
+      <link>https://vimerzhao.top/articles/cao-zuo-xi-tong-shang-ji-zong-jie/</link>
       <pubDate>Mon, 22 May 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/cao-zuo-xi-tong-shang-ji-zong-jie/</guid>
+      <guid>https://vimerzhao.top/articles/cao-zuo-xi-tong-shang-ji-zong-jie/</guid>
       <description>操作系统上机总结 记录了操作系统上机的内容以及一点小小的思考。 题目 如下图： 解答 所有的代码都放在CodeBin/OS-Lab目录下。 实验一：进程管理 关于fork的概念理解之后代码不难写，CSAPP讲的很清</description>
     </item>
     <item>
       <title>用LabVIEW和Arduino开发一个温度采集系统</title>
-      <link>/articles/2015-labview-arduino-temperature-acquisition-system/</link>
+      <link>https://vimerzhao.top/articles/2015-labview-arduino-temperature-acquisition-system/</link>
       <pubDate>Thu, 15 Oct 2015 00:00:00 +0000</pubDate>
-      <guid>/articles/2015-labview-arduino-temperature-acquisition-system/</guid>
+      <guid>https://vimerzhao.top/articles/2015-labview-arduino-temperature-acquisition-system/</guid>
       <description>write by ai 原文：CSDN 链接 `n### 1背景 其实满打满算，今天是自己接触LabVIEW的第四天，只是是由于国庆节之前报名参加了一个比赛，国庆节期间又没有引起足够的重视，所以当比赛只剩下四天的时候才开始研究LabV</description>
     </item>
   </channel>

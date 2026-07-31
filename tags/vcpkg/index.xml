@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vcpkg on 赵裕的博客</title>
-    <link>/tags/vcpkg/</link>
+    <link>https://vimerzhao.top/tags/vcpkg/</link>
     <description>Recent content in Vcpkg on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
-    <atom:link href="/tags/vcpkg/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/tags/vcpkg/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>vcpkg源码之install流程</title>
-      <link>/articles/vcpkg-source-code-of-install/</link>
+      <link>https://vimerzhao.top/articles/vcpkg-source-code-of-install/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/vcpkg-source-code-of-install/</guid>
+      <guid>https://vimerzhao.top/articles/vcpkg-source-code-of-install/</guid>
       <description>简介 vcpck install的主要工作是&amp;quot;构建(如果需要)和安装依赖包&amp;quot;，是vcpkg中最关键、也是使用者感知最明显的环节，有必要对其流程有一个更底层的理解，这样对一些问题的理解也将更加深</description>
     </item>
     <item>
       <title>vcpkg踩坑之空缓存问题</title>
-      <link>/articles/empty-binary-cache-issue-of-vcpkg/</link>
+      <link>https://vimerzhao.top/articles/empty-binary-cache-issue-of-vcpkg/</link>
       <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/empty-binary-cache-issue-of-vcpkg/</guid>
+      <guid>https://vimerzhao.top/articles/empty-binary-cache-issue-of-vcpkg/</guid>
       <description></description>
     </item>
     <item>
       <title>vcpkg简介</title>
-      <link>/articles/vcpkg-introduction/</link>
+      <link>https://vimerzhao.top/articles/vcpkg-introduction/</link>
       <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/vcpkg-introduction/</guid>
+      <guid>https://vimerzhao.top/articles/vcpkg-introduction/</guid>
       <description>vcpkg要解决什么问题 C++语言的历史非常悠久，导致其在某些方面的使用体验非常差，比如三方库的依赖。 比如要引入一个skia库，我们大概有以下办法： 源码集成，会有几个问题 但Skia的构建是GN组织的，</description>
     </item>
     <item>
       <title>通过vcpkg构建icu-for-android问题一则</title>
-      <link>/articles/an-error-about-building-icu-for-android-via-vcpkg/</link>
+      <link>https://vimerzhao.top/articles/an-error-about-building-icu-for-android-via-vcpkg/</link>
       <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/an-error-about-building-icu-for-android-via-vcpkg/</guid>
+      <guid>https://vimerzhao.top/articles/an-error-about-building-icu-for-android-via-vcpkg/</guid>
       <description>我们的项目通过vcpkg依赖了icu，但在构建Android平台的icu制品时，却失败了。 Installing 15/45 icu:arm-neon-android@73.1#1... Building icu:arm-neon-android@73.1#1... /root/.cache/vcpkg/registries/git-trees/eaccfc7689fb55d4badf3d2321a8be62ae5be84e: info: installing overlay port from here -- Downloading https://github.com/unicode-org/icu/releases/download/release-73-1/icu4c-73_1-src.tgz -&amp;gt; icu4c-73_1-src.tgz... -- Extracting source /data/landun/workspace/tdf_build_env/.vcpkg/downloads/icu4c-73_1-src.tgz -- Applying patch disable-escapestr-tool.patch -- Applying patch remove-MD-from-configure.patch -- Applying patch fix_parallel_build_on_windows.patch -- Applying patch fix-extra.patch -- Applying patch mingw-dll-install.patch -- Applying patch disable-static-prefix.patch -- Applying patch fix-win-build.patch -- Using source at /data/landun/workspace/tdf_build_env/.vcpkg/buildtrees/icu/src/c-73_1-src-72ff750ba0.clean --</description>
     </item>
     <item>
       <title>VCPKG如何支持WASM多线程</title>
-      <link>/articles/support-wasm-multithread-in-vcpkg/</link>
+      <link>https://vimerzhao.top/articles/support-wasm-multithread-in-vcpkg/</link>
       <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/support-wasm-multithread-in-vcpkg/</guid>
+      <guid>https://vimerzhao.top/articles/support-wasm-multithread-in-vcpkg/</guid>
       <description>工作中遇到的一个问题，如果没有多VCPKG比较深入的理解，处理这个问题还是会比较棘手的。 本身来说，开启多线程在emscripten体系下还比较简单的，开启-pthread即可。详见Pthreads support 问</description>
     </item>
   </channel>

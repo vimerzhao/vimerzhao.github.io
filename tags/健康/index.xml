@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>健康 on 赵裕的博客</title>
-    <link>/tags/%E5%81%A5%E5%BA%B7/</link>
+    <link>https://vimerzhao.top/tags/%E5%81%A5%E5%BA%B7/</link>
     <description>Recent content in 健康 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
-    <atom:link href="/tags/%E5%81%A5%E5%BA%B7/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/tags/%E5%81%A5%E5%BA%B7/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>读书:《运动饮食1:9》</title>
-      <link>/articles/sports-and-diet/</link>
+      <link>https://vimerzhao.top/articles/sports-and-diet/</link>
       <pubDate>Sun, 29 Mar 2020 09:31:36 +0800</pubDate>
-      <guid>/articles/sports-and-diet/</guid>
+      <guid>https://vimerzhao.top/articles/sports-and-diet/</guid>
       <description>疫情期间基本荒废了之前的锻炼成果，最近要开始恢复锻炼了，所以选了一本书温习下基本知识。 纯运动无法减肥 胖的本质是吃的太多，摄入&amp;gt;消耗 有氧运动会促进食欲，影响减肥效果 不要神化基础代谢 运动如果以减肥为</description>
     </item>
     <item>
       <title>健身是一场修行</title>
-      <link>/articles/jian-shen-shi-yi-chang-xiu-xing/</link>
+      <link>https://vimerzhao.top/articles/jian-shen-shi-yi-chang-xiu-xing/</link>
       <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>/articles/jian-shen-shi-yi-chang-xiu-xing/</guid>
+      <guid>https://vimerzhao.top/articles/jian-shen-shi-yi-chang-xiu-xing/</guid>
       <description>健身是一场修行 如题 健身是一场修行 是向过往决裂 凡不能坚持者 皆是有所贪图或是担忧 是渴望八块腹肌的优越 又或者内疚于一杯奶茶的热量 但能坚持下来的 都是发自内心的需要 把健身当成人生的一部分 去认识自己 认识每一块肌肉</description>
     </item>
     <item>
       <title>程序员健身指南</title>
-      <link>/articles/cheng-xu-yuan-jian-shen-zhi-nan/</link>
+      <link>https://vimerzhao.top/articles/cheng-xu-yuan-jian-shen-zhi-nan/</link>
       <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>/articles/cheng-xu-yuan-jian-shen-zhi-nan/</guid>
+      <guid>https://vimerzhao.top/articles/cheng-xu-yuan-jian-shen-zhi-nan/</guid>
       <description>程序员健身指南 坚持健身一个半月，虽然时间不算长，但按照目前的感觉来说，这次应该不会半途而废了，而且这一段时间，利用周末时间学习了不少关于健身的知识，因此觉得有必要整理沉淀一波了，都是入门级知识，适合想</description>
     </item>
   </channel>

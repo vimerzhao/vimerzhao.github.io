@@ -6,11 +6,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>C语言实现贪吃蛇源码 - 赵裕的博客</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="">
+	<meta name="description" content="先放效果 源代码 //2016-2-12 //zhaoyu //Gmail:zhaoyu1995.com@gmail.com //Language: C //Platform:Code::Blocks #include &lt;stdio.h&gt; #include &lt;windows.h&gt; #include &lt;stdlib.h&gt; …">
 		<meta property="og:title" content="C语言实现贪吃蛇源码" />
 <meta property="og:description" content="先放效果 源代码 //2016-2-12 //zhaoyu //Gmail:zhaoyu1995.com@gmail.com //Language: C //Platform:Code::Blocks #include &lt;stdio.h&gt; #include &lt;windows.h&gt; #include &lt;stdlib.h&gt; #include &lt;time.h&gt; typedef struct snake { int x; int y; struct snake *next; }Snake; int X, Y; enum STATUS{Up = 1, Down, Left, Right}; Snake *pHead, *pBody;//the head of the snake enum STATUS Direction; int score=0, scorePerFood=10; int gameStatus = 0; int timeInterval = 200; void gameEnd(void); void setPosition(int x, int y) { COORD pos; HANDLE hOutput; pos.X = x; pos.Y = y; hOutput = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleCursorPosition(hOutput, pos); } void hideCursor() { CONSOLE_CURSOR_INFO cursor_info = { 1, 0 }; SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;cursor_info);" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/articles/2016-c-language-to-implement-snake-source-code/" /><meta property="article:section" content="articles" />
+<meta property="og:url" content="https://vimerzhao.top/articles/2016-c-language-to-implement-snake-source-code/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2016-03-20T00:00:00+00:00" />
 <meta property="article:modified_time" content="2026-07-30T15:32:42+08:00" />
 
@@ -69,16 +69,9 @@
 			</a>
 		</li>
 		<li class="menu__item">
-			<a class="menu__link" href="/talk-archive/">
+			<a class="menu__link" href="/sharing/">
 				
-				<span class="menu__text">演讲</span>
-				
-			</a>
-		</li>
-		<li class="menu__item">
-			<a class="menu__link" href="/courses-archive/">
-				
-				<span class="menu__text">课程</span>
+				<span class="menu__text">分享</span>
 				
 			</a>
 		</li>
@@ -549,7 +542,7 @@ int main(void)
 			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="/">
+		<input type="hidden" name="sitesearch" value="https://vimerzhao.top/">
 	</form>
 </div>
 <div class="widget-recent widget">

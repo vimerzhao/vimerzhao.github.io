@@ -2,675 +2,675 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>系统与工具 on 赵裕的博客</title>
-    <link>/categories/%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%B7%A5%E5%85%B7/</link>
+    <link>https://vimerzhao.top/categories/%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%B7%A5%E5%85%B7/</link>
     <description>Recent content in 系统与工具 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
-    <atom:link href="/categories/%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/categories/%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>一笔糊涂帐的清算</title>
-      <link>/articles/clearing-up-a-messy-debt/</link>
+      <link>https://vimerzhao.top/articles/clearing-up-a-messy-debt/</link>
       <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>/articles/clearing-up-a-messy-debt/</guid>
+      <guid>https://vimerzhao.top/articles/clearing-up-a-messy-debt/</guid>
       <description>去年开始接触一个项目，这个项目编出来后运行时出现权限问题(Permission Denied)，于是就用sudo运行. 因此，基于VSCode调试时就要先用sudo code --no-sandbox --user-data-dir vscode-root启动VSCo</description>
     </item>
     <item>
       <title>嵌入式开发备忘录</title>
-      <link>/articles/embedded-development-memo/</link>
+      <link>https://vimerzhao.top/articles/embedded-development-memo/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>/articles/embedded-development-memo/</guid>
+      <guid>https://vimerzhao.top/articles/embedded-development-memo/</guid>
       <description>命令行 # 设置宽高，方便htop这样的工具显示(嵌入式设设备通过adb登陆，terminal不和设备宽高是不匹配的) # stty 是 Set Teletype 的缩写。它是一个用于显示和修改终端行设置（Terminal Line Settings</description>
     </item>
     <item>
       <title>CMake使用Protobuf的正确姿势</title>
-      <link>/articles/use-protobuf-in-cmake/</link>
+      <link>https://vimerzhao.top/articles/use-protobuf-in-cmake/</link>
       <pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/articles/use-protobuf-in-cmake/</guid>
+      <guid>https://vimerzhao.top/articles/use-protobuf-in-cmake/</guid>
       <description>工程上有一个非常基础的原则，就是: 关联度越高的逻辑应该越靠近 。 但实践中，往往容易忽视，导致的结果就是：出了问题，我们要从一个非常遥远的错误，慢慢回溯，找到最根本的原因。 近来研究如何在cmake中使用P</description>
     </item>
     <item>
       <title>Linux开发机问题汇总</title>
-      <link>/articles/pitfalls-about-using-linux-as-dev-machine/</link>
+      <link>https://vimerzhao.top/articles/pitfalls-about-using-linux-as-dev-machine/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/articles/pitfalls-about-using-linux-as-dev-machine/</guid>
+      <guid>https://vimerzhao.top/articles/pitfalls-about-using-linux-as-dev-machine/</guid>
       <description>DNS解析问题 在不同场景下遇到过几次，具体表现： 不连接有线，只Wifi连接热点 iOA无法加载扫码，网页无法加载 ping www.baidu.com 失败 原因其实是DNS解析失败了，查看这个文件 cat /etc/resolv.conf # This is /run/systemd/resolve/stub-resolv.conf managed by man:systemd-resolved(8). # Do not edit. # This file might be symlinked as /etc/resolv.conf.</description>
     </item>
     <item>
       <title>Windows虚拟机内的企微聊天记录迁移</title>
-      <link>/articles/migrate-wxwork-chat-history-in-windows-vm/</link>
+      <link>https://vimerzhao.top/articles/migrate-wxwork-chat-history-in-windows-vm/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/articles/migrate-wxwork-chat-history-in-windows-vm/</guid>
+      <guid>https://vimerzhao.top/articles/migrate-wxwork-chat-history-in-windows-vm/</guid>
       <description>背景是： 由于工作场景原因，主机安装的是Linux,于是安装了VirtualBox,通过Windows虚拟机使用企微 后面申请了MacBook,加上VirtualBox带个Windows比较拖累性能，就打</description>
     </item>
     <item>
       <title>配置一个Linux开发环境</title>
-      <link>/articles/configure-a-linux-development-environment/</link>
+      <link>https://vimerzhao.top/articles/configure-a-linux-development-environment/</link>
       <pubDate>Wed, 12 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>/articles/configure-a-linux-development-environment/</guid>
+      <guid>https://vimerzhao.top/articles/configure-a-linux-development-environment/</guid>
       <description>原始记录 由于iMac到期，加上工作内容的改变，申请更换成了高级开发机，主要配置如下：9950X + 32Gx2内存 + 4T硬盘，比之前的iMac(2020年申请的)配置提高了不少。 设备到手后，进行了一番配置</description>
     </item>
     <item>
       <title>Mac&amp;Windows&amp;Linux使用备忘录</title>
-      <link>/articles/mac_windows_linux_usage_memo/</link>
+      <link>https://vimerzhao.top/articles/mac_windows_linux_usage_memo/</link>
       <pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/mac_windows_linux_usage_memo/</guid>
+      <guid>https://vimerzhao.top/articles/mac_windows_linux_usage_memo/</guid>
       <description>Mac 1.不要同时编译两个大型C++项目，之前同时使用XCode和Ninja编译两个不同的项目，但底层都使用了clang，结果就是Mac的内核态CPU特别高（超过50%，主要是来自kernal_task这</description>
     </item>
     <item>
       <title>Mac与Windows混合开发体验优化</title>
-      <link>/articles/optimize-mac-with-windows-development/</link>
+      <link>https://vimerzhao.top/articles/optimize-mac-with-windows-development/</link>
       <pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/optimize-mac-with-windows-development/</guid>
+      <guid>https://vimerzhao.top/articles/optimize-mac-with-windows-development/</guid>
       <description>后面的工作中，可能要经常使用Windows开发，而过去一段时间，主要使用iMac开发，个人还是更习惯用iMac作为主力开发设备： 屏幕大且清晰 键盘组合更科学，Windows的Win键比较影响，Mac的C</description>
     </item>
     <item>
       <title>vcpkg源码之install流程</title>
-      <link>/articles/vcpkg-source-code-of-install/</link>
+      <link>https://vimerzhao.top/articles/vcpkg-source-code-of-install/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/vcpkg-source-code-of-install/</guid>
+      <guid>https://vimerzhao.top/articles/vcpkg-source-code-of-install/</guid>
       <description>简介 vcpck install的主要工作是&amp;quot;构建(如果需要)和安装依赖包&amp;quot;，是vcpkg中最关键、也是使用者感知最明显的环节，有必要对其流程有一个更底层的理解，这样对一些问题的理解也将更加深</description>
     </item>
     <item>
       <title>vcpkg踩坑之空缓存问题</title>
-      <link>/articles/empty-binary-cache-issue-of-vcpkg/</link>
+      <link>https://vimerzhao.top/articles/empty-binary-cache-issue-of-vcpkg/</link>
       <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/empty-binary-cache-issue-of-vcpkg/</guid>
+      <guid>https://vimerzhao.top/articles/empty-binary-cache-issue-of-vcpkg/</guid>
       <description></description>
     </item>
     <item>
       <title>vcpkg简介</title>
-      <link>/articles/vcpkg-introduction/</link>
+      <link>https://vimerzhao.top/articles/vcpkg-introduction/</link>
       <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/vcpkg-introduction/</guid>
+      <guid>https://vimerzhao.top/articles/vcpkg-introduction/</guid>
       <description>vcpkg要解决什么问题 C++语言的历史非常悠久，导致其在某些方面的使用体验非常差，比如三方库的依赖。 比如要引入一个skia库，我们大概有以下办法： 源码集成，会有几个问题 但Skia的构建是GN组织的，</description>
     </item>
     <item>
       <title>通过vcpkg构建icu-for-android问题一则</title>
-      <link>/articles/an-error-about-building-icu-for-android-via-vcpkg/</link>
+      <link>https://vimerzhao.top/articles/an-error-about-building-icu-for-android-via-vcpkg/</link>
       <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/an-error-about-building-icu-for-android-via-vcpkg/</guid>
+      <guid>https://vimerzhao.top/articles/an-error-about-building-icu-for-android-via-vcpkg/</guid>
       <description>我们的项目通过vcpkg依赖了icu，但在构建Android平台的icu制品时，却失败了。 Installing 15/45 icu:arm-neon-android@73.1#1... Building icu:arm-neon-android@73.1#1... /root/.cache/vcpkg/registries/git-trees/eaccfc7689fb55d4badf3d2321a8be62ae5be84e: info: installing overlay port from here -- Downloading https://github.com/unicode-org/icu/releases/download/release-73-1/icu4c-73_1-src.tgz -&amp;gt; icu4c-73_1-src.tgz... -- Extracting source /data/landun/workspace/tdf_build_env/.vcpkg/downloads/icu4c-73_1-src.tgz -- Applying patch disable-escapestr-tool.patch -- Applying patch remove-MD-from-configure.patch -- Applying patch fix_parallel_build_on_windows.patch -- Applying patch fix-extra.patch -- Applying patch mingw-dll-install.patch -- Applying patch disable-static-prefix.patch -- Applying patch fix-win-build.patch -- Using source at /data/landun/workspace/tdf_build_env/.vcpkg/buildtrees/icu/src/c-73_1-src-72ff750ba0.clean --</description>
     </item>
     <item>
       <title>CMake Cookbook</title>
-      <link>/articles/cmake-cookbook/</link>
+      <link>https://vimerzhao.top/articles/cmake-cookbook/</link>
       <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/cmake-cookbook/</guid>
+      <guid>https://vimerzhao.top/articles/cmake-cookbook/</guid>
       <description></description>
     </item>
     <item>
       <title>CMake Details</title>
-      <link>/articles/cmake-details/</link>
+      <link>https://vimerzhao.top/articles/cmake-details/</link>
       <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/cmake-details/</guid>
+      <guid>https://vimerzhao.top/articles/cmake-details/</guid>
       <description>CMAKE_BUILD_TYPE的Debug, Release, RelWithDebInfo and MinSizeRel有什么区别? Debug: -g(默认-O0) Rlease: -O3 -DNDEBUG RleWithDebInfo: -O2 -g -DNDEBUG</description>
     </item>
     <item>
       <title>CMake Pitfalls</title>
-      <link>/articles/cmake-pitfalls/</link>
+      <link>https://vimerzhao.top/articles/cmake-pitfalls/</link>
       <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/cmake-pitfalls/</guid>
+      <guid>https://vimerzhao.top/articles/cmake-pitfalls/</guid>
       <description></description>
     </item>
     <item>
       <title>无妄之灾：记录一个奇怪的codelldb问题</title>
-      <link>/articles/record-a-strange-issue-about-codelldb/</link>
+      <link>https://vimerzhao.top/articles/record-a-strange-issue-about-codelldb/</link>
       <pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/record-a-strange-issue-about-codelldb/</guid>
+      <guid>https://vimerzhao.top/articles/record-a-strange-issue-about-codelldb/</guid>
       <description>背景：最近打算为项目增加一些测试，重构后的项目比较适合用VSCode + codelldb调试，因为编译适合放在命令行(有一些环境变量依赖)，VSCode直接启动产物并调试就行了，launch.json也</description>
     </item>
     <item>
       <title>VCPKG如何支持WASM多线程</title>
-      <link>/articles/support-wasm-multithread-in-vcpkg/</link>
+      <link>https://vimerzhao.top/articles/support-wasm-multithread-in-vcpkg/</link>
       <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/support-wasm-multithread-in-vcpkg/</guid>
+      <guid>https://vimerzhao.top/articles/support-wasm-multithread-in-vcpkg/</guid>
       <description>工作中遇到的一个问题，如果没有多VCPKG比较深入的理解，处理这个问题还是会比较棘手的。 本身来说，开启多线程在emscripten体系下还比较简单的，开启-pthread即可。详见Pthreads support 问</description>
     </item>
     <item>
       <title>从Vim到VSCode</title>
-      <link>/articles/from-vim-to-vscode-2023/</link>
+      <link>https://vimerzhao.top/articles/from-vim-to-vscode-2023/</link>
       <pubDate>Mon, 23 Oct 2023 00:00:00 +0000</pubDate>
-      <guid>/articles/from-vim-to-vscode-2023/</guid>
+      <guid>https://vimerzhao.top/articles/from-vim-to-vscode-2023/</guid>
       <description>我和Vim的故事还是挺长的，之前的一些博客： 现阶段（2021年10月）对于Vim和Emacs的思考 - 赵裕的博客 Vim键盘布局的起源 - 赵裕的博客 借助Vim宏处理重复工作 - 赵裕的博客 Vim的哲学 - 赵裕的博</description>
     </item>
     <item>
       <title>定制Mac的输入法切换按键为左Shift</title>
-      <link>/articles/change-input-method-with-left-shift/</link>
+      <link>https://vimerzhao.top/articles/change-input-method-with-left-shift/</link>
       <pubDate>Mon, 08 Nov 2021 12:56:59 +0800</pubDate>
-      <guid>/articles/change-input-method-with-left-shift/</guid>
+      <guid>https://vimerzhao.top/articles/change-input-method-with-left-shift/</guid>
       <description>目前，自己用的是搜狗输入法和Spacemacs，发现高概率偶现一个问题： 每次都要重启Emacs才能解决，十分蛋疼！！！ 于是，想着是不是只有搜狗+Emacs才会有这个问题，因为： 其他场景（包括Vim）都</description>
     </item>
     <item>
       <title>现阶段（2021年10月）对于Vim和Emacs的思考</title>
-      <link>/articles/thinking-about-vim-and-emacs/</link>
+      <link>https://vimerzhao.top/articles/thinking-about-vim-and-emacs/</link>
       <pubDate>Sun, 10 Oct 2021 22:24:00 +0800</pubDate>
-      <guid>/articles/thinking-about-vim-and-emacs/</guid>
+      <guid>https://vimerzhao.top/articles/thinking-about-vim-and-emacs/</guid>
       <description>最近由于在工作调整，加上国庆节，时间稍微宽裕一点，于是重新启动了对Emacs的学习，这次稍微找到了点感觉：包括使用的感觉和对Emacs的理解。 为什么一直对Emacs念念不忘？作为一个使用了多年Vim的</description>
     </item>
     <item>
       <title>Hugo&#43;Asciidoc配置记录</title>
-      <link>/articles/configure-hugo-asciidoc-blog/</link>
+      <link>https://vimerzhao.top/articles/configure-hugo-asciidoc-blog/</link>
       <pubDate>Sat, 08 May 2021 19:41:53 +0800</pubDate>
-      <guid>/articles/configure-hugo-asciidoc-blog/</guid>
+      <guid>https://vimerzhao.top/articles/configure-hugo-asciidoc-blog/</guid>
       <description>【2021-05-08】今天参考几篇文章，完成了Hugo博客的配置，特此记录一下： 搭建教程 Blogging with Asciidoctor and Hugo | Gabriel Arazas Better Hugo/AsciiDoc HTML - ratfactor diguage/www.diguage.com: &amp;ldquo;地瓜哥&amp;quot;博客网 使用 Hugo 搭建博客 - &amp;ldquo;地瓜哥&amp;quo</description>
     </item>
     <item>
       <title>gitbook安装中的一些问题</title>
-      <link>/articles/gitbook-install-record/</link>
+      <link>https://vimerzhao.top/articles/gitbook-install-record/</link>
       <pubDate>Fri, 13 Nov 2020 15:50:24 +0800</pubDate>
-      <guid>/articles/gitbook-install-record/</guid>
+      <guid>https://vimerzhao.top/articles/gitbook-install-record/</guid>
       <description>在新的iMac上安装gitbook后，一直无法使用，提示错误如下： Installing GitBook 3.2.3 if (cb) cb.apply(this, arguments) TypeError: cb.apply is not a function at /usr/local/lib/node_modules/gitbook-cli/node_modules/npmi/node_modules/npm/node_modules/graceful-fs/polyfills.js:267:18 at FSReqCallback.oncomplete (fs.js:169:5) 查找诸多问题后，最终确定是新版本的问题，可以通过nvm这个工具控制node的版本，npm不需要关心</description>
     </item>
     <item>
       <title>Mac外接显示器问题处理记录</title>
-      <link>/articles/macbook-external-display/</link>
+      <link>https://vimerzhao.top/articles/macbook-external-display/</link>
       <pubDate>Thu, 29 Oct 2020 15:46:57 +0800</pubDate>
-      <guid>/articles/macbook-external-display/</guid>
+      <guid>https://vimerzhao.top/articles/macbook-external-display/</guid>
       <description>背景 最近双十一，买了一台AOC的外接显示器，4K分辨率。为了达到最大的使用体验，处理了一些问题，在此记录。 睡眠唤醒 一开始用type-c的线连接，发现每次电脑睡眠后，重新唤醒时外接屏幕无法唤醒，打开显示</description>
     </item>
     <item>
       <title>解决MacBook2018过热问题</title>
-      <link>/articles/macbook-over-hot/</link>
+      <link>https://vimerzhao.top/articles/macbook-over-hot/</link>
       <pubDate>Tue, 19 May 2020 10:21:13 +0800</pubDate>
-      <guid>/articles/macbook-over-hot/</guid>
+      <guid>https://vimerzhao.top/articles/macbook-over-hot/</guid>
       <description>最近搬工位后给MacBook接了一个外接显示器，放在正中间，但是发现发热很严重。在查阅资料和尝试之后，发现把充电口和显示器接口放在右边比较好。左边好像有个Bug，能不用还是不要用了。 参考： Mac过热降</description>
     </item>
     <item>
       <title>Mac OSX配置记录</title>
-      <link>/articles/mac-osx-config-record/</link>
+      <link>https://vimerzhao.top/articles/mac-osx-config-record/</link>
       <pubDate>Mon, 04 May 2020 12:33:35 +0800</pubDate>
-      <guid>/articles/mac-osx-config-record/</guid>
+      <guid>https://vimerzhao.top/articles/mac-osx-config-record/</guid>
       <description>浏览器 下载Chrome 按键映射 下载Karabiner-Elements，按照 配置，就是自己习惯的键位了。 禁用大写锁定: “System Preferences” -&amp;gt; “Keyboard” -&amp;gt; “Modifier K</description>
     </item>
     <item>
       <title>Windows10下VirtualBox不支持64位</title>
-      <link>/articles/virtualbox-lose-64-bit/</link>
+      <link>https://vimerzhao.top/articles/virtualbox-lose-64-bit/</link>
       <pubDate>Mon, 20 Apr 2020 10:20:21 +0800</pubDate>
-      <guid>/articles/virtualbox-lose-64-bit/</guid>
+      <guid>https://vimerzhao.top/articles/virtualbox-lose-64-bit/</guid>
       <description>参考解决Windows10中Virtualbox安装虚拟机没有64位选项(N种情形盘点)-四个空格，除了关闭HyperV，还需要卸载雷电模拟器等，这些软件都有可能占用虚拟驱动。 Mark一下</description>
     </item>
     <item>
       <title>我的tmux使用手册</title>
-      <link>/articles/my-tmux-manual/</link>
+      <link>https://vimerzhao.top/articles/my-tmux-manual/</link>
       <pubDate>Sun, 05 Apr 2020 12:33:00 +0800</pubDate>
-      <guid>/articles/my-tmux-manual/</guid>
+      <guid>https://vimerzhao.top/articles/my-tmux-manual/</guid>
       <description>基础概念 Session：用来概括一个任务，是一组窗口的集合。通过在任务开始前创建一个Session，在该Session中进行任务，之后通过断开Session来暂时中断任务，此时与任务相关的状态都会保存</description>
     </item>
     <item>
       <title>Git工程化最佳实践</title>
-      <link>/articles/git-practice/</link>
+      <link>https://vimerzhao.top/articles/git-practice/</link>
       <pubDate>Fri, 13 Dec 2019 12:32:25 +0800</pubDate>
-      <guid>/articles/git-practice/</guid>
+      <guid>https://vimerzhao.top/articles/git-practice/</guid>
       <description>本文导读 本文对应的 git-standardize 项目地址 https://github.com/vimerzhao/git-standardize 问题背景 大部分程序员对于Git的理解还停留在 git add . git commit -m &amp;quot;update&amp;quot; git pull git push 的阶段，但这在实际项目开发中是远远不够的。 + 举一个简单的例子，现在我们需要过滤所有修复bug的提交，该怎</description>
     </item>
     <item>
       <title>Git内部原理剖析</title>
-      <link>/articles/git-internals/</link>
+      <link>https://vimerzhao.top/articles/git-internals/</link>
       <pubDate>Tue, 26 Nov 2019 12:31:51 +0800</pubDate>
-      <guid>/articles/git-internals/</guid>
+      <guid>https://vimerzhao.top/articles/git-internals/</guid>
       <description>导读 为什么写这篇文章 写这篇文章的本意有二: 工作安排原因，常有同事询问我一些关于 Git 的问题，总觉得自己解释的不够透彻，因此觉得有必要深入了解一下。 目前中文的 Git 教程往往本末倒置， 一味从版本管理工具的角度去堆</description>
     </item>
     <item>
       <title>YouGlish介绍</title>
-      <link>/articles/introduction-of-youglish/</link>
+      <link>https://vimerzhao.top/articles/introduction-of-youglish/</link>
       <pubDate>Sat, 23 Nov 2019 12:31:31 +0800</pubDate>
-      <guid>/articles/introduction-of-youglish/</guid>
+      <guid>https://vimerzhao.top/articles/introduction-of-youglish/</guid>
       <description>YouGlish是干嘛的呢？它的官网已经说的很清楚了: Use YouTube to improve your English pronunciation. Real people, real situations. 发现这个网站的起因是笔者在准备技术分享的时候涉及到一个专业名词 VSync ，这个词是 Vertical Sync的缩写，算是一个技术专有名词，用 YouGlish 一搜就</description>
     </item>
     <item>
       <title>小白的理财入门课</title>
-      <link>/articles/financing-introduction/</link>
+      <link>https://vimerzhao.top/articles/financing-introduction/</link>
       <pubDate>Sat, 02 Nov 2019 09:16:19 +0800</pubDate>
-      <guid>/articles/financing-introduction/</guid>
+      <guid>https://vimerzhao.top/articles/financing-introduction/</guid>
       <description>发刊词:未来穷人更穷,富人更富 钱背后的含义?贫富差距(基尼系数) 教育 寒门再难出贵子 概率学显示,85%状元都是城镇户口 父母的资源决定了子女的眼界等 医疗 有钱能让人获得更多的“隐形福利” 医疗保险意识 投资观念</description>
     </item>
     <item>
       <title>LinuxMint配置指南</title>
-      <link>/articles/linuxmintpei-zhi-zhi-nan/</link>
+      <link>https://vimerzhao.top/articles/linuxmintpei-zhi-zhi-nan/</link>
       <pubDate>Thu, 02 May 2019 00:00:00 +0000</pubDate>
-      <guid>/articles/linuxmintpei-zhi-zhi-nan/</guid>
+      <guid>https://vimerzhao.top/articles/linuxmintpei-zhi-zhi-nan/</guid>
       <description>LinuxMint配置指南 LinuxMint使用记录 工具集 图像编辑 Pinta基本够用，可在软件管理器下载。 配置 添加图标 以百度脑图为例，在/home/username/.local/share/appl</description>
     </item>
     <item>
       <title>重新认识Markdown</title>
-      <link>/articles/zhong-xin-ren-shi-markdown/</link>
+      <link>https://vimerzhao.top/articles/zhong-xin-ren-shi-markdown/</link>
       <pubDate>Thu, 02 May 2019 00:00:00 +0000</pubDate>
-      <guid>/articles/zhong-xin-ren-shi-markdown/</guid>
+      <guid>https://vimerzhao.top/articles/zhong-xin-ren-shi-markdown/</guid>
       <description>重新认识Markdown 最近在调研文档写作工具，对 Markdown 有了一些新的思考。 Markdown 的优势 毫无疑问，Markdown 是流行的，个人认为有以下几个原因： 容易上手，设计得对新手非常友好，把最常用的十几个样式抽离出来，</description>
     </item>
     <item>
       <title>Hexo配置指南</title>
-      <link>/articles/hexopei-zhi-zhi-nan/</link>
+      <link>https://vimerzhao.top/articles/hexopei-zhi-zhi-nan/</link>
       <pubDate>Sun, 21 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>/articles/hexopei-zhi-zhi-nan/</guid>
+      <guid>https://vimerzhao.top/articles/hexopei-zhi-zhi-nan/</guid>
       <description>Hexo配置指南 本文记录了笔者的Hexo配置，持续更新中～ 功能增强 文章加密 对于部分隐私文章，进行加密。使用插件hexo-blog-encrypt 在Hexo根目录的package.json中添加&amp;quo</description>
     </item>
     <item>
       <title>源码阅读环境OpenGrok搭建</title>
-      <link>/articles/yuan-ma-yue-du-huan-jing-opengrokda-jian/</link>
+      <link>https://vimerzhao.top/articles/yuan-ma-yue-du-huan-jing-opengrokda-jian/</link>
       <pubDate>Sun, 23 Sep 2018 00:00:00 +0000</pubDate>
-      <guid>/articles/yuan-ma-yue-du-huan-jing-opengrokda-jian/</guid>
+      <guid>https://vimerzhao.top/articles/yuan-ma-yue-du-huan-jing-opengrokda-jian/</guid>
       <description>源码阅读环境OpenGrok搭建 工欲善其事，必先利其器。 导语 阅读源码最常见操作的就是在函数/方法的调用与定义之间跳转，对于只有大部分源码来说，都可以通过ctags+vim获得比较好的体验，但对于And</description>
     </item>
     <item>
       <title>bat批处理简介：Windows自动化之道</title>
-      <link>/articles/batpi-chu-li-jian-jie-windowszi-dong-hua-zhi-dao/</link>
+      <link>https://vimerzhao.top/articles/batpi-chu-li-jian-jie-windowszi-dong-hua-zhi-dao/</link>
       <pubDate>Sun, 09 Sep 2018 00:00:00 +0000</pubDate>
-      <guid>/articles/batpi-chu-li-jian-jie-windowszi-dong-hua-zhi-dao/</guid>
+      <guid>https://vimerzhao.top/articles/batpi-chu-li-jian-jie-windowszi-dong-hua-zhi-dao/</guid>
       <description>bat批处理简介：Windows自动化之道 重复的工作交给代码。 导语 最近在工作中遇到一些纯粹重复的工作，最终都通过脚本方式达到了自动化，大大提高效率。比如之前每次发布zip包都需要手动编译lua文件、替</description>
     </item>
     <item>
       <title>LinuxMint修改程序图标分类</title>
-      <link>/articles/linuxmintxiu-gai-cheng-xu-tu-biao-fen-lei/</link>
+      <link>https://vimerzhao.top/articles/linuxmintxiu-gai-cheng-xu-tu-biao-fen-lei/</link>
       <pubDate>Fri, 10 Nov 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/linuxmintxiu-gai-cheng-xu-tu-biao-fen-lei/</guid>
+      <guid>https://vimerzhao.top/articles/linuxmintxiu-gai-cheng-xu-tu-biao-fen-lei/</guid>
       <description>LinuxMint修改程序图标分类 本文记录了如何修改开始菜单中图标的分类。 问题 平时一般用lantern翻墙，但是每次安装之后在开始菜单这个程序都没被归类，而是单独分类到其他这个目录,如下： 十分别扭。 修</description>
     </item>
     <item>
       <title>LinuxMint Mate中WiFi自动关闭问题</title>
-      <link>/articles/linuxmint-matezhong-wifizi-dong-guan-bi-wen-ti/</link>
+      <link>https://vimerzhao.top/articles/linuxmint-matezhong-wifizi-dong-guan-bi-wen-ti/</link>
       <pubDate>Fri, 22 Sep 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/linuxmint-matezhong-wifizi-dong-guan-bi-wen-ti/</guid>
+      <guid>https://vimerzhao.top/articles/linuxmint-matezhong-wifizi-dong-guan-bi-wen-ti/</guid>
       <description>LinuxMint Mate中WiFi自动关闭问题 在安装了LinuxMint Mate后，发现WiFi经常自动关闭，花了一点时间发现了解决办法，记录下来以防再次掉坑。 LinuxMint主流的桌面版本有Cinnamon、M</description>
     </item>
     <item>
       <title>Vim键盘布局的起源</title>
-      <link>/articles/vimjian-pan-bu-ju-de-qi-yuan/</link>
+      <link>https://vimerzhao.top/articles/vimjian-pan-bu-ju-de-qi-yuan/</link>
       <pubDate>Sun, 25 Jun 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/vimjian-pan-bu-ju-de-qi-yuan/</guid>
+      <guid>https://vimerzhao.top/articles/vimjian-pan-bu-ju-de-qi-yuan/</guid>
       <description>Vim键盘布局的起源 谈了一些关于键盘布局的东西。 Vim的键盘布局 用过Vim编辑器的人都知道，要从插入模式转到正常模式需要用Esc键，并且两种模式的切换在编辑文本时大量存在。但奇怪的是，Esc的位置在键</description>
     </item>
     <item>
       <title>VirtualBox下Debian增强功能的安装</title>
-      <link>/articles/virtualboxxia-debianzeng-qiang-gong-neng-de-an-zhuang/</link>
+      <link>https://vimerzhao.top/articles/virtualboxxia-debianzeng-qiang-gong-neng-de-an-zhuang/</link>
       <pubDate>Wed, 14 Jun 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/virtualboxxia-debianzeng-qiang-gong-neng-de-an-zhuang/</guid>
+      <guid>https://vimerzhao.top/articles/virtualboxxia-debianzeng-qiang-gong-neng-de-an-zhuang/</guid>
       <description>VirtualBox下Debian增强功能的安装 本文记录了如何为VirtualBox里面的Debian虚拟机安装增强功能。 问题记录 之前写过一篇博客记录了VirtualBox下安装增强功能的问题，是在U</description>
     </item>
     <item>
       <title>Linux下配置JDK版本教程</title>
-      <link>/articles/linuxxia-pei-zhi-jdkban-ben-jiao-cheng/</link>
+      <link>https://vimerzhao.top/articles/linuxxia-pei-zhi-jdkban-ben-jiao-cheng/</link>
       <pubDate>Mon, 12 Jun 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/linuxxia-pei-zhi-jdkban-ben-jiao-cheng/</guid>
+      <guid>https://vimerzhao.top/articles/linuxxia-pei-zhi-jdkban-ben-jiao-cheng/</guid>
       <description>Linux下配置JDK版本教程 记录了Linux配置JDK版本的方法。 最近，在自己的Ubuntu虚拟及上发现一个奇怪的问题，Java源文件可以编译但不能运行，检查发现原来是编译出来的版本高于JRE的版本</description>
     </item>
     <item>
       <title>借助Vim宏处理重复工作</title>
-      <link>/articles/jie-zhu-vimhong-chu-li-zhong-fu-gong-zuo/</link>
+      <link>https://vimerzhao.top/articles/jie-zhu-vimhong-chu-li-zhong-fu-gong-zuo/</link>
       <pubDate>Mon, 29 May 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/jie-zhu-vimhong-chu-li-zhong-fu-gong-zuo/</guid>
+      <guid>https://vimerzhao.top/articles/jie-zhu-vimhong-chu-li-zhong-fu-gong-zuo/</guid>
       <description>借助Vim宏处理重复工作 记录了一个用Vim宏处理重复操作的例子。 最近写博客时遇到一个问题： 我有一些图片，它们除了图片名的序号不同，比如 launcher-01-debug.png launcher-02-debug.png launcher-03-debug.png launcher-04-debug.png &amp;hellip; 其余都相同 现在我需要把这些图片写在博客里，我该怎么做呢？</description>
     </item>
     <item>
       <title>与VirtualBox下Linux虚拟机共享文件</title>
-      <link>/articles/yu-virtualboxxia-linuxxu-ni-ji-gong-xiang-wen-jian/</link>
+      <link>https://vimerzhao.top/articles/yu-virtualboxxia-linuxxu-ni-ji-gong-xiang-wen-jian/</link>
       <pubDate>Mon, 29 May 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/yu-virtualboxxia-linuxxu-ni-ji-gong-xiang-wen-jian/</guid>
+      <guid>https://vimerzhao.top/articles/yu-virtualboxxia-linuxxu-ni-ji-gong-xiang-wen-jian/</guid>
       <description>与VirtualBox下Linux虚拟机共享文件 记录了如何与VirtualBox下的Linux虚拟机共享文件。 最近，需要在Ubuntu虚拟机里面调试HotSpot，截了些图需要在本机上处理一下，所以需</description>
     </item>
     <item>
       <title>VirtualBox下虚拟电脑没有光驱</title>
-      <link>/articles/virtualboxxia-xu-ni-dian-nao-mei-you-guang-qu/</link>
+      <link>https://vimerzhao.top/articles/virtualboxxia-xu-ni-dian-nao-mei-you-guang-qu/</link>
       <pubDate>Sun, 28 May 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/virtualboxxia-xu-ni-dian-nao-mei-you-guang-qu/</guid>
+      <guid>https://vimerzhao.top/articles/virtualboxxia-xu-ni-dian-nao-mei-you-guang-qu/</guid>
       <description>VirtualBox下虚拟电脑没有光驱 记录了VirtualBox虚拟电脑安装增强功能时提示没有光驱的问题。 由于编译openjdk的需要，安装了Ubuntu12.04，但是在安装增强功能时候却遇到了以下</description>
     </item>
     <item>
       <title>GVim中GLib-GObject-WARNING问题的解决办法</title>
-      <link>/articles/gvimzhong-glib-gobject-warningwen-ti-de-jie-jue-ban-fa/</link>
+      <link>https://vimerzhao.top/articles/gvimzhong-glib-gobject-warningwen-ti-de-jie-jue-ban-fa/</link>
       <pubDate>Sat, 29 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/gvimzhong-glib-gobject-warningwen-ti-de-jie-jue-ban-fa/</guid>
+      <guid>https://vimerzhao.top/articles/gvimzhong-glib-gobject-warningwen-ti-de-jie-jue-ban-fa/</guid>
       <description>GVim中GLib-GObject-WARNING问题的解决办法 本文记录了一个在命令行启动GVim时遇到的问题及其解决办法。 问题 今天发现在命令行模式下启动GVim会出现一个小问题： zhaoyu@Dell ~ $ vim .vim (gvim:12853): GLib-GObject-WARNING **: cannot retrieve</description>
     </item>
     <item>
       <title>纪念一个：博客全自动管理</title>
-      <link>/articles/ji-nian-yi-ge-bo-ke-quan-zi-dong-guan-li/</link>
+      <link>https://vimerzhao.top/articles/ji-nian-yi-ge-bo-ke-quan-zi-dong-guan-li/</link>
       <pubDate>Sat, 29 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/ji-nian-yi-ge-bo-ke-quan-zi-dong-guan-li/</guid>
+      <guid>https://vimerzhao.top/articles/ji-nian-yi-ge-bo-ke-quan-zi-dong-guan-li/</guid>
       <description>纪念一个：博客全自动管理 本文记录了我的博客使用进阶之路。 首先感慨一下自己两年以来使用博客的经历。最初，我在CSDN上注册了帐号，并开始写一些中二的技术博客： 后来又转战博客园，因为CSDN的强行植入广告</description>
     </item>
     <item>
       <title>TCP连接的建立与释放</title>
-      <link>/articles/tcplian-jie-de-jian-li-yu-shi-fang/</link>
+      <link>https://vimerzhao.top/articles/tcplian-jie-de-jian-li-yu-shi-fang/</link>
       <pubDate>Fri, 21 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/tcplian-jie-de-jian-li-yu-shi-fang/</guid>
+      <guid>https://vimerzhao.top/articles/tcplian-jie-de-jian-li-yu-shi-fang/</guid>
       <description>TCP连接的建立与释放 本文通过实际抓包验证了TCP连接建立与释放的方式。 关于计算机网络 我在大三上修了计算机网络这门课，这门课真是我大学最差的记忆之一。教授这门课的老师水平很低，以至于辅导员安排另一位老</description>
     </item>
     <item>
       <title>Vim的哲学</title>
-      <link>/articles/vimde-zhe-xue/</link>
+      <link>https://vimerzhao.top/articles/vimde-zhe-xue/</link>
       <pubDate>Thu, 13 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/vimde-zhe-xue/</guid>
+      <guid>https://vimerzhao.top/articles/vimde-zhe-xue/</guid>
       <description>Vim的哲学 本文记录了我在现阶段对Vim的一些思考。 我用过的开发工具 回想起来，我大概是在大一的寒假快要结束的时候接触了编程语言，我还记得自己按照教程，用gcc编译并输出了HelloWorld。当时，我</description>
     </item>
     <item>
       <title>踩坑记：LinuxMint18字体变为楷体的修复</title>
-      <link>/articles/cai-keng-ji-linuxmint18zi-ti-bian-wei-kai-ti-de-xiu-fu/</link>
+      <link>https://vimerzhao.top/articles/cai-keng-ji-linuxmint18zi-ti-bian-wei-kai-ti-de-xiu-fu/</link>
       <pubDate>Sat, 25 Mar 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/cai-keng-ji-linuxmint18zi-ti-bian-wei-kai-ti-de-xiu-fu/</guid>
+      <guid>https://vimerzhao.top/articles/cai-keng-ji-linuxmint18zi-ti-bian-wei-kai-ti-de-xiu-fu/</guid>
       <description>踩坑记：LinuxMint18字体变为楷体的修复 本文记录了一次修复系统字体的经历。 起因 起因很奇怪，本来打算今天把动态规划算法好好研究一番，结果一大早起来发现中文输入法消失了！因为之前有次发生这种情况是</description>
     </item>
     <item>
       <title>git 每次提交需要输入密码</title>
-      <link>/articles/2017-git-requires-a-password-for-each-commit/</link>
+      <link>https://vimerzhao.top/articles/2017-git-requires-a-password-for-each-commit/</link>
       <pubDate>Mon, 06 Mar 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-git-requires-a-password-for-each-commit/</guid>
+      <guid>https://vimerzhao.top/articles/2017-git-requires-a-password-for-each-commit/</guid>
       <description>亲测可行（第一种） 原文：git每次提交都要输入密码怎么办 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝COPY＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ 不少用户反映在使用Git时，经常会遇到需要频繁输入</description>
     </item>
     <item>
       <title>hexo &#43; next 搭建博客时Cannot GET /tags/问题处理</title>
-      <link>/articles/2017-hexo-next-cannot-get-tags-problem-handling-when-building-a-blog/</link>
+      <link>https://vimerzhao.top/articles/2017-hexo-next-cannot-get-tags-problem-handling-when-building-a-blog/</link>
       <pubDate>Sun, 05 Mar 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-hexo-next-cannot-get-tags-problem-handling-when-building-a-blog/</guid>
+      <guid>https://vimerzhao.top/articles/2017-hexo-next-cannot-get-tags-problem-handling-when-building-a-blog/</guid>
       <description>原来是要修改新建的index.md文件，不仔细。 此外，愈发觉得百度和谷歌搜索同一问题的差距，谷歌更适合程序员！ https://www.zhihu.com/question/29017171 这个可以解决。但是github的issue里面也有很多有益讨论。</description>
     </item>
     <item>
       <title>wc命令统计目录下所有文件行数</title>
-      <link>/articles/2017-the-wc-command-counts-the-number-of-lines-in-all-files-in-a-directory/</link>
+      <link>https://vimerzhao.top/articles/2017-the-wc-command-counts-the-number-of-lines-in-all-files-in-a-directory/</link>
       <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-the-wc-command-counts-the-number-of-lines-in-all-files-in-a-directory/</guid>
+      <guid>https://vimerzhao.top/articles/2017-the-wc-command-counts-the-number-of-lines-in-all-files-in-a-directory/</guid>
       <description>想统计一下最近一个项目的代码行数，一个一个文件统计显然不是程序员的思维，wc命令可以统计一个文本的行数，结合find命令可以实现我的需求（注意符号）：</description>
     </item>
     <item>
       <title>LinuxMint自定义快捷键</title>
-      <link>/articles/2017-linuxmint-custom-shortcut-keys/</link>
+      <link>https://vimerzhao.top/articles/2017-linuxmint-custom-shortcut-keys/</link>
       <pubDate>Fri, 24 Feb 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-linuxmint-custom-shortcut-keys/</guid>
+      <guid>https://vimerzhao.top/articles/2017-linuxmint-custom-shortcut-keys/</guid>
       <description>如图</description>
     </item>
     <item>
       <title>diff命令的妙用</title>
-      <link>/articles/2017-the-wonderful-use-of-diff-command/</link>
+      <link>https://vimerzhao.top/articles/2017-the-wonderful-use-of-diff-command/</link>
       <pubDate>Tue, 21 Feb 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-the-wonderful-use-of-diff-command/</guid>
+      <guid>https://vimerzhao.top/articles/2017-the-wonderful-use-of-diff-command/</guid>
       <description>在读《Writing compilers and Interpreters》一书时需要按章节修改代码，由于实在一行一行比对实在难受，于是想了个办法，利用diff命令比较两章之间代码的修改位置，大大提高效率！ 此外，还可以利用该命</description>
     </item>
     <item>
       <title>如何申请一个谷歌账号</title>
-      <link>/articles/2017-how-to-apply-for-a-google-account/</link>
+      <link>https://vimerzhao.top/articles/2017-how-to-apply-for-a-google-account/</link>
       <pubDate>Fri, 10 Feb 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-how-to-apply-for-a-google-account/</guid>
+      <guid>https://vimerzhao.top/articles/2017-how-to-apply-for-a-google-account/</guid>
       <description>最近想把之前那个十分中二的谷歌邮箱账号（zhaoyu1995.com@gmail.com）换掉，但是发现电脑注册总是无法验证（也不记得之前是怎么申请到账号的）: 经过一番搜索，发现了一个可以解决的办法，</description>
     </item>
     <item>
       <title>spf13-vim 显示neocomplete requires ...th Lua support</title>
-      <link>/articles/2017-spf13-vim-show-neocomplete-requires-th-lua-support/</link>
+      <link>https://vimerzhao.top/articles/2017-spf13-vim-show-neocomplete-requires-th-lua-support/</link>
       <pubDate>Sat, 28 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-spf13-vim-show-neocomplete-requires-th-lua-support/</guid>
+      <guid>https://vimerzhao.top/articles/2017-spf13-vim-show-neocomplete-requires-th-lua-support/</guid>
       <description>安装spf13-vim的时候下载了许多插件，neocomplete应该是比较重要的一个，毕竟自动补全。但是在使用时却一直有：neocomplete requires &amp;hellip;th Lua support的警告。据说要在编译时加入相关选项</description>
     </item>
     <item>
       <title>spf13-vim安装成功</title>
-      <link>/articles/2017-spf13-vim-installed-successfully/</link>
+      <link>https://vimerzhao.top/articles/2017-spf13-vim-installed-successfully/</link>
       <pubDate>Sat, 28 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-spf13-vim-installed-successfully/</guid>
+      <guid>https://vimerzhao.top/articles/2017-spf13-vim-installed-successfully/</guid>
       <description>之前安装好像都没有出现这个画面，说明我安装得不完整吧！有一个html括号匹配的插件要求输入username和password，不知所以然，没安装上，其他应该一切正常。纪念一个！</description>
     </item>
     <item>
       <title>记Linux下一次乱码事件</title>
-      <link>/articles/2017-remember-the-next-garbled-code-incident-in-linux/</link>
+      <link>https://vimerzhao.top/articles/2017-remember-the-next-garbled-code-incident-in-linux/</link>
       <pubDate>Thu, 26 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-remember-the-next-garbled-code-incident-in-linux/</guid>
+      <guid>https://vimerzhao.top/articles/2017-remember-the-next-garbled-code-incident-in-linux/</guid>
       <description>近来需要对着教程敲代码，但是之前在Windows上的压缩包在Linux解压后发生了乱码，主要是文件内乱码，文件名还是正常的。搜索“Linux rar解压乱码“试了一圈也没解决。不过到是发现了winrar</description>
     </item>
     <item>
       <title>Linux下如何编辑pdf文件目录</title>
-      <link>/articles/2017-how-to-edit-pdf-file-directory-under-linux/</link>
+      <link>https://vimerzhao.top/articles/2017-how-to-edit-pdf-file-directory-under-linux/</link>
       <pubDate>Tue, 24 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-how-to-edit-pdf-file-directory-under-linux/</guid>
+      <guid>https://vimerzhao.top/articles/2017-how-to-edit-pdf-file-directory-under-linux/</guid>
       <description>目前，我使用的是系统LinuxMint,之前硬盘没坏时都是用Foxit Reader和Okular查看pdf文件，可是后来发现Foxit Reader十分吃CPU，而且现在换了固态硬盘之后只有120G可用</description>
     </item>
     <item>
       <title>Linux下修改键盘映射</title>
-      <link>/articles/2017-modify-keyboard-mapping-under-linux/</link>
+      <link>https://vimerzhao.top/articles/2017-modify-keyboard-mapping-under-linux/</link>
       <pubDate>Mon, 16 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-modify-keyboard-mapping-under-linux/</guid>
+      <guid>https://vimerzhao.top/articles/2017-modify-keyboard-mapping-under-linux/</guid>
       <description>一篇关于修改键盘映射比较靠谱的文章，收藏一下！ 原文地址：http://www.07net01.com/2016/04/1436249.html 最近把可乐倒进键盘把，把 ctl 变得阻力超大。。。所以把 ctrl 和 capslock 两</description>
     </item>
     <item>
       <title>记一次奇怪的电脑故障</title>
-      <link>/articles/2017-remember-a-strange-computer-glitch/</link>
+      <link>https://vimerzhao.top/articles/2017-remember-a-strange-computer-glitch/</link>
       <pubDate>Mon, 16 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-remember-a-strange-computer-glitch/</guid>
+      <guid>https://vimerzhao.top/articles/2017-remember-a-strange-computer-glitch/</guid>
       <description>一切都要从计原复习开始，因为老师给的PPT在Linux的WPS下看老乱码，于是我就换到了Windows（当时是双系统）。结果回来一看： 看了一会，还是0%，干脆强制关机了。结果，再次开机，出现了之前从未</description>
     </item>
     <item>
       <title>无限制使用ppt转pdf功能</title>
-      <link>/articles/2017-unlimited-use-of-ppt-to-pdf-function/</link>
+      <link>https://vimerzhao.top/articles/2017-unlimited-use-of-ppt-to-pdf-function/</link>
       <pubDate>Mon, 02 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-unlimited-use-of-ppt-to-pdf-function/</guid>
+      <guid>https://vimerzhao.top/articles/2017-unlimited-use-of-ppt-to-pdf-function/</guid>
       <description>https://smallpdf.com/cn是一个pdf处理网站，十分好用，可是非注册用户有很多限制，比如用两次ppt转pdf就要等待： 于是就想如何让服务器认为我没有用过这个功能呢，感觉应该是用co</description>
     </item>
     <item>
       <title>Linux下使用Hexo搭建github博客</title>
-      <link>/articles/2016-using-hexo-to-build-a-github-blog-under-linux/</link>
+      <link>https://vimerzhao.top/articles/2016-using-hexo-to-build-a-github-blog-under-linux/</link>
       <pubDate>Sat, 31 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-using-hexo-to-build-a-github-blog-under-linux/</guid>
+      <guid>https://vimerzhao.top/articles/2016-using-hexo-to-build-a-github-blog-under-linux/</guid>
       <description>找到一篇靠谱的博客，备份一下： －－－－－－－－－以下原文－－－－－－－－－－－－－－－－－－ Nodejs安装 因为hexo是基于nodejs的应用，所以要先安装nodejs才可以。我这里以Ubuntu为</description>
     </item>
     <item>
       <title>Linux创建WiFi热点</title>
-      <link>/articles/2016-create-wifi-hotspot-in-linux/</link>
+      <link>https://vimerzhao.top/articles/2016-create-wifi-hotspot-in-linux/</link>
       <pubDate>Tue, 27 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-create-wifi-hotspot-in-linux/</guid>
+      <guid>https://vimerzhao.top/articles/2016-create-wifi-hotspot-in-linux/</guid>
       <description>手机流量用完，需要开WiFi,由于是LinuxMint,感觉配置还算容易，找到一个不错的教程，收藏一下，以备后用。除了修改配置文件那步在我的电脑不需要外其他基本正确，而且Mint本来就衍生自Ubunt</description>
     </item>
     <item>
       <title>Linux下几款好用的录屏软件</title>
-      <link>/articles/2016-several-useful-screen-recording-software-under-linux/</link>
+      <link>https://vimerzhao.top/articles/2016-several-useful-screen-recording-software-under-linux/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-several-useful-screen-recording-software-under-linux/</guid>
+      <guid>https://vimerzhao.top/articles/2016-several-useful-screen-recording-software-under-linux/</guid>
       <description>最近需要在Linux环境下录制一段视频，自己的Linux是LinuxMint Xfce 18,网上搜了一圈发现都不太顺手。尤其是VLC,感觉不是很易用，幸好最后在Linux自带的软件管理器找到了两个不错的软件。</description>
     </item>
     <item>
       <title>VirtualBox安装MS-DOS6.22（图文教程）</title>
-      <link>/articles/2016-virtualbox-installation-ms-dos6-22-graphic-tutorial/</link>
+      <link>https://vimerzhao.top/articles/2016-virtualbox-installation-ms-dos6-22-graphic-tutorial/</link>
       <pubDate>Tue, 06 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-virtualbox-installation-ms-dos6-22-graphic-tutorial/</guid>
+      <guid>https://vimerzhao.top/articles/2016-virtualbox-installation-ms-dos6-22-graphic-tutorial/</guid>
       <description>最近在读一些计算机发展史之类的文献，总感觉的纸上得来终觉浅，所以打算自己装一个MS-DOS，体验一下远古的操作系统！可以google到MS-DOS的安装文件： 为什么要分成三个呢？可以看到，每个大小都是</description>
     </item>
     <item>
       <title>windows使用git时出现：warning: LF will be replaced by CRLF</title>
-      <link>/articles/2016-when-using-git-in-windows-warning-lf-will-be-replaced-by-crlf/</link>
+      <link>https://vimerzhao.top/articles/2016-when-using-git-in-windows-warning-lf-will-be-replaced-by-crlf/</link>
       <pubDate>Mon, 05 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-when-using-git-in-windows-warning-lf-will-be-replaced-by-crlf/</guid>
+      <guid>https://vimerzhao.top/articles/2016-when-using-git-in-windows-warning-lf-will-be-replaced-by-crlf/</guid>
       <description>windows中的换行符为 CRLF， 而在linux下的换行符为LF，所以在执行add . 时出现提示： 执行以下代码 $ rm -rf .git // 删除.git $ git config --global core.autocrlf false //禁用自动转换 $ git init $ git add . OK</description>
     </item>
     <item>
       <title>使用hexo，如果换了电脑怎么更新博客？</title>
-      <link>/articles/2016-using-hexo-how-do-i-update-my-blog-if-i-change-my-computer/</link>
+      <link>https://vimerzhao.top/articles/2016-using-hexo-how-do-i-update-my-blog-if-i-change-my-computer/</link>
       <pubDate>Mon, 05 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-using-hexo-how-do-i-update-my-blog-if-i-change-my-computer/</guid>
+      <guid>https://vimerzhao.top/articles/2016-using-hexo-how-do-i-update-my-blog-if-i-change-my-computer/</guid>
       <description>自己今天想到这个问题，于是去知乎搜索了一番，发现不甚理想。没找到合适的，题目就是知乎原题。只好自己解决了。以下直接把自己的答案粘贴过来 今天我突然想到这个问题，想来参考参考，却发现都不太适合我。首先，我</description>
     </item>
     <item>
       <title>LinuxMint配置GitHub（图文教程）</title>
-      <link>/articles/2016-linuxmint-configuration-github-graphic-tutorial/</link>
+      <link>https://vimerzhao.top/articles/2016-linuxmint-configuration-github-graphic-tutorial/</link>
       <pubDate>Sat, 03 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-linuxmint-configuration-github-graphic-tutorial/</guid>
+      <guid>https://vimerzhao.top/articles/2016-linuxmint-configuration-github-graphic-tutorial/</guid>
       <description>1.生成秘钥（直接回车，秘钥存放路径看命令行信息） ２．打开秘钥，需要注意的是**.ssh可能是隐藏的，这时需要Ctrl+H**显示隐藏文件夹 ３．复制秘钥，添加到GitHub(Settings)， 4.添</description>
     </item>
     <item>
       <title>Linux问题处理： stdio.h: No such file or directory linux</title>
-      <link>/articles/2016-linux-problem-handling-stdio-h-no-such-file-or-directory-linux/</link>
+      <link>https://vimerzhao.top/articles/2016-linux-problem-handling-stdio-h-no-such-file-or-directory-linux/</link>
       <pubDate>Sat, 03 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-linux-problem-handling-stdio-h-no-such-file-or-directory-linux/</guid>
+      <guid>https://vimerzhao.top/articles/2016-linux-problem-handling-stdio-h-no-such-file-or-directory-linux/</guid>
       <description>本来打算编译一下《自制编程语言》一书的代码，结果提示错误： 其实说的还是很清楚的，一般出现这种情况都是没有安装相应的库，所以： 再次编译，成功： 测试代码： # comment print(&amp;#34;hoge\tpiyo\n\\zn&amp;#34;); print(&amp;#34;abc\n&amp;#34;); print(&amp;#34;3 + 5..&amp;#34; + (3 + 5) + &amp;#34;\n&amp;#34;); print(&amp;#34;3 - 5..&amp;#34; + (3 - 5) + &amp;#34;\n&amp;#34;); print(&amp;#34;3 + -5..&amp;#34;</description>
     </item>
     <item>
       <title>UEFI模式安装Win10和Linux双系统</title>
-      <link>/articles/2016-install-win10-and-linux-dual-systems-in-uefi-mode/</link>
+      <link>https://vimerzhao.top/articles/2016-install-win10-and-linux-dual-systems-in-uefi-mode/</link>
       <pubDate>Thu, 01 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-install-win10-and-linux-dual-systems-in-uefi-mode/</guid>
+      <guid>https://vimerzhao.top/articles/2016-install-win10-and-linux-dual-systems-in-uefi-mode/</guid>
       <description>最近心血来潮，想装一个Linux、Windows双系统，吸取上次安装的经验，这次一定都要使用UEFI模式启动，需要注意的是必须是支持此种启动模式的系统（一般解压之后都有efi文件夹不需要刻录），这次遇</description>
     </item>
     <item>
       <title>DOSBOX 自动挂载技巧</title>
-      <link>/articles/2016-dosbox-automatic-mounting-skills/</link>
+      <link>https://vimerzhao.top/articles/2016-dosbox-automatic-mounting-skills/</link>
       <pubDate>Wed, 16 Nov 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-dosbox-automatic-mounting-skills/</guid>
+      <guid>https://vimerzhao.top/articles/2016-dosbox-automatic-mounting-skills/</guid>
       <description>DOSBOX下载之后，win10已经不支持debug了（win-XP虚拟机有！），所以需要单独下载，每次使用都需要挂载上去，十分不方便。 解决办法是修改属性文件，每次挂载都自动执行: 把编写好的汇编文件放</description>
     </item>
     <item>
       <title>Git初级实践教程（图文）</title>
-      <link>/articles/2016-git-basic-practical-tutorial-picture-and-text/</link>
+      <link>https://vimerzhao.top/articles/2016-git-basic-practical-tutorial-picture-and-text/</link>
       <pubDate>Sun, 06 Nov 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-git-basic-practical-tutorial-picture-and-text/</guid>
+      <guid>https://vimerzhao.top/articles/2016-git-basic-practical-tutorial-picture-and-text/</guid>
       <description>关于Git Git的由来 Linux 的创始人 Linus Torvalds 在 2005 年开发了 Git 的原型程序。当时，由于在 Linux 内核开发中使用的既有版本管理系统的开发方许可证发生了变更，为了更换新的版本管理系统， Torvalds 开发了Git。 说在前面 Linux和Ma</description>
     </item>
     <item>
       <title>如何合并多个PPT</title>
-      <link>/articles/2016-how-to-merge-multiple-ppts/</link>
+      <link>https://vimerzhao.top/articles/2016-how-to-merge-multiple-ppts/</link>
       <pubDate>Sun, 30 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-how-to-merge-multiple-ppts/</guid>
+      <guid>https://vimerzhao.top/articles/2016-how-to-merge-multiple-ppts/</guid>
       <description>事情的起因大概是这样的： 于是我接收了文件 15个ppt，手动合并，我脑子有病吗，作为一个程序员，最基本的修养之一就是：超过三分钟的工作全部给电脑。 于是乎找到了pptjoin（一听名字就知道干嘛的）这个工</description>
     </item>
     <item>
       <title>优秀小工具集锦</title>
-      <link>/articles/2016-collection-of-excellent-gadgets/</link>
+      <link>https://vimerzhao.top/articles/2016-collection-of-excellent-gadgets/</link>
       <pubDate>Tue, 25 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-collection-of-excellent-gadgets/</guid>
+      <guid>https://vimerzhao.top/articles/2016-collection-of-excellent-gadgets/</guid>
       <description>这里我对小工具的定义安装包&amp;lt;10M 1.GifCam(1.56M,无需安装) 官网，小巧而功能强大的录屏软件。 2.window-on-top(665KB) 官网，Windows On Top 是一个可以让任意 Windows 窗口置于顶层的小软件。 3.pptjoin(2KB) 下载地址，ppt合并</description>
     </item>
     <item>
       <title>VS2015链接错误一则</title>
-      <link>/articles/2016-vs2015-link-error/</link>
+      <link>https://vimerzhao.top/articles/2016-vs2015-link-error/</link>
       <pubDate>Sun, 23 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-vs2015-link-error/</guid>
+      <guid>https://vimerzhao.top/articles/2016-vs2015-link-error/</guid>
       <description>以前天真的以为C是C++的子集，.c文件直接.cpp命名没什么影响： 后缀一改 链接器工具错误 LNK2019</description>
     </item>
     <item>
       <title>VisualStudio配色方案</title>
-      <link>/articles/2016-visualstudio-color-scheme/</link>
+      <link>https://vimerzhao.top/articles/2016-visualstudio-color-scheme/</link>
       <pubDate>Sat, 22 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-visualstudio-color-scheme/</guid>
+      <guid>https://vimerzhao.top/articles/2016-visualstudio-color-scheme/</guid>
       <description>最近发现一个很神奇的网站，可以方便的为VisualStudio配色：Studio Styles - Visual Studio color schemes 可以下载一份自己喜欢的配色方案 如果还不满意，可以在此配色方案的基础上进行修改，而不必从0开始。用文本编辑器打</description>
     </item>
     <item>
       <title>Win7上安装Linux双系统</title>
-      <link>/articles/2016-install-linux-dual-system-on-win7/</link>
+      <link>https://vimerzhao.top/articles/2016-install-linux-dual-system-on-win7/</link>
       <pubDate>Sat, 08 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-install-linux-dual-system-on-win7/</guid>
+      <guid>https://vimerzhao.top/articles/2016-install-linux-dual-system-on-win7/</guid>
       <description>今天帮同学在Win7上安装Linux，感觉一篇教程很不错，mark一下 原地址：Win7下U盘安装Ubuntu14.04双系统步骤详解 一、前期准备 1、大于2G的U盘一个(我的系统盘制作完成后大约占1个多</description>
     </item>
     <item>
       <title>sublime编写markdown文件中Ctrl&#43;B的作用</title>
-      <link>/articles/2016-the-role-of-ctrl-b-in-sublime-writing-markdown-files/</link>
+      <link>https://vimerzhao.top/articles/2016-the-role-of-ctrl-b-in-sublime-writing-markdown-files/</link>
       <pubDate>Wed, 14 Sep 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-the-role-of-ctrl-b-in-sublime-writing-markdown-files/</guid>
+      <guid>https://vimerzhao.top/articles/2016-the-role-of-ctrl-b-in-sublime-writing-markdown-files/</guid>
       <description>今天，手残，用markdown编辑是按了Ctrl+B，结果发现直接在同一文件夹目录下编译生成了html文件，之前都是Alt+m，可以直接预览，可是后来由于系统更新还是什么，Alt+m只会在用户目录（而</description>
     </item>
     <item>
       <title>GitBash上传代码不计入贡献的问题处理</title>
-      <link>/articles/2016-handling-the-problem-of-gitbash-uploading-code-not-being-counted-as-contribution/</link>
+      <link>https://vimerzhao.top/articles/2016-handling-the-problem-of-gitbash-uploading-code-not-being-counted-as-contribution/</link>
       <pubDate>Sun, 04 Sep 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-handling-the-problem-of-gitbash-uploading-code-not-being-counted-as-contribution/</guid>
+      <guid>https://vimerzhao.top/articles/2016-handling-the-problem-of-gitbash-uploading-code-not-being-counted-as-contribution/</guid>
       <description>发现最近写的代码，通过GitBash上传到github，但是格子确一个都没亮，今天通过一番检索解决了此问题，特做记录： 通过这篇文章找到了原因所在： GitHub 更新代码到底怎样才算贡献？ 通过这篇文章顺利完成了用户</description>
     </item>
     <item>
       <title>“此主机不支持64位客户机操作系统”问题记录</title>
-      <link>/articles/2016-this-host-does-not-support-64-bit-guest-operating-systems-problem-record/</link>
+      <link>https://vimerzhao.top/articles/2016-this-host-does-not-support-64-bit-guest-operating-systems-problem-record/</link>
       <pubDate>Fri, 12 Aug 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-this-host-does-not-support-64-bit-guest-operating-systems-problem-record/</guid>
+      <guid>https://vimerzhao.top/articles/2016-this-host-does-not-support-64-bit-guest-operating-systems-problem-record/</guid>
       <description>由于昨天把系统玩坏了，得重装虚拟机，可是在向导阶段阶段就出现了“此主机不支持64位客户机操作系统&amp;hellip;”的提示，于是网上查了一下解决方法：无非都是Enable VT之类，可是设置这些之后还是有</description>
     </item>
     <item>
       <title>快捷键的大一统-------开发工具使用总结</title>
-      <link>/articles/2016-unification-of-shortcut-keys-summary-on-the-use-of-development-tools/</link>
+      <link>https://vimerzhao.top/articles/2016-unification-of-shortcut-keys-summary-on-the-use-of-development-tools/</link>
       <pubDate>Tue, 09 Aug 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-unification-of-shortcut-keys-summary-on-the-use-of-development-tools/</guid>
+      <guid>https://vimerzhao.top/articles/2016-unification-of-shortcut-keys-summary-on-the-use-of-development-tools/</guid>
       <description>使用多个开发工具自后，会发现，每个开发工具的快捷键或多或少有些差异。但是幸好快捷键一般都是可以定制的。所以决定以Sublime为参照，来设置如Eclipse之类的IDE，当然了，不是全部修改，遇到一个</description>
     </item>
     <item>
       <title>Eclipse 代码自动补全配置方法</title>
-      <link>/articles/2016-eclipse-code-auto-completion-configuration-method/</link>
+      <link>https://vimerzhao.top/articles/2016-eclipse-code-auto-completion-configuration-method/</link>
       <pubDate>Tue, 26 Jul 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-eclipse-code-auto-completion-configuration-method/</guid>
+      <guid>https://vimerzhao.top/articles/2016-eclipse-code-auto-completion-configuration-method/</guid>
       <description>Eclipse默认只有在出现 “.”时才进行代码提示，更改方法为： 即把“.”改为“.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ”，表示输入任</description>
     </item>
     <item>
       <title>Linux下pdf阅读器推荐</title>
-      <link>/articles/2016-recommended-pdf-readers-under-linux/</link>
+      <link>https://vimerzhao.top/articles/2016-recommended-pdf-readers-under-linux/</link>
       <pubDate>Sat, 23 Jul 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-recommended-pdf-readers-under-linux/</guid>
+      <guid>https://vimerzhao.top/articles/2016-recommended-pdf-readers-under-linux/</guid>
       <description>由于需要在pdf文件上做标记，所以自带的文档查看器根本满足了需求，之前去网上查了查，Okular评价挺高，就安装了一个，确实能基本满足我的需求，但是 1.界面感觉还是不太友好，书签栏一直在那。 2.而且，</description>
     </item>
     <item>
       <title>Subime学习记录</title>
-      <link>/articles/2016-subime-learning-record/</link>
+      <link>https://vimerzhao.top/articles/2016-subime-learning-record/</link>
       <pubDate>Tue, 07 Jun 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-subime-learning-record/</guid>
+      <guid>https://vimerzhao.top/articles/2016-subime-learning-record/</guid>
       <description>一.快捷键 注：快捷键这种东西没有必要刻意去记，自己需要就去查查，经常用的自然熟了，关键是时刻保持提高效率的意识，才会主动去发现快捷键。 1.Ctrl + F:查找 2.F12：根据函数定位函数声明（定义）。 3.Alt+</description>
     </item>
     <item>
       <title>各操作系统系统快捷键（更新）</title>
-      <link>/articles/2016-system-shortcut-keys-for-each-operating-system-updated/</link>
+      <link>https://vimerzhao.top/articles/2016-system-shortcut-keys-for-each-operating-system-updated/</link>
       <pubDate>Fri, 15 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-system-shortcut-keys-for-each-operating-system-updated/</guid>
+      <guid>https://vimerzhao.top/articles/2016-system-shortcut-keys-for-each-operating-system-updated/</guid>
       <description>Windows 10 一、常用 二、奇淫技巧 1.Alt + Ctrl + 方向键：屏幕旋转至指定方向。 LinuxMint 17.3 一、常用 1.Ctrl + Alt +鼠标左键：以立方体形式拖动工作区间。（前提是配置了Compiz） 2.Ctrtl + Alt + 左右方向键 ： 切换工作区间。 3.Ctrl + Alt + 上方向键 ： 展示</description>
     </item>
     <item>
       <title>小记一次网络故障处理</title>
-      <link>/articles/2016-network-failure-troubleshooting-note/</link>
+      <link>https://vimerzhao.top/articles/2016-network-failure-troubleshooting-note/</link>
       <pubDate>Mon, 29 Feb 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-network-failure-troubleshooting-note/</guid>
+      <guid>https://vimerzhao.top/articles/2016-network-failure-troubleshooting-note/</guid>
       <description>write by ai 原文：CSDN 链接 `n回家换了一台新电脑，但是回学校后发现连宿舍的网线之后，总是显示无法识别的网络，经过一番排查之后发现是在之前申请开通网络服务的时候，是用之前的电脑，所以账号上还是之前的mac</description>
     </item>
     <item>
       <title>virtualbox虚拟机无法上网的一种情况</title>
-      <link>/articles/2016-virtualbox-vm-cannot-access-network/</link>
+      <link>https://vimerzhao.top/articles/2016-virtualbox-vm-cannot-access-network/</link>
       <pubDate>Sun, 21 Feb 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-virtualbox-vm-cannot-access-network/</guid>
+      <guid>https://vimerzhao.top/articles/2016-virtualbox-vm-cannot-access-network/</guid>
       <description>write by ai 原文：CSDN 链接 `n今天用XP虚拟机突然不能上网了，但是主机能上，google了半下午都没找到解决方案，最后在知乎上一个点赞为0的回答上找到了灵感，原来是硬件的问题，只需要更改控制芯片就可以啦</description>
     </item>
     <item>
       <title>virtualbox上安装Mac OS Mavericks</title>
-      <link>/articles/2016-installing-mac-os-mavericks-on-virtualbox/</link>
+      <link>https://vimerzhao.top/articles/2016-installing-mac-os-mavericks-on-virtualbox/</link>
       <pubDate>Sun, 14 Feb 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-installing-mac-os-mavericks-on-virtualbox/</guid>
+      <guid>https://vimerzhao.top/articles/2016-installing-mac-os-mavericks-on-virtualbox/</guid>
       <description>write by ai 原文：CSDN 链接 `n之前安装了virtualbox后，顺利在上面搭建了Ubuntu、Windows XP操作系统。而Mac OS则因为诸多原因，比较难以安装（比如镜像不好找、安装步骤复杂、设计硬件</description>
     </item>
     <item>
       <title>QtCreator生成美观的可执行文件</title>
-      <link>/articles/2016-qtcreator-packaging-executable/</link>
+      <link>https://vimerzhao.top/articles/2016-qtcreator-packaging-executable/</link>
       <pubDate>Thu, 11 Feb 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-qtcreator-packaging-executable/</guid>
+      <guid>https://vimerzhao.top/articles/2016-qtcreator-packaging-executable/</guid>
       <description>write by ai 原文：CSDN 链接 `n最近，在极客学院跟着视频教程学习制作了一格简单的计算器，在此做一些加工，使其可以以一个美观的exe文件运行。包括更改图标以及动态编译。 以下是具体步骤： 1、下载一个好看的IC</description>
     </item>
     <item>
       <title>记一次失败的Visual Stdio安装经历</title>
-      <link>/articles/2016-failed-visual-studio-installation/</link>
+      <link>https://vimerzhao.top/articles/2016-failed-visual-studio-installation/</link>
       <pubDate>Thu, 04 Feb 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-failed-visual-studio-installation/</guid>
+      <guid>https://vimerzhao.top/articles/2016-failed-visual-studio-installation/</guid>
       <description>write by ai 原文：CSDN 链接 `n121寒假打算从C++开始认真补一补编程，加之又新换了一台电脑，于是乎一个想法油然而生，开始学习VS;因为打算学习多种语言和一些应用开发，而用VC++6.0这种所谓经典的I</description>
     </item>
     <item>
       <title>win10是使用优化两则</title>
-      <link>/articles/2016-two-windows-10-usage-optimizations/</link>
+      <link>https://vimerzhao.top/articles/2016-two-windows-10-usage-optimizations/</link>
       <pubDate>Mon, 01 Feb 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-two-windows-10-usage-optimizations/</guid>
+      <guid>https://vimerzhao.top/articles/2016-two-windows-10-usage-optimizations/</guid>
       <description>write by ai 原文：CSDN 链接 `n1.如何去除回收站图标 桌面&amp;mdash;&amp;mdash;-&amp;gt;右键&amp;mdash;&amp;mdash;&amp;gt;个性化&amp;mdash;&amp;mdash;&amp;gt;主题&amp;mdash;&amp;mda</description>
     </item>
     <item>
       <title>《完全用Linux工作》作者：王垠</title>
-      <link>/articles/2016-working-completely-with-linux-author-wang-yin/</link>
+      <link>https://vimerzhao.top/articles/2016-working-completely-with-linux-author-wang-yin/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-working-completely-with-linux-author-wang-yin/</guid>
+      <guid>https://vimerzhao.top/articles/2016-working-completely-with-linux-author-wang-yin/</guid>
       <description>注：本文是清华“牛仔”王垠的“成名作”，在网上引起很大的争议。对他崇拜地五体投地者有，对他嗤之以鼻者也有，总之成了一年多以前Linux 爱好者的圈子里的一个很有意思的现象。之后他对这篇文章进行了很大的修</description>
     </item>
     <item>
       <title>Windows键盘映射注册表备忘</title>
-      <link>/articles/2016-windows-keymap-registry-memo/</link>
+      <link>https://vimerzhao.top/articles/2016-windows-keymap-registry-memo/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-windows-keymap-registry-memo/</guid>
+      <guid>https://vimerzhao.top/articles/2016-windows-keymap-registry-memo/</guid>
       <description>http://xyztony1985.blog.163.com/blog/static/3611782011752420104/ Windows Registry Editor Version 5.00 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout] &amp;#34;Scancode Map&amp;#34;=hex: 00,00,00,00, 00,00,00,00, 04,00,00,00, 3A,00,1D,00, 1D,00,01,00, 01,00,3A,00, 00,00,00,00</description>
     </item>
     <item>
       <title>Windows装机必备软件列表</title>
-      <link>/articles/2016-list-of-essential-software-for-windows-installation/</link>
+      <link>https://vimerzhao.top/articles/2016-list-of-essential-software-for-windows-installation/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-list-of-essential-software-for-windows-installation/</guid>
+      <guid>https://vimerzhao.top/articles/2016-list-of-essential-software-for-windows-installation/</guid>
       <description>经常装系统，列个List，以后装完之后安装软件直接参照使用!windows版： 输入法： 搜狗输入法（由于长期使用导致此输入法十分熟悉我的输入习惯，以无法自拔）。支持Linux、Windows（太穷还没碰</description>
     </item>
   </channel>

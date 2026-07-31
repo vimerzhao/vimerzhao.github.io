@@ -2,101 +2,101 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工程实践 on 赵裕的博客</title>
-    <link>/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/</link>
+    <link>https://vimerzhao.top/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/</link>
     <description>Recent content in 工程实践 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
-    <atom:link href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>谈小步快跑</title>
-      <link>/articles/thinking-on-sprint/</link>
+      <link>https://vimerzhao.top/articles/thinking-on-sprint/</link>
       <pubDate>Wed, 18 Nov 2020 19:45:41 +0800</pubDate>
-      <guid>/articles/thinking-on-sprint/</guid>
+      <guid>https://vimerzhao.top/articles/thinking-on-sprint/</guid>
       <description>突然觉得需要好好理解一下小步快跑的含义，因为最近的工作就是一个需要小步快跑的工作。 经过一段时间的摸索之后，我觉得当前工作可以分为四个阶段： 接入，踩一遍可能遇到的坑，积累开发经验，证明性能和跨平台的可行</description>
     </item>
     <item>
       <title>Git工程化最佳实践</title>
-      <link>/articles/git-practice/</link>
+      <link>https://vimerzhao.top/articles/git-practice/</link>
       <pubDate>Fri, 13 Dec 2019 12:32:25 +0800</pubDate>
-      <guid>/articles/git-practice/</guid>
+      <guid>https://vimerzhao.top/articles/git-practice/</guid>
       <description>本文导读 本文对应的 git-standardize 项目地址 https://github.com/vimerzhao/git-standardize 问题背景 大部分程序员对于Git的理解还停留在 git add . git commit -m &amp;quot;update&amp;quot; git pull git push 的阶段，但这在实际项目开发中是远远不够的。 + 举一个简单的例子，现在我们需要过滤所有修复bug的提交，该怎</description>
     </item>
     <item>
       <title>【小程序&#43;云开发】实战：一天搭建小型论坛</title>
-      <link>/articles/xiao-cheng-xu-yun-kai-fa-shi-zhan-yi-tian-da-jian-xiao-xing-lun-tan/</link>
+      <link>https://vimerzhao.top/articles/xiao-cheng-xu-yun-kai-fa-shi-zhan-yi-tian-da-jian-xiao-xing-lun-tan/</link>
       <pubDate>Sun, 25 Nov 2018 00:00:00 +0000</pubDate>
-      <guid>/articles/xiao-cheng-xu-yun-kai-fa-shi-zhan-yi-tian-da-jian-xiao-xing-lun-tan/</guid>
+      <guid>https://vimerzhao.top/articles/xiao-cheng-xu-yun-kai-fa-shi-zhan-yi-tian-da-jian-xiao-xing-lun-tan/</guid>
       <description>【小程序+云开发】实战：一天搭建小型论坛 笔者最近涉猎了小程序相关的知识，于是利用周末时间开发了一款类似于同事的小程序，深度体验了小程序云开发模式提供的云函数、数据库、存储三大能力。关于云开发，可参考文</description>
     </item>
     <item>
       <title>bat批处理简介：Windows自动化之道</title>
-      <link>/articles/batpi-chu-li-jian-jie-windowszi-dong-hua-zhi-dao/</link>
+      <link>https://vimerzhao.top/articles/batpi-chu-li-jian-jie-windowszi-dong-hua-zhi-dao/</link>
       <pubDate>Sun, 09 Sep 2018 00:00:00 +0000</pubDate>
-      <guid>/articles/batpi-chu-li-jian-jie-windowszi-dong-hua-zhi-dao/</guid>
+      <guid>https://vimerzhao.top/articles/batpi-chu-li-jian-jie-windowszi-dong-hua-zhi-dao/</guid>
       <description>bat批处理简介：Windows自动化之道 重复的工作交给代码。 导语 最近在工作中遇到一些纯粹重复的工作，最终都通过脚本方式达到了自动化，大大提高效率。比如之前每次发布zip包都需要手动编译lua文件、替</description>
     </item>
     <item>
       <title>Android RSS阅读器开发记录</title>
-      <link>/articles/android-rssyue-du-qi-kai-fa-ji-lu/</link>
+      <link>https://vimerzhao.top/articles/android-rssyue-du-qi-kai-fa-ji-lu/</link>
       <pubDate>Sat, 18 Nov 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/android-rssyue-du-qi-kai-fa-ji-lu/</guid>
+      <guid>https://vimerzhao.top/articles/android-rssyue-du-qi-kai-fa-ji-lu/</guid>
       <description>Android RSS阅读器开发记录 本文的时间跨度比较长，全程记录了我完成一个RSS阅读器的经历，包括踩过的坑以及自己的一些思考。 背景介绍 大概大一的时候我就见过RSS，但一直没明白这东西是干嘛的。很长一段时间自己都</description>
     </item>
     <item>
       <title>&#39;AI实战:搭建客服机器人&#39;</title>
-      <link>/articles/aishi-zhan-da-jian-ke-fu-ji-qi-ren/</link>
+      <link>https://vimerzhao.top/articles/aishi-zhan-da-jian-ke-fu-ji-qi-ren/</link>
       <pubDate>Sat, 29 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/aishi-zhan-da-jian-ke-fu-ji-qi-ren/</guid>
+      <guid>https://vimerzhao.top/articles/aishi-zhan-da-jian-ke-fu-ji-qi-ren/</guid>
       <description>&amp;lsquo;AI实战:搭建客服机器人&amp;rsquo; 本文简要介绍了但前客服机器人的发展情况，并实际开发了一个Demo作为演示。 客服机器人 随着科技发展，廉价劳动力正在不断被淘汰。客服机器人就是这样一个例</description>
     </item>
     <item>
       <title>掌上大工第二版（一）：竞品分析与草图</title>
-      <link>/articles/zhang-shang-da-gong-di-er-ban-yi-jing-pin-fen-xi-yu-cao-tu/</link>
+      <link>https://vimerzhao.top/articles/zhang-shang-da-gong-di-er-ban-yi-jing-pin-fen-xi-yu-cao-tu/</link>
       <pubDate>Tue, 25 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/zhang-shang-da-gong-di-er-ban-yi-jing-pin-fen-xi-yu-cao-tu/</guid>
+      <guid>https://vimerzhao.top/articles/zhang-shang-da-gong-di-er-ban-yi-jing-pin-fen-xi-yu-cao-tu/</guid>
       <description>掌上大工第二版（一）：竞品分析与草图 对于掌上大工这个APP最近的思考以及重写的规划。 为何重写 掌上大工这个APP是我在学习Android三个月之后的第一个实战项目，在过去一段时间也算帮了我不少忙，我首先</description>
     </item>
     <item>
       <title>&#39;Python爬虫实战:妹子图&#39;</title>
-      <link>/articles/pythonpa-chong-shi-zhan-mei-zi-tu/</link>
+      <link>https://vimerzhao.top/articles/pythonpa-chong-shi-zhan-mei-zi-tu/</link>
       <pubDate>Sun, 02 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/pythonpa-chong-shi-zhan-mei-zi-tu/</guid>
+      <guid>https://vimerzhao.top/articles/pythonpa-chong-shi-zhan-mei-zi-tu/</guid>
       <description>&amp;lsquo;Python爬虫实战:妹子图&amp;rsquo; 本文记录了一些爬虫的基础知识，并实现了一个50行左右的爬虫脚本。 前言 看了一些Python的语法后打算做一个小项目练手，打发一下时间。爬虫比较容易</description>
     </item>
     <item>
       <title>纪念一个：博客全自动管理</title>
-      <link>/articles/ji-nian-yi-ge-bo-ke-quan-zi-dong-guan-li/</link>
+      <link>https://vimerzhao.top/articles/ji-nian-yi-ge-bo-ke-quan-zi-dong-guan-li/</link>
       <pubDate>Sat, 29 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/ji-nian-yi-ge-bo-ke-quan-zi-dong-guan-li/</guid>
+      <guid>https://vimerzhao.top/articles/ji-nian-yi-ge-bo-ke-quan-zi-dong-guan-li/</guid>
       <description>纪念一个：博客全自动管理 本文记录了我的博客使用进阶之路。 首先感慨一下自己两年以来使用博客的经历。最初，我在CSDN上注册了帐号，并开始写一些中二的技术博客： 后来又转战博客园，因为CSDN的强行植入广告</description>
     </item>
     <item>
       <title>《Android项目实战－－手机安全卫士》读后感</title>
-      <link>/articles/2017-thoughts-after-reading-android-project-practice-mobile-security-guard/</link>
+      <link>https://vimerzhao.top/articles/2017-thoughts-after-reading-android-project-practice-mobile-security-guard/</link>
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-thoughts-after-reading-android-project-practice-mobile-security-guard/</guid>
+      <guid>https://vimerzhao.top/articles/2017-thoughts-after-reading-android-project-practice-mobile-security-guard/</guid>
       <description>上学期在学校图书馆看到此书，觉得比较贴近实践，于是寒假研究了一番，也算是体会了一把社会培训机构的模式。 由于时间关系，最后两章还没弄完，但感觉每章节的流程相似，加之马上要回学校了，所以打算在家的最后一天</description>
     </item>
     <item>
       <title>控制台版2048 version_1.0总结</title>
-      <link>/articles/2016-console-2048-version-1-summary/</link>
+      <link>https://vimerzhao.top/articles/2016-console-2048-version-1-summary/</link>
       <pubDate>Wed, 23 Mar 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-console-2048-version-1-summary/</guid>
+      <guid>https://vimerzhao.top/articles/2016-console-2048-version-1-summary/</guid>
       <description>write by ai 原文：CSDN 链接 `n这两天大概花了3~4个钟头写了一个简单的控制台版的2048。之前简单的思考过这个游戏，感觉实现逻辑比较简单，适合练手，所以简单构思一下就开始写了。结果真是惨不忍睹。因为总有</description>
     </item>
     <item>
       <title>win10是使用优化两则</title>
-      <link>/articles/2016-two-windows-10-usage-optimizations/</link>
+      <link>https://vimerzhao.top/articles/2016-two-windows-10-usage-optimizations/</link>
       <pubDate>Mon, 01 Feb 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-two-windows-10-usage-optimizations/</guid>
+      <guid>https://vimerzhao.top/articles/2016-two-windows-10-usage-optimizations/</guid>
       <description>write by ai 原文：CSDN 链接 `n1.如何去除回收站图标 桌面&amp;mdash;&amp;mdash;-&amp;gt;右键&amp;mdash;&amp;mdash;&amp;gt;个性化&amp;mdash;&amp;mdash;&amp;gt;主题&amp;mdash;&amp;mda</description>
     </item>
     <item>
       <title>用LabVIEW和Arduino开发一个温度采集系统</title>
-      <link>/articles/2015-labview-arduino-temperature-acquisition-system/</link>
+      <link>https://vimerzhao.top/articles/2015-labview-arduino-temperature-acquisition-system/</link>
       <pubDate>Thu, 15 Oct 2015 00:00:00 +0000</pubDate>
-      <guid>/articles/2015-labview-arduino-temperature-acquisition-system/</guid>
+      <guid>https://vimerzhao.top/articles/2015-labview-arduino-temperature-acquisition-system/</guid>
       <description>write by ai 原文：CSDN 链接 `n### 1背景 其实满打满算，今天是自己接触LabVIEW的第四天，只是是由于国庆节之前报名参加了一个比赛，国庆节期间又没有引起足够的重视，所以当比赛只剩下四天的时候才开始研究LabV</description>
     </item>
   </channel>

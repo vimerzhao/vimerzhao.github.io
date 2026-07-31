@@ -2,304 +2,304 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 赵裕的博客</title>
-    <link>/tags/</link>
+    <link>https://vimerzhao.top/tags/</link>
     <description>Recent content in Tags on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
-    <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bug</title>
-      <link>/tags/bug/</link>
+      <link>https://vimerzhao.top/tags/bug/</link>
       <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>/tags/bug/</guid>
+      <guid>https://vimerzhao.top/tags/bug/</guid>
       <description></description>
     </item>
     <item>
       <title>Chromium</title>
-      <link>/tags/chromium/</link>
+      <link>https://vimerzhao.top/tags/chromium/</link>
       <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>/tags/chromium/</guid>
+      <guid>https://vimerzhao.top/tags/chromium/</guid>
       <description></description>
     </item>
     <item>
       <title>Git</title>
-      <link>/tags/git/</link>
+      <link>https://vimerzhao.top/tags/git/</link>
       <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>/tags/git/</guid>
+      <guid>https://vimerzhao.top/tags/git/</guid>
       <description></description>
     </item>
     <item>
       <title>人工智能</title>
-      <link>/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</link>
+      <link>https://vimerzhao.top/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</guid>
+      <guid>https://vimerzhao.top/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</guid>
       <description></description>
     </item>
     <item>
       <title>年度总结</title>
-      <link>/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</link>
+      <link>https://vimerzhao.top/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</link>
       <pubDate>Tue, 03 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</guid>
+      <guid>https://vimerzhao.top/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</guid>
       <description></description>
     </item>
     <item>
       <title>WebKit</title>
-      <link>/tags/webkit/</link>
+      <link>https://vimerzhao.top/tags/webkit/</link>
       <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>/tags/webkit/</guid>
+      <guid>https://vimerzhao.top/tags/webkit/</guid>
       <description></description>
     </item>
     <item>
       <title>性能优化</title>
-      <link>/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</link>
+      <link>https://vimerzhao.top/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</link>
       <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</guid>
+      <guid>https://vimerzhao.top/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</guid>
       <description></description>
     </item>
     <item>
       <title>Android</title>
-      <link>/tags/android/</link>
+      <link>https://vimerzhao.top/tags/android/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>/tags/android/</guid>
+      <guid>https://vimerzhao.top/tags/android/</guid>
       <description></description>
     </item>
     <item>
       <title>Linux</title>
-      <link>/tags/linux/</link>
+      <link>https://vimerzhao.top/tags/linux/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>/tags/linux/</guid>
+      <guid>https://vimerzhao.top/tags/linux/</guid>
       <description></description>
     </item>
     <item>
       <title>构建</title>
-      <link>/tags/%E6%9E%84%E5%BB%BA/</link>
+      <link>https://vimerzhao.top/tags/%E6%9E%84%E5%BB%BA/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>/tags/%E6%9E%84%E5%BB%BA/</guid>
+      <guid>https://vimerzhao.top/tags/%E6%9E%84%E5%BB%BA/</guid>
       <description></description>
     </item>
     <item>
       <title>CMake</title>
-      <link>/tags/cmake/</link>
+      <link>https://vimerzhao.top/tags/cmake/</link>
       <pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/tags/cmake/</guid>
+      <guid>https://vimerzhao.top/tags/cmake/</guid>
       <description></description>
     </item>
     <item>
       <title>Windows</title>
-      <link>/tags/windows/</link>
+      <link>https://vimerzhao.top/tags/windows/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/tags/windows/</guid>
+      <guid>https://vimerzhao.top/tags/windows/</guid>
       <description></description>
     </item>
     <item>
       <title>网络</title>
-      <link>/tags/%E7%BD%91%E7%BB%9C/</link>
+      <link>https://vimerzhao.top/tags/%E7%BD%91%E7%BB%9C/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/tags/%E7%BD%91%E7%BB%9C/</guid>
+      <guid>https://vimerzhao.top/tags/%E7%BD%91%E7%BB%9C/</guid>
       <description></description>
     </item>
     <item>
       <title>调试</title>
-      <link>/tags/%E8%B0%83%E8%AF%95/</link>
+      <link>https://vimerzhao.top/tags/%E8%B0%83%E8%AF%95/</link>
       <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>/tags/%E8%B0%83%E8%AF%95/</guid>
+      <guid>https://vimerzhao.top/tags/%E8%B0%83%E8%AF%95/</guid>
       <description></description>
     </item>
     <item>
       <title>Skia</title>
-      <link>/tags/skia/</link>
+      <link>https://vimerzhao.top/tags/skia/</link>
       <pubDate>Thu, 19 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>/tags/skia/</guid>
+      <guid>https://vimerzhao.top/tags/skia/</guid>
       <description></description>
     </item>
     <item>
       <title>C&#43;&#43;</title>
-      <link>/tags/c&#43;&#43;/</link>
+      <link>https://vimerzhao.top/tags/c&#43;&#43;/</link>
       <pubDate>Mon, 01 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>/tags/c&#43;&#43;/</guid>
+      <guid>https://vimerzhao.top/tags/c&#43;&#43;/</guid>
       <description></description>
     </item>
     <item>
       <title>Vcpkg</title>
-      <link>/tags/vcpkg/</link>
+      <link>https://vimerzhao.top/tags/vcpkg/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>/tags/vcpkg/</guid>
+      <guid>https://vimerzhao.top/tags/vcpkg/</guid>
       <description></description>
     </item>
     <item>
       <title>VSCode</title>
-      <link>/tags/vscode/</link>
+      <link>https://vimerzhao.top/tags/vscode/</link>
       <pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>/tags/vscode/</guid>
+      <guid>https://vimerzhao.top/tags/vscode/</guid>
       <description></description>
     </item>
     <item>
       <title>Gradle</title>
-      <link>/tags/gradle/</link>
+      <link>https://vimerzhao.top/tags/gradle/</link>
       <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>/tags/gradle/</guid>
+      <guid>https://vimerzhao.top/tags/gradle/</guid>
       <description></description>
     </item>
     <item>
       <title>Vim</title>
-      <link>/tags/vim/</link>
+      <link>https://vimerzhao.top/tags/vim/</link>
       <pubDate>Mon, 23 Oct 2023 00:00:00 +0000</pubDate>
-      <guid>/tags/vim/</guid>
+      <guid>https://vimerzhao.top/tags/vim/</guid>
       <description></description>
     </item>
     <item>
       <title>写作与表达</title>
-      <link>/tags/%E5%86%99%E4%BD%9C%E4%B8%8E%E8%A1%A8%E8%BE%BE/</link>
+      <link>https://vimerzhao.top/tags/%E5%86%99%E4%BD%9C%E4%B8%8E%E8%A1%A8%E8%BE%BE/</link>
       <pubDate>Sun, 11 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>/tags/%E5%86%99%E4%BD%9C%E4%B8%8E%E8%A1%A8%E8%BE%BE/</guid>
+      <guid>https://vimerzhao.top/tags/%E5%86%99%E4%BD%9C%E4%B8%8E%E8%A1%A8%E8%BE%BE/</guid>
       <description></description>
     </item>
     <item>
       <title>MacOS</title>
-      <link>/tags/macos/</link>
+      <link>https://vimerzhao.top/tags/macos/</link>
       <pubDate>Fri, 07 Apr 2023 00:00:00 +0000</pubDate>
-      <guid>/tags/macos/</guid>
+      <guid>https://vimerzhao.top/tags/macos/</guid>
       <description></description>
     </item>
     <item>
       <title>职业发展</title>
-      <link>/tags/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/</link>
+      <link>https://vimerzhao.top/tags/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/</link>
       <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
-      <guid>/tags/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/</guid>
+      <guid>https://vimerzhao.top/tags/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/</guid>
       <description></description>
     </item>
     <item>
       <title>随笔</title>
-      <link>/tags/%E9%9A%8F%E7%AC%94/</link>
+      <link>https://vimerzhao.top/tags/%E9%9A%8F%E7%AC%94/</link>
       <pubDate>Sun, 08 May 2022 00:00:00 +0000</pubDate>
-      <guid>/tags/%E9%9A%8F%E7%AC%94/</guid>
+      <guid>https://vimerzhao.top/tags/%E9%9A%8F%E7%AC%94/</guid>
       <description></description>
     </item>
     <item>
       <title>读书</title>
-      <link>/tags/%E8%AF%BB%E4%B9%A6/</link>
+      <link>https://vimerzhao.top/tags/%E8%AF%BB%E4%B9%A6/</link>
       <pubDate>Wed, 04 May 2022 00:00:00 +0000</pubDate>
-      <guid>/tags/%E8%AF%BB%E4%B9%A6/</guid>
+      <guid>https://vimerzhao.top/tags/%E8%AF%BB%E4%B9%A6/</guid>
       <description></description>
     </item>
     <item>
       <title>数据结构</title>
-      <link>/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+      <link>https://vimerzhao.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
       <pubDate>Sun, 10 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+      <guid>https://vimerzhao.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
       <description></description>
     </item>
     <item>
       <title>算法</title>
-      <link>/tags/%E7%AE%97%E6%B3%95/</link>
+      <link>https://vimerzhao.top/tags/%E7%AE%97%E6%B3%95/</link>
       <pubDate>Sun, 10 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>/tags/%E7%AE%97%E6%B3%95/</guid>
+      <guid>https://vimerzhao.top/tags/%E7%AE%97%E6%B3%95/</guid>
       <description></description>
     </item>
     <item>
       <title>跨平台</title>
-      <link>/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/</link>
+      <link>https://vimerzhao.top/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/</link>
       <pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/</guid>
+      <guid>https://vimerzhao.top/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/</guid>
       <description></description>
     </item>
     <item>
       <title>源码分析</title>
-      <link>/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</link>
+      <link>https://vimerzhao.top/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</link>
       <pubDate>Sun, 22 Nov 2020 12:23:18 +0800</pubDate>
-      <guid>/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</guid>
+      <guid>https://vimerzhao.top/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</guid>
       <description></description>
     </item>
     <item>
       <title>工程实践</title>
-      <link>/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/</link>
+      <link>https://vimerzhao.top/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/</link>
       <pubDate>Wed, 18 Nov 2020 19:45:41 +0800</pubDate>
-      <guid>/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/</guid>
+      <guid>https://vimerzhao.top/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/</guid>
       <description></description>
     </item>
     <item>
       <title>VirtualBox</title>
-      <link>/tags/virtualbox/</link>
+      <link>https://vimerzhao.top/tags/virtualbox/</link>
       <pubDate>Mon, 20 Apr 2020 10:20:21 +0800</pubDate>
-      <guid>/tags/virtualbox/</guid>
+      <guid>https://vimerzhao.top/tags/virtualbox/</guid>
       <description></description>
     </item>
     <item>
       <title>数据分析</title>
-      <link>/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</link>
+      <link>https://vimerzhao.top/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</link>
       <pubDate>Tue, 14 Apr 2020 12:33:16 +0800</pubDate>
-      <guid>/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</guid>
+      <guid>https://vimerzhao.top/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</guid>
       <description></description>
     </item>
     <item>
       <title>健康</title>
-      <link>/tags/%E5%81%A5%E5%BA%B7/</link>
+      <link>https://vimerzhao.top/tags/%E5%81%A5%E5%BA%B7/</link>
       <pubDate>Sun, 29 Mar 2020 09:31:36 +0800</pubDate>
-      <guid>/tags/%E5%81%A5%E5%BA%B7/</guid>
+      <guid>https://vimerzhao.top/tags/%E5%81%A5%E5%BA%B7/</guid>
       <description></description>
     </item>
     <item>
       <title>Java</title>
-      <link>/tags/java/</link>
+      <link>https://vimerzhao.top/tags/java/</link>
       <pubDate>Tue, 24 Mar 2020 09:55:46 +0800</pubDate>
-      <guid>/tags/java/</guid>
+      <guid>https://vimerzhao.top/tags/java/</guid>
       <description></description>
     </item>
     <item>
       <title>Flutter</title>
-      <link>/tags/flutter/</link>
+      <link>https://vimerzhao.top/tags/flutter/</link>
       <pubDate>Wed, 06 Nov 2019 12:21:29 +0800</pubDate>
-      <guid>/tags/flutter/</guid>
+      <guid>https://vimerzhao.top/tags/flutter/</guid>
       <description></description>
     </item>
     <item>
       <title>面试</title>
-      <link>/tags/%E9%9D%A2%E8%AF%95/</link>
+      <link>https://vimerzhao.top/tags/%E9%9D%A2%E8%AF%95/</link>
       <pubDate>Sat, 16 Sep 2017 00:00:00 +0000</pubDate>
-      <guid>/tags/%E9%9D%A2%E8%AF%95/</guid>
+      <guid>https://vimerzhao.top/tags/%E9%9D%A2%E8%AF%95/</guid>
       <description></description>
     </item>
     <item>
       <title>热修复</title>
-      <link>/tags/%E7%83%AD%E4%BF%AE%E5%A4%8D/</link>
+      <link>https://vimerzhao.top/tags/%E7%83%AD%E4%BF%AE%E5%A4%8D/</link>
       <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
-      <guid>/tags/%E7%83%AD%E4%BF%AE%E5%A4%8D/</guid>
+      <guid>https://vimerzhao.top/tags/%E7%83%AD%E4%BF%AE%E5%A4%8D/</guid>
       <description></description>
     </item>
     <item>
       <title>Python</title>
-      <link>/tags/python/</link>
+      <link>https://vimerzhao.top/tags/python/</link>
       <pubDate>Sun, 02 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>/tags/python/</guid>
+      <guid>https://vimerzhao.top/tags/python/</guid>
       <description></description>
     </item>
     <item>
       <title>C</title>
-      <link>/tags/c/</link>
+      <link>https://vimerzhao.top/tags/c/</link>
       <pubDate>Thu, 27 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>/tags/c/</guid>
+      <guid>https://vimerzhao.top/tags/c/</guid>
       <description></description>
     </item>
     <item>
       <title>Lisp</title>
-      <link>/tags/lisp/</link>
+      <link>https://vimerzhao.top/tags/lisp/</link>
       <pubDate>Sat, 08 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>/tags/lisp/</guid>
+      <guid>https://vimerzhao.top/tags/lisp/</guid>
       <description></description>
     </item>
     <item>
       <title>JavaScript</title>
-      <link>/tags/javascript/</link>
+      <link>https://vimerzhao.top/tags/javascript/</link>
       <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
-      <guid>/tags/javascript/</guid>
+      <guid>https://vimerzhao.top/tags/javascript/</guid>
       <description></description>
     </item>
     <item>
       <title>MATLAB</title>
-      <link>/tags/matlab/</link>
+      <link>https://vimerzhao.top/tags/matlab/</link>
       <pubDate>Thu, 08 Sep 2016 00:00:00 +0000</pubDate>
-      <guid>/tags/matlab/</guid>
+      <guid>https://vimerzhao.top/tags/matlab/</guid>
       <description></description>
     </item>
   </channel>

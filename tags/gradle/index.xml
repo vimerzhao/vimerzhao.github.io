@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Gradle on 赵裕的博客</title>
-    <link>/tags/gradle/</link>
+    <link>https://vimerzhao.top/tags/gradle/</link>
     <description>Recent content in Gradle on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
-    <atom:link href="/tags/gradle/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/tags/gradle/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Android Gradle使用自定义的CMake</title>
-      <link>/articles/custom-cmake-in-android-gradle/</link>
+      <link>https://vimerzhao.top/articles/custom-cmake-in-android-gradle/</link>
       <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>/articles/custom-cmake-in-android-gradle/</guid>
+      <guid>https://vimerzhao.top/articles/custom-cmake-in-android-gradle/</guid>
       <description>背景 最近重构项目的CMake后，开始了Android平台的适配，踩了些坑，简单记录下。 Cmake版本过低 test 重构后的CMake使用了一些高版本的特性，比如： CMP0135: New in version 3.24. -&amp;gt; https://cmake.org/cmake/help/latest/policy/CMP0135.html FILE_SET &amp;lt;set-name&amp;gt;: New in version 3.23 -&amp;gt; https://cmake.org/cmake/help/latest/command/install.html 但Android</description>
     </item>
   </channel>

@@ -6,11 +6,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>POJ3258 River Hopscotch - 赵裕的博客</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="">
+	<meta name="description" content="地址 别人的代码，自己边界总是控制不好，还不知道哪里错了！思维！这种问题代码越简洁反而越不容易错吧。。 1 #include&lt;stdio.h&gt; 2 #include&lt;algorithm&gt; 3 typedef long long ll; 4 using namespace std; 5 ll …">
 		<meta property="og:title" content="POJ3258 River Hopscotch" />
 <meta property="og:description" content="地址 别人的代码，自己边界总是控制不好，还不知道哪里错了！思维！这种问题代码越简洁反而越不容易错吧。。 1 #include&lt;stdio.h&gt; 2 #include&lt;algorithm&gt; 3 typedef long long ll; 4 using namespace std; 5 ll n,m,L,a[100010]; 6 bool bi(ll x){ 7 ll i,cnt=0,now=0; 8 for(i=1;i&lt;=n;i&#43;&#43;){ 9 if(a[i]-a[now]&lt;=x)cnt&#43;&#43;; 10 else now=i; 11 } 12 if(L-a[now]&lt;x)return 0; 13 return cnt&lt;=m; 14 } 15 int main(){ 16 ll i,l,r,mi; 17 while(~scanf(&#34;%lld%lld%lld&#34;,&amp;L,&amp;n,&amp;m)){ 18 l=0;r=L;" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/articles/2016-poj3258-river-hopscotch/" /><meta property="article:section" content="articles" />
+<meta property="og:url" content="https://vimerzhao.top/articles/2016-poj3258-river-hopscotch/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2016-08-13T00:00:00+00:00" />
 <meta property="article:modified_time" content="2026-07-30T15:32:42+08:00" />
 
@@ -69,16 +69,9 @@
 			</a>
 		</li>
 		<li class="menu__item">
-			<a class="menu__link" href="/talk-archive/">
+			<a class="menu__link" href="/sharing/">
 				
-				<span class="menu__text">演讲</span>
-				
-			</a>
-		</li>
-		<li class="menu__item">
-			<a class="menu__link" href="/courses-archive/">
-				
-				<span class="menu__text">课程</span>
+				<span class="menu__text">分享</span>
 				
 			</a>
 		</li>
@@ -223,7 +216,7 @@
 			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="/">
+		<input type="hidden" name="sitesearch" value="https://vimerzhao.top/">
 	</form>
 </div>
 <div class="widget-recent widget">

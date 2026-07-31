@@ -2,66 +2,66 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>数据分析 on 赵裕的博客</title>
-    <link>/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</link>
+    <link>https://vimerzhao.top/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</link>
     <description>Recent content in 数据分析 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
-    <atom:link href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>代码相似性检测工具</title>
-      <link>/articles/software-similarity-tester/</link>
+      <link>https://vimerzhao.top/articles/software-similarity-tester/</link>
       <pubDate>Tue, 14 Apr 2020 12:33:16 +0800</pubDate>
-      <guid>/articles/software-similarity-tester/</guid>
+      <guid>https://vimerzhao.top/articles/software-similarity-tester/</guid>
       <description>背景 最近由于工作需要，想找一个能够检查代码相似性的工具。这种工具主要有两个应用： 代码自身的冗余检查 查重，例如检查学生的编程作业是否有抄袭 工具 最后找到了两个工具sim和moss，具体实现算法还没有研究，</description>
     </item>
     <item>
       <title>B站2月份创作者分析</title>
-      <link>/articles/bilibili-report-2020-02/</link>
+      <link>https://vimerzhao.top/articles/bilibili-report-2020-02/</link>
       <pubDate>Sun, 01 Mar 2020 19:57:34 +0800</pubDate>
-      <guid>/articles/bilibili-report-2020-02/</guid>
+      <guid>https://vimerzhao.top/articles/bilibili-report-2020-02/</guid>
       <description>Welcome Star and Issues: vimerzhao/BilibiliReport 各区投稿比例 前三： 游戏 生活 影视 头部区域细分比例 Top1000视频分布 稿件时长分布 每日投稿趋势 24小时投稿分布 结论 超过60%的创作发生在游戏区和生活区 播放最多的是代表视听的音乐区和娱乐区 但是收</description>
     </item>
     <item>
       <title>研究|2019鬼畜区热点事件分析</title>
-      <link>/articles/2019-vichiku-summary-2/</link>
+      <link>https://vimerzhao.top/articles/2019-vichiku-summary-2/</link>
       <pubDate>Sat, 11 Jan 2020 19:53:53 +0800</pubDate>
-      <guid>/articles/2019-vichiku-summary-2/</guid>
+      <guid>https://vimerzhao.top/articles/2019-vichiku-summary-2/</guid>
       <description>不小心把markdown删了，看公众号吧： 研究 | 2019鬼畜区热点事件分析</description>
     </item>
     <item>
       <title>通过7万条视频数据看2019年B站鬼畜区发生了什么</title>
-      <link>/articles/2019-vichiku-summary/</link>
+      <link>https://vimerzhao.top/articles/2019-vichiku-summary/</link>
       <pubDate>Sun, 05 Jan 2020 19:51:58 +0800</pubDate>
-      <guid>/articles/2019-vichiku-summary/</guid>
+      <guid>https://vimerzhao.top/articles/2019-vichiku-summary/</guid>
       <description>前言 鬼畜就是通过对严肃正经话题进行解剖后通过重复，再创作等形式用以达到颠覆经典、解构传统、张扬个性、强化焦点、讽刺社会的一种艺术形式。 引自百度百科 作为常年混迹于B站鬼畜区的潜水怪，今天心血来潮，趁着周</description>
     </item>
     <item>
       <title>区块链招聘信息爬取与分析</title>
-      <link>/articles/qu-kuai-lian-zhao-pin-xin-xi-pa-qu-yu-fen-xi/</link>
+      <link>https://vimerzhao.top/articles/qu-kuai-lian-zhao-pin-xin-xi-pa-qu-yu-fen-xi/</link>
       <pubDate>Wed, 18 Apr 2018 00:00:00 +0000</pubDate>
-      <guid>/articles/qu-kuai-lian-zhao-pin-xin-xi-pa-qu-yu-fen-xi/</guid>
+      <guid>https://vimerzhao.top/articles/qu-kuai-lian-zhao-pin-xin-xi-pa-qu-yu-fen-xi/</guid>
       <description>区块链招聘信息爬取与分析 最近在研究区块链，闲来无事抓取了拉勾网上450条区块链相关的招聘信息。过程及结果如下。 拉勾网爬取 首先是从拉勾网爬取数据，用的requests库。拉勾网的反爬虫做的还是比较好的，</description>
     </item>
     <item>
       <title>MATLAB复杂网络处理入门</title>
-      <link>/articles/2015-matlab-complex-network-introduction/</link>
+      <link>https://vimerzhao.top/articles/2015-matlab-complex-network-introduction/</link>
       <pubDate>Sun, 13 Dec 2015 00:00:00 +0000</pubDate>
-      <guid>/articles/2015-matlab-complex-network-introduction/</guid>
+      <guid>https://vimerzhao.top/articles/2015-matlab-complex-network-introduction/</guid>
       <description>write by ai 原文：CSDN 链接 `n最近一周花了一些时间在一个所谓的亚太数学建模竞赛上，其实自己主要有两点考虑，一是当做美赛之前的一个热身；二是自己刚刚接触MATLAB编程，希望能锻炼一下。 下面是题目： Identifyingthe error connections</description>
     </item>
     <item>
       <title>MATLAB奇淫技巧之实现图片扫描</title>
-      <link>/articles/2015-matlab-image-scanning-techniques/</link>
+      <link>https://vimerzhao.top/articles/2015-matlab-image-scanning-techniques/</link>
       <pubDate>Mon, 07 Dec 2015 00:00:00 +0000</pubDate>
-      <guid>/articles/2015-matlab-image-scanning-techniques/</guid>
+      <guid>https://vimerzhao.top/articles/2015-matlab-image-scanning-techniques/</guid>
       <description>write by ai 原文：CSDN 链接 `n最近，由于需要补电路实验，所以把同学的书借来了，还有一个大实验没做，可是同学也要开始做了，所以在还回去之前只好全部拍下来，但是799的手机拍出来的渣渣像素可想而知，于是乎，</description>
     </item>
     <item>
       <title>C语言 验证无标度网络的幂律定律</title>
-      <link>/articles/2015-c-language-scale-free-network-power-law/</link>
+      <link>https://vimerzhao.top/articles/2015-c-language-scale-free-network-power-law/</link>
       <pubDate>Tue, 06 Oct 2015 00:00:00 +0000</pubDate>
-      <guid>/articles/2015-c-language-scale-free-network-power-law/</guid>
+      <guid>https://vimerzhao.top/articles/2015-c-language-scale-free-network-power-law/</guid>
       <description>write by ai 原文：CSDN 链接 `n1复杂网络发展史 几乎每个人都听说过大数学家欧拉和哥尼斯堡七桥的故事，而1736年29岁的欧拉向圣彼得堡科学院递交了《哥尼斯堡的七座桥》的论文，也正式标志着数学的一个新的分支</description>
     </item>
   </channel>

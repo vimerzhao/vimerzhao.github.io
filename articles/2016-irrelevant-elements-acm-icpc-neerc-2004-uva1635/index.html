@@ -6,11 +6,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Irrelevant Elements, ACM/ICPC NEERC 2004, UVa1635 - 赵裕的博客</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="">
+	<meta name="description" content="这种题目最重要的是思路了清晰 1 #include &lt;cstdio&gt; 2 #include &lt;cstring&gt; 3 const int maxn = 100005;//sqrt(n)&#43;1 is enough 4 5 int fac[100][2]; 6 int fac_c[100]; 7 int a[maxn]; 8 …">
 		<meta property="og:title" content="Irrelevant Elements, ACM/ICPC NEERC 2004, UVa1635" />
 <meta property="og:description" content="这种题目最重要的是思路了清晰 1 #include &lt;cstdio&gt; 2 #include &lt;cstring&gt; 3 const int maxn = 100005;//sqrt(n)&#43;1 is enough 4 5 int fac[100][2]; 6 int fac_c[100]; 7 int a[maxn]; 8 void factor(int m) { 9 int&amp; num = fac[0][0]; 10 num = 0; 11 for (int i = 2; i*i &lt;= m; i&#43;&#43;) { 12 if(m%i == 0) { 13 fac[&#43;&#43;num][0] = i; 14 fac[num][1] = 0; 15 do { 16 fac[num][1]&#43;&#43;; 17 m/= i; 18 } while(m%i == 0); 19 } 20 } 21 if (m &gt; 1) { 22" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/articles/2016-irrelevant-elements-acm-icpc-neerc-2004-uva1635/" /><meta property="article:section" content="articles" />
+<meta property="og:url" content="https://vimerzhao.top/articles/2016-irrelevant-elements-acm-icpc-neerc-2004-uva1635/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2016-08-09T00:00:00+00:00" />
 <meta property="article:modified_time" content="2026-07-30T15:32:42+08:00" />
 
@@ -69,16 +69,9 @@
 			</a>
 		</li>
 		<li class="menu__item">
-			<a class="menu__link" href="/talk-archive/">
+			<a class="menu__link" href="/sharing/">
 				
-				<span class="menu__text">演讲</span>
-				
-			</a>
-		</li>
-		<li class="menu__item">
-			<a class="menu__link" href="/courses-archive/">
-				
-				<span class="menu__text">课程</span>
+				<span class="menu__text">分享</span>
 				
 			</a>
 		</li>
@@ -252,7 +245,7 @@
 			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="/">
+		<input type="hidden" name="sitesearch" value="https://vimerzhao.top/">
 	</form>
 </div>
 <div class="widget-recent widget">

@@ -2,80 +2,80 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vim on 赵裕的博客</title>
-    <link>/tags/vim/</link>
+    <link>https://vimerzhao.top/tags/vim/</link>
     <description>Recent content in Vim on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
-    <atom:link href="/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/tags/vim/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>从Vim到VSCode</title>
-      <link>/articles/from-vim-to-vscode-2023/</link>
+      <link>https://vimerzhao.top/articles/from-vim-to-vscode-2023/</link>
       <pubDate>Mon, 23 Oct 2023 00:00:00 +0000</pubDate>
-      <guid>/articles/from-vim-to-vscode-2023/</guid>
+      <guid>https://vimerzhao.top/articles/from-vim-to-vscode-2023/</guid>
       <description>我和Vim的故事还是挺长的，之前的一些博客： 现阶段（2021年10月）对于Vim和Emacs的思考 - 赵裕的博客 Vim键盘布局的起源 - 赵裕的博客 借助Vim宏处理重复工作 - 赵裕的博客 Vim的哲学 - 赵裕的博</description>
     </item>
     <item>
       <title>关于笔记软件的比较研究</title>
-      <link>/articles/research-about-note-software/</link>
+      <link>https://vimerzhao.top/articles/research-about-note-software/</link>
       <pubDate>Sun, 19 Dec 2021 00:00:00 +0000</pubDate>
-      <guid>/articles/research-about-note-software/</guid>
+      <guid>https://vimerzhao.top/articles/research-about-note-software/</guid>
       <description>一、引言 工作以来，如何高效地整理自己的信息这个问题一直困扰着我。经常会遇到这种情况， 自己需要记录一个信息，但依稀记得自己记录过类似的信息，却又半天找不到。 举个例子，我发现一个学习C++不错的网站，于是</description>
     </item>
     <item>
       <title>现阶段（2021年10月）对于Vim和Emacs的思考</title>
-      <link>/articles/thinking-about-vim-and-emacs/</link>
+      <link>https://vimerzhao.top/articles/thinking-about-vim-and-emacs/</link>
       <pubDate>Sun, 10 Oct 2021 22:24:00 +0800</pubDate>
-      <guid>/articles/thinking-about-vim-and-emacs/</guid>
+      <guid>https://vimerzhao.top/articles/thinking-about-vim-and-emacs/</guid>
       <description>最近由于在工作调整，加上国庆节，时间稍微宽裕一点，于是重新启动了对Emacs的学习，这次稍微找到了点感觉：包括使用的感觉和对Emacs的理解。 为什么一直对Emacs念念不忘？作为一个使用了多年Vim的</description>
     </item>
     <item>
       <title>Vim键盘布局的起源</title>
-      <link>/articles/vimjian-pan-bu-ju-de-qi-yuan/</link>
+      <link>https://vimerzhao.top/articles/vimjian-pan-bu-ju-de-qi-yuan/</link>
       <pubDate>Sun, 25 Jun 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/vimjian-pan-bu-ju-de-qi-yuan/</guid>
+      <guid>https://vimerzhao.top/articles/vimjian-pan-bu-ju-de-qi-yuan/</guid>
       <description>Vim键盘布局的起源 谈了一些关于键盘布局的东西。 Vim的键盘布局 用过Vim编辑器的人都知道，要从插入模式转到正常模式需要用Esc键，并且两种模式的切换在编辑文本时大量存在。但奇怪的是，Esc的位置在键</description>
     </item>
     <item>
       <title>借助Vim宏处理重复工作</title>
-      <link>/articles/jie-zhu-vimhong-chu-li-zhong-fu-gong-zuo/</link>
+      <link>https://vimerzhao.top/articles/jie-zhu-vimhong-chu-li-zhong-fu-gong-zuo/</link>
       <pubDate>Mon, 29 May 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/jie-zhu-vimhong-chu-li-zhong-fu-gong-zuo/</guid>
+      <guid>https://vimerzhao.top/articles/jie-zhu-vimhong-chu-li-zhong-fu-gong-zuo/</guid>
       <description>借助Vim宏处理重复工作 记录了一个用Vim宏处理重复操作的例子。 最近写博客时遇到一个问题： 我有一些图片，它们除了图片名的序号不同，比如 launcher-01-debug.png launcher-02-debug.png launcher-03-debug.png launcher-04-debug.png &amp;hellip; 其余都相同 现在我需要把这些图片写在博客里，我该怎么做呢？</description>
     </item>
     <item>
       <title>GVim中GLib-GObject-WARNING问题的解决办法</title>
-      <link>/articles/gvimzhong-glib-gobject-warningwen-ti-de-jie-jue-ban-fa/</link>
+      <link>https://vimerzhao.top/articles/gvimzhong-glib-gobject-warningwen-ti-de-jie-jue-ban-fa/</link>
       <pubDate>Sat, 29 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/gvimzhong-glib-gobject-warningwen-ti-de-jie-jue-ban-fa/</guid>
+      <guid>https://vimerzhao.top/articles/gvimzhong-glib-gobject-warningwen-ti-de-jie-jue-ban-fa/</guid>
       <description>GVim中GLib-GObject-WARNING问题的解决办法 本文记录了一个在命令行启动GVim时遇到的问题及其解决办法。 问题 今天发现在命令行模式下启动GVim会出现一个小问题： zhaoyu@Dell ~ $ vim .vim (gvim:12853): GLib-GObject-WARNING **: cannot retrieve</description>
     </item>
     <item>
       <title>Vim的哲学</title>
-      <link>/articles/vimde-zhe-xue/</link>
+      <link>https://vimerzhao.top/articles/vimde-zhe-xue/</link>
       <pubDate>Thu, 13 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/vimde-zhe-xue/</guid>
+      <guid>https://vimerzhao.top/articles/vimde-zhe-xue/</guid>
       <description>Vim的哲学 本文记录了我在现阶段对Vim的一些思考。 我用过的开发工具 回想起来，我大概是在大一的寒假快要结束的时候接触了编程语言，我还记得自己按照教程，用gcc编译并输出了HelloWorld。当时，我</description>
     </item>
     <item>
       <title>spf13-vim 显示neocomplete requires ...th Lua support</title>
-      <link>/articles/2017-spf13-vim-show-neocomplete-requires-th-lua-support/</link>
+      <link>https://vimerzhao.top/articles/2017-spf13-vim-show-neocomplete-requires-th-lua-support/</link>
       <pubDate>Sat, 28 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-spf13-vim-show-neocomplete-requires-th-lua-support/</guid>
+      <guid>https://vimerzhao.top/articles/2017-spf13-vim-show-neocomplete-requires-th-lua-support/</guid>
       <description>安装spf13-vim的时候下载了许多插件，neocomplete应该是比较重要的一个，毕竟自动补全。但是在使用时却一直有：neocomplete requires &amp;hellip;th Lua support的警告。据说要在编译时加入相关选项</description>
     </item>
     <item>
       <title>spf13-vim安装成功</title>
-      <link>/articles/2017-spf13-vim-installed-successfully/</link>
+      <link>https://vimerzhao.top/articles/2017-spf13-vim-installed-successfully/</link>
       <pubDate>Sat, 28 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-spf13-vim-installed-successfully/</guid>
+      <guid>https://vimerzhao.top/articles/2017-spf13-vim-installed-successfully/</guid>
       <description>之前安装好像都没有出现这个画面，说明我安装得不完整吧！有一个html括号匹配的插件要求输入username和password，不知所以然，没安装上，其他应该一切正常。纪念一个！</description>
     </item>
     <item>
       <title>《完全用Linux工作》作者：王垠</title>
-      <link>/articles/2016-working-completely-with-linux-author-wang-yin/</link>
+      <link>https://vimerzhao.top/articles/2016-working-completely-with-linux-author-wang-yin/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-working-completely-with-linux-author-wang-yin/</guid>
+      <guid>https://vimerzhao.top/articles/2016-working-completely-with-linux-author-wang-yin/</guid>
       <description>注：本文是清华“牛仔”王垠的“成名作”，在网上引起很大的争议。对他崇拜地五体投地者有，对他嗤之以鼻者也有，总之成了一年多以前Linux 爱好者的圈子里的一个很有意思的现象。之后他对这篇文章进行了很大的修</description>
     </item>
   </channel>

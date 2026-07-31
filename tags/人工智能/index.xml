@@ -2,59 +2,59 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>人工智能 on 赵裕的博客</title>
-    <link>/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</link>
+    <link>https://vimerzhao.top/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</link>
     <description>Recent content in 人工智能 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
-    <atom:link href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>初探OpenClaw</title>
-      <link>/articles/2026-first-research-on-openclaw/</link>
+      <link>https://vimerzhao.top/articles/2026-first-research-on-openclaw/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>/articles/2026-first-research-on-openclaw/</guid>
+      <guid>https://vimerzhao.top/articles/2026-first-research-on-openclaw/</guid>
       <description>本文纯手打，如有AI生成内容，会予以标注 前一篇文章还在说要考虑参与AI的浪潮，最近工作上就有了一些契机，得以投入一周多时间，专注研究OpenClaw，并做了一个分享 比起平时琐碎零星的学习，这种长时间、</description>
     </item>
     <item>
       <title>20行代码搭建微信聊天机器人</title>
-      <link>/articles/20xing-dai-ma-da-jian-wei-xin-liao-tian-ji-qi-ren/</link>
+      <link>https://vimerzhao.top/articles/20xing-dai-ma-da-jian-wei-xin-liao-tian-ji-qi-ren/</link>
       <pubDate>Thu, 03 Aug 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/20xing-dai-ma-da-jian-wei-xin-liao-tian-ji-qi-ren/</guid>
+      <guid>https://vimerzhao.top/articles/20xing-dai-ma-da-jian-wei-xin-liao-tian-ji-qi-ren/</guid>
       <description>20行代码搭建微信聊天机器人 介绍了如何用20行Python搭建一个微信聊天机器人，并讨论了其可能的拓展方向。 引子 在之前一边文章中介绍客服机器人：AI实战:搭建客服机器人，本文将在此基础上制作一个聊天机</description>
     </item>
     <item>
       <title>&#39;AI实战:搭建客服机器人&#39;</title>
-      <link>/articles/aishi-zhan-da-jian-ke-fu-ji-qi-ren/</link>
+      <link>https://vimerzhao.top/articles/aishi-zhan-da-jian-ke-fu-ji-qi-ren/</link>
       <pubDate>Sat, 29 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/aishi-zhan-da-jian-ke-fu-ji-qi-ren/</guid>
+      <guid>https://vimerzhao.top/articles/aishi-zhan-da-jian-ke-fu-ji-qi-ren/</guid>
       <description>&amp;lsquo;AI实战:搭建客服机器人&amp;rsquo; 本文简要介绍了但前客服机器人的发展情况，并实际开发了一个Demo作为演示。 客服机器人 随着科技发展，廉价劳动力正在不断被淘汰。客服机器人就是这样一个例</description>
     </item>
     <item>
       <title>AI贪吃蛇（二）</title>
-      <link>/articles/2016-ai-snake-2/</link>
+      <link>https://vimerzhao.top/articles/2016-ai-snake-2/</link>
       <pubDate>Fri, 21 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-ai-snake-2/</guid>
+      <guid>https://vimerzhao.top/articles/2016-ai-snake-2/</guid>
       <description>前言 之前写过一篇关于贪吃蛇AI的博客，当时虽然取得了一些成果，但是也存在许多问题，所以最近又花了三天时间重新思考了一下。以下是之前博客存在的一些问题： 策略不对，只要存在找不到尾巴的情况就可能失败，所以</description>
     </item>
     <item>
       <title>浅析初等贪吃蛇AI算法</title>
-      <link>/articles/2016-a-brief-analysis-of-the-elementary-snake-ai-algorithm/</link>
+      <link>https://vimerzhao.top/articles/2016-a-brief-analysis-of-the-elementary-snake-ai-algorithm/</link>
       <pubDate>Thu, 14 Jul 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-a-brief-analysis-of-the-elementary-snake-ai-algorithm/</guid>
+      <guid>https://vimerzhao.top/articles/2016-a-brief-analysis-of-the-elementary-snake-ai-algorithm/</guid>
       <description>作为小学期程序设计训练大作业的一部分，也是自己之前思考过的一个问题，终于利用小学期完成了贪吃蛇AI的一次尝试，下作一总结。 背景介绍： 首先，我针对贪吃蛇AI这一关键词在百度和google上尽心了检索，大</description>
     </item>
     <item>
       <title>浅析基本AI五子棋算法</title>
-      <link>/articles/2016-a-brief-analysis-of-the-basic-ai-backgammon-algorithm/</link>
+      <link>https://vimerzhao.top/articles/2016-a-brief-analysis-of-the-basic-ai-backgammon-algorithm/</link>
       <pubDate>Sun, 03 Jul 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-a-brief-analysis-of-the-basic-ai-backgammon-algorithm/</guid>
+      <guid>https://vimerzhao.top/articles/2016-a-brief-analysis-of-the-basic-ai-backgammon-algorithm/</guid>
       <description>五子棋是所有棋类博弈中比较简单的了，这里介绍的也只是一种非常基本的AI策略。其实，包括之前的AI贪吃蛇，感觉这两个AI其实体现的都是一种建模思想，把一个现实中的问题模型化，抽象化，得到其一般特征，再设</description>
     </item>
     <item>
       <title>数据结构算法C语言实现（九）--- 拓展：由迷宫问题引申的AI贪吃蛇</title>
-      <link>/articles/2016-data-structure-algorithm-c-language-implementation-9-expansion-ai-snake-derived-from-the-maze-proble/</link>
+      <link>https://vimerzhao.top/articles/2016-data-structure-algorithm-c-language-implementation-9-expansion-ai-snake-derived-from-the-maze-proble/</link>
       <pubDate>Wed, 08 Jun 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-data-structure-algorithm-c-language-implementation-9-expansion-ai-snake-derived-from-the-maze-proble/</guid>
+      <guid>https://vimerzhao.top/articles/2016-data-structure-algorithm-c-language-implementation-9-expansion-ai-snake-derived-from-the-maze-proble/</guid>
       <description>一.简述 【开发中】由于期末时间有限，而且要用到后面的最短路径（可能），所以打算小学期在实现这一部分</description>
     </item>
   </channel>

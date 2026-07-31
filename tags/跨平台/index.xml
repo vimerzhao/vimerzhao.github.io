@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>跨平台 on 赵裕的博客</title>
-    <link>/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/</link>
+    <link>https://vimerzhao.top/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/</link>
     <description>Recent content in 跨平台 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
-    <atom:link href="/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>从ReactNative到Flutter：跨平台技术的黄金时代与七年之痒</title>
-      <link>/articles/from-reactnative-to-flutter/</link>
+      <link>https://vimerzhao.top/articles/from-reactnative-to-flutter/</link>
       <pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>/articles/from-reactnative-to-flutter/</guid>
+      <guid>https://vimerzhao.top/articles/from-reactnative-to-flutter/</guid>
       <description>零、黎明的前夜 2007年，苹果公司推出了第一代 iPhone，其搭载的 iPhone OS1.0 即是日后 iOS 系统 的前身。次年，谷歌也推出了其酝酿已久的智能手机操作系统 Android 1.0。也就是在这一 年的 8 月，PhoneGap 诞生了。Ph</description>
     </item>
     <item>
       <title>Flutter:移动端跨平台技术演进之路</title>
-      <link>/articles/cross-platform-mobile-ui-development-evolution/</link>
+      <link>https://vimerzhao.top/articles/cross-platform-mobile-ui-development-evolution/</link>
       <pubDate>Wed, 06 Nov 2019 12:21:29 +0800</pubDate>
-      <guid>/articles/cross-platform-mobile-ui-development-evolution/</guid>
+      <guid>https://vimerzhao.top/articles/cross-platform-mobile-ui-development-evolution/</guid>
       <description>导读 本文约4688字，阅读可能需要15分钟。 最早的跨平台开发(摘自《Apache Cordova移动应用开发实战》王亚飞，王洪飞编著). 从广义上来说，跨平台技术早于移动端的出现。因此，本文标题前面也加上</description>
     </item>
   </channel>

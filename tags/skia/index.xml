@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Skia on 赵裕的博客</title>
-    <link>/tags/skia/</link>
+    <link>https://vimerzhao.top/tags/skia/</link>
     <description>Recent content in Skia on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
-    <atom:link href="/tags/skia/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/tags/skia/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Skia下SK_DEBUG内联的坑</title>
-      <link>/articles/skia-debug-inline-pitfall/</link>
+      <link>https://vimerzhao.top/articles/skia-debug-inline-pitfall/</link>
       <pubDate>Thu, 19 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/skia-debug-inline-pitfall/</guid>
+      <guid>https://vimerzhao.top/articles/skia-debug-inline-pitfall/</guid>
       <description>以下代码可能出现看起来诡异的错误 { auto data = image-&amp;gt;encodeToData(); std::stringstream ss; ss &amp;lt;&amp;lt; count++ &amp;lt;&amp;lt; &amp;#34;_output.png&amp;#34;; if (data) { SkFILEWStream out(ss.str().c_str()); out.write(data-&amp;gt;writable_data(), data-&amp;gt;size()); } } 错误如下： * thread #3, name = &amp;#39;RasterThread&amp;#39;, stop reason = signal SIGILL: illegal operand * frame #0: 0x000000000c02edd4 Sxxxx`sk_abort_no_print() at SkMemory_malloc.cpp:51:5 frame #1: 0x000000000bbbee39 Sxxxx`SkNVRefCnt&amp;lt;SkData&amp;gt;::~SkNVRefCnt(this=0x00007fffafdff530)::&amp;#39;lambda&amp;#39;()::operator()() const at SkRefCnt.h:165:9 frame #2: 0x000000000bbbec35 Sxxxx`SkNVRefCnt&amp;lt;SkData&amp;gt;::~SkNVRefCnt(this=0x00007fffa8006090) at SkRefCnt.h:165:9 frame #3: 0x000000000bbbd8ba Sxxxx`SkData::~SkData(this=0x00007fffa8006090) at SkData.cpp:37:1 具体是因为这个ASSERT: ~SkNVRefCnt() { #ifdef SK_DEBUG int</description>
     </item>
     <item>
       <title>Skia升级小记m104-&gt;m122</title>
-      <link>/articles/review-skia-upgrade-m104-to-m122/</link>
+      <link>https://vimerzhao.top/articles/review-skia-upgrade-m104-to-m122/</link>
       <pubDate>Tue, 12 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/review-skia-upgrade-m104-to-m122/</guid>
+      <guid>https://vimerzhao.top/articles/review-skia-upgrade-m104-to-m122/</guid>
       <description>最近需要把Skia进行一次升级，首先查看下接口变动，See： RELEASE_NOTES.md 大部分都是接口的小调整，基本没什么难度，但注意m122的一个改动: SkFontMgr::RefDefault() has been deleted. Clients should instantiate and manage their own SkFontMgrs and use them to explicitly create SkTypefaces 找到这个改动的原因： Remove default SkFontMgr [305780908] - Skia 是</description>
     </item>
   </channel>

@@ -6,11 +6,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Skia下SK_DEBUG内联的坑 - 赵裕的博客</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="">
+	<meta name="description" content="以下代码可能出现看起来诡异的错误 { auto data = image-&gt;encodeToData(); std::stringstream ss; ss &lt;&lt; count&#43;&#43; &lt;&lt; &#34;_output.png&#34;; if (data) { SkFILEWStream out(ss.str().c_str()); …">
 		<meta property="og:title" content="Skia下SK_DEBUG内联的坑" />
 <meta property="og:description" content="以下代码可能出现看起来诡异的错误 { auto data = image-&gt;encodeToData(); std::stringstream ss; ss &lt;&lt; count&#43;&#43; &lt;&lt; &#34;_output.png&#34;; if (data) { SkFILEWStream out(ss.str().c_str()); out.write(data-&gt;writable_data(), data-&gt;size()); } } 错误如下： * thread #3, name = &#39;RasterThread&#39;, stop reason = signal SIGILL: illegal operand * frame #0: 0x000000000c02edd4 Sxxxx`sk_abort_no_print() at SkMemory_malloc.cpp:51:5 frame #1: 0x000000000bbbee39 Sxxxx`SkNVRefCnt&lt;SkData&gt;::~SkNVRefCnt(this=0x00007fffafdff530)::&#39;lambda&#39;()::operator()() const at SkRefCnt.h:165:9 frame #2: 0x000000000bbbec35 Sxxxx`SkNVRefCnt&lt;SkData&gt;::~SkNVRefCnt(this=0x00007fffa8006090) at SkRefCnt.h:165:9 frame #3: 0x000000000bbbd8ba Sxxxx`SkData::~SkData(this=0x00007fffa8006090) at SkData.cpp:37:1 具体是因为这个ASSERT: ~SkNVRefCnt() { #ifdef SK_DEBUG int" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/articles/skia-debug-inline-pitfall/" /><meta property="article:section" content="articles" />
+<meta property="og:url" content="https://vimerzhao.top/articles/skia-debug-inline-pitfall/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2024-09-19T00:00:00+00:00" />
 <meta property="article:modified_time" content="2026-07-31T21:43:22+08:00" />
 
@@ -69,16 +69,9 @@
 			</a>
 		</li>
 		<li class="menu__item">
-			<a class="menu__link" href="/talk-archive/">
+			<a class="menu__link" href="/sharing/">
 				
-				<span class="menu__text">演讲</span>
-				
-			</a>
-		</li>
-		<li class="menu__item">
-			<a class="menu__link" href="/courses-archive/">
-				
-				<span class="menu__text">课程</span>
+				<span class="menu__text">分享</span>
 				
 			</a>
 		</li>
@@ -237,7 +230,7 @@ Process 5195 stopped
 			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="/">
+		<input type="hidden" name="sitesearch" value="https://vimerzhao.top/">
 	</form>
 </div>
 <div class="widget-recent widget">

@@ -6,11 +6,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>紫书第七章例题（暴力求解法） - 赵裕的博客</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="">
+	<meta name="description" content="1.除法（Division, UVa 725） #include &lt;cstdio&gt; #include &lt;cstring&gt; bool isOk(int a, int b){ char buff[20]; int visited[15]; memset(visited, 0, sizeof(visited)); …">
 		<meta property="og:title" content="紫书第七章例题（暴力求解法）" />
 <meta property="og:description" content="1.除法（Division, UVa 725） #include &lt;cstdio&gt; #include &lt;cstring&gt; bool isOk(int a, int b){ char buff[20]; int visited[15]; memset(visited, 0, sizeof(visited)); sprintf(buff, &#34;%05d%05d&#34;, a, b); for (int i =0; i &lt; 10; i&#43;&#43;){ int temp = buff[i] - &#39;0&#39;; if (0 == visited[temp]){ visited[temp]&#43;&#43;; } else { return false; } } return true; } int main(void){ int N, cnt = 0; bool flag = false; for (;scanf(&#34;%d&#34;, &amp;N) &amp;&amp; N;){ if (cnt &gt; 0){ printf(&#34;\n&#34;); } cnt&#43;&#43;; flag = false; for (int i = 1234; i&lt;" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/articles/2016-examples-of-chapter-7-of-the-purple-book-violent-solution-method/" /><meta property="article:section" content="articles" />
+<meta property="og:url" content="https://vimerzhao.top/articles/2016-examples-of-chapter-7-of-the-purple-book-violent-solution-method/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2016-07-26T00:00:00+00:00" />
 <meta property="article:modified_time" content="2026-07-30T15:32:42+08:00" />
 
@@ -69,16 +69,9 @@
 			</a>
 		</li>
 		<li class="menu__item">
-			<a class="menu__link" href="/talk-archive/">
+			<a class="menu__link" href="/sharing/">
 				
-				<span class="menu__text">演讲</span>
-				
-			</a>
-		</li>
-		<li class="menu__item">
-			<a class="menu__link" href="/courses-archive/">
-				
-				<span class="menu__text">课程</span>
+				<span class="menu__text">分享</span>
 				
 			</a>
 		</li>
@@ -413,7 +406,7 @@ int main(void){
 			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="/">
+		<input type="hidden" name="sitesearch" value="https://vimerzhao.top/">
 	</form>
 </div>
 <div class="widget-recent widget">

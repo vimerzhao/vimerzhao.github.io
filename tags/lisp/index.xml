@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Lisp on 赵裕的博客</title>
-    <link>/tags/lisp/</link>
+    <link>https://vimerzhao.top/tags/lisp/</link>
     <description>Recent content in Lisp on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
-    <atom:link href="/tags/lisp/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/tags/lisp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Build Your Own Lisp中的闲言碎语</title>
-      <link>/articles/build-your-own-lispzhong-de-xian-yan-sui-yu/</link>
+      <link>https://vimerzhao.top/articles/build-your-own-lispzhong-de-xian-yan-sui-yu/</link>
       <pubDate>Sat, 08 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/build-your-own-lispzhong-de-xian-yan-sui-yu/</guid>
+      <guid>https://vimerzhao.top/articles/build-your-own-lispzhong-de-xian-yan-sui-yu/</guid>
       <description>Build Your Own Lisp中的闲言碎语 Build Your Own Lisp中的一些摘录。 前不久，读完了Build Your Own Lisp。作者用C语言写了一个简单的Lisp解释器，代码之精妙、设计之优雅确实让我受益匪浅！ 不过，除了跟着作者写代码，</description>
     </item>
     <item>
       <title>Common Lisp学习资源整理</title>
-      <link>/articles/2017-common-lisp-learning-resources-collection/</link>
+      <link>https://vimerzhao.top/articles/2017-common-lisp-learning-resources-collection/</link>
       <pubDate>Tue, 24 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-common-lisp-learning-resources-collection/</guid>
+      <guid>https://vimerzhao.top/articles/2017-common-lisp-learning-resources-collection/</guid>
       <description>Lisp Hackers: Interviews with 100x More Productive Programmers Posted on June 26th, 2013 Lisp Hackers: Interviews with 100x More Productive Programmers, by Vsevolod Dyomkin, is available for free in multiple formats from Leanpub. Let Over Lambda Posted on November 18th, 2009 Free online book “Let Over Lambda” is one of the most hardcore computer programming books out there. Lisp Primer Posted on March 24th, 2006 This text has been written to provide a quick introduction to the basic elements of Common Lisp for both experienced and novice programmers. It is not</description>
     </item>
     <item>
       <title>安装lispbox出现：error while loading shared libraries: libjpeg.so.62: cannot open shared object file: No such file or directory</title>
-      <link>/articles/2017-installing-lispbox-appears-error-while-loading-shared-libraries-libjpeg-so-62-cannot-open-shared-obj/</link>
+      <link>https://vimerzhao.top/articles/2017-installing-lispbox-appears-error-while-loading-shared-libraries-libjpeg-so-62-cannot-open-shared-obj/</link>
       <pubDate>Thu, 19 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-installing-lispbox-appears-error-while-loading-shared-libraries-libjpeg-so-62-cannot-open-shared-obj/</guid>
+      <guid>https://vimerzhao.top/articles/2017-installing-lispbox-appears-error-while-loading-shared-libraries-libjpeg-so-62-cannot-open-shared-obj/</guid>
       <description>如下图，运行lispbox出现如下报错（第一个命令）： 检索之后发现解决办法：Solution to libjpeg.so.62 输入一下两条命令（第二条也必须执行）： sudo apt-get upgrade sudo apt-get install libjpeg62-dev // if not 62-dev, the apt will tell you it can not locate the package libjpeg62 解决问题： 蛤蛤蛤！抓</description>
     </item>
   </channel>

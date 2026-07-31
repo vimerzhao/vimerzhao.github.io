@@ -2,115 +2,115 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>随笔 on 赵裕的博客</title>
-    <link>/tags/%E9%9A%8F%E7%AC%94/</link>
+    <link>https://vimerzhao.top/tags/%E9%9A%8F%E7%AC%94/</link>
     <description>Recent content in 随笔 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
-    <atom:link href="/tags/%E9%9A%8F%E7%AC%94/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/tags/%E9%9A%8F%E7%AC%94/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>无限风光在险峰</title>
-      <link>/articles/infinite-scenery-in-the-dangerous-peak/</link>
+      <link>https://vimerzhao.top/articles/infinite-scenery-in-the-dangerous-peak/</link>
       <pubDate>Sun, 08 May 2022 00:00:00 +0000</pubDate>
-      <guid>/articles/infinite-scenery-in-the-dangerous-peak/</guid>
+      <guid>https://vimerzhao.top/articles/infinite-scenery-in-the-dangerous-peak/</guid>
       <description>夫夷以近，则游者众；险以远，则至者少。 而世之奇伟、瑰怪，非常之观，常在于险远， 而人之所罕至焉，故非有志者不能至也 王安石《游褒禅山记》 最近读了一本书：《筚路维艰》，豆瓣9.6分。读完很受震憾，也开始决定</description>
     </item>
     <item>
       <title>拿来主义与实证精神</title>
-      <link>/articles/all-takenism-and-positivism/</link>
+      <link>https://vimerzhao.top/articles/all-takenism-and-positivism/</link>
       <pubDate>Sun, 20 Dec 2020 19:49:29 +0800</pubDate>
-      <guid>/articles/all-takenism-and-positivism/</guid>
+      <guid>https://vimerzhao.top/articles/all-takenism-and-positivism/</guid>
       <description>由于工作原因，最近经常需要调研业界方案，因为很多很多东西没有必要重复造轮子，如果别人已经把问题解决了，那么直接使用是没啥问题的，这大概就是所谓的拿来主义。 其实纵观历史，尤其是近代，拿来主义其实不少，马</description>
     </item>
     <item>
       <title>做工具要有&#34;码德&#34;</title>
-      <link>/articles/moral-of-developing-tools/</link>
+      <link>https://vimerzhao.top/articles/moral-of-developing-tools/</link>
       <pubDate>Thu, 10 Dec 2020 19:47:27 +0800</pubDate>
-      <guid>/articles/moral-of-developing-tools/</guid>
+      <guid>https://vimerzhao.top/articles/moral-of-developing-tools/</guid>
       <description>最近在搞别的事情，没时间写公众号了，不过遇到值得写的，还是要草草记录一下的。 这周经历了一件比较奇葩的事情，大致时间线如下： 周四下午的时候，发现自己一个脚本使用的maven发布功能有一个奇怪的问题：正常</description>
     </item>
     <item>
       <title>拾屋记</title>
-      <link>/articles/clean-my-room/</link>
+      <link>https://vimerzhao.top/articles/clean-my-room/</link>
       <pubDate>Sun, 21 Jun 2020 20:16:53 +0800</pubDate>
-      <guid>/articles/clean-my-room/</guid>
+      <guid>https://vimerzhao.top/articles/clean-my-room/</guid>
       <description>最近要搬家，周末收拾了下，记录一点感悟。 破窗效应 本来整洁有序的房间，因为一两次松懈，或是没有及时把用过的物品归回原位，或是没有及时清理产生的垃圾，就形成了一扇破窗。破窗的产生导致了自己对周围环境要求的</description>
     </item>
     <item>
       <title>不气盛叫年轻人吗？</title>
-      <link>/articles/2020-youth-day/</link>
+      <link>https://vimerzhao.top/articles/2020-youth-day/</link>
       <pubDate>Mon, 04 May 2020 20:16:02 +0800</pubDate>
-      <guid>/articles/2020-youth-day/</guid>
+      <guid>https://vimerzhao.top/articles/2020-youth-day/</guid>
       <description>这两天，被bilibili献给新一代的演讲《后浪》刷屏了，其实这是我们的老传统了，在这样一个意义重大的节日，讲一部分的真话，来刻意迎合一部分人的爽点。作为一个B站的中度用户，其实我是有点不喜欢的，但不</description>
     </item>
     <item>
       <title>博客往事</title>
-      <link>/articles/history-of-my-blog/</link>
+      <link>https://vimerzhao.top/articles/history-of-my-blog/</link>
       <pubDate>Sun, 15 Mar 2020 19:41:05 +0800</pubDate>
-      <guid>/articles/history-of-my-blog/</guid>
+      <guid>https://vimerzhao.top/articles/history-of-my-blog/</guid>
       <description>周末花了点时间，把废置了的域名 www.vimerzhao.top 重新折腾了一下，同时将之前写过的博客迁移到了自己的服务器上。 借此机会，也以博客为脉络谈谈最近几年的技术经历吧。 CSDN 我大概是15年开始接触编程的，现在能找到的最早的博客是1</description>
     </item>
     <item>
       <title>网易裁员碎碎念</title>
-      <link>/articles/about-netease-staff/</link>
+      <link>https://vimerzhao.top/articles/about-netease-staff/</link>
       <pubDate>Sun, 24 Nov 2019 19:59:50 +0800</pubDate>
-      <guid>/articles/about-netease-staff/</guid>
+      <guid>https://vimerzhao.top/articles/about-netease-staff/</guid>
       <description>这两天被一篇文章刷屏了，即 网易裁员，让保安把身患绝症的我赶出公司。我在网易亲身经历的噩梦！ 。 + 正好这周上了一门课叫《独立思考》，里面提到了认识真相的五大阻力： 从众心理 认知偏见 情绪干扰 思维局限 逻辑谬误 这</description>
     </item>
     <item>
       <title>杂记：初到深圳</title>
-      <link>/articles/za-ji-chu-dao-shen-zhen/</link>
+      <link>https://vimerzhao.top/articles/za-ji-chu-dao-shen-zhen/</link>
       <pubDate>Thu, 08 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>/articles/za-ji-chu-dao-shen-zhen/</guid>
+      <guid>https://vimerzhao.top/articles/za-ji-chu-dao-shen-zhen/</guid>
       <description>杂记：初到深圳 雄关漫道真如铁，而今迈步从头越。 其实是再来深圳 去年6月底，第一次来深，有同学一起，和批量入职的实习生同住中转酒店，然后又稀里糊涂和别人合租，住的离公司颇远，每次上下班40分钟，熬了三个月</description>
     </item>
     <item>
       <title>一件小事，一点感慨</title>
-      <link>/articles/2016-a-little-thing-a-little-emotion/</link>
+      <link>https://vimerzhao.top/articles/2016-a-little-thing-a-little-emotion/</link>
       <pubDate>Thu, 29 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-a-little-thing-a-little-emotion/</guid>
+      <guid>https://vimerzhao.top/articles/2016-a-little-thing-a-little-emotion/</guid>
       <description>大概昨晚，同学找我说大作业遇到点困难，想找我过去帮忙调调代码： 确实，很多细节都忘了。而且他们做的什么利用传感器，传输数据我之前也没接触过。但还是去了，花了3个多钟头基本解决问题。其实浪费时间较多的就是</description>
     </item>
     <item>
       <title>编程的美妙</title>
-      <link>/articles/2016-the-beauty-of-programming/</link>
+      <link>https://vimerzhao.top/articles/2016-the-beauty-of-programming/</link>
       <pubDate>Sun, 11 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-the-beauty-of-programming/</guid>
+      <guid>https://vimerzhao.top/articles/2016-the-beauty-of-programming/</guid>
       <description>摘自Linus自传《Just for fun》 为什么对编程这么狂热，我自己也解释不来。我姑且说说看吧：在编程的人看来，编程是世上最有意思的事情了。它要比国际象棋之类的游戏复杂得多，你想要什么规则都可以自己设定</description>
     </item>
     <item>
       <title>编程碎碎念</title>
-      <link>/articles/2016-random-thoughts-on-programming/</link>
+      <link>https://vimerzhao.top/articles/2016-random-thoughts-on-programming/</link>
       <pubDate>Sun, 29 May 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-random-thoughts-on-programming/</guid>
+      <guid>https://vimerzhao.top/articles/2016-random-thoughts-on-programming/</guid>
       <description>2016-5-29： 选择一款适合编程的字体，一款且仅一款。我用的是Consolas，因为微软自带，一般的编辑器都会自带，配置简单。而且编程本来就不需要什么特别的字体，满足等宽等要求就足够了。具体介绍可</description>
     </item>
     <item>
       <title>开学一个多月来，第一次低落</title>
-      <link>/articles/2016-first-low-mood-after-a-month-of-school/</link>
+      <link>https://vimerzhao.top/articles/2016-first-low-mood-after-a-month-of-school/</link>
       <pubDate>Mon, 04 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-first-low-mood-after-a-month-of-school/</guid>
+      <guid>https://vimerzhao.top/articles/2016-first-low-mood-after-a-month-of-school/</guid>
       <description>开学一个多月来，第一次低落，或许其直接原因是因为放假了，想玩却因为孤身一人无处愿去，昨天去徒步了星海湾大桥，一路上除了倒腾那自己尚不能完全驾驭的单反外也没多太多思考，反倒是发现自己只是在工作学习的时候</description>
     </item>
     <item>
       <title>近期-总结</title>
-      <link>/articles/2015-recent-summary/</link>
+      <link>https://vimerzhao.top/articles/2015-recent-summary/</link>
       <pubDate>Sun, 08 Nov 2015 00:00:00 +0000</pubDate>
-      <guid>/articles/2015-recent-summary/</guid>
+      <guid>https://vimerzhao.top/articles/2015-recent-summary/</guid>
       <description>write by ai 原文：CSDN 链接 `n一直很想写一下最近的学习生活总结，奈何一直在考试的泥淖中挣扎，没有时间梳理梳理。 首先，学习到中期发现之前没跟上的现在还是没跟上，模电之烦难自不必多说，前两天刚刚期中考试，而</description>
     </item>
     <item>
       <title>我为什么想写博客</title>
-      <link>/articles/2015-why-i-want-to-write-a-blog/</link>
+      <link>https://vimerzhao.top/articles/2015-why-i-want-to-write-a-blog/</link>
       <pubDate>Thu, 01 Oct 2015 00:00:00 +0000</pubDate>
-      <guid>/articles/2015-why-i-want-to-write-a-blog/</guid>
+      <guid>https://vimerzhao.top/articles/2015-why-i-want-to-write-a-blog/</guid>
       <description>write by ai 原文：CSDN 链接 `n我已经大二了，大一的时候我读的是一个机械类的专业，说实话我很不适合也很不喜欢，但这也是我后来才发现的，也是后来我才发现自己有多么喜欢我现在的专业。这里不得不吐槽一下自己的高</description>
     </item>
     <item>
       <title>转专业纪</title>
-      <link>/articles/change-major-record/</link>
+      <link>https://vimerzhao.top/articles/change-major-record/</link>
       <pubDate>Sat, 11 Jul 2015 20:05:57 +0800</pubDate>
-      <guid>/articles/change-major-record/</guid>
+      <guid>https://vimerzhao.top/articles/change-major-record/</guid>
       <description>人生的道路虽然漫长，但紧要处常常只有几步，特别是当年轻的时候。没有一个人的生活道路是笔直的，没有岔道的，有些岔道口，比如政治上的岔道口，事业上的岔道口，个人生活上的岔道口，你走错一步，可以影响人生的一</description>
     </item>
   </channel>

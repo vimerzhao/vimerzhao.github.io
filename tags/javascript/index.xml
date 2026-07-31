@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>JavaScript on 赵裕的博客</title>
-    <link>/tags/javascript/</link>
+    <link>https://vimerzhao.top/tags/javascript/</link>
     <description>Recent content in JavaScript on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 30 Jul 2026 15:32:42 +0800</lastBuildDate>
-    <atom:link href="/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>JS写小游戏（一）：游戏框架</title>
-      <link>/articles/2016-writing-small-games-with-js-1-game-framework/</link>
+      <link>https://vimerzhao.top/articles/2016-writing-small-games-with-js-1-game-framework/</link>
       <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-writing-small-games-with-js-1-game-framework/</guid>
+      <guid>https://vimerzhao.top/articles/2016-writing-small-games-with-js-1-game-framework/</guid>
       <description>前言 前一阵发现一个不错的网站，都是一些用html5+css+js写的小游戏，于是打算学习一番，写下这个系列博客主要是为了加深理解，当然也有一些个人感悟，如果英文好可以直接Click Here. 概述 一般，小游戏都</description>
     </item>
   </channel>

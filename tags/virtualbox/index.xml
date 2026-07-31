@@ -2,66 +2,66 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>VirtualBox on 赵裕的博客</title>
-    <link>/tags/virtualbox/</link>
+    <link>https://vimerzhao.top/tags/virtualbox/</link>
     <description>Recent content in VirtualBox on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
-    <atom:link href="/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Windows10下VirtualBox不支持64位</title>
-      <link>/articles/virtualbox-lose-64-bit/</link>
+      <link>https://vimerzhao.top/articles/virtualbox-lose-64-bit/</link>
       <pubDate>Mon, 20 Apr 2020 10:20:21 +0800</pubDate>
-      <guid>/articles/virtualbox-lose-64-bit/</guid>
+      <guid>https://vimerzhao.top/articles/virtualbox-lose-64-bit/</guid>
       <description>参考解决Windows10中Virtualbox安装虚拟机没有64位选项(N种情形盘点)-四个空格，除了关闭HyperV，还需要卸载雷电模拟器等，这些软件都有可能占用虚拟驱动。 Mark一下</description>
     </item>
     <item>
       <title>VirtualBox下Debian增强功能的安装</title>
-      <link>/articles/virtualboxxia-debianzeng-qiang-gong-neng-de-an-zhuang/</link>
+      <link>https://vimerzhao.top/articles/virtualboxxia-debianzeng-qiang-gong-neng-de-an-zhuang/</link>
       <pubDate>Wed, 14 Jun 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/virtualboxxia-debianzeng-qiang-gong-neng-de-an-zhuang/</guid>
+      <guid>https://vimerzhao.top/articles/virtualboxxia-debianzeng-qiang-gong-neng-de-an-zhuang/</guid>
       <description>VirtualBox下Debian增强功能的安装 本文记录了如何为VirtualBox里面的Debian虚拟机安装增强功能。 问题记录 之前写过一篇博客记录了VirtualBox下安装增强功能的问题，是在U</description>
     </item>
     <item>
       <title>与VirtualBox下Linux虚拟机共享文件</title>
-      <link>/articles/yu-virtualboxxia-linuxxu-ni-ji-gong-xiang-wen-jian/</link>
+      <link>https://vimerzhao.top/articles/yu-virtualboxxia-linuxxu-ni-ji-gong-xiang-wen-jian/</link>
       <pubDate>Mon, 29 May 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/yu-virtualboxxia-linuxxu-ni-ji-gong-xiang-wen-jian/</guid>
+      <guid>https://vimerzhao.top/articles/yu-virtualboxxia-linuxxu-ni-ji-gong-xiang-wen-jian/</guid>
       <description>与VirtualBox下Linux虚拟机共享文件 记录了如何与VirtualBox下的Linux虚拟机共享文件。 最近，需要在Ubuntu虚拟机里面调试HotSpot，截了些图需要在本机上处理一下，所以需</description>
     </item>
     <item>
       <title>VirtualBox下虚拟电脑没有光驱</title>
-      <link>/articles/virtualboxxia-xu-ni-dian-nao-mei-you-guang-qu/</link>
+      <link>https://vimerzhao.top/articles/virtualboxxia-xu-ni-dian-nao-mei-you-guang-qu/</link>
       <pubDate>Sun, 28 May 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/virtualboxxia-xu-ni-dian-nao-mei-you-guang-qu/</guid>
+      <guid>https://vimerzhao.top/articles/virtualboxxia-xu-ni-dian-nao-mei-you-guang-qu/</guid>
       <description>VirtualBox下虚拟电脑没有光驱 记录了VirtualBox虚拟电脑安装增强功能时提示没有光驱的问题。 由于编译openjdk的需要，安装了Ubuntu12.04，但是在安装增强功能时候却遇到了以下</description>
     </item>
     <item>
       <title>VirtualBox安装MS-DOS6.22（图文教程）</title>
-      <link>/articles/2016-virtualbox-installation-ms-dos6-22-graphic-tutorial/</link>
+      <link>https://vimerzhao.top/articles/2016-virtualbox-installation-ms-dos6-22-graphic-tutorial/</link>
       <pubDate>Tue, 06 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-virtualbox-installation-ms-dos6-22-graphic-tutorial/</guid>
+      <guid>https://vimerzhao.top/articles/2016-virtualbox-installation-ms-dos6-22-graphic-tutorial/</guid>
       <description>最近在读一些计算机发展史之类的文献，总感觉的纸上得来终觉浅，所以打算自己装一个MS-DOS，体验一下远古的操作系统！可以google到MS-DOS的安装文件： 为什么要分成三个呢？可以看到，每个大小都是</description>
     </item>
     <item>
       <title>“此主机不支持64位客户机操作系统”问题记录</title>
-      <link>/articles/2016-this-host-does-not-support-64-bit-guest-operating-systems-problem-record/</link>
+      <link>https://vimerzhao.top/articles/2016-this-host-does-not-support-64-bit-guest-operating-systems-problem-record/</link>
       <pubDate>Fri, 12 Aug 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-this-host-does-not-support-64-bit-guest-operating-systems-problem-record/</guid>
+      <guid>https://vimerzhao.top/articles/2016-this-host-does-not-support-64-bit-guest-operating-systems-problem-record/</guid>
       <description>由于昨天把系统玩坏了，得重装虚拟机，可是在向导阶段阶段就出现了“此主机不支持64位客户机操作系统&amp;hellip;”的提示，于是网上查了一下解决方法：无非都是Enable VT之类，可是设置这些之后还是有</description>
     </item>
     <item>
       <title>virtualbox虚拟机无法上网的一种情况</title>
-      <link>/articles/2016-virtualbox-vm-cannot-access-network/</link>
+      <link>https://vimerzhao.top/articles/2016-virtualbox-vm-cannot-access-network/</link>
       <pubDate>Sun, 21 Feb 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-virtualbox-vm-cannot-access-network/</guid>
+      <guid>https://vimerzhao.top/articles/2016-virtualbox-vm-cannot-access-network/</guid>
       <description>write by ai 原文：CSDN 链接 `n今天用XP虚拟机突然不能上网了，但是主机能上，google了半下午都没找到解决方案，最后在知乎上一个点赞为0的回答上找到了灵感，原来是硬件的问题，只需要更改控制芯片就可以啦</description>
     </item>
     <item>
       <title>virtualbox上安装Mac OS Mavericks</title>
-      <link>/articles/2016-installing-mac-os-mavericks-on-virtualbox/</link>
+      <link>https://vimerzhao.top/articles/2016-installing-mac-os-mavericks-on-virtualbox/</link>
       <pubDate>Sun, 14 Feb 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-installing-mac-os-mavericks-on-virtualbox/</guid>
+      <guid>https://vimerzhao.top/articles/2016-installing-mac-os-mavericks-on-virtualbox/</guid>
       <description>write by ai 原文：CSDN 链接 `n之前安装了virtualbox后，顺利在上面搭建了Ubuntu、Windows XP操作系统。而Mac OS则因为诸多原因，比较难以安装（比如镜像不好找、安装步骤复杂、设计硬件</description>
     </item>
   </channel>

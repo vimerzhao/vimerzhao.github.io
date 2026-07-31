@@ -2,318 +2,318 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Android on 赵裕的博客</title>
-    <link>/categories/android/</link>
+    <link>https://vimerzhao.top/categories/android/</link>
     <description>Recent content in Android on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
-    <atom:link href="/categories/android/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/categories/android/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>记录一个Android构建错误</title>
-      <link>/articles/record-android-build-error-20240816/</link>
+      <link>https://vimerzhao.top/articles/record-android-build-error-20240816/</link>
       <pubDate>Fri, 16 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/record-android-build-error-20240816/</guid>
+      <guid>https://vimerzhao.top/articles/record-android-build-error-20240816/</guid>
       <description>今天发现个人Devcloud可以升级到32核，于是升级了下（+重启），升级完成后Android就构建失败了，错误日志如下： * What went wrong: Execution failed for task &amp;#39;:app:processDebugResources&amp;#39;. &amp;gt; A failure occurred while executing com.android.build.gradle.internal.res.LinkApplicationAndroidResourcesTask$TaskAction &amp;gt; Android resource linking failed /data/work/****App/****App/build/app/intermediates/packaged_manifests/debug/AndroidManifest.xml:245: error: resource attr/??? (aka com.tencent.docs:attr/???) not found. error: failed processing manifest. 打开这个文件</description>
     </item>
     <item>
       <title>如何利用ReleaseApk辅助排查性能问题</title>
-      <link>/articles/how-to-use-release-apk-to-find-performance-issue/</link>
+      <link>https://vimerzhao.top/articles/how-to-use-release-apk-to-find-performance-issue/</link>
       <pubDate>Tue, 30 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>/articles/how-to-use-release-apk-to-find-performance-issue/</guid>
+      <guid>https://vimerzhao.top/articles/how-to-use-release-apk-to-find-performance-issue/</guid>
       <description>背景 最近收到反馈，同样的场景，Android打开明显比iOS卡顿，实际打开也确实如此。故此要进一步排查这个问题。 我们的业务工程非常庞大，之前全量编一次竟然花了快2h。 此外，我负责的是底层渲染模块，此类</description>
     </item>
     <item>
       <title>Android Gradle使用自定义的CMake</title>
-      <link>/articles/custom-cmake-in-android-gradle/</link>
+      <link>https://vimerzhao.top/articles/custom-cmake-in-android-gradle/</link>
       <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>/articles/custom-cmake-in-android-gradle/</guid>
+      <guid>https://vimerzhao.top/articles/custom-cmake-in-android-gradle/</guid>
       <description>背景 最近重构项目的CMake后，开始了Android平台的适配，踩了些坑，简单记录下。 Cmake版本过低 test 重构后的CMake使用了一些高版本的特性，比如： CMP0135: New in version 3.24. -&amp;gt; https://cmake.org/cmake/help/latest/policy/CMP0135.html FILE_SET &amp;lt;set-name&amp;gt;: New in version 3.23 -&amp;gt; https://cmake.org/cmake/help/latest/command/install.html 但Android</description>
     </item>
     <item>
       <title>小米6刷机记录</title>
-      <link>/articles/upgrade-xiaomi6-rom-manually/</link>
+      <link>https://vimerzhao.top/articles/upgrade-xiaomi6-rom-manually/</link>
       <pubDate>Fri, 17 Jun 2022 00:00:00 +0000</pubDate>
-      <guid>/articles/upgrade-xiaomi6-rom-manually/</guid>
+      <guid>https://vimerzhao.top/articles/upgrade-xiaomi6-rom-manually/</guid>
       <description>手头的开发机是小米6，升级到MIUI11（Android9）之后，官方貌似也停止了对其的升级。 另一方面，也想为将来真机调试积累点经验，于是研究了下如何刷机。 刷机这种行为，最佳选择自然是Google Pi</description>
     </item>
     <item>
       <title>AndroidStudio使用Cmake3.18.1的坑</title>
-      <link>/articles/use-cmake-3.18.1-in-android-studio/</link>
+      <link>https://vimerzhao.top/articles/use-cmake-3.18.1-in-android-studio/</link>
       <pubDate>Tue, 07 Jun 2022 00:00:00 +0000</pubDate>
-      <guid>/articles/use-cmake-3.18.1-in-android-studio/</guid>
+      <guid>https://vimerzhao.top/articles/use-cmake-3.18.1-in-android-studio/</guid>
       <description>Android Studio的SDK Manager默认支持的Cmake版本只有3个： 但是，使用3.18版本的Cmake时，大概率遇到 Invalid revision 的错误： 这个错误的原因是Google官方提供的Cmake制品不规范，而低版本G</description>
     </item>
     <item>
       <title>Android Sutdio开发C&#43;&#43;项目踩坑记录</title>
-      <link>/articles/developing-cpp-with-android-sutdio/</link>
+      <link>https://vimerzhao.top/articles/developing-cpp-with-android-sutdio/</link>
       <pubDate>Mon, 01 Nov 2021 18:32:39 +0800</pubDate>
-      <guid>/articles/developing-cpp-with-android-sutdio/</guid>
+      <guid>https://vimerzhao.top/articles/developing-cpp-with-android-sutdio/</guid>
       <description>背景 由于工作性质关系，后面主要是基于C++开发，日常构建、运行、调试的宿主是Android设备。 由于example工程的设计，可以方便地通过Android Studio构建这个工程并运行在Android</description>
     </item>
     <item>
       <title>AndroidStudio-Profile工具导致的一个奇怪问题</title>
-      <link>/articles/android-profile-tool-bug-record/</link>
+      <link>https://vimerzhao.top/articles/android-profile-tool-bug-record/</link>
       <pubDate>Thu, 10 Dec 2020 12:36:32 +0800</pubDate>
-      <guid>/articles/android-profile-tool-bug-record/</guid>
+      <guid>https://vimerzhao.top/articles/android-profile-tool-bug-record/</guid>
       <description>在使用AndroidStudio里面的Profile查看内存占用时，发现一个奇怪的现象： 应用启动后Native内存猛增，即使一个空的App也是如此，按理说不应该。于是用adb工具导出了一次内存： adb shell dumpsys</description>
     </item>
     <item>
       <title>最好的Android投屏工具</title>
-      <link>/articles/best-android-projector/</link>
+      <link>https://vimerzhao.top/articles/best-android-projector/</link>
       <pubDate>Thu, 12 Nov 2020 15:48:51 +0800</pubDate>
-      <guid>/articles/best-android-projector/</guid>
+      <guid>https://vimerzhao.top/articles/best-android-projector/</guid>
       <description>背景 之前一直用Chrome的Vysor插件做投屏，最近这个插件无法使用了 手机连着USB，放在桌子里面，拿起来操作很不方便，胳膊肘疼 于是调研了下可选的投屏方案 AirDroid过于庞大，还要收费，而且公司</description>
     </item>
     <item>
       <title>Android系统服务的注册缓存机制分析</title>
-      <link>/articles/android-system-service-cache-analyze/</link>
+      <link>https://vimerzhao.top/articles/android-system-service-cache-analyze/</link>
       <pubDate>Fri, 21 Aug 2020 12:18:22 +0800</pubDate>
-      <guid>/articles/android-system-service-cache-analyze/</guid>
+      <guid>https://vimerzhao.top/articles/android-system-service-cache-analyze/</guid>
       <description>本文说明 本文虽名为《Android系统服务的注册缓存机制分析》，但主要记录的是笔者最近解决一个单机型Bug的经历。在解决这个Bug的过程中，我对于Android系统服务的注册缓存机制也有了更深入的了解</description>
     </item>
     <item>
       <title>设置Android全局可调试</title>
-      <link>/articles/android-make-debuggable/</link>
+      <link>https://vimerzhao.top/articles/android-make-debuggable/</link>
       <pubDate>Thu, 07 May 2020 12:13:23 +0800</pubDate>
-      <guid>/articles/android-make-debuggable/</guid>
+      <guid>https://vimerzhao.top/articles/android-make-debuggable/</guid>
       <description>背景 最近要看一些系统打印的日志，发现需要开启debuggable标志，于是调研了一下。 实现 参考Android修改ro.debuggable 华为真机adb调试所有进程 — 全栈笔记使用mprop这个工具成功</description>
     </item>
     <item>
       <title>给DroidPlugin添加概览屏幕</title>
-      <link>/articles/add-recent-task-for-droidplugin/</link>
+      <link>https://vimerzhao.top/articles/add-recent-task-for-droidplugin/</link>
       <pubDate>Thu, 02 Apr 2020 09:59:32 +0800</pubDate>
-      <guid>/articles/add-recent-task-for-droidplugin/</guid>
+      <guid>https://vimerzhao.top/articles/add-recent-task-for-droidplugin/</guid>
       <description>背景 DroidPlugin默认不支持多任务： VirtualApp是支持的： 方案 其实参考的就是VirtualApp的实现，它的核心代码是： // com.lody.virtual.client.hook.proxies.am.HCallbackStub IBinder token = ActivityThread.ActivityClientRecord.token.get(r); ...... int taskId = IActivityManager.getTaskForActivity.call( ActivityManagerNative.getDefault.call(), token, false); 其实就是反射调用ActivityMa</description>
     </item>
     <item>
       <title>Android混淆问题一则</title>
-      <link>/articles/android-proguard-problem/</link>
+      <link>https://vimerzhao.top/articles/android-proguard-problem/</link>
       <pubDate>Tue, 24 Mar 2020 09:56:45 +0800</pubDate>
-      <guid>/articles/android-proguard-problem/</guid>
+      <guid>https://vimerzhao.top/articles/android-proguard-problem/</guid>
       <description>问题 dex包里面的build.gradle通过api引用了一个包，同事主工程调用dex包里面的方法抛出ClassNotFoundException。 分析 使用AS的Analyze APK发现该类其实是存在</description>
     </item>
     <item>
       <title>Proguard导致的NoSuchMethodException问题排查</title>
-      <link>/articles/proguard-inline-optimieze-make-stacktrace-loss/</link>
+      <link>https://vimerzhao.top/articles/proguard-inline-optimieze-make-stacktrace-loss/</link>
       <pubDate>Mon, 16 Mar 2020 09:54:14 +0800</pubDate>
-      <guid>/articles/proguard-inline-optimieze-make-stacktrace-loss/</guid>
+      <guid>https://vimerzhao.top/articles/proguard-inline-optimieze-make-stacktrace-loss/</guid>
       <description>背景 最近在处理异常时遇到一个诡异的问题：自己的Demo里面混淆一个类后，打印Crash堆栈时这个类里面的调用点直接失踪了！ 下面用测试代码说明。 测试代码 // MainActivity.java public class MainActivity extends AppCompatActivity { @Override protected void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); setContentView(R.layout.activity_main); new Test().fun1(); } } // Test.java public class Test</description>
     </item>
     <item>
       <title>Proguard导致的NoSuchMethodException问题排查</title>
-      <link>/articles/proguard-result-in-nosuchmethodexception/</link>
+      <link>https://vimerzhao.top/articles/proguard-result-in-nosuchmethodexception/</link>
       <pubDate>Mon, 16 Mar 2020 09:54:14 +0800</pubDate>
-      <guid>/articles/proguard-result-in-nosuchmethodexception/</guid>
+      <guid>https://vimerzhao.top/articles/proguard-result-in-nosuchmethodexception/</guid>
       <description>背景 之前项目的混淆配置一直没开启Proguard的优化选项 -dontoptimize 最近为了做安装包优化，把这行注释掉了 #-dontoptimize 问题 于是项目里的各种优化配置开始生效了，但是测试反馈了一个Bug：悬浮窗的搜索框点击之后没有反应了。 排</description>
     </item>
     <item>
       <title>基于Android签名机制的文件安全下发方法</title>
-      <link>/articles/secure-file-transfer-base-on-android-signature/</link>
+      <link>https://vimerzhao.top/articles/secure-file-transfer-base-on-android-signature/</link>
       <pubDate>Thu, 05 Mar 2020 12:05:39 +0800</pubDate>
-      <guid>/articles/secure-file-transfer-base-on-android-signature/</guid>
+      <guid>https://vimerzhao.top/articles/secure-file-transfer-base-on-android-signature/</guid>
       <description>问题背景 Android中存在大量需要动态下发文件的场景： 下发布局资源文件实现UI动态化 下发Dex文件、lua文件，实现局部功能的动态化 下发Android插件 下发多媒体资源等 等等 对于其中一些文件，如De</description>
     </item>
     <item>
       <title>UnsatisfiedLinkError...is32-bit instead of 64-bit问题解决</title>
-      <link>/articles/solve-unsatisfiedlinkerror-is-32-bit-instead-of-64-bit/</link>
+      <link>https://vimerzhao.top/articles/solve-unsatisfiedlinkerror-is-32-bit-instead-of-64-bit/</link>
       <pubDate>Fri, 28 Feb 2020 09:52:52 +0800</pubDate>
-      <guid>/articles/solve-unsatisfiedlinkerror-is-32-bit-instead-of-64-bit/</guid>
+      <guid>https://vimerzhao.top/articles/solve-unsatisfiedlinkerror-is-32-bit-instead-of-64-bit/</guid>
       <description>背景 在做沙箱动态化时遇到一个问题： 请假其他同事之后发现是因为Android高版本上，默认是64-bit的方式运行，而某些游戏是32-bit的，所以出现了冲突，解决办法就是强制使用32-bit的，而不是</description>
     </item>
     <item>
       <title>防止WebView因为GC被回收</title>
-      <link>/articles/keep-webview-from-gc/</link>
+      <link>https://vimerzhao.top/articles/keep-webview-from-gc/</link>
       <pubDate>Tue, 11 Feb 2020 09:47:55 +0800</pubDate>
-      <guid>/articles/keep-webview-from-gc/</guid>
+      <guid>https://vimerzhao.top/articles/keep-webview-from-gc/</guid>
       <description>今天遇到一个问题，前端反映说我们共同约定的一个隐藏WebView无法调试，现象如下： 可以看到，小测试这个Tab一出现就消失了，但是同样的代码放在测试Demo里面就没问题，分析之后发现是实际工程里面产生</description>
     </item>
     <item>
       <title>Android安装包优化</title>
-      <link>/articles/apk-size-opt-summary/</link>
+      <link>https://vimerzhao.top/articles/apk-size-opt-summary/</link>
       <pubDate>Tue, 11 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/articles/apk-size-opt-summary/</guid>
+      <guid>https://vimerzhao.top/articles/apk-size-opt-summary/</guid>
       <description>背景 安装包膨胀的原因 业务的增加、产品的演进是安装包大小增加的本质原因。但是在演进之路上，由于一些所谓的技术债务，如： 使用的资源未经裁剪（如全量字体文件、分辨率过大的图片） 不合理的大资源（如大的视频、音</description>
     </item>
     <item>
       <title>Android安装包极限优化</title>
-      <link>/articles/opt-apk-size-by-remove-debuginfo/</link>
+      <link>https://vimerzhao.top/articles/opt-apk-size-by-remove-debuginfo/</link>
       <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/articles/opt-apk-size-by-remove-debuginfo/</guid>
+      <guid>https://vimerzhao.top/articles/opt-apk-size-by-remove-debuginfo/</guid>
       <description>背景 目前Android安装包的优化方法论比较成熟，比如 混淆代码（Proguard、AndResGuard） 移除不在使用的代码和资源 对于音频、图片等使用更轻量的格式 等等 这些方法都比较常规，在项目成熟后优</description>
     </item>
     <item>
       <title>&#39;android:excludeFromRecents踩坑指南&#39;</title>
-      <link>/articles/android-excludefromrecentscai-keng-zhi-nan/</link>
+      <link>https://vimerzhao.top/articles/android-excludefromrecentscai-keng-zhi-nan/</link>
       <pubDate>Sun, 30 Dec 2018 00:00:00 +0000</pubDate>
-      <guid>/articles/android-excludefromrecentscai-keng-zhi-nan/</guid>
+      <guid>https://vimerzhao.top/articles/android-excludefromrecentscai-keng-zhi-nan/</guid>
       <description>&amp;lsquo;android:excludeFromRecents踩坑指南&amp;rsquo; 工作中遇到的一个小问题，记录一下。 现象 从Activity A跳转到B，B的launchMode设置为singleI</description>
     </item>
     <item>
       <title>自己动手写Android插件化框架</title>
-      <link>/articles/zi-ji-dong-shou-xie-androidcha-jian-hua-kuang-jia/</link>
+      <link>https://vimerzhao.top/articles/zi-ji-dong-shou-xie-androidcha-jian-hua-kuang-jia/</link>
       <pubDate>Thu, 04 Oct 2018 00:00:00 +0000</pubDate>
-      <guid>/articles/zi-ji-dong-shou-xie-androidcha-jian-hua-kuang-jia/</guid>
+      <guid>https://vimerzhao.top/articles/zi-ji-dong-shou-xie-androidcha-jian-hua-kuang-jia/</guid>
       <description>自己动手写Android插件化框架 最近在工作中接触到了Android插件内的开发，发现自己这种技术还缺乏最基本的了解，以至于在一些基本问题上浪费不少时间，如插件Context和主工程Context的区</description>
     </item>
     <item>
       <title>【Android开发】TextView中getText()方法踩坑指南</title>
-      <link>/articles/androidkai-fa-textviewzhong-gettext-fang-fa-cai-keng-zhi-nan/</link>
+      <link>https://vimerzhao.top/articles/androidkai-fa-textviewzhong-gettext-fang-fa-cai-keng-zhi-nan/</link>
       <pubDate>Fri, 03 Aug 2018 00:00:00 +0000</pubDate>
-      <guid>/articles/androidkai-fa-textviewzhong-gettext-fang-fa-cai-keng-zhi-nan/</guid>
+      <guid>https://vimerzhao.top/articles/androidkai-fa-textviewzhong-gettext-fang-fa-cai-keng-zhi-nan/</guid>
       <description>【Android开发】TextView中getText()方法踩坑指南 本文记录了在使用TextView的getText()方法时，由于编码不规范导致的诡异问题。 问题背景 大意可以描述为以下一段代码： public class</description>
     </item>
     <item>
       <title>Android RSS阅读器开发记录</title>
-      <link>/articles/android-rssyue-du-qi-kai-fa-ji-lu/</link>
+      <link>https://vimerzhao.top/articles/android-rssyue-du-qi-kai-fa-ji-lu/</link>
       <pubDate>Sat, 18 Nov 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/android-rssyue-du-qi-kai-fa-ji-lu/</guid>
+      <guid>https://vimerzhao.top/articles/android-rssyue-du-qi-kai-fa-ji-lu/</guid>
       <description>Android RSS阅读器开发记录 本文的时间跨度比较长，全程记录了我完成一个RSS阅读器的经历，包括踩过的坑以及自己的一些思考。 背景介绍 大概大一的时候我就见过RSS，但一直没明白这东西是干嘛的。很长一段时间自己都</description>
     </item>
     <item>
       <title>Android音视频播放器开发（二）：MVP模式实践</title>
-      <link>/articles/androidyin-shi-pin-bo-fang-qi-kai-fa-er-mvpmo-shi-shi-jian/</link>
+      <link>https://vimerzhao.top/articles/androidyin-shi-pin-bo-fang-qi-kai-fa-er-mvpmo-shi-shi-jian/</link>
       <pubDate>Mon, 16 Oct 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/androidyin-shi-pin-bo-fang-qi-kai-fa-er-mvpmo-shi-shi-jian/</guid>
+      <guid>https://vimerzhao.top/articles/androidyin-shi-pin-bo-fang-qi-kai-fa-er-mvpmo-shi-shi-jian/</guid>
       <description>Android音视频播放器开发（二）：MVP模式实践 本文主要针对上一篇博客的代码进行重构，并简单阐述了使用MVP模式的好处。 以音乐播放部分为例，下图是未重构的代码结构： 虽然还算清晰，但是拓展性很差。经</description>
     </item>
     <item>
       <title>Android音视频播放器开发（一）：功能实现</title>
-      <link>/articles/androidyin-shi-pin-bo-fang-qi-kai-fa-yi-gong-neng-shi-xian/</link>
+      <link>https://vimerzhao.top/articles/androidyin-shi-pin-bo-fang-qi-kai-fa-yi-gong-neng-shi-xian/</link>
       <pubDate>Mon, 16 Oct 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/androidyin-shi-pin-bo-fang-qi-kai-fa-yi-gong-neng-shi-xian/</guid>
+      <guid>https://vimerzhao.top/articles/androidyin-shi-pin-bo-fang-qi-kai-fa-yi-gong-neng-shi-xian/</guid>
       <description>Android音视频播放器开发（一）：功能实现 本文主要介绍了一个简单的Android音视频播放器的功能模块实现。 概述 本文主要介绍开发一个Android音视频播放器的功能实现，包括4个模块：音乐列表，视</description>
     </item>
     <item>
       <title>Android划词翻译</title>
-      <link>/articles/androidhua-ci-fan-yi/</link>
+      <link>https://vimerzhao.top/articles/androidhua-ci-fan-yi/</link>
       <pubDate>Tue, 10 Oct 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/androidhua-ci-fan-yi/</guid>
+      <guid>https://vimerzhao.top/articles/androidhua-ci-fan-yi/</guid>
       <description>Android划词翻译 通过复制实现单词查找，更加节省时间。 问题背景 个人经常用BCC News这个APP看新闻，但是遇到陌生词汇时总需要在APP内复制单词，再到另外一个词典应用内查找，如下： 十分不方便。 在</description>
     </item>
     <item>
       <title>全面了解Android热修复技术</title>
-      <link>/articles/quan-mian-liao-jie-androidre-xiu-fu-ji-zhu/</link>
+      <link>https://vimerzhao.top/articles/quan-mian-liao-jie-androidre-xiu-fu-ji-zhu/</link>
       <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/quan-mian-liao-jie-androidre-xiu-fu-ji-zhu/</guid>
+      <guid>https://vimerzhao.top/articles/quan-mian-liao-jie-androidre-xiu-fu-ji-zhu/</guid>
       <description>全面了解Android热修复技术 引言:本文全面地探讨了Android热修复技术的发展脉络，现状及其未来。 热修复技术概述 热修复技术在近年来飞速发展，尤其是在InstantRun方案推出之后，各种热修复技</description>
     </item>
     <item>
       <title>Dalvik之类加载源码分析</title>
-      <link>/articles/dalvikzhi-lei-jia-zai-yuan-ma-fen-xi/</link>
+      <link>https://vimerzhao.top/articles/dalvikzhi-lei-jia-zai-yuan-ma-fen-xi/</link>
       <pubDate>Sat, 26 Aug 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/dalvikzhi-lei-jia-zai-yuan-ma-fen-xi/</guid>
+      <guid>https://vimerzhao.top/articles/dalvikzhi-lei-jia-zai-yuan-ma-fen-xi/</guid>
       <description>Dalvik之类加载源码分析 基于Kitkat源码粗线条地分析了Dalvik虚拟机类的加载过程。 Java类加载 在Java的世界里，所有类的加载，都由java.lang.ClassLoader来负责。Cl</description>
     </item>
     <item>
       <title>热补丁：Qzone方案在Dalvik虚拟机上的实现</title>
-      <link>/articles/re-bu-ding-qzonefang-an-zai-dalvikxu-ni-ji-shang-de-shi-xian/</link>
+      <link>https://vimerzhao.top/articles/re-bu-ding-qzonefang-an-zai-dalvikxu-ni-ji-shang-de-shi-xian/</link>
       <pubDate>Mon, 21 Aug 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/re-bu-ding-qzonefang-an-zai-dalvikxu-ni-ji-shang-de-shi-xian/</guid>
+      <guid>https://vimerzhao.top/articles/re-bu-ding-qzonefang-an-zai-dalvikxu-ni-ji-shang-de-shi-xian/</guid>
       <description>热补丁：Qzone方案在Dalvik虚拟机上的实现 详细分析了Qzone热修复方案在Dalvik平台的实现，包括插桩的由来及其实现。 Qzone热修复原理分析 Qzone热修复方案基于的是android de</description>
     </item>
     <item>
       <title>匿名内部类导致热补丁Crash</title>
-      <link>/articles/ni-ming-nei-bu-lei-dao-zhi-re-bu-ding-crash/</link>
+      <link>https://vimerzhao.top/articles/ni-ming-nei-bu-lei-dao-zhi-re-bu-ding-crash/</link>
       <pubDate>Sun, 20 Aug 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/ni-ming-nei-bu-lei-dao-zhi-re-bu-ding-crash/</guid>
+      <guid>https://vimerzhao.top/articles/ni-ming-nei-bu-lei-dao-zhi-re-bu-ding-crash/</guid>
       <description>匿名内部类导致热补丁Crash 本文记录了匿名内部类可能导致的热补丁Crash及其原因。 问题描述 新建工程 新建一个工程，集成Andfix（设置权限、添加gradle、自定义Application），同时在</description>
     </item>
     <item>
       <title>InstantRun原理浅析</title>
-      <link>/articles/instantrunyuan-li-qian-xi/</link>
+      <link>https://vimerzhao.top/articles/instantrunyuan-li-qian-xi/</link>
       <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/instantrunyuan-li-qian-xi/</guid>
+      <guid>https://vimerzhao.top/articles/instantrunyuan-li-qian-xi/</guid>
       <description>InstantRun原理浅析 本文从宏观上简要介绍了InstantRun的实现原理。 InstantRun概述 InstantRun是Android Studio2.0推出的新功能，旨在加快构建编译速度，提升</description>
     </item>
     <item>
       <title>热修复之资源更新的实现</title>
-      <link>/articles/re-xiu-fu-zhi-zi-yuan-geng-xin-de-shi-xian/</link>
+      <link>https://vimerzhao.top/articles/re-xiu-fu-zhi-zi-yuan-geng-xin-de-shi-xian/</link>
       <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/re-xiu-fu-zhi-zi-yuan-geng-xin-de-shi-xian/</guid>
+      <guid>https://vimerzhao.top/articles/re-xiu-fu-zhi-zi-yuan-geng-xin-de-shi-xian/</guid>
       <description>热修复之资源更新的实现 本文分析了InstantRun的部分源码，并由此得出资源热修复的一种实现方法。 资源热修复 所谓资源热修复就是在不重新安装APP的情况下修改其资源，包括音频、图片，也包括布局、文字等</description>
     </item>
     <item>
       <title>热补丁：Tinker方案实现</title>
-      <link>/articles/re-bu-ding-tinkerfang-an-shi-xian/</link>
+      <link>https://vimerzhao.top/articles/re-bu-ding-tinkerfang-an-shi-xian/</link>
       <pubDate>Thu, 03 Aug 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/re-bu-ding-tinkerfang-an-shi-xian/</guid>
+      <guid>https://vimerzhao.top/articles/re-bu-ding-tinkerfang-an-shi-xian/</guid>
       <description>热补丁：Tinker方案实现 本文简单分析了Tinker的实现原理并对dex文件更新做了演示Demo。 Qzone方案与Tinker 在之前的博客里简单介绍了Qzone超级热补丁的原理与实现，本文介绍了腾讯</description>
     </item>
     <item>
       <title>热补丁：Qzone方案在Art虚拟机上的实现</title>
-      <link>/articles/re-bu-ding-qzonefang-an-zai-artxu-ni-ji-shang-de-shi-xian/</link>
+      <link>https://vimerzhao.top/articles/re-bu-ding-qzonefang-an-zai-artxu-ni-ji-shang-de-shi-xian/</link>
       <pubDate>Sun, 30 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/re-bu-ding-qzonefang-an-zai-artxu-ni-ji-shang-de-shi-xian/</guid>
+      <guid>https://vimerzhao.top/articles/re-bu-ding-qzonefang-an-zai-artxu-ni-ji-shang-de-shi-xian/</guid>
       <description>热补丁：Qzone方案在Art虚拟机上的实现 本文对Qzone的超级热补丁方案做了一个简单实现。 引子 当一个App发布之后，突然发现了一个严重bug需要进行紧急修复，这时候公司各方就会忙得焦头烂额：重新打</description>
     </item>
     <item>
       <title>Activity直接退出应用现象</title>
-      <link>/articles/activityzhi-jie-tui-chu-ying-yong-xian-xiang/</link>
+      <link>https://vimerzhao.top/articles/activityzhi-jie-tui-chu-ying-yong-xian-xiang/</link>
       <pubDate>Fri, 14 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/activityzhi-jie-tui-chu-ying-yong-xian-xiang/</guid>
+      <guid>https://vimerzhao.top/articles/activityzhi-jie-tui-chu-ying-yong-xian-xiang/</guid>
       <description>Activity直接退出应用现象 Activity的退出顺序应该类似一个栈，但最近一次开发中却发现Activity直接退出了应用，这是为什么呢？ 开发Android应用时，系统一般会维护一个回退栈，比如从</description>
     </item>
     <item>
       <title>《Android项目实战－－手机安全卫士》读后感</title>
-      <link>/articles/2017-thoughts-after-reading-android-project-practice-mobile-security-guard/</link>
+      <link>https://vimerzhao.top/articles/2017-thoughts-after-reading-android-project-practice-mobile-security-guard/</link>
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017-thoughts-after-reading-android-project-practice-mobile-security-guard/</guid>
+      <guid>https://vimerzhao.top/articles/2017-thoughts-after-reading-android-project-practice-mobile-security-guard/</guid>
       <description>上学期在学校图书馆看到此书，觉得比较贴近实践，于是寒假研究了一番，也算是体会了一把社会培训机构的模式。 由于时间关系，最后两章还没弄完，但感觉每章节的流程相似，加之马上要回学校了，所以打算在家的最后一天</description>
     </item>
     <item>
       <title>做一个阅读管理APP</title>
-      <link>/articles/2016-make-a-reading-management-app/</link>
+      <link>https://vimerzhao.top/articles/2016-make-a-reading-management-app/</link>
       <pubDate>Fri, 07 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-make-a-reading-management-app/</guid>
+      <guid>https://vimerzhao.top/articles/2016-make-a-reading-management-app/</guid>
       <description>背景 由于最近在看的书有点多，所以一直想找一个能够管理阅读进度的书（鄙人记性不是很好，两天不看就忘了）可惜Android平台上一直找不到合适的APP： 有没有读书进度管理的网站或软件啊？ 有没有记录读书进度</description>
     </item>
     <item>
       <title>掌上大工开发过程中收集的资源整理</title>
-      <link>/articles/2016-compilation-of-resources-collected-during-the-development-of-pocket-work/</link>
+      <link>https://vimerzhao.top/articles/2016-compilation-of-resources-collected-during-the-development-of-pocket-work/</link>
       <pubDate>Tue, 04 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-compilation-of-resources-collected-during-the-development-of-pocket-work/</guid>
+      <guid>https://vimerzhao.top/articles/2016-compilation-of-resources-collected-during-the-development-of-pocket-work/</guid>
       <description>之前做掌上大工时用到的一些资源，都是对每个知识点讲解得比较符合我的口味的，故此备份： 【Android】ImageView顯示網路圖片(Converting Image URL to Bitmap) Android精美登录界面设计 黑大助手</description>
     </item>
     <item>
       <title>Android利用HttpURLConnection实现模拟登录</title>
-      <link>/articles/2016-android-uses-httpurlconnection-to-implement-simulated-login/</link>
+      <link>https://vimerzhao.top/articles/2016-android-uses-httpurlconnection-to-implement-simulated-login/</link>
       <pubDate>Fri, 23 Sep 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-android-uses-httpurlconnection-to-implement-simulated-login/</guid>
+      <guid>https://vimerzhao.top/articles/2016-android-uses-httpurlconnection-to-implement-simulated-login/</guid>
       <description>最近在做一个APP，需要模拟登录教务处，之前曾经用HttpClient做过，点这里，但是发现最新的Android SDK已经不支持Httpclient了，所以只好在琢磨一下HttpURLConnecti</description>
     </item>
     <item>
       <title>AndroidStudio不能解析R的一种可能</title>
-      <link>/articles/2016-one-possibility-that-androidstudio-cannot-parse-r/</link>
+      <link>https://vimerzhao.top/articles/2016-one-possibility-that-androidstudio-cannot-parse-r/</link>
       <pubDate>Tue, 20 Sep 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-one-possibility-that-androidstudio-cannot-parse-r/</guid>
+      <guid>https://vimerzhao.top/articles/2016-one-possibility-that-androidstudio-cannot-parse-r/</guid>
       <description>最近在做一个APP，突然就无法编译了，提示信息： 查了半天也没找到好的解决办法，最后想起来误删了一个文件，然后Ctrl+Z回退了事，结果不知为何，那个图片文件损坏了，倒是R无法编译出来，方才报错。 记之。</description>
     </item>
     <item>
       <title>Android登录界面实现</title>
-      <link>/articles/2016-android-login-interface-implementation/</link>
+      <link>https://vimerzhao.top/articles/2016-android-login-interface-implementation/</link>
       <pubDate>Mon, 19 Sep 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-android-login-interface-implementation/</guid>
+      <guid>https://vimerzhao.top/articles/2016-android-login-interface-implementation/</guid>
       <description>花了一些时间实现了一个还算可以等登陆界面，主要是对这两天工作的一个总结：自定义按钮、编辑框、布局、全屏等。 效果如下： 获取代码：点这里</description>
     </item>
     <item>
       <title>Android知识体系图</title>
-      <link>/articles/2016-android-knowledge-system-diagram/</link>
+      <link>https://vimerzhao.top/articles/2016-android-knowledge-system-diagram/</link>
       <pubDate>Wed, 31 Aug 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-android-knowledge-system-diagram/</guid>
+      <guid>https://vimerzhao.top/articles/2016-android-knowledge-system-diagram/</guid>
       <description>网上看到，不知哪位大神总结的，存个档（需要放大网页才能看清）</description>
     </item>
     <item>
       <title>Android虚拟机Classic qemu does not support SMP问题记录</title>
-      <link>/articles/2016-android-virtual-machine-classic-qemu-does-not-support-smp-problem-record/</link>
+      <link>https://vimerzhao.top/articles/2016-android-virtual-machine-classic-qemu-does-not-support-smp-problem-record/</link>
       <pubDate>Thu, 21 Jul 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-android-virtual-machine-classic-qemu-does-not-support-smp-problem-record/</guid>
+      <guid>https://vimerzhao.top/articles/2016-android-virtual-machine-classic-qemu-does-not-support-smp-problem-record/</guid>
       <description>不及之前重装了一次系统，导致要重新搭建android开发环境，但是在启动AVD时queue遇到了这个问题 androidstudio中看到的是这个样子 大概查了一下，应该是创建虚拟机是选择的cpu构架与有</description>
     </item>
     <item>
       <title>Android开发环境搭建中的一些小问题记录</title>
-      <link>/articles/2016-records-of-some-minor-problems-in-building-android-development-environment/</link>
+      <link>https://vimerzhao.top/articles/2016-records-of-some-minor-problems-in-building-android-development-environment/</link>
       <pubDate>Sun, 17 Jul 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-records-of-some-minor-problems-in-building-android-development-environment/</guid>
+      <guid>https://vimerzhao.top/articles/2016-records-of-some-minor-problems-in-building-android-development-environment/</guid>
       <description>1.由于市场上大多数教程是基于Eclipse，而AndroidStudio显然是大势所趋，所有我在电脑上同时搭建了两个IDE，直接在官网下载AndroidStudio比较好，因为SDK，AVD都集成了</description>
     </item>
   </channel>

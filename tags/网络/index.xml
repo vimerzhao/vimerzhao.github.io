@@ -2,101 +2,101 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>网络 on 赵裕的博客</title>
-    <link>/tags/%E7%BD%91%E7%BB%9C/</link>
+    <link>https://vimerzhao.top/tags/%E7%BD%91%E7%BB%9C/</link>
     <description>Recent content in 网络 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
-    <atom:link href="/tags/%E7%BD%91%E7%BB%9C/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://vimerzhao.top/tags/%E7%BD%91%E7%BB%9C/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux开发机问题汇总</title>
-      <link>/articles/pitfalls-about-using-linux-as-dev-machine/</link>
+      <link>https://vimerzhao.top/articles/pitfalls-about-using-linux-as-dev-machine/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/articles/pitfalls-about-using-linux-as-dev-machine/</guid>
+      <guid>https://vimerzhao.top/articles/pitfalls-about-using-linux-as-dev-machine/</guid>
       <description>DNS解析问题 在不同场景下遇到过几次，具体表现： 不连接有线，只Wifi连接热点 iOA无法加载扫码，网页无法加载 ping www.baidu.com 失败 原因其实是DNS解析失败了，查看这个文件 cat /etc/resolv.conf # This is /run/systemd/resolve/stub-resolv.conf managed by man:systemd-resolved(8). # Do not edit. # This file might be symlinked as /etc/resolv.conf.</description>
     </item>
     <item>
       <title>【译】自己动手写区块链</title>
-      <link>/articles/yi-zi-ji-dong-shou-xie-qu-kuai-lian/</link>
+      <link>https://vimerzhao.top/articles/yi-zi-ji-dong-shou-xie-qu-kuai-lian/</link>
       <pubDate>Sun, 01 Apr 2018 00:00:00 +0000</pubDate>
-      <guid>/articles/yi-zi-ji-dong-shou-xie-qu-kuai-lian/</guid>
+      <guid>https://vimerzhao.top/articles/yi-zi-ji-dong-shou-xie-qu-kuai-lian/</guid>
       <description>【译】自己动手写区块链 目前大多数对于区块链的文章都是停留在概念性的描述，大肆宣扬其颠覆性，本文则反其道行之，以一个程序员的视角，通过300行代码，快速实现了一个区块链原型。虽然没有覆盖区块链的全部内容</description>
     </item>
     <item>
       <title>LinuxMint Mate中WiFi自动关闭问题</title>
-      <link>/articles/linuxmint-matezhong-wifizi-dong-guan-bi-wen-ti/</link>
+      <link>https://vimerzhao.top/articles/linuxmint-matezhong-wifizi-dong-guan-bi-wen-ti/</link>
       <pubDate>Fri, 22 Sep 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/linuxmint-matezhong-wifizi-dong-guan-bi-wen-ti/</guid>
+      <guid>https://vimerzhao.top/articles/linuxmint-matezhong-wifizi-dong-guan-bi-wen-ti/</guid>
       <description>LinuxMint Mate中WiFi自动关闭问题 在安装了LinuxMint Mate后，发现WiFi经常自动关闭，花了一点时间发现了解决办法，记录下来以防再次掉坑。 LinuxMint主流的桌面版本有Cinnamon、M</description>
     </item>
     <item>
       <title>&#39;Python爬虫实战:妹子图&#39;</title>
-      <link>/articles/pythonpa-chong-shi-zhan-mei-zi-tu/</link>
+      <link>https://vimerzhao.top/articles/pythonpa-chong-shi-zhan-mei-zi-tu/</link>
       <pubDate>Sun, 02 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/pythonpa-chong-shi-zhan-mei-zi-tu/</guid>
+      <guid>https://vimerzhao.top/articles/pythonpa-chong-shi-zhan-mei-zi-tu/</guid>
       <description>&amp;lsquo;Python爬虫实战:妹子图&amp;rsquo; 本文记录了一些爬虫的基础知识，并实现了一个50行左右的爬虫脚本。 前言 看了一些Python的语法后打算做一个小项目练手，打发一下时间。爬虫比较容易</description>
     </item>
     <item>
       <title>2017阿里实习生面试总结</title>
-      <link>/articles/2017a-li-shi-xi-sheng-mian-shi-zong-jie/</link>
+      <link>https://vimerzhao.top/articles/2017a-li-shi-xi-sheng-mian-shi-zong-jie/</link>
       <pubDate>Fri, 02 Jun 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/2017a-li-shi-xi-sheng-mian-shi-zong-jie/</guid>
+      <guid>https://vimerzhao.top/articles/2017a-li-shi-xi-sheng-mian-shi-zong-jie/</guid>
       <description>2017阿里实习生面试总结 阿里面试记录的整理以及一些自己的总结。 5-18 晚上突然接到短信，叫我去预约面试时间。真是一脸蒙蔽，真不知道自己那个笔试怎么过的。。。不过既然拿到面试机会了，就作为一次锻炼自己、了解</description>
     </item>
     <item>
       <title>TCP连接的建立与释放</title>
-      <link>/articles/tcplian-jie-de-jian-li-yu-shi-fang/</link>
+      <link>https://vimerzhao.top/articles/tcplian-jie-de-jian-li-yu-shi-fang/</link>
       <pubDate>Fri, 21 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/tcplian-jie-de-jian-li-yu-shi-fang/</guid>
+      <guid>https://vimerzhao.top/articles/tcplian-jie-de-jian-li-yu-shi-fang/</guid>
       <description>TCP连接的建立与释放 本文通过实际抓包验证了TCP连接建立与释放的方式。 关于计算机网络 我在大三上修了计算机网络这门课，这门课真是我大学最差的记忆之一。教授这门课的老师水平很低，以至于辅导员安排另一位老</description>
     </item>
     <item>
       <title>C语言实现IPv6抓包程序</title>
-      <link>/articles/cyu-yan-shi-xian-ipv6zhua-bao-cheng-xu/</link>
+      <link>https://vimerzhao.top/articles/cyu-yan-shi-xian-ipv6zhua-bao-cheng-xu/</link>
       <pubDate>Wed, 19 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>/articles/cyu-yan-shi-xian-ipv6zhua-bao-cheng-xu/</guid>
+      <guid>https://vimerzhao.top/articles/cyu-yan-shi-xian-ipv6zhua-bao-cheng-xu/</guid>
       <description>C语言实现IPv6抓包程序 本文记录了如何借助libpcap实现一个简单的抓包程序。 准备 对于实现一个抓包程序，最重要的是熟悉每种协议。熟悉协议包括两部分：每个协议具体字段的意义和每个协议在C语言中对应的</description>
     </item>
     <item>
       <title>Linux创建WiFi热点</title>
-      <link>/articles/2016-create-wifi-hotspot-in-linux/</link>
+      <link>https://vimerzhao.top/articles/2016-create-wifi-hotspot-in-linux/</link>
       <pubDate>Tue, 27 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-create-wifi-hotspot-in-linux/</guid>
+      <guid>https://vimerzhao.top/articles/2016-create-wifi-hotspot-in-linux/</guid>
       <description>手机流量用完，需要开WiFi,由于是LinuxMint,感觉配置还算容易，找到一个不错的教程，收藏一下，以备后用。除了修改配置文件那步在我的电脑不需要外其他基本正确，而且Mint本来就衍生自Ubunt</description>
     </item>
     <item>
       <title>大二在CSDN的博客整理</title>
-      <link>/articles/2016-compilation-of-sophomore-year-s-blogs-on-csdn/</link>
+      <link>https://vimerzhao.top/articles/2016-compilation-of-sophomore-year-s-blogs-on-csdn/</link>
       <pubDate>Mon, 03 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-compilation-of-sophomore-year-s-blogs-on-csdn/</guid>
+      <guid>https://vimerzhao.top/articles/2016-compilation-of-sophomore-year-s-blogs-on-csdn/</guid>
       <description>001我为什么想写博客 控制台版2048 version_1.0总结 022 囚徒困境中的均衡&amp;mdash;&amp;ndash;从一篇经典论文说起 021 模拟退火算法学习（一）&amp;mdash;&amp;ndash;求解最短连通路径 020 小</description>
     </item>
     <item>
       <title>HttpClient &#43; Jsoup模拟登录教务处并获取课表</title>
-      <link>/articles/2016-httpclient-jsoup-simulates-logging-into-the-academic-affairs-office-and-obtaining-the-class-schedule/</link>
+      <link>https://vimerzhao.top/articles/2016-httpclient-jsoup-simulates-logging-into-the-academic-affairs-office-and-obtaining-the-class-schedule/</link>
       <pubDate>Thu, 15 Sep 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-httpclient-jsoup-simulates-logging-into-the-academic-affairs-office-and-obtaining-the-class-schedule/</guid>
+      <guid>https://vimerzhao.top/articles/2016-httpclient-jsoup-simulates-logging-into-the-academic-affairs-office-and-obtaining-the-class-schedule/</guid>
       <description>1、概述 最近想做一个校园助手类的APP，由于第一次做，所以打算先把每个功能单独实现，防止乱了阵脚。利用教务处登录获取课表和成绩等是一个基本功能，所以以获取课表为例实现了这个功能。完整代码点这里，尝试了</description>
     </item>
     <item>
       <title>小记一次网络故障处理</title>
-      <link>/articles/2016-network-failure-troubleshooting-note/</link>
+      <link>https://vimerzhao.top/articles/2016-network-failure-troubleshooting-note/</link>
       <pubDate>Mon, 29 Feb 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-network-failure-troubleshooting-note/</guid>
+      <guid>https://vimerzhao.top/articles/2016-network-failure-troubleshooting-note/</guid>
       <description>write by ai 原文：CSDN 链接 `n回家换了一台新电脑，但是回学校后发现连宿舍的网线之后，总是显示无法识别的网络，经过一番排查之后发现是在之前申请开通网络服务的时候，是用之前的电脑，所以账号上还是之前的mac</description>
     </item>
     <item>
       <title>virtualbox虚拟机无法上网的一种情况</title>
-      <link>/articles/2016-virtualbox-vm-cannot-access-network/</link>
+      <link>https://vimerzhao.top/articles/2016-virtualbox-vm-cannot-access-network/</link>
       <pubDate>Sun, 21 Feb 2016 00:00:00 +0000</pubDate>
-      <guid>/articles/2016-virtualbox-vm-cannot-access-network/</guid>
+      <guid>https://vimerzhao.top/articles/2016-virtualbox-vm-cannot-access-network/</guid>
       <description>write by ai 原文：CSDN 链接 `n今天用XP虚拟机突然不能上网了，但是主机能上，google了半下午都没找到解决方案，最后在知乎上一个点赞为0的回答上找到了灵感，原来是硬件的问题，只需要更改控制芯片就可以啦</description>
     </item>
     <item>
       <title>一百行写小世界网络和无标度网络</title>
-      <link>/articles/2015-one-hundred-lines-to-write-small-world-network-and-scale-free-network/</link>
+      <link>https://vimerzhao.top/articles/2015-one-hundred-lines-to-write-small-world-network-and-scale-free-network/</link>
       <pubDate>Mon, 14 Dec 2015 00:00:00 +0000</pubDate>
-      <guid>/articles/2015-one-hundred-lines-to-write-small-world-network-and-scale-free-network/</guid>
+      <guid>https://vimerzhao.top/articles/2015-one-hundred-lines-to-write-small-world-network-and-scale-free-network/</guid>
       <description>曾经觉得能写很长的代码就是厉害的表现，随着学习的深入，对于好的代码有了更加深刻的认识，一个好的代码应该： 1、可读性。好的代码不仅能让机器读懂，更要让看代码的人读懂&amp;mdash;-合理布局，逻辑清晰。 2</description>
     </item>
   </channel>
