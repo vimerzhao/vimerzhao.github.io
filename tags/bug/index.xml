@@ -37,13 +37,6 @@
       <description>今天发现个人Devcloud可以升级到32核，于是升级了下（+重启），升级完成后Android就构建失败了，错误日志如下： * What went wrong: Execution failed for task &amp;#39;:app:processDebugResources&amp;#39;. &amp;gt; A failure occurred while executing com.android.build.gradle.internal.res.LinkApplicationAndroidResourcesTask$TaskAction &amp;gt; Android resource linking failed /data/work/****App/****App/build/app/intermediates/packaged_manifests/debug/AndroidManifest.xml:245: error: resource attr/??? (aka com.tencent.docs:attr/???) not found. error: failed processing manifest. 打开这个文件</description>
     </item>
     <item>
-      <title>vcpkg踩坑之空缓存问题</title>
-      <link>https://vimerzhao.top/articles/empty-binary-cache-issue-of-vcpkg/</link>
-      <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>https://vimerzhao.top/articles/empty-binary-cache-issue-of-vcpkg/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>iOS异常弹窗溯源</title>
       <link>https://vimerzhao.top/articles/traceability-of-ios-exception-pop-up/</link>
       <pubDate>Thu, 13 Jul 2023 00:00:00 +0000</pubDate>

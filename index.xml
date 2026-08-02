@@ -6,7 +6,7 @@
     <description>Recent content on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 31 Jul 2026 23:53:50 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 02 Aug 2026 13:34:18 +0800</lastBuildDate>
     <atom:link href="https://vimerzhao.top/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>文章</title>
@@ -20,20 +20,6 @@
       <link>https://vimerzhao.top/sharing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://vimerzhao.top/sharing/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>演讲</title>
-      <link>https://vimerzhao.top/talk-archive/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://vimerzhao.top/talk-archive/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>课程</title>
-      <link>https://vimerzhao.top/courses-archive/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://vimerzhao.top/courses-archive/</guid>
       <description></description>
     </item>
     <item>
@@ -224,13 +210,6 @@
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
       <guid>https://vimerzhao.top/articles/vcpkg-source-code-of-install/</guid>
       <description>简介 vcpck install的主要工作是&amp;quot;构建(如果需要)和安装依赖包&amp;quot;，是vcpkg中最关键、也是使用者感知最明显的环节，有必要对其流程有一个更底层的理解，这样对一些问题的理解也将更加深</description>
-    </item>
-    <item>
-      <title>vcpkg踩坑之空缓存问题</title>
-      <link>https://vimerzhao.top/articles/empty-binary-cache-issue-of-vcpkg/</link>
-      <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>https://vimerzhao.top/articles/empty-binary-cache-issue-of-vcpkg/</guid>
-      <description></description>
     </item>
     <item>
       <title>vcpkg简介</title>

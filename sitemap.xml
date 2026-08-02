@@ -11,12 +11,6 @@
     <loc>https://vimerzhao.top/sharing/</loc>
     <lastmod>2026-07-31T23:53:50+08:00</lastmod>
   </url><url>
-    <loc>https://vimerzhao.top/talk-archive/</loc>
-    <lastmod>2026-07-31T23:53:50+08:00</lastmod>
-  </url><url>
-    <loc>https://vimerzhao.top/courses-archive/</loc>
-    <lastmod>2026-07-31T23:53:50+08:00</lastmod>
-  </url><url>
     <loc>https://vimerzhao.top/works/</loc>
     <lastmod>2023-04-01T16:55:30+08:00</lastmod>
   </url><url>
@@ -30,16 +24,16 @@
     <lastmod>2026-07-30T21:05:03+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/</loc>
-    <lastmod>2026-07-31T23:53:50+08:00</lastmod>
+    <lastmod>2026-08-02T13:34:18+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/articles/</loc>
-    <lastmod>2026-07-31T21:43:22+08:00</lastmod>
+    <lastmod>2026-08-02T13:34:18+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/tags/bug/</loc>
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/categories/</loc>
-    <lastmod>2026-07-31T21:43:22+08:00</lastmod>
+    <lastmod>2026-08-02T13:34:18+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/tags/chromium/</loc>
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
@@ -48,7 +42,7 @@
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/tags/</loc>
-    <lastmod>2026-07-31T21:43:22+08:00</lastmod>
+    <lastmod>2026-08-02T13:34:18+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/articles/2026-first-chromium-contribution-oopif-touch/</loc>
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
@@ -90,7 +84,7 @@
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/tags/android/</loc>
-    <lastmod>2026-07-31T21:43:22+08:00</lastmod>
+    <lastmod>2026-08-02T13:34:18+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/tags/linux/</loc>
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
@@ -129,13 +123,13 @@
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/tags/%E8%B0%83%E8%AF%95/</loc>
-    <lastmod>2026-07-31T21:43:22+08:00</lastmod>
+    <lastmod>2026-08-02T13:34:18+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/articles/debug-records/</loc>
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/</loc>
-    <lastmod>2026-07-31T21:43:22+08:00</lastmod>
+    <lastmod>2026-08-02T13:34:18+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/articles/configure-a-linux-development-environment/</loc>
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
@@ -182,9 +176,6 @@
     <loc>https://vimerzhao.top/articles/vcpkg-source-code-of-install/</loc>
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
   </url><url>
-    <loc>https://vimerzhao.top/articles/empty-binary-cache-issue-of-vcpkg/</loc>
-    <lastmod>2026-07-31T21:43:22+08:00</lastmod>
-  </url><url>
     <loc>https://vimerzhao.top/articles/vcpkg-introduction/</loc>
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
   </url><url>
@@ -204,7 +195,7 @@
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/tags/vscode/</loc>
-    <lastmod>2026-07-31T21:43:22+08:00</lastmod>
+    <lastmod>2026-08-02T13:34:18+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/articles/record-a-strange-issue-about-codelldb/</loc>
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
@@ -264,7 +255,7 @@
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/categories/%E8%81%8C%E4%B8%9A%E4%B8%8E%E6%88%90%E9%95%BF/</loc>
-    <lastmod>2026-07-31T21:43:22+08:00</lastmod>
+    <lastmod>2026-08-02T13:34:18+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/articles/summarize-of-202305/</loc>
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
@@ -273,7 +264,7 @@
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/articles/configure-android-dev-environment-on-a-remote-server/</loc>
-    <lastmod>2026-07-31T21:43:22+08:00</lastmod>
+    <lastmod>2026-08-02T13:34:18+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/articles/repairing-a-massage-pillow-with-a-dead-battery/</loc>
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
@@ -291,7 +282,7 @@
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/tags/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/</loc>
-    <lastmod>2026-07-31T21:43:22+08:00</lastmod>
+    <lastmod>2026-08-02T13:34:18+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/talks/flutter-design-impl-evolution/</loc>
     <lastmod>2023-04-01T16:55:30+08:00</lastmod>
@@ -429,7 +420,7 @@
     <lastmod>2026-07-30T15:32:42+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/articles/how-to-achieve-self-growth-in-business-development/</loc>
-    <lastmod>2026-07-31T21:43:22+08:00</lastmod>
+    <lastmod>2026-08-02T13:34:18+08:00</lastmod>
   </url><url>
     <loc>https://vimerzhao.top/articles/the-technician_s-guide-to-writing/</loc>
     <lastmod>2026-07-31T21:43:22+08:00</lastmod>

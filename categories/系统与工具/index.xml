@@ -72,13 +72,6 @@
       <description>简介 vcpck install的主要工作是&amp;quot;构建(如果需要)和安装依赖包&amp;quot;，是vcpkg中最关键、也是使用者感知最明显的环节，有必要对其流程有一个更底层的理解，这样对一些问题的理解也将更加深</description>
     </item>
     <item>
-      <title>vcpkg踩坑之空缓存问题</title>
-      <link>https://vimerzhao.top/articles/empty-binary-cache-issue-of-vcpkg/</link>
-      <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>https://vimerzhao.top/articles/empty-binary-cache-issue-of-vcpkg/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>vcpkg简介</title>
       <link>https://vimerzhao.top/articles/vcpkg-introduction/</link>
       <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>

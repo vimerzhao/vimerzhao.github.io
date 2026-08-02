@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://vimerzhao.top/articles/configure-android-dev-environment-on-a-remote-server/" /><meta property="article:section" content="articles" />
 <meta property="article:published_time" content="2023-05-16T00:00:00+00:00" />
-<meta property="article:modified_time" content="2026-07-31T21:43:22+08:00" />
+<meta property="article:modified_time" content="2026-08-02T13:34:18+08:00" />
 
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="在服务器上搭建Android开发调试环境的尝试"/>
 <meta name="twitter:description" content="1. 背景说明 当前的开发工作特点： 项目代码C&#43;&#43;为主，编译任务重，最大的工程全量编一次80min&#43;，小的改动增量10min&#43;，更新一下增量构建30min&#43;。而且编译期间CPU全部占用，无法进行其他工作 涉及"/>
@@ -113,7 +113,7 @@
 </div>
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-05-16T00:00:00Z">2023-05-16</time>
-	<time class="meta__text" datetime="2026-07-31T21:43:22&#43;08:00">(最后修改: 2026-07-31)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="category">软件工程</a>
+	<time class="meta__text" datetime="2026-08-02T13:34:18&#43;08:00">(最后修改: 2026-08-02)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="category">软件工程</a>
 	</span>
 </div></div>
 		</header>
@@ -209,7 +209,6 @@ When using the “remote-android” platform, the client LLDB forwards two ports
 <!--![pic](../../assets/2023-05-16-11-47-40.png)-->
 <p>后面有必要研究下这个配置的原理(<code>lldb.adapterEnv</code>)以及codelldb的源码。</p>
 <p>如此，就基本成功了。剩下一些细节，如<code>add-dsym</code>/<code>append target.exec-search-paths</code>之类的就不赘述了。</p>
-<!--[pic](../../assets/2023-05-16-12-33-58.png)-->
 <h2 id="4-番外">4. 番外</h2>
 <h3 id="41-关于lldb">4.1 关于lldb</h3>
 <p>从官网下载的lldb 16 的命令行补全有问题，但在VSCode的插件中使用又很丝滑。
@@ -300,6 +299,7 @@ When using the “remote-android” platform, the client LLDB forwards two ports
 	</div>
 </div>
 
+
 <nav class="pager flex">
 	<div class="pager__item pager__item--prev">
 		<a class="pager__link" href="/articles/repairing-a-massage-pillow-with-a-dead-battery/" rel="prev">
@@ -376,7 +376,7 @@ When using the “remote-android” platform, the client LLDB forwards two ports
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%B7%A5%E5%85%B7/">系统与工具</a>&nbsp;
-				<span class="widget__counter widget__counter--bubble">95</span>
+				<span class="widget__counter widget__counter--bubble">94</span>
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>&nbsp;
@@ -401,7 +401,7 @@ When using the “remote-android” platform, the client LLDB forwards two ports
 	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/android/" title="Android">Android (11)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/bug/" title="Bug">Bug (42)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bug/" title="Bug">Bug (41)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/c/" title="C">C (44)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (7)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/chromium/" title="Chromium">Chromium (3)</a>
@@ -417,7 +417,7 @@ When using the “remote-android” platform, the client LLDB forwards two ports
 		<a class="widget-taglist__link widget__link btn" href="/tags/matlab/" title="MATLAB">MATLAB (15)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/skia/" title="Skia">Skia (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vcpkg/" title="Vcpkg">Vcpkg (5)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vcpkg/" title="Vcpkg">Vcpkg (4)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vim/" title="Vim">Vim (10)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/virtualbox/" title="VirtualBox">VirtualBox (8)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vscode/" title="VSCode">VSCode (4)</a>
