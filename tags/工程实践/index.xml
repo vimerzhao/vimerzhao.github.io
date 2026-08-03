@@ -6,8 +6,15 @@
     <description>Recent content in 工程实践 on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 31 Jul 2026 21:43:22 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 03 Aug 2026 11:24:16 +0800</lastBuildDate>
     <atom:link href="https://vimerzhao.top/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IMA 笔记中 Markdown 图片引用的两条隐含规则</title>
+      <link>https://vimerzhao.top/articles/ima-markdown-image-reference-rules/</link>
+      <pubDate>Mon, 03 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://vimerzhao.top/articles/ima-markdown-image-reference-rules/</guid>
+      <description>write by ai 起因：一篇明明有图却一张也显示不出来的笔记 我在 IMA 的“外部阅读”知识库中保存了一篇带有大量配图的 Markdown 笔记。原始文件的目录结构很简单：Markdown 文件和 assets/ 文件夹位于同一目录，图片通过标准的相对路径</description>
+    </item>
     <item>
       <title>谈小步快跑</title>
       <link>https://vimerzhao.top/articles/thinking-on-sprint/</link>
