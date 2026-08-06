@@ -31,14 +31,6 @@
 	color: #555;
 }
 
-.note-preview__num i {
-	font-style: normal;
-	font-size: 0.5625rem;
-	font-weight: 600;
-	letter-spacing: 0.12em;
-	color: #aaa;
-}
-
 .note__header {
 	margin-bottom: 14px;
 	color: #777;
@@ -118,17 +110,13 @@
 	}
 
 	.note-preview__num {
-		top: 16px;
-		right: 4px;
-		padding: 3px 8px;
+		position: static;
+		display: inline-flex;
+		margin-bottom: 10px;
 	}
 
 	.note-preview__num b {
 		font-size: 0.75rem;
-	}
-
-	.note-preview__num i {
-		display: none;
 	}
 
 	.note-preview__content p:has(> img:only-child) {
