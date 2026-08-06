@@ -9,6 +9,13 @@
     <atom:link href="https://vimerzhao.top/notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://vimerzhao.top/notes/2026-08-05-165115/</link>
+      <pubDate>Wed, 05 Aug 2026 16:51:15 +0800</pubDate>
+      <guid>https://vimerzhao.top/notes/2026-08-05-165115/</guid>
+      <description>&lt;p&gt;之前在Windows Server 2025上，手动安装 Codex/ChatGPT 桌面版一直失败，在 ChatGPT 里通过对话反复询问原因再手动去尝试，效率很低。&lt;/p&gt;&#xA;&lt;p&gt;后来让 Agent 直接负责安装，让它根据安装过程中的错误自己去排查解决，全程不用我动手，效率反而高得多。&lt;/p&gt;&#xA;&lt;p&gt;(原因是Agent会在失败是自己收集必要的信息，自己尝试新的方向，比我手动操作效率高很多)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://vimerzhao.top/notes/2026-07-31-221032/</link>
       <pubDate>Fri, 31 Jul 2026 22:10:32 +0800</pubDate>
       <guid>https://vimerzhao.top/notes/2026-07-31-221032/</guid>
