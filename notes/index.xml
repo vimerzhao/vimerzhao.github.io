@@ -9,6 +9,13 @@
     <atom:link href="https://vimerzhao.top/notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://vimerzhao.top/notes/2026-08-14-122124/</link>
+      <pubDate>Fri, 14 Aug 2026 12:21:24 +0800</pubDate>
+      <guid>https://vimerzhao.top/notes/2026-08-14-122124/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;write by ai&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;最近尝试了一下使用 AI + tldraw 绘制 UML 架构草图，感觉它目前还没有想象中那么顺手。&lt;/p&gt;&#xA;&lt;p&gt;由于当前还是处在探索讨论阶段，所以还是需要通过这种手绘图的形式(类似草稿)。&#xA;之前这种情况都是通过纸笔绘制完成的。但是纸笔绘制有很多约束：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;一是调整不方便。&lt;/li&gt;&#xA;&lt;li&gt;二是确认之后没办法让AI理解，并且转换成PUML。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;tldraw的优势是，AI可以完成初步的草稿，直接从讨论沉淀出草图，我可以基于可视化的编辑去直接调整。&lt;/p&gt;&#xA;&lt;p&gt;这样效率是最高的，但目前还是有一些不智能的地方。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;图1是我之前写书时充分理解之后设计的架构图，在完整表述源代码架构的基础上，视觉上也非常的合理和有层次。&lt;/li&gt;&#xA;&lt;li&gt;图2是内容变多之后，AI甚至用了将近1个小时才完成架构图的调整。&lt;/li&gt;&#xA;&lt;li&gt;图3是最终生成的架构图，我之前也有一些调整。但看得出来，AI在没有引导的情况下，是不会输出特别有层次感和设计感的UML类图的。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/3d8e728c454ce02f91c2-2026-08-14-12-34-05.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/a0229fcf4deec3212d37-2026-08-14-12-34-34.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2744e0d3ec07dcf26188-2026-08-14-12-34-40.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://vimerzhao.top/notes/2026-08-08-182031/</link>
       <pubDate>Sat, 08 Aug 2026 18:20:31 +0800</pubDate>
       <guid>https://vimerzhao.top/notes/2026-08-08-182031/</guid>

@@ -46,7 +46,7 @@
 }
 
 /* Consecutive image-only Markdown paragraphs become compact timeline thumbnails. */
-.note-preview__content p:has(> img:only-child) {
+.note-preview__content p:has(> .note-image-frame:only-child) {
 	display: inline-block;
 	box-sizing: border-box;
 	width: calc(33.333% - 6px);
@@ -54,7 +54,13 @@
 	vertical-align: top;
 }
 
-.note-preview__content p:has(> img:only-child) img {
+.note-preview__content p:has(> .note-image-frame:only-child) .note-image-frame {
+	display: block;
+	width: 100%;
+	margin: 0;
+	}
+
+.note-preview__content p:has(> .note-image-frame:only-child) img {
 	display: block;
 	width: 100%;
 	height: auto;
@@ -62,6 +68,31 @@
 	object-fit: cover;
 	margin: 0;
 }
+
+.note-image-frame {
+	position: relative;
+	display: inline-block;
+	max-width: 100%;
+	line-height: 0;
+}
+
+.note-image-index {
+	position: absolute;
+	top: 6px;
+	right: 6px;
+	min-width: 1.5em;
+	box-sizing: border-box;
+	padding: 2px 5px;
+	border-radius: 3px;
+	background: rgba(0, 0, 0, 0.62);
+	color: #fff;
+	font-size: 0.75rem;
+	font-weight: 600;
+	line-height: 1.4;
+	text-align: center;
+	font-variant-numeric: tabular-nums;
+	pointer-events: none;
+	}
 
 .note-preview__footer {
 	display: flex;
@@ -162,7 +193,7 @@
 		gap: 8px;
 	}
 
-	.note-preview__content p:has(> img:only-child) {
+	.note-preview__content p:has(> .note-image-frame:only-child) {
 		width: calc(33.333% - 4px);
 		margin-right: 4px;
 		margin-bottom: 4px;
