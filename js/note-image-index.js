@@ -14,5 +14,29 @@
 			badge.textContent = index + 1;
 			frame.appendChild(badge);
 		});
+
+		if (!content.classList.contains("note-preview__content")) return;
+
+		var groups = [];
+		var group = [];
+		Array.from(content.children).forEach(function (element) {
+			var isImageParagraph = element.matches("p") && element.matches(":has(> .note-image-frame:only-child)");
+			if (isImageParagraph) {
+				group.push(element);
+			} else if (group.length > 0) {
+				groups.push(group);
+				group = [];
+			}
+		});
+		if (group.length > 0) groups.push(group);
+
+		groups.forEach(function (group) {
+			var grid = document.createElement("div");
+			grid.className = "note-preview__image-grid";
+			group[0].parentNode.insertBefore(grid, group[0]);
+			group.forEach(function (paragraph) {
+				grid.appendChild(paragraph);
+			});
+		});
 	});
 })();

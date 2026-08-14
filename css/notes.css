@@ -46,15 +46,20 @@
 }
 
 /* Consecutive image-only Markdown paragraphs become compact timeline thumbnails. */
-.note-preview__content p:has(> .note-image-frame:only-child) {
-	display: inline-block;
-	box-sizing: border-box;
-	width: calc(33.333% - 6px);
-	margin: 0 6px 6px 0;
-	vertical-align: top;
+.note-preview__image-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 6px;
+	margin-bottom: 6px;
 }
 
-.note-preview__content p:has(> .note-image-frame:only-child) .note-image-frame {
+.note-preview__image-grid p {
+	box-sizing: border-box;
+	margin: 0;
+	min-width: 0;
+	}
+
+.note-preview__image-grid .note-image-frame {
 	display: block;
 	width: 100%;
 	margin: 0;
@@ -193,9 +198,8 @@
 		gap: 8px;
 	}
 
-	.note-preview__content p:has(> .note-image-frame:only-child) {
-		width: calc(33.333% - 4px);
-		margin-right: 4px;
+	.note-preview__image-grid {
+		gap: 4px;
 		margin-bottom: 4px;
 	}
 }
