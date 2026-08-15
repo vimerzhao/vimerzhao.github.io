@@ -6,7 +6,7 @@
     <description>Recent content on 赵裕的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 14 Aug 2026 12:35:44 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 15 Aug 2026 19:59:27 +0800</lastBuildDate>
     <atom:link href="https://vimerzhao.top/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>文章</title>
@@ -45,10 +45,17 @@
     </item>
     <item>
       <title></title>
+      <link>https://vimerzhao.top/notes/2026-08-15-192022/</link>
+      <pubDate>Sat, 15 Aug 2026 19:20:22 +0800</pubDate>
+      <guid>https://vimerzhao.top/notes/2026-08-15-192022/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;学海无涯，何以为舟？&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;最近在研究 Chromium 的源码，由此产生一点感想：现实世界的工程其实都是非常庞大的。即使像 Chromium 这样一个非常高质量的项目，哪怕它的每一个模块、每一行代码都有学习的价值，我们也是很难去完全学习清楚的。&lt;/p&gt;&#xA;&lt;p&gt;我觉得一个比较有效的方法是结合自己遇到的问题，再去深入地分析研究。总的来说，带着问题，带着目的，带着实践的反馈去研究一个模块，效果是最好的。&lt;/p&gt;&#xA;&lt;p&gt;当然这里还要注意三个问题。&lt;/p&gt;&#xA;&lt;p&gt;第一个问题是，很多东西是超越代码的。比如说，这个地方为什么要这么设计？它是为了什么样的场景、解决什么样的现实问题？这些东西不一定在代码里面有完整的体现。&lt;/p&gt;&#xA;&lt;p&gt;第二个问题是时效性。你对一个模块今时今日研究懂了，但是这个模块是会不断更新迭代的，可能你以后不做这个方向了，你的知识又过期了。所以，更重要的是你要从这里面沉淀出一些更有价值的东西，补充到你的知识体系里面，而不是跟着这个项目走。&lt;/p&gt;&#xA;&lt;p&gt;第三个问题是：研究透一个模块固然重要，但是实际上很多模块和问题都是交叉关联的。绝对不能把自己拘囿在一个具体的问题上，要时刻用联系的眼光去看待整个模块。即使我们没有精力去把其他的模块搞清楚，还是要有意识地去建立一张知识的网络图谱，而不是孤立、局部地看待问题。&lt;/p&gt;&#xA;&lt;p&gt;当然，这里涉及到一个问题：我们选择自己工作方向的时候，一定要选择一个有足够上限，或者说生命力足够持久的领域，比如浏览器。我觉得像操作系统、安全还有编译器，这些可能都是比较底层，不可能被完全替代的领域。但是像安卓的一些框架或技术栈反而很容易被替代，所以选择方向也很重要：选择一个能做 20 年的方向，或者选择一个能够让自己投入毕生精力的方向。&lt;/p&gt;&#xA;&lt;p&gt;最近我就在研究chromium的渲染管线和窗口抽象设计。首先，可以以这个为切入点来研究 Chromium 的某些模块。&lt;/p&gt;&#xA;&lt;p&gt;其次，可以与之前自己对于 WebKit 和 Flutter 的一些研究关联起来，形成对比。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://vimerzhao.top/notes/2026-08-14-122124/</link>
       <pubDate>Fri, 14 Aug 2026 12:21:24 +0800</pubDate>
       <guid>https://vimerzhao.top/notes/2026-08-14-122124/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;write by ai&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;最近尝试了一下使用 AI + tldraw 绘制 UML 架构草图，感觉它目前还没有想象中那么顺手。&lt;/p&gt;&#xA;&lt;p&gt;由于当前还是处在探索讨论阶段，所以还是需要通过这种手绘图的形式(类似草稿)。&#xA;之前这种情况都是通过纸笔绘制完成的。但是纸笔绘制有很多约束：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;一是调整不方便。&lt;/li&gt;&#xA;&lt;li&gt;二是确认之后没办法让AI理解，并且转换成PUML。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;tldraw的优势是，AI可以完成初步的草稿，直接从讨论沉淀出草图，我可以基于可视化的编辑去直接调整。&lt;/p&gt;&#xA;&lt;p&gt;这样效率是最高的，但目前还是有一些不智能的地方。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;图1是我之前写书时充分理解之后设计的架构图，在完整表述源代码架构的基础上，视觉上也非常的合理和有层次。&lt;/li&gt;&#xA;&lt;li&gt;图2是内容变多之后，AI甚至用了将近1个小时才完成架构图的调整。&lt;/li&gt;&#xA;&lt;li&gt;图3是最终生成的架构图，我之前也有一些调整。但看得出来，AI在没有引导的情况下，是不会输出特别有层次感和设计感的UML类图的。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/3d8e728c454ce02f91c2-2026-08-14-12-34-05.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/a0229fcf4deec3212d37-2026-08-14-12-34-34.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2744e0d3ec07dcf26188-2026-08-14-12-34-40.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;最近尝试了一下使用 AI + tldraw 绘制 UML 架构草图，感觉它目前还没有想象中那么顺手。&lt;/p&gt;&#xA;&lt;p&gt;由于当前还是处在探索讨论阶段，所以还是需要通过这种手绘图的形式(类似草稿)。&#xA;之前这种情况都是通过纸笔绘制完成的。但是纸笔绘制有很多约束：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;一是调整不方便。&lt;/li&gt;&#xA;&lt;li&gt;二是确认之后没办法让AI理解，并且转换成PUML。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;tldraw的优势是，AI可以完成初步的草稿，直接从讨论沉淀出草图，我可以基于可视化的编辑去直接调整。&lt;/p&gt;&#xA;&lt;p&gt;这样效率是最高的，但目前还是有一些不智能的地方。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;图1是我之前写书时充分理解之后设计的架构图，在完整表述源代码架构的基础上，视觉上也非常的合理和有层次。&lt;/li&gt;&#xA;&lt;li&gt;图2是内容变多之后，AI甚至用了将近1个小时才完成架构图的调整。&lt;/li&gt;&#xA;&lt;li&gt;图3是最终生成的架构图，我之前也有一些调整。但看得出来，AI在没有引导的情况下，是不会输出特别有层次感和设计感的UML类图的。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/3d8e728c454ce02f91c2-2026-08-14-12-34-05.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/a0229fcf4deec3212d37-2026-08-14-12-34-34.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/2744e0d3ec07dcf26188-2026-08-14-12-34-40.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
