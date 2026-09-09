@@ -9,6 +9,13 @@
     <atom:link href="https://vimerzhao.top/notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://vimerzhao.top/notes/2026-09-09-170054/</link>
+      <pubDate>Wed, 09 Sep 2026 17:00:54 +0800</pubDate>
+      <guid>https://vimerzhao.top/notes/2026-09-09-170054/</guid>
+      <description>&lt;p&gt;最近一直在 Codex 里面使用支持 response api  的 DeepSeek v4，但有一个问题是 Codex 默认写死了 300K 不到的上下文窗口，导致开发大型项目时需要频繁地压缩上下文，体验实在太差。&lt;/p&gt;&#xA;&lt;p&gt;配置起来还有点麻烦，最近考虑引入其他工具了（Claude Code近期更新不少）~&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://vimerzhao.top/notes/2026-09-08-145724/</link>
       <pubDate>Tue, 08 Sep 2026 14:57:24 +0800</pubDate>
       <guid>https://vimerzhao.top/notes/2026-09-08-145724/</guid>
