@@ -9,6 +9,13 @@
     <atom:link href="https://vimerzhao.top/notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://vimerzhao.top/notes/2026-09-10-163549/</link>
+      <pubDate>Thu, 10 Sep 2026 16:35:49 +0800</pubDate>
+      <guid>https://vimerzhao.top/notes/2026-09-10-163549/</guid>
+      <description>&lt;p&gt;最近在开发一个项目，我自己思考了一下，还是挺复杂的。具体复杂体现在几个层面：&lt;/p&gt;&#xA;&lt;p&gt;1 UI就挺复杂的，要和各种的系统窗口打交道，并不是一个纯粹的Web UI&#xA;2 功能也挺复杂的，需要获取各种系统能力。另外还要去理解腾讯云、阿里云的各种语音SDK。&#xA;3 内部状态的维护也挺复杂的，语音输入各种交互状态之间的切换非常复杂，还要和UI保持一致&#xA;4 另外就是它本身是一个Agent的项目，导致调试起来也有很多不确定性&lt;/p&gt;&#xA;&lt;p&gt;之前用Codex，因为上下文太短，导致经常触发上下文压缩。最近切换到了Claude Code, 这个问题好了很多。&lt;/p&gt;&#xA;&lt;p&gt;但是今天上午，我随便问了个问题，CC+Sonet-1m 给我查了快1个小时，我烧了100多块，我还是有点无法接受&lt;/p&gt;&#xA;&lt;p&gt;因为我觉得我这些需求虽然复杂，但如果向AI表述清楚了，DeepSeek V4是完全能够胜任的。&lt;/p&gt;&#xA;&lt;p&gt;最近AI Coding有点发毛了，感觉非常复杂的场景还是要人为的强力介入和引导&lt;/p&gt;&#xA;&lt;p&gt;特别是当前这个项目，AI无法闭环完成验证，而且自身的各种交互和行为细节又非常的多。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://vimerzhao-blog-1252560110.cos.ap-guangzhou.myqcloud.com/fd1a3e6224b5797924e9-sp20260910_121305_210.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://vimerzhao.top/notes/2026-09-09-170054/</link>
       <pubDate>Wed, 09 Sep 2026 17:00:54 +0800</pubDate>
       <guid>https://vimerzhao.top/notes/2026-09-09-170054/</guid>
