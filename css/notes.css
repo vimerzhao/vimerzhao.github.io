@@ -2,6 +2,13 @@
 	border-top: 1px solid #d8d8d8;
 }
 
+.notes__subtitle {
+	margin: 0 0 20px;
+	font-size: 0.875rem;
+	line-height: 1.6;
+	color: #666;
+}
+
 .note-preview {
 	padding: 22px 0;
 	border-bottom: 1px solid #d8d8d8;
