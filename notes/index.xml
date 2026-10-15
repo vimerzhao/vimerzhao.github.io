@@ -9,6 +9,13 @@
     <atom:link href="https://vimerzhao.top/notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://vimerzhao.top/notes/2026-10-15-152932/</link>
+      <pubDate>Thu, 15 Oct 2026 15:29:32 +0800</pubDate>
+      <guid>https://vimerzhao.top/notes/2026-10-15-152932/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;谈谈REA&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;最近有一个非常火的项目 ：&lt;a href=&#34;https://github.com/morluto/rea&#34;&gt;morluto/rea&lt;/a&gt;。因为自己平时也经常做一些逆向的工作，有的是工作需要，有的是个人需要。由于这个领域比较特殊，我之前都没有公开分享成果，但确实也是自己颇有心得的一个领域，所以想分享一下自己的感受。&lt;/p&gt;&#xA;&lt;p&gt;首先是 rea 干了什么？&lt;/p&gt;&#xA;&lt;p&gt;我对于 AI 在工程领域的各种爆火项目的感觉是：没有什么革命性的创新或“0 到 1”的工作，更多的是对工程经验的一种整合和萃取——将优秀的工程经验整合为标准化的 SOP 流程，提供给 AI Agent。&lt;/p&gt;&#xA;&lt;p&gt;在没有 REA 之前，优秀的逆向工程师也是这么去分析的。但是 REA 做的是什么事情呢？它把各种技术产物（比如二进制的产物、Electron 的产物、安卓的产物等）的逆向流程做了标准化。有的产物的逆向流程有非常权威的工具，rea就直接复用了，有的没有标准化的工具，它就自己写了分析引擎。&lt;/p&gt;&#xA;&lt;p&gt;这些东西在没有 REA 的时代，是需要大量学习才能掌握的和完成的。REA 把这些东西全都做成了标准化的流程，带来的结果就是：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;对于会提问的普通开发者：做逆向的下限大大提高了。可能加固水平比较一般的软件，很容易就被普通人破解了。&lt;/li&gt;&#xA;&lt;li&gt;对于懂逆向的人：他的上限也被大大提高了。因为很多机械性的工作 REA 都帮他先做好了，他可以在一个很高的起点上开始自己定制化的工作。另外AI的理解带宽比人大，人能够更加专注在自己的核心目标上了。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;因为AI的到来，导致一些半开放性的经验的复用变成了可能（没有AI的时代，我把我的经验萃取出来，其他人也无法复用用，因为他没有这个背景知识，但是AI是有这些背景知识的，就让此类经验的沉淀有了意义：隐性知识第一次有了可执行的读者），软件工程领域来到了大蒸馏时代。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://vimerzhao.top/notes/2026-10-10-160248/</link>
       <pubDate>Sat, 10 Oct 2026 16:02:48 +0800</pubDate>
       <guid>https://vimerzhao.top/notes/2026-10-10-160248/</guid>
