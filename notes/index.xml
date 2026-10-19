@@ -9,6 +9,13 @@
     <atom:link href="https://vimerzhao.top/notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://vimerzhao.top/notes/2026-10-19-170249/</link>
+      <pubDate>Mon, 19 Oct 2026 17:02:49 +0800</pubDate>
+      <guid>https://vimerzhao.top/notes/2026-10-19-170249/</guid>
+      <description>&lt;p&gt;之前也大大小小做了20多次分享，感觉在非AI时代分享这个事情还是比较因人而异的。以我自己为例，通常我对某一个主题进行分享的前提是，我已经有了一定的时间和理解，然后在短时间内做一个系统的梳理。分享的过程，也是我自己查漏补缺，审视自己的过程。但是没有什么章法可言。&lt;/p&gt;&#xA;&lt;p&gt;AI时代下，我重新思考了一下这个过程。并设计了一个可以重复的SOP流程。&lt;/p&gt;&#xA;&lt;p&gt;核心是将这个抽象的过程做成一个流水线，具体步骤如下：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;构建想法与分享大纲（人工）；&lt;/li&gt;&#xA;&lt;li&gt;针对想法和大纲中的举例实证进行实际的调研；（AI辅助，人负责验收和判断）&lt;/li&gt;&#xA;&lt;li&gt;生成文字描述版的分享笔记（类似于用于渲染的 DOM tree）；（人工主导）&lt;/li&gt;&#xA;&lt;li&gt;最终基于这个分享笔记，使用 slidev 等工具生成最终渲染的 PPT。（AI主导）&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;这个流水线不是单向的。调研可能修正原来的想法，写笔记可能暴露新的调研问题，试讲也可能推动内容和表达的调整。发生变化后，再让 AI 辅助更新受影响的环节。&lt;/p&gt;&#xA;&lt;p&gt;我觉得最核心的原则是，把资料查找、验证中的执行工作，以及最终幻灯片的制作交给 AI；人把精力放在观点形成、证据判断和表达取舍上。&lt;/p&gt;&#xA;&lt;p&gt;我不太认可丢出一个想法，让 AI 全盘接手并生成 PPT 的做法。因为我觉得 PPT 是讲者理解与判断的外显。如果跳过理解和审核，直接接受 AI 生成的整套 PPT，讲者就容易停留在复述页面内容，难以解释观点的依据，也难以回答追问。。&lt;/p&gt;&#xA;&lt;p&gt;人可以委托很多执行工作，但要观点和其表达过程本身要由人把控。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://vimerzhao.top/notes/2026-10-15-152932/</link>
       <pubDate>Thu, 15 Oct 2026 15:29:32 +0800</pubDate>
       <guid>https://vimerzhao.top/notes/2026-10-15-152932/</guid>
