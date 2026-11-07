@@ -2,6 +2,30 @@
 	border-top: 1px solid #d8d8d8;
 }
 
+.home-notes-notice {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	margin-bottom: 20px;
+	padding: 12px 14px;
+	border: 1px solid #d8d8d8;
+	border-radius: 4px;
+	background: #f7f9fb;
+	color: #1f6fb2;
+	font-size: 0.875rem;
+	line-height: 1.6;
+	text-decoration: none;
+	transition: color 0.25s ease-out, border-color 0.25s ease-out, background-color 0.25s ease-out;
+}
+
+.home-notes-notice:hover,
+.home-notes-notice:focus {
+	color: #155685;
+	border-color: #1f6fb2;
+	background: #edf3f8;
+	text-decoration: none;
+}
+
 .notes__subtitle {
 	margin: 0 0 20px;
 	font-size: 0.875rem;
